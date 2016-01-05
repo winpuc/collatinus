@@ -13,10 +13,10 @@ lundi 4 janvier 2016
   Ou bien chargement des mêmes, compressés, prêts à être décompressés
   et installés par Collatinus.
 - Modèles :
-  *	Cérifier les modèles
-  *	Craiter les noms 3ème decl pl. majores, orum, donné sing.
+  *	Vérifier les modèles
+  *	Vraiter les noms 3ème decl pl. majores, orum, donné sing.
 	modèles nolo et malo
-  *  vérifier facio et fio
+  * Vérifier facio et fio
   *	Construire des modèles passifs/intransitifs
 
 ## DOC
