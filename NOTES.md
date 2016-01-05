@@ -18,9 +18,10 @@ Requis :
 - Placer dans bin/data/dicos les dictionnaires xml et
   djvu les dictionnaires téléchargeables à la même adresse ;
 - Lancer Collatinus en ligne de commande :    
-  $ cd bin
-  $ ./collatinus    
+  * $ cd bin
+  * $ ./collatinus    
   ou après avoir installé un raccourci.
+
 ## BOGUES
 - Ligne de saisie non connectée dans certains docks.
 
