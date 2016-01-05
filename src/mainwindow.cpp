@@ -707,6 +707,7 @@ void MainWindow::createConnections()
 	// connexions des lignes de saisie
 	connect (lineEditLem, SIGNAL(returnPressed()), this, SLOT(lemmatiseLigne()));
 	connect (lineEditFlex, SIGNAL(returnPressed()), this, SLOT(flechisLigne()));
+	connect (lineEditScand, SIGNAL(returnPressed()), this, SLOT(scandeLigne()));
 
 	// options et actions du lemmatiseur
 	connect(alphaOptAct, SIGNAL(toggled(bool)), lemmatiseur, SLOT(setAlpha(bool)));
@@ -957,7 +958,7 @@ void MainWindow::createDockWindows()
     dockWidgetScand = new QWidget (dockScand);
     QVBoxLayout *vLayoutScand = new QVBoxLayout (dockWidgetScand);
     QHBoxLayout *hLayoutScand = new QHBoxLayout ();
-    QLineEdit *lineEditScand = new QLineEdit (dockWidgetScand);
+    lineEditScand = new QLineEdit (dockWidgetScand);
     QSpacerItem *hSpacerScand = new QSpacerItem (40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 	hLayoutScand->addWidget (lineEditScand);
 	hLayoutScand->addItem (hSpacerScand);
@@ -1373,6 +1374,16 @@ void MainWindow::rechercheBis()
 		ok = editLatin->find(rech);
 		if (!ok) editLatin->setTextCursor(tc);
 	}
+}
+
+/**
+ * \fn void MainWindow::scandeLigne()
+ * \brief scande le contenu de la ligne de saisie du
+ *        dock Scansion, et affiche le résultat.
+ */
+void MainWindow::scandeLigne()
+{
+	textEditScand->setHtml(lemmatiseur->scandeTxt (lineEditScand->text(), false));
 }
 
 /**

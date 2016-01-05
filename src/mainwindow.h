@@ -77,6 +77,7 @@ public:
 	QLineEdit        *lineEditDic;
 	QLineEdit        *lineEditDicW;
 	QLineEdit        *lineEditFlex;
+	QLineEdit        *lineEditScand;
 	// cases à cocher pour la copie
 	QCheckBox *cbTexteLatin;
 	QCheckBox *cbLemmatisation;
@@ -123,6 +124,7 @@ private slots:
 	void readSettings();
 	void recherche();
 	void rechercheBis();
+	void scandeLigne();
 	void scandeTxt();
 	void setCible();
 	void stat();
