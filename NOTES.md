@@ -26,16 +26,17 @@ Requis :
 - Ligne de saisie non connectée dans certains docks.
 
 ## À FAIRE :
-- Nettoyage des -pte -met -quoi dans les traductions
-- Téléchargement des màj des lexiques et dictionnaires ?
-  Ou bien chargement des mêmes, compressés, prêts à être décompressés
-  et installés par Collatinus.
+- Implémenter l'option de menu « Nouveau » ;
+- Nettoyage des -pte -met -quoi dans les traductions ;
+- chargement des lexiques et dictionnaires, compressés,
+  prêts à être décompressés et installés par Collatinus.
+- Préparer la traduction anglaise de l'interface ;
 - Modèles :
-  *	Vérifier les modèles
-  *	Traiter les noms 3ème decl pl. majores, orum, donné sing.
-	modèles nolo et malo
-  * Vérifier facio et fio
-  *	Construire des modèles passifs/intransitifs
+  *	Vérifier les modèles ;
+  *	Traiter les noms 3ème decl pl. majores, orum, donné sing. ;
+  * modèles nolo et malo ;
+  * Vérifier facio et fio ;
+  *	Construire des modèles passifs/intransitifs.
 
 ## DOC
 
