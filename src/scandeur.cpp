@@ -137,23 +137,22 @@ QStringList Lemmat::cherchePieds (int nbr, QString ligne, int i, bool pentam)
  */
 QStringList Lemmat::formeq (QString forme, bool *nonTrouve, bool debPhr)
 {
-    QStringList lforme;
     *nonTrouve = true;
-    if (forme.isEmpty ()) return lforme;
+    if (forme.isEmpty ()) return QStringList();
 	MapLem mp = lemmatiseM (forme, debPhr);
-    if (mp.empty ())
-    {
-        lforme.append (forme);
-        return lforme;
-    }
+    if (mp.empty ()) return QStringList () << forme;
     *nonTrouve = false;
+    QStringList lforme;
+	bool maj = forme.at(0).isUpper();
 	foreach (Lemme *l, mp.keys())
 	{
 		foreach (SLem s, mp.value(l))
 		{
-			if (s.grq == "-")
-				lforme.append (l->grq());
-        	else lforme.append (parPos(s.grq));
+			QString f;
+			if (s.grq == "-") f = l->grq();
+			else f = parPos(s.grq);
+			if (maj) f[0] = f[0].toUpper();
+			lforme.append (f);
 		}
 	}
     lforme.removeDuplicates ();

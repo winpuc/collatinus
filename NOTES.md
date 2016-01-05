@@ -3,9 +3,7 @@
 lundi 4 janvier 2016 
 
 ## BOGUES
-- les formes irrégulières ne sont pas prises en compte
-  dans les tableaux de flexion ;
-- Lignes à séparer sous Mac dans editLatin ;
+- Ligne de saisie non connectée dans certains docks.
 
 ## À FAIRE :
 - Nettoyage des -pte -met -quoi dans les traductions

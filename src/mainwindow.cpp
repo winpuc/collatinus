@@ -578,7 +578,8 @@ void MainWindow::copie()
 	clipboard->clear();
 	
 	QString texte;
-	if (cbTexteLatin->isChecked()) texte.append(editLatin->toPlainText());
+	//if (cbTexteLatin->isChecked()) texte.append(editLatin->toPlainText());
+	if (cbTexteLatin->isChecked()) texte.append(editLatin->toHtml());
 	if (cbLemmatisation->isChecked()) texte.append(textEditLem->toHtml());
 	if (cbScansion->isChecked()) texte.append(textEditScand->toHtml());
 	QMimeData *mime = new QMimeData;
