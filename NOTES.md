@@ -1,22 +1,25 @@
-------------  COLLATINUS 11 -------------
+# Collatinus-11, notes
+
 lundi 4 janvier 2016 
 
-BOGUES
+## BOGUES
 - les formes irrégulières ne sont pas prises en compte
-  dans les tableaux de flexion
+  dans les tableaux de flexion ;
+- Lignes à séparer sous Mac dans editLatin ;
 
-À FAIRE :
-- Dispositif de copier/coller
+## À FAIRE :
 - Nettoyage des -pte -met -quoi dans les traductions
 - Téléchargement des màj des lexiques et dictionnaires ?
   Ou bien chargement des mêmes, compressés, prêts à être décompressés
   et installés par Collatinus.
 - Modèles :
-	vérifier les modèles
-	traiter les noms 3ème decl pl. majores, orum, donné sing.
+  *	Cérifier les modèles
+  *	Craiter les noms 3ème decl pl. majores, orum, donné sing.
 	modèles nolo et malo
-    vérifier facio et fio
-	construire des modèles passifs/intransitifs
+  *  vérifier facio et fio
+  *	Construire des modèles passifs/intransitifs
+
+## DOC
 
 Un modèle d'utilisation des docks est dans les exemples Qt5 : 
 ${Doc-qt5}/examples/widgets/mainwindows/dockwidgets
