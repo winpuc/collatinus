@@ -26,7 +26,7 @@ Requis :
 - Ligne de saisie non connectée dans certains docks.
 
 ## À FAIRE :
-- Implémenter l'option de menu « Nouveau » ;
+- Dans le copier-coller, insérer une signature "édité avec C11+url";
 - Nettoyage des -pte -met -quoi dans les traductions ;
 - chargement des lexiques et dictionnaires, compressés,
   prêts à être décompressés et installés par Collatinus.

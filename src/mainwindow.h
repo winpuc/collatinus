@@ -120,6 +120,7 @@ private slots:
 	void lemmatiseLigne();
     void lemmatiseTxt();
 	void montreWDic(bool visible);
+	void nouveau();
 	void ouvrir();
 	void readSettings();
 	void recherche();

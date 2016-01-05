@@ -746,6 +746,7 @@ void MainWindow::createConnections()
 	connect(findAct, SIGNAL(triggered()), this, SLOT(recherche()));
 	connect(reFindAct, SIGNAL(triggered()), this, SLOT(rechercheBis()));
 	connect(lancAct, SIGNAL(triggered()), this, SLOT(lancer()));
+	connect(nouvAct, SIGNAL(triggered()), this, SLOT(nouveau()));
 	connect(ouvrirAct, SIGNAL(triggered()), this, SLOT(ouvrir()));
 	connect(printAct, SIGNAL(triggered()), this, SLOT(imprimer()));
 	connect(quitAct, SIGNAL(triggered()), this, SLOT(close()));
@@ -784,6 +785,7 @@ void MainWindow::createDicos(bool prim)
 void MainWindow::createMenus()
 {
     fileMenu = menuBar()->addMenu(tr("&Fichier"));
+	fileMenu->addAction(nouvAct);
 	fileMenu->addAction (ouvrirAct);
     fileMenu->addSeparator();
 	fileMenu->addAction(copieAct);
@@ -1245,6 +1247,20 @@ void MainWindow::montreWDic(bool visible)
 }
 
 /**
+ * \fn void MainWindow::nouveau()
+ * \brief Après confirmation efface le texte et les résultats,
+ *        permettant à l'utilisateur de recommencer /ab initio/
+ */
+void MainWindow::nouveau()
+{
+	qDebug()<<"nouveau";
+	if (precaution()) return;
+	editLatin->clear();
+	textEditLem->clear();
+	textEditScand->clear();
+}
+
+/**
  * \fn void MainWindow::ouvrir()
  * \brief Affiche le dialogue d'ouverture de fichier.
  */
@@ -1261,10 +1277,25 @@ void MainWindow::ouvrir()
 /**
  * \fn bool MainWindow::precaution()
  * \brief Dialogue de précaution avant l'effacement du texte latin.
+ *        Renvoie false si Oui/Yes a été cliqué.
  */
 bool MainWindow::precaution()
 {
-	return false;
+    if (!editLatin->document()->isEmpty()
+       	|| !textEditLem->document()->isEmpty() 
+       	|| !textEditScand->document()->isEmpty())
+    {
+        int ret = QMessageBox::warning
+			(this, tr("Collatinus"),
+             tr("Un ou plusieurs onglets ont été modifiés. Effacer leur contenu ?"),
+             QMessageBox::Yes | QMessageBox::Default,
+             QMessageBox::No,
+             QMessageBox::Cancel | QMessageBox::Escape);
+        if (ret == QMessageBox::Yes)
+            return false;
+		return true;
+    }
+    return false;
 }
 
 /**
