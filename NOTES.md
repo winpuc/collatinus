@@ -22,11 +22,17 @@ Requis :
   * $ ./collatinus    
   ou après avoir installé un raccourci.
 
-## BOGUES
-- Ligne de saisie non connectée dans certains docks.
+## BOGUES ET PROBLÈMES
+- Flexion de multus et ses degrés allogènes (plus, plurimus)
+- flexion de facio et fio, et des composés
 
 ## À FAIRE :
-- Dans le copier-coller, insérer une signature "édité avec C11+url";
+- Adapter le dialogue de presse-papiers pour le retaillage ;
+- Poser des indications de licence sur les fichiers de données ;
+- Trouver une icone valable pour Calepino ;
+- Mettre à jour les droits des fichiers dans res/ ;
+- Dans le presse-papier, insérer une signature "édité avec C11+url";
+  idem pour l'impression ?
 - Nettoyage des -pte -met -quoi dans les traductions ;
 - chargement des lexiques et dictionnaires, compressés,
   prêts à être décompressés et installés par Collatinus.
@@ -37,8 +43,11 @@ Requis :
   * modèles nolo et malo ;
   * Vérifier facio et fio ;
   *	Construire des modèles passifs/intransitifs.
+- Système d'hyperliens dans les résultats, qui permet d'afficher
+  des entrées. Par exemple, le lemme multus donne ses degrés par
+  un hyperlien vers plus, pluris, et vers plurimus, a, um.
 
 ## DOC
 
-Un modèle d'utilisation des docks est dans les exemples Qt5 : 
-${Doc-qt5}/examples/widgets/mainwindows/dockwidgets
+- Un modèle d'utilisation des docks est dans les exemples Qt5 : 
+  ${Doc-qt5}/examples/widgets/mainwindows/dockwidgets
