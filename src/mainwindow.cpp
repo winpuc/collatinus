@@ -982,7 +982,7 @@ void MainWindow::createDockWindows()
 	hLayoutFlex->addWidget (lineEditFlex);
 	hLayoutFlex->addItem (hSpacerFlex);
     textBrowserFlex = new QTextBrowser(dockWidgetFlex);
-	textBrowserFlex->setSizePolicy (QSizePolicy::Expanding, QSizePolicy::Expanding);
+	textBrowserFlex->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	vLayoutFlex->addLayout (hLayoutFlex);
 	vLayoutFlex->addWidget (textBrowserFlex);
 	dockFlex->setWidget (dockWidgetFlex);
@@ -1052,13 +1052,14 @@ void MainWindow::dialogueCopie()
     QLabel *icon = new QLabel;
     icon->setPixmap(QPixmap(":/res/collatinus.ico"));
     QLabel *text = new QLabel;
+	text->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     text->setWordWrap(true);
     text->setText("<p>Pour récupérer et modifier votre travail, la meilleure manière est "
 				  "d'ouvrir le traitement de textes de votre choix, puis de sélectionner "
 				  "ci-dessous ce que vous voulez utiliser. Cliquez ensuite sur le bouton "
 				  "«Appliquer». Pour terminer, revenez dans votre traitement de texte, "
-				  "et copiez votre sélection avec le raccourci <b>Ctrl-P</b>, ou l'option "
-				  "de menu <b>Édition/Coller</b>.");
+				  "et copiez votre sélection avec un raccourci clavier, ou l'option de "
+				  "menu <b>Édition/Coller</b>.");
 
 	cbTexteLatin    = new QCheckBox (tr("Texte latin"));
 	cbLemmatisation = new QCheckBox (tr("Lemmatisation"));
@@ -1068,8 +1069,8 @@ void MainWindow::dialogueCopie()
     QPushButton *cloreButton   = new QPushButton("Fermer");
 
     QVBoxLayout *topLayout     = new QVBoxLayout;
-    topLayout->setMargin(10);
-    topLayout->setSpacing(10);
+    //topLayout->setMargin(10);
+    //topLayout->setSpacing(10);
     topLayout->addWidget(icon);
     topLayout->addWidget(text);
 
