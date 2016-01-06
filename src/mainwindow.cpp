@@ -633,7 +633,7 @@ void MainWindow::createActions()
 	alphaOptAct = new QAction(tr("ordre alpha"), this);
 	alphaOptAct->setCheckable(true);
 	// calepino
-	calepAct = new QAction(tr("Calep"), this);
+	calepAct = new QAction(tr("Calepino"), this);
 	calepAct->setCheckable(true);
 	// formes du texte dans la lemmatisation
 	formeTAct = new QAction(tr("avec formes"), this);
