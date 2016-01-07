@@ -176,7 +176,6 @@ private:
 	QAction      *visibleWAct;
 	QAction      *exportAct;
 	QAction      *findAct;
-	QAction      *flexAct;
 	QAction      *lancAct;
 	QAction      *nouvAct;
 	QAction      *ouvrirAct;

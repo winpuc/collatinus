@@ -18,10 +18,6 @@
 !
 ! On peut ne donner qu'une fois une désinence qui se répète en fin de liste.
 !
-!
-!
-!
-!
 $em=ĕm;ēs;ĕt;ēmŭs;ētĭs;ēnt
 $im=ĭm;īs;ĭt;īmŭs;ītĭs;īnt
 $lupus=ŭs;ĕ;ŭm;ī;ō;ō;ī;ī;ōs;ōrŭm;īs;īs
@@ -670,6 +666,10 @@ des:299,300:3:ĭtŏr;ĭtŏr
 des:302:3:ī
 ! adjectif verbal hérité
 
+modele:facio
+pere:capio
+abs:267-410
+
 modele:audio
 pere:capio
 ! subjonctif
@@ -853,9 +853,9 @@ des:414:0:-
 
 modele:adve
 R:0:1,0
-des:411,412,414:0:ĭŭs;īssĭmĕ;ē
+des:411,412,414:0:ĭŭs;īssĭmē;ē
 
 modele:advr
 R:0:2,0
-des:411,412,414:0:ĭŭs;īssĭmĕ;ĕr
+des:411,412,414:0:ĭŭs;īssĭmē;ĕr
 

@@ -51,6 +51,7 @@ class Flexion: public QObject
 		QString                  tabNom();
 		QString                  tabPron();
 		QString                  tabAdj();
+		QString                  tabAdv();
 		QString                  tabV();
 	public:
 		Flexion (QObject *parent=0);

@@ -125,6 +125,7 @@ QString Flexion::tableau (Lemme *l)
 		case 'n': return tabNom ();
 		case 'p': return tabPron();
 		case 'a': return tabAdj();
+		case 'd': return tabAdv();
 		case 'v': return tabV();
 		default: return l->humain();
 	}
@@ -150,8 +151,9 @@ QString Flexion::tableaux (MapLem *ml)
         flm<<"<a href=\"#"<<l->cle()<<"\">"<<l->grq()<<"</a> "<<l->humain()<<"<br/>";
 	}
     flm<<"</h4>";
+	fl<<menuLem;
     foreach (Lemme *l, ml->keys())
-        fl<<"<hr/>"<<tableau(l);
+        fl<<"<hr/>"<<tableau(l)<<menuLem;
     return ret;
 }
 
@@ -163,8 +165,8 @@ QString Flexion::tabNom()
 {
 	QString ret;
 	QTextStream fl(&ret);
-    fl<<"<hr/><a name=\""<<_lemme->cle()<<"\"></a>"
-		<<menuLem<<entete;
+    fl<<"<hr/><a name=\""<<_lemme->cle()<<"\"></a>";
+	fl<<entete;
 	fl<<lina<<"cas"<<linb<<"singulier"<<linb<<"pluriel"<<linc;
 	for (int i=1;i<7;++i)
 		fl <<lina<<cas[i-1]<<linb<<forme(i)<<linb<<forme(i+6)<<linc;
@@ -180,8 +182,7 @@ QString Flexion::tabPron()
 {
 	QString ret;
 	QTextStream fl(&ret);
-    fl<<"<hr/><a name=\""<<_lemme->cle()<<"\"></a>"
-		<<menuLem;
+    fl<<"<hr/><a name=\""<<_lemme->cle()<<"\"></a>";
 	fl<<"singulier<p>";
 	fl<<entete;
 	fl <<lina<<"cas"<<linb<<genres[0]<<linb<<genres[1]<<linb<<genres[2]<<linc;
@@ -206,7 +207,6 @@ QString Flexion::tabAdj()
 	QString ret;
 	QTextStream fl(&ret);
     fl<<"<a name=\""<<_lemme->cle()<<"\"></a>";
-	fl<<menuLem;
 	fl<<"<p>"<<_lemme->grq()<<"</p>";
 	fl<<"<p>"<<genres[0]<<"<p>";
 	fl<<entete;
@@ -244,6 +244,18 @@ QString Flexion::tabAdj()
 	return ret;
 }
 
+QString Flexion::tabAdv()
+{
+	QString ret;
+	QTextStream fl(&ret);
+    fl<<"<hr/><a name=\""<<_lemme->cle()<<"\"></a>";
+	fl<<entete;
+	fl<<lina<<"positif"<<linb<<"comparatif"<<linb<<"superlatif"<<linc;
+	fl<<lina<<forme(414)<<linb<<forme(411)<<linb<<forme(412)<<linc;
+	fl<<queue<<"</p>";
+	return ret;
+}
+
 /**
  * \fn QString Flexion::tabV()
  * \brief Fonction spécialisée dans les verbes.
@@ -253,7 +265,6 @@ QString Flexion::tabV()
 	// menu
 	QString menu;
 	QTextStream(&menu)
-		<<"<hr/>"<<menuLem
         <<"<a name=\""<<_lemme->cle()<<"\"></a>"
         <<"<a href\"#actif\">ACTIF</a><br/>"
 		<<"<a href=\"#actif\">indicatif</a>&nbsp;"

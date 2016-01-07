@@ -80,6 +80,7 @@ void EditLatin::mouseReleaseEvent (QMouseEvent *e)
 	QString st = cursor.selectedText();
 	bool unSeulMot = !st.contains (' ');
 	MapLem ml = mainwindow->lemmatiseur->lemmatiseM (st);
+	// 1. dock de lemmatisation
 	if (!mainwindow->dockLem->visibleRegion().isEmpty())
     {
 		if (unSeulMot && mainwindow->calepAct->isChecked())
@@ -96,7 +97,7 @@ void EditLatin::mouseReleaseEvent (QMouseEvent *e)
     }
 	if (unSeulMot)
 	{
-		// 1. dock de lemmatisation
+		// 2. dock de flexion
 		if (!mainwindow->dockFlex->visibleRegion().isEmpty())
 		{
 			if (!ml.empty())
@@ -106,7 +107,7 @@ void EditLatin::mouseReleaseEvent (QMouseEvent *e)
 				mainwindow->textBrowserFlex->moveCursor (QTextCursor::Start);
 			}
 		}
-		// 2. dock dictionnaires
+		// 3. dock dictionnaires
 		QStringList lemmes = mainwindow->lemmatiseur->lemmes(ml);
 		if (!mainwindow->dockDic->visibleRegion().isEmpty())
 			mainwindow->afficheLemsDic(lemmes);
@@ -608,7 +609,6 @@ void MainWindow::createActions()
 	copieAct = new QAction(QIcon(":res/copie.svg"), tr("&Copier dans un traitement de textes"), this);
 	deZoomAct = new QAction(QIcon(":res/dezoom.svg"), tr("Plus petit"), this);
 	findAct = new QAction(QIcon(":res/edit-find.svg"), tr("&Chercher"), this);
-	flexAct = new QAction(QIcon(":res/flechir.svg"), tr("&Fléchir"), this);
 	lancAct = new QAction(QIcon(":res/gear.svg"), tr("&Lancer"), this);
 	nouvAct = new QAction(QIcon(":/res/document-new.svg"), tr("&Nouveau"), this);
 	ouvrirAct = new QAction(QIcon(":/res/document-open.svg"), tr("&Ouvrir"), this);
@@ -1179,8 +1179,9 @@ void MainWindow::flechisLigne()
 	if (!ml.empty())
 	{
 		textBrowserFlex->clear();
-		foreach (Lemme *l, ml.keys())
-			textBrowserFlex->append (flechisseur->tableau(l));
+		textBrowserFlex->append (flechisseur->tableaux(&ml));
+		//foreach (Lemme *l, ml.keys())
+		//	textBrowserFlex->append (flechisseur->tableau(l));
 	}
 }
 

@@ -27,9 +27,7 @@ Requis :
 - flexion de facio et fio, et des composés
 
 ## À FAIRE :
-- Adapter le dialogue de presse-papiers pour le retaillage ;
 - Poser des indications de licence sur les fichiers de données ;
-- Trouver une icone valable pour Calepino ;
 - Mettre à jour les droits des fichiers dans res/ ;
 - Dans le presse-papier, insérer une signature "édité avec C11+url";
   idem pour l'impression ?
