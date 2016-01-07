@@ -244,6 +244,10 @@ QString Flexion::tabAdj()
 	return ret;
 }
 
+/**
+ * \fn QString Flexion::tabAdv()
+ * \brief Fonction spécialisée dans les adverbes.
+ */
 QString Flexion::tabAdv()
 {
 	QString ret;
