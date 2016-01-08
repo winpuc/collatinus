@@ -27,8 +27,6 @@ Requis :
 - flexion de facio et fio, et des composés
 
 ## À FAIRE :
-- Poser des indications de licence sur les fichiers de données ;
-- Mettre à jour les droits des fichiers dans res/ ;
 - Dans le presse-papier, insérer une signature "édité avec C11+url";
   idem pour l'impression ?
 - Nettoyage des -pte -met -quoi dans les traductions ;

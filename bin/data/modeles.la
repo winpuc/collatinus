@@ -1,6 +1,23 @@
 ! modeles.la
 !
-! clés : <valeurs>
+!This file is part of COLLATINUS.
+!COLLATINUS is free software; you can redistribute it and/or modify
+!it under the terms of the GNU General Public License as published by
+!the Free Software Foundation; either version 2 of the License, or
+!(at your option) any later version.
+!
+!COLLATINUS is distributed in the hope that it will be useful,
+!but WITHOUT ANY WARRANTY; without even the implied warranty of
+!MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+!GNU General Public License for more details.
+!
+!You should have received a copy of the GNU General Public License
+!along with COLLATINUS; if not, write to the Free Software
+!Foundation, Inc., 59 Temple Place, Suite 3inv, Boston, MA  02111-1307  USA
+! (c) © Yves Ouvrard, 2011 - 2016
+! ==========================================================================
+! clé:<valeurs>
+!
 ! modele:<nom du modèle>
 !    nom du modèle, comme donné dans lemmes.la.
 !    ligne suivie des autres clés qui décrivent 
@@ -10,13 +27,14 @@
 !    n1 : numéro du radical
 !    n2 : nombre de caractères à ôter de la forme canonique 
 !    ch : chaîne à ajouter à la chaîne obtenue pour avoir le radical
-!
 ! des:<intervalle>:<num>:<listeDes>
 ! <intervale> = liste de n° de morphologies séparées par des virgules,
 !               ou intervale de numéros <premier>-<dernier>. Les deux
 !               définitions sont compatibles.
 !
 ! On peut ne donner qu'une fois une désinence qui se répète en fin de liste.
+!
+! définition des variables: $<variable>:<valeurs>
 !
 $em=ĕm;ēs;ĕt;ēmŭs;ētĭs;ēnt
 $im=ĭm;īs;ĭt;īmŭs;ītĭs;īnt
