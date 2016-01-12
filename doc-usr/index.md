@@ -7,6 +7,10 @@ retravaillée, et son code source a été révisé. Chacun
 des chapitres du menu suivant décrit en détail les
 différentes utilisations de Collatinus.
 
+L'interface de Collatinus est intuitive, mais il est
+conseillé de commencer par le [chapitre suivant](anatomie.html),
+qui la présente avec des images annotées.
+
 1. **[Fenêtre, éditeurs et boutons](anatomie.html)**
     Une présentation de ce qu'on voit lorsqu'on a lancé
     Collatinus.

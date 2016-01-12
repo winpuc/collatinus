@@ -13,7 +13,7 @@ Requis :
   * $ qmake
   * $ make
 - Créer les répertoires bin/, bin/data et bin/data/dicos
-- Placer dans bin/data les lexiques téléchargeables 
+- Placer dans bin/data/ les lexiques téléchargeables 
   [à l'adresse](http://outils.biblissima.fr/collatinus/)
 - Placer dans bin/data/dicos les dictionnaires xml et
   djvu les dictionnaires téléchargeables à la même adresse ;

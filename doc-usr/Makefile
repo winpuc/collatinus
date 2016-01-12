@@ -13,3 +13,8 @@ but:
 	echo $e > $(dest)programmeurs.html;  markdown programmeurs.md >> $(dest)programmeurs.html
 	echo $e > $(dest)licence.html;       markdown licence.md >> $(dest)licence.html
 	cp doc.css ../bin/doc/
+	cp *.png ../bin/doc/
+
+test:
+	$(BROWSER) ../bin/doc/index.html
+

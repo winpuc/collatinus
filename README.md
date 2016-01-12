@@ -64,4 +64,3 @@ lemme, Collatinus peut scander le mot et par là même
 tout un texte. Lorsqu'il scande un texte, Collatinus
 applique les règles habituelles d'allongement et
 d'élision.
-

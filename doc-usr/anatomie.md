@@ -5,8 +5,14 @@ Précédent : [index](index.html) suivant : [Pour débuter](debuter.html)
 Fenêtres, éditeurs et boutons 
 =============================
 
-_Une présentation de ce qu'on voit lorsqu'on a lancé
-Collatinus._
+Voici une vue générale de l'interface de Collatinus :
 
-_Une copie d'écran, avec des flèches et des cartouches
-explicatifs._
+![Interface de Collatinus](anatomie.png "L'interface de Collatinus")
+
+Les onglets de la partie inférieure peuvent être
+déplacés et redimensionnés :
+
+![Lemmatisation détachée](detach.png "La partie lemmatisation a été détachée")
+
+Une description complète de l'utilisation des dictionnaire est donné
+au chapitre [dictionnaires](dictionnaires.html).
