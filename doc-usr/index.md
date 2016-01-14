@@ -38,4 +38,5 @@ qui la présente avec des images annotées.
 1. **[Pour les programmeurs](programmeurs.html)** Le code
     source de l'application est disponible, et peut
     être adapté pour analyser une autre langue flexionnelle.
+1. **[Remerciements, licence](licence.html)**.
 

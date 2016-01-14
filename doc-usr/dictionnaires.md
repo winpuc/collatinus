@@ -1,4 +1,5 @@
 *Collatinus 11 -- guide*
+
 [index](index.html) précédent : [Lemmatiser et analyser](lemmatiser.html) suivant : [Scander](scander.html) 
 
 Dictionnaires
@@ -17,3 +18,5 @@ Et voici un résumé des commandes :
 4. Ajouter une fenêtre de dictionnaire (le même, ou un différent).
 	Le même bouton permet de fermer le dictionnaire supplémentaire ;
 5. Demander l'affichage du même mot dans les deux dictionnaires.
+
+[index](index.html) précédent : [Lemmatiser et analyser](lemmatiser.html) suivant : [Scander](scander.html) 

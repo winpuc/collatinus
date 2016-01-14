@@ -37,3 +37,5 @@ Pour débuter
 1. **Pour imprimer** les résultats, on choisit l'option
   Fichier / Imprimer, ou on clique sur l'icone (ici,
   l'icone imprimante) ;
+
+[index](index.html) précédent : [Fenêtres, éditeurs et boutons](anatomie.html) suivant : [lemmatiser et
