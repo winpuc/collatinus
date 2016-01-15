@@ -33,6 +33,7 @@ désactive l'option.
 ![Options de lemmatisation](optionslem.png "Options de lemmatisation")
 
 De gauche à droite :
+
 1. **Une ligne de saisie**, qui permet de lemmatiser tout ce qu'elle
    contient sans modifier le texte latin chargé dans la partie supérieure.
    On y place du texte, et touche **Entrée**.

@@ -16,3 +16,5 @@ déplacés et redimensionnés :
 
 Une description complète de l'utilisation des dictionnaire est donné
 au chapitre [dictionnaires](dictionnaires.html).
+
+Précédent : [index](index.html) suivant : [Pour débuter](debuter.html)

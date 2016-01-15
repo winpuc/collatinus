@@ -160,6 +160,15 @@ Leur format est extrêmement simple :
 
 ## les fichiers de contraction et d'assimilation 
 
-(à compléter après implémentation).
+bin/data/assimilations.la et bin/data/contractions.la sont deux 
+fichiers qui permettent de déclarer 
+
+* Les assimilations : la forme _affert_ n'est pas reconnue, mais
+  une règle d'assimilation permet de remplacer _-aff-_
+  par _-adf-_, et  d'analyser aussi la forme
+  _adfert_, qui est reconnue.
+* Les contractions : la forme _amassem_ n'est pas reconnue, mais une
+  règle de contraction permet de remplacer _-assem_ par
+  _-auissem_, ce qui donne _amauissem_, qui est reconnu.
 
 [index](index.html) précédent : [Fléchir](flechir.html) suivant : [Pour les programmeurs](programmeurs.html) 

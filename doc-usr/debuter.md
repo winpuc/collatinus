@@ -1,7 +1,6 @@
 *Collatinus 11 -- guide*
 
-[index](index.html) précédent : [Fenêtres, éditeurs et boutons](anatomie.html) suivant : [lemmatiser et
-analyser](lemmatiser.html) 
+[index](index.html) précédent : [Fenêtres, éditeurs et boutons](anatomie.html) suivant : [lemmatiser et analyser](lemmatiser.html) 
 
 Pour débuter
 ============
@@ -38,4 +37,4 @@ Pour débuter
   Fichier / Imprimer, ou on clique sur l'icone (ici,
   l'icone imprimante) ;
 
-[index](index.html) précédent : [Fenêtres, éditeurs et boutons](anatomie.html) suivant : [lemmatiser et
+[index](index.html) précédent : [Fenêtres, éditeurs et boutons](anatomie.html) suivant : [lemmatiser et analyser](lemmatiser.html) 
