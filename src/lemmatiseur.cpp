@@ -80,46 +80,22 @@ Lemmat::Lemmat (QObject *parent): QObject (parent)
 * \brief définit les débuts de mots
 * non assimilés, et associe à chacun sa 
 * forme assimilée.
-* Pour rendre Collatinus plus générique,
-* il faudrait que ces données se trouvent
-* dans des fichiers
-* assimilation
 */
 void Lemmat::ajAssims ()
 {
-	assims.insert ("adc","acc");
-	assims.insert ("adf","aff");
-	assims.insert ("adg","agg");
-	assims.insert ("adl","all");
-	assims.insert ("adp","app");
-	assims.insert ("adq","acq");
-	assims.insert ("adr","arr");
-	assims.insert ("adst","ast");
-	assims.insert ("adsc","asc");
-	assims.insert ("adsp","asp");
-	assims.insert ("adst","ast");
-	assims.insert ("adt","att");
-	assims.insert ("aps","abs");
-	assims.insert ("conl","coll");
-	assims.insert ("conm","comm");
-	assims.insert ("conp","comp");
-	assims.insert ("conr","corr");
-	assims.insert ("exs","ex");
-	assims.insert ("inb","imb");
-	assims.insert ("inl","ill");
-	assims.insert ("inm","imm");
-	assims.insert ("inp","imp");
-	assims.insert ("inr","irr");
-	assims.insert ("obc","occ");
-	assims.insert ("obf","off");
-	assims.insert ("obp","opp");
-	assims.insert ("ops","obs");
-	assims.insert ("subc","succ");
-	assims.insert ("subf","suff");
-	assims.insert ("subg","sugg");
-	assims.insert ("subm","summ");
-	assims.insert ("subp","supp");
-	assims.insert ("supt","subt");
+	// peupler la QMap assims
+	QFile fAssims (qApp->applicationDirPath () +"/data/assimilations.la");
+    fAssims.open (QFile::ReadOnly);
+    QTextStream fla(&fAssims);
+    while (!fla.atEnd ())
+	{
+		QString lin = fla.readLine ().simplified();
+		if (lin.isEmpty() || lin.startsWith ("!"))
+			continue;
+		QStringList liste = lin.split(':');
+		assims.insert(liste.at(0), liste.at(1));
+	}
+    fAssims.close ();
 }
 
 /**
@@ -130,46 +106,19 @@ void Lemmat::ajAssims ()
  */
 void Lemmat::ajContractions ()
 {
-	_contractions.insert ("aram","aueram");
-	_contractions.insert ("arant","auerant");
-	_contractions.insert ("aras","aueras");
-	_contractions.insert ("arat","auerat");
-	_contractions.insert ("arim","auerim");
-	_contractions.insert ("arimus","auerimus");
-	_contractions.insert ("arint","auerint");
-	_contractions.insert ("aris","aueris");
-	_contractions.insert ("arit","auerit");
-	_contractions.insert ("aritis","aueritis");
-	_contractions.insert ("aro","auero");
-	_contractions.insert ("arunt","auerunt");
-	_contractions.insert ("assem","auissem");
-	_contractions.insert ("assemus","auissemus");
-	_contractions.insert ("assent","auissent");
-	_contractions.insert ("asses","auisses");
-	_contractions.insert ("asset","auisset");
-	_contractions.insert ("assetis","auissetis");
-	_contractions.insert ("ast","a");
-	_contractions.insert ("asti","auisti");
-	_contractions.insert ("astis","auistis");
-	_contractions.insert ("eram","eueram");
-	_contractions.insert ("eras","eueras");
-	_contractions.insert ("erat","euerat");
-	_contractions.insert ("eramus","eueramus");
-	_contractions.insert ("eratis","eueratis");
-	_contractions.insert ("erant","euerant");
-	_contractions.insert ("erim","euerim");
-	_contractions.insert ("eris","eueris");
-	_contractions.insert ("erit","euerit");
-	_contractions.insert ("erimus","euerimus");
-	_contractions.insert ("eritis","eueritis");
-	_contractions.insert ("erint","euerint");
-	_contractions.insert ("erunt","euerunt");
-	_contractions.insert ("esse","euisse");
-	_contractions.insert ("esti","euisti");
-	_contractions.insert ("estis","euistis");
-	_contractions.insert ("umst","um");
-	_contractions.insert ("uom","uum");
-	_contractions.insert ("ust","us");
+	// peupler la QMap _contractions
+	QFile fContractions (qApp->applicationDirPath () +"/data/contractions.la");
+    fContractions.open (QFile::ReadOnly);
+    QTextStream flc(&fContractions);
+    while (!flc.atEnd ())
+	{
+		QString lin = flc.readLine ().simplified();
+		if (lin.isEmpty() || lin.startsWith ("!"))
+			continue;
+		QStringList liste = lin.split(':');
+		_contractions.insert(liste.at(0), liste.at(1));
+	}
+    fContractions.close ();
 }
 
 /**
