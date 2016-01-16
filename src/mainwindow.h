@@ -116,6 +116,7 @@ private slots:
 	void exportPdf();
 	void flechisLigne();
 	void imprimer();
+	void langueInterface();
 	void lancer();
 	void lemmatiseLigne();
     void lemmatiseTxt();
@@ -137,6 +138,7 @@ public slots:
 	void afficheLemsDicW(QStringList ll, int no=0);
 
 private:
+	// initialisation
     void createActions();
 	void createCibles(); // menu des langues cibles
 	void createConnections();
@@ -146,10 +148,12 @@ private:
     void createStatusBar();
     void createDockWindows();
 	void createDicWindow(); // second dictionnaire
+	void setLangue();
 
     QMenu        *fileMenu;
     QMenu        *editMenu;
     QMenu        *viewMenu;
+	QMenu        *lFrEngMenu;
 	QMenu        *lexMenu;
 	QMenu        *optMenu;
 	QMenu        *helpMenu;
@@ -173,9 +177,11 @@ private:
 	QAction      *dicActW;
 	QAction      *dicLittAct;
 	QAction      *dicLittActW;
+	QAction      *enAct;
 	QAction      *visibleWAct;
 	QAction      *exportAct;
 	QAction      *findAct;
+	QAction      *frAct;
 	QAction      *lancAct;
 	QAction      *nouvAct;
 	QAction      *ouvrirAct;
@@ -214,6 +220,9 @@ private:
 	bool             precaution();  // autorise ou non la fermeture du fichier chargé
 	QString          rech;          // dernière chaîne recherchée
 	QString          repertoire;
+	// traductions
+	QString          langueI;
+	QTranslator     *translator;
 };
 
 #endif

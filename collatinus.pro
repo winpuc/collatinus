@@ -14,6 +14,8 @@ QT += svg
 
 CONFIG += release_binary
 
+TRANSLATIONS    = collatinus_en.ts
+TRANSLATIONS    = collatinus_fr.ts
 
 unix:!macx:DESTDIR = bin
 OBJECTS_DIR= obj/

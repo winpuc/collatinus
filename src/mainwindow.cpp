@@ -130,11 +130,15 @@ MainWindow::MainWindow()
 	QString style (styleFile.readAll());
 	qApp->setStyleSheet (style);
 
+
     editLatin = new EditLatin (this);
     setCentralWidget(editLatin);
 
 	lemmatiseur = new Lemmat(this);
 	flechisseur = new Flexion (lemmatiseur);
+
+	setLangue();
+	qDebug()<<"installé. Plus petit="<<tr("Plus petit");
 
     createStatusBar();
     createActions();
@@ -543,6 +547,9 @@ void MainWindow::clicPostW()
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     QSettings settings("Collatinus", "collatinus11");
+	settings.beginGroup("interface");
+	settings.setValue("langue", langueI);
+	settings.endGroup();
 	settings.beginGroup("fenetre");
     settings.setValue("geometry", saveGeometry());
     settings.setValue("windowState", saveState());
@@ -614,14 +621,20 @@ void MainWindow::createActions()
 	ouvrirAct = new QAction(QIcon(":/res/document-open.svg"), tr("&Ouvrir"), this);
 	exportAct = new QAction(QIcon(":res/pdf.svg"), tr("Exporter en pdf"), this);
 	printAct = new QAction(QIcon(":res/print.svg"), tr("Im&primer"), this);
-    printAct->setShortcuts(QKeySequence::Print);
     quitAct = new QAction(QIcon(":/res/power.svg"), tr("&Quitter"), this);
     quitAct->setStatusTip(tr("Quitter l'application"));
 	reFindAct = new QAction(tr("Chercher &encore"), this);
 	statAct = new QAction(QIcon(":res/abacus.svg"), tr("S&tatistiques"), this);
 	zoomAct = new QAction(QIcon(":res/zoom.svg"), tr("Plus gros"), this);
 
+	// langues d'interface
+	enAct = new QAction (tr("English Interface"), this);
+	enAct->setCheckable(true);
+	frAct = new QAction (tr("Interface en français"), this);
+	frAct->setCheckable(true);
+
 	// raccourcis
+    printAct->setShortcuts(QKeySequence::Print);
 	findAct->setShortcut(QKeySequence::Find);
 	reFindAct->setShortcut(QKeySequence(tr("Ctrl+J")));
     quitAct->setShortcut(QKeySequence (tr("Ctrl+Q"))); // QKeySequence::Quit inopérant
@@ -737,6 +750,10 @@ void MainWindow::createConnections()
     connect(textBrowserW, SIGNAL(anchorClicked(QUrl)), this, SLOT(afficheLienW(QUrl)));
 	connect(visibleWAct, SIGNAL(toggled(bool)), this, SLOT(montreWDic(bool)));
 
+	// langue d'interface
+	connect(frAct, SIGNAL(triggered()), this, SLOT(langueInterface()));
+	connect(enAct, SIGNAL(triggered()), this, SLOT(langueInterface()));
+
 	// autres actions
 	connect(alphaAct, SIGNAL(triggered()), this, SLOT(alpha()));
     connect(aproposAct, SIGNAL(triggered()), this, SLOT(apropos()));
@@ -804,6 +821,14 @@ void MainWindow::createMenus()
 	viewMenu->addAction(zoomAct);
 	viewMenu->addAction(deZoomAct);
 	viewMenu->addAction(visibleWAct);
+	viewMenu->addSeparator();
+	QActionGroup *frEngAg = new QActionGroup(this);
+	frAct->setActionGroup (frEngAg);
+	enAct->setActionGroup (frEngAg);
+	viewMenu->addAction(frAct);
+	viewMenu->addAction(enAct);
+	if (langueI == "fr") frAct->setChecked (true);
+	else if (langueI == "en") enAct->setChecked (true);
 
 	lexMenu = menuBar()->addMenu(tr("&Lexique"));
 	lexMenu->addAction (lancAct);
@@ -1168,6 +1193,27 @@ void MainWindow::imprimer()
 }
 
 /**
+ * \fn void MainWindow::langueInterface()
+ * \brief Sonde les actions frAct et enAct, et 
+ *        bascule l'interface dans la langue de l'action cochée.
+ */
+void MainWindow::langueInterface()
+{
+    if (frAct->isChecked ()) 
+    {
+		langueI = "fr";
+    }
+    else if (enAct->isChecked ())
+    {
+		langueI = "en";
+    }
+	else langueI = "fr";
+   	QMessageBox::about(this, tr("Collatinus 11"),
+					   tr("Le changement de langue prendra effet"
+					   	  "au prochain lancement de Collatinus."));
+}
+
+/**
  * \fn void MainWindow::flechisLigne()
  * \brief Provoque l'affichage des lemmes pouvant donner
  *        la forme affichée dans la ligne de saisie du dock
@@ -1445,6 +1491,26 @@ void MainWindow::setCible()
             break;
         }
     }
+}
+
+/**
+ * \fn void MainWindow::setLangue()
+ * \brief lis la langue d'interface, et
+ *        procède aux initialisations.
+ */
+void MainWindow::setLangue()
+{
+    QSettings settings("Collatinus", "collatinus11");
+	settings.beginGroup("interface");
+	langueI = settings.value("langue").toString();
+	settings.endGroup();
+	if (!langueI.isEmpty())
+	{
+		translator = new QTranslator(qApp);
+		translator->load(qApp->applicationDirPath()+"/collatinus_"+langueI);
+		qApp->installTranslator(translator);
+	}
+	else langueI = "fr";
 }
 
 /**
