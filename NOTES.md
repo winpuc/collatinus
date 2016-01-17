@@ -23,6 +23,7 @@ Requis :
   ou après avoir installé un raccourci.
 
 ## BOGUES ET PROBLÈMES
+- Flexion de moenia, ium. Vérifier les modèles pluriels.
 - Flexion de multus et ses degrés allogènes (plus, plurimus)
 - flexion de facio et fio, et des composés
 
@@ -32,7 +33,6 @@ Requis :
 - Nettoyage des -pte -met -quoi dans les traductions ;
 - chargement des lexiques et dictionnaires, compressés,
   prêts à être décompressés et installés par Collatinus.
-- Préparer la traduction anglaise de l'interface ;
 - Modèles :
   *	Vérifier les modèles ;
   *	Traiter les noms 3ème decl pl. majores, orum, donné sing. ;
@@ -44,6 +44,5 @@ Requis :
   un hyperlien vers plus, pluris, et vers plurimus, a, um.
 
 ## DOC
-
 - Un modèle d'utilisation des docks est dans les exemples Qt5 : 
   ${Doc-qt5}/examples/widgets/mainwindows/dockwidgets
