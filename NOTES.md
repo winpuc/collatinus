@@ -43,6 +43,17 @@ Requis :
   des entrées. Par exemple, le lemme multus donne ses degrés par
   un hyperlien vers plus, pluris, et vers plurimus, a, um.
 
+## Branche maj
+Branche de mise à jour des lexiques.
+- Créer un dépôt distant,
+- Dans le dépôt, des fichiers compressés, et une page d'accueil et des liens ;
+- Dans Collatinus, menu Lexique ou Aide, ou les deux, une option màj ;
+- Créer le dialogue maj 
+  * lien vers le dépôt, mode d'emploi ;
+  * Un bouton qui lance un QFileDialog de sélection des fichiers téléchargés ;
+  * Un bouton OK pour lancer la décompression et copie des fichiers ;
+  * Un bouton Annuler.
+
 ## DOC
 - Un modèle d'utilisation des docks est dans les exemples Qt5 : 
   ${Doc-qt5}/examples/widgets/mainwindows/dockwidgets

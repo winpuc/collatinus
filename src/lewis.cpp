@@ -355,6 +355,7 @@ QString Dictionnaire::pageXml (QStringList req)
         }
         suiv = eclats[0];
         findex->close ();
+		delete findex;
     }
 
     int i = 0;
@@ -412,7 +413,6 @@ QString Dictionnaire::page (QStringList req, int no)
  * \fn bool Dictionnaire::estXml ()
  * \brief Renvoie vrai si le dictionnaire actif est au
  *        format xml, faux dans le cas contraire.
- *
  */
 bool Dictionnaire::estXml ()
 {

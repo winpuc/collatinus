@@ -138,7 +138,6 @@ MainWindow::MainWindow()
 	flechisseur = new Flexion (lemmatiseur);
 
 	setLangue();
-	qDebug()<<"installé. Plus petit="<<tr("Plus petit");
 
     createStatusBar();
     createActions();
