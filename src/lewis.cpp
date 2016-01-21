@@ -107,7 +107,6 @@ QString Dictionnaire::convert (QString source)
  */
 QString Dictionnaire::entree_pos (qint64 pos, qint64 taille)
 {
-	qDebug()<<"entree_pos"<<pos<<taille;
    	QFile fz (chData);
 	fz.open (QFile::ReadOnly);
 	fz.seek(pos);
@@ -277,6 +276,61 @@ QString Dictionnaire::pageDjvu (QStringList req, int no)
  * \brief Renvoie les entrées du dictionnaire xml actif
  *        demandées par req.
  */
+QString Dictionnaire::pageXml (QStringList lReq)
+{
+    QString pg; // contenu de la page de retour
+    QList<llew> listeE;
+    QFile fi(idxJv);
+	if (!fi.open(QFile::ReadOnly | QFile::Text))
+    {
+        prec = "error";
+        suiv = "error";
+        return "Error";
+    }
+    ligneLiens.clear ();
+
+    foreach (QString req, lReq)
+    {
+		qint64 debut = 0;
+		qint64 fin   = fi.size();
+		QString ePrec;
+		bool trouve = false;
+		//int idebug=0;
+		while (!trouve)
+		{
+			// TODO : calculer ppr pos de fin de la 1ère ligne,
+			//        et revenir à 0 si le pos est < ppr.
+			qint64 milieu = (debut+fin)/2;
+			fi.seek(milieu);
+			fi.readLine(); 
+			milieu = fi.pos();
+			QString lin = fi.readLine();
+			QString e = lin.section(':',0,0);
+			// TODO : trouver un moyen de récolter tous les homonymes
+			while (e.at(e.size()-1).isNumber()) e.chop(1);
+			int c = QString::compare(e,req,Qt::CaseInsensitive);
+			if (c == 0 || ePrec == e)
+			{
+				QStringList ecl=lin.split(':');
+				qint64 p=ecl.at(1).toLongLong();
+				qint64 taille = ecl.at(2).toLongLong();
+				pg.append ("\n<div id=\""+e+"\">");
+				pg.append ("</div><div>"+ligneLiens+"</div><div>"); 
+				QString res = entree_pos(p,taille);
+				pg.append(res);
+				pg.append ("</div>");
+				trouve = true;
+			}
+			else if (c < 0) debut = milieu;
+			else if (c > 0) fin = milieu;
+			ePrec = e;
+		}
+    }
+	fi.close();
+	return pg;
+}
+
+/*
 QString Dictionnaire::pageXml (QStringList req)
 {
     QString pg; // contenu de la page de retour
@@ -330,7 +384,6 @@ QString Dictionnaire::pageXml (QStringList req)
 						dpos.article = ch.trimmed();
 						dpos.taille = eclats[2].toLongLong();
 					}
-					qDebug()<<"dpos"<<dpos.article<<dpos.pos<<dpos.taille;
                     listeE.append (dpos);
                     linea = findex->readLine ();
                     eclats = linea.split (":");
@@ -419,6 +472,7 @@ QString Dictionnaire::pageXml (QStringList req)
     pg.prepend (auteur + " <a href=\"http://"+url+"\">"+url+ "</a> ");
     return pg;
 }
+*/
 
 /**
  * \fn QString Dictionnaire::page (QStringList req, int no)

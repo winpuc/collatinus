@@ -24,7 +24,13 @@
 #include <QtCore>
 
 typedef QPair <QString, qint64> pairL; 
-typedef QList <pairL> llew;
+typedef struct
+{
+	QString article;
+	qint64  pos;
+	qint64  taille;
+} llew;
+//typedef QList <pairL> llew;
 
 class Dictionnaire: public QObject
 {
@@ -55,7 +61,7 @@ class Dictionnaire: public QObject
     public:
         Dictionnaire (QString cfg, QObject *parent=0);
         QString     convert (QString source);
-        QString     entree_pos (qint64 pos);
+        QString     entree_pos (qint64 pos, qint64 taille);
         bool        estXml ();
         QString     indexIu ();
         QString     indexJv ();
@@ -66,7 +72,7 @@ class Dictionnaire: public QObject
         QString     page (QStringList req, int no=0); // lien si la requête vient d'un hyperlien djvu
         QString     pageDjvu (int p);
         QString     pageDjvu (QStringList req, int no=0); // surcharge avec calcul des no de page
-        QString     pageXml (QStringList req);
+        QString     pageXml (QStringList lReq);
         QString     pgPrec ();
         QString     pgSuiv ();
         QString     ramise (QString f);
