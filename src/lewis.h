@@ -39,6 +39,7 @@ class Dictionnaire: public QObject
     private:
         QString     auteur;
         QString     chData; // chemin complet du fichier djvu ou xml
+		QString     chopNum (const QString c);
         QString     cond_jv;
         int         debut;
         bool        djvu;

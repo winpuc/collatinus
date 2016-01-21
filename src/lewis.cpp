@@ -76,6 +76,18 @@ QString Dictionnaire::nom ()
 }
 
 /**
+ * \fn chopNum (const QString c)
+ * \brief Renvoie une copie de c tronquée de tous les caractères
+ *        numériques qui la terminent.
+ */
+QString Dictionnaire::chopNum (const QString c)
+{
+	QString ret = c;
+	while (ret.right(1).at(0).isNumber()) ret.chop(1);
+	return ret;
+}
+
+/**
  * \fn Dictionnaire::convert
  *
  * Convertit un texte en XML en HTML à l'aide du fichier nom.xsl
@@ -295,7 +307,7 @@ QString Dictionnaire::pageXml (QStringList lReq)
 		qint64 fin   = fi.size();
 		QString ePrec;
 		bool trouve = false;
-		int idebug=0;
+		//int idebug=0;
 		while (!trouve)
 		{
 			// TODO : calculer ppr pos de fin de la 1ère ligne,
@@ -303,45 +315,55 @@ QString Dictionnaire::pageXml (QStringList lReq)
 			qint64 milieu = (debut+fin)/2;
 			fi.seek(milieu);
 			fi.readLine(); 
-			//milieu = fi.pos();
 			QString lin = fi.readLine();
 			QString e = lin.section(':',0,0);
 			QString eh = e;
-			while (e.at(e.size()-1).isNumber()) e.chop(1);
-			qDebug()<<idebug<<eh<<e<<milieu<<fin;
+			e = chopNum (e);
+			//qDebug()<<idebug<<eh<<e<<milieu<<fin;
 			int c = QString::compare(e,req,Qt::CaseInsensitive);
 			if (c == 0 || ePrec == eh)
 			{
 				QChar der = eh.right(1).at(0);
 				if (der.isNumber() && der!='1')
 				{
-					qDebug()<<"der"<<der;
 					req.append('1');
 					debut = 0;
 					fin = fi.size()-1;
-					qDebug()<<"req"<<req;
 					continue;
 				}
-				llew dpos;
-				QStringList ecl=lin.split(':');
-				dpos.pos = ecl.at(1).toLongLong();
-                if (ecl.size() == 4)
+				while (!trouve)
 				{
-					dpos.article = ecl.at(2);
-					dpos.taille = ecl.at(3).toLongLong();
+					llew dpos;
+					QStringList ecl=lin.split(':');
+					dpos.pos = ecl.at(1).toLongLong();
+                	if (ecl.size() == 4)
+					{
+						dpos.article = ecl.at(2);
+						dpos.taille = ecl.at(3).toLongLong();
+					}
+                	else 
+					{
+						dpos.article = eh;
+						dpos.taille = ecl[2].toLongLong();
+					}
+                	listeE.append (dpos);
+					// si n° d'homonymie, tester l'article suivant
+					if (der.isNumber())
+					{
+						lin = fi.readLine();
+						ecl = lin.split(':');
+						QString enh = ecl.at(0);
+						eh = enh;
+						enh = chopNum (enh);
+						trouve = (enh != e);
+					}
+					else trouve = true;
 				}
-                else 
-				{
-					dpos.article = e.trimmed();
-					dpos.taille = ecl[2].toLongLong();
-				}
-                listeE.append (dpos);
-				//trouve = true;
 			}
 			else if (c < 0) debut = milieu;
 			else if (c > 0) fin = milieu;
 			ePrec = e;
-			if (idebug++ == 15) break;
+			//if (idebug++ == 15) break;
 		}
     }
 	fi.close();
@@ -371,150 +393,6 @@ QString Dictionnaire::pageXml (QStringList lReq)
     pg.prepend (auteur + " <a href=\"http://"+url+"\">"+url+ "</a> ");
     return pg;
 }
-
-/*
-QString Dictionnaire::pageXml (QStringList req)
-{
-    QString pg; // contenu de la page de retour
-    QList<llew> listeE;
-    QFile * findex = NULL;
-    ligneLiens.clear ();
-    foreach (QString l, req)
-    {
-        l = l.toLower ();
-        findex = new QFile (idxJv);
-        if (ji) l.replace ('j', 'i');
-        if (findex == NULL || !findex->open(QFile::ReadOnly | QFile::Text))
-        {
-            prec = "error";
-            suiv = "error";
-            return "Error";
-        }
-        QString linea;
-        QStringList eclats;
-        QString avanDerCh, derCh, ch;
-        bool trouve = false;
-        int trouve1 = -10; // on commence avec trouve1 négatif puisque "a" est < l
-        while (trouve1 < 0) // on s'arrête quand on a dépassé l
-        {
-            linea = findex->readLine ();
-            int p = linea.indexOf(":");
-            if (p > -1)
-            {
-                avanDerCh = derCh;
-                derCh = ch;
-                eclats = linea.split(":");
-                ch = eclats[0];
-                trouve  = QString::compare (ch, l, Qt::CaseInsensitive ) == 0;
-                trouve1 =  QString::compare (ch, l+"1", Qt::CaseInsensitive );
-                // trouve1 est un entier qui est la différence entre les chaines
-                if (trouve)
-                {
-                    prec = derCh;
-					llew dpos;
-					dpos.pos = eclats[1].toLongLong();
-					//qDebug()<<linea<<derCh<<dpos;
-					qDebug()<<"linea"<<linea;
-                    if (eclats.size() == 4)
-					{
-						dpos.article = eclats[2].trimmed();
-						dpos.taille = eclats[3].toLongLong();
-					}
-                    else 
-					{
-						qDebug()<<"ch"<<ch;
-						dpos.article = ch.trimmed();
-						dpos.taille = eclats[2].toLongLong();
-					}
-                    listeE.append (dpos);
-                    linea = findex->readLine ();
-                    eclats = linea.split (":");
-                    ch = eclats [0];
-                    trouve1 = 1;
-                }
-                else if (trouve1 == 0)
-                {
-                    prec = derCh;
-                    while (QRegExp ("^"+l+"\\d+$").exactMatch (ch.toLower ()))
-                    {
-						llew dpos;
-						dpos.pos = eclats[1].toLongLong ();
-                        if (eclats.size() == 4)
-						{
-                            dpos.article = eclats[2].trimmed ();
-							dpos.taille = eclats[3].toLongLong();
-						}
-                        else 
-						{
-							dpos.article = ch;
-							dpos.taille = eclats[2].toLongLong();
-						}
-						listeE.append(dpos);
-                        linea = findex->readLine ();
-                        eclats = linea.split(":");
-                        ch = eclats[0];
-                    }
-                }
-                else if (trouve1 > 0 || findex->atEnd ())
-                {
-                    QString rl = ramise (l);
-                    if (rl != l)
-                    {
-                        QStringList lramise; 
-                        lramise << rl;
-                        return pageXml (lramise);
-                    }
-                    prec = derCh;
-					llew dpos;
-					dpos.pos = eclats[1].toLongLong ();
-                    if (eclats.size() == 4)
-					{
-						dpos.article = eclats[2].trimmed ();
-						dpos.taille = eclats[3].toLongLong ();
-					}
-					else 
-					{
-						dpos.article = ch;
-						dpos.taille = eclats[2].toLongLong ();
-					}
-					listeE.append(dpos);
-                    break;
-                }
-            }
-        }
-        suiv = eclats[0];
-        findex->close ();
-		delete findex;
-    }
-
-    int i = 0;
-    while (i < listeE.size())
-    { 
-        if (ligneLiens.contains("<a href=\"#"+listeE[i].article+"\">"))
-            listeE.removeAt(i); 
-        else
-        {
-            ligneLiens.append ("<a href=\"#"+listeE[i].article+"\">"+listeE[i].article+"</a> ");
-            ++i;
-        }
-    }
-    for (int i=0;i<listeE.size();i++)
-    {
-        pg.append ("\n<div id=\""+listeE[i].article+"\">");
-        pg.append ("</div><div>"+ligneLiens+"</div><div>"); 
-		qDebug()<<listeE[i].article;
-        QString np = entree_pos (listeE[i].pos, listeE[i].taille);
-        pg.append (np);
-        pg.append ("</div>");
-    }
-    if (QFile::exists (repertoire + n +  ".css"))
-    {
-        pg.prepend ("<link rel=\"stylesheet\" href=\""+repertoire+n+".css\" type=\"text/css\" />\n");
-    }
-    pg.prepend (auteur + " <a href=\"http://"+url+"\">"+url+ "</a> ");
-    return pg;
-}
-*/
 
 /**
  * \fn QString Dictionnaire::page (QStringList req, int no)
