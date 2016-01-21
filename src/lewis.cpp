@@ -22,6 +22,8 @@
 #include "lewis.h"
 #include <QtXmlPatterns>
 
+#include <QDebug>
+
 /****************
  * Dictionnaire *
  ****************/
@@ -59,7 +61,8 @@ Dictionnaire::Dictionnaire (QString cfg, QObject *parent): QObject(parent)
     settings.beginGroup ("style");
     xsl = settings.value ("xsl").toInt ();
     settings.endGroup ();
-    xml = QFileInfo (chData).suffix () == "xml";
+    xml = QFileInfo (chData).suffix () == "cz"
+          || QFileInfo (chData).suffix () == "xml";
     djvu = !xml;
 }
 
@@ -102,27 +105,27 @@ QString Dictionnaire::convert (QString source)
  * \param pos : entier 64 avec la position du début de l'article dans le fichier
  * \return Le texte de l'article en HTML
  */
-QString Dictionnaire::entree_pos (qint64 pos)
+QString Dictionnaire::entree_pos (qint64 pos, qint64 taille)
 {
-   QFile file (chData);
-   file.open (QFile::ReadOnly | QFile::Text);
-   file.seek (pos);
-   QTextStream ts (&file);
-   ts.setCodec ("UTF-8");
-   QString linea = ts.readLine ();
-   file.close ();
-   if (xsl)
-   {
-       linea = convert (linea);
-       return linea;
-   }
-   else 
-   {
-       linea.replace("H1>","strong>");
-       linea.prepend("<br/>\n");
-       return linea;
-   }
-   return "Error. Nil legere potui.";
+	qDebug()<<"entree_pos"<<pos<<taille;
+   	QFile fz (chData);
+	fz.open (QFile::ReadOnly);
+	fz.seek(pos);
+    QByteArray ba = fz.read(taille);
+	QString linea = QString::fromUtf8(qUncompress(ba));
+   	fz.close ();
+   	if (xsl)
+   	{
+       	linea = convert (linea);
+       	return linea;
+   	}
+   	else 
+   	{
+       	linea.replace("H1>","strong>");
+       	linea.prepend("<br/>\n");
+       	return linea;
+   	}
+   	return "Error. Nil legere potui.";
 }
 
 /**
@@ -277,7 +280,7 @@ QString Dictionnaire::pageDjvu (QStringList req, int no)
 QString Dictionnaire::pageXml (QStringList req)
 {
     QString pg; // contenu de la page de retour
-    llew listeE;
+    QList<llew> listeE;
     QFile * findex = NULL;
     ligneLiens.clear ();
     foreach (QString l, req)
@@ -296,11 +299,10 @@ QString Dictionnaire::pageXml (QStringList req)
         QString avanDerCh, derCh, ch;
         bool trouve = false;
         int trouve1 = -10; // on commence avec trouve1 négatif puisque "a" est < l
-        int p;
         while (trouve1 < 0) // on s'arrête quand on a dépassé l
         {
             linea = findex->readLine ();
-            p = linea.indexOf(":");
+            int p = linea.indexOf(":");
             if (p > -1)
             {
                 avanDerCh = derCh;
@@ -313,9 +315,23 @@ QString Dictionnaire::pageXml (QStringList req)
                 if (trouve)
                 {
                     prec = derCh;
-                    if (eclats.size() == 3)
-                        listeE.append (pairL (eclats[2].trimmed (), eclats[1].toLongLong ()));
-                    else listeE.append (pairL (ch, eclats[1].toLongLong ()));
+					llew dpos;
+					dpos.pos = eclats[1].toLongLong();
+					//qDebug()<<linea<<derCh<<dpos;
+					qDebug()<<"linea"<<linea;
+                    if (eclats.size() == 4)
+					{
+						dpos.article = eclats[2].trimmed();
+						dpos.taille = eclats[3].toLongLong();
+					}
+                    else 
+					{
+						qDebug()<<"ch"<<ch;
+						dpos.article = ch.trimmed();
+						dpos.taille = eclats[2].toLongLong();
+					}
+					qDebug()<<"dpos"<<dpos.article<<dpos.pos<<dpos.taille;
+                    listeE.append (dpos);
                     linea = findex->readLine ();
                     eclats = linea.split (":");
                     ch = eclats [0];
@@ -326,13 +342,22 @@ QString Dictionnaire::pageXml (QStringList req)
                     prec = derCh;
                     while (QRegExp ("^"+l+"\\d+$").exactMatch (ch.toLower ()))
                     {
-                        if (eclats.size() == 3)
-                            listeE.append (pairL (eclats[2].trimmed (), eclats[1].toLongLong ()));
-                        else listeE.append (pairL (ch, eclats[1].toLongLong ()));
+						llew dpos;
+						dpos.pos = eclats[1].toLongLong ();
+                        if (eclats.size() == 4)
+						{
+                            dpos.article = eclats[2].trimmed ();
+							dpos.taille = eclats[3].toLongLong();
+						}
+                        else 
+						{
+							dpos.article = ch;
+							dpos.taille = eclats[2].toLongLong();
+						}
+						listeE.append(dpos);
                         linea = findex->readLine ();
                         eclats = linea.split(":");
                         ch = eclats[0];
-
                     }
                 }
                 else if (trouve1 > 0 || findex->atEnd ())
@@ -345,12 +370,21 @@ QString Dictionnaire::pageXml (QStringList req)
                         return pageXml (lramise);
                     }
                     prec = derCh;
-                    if (eclats.size() == 3)
-                        listeE.append (pairL (eclats[2].trimmed (), eclats[1].toLongLong ()));
-                    else listeE.append (pairL (ch, eclats[1].toLongLong ()));
+					llew dpos;
+					dpos.pos = eclats[1].toLongLong ();
+                    if (eclats.size() == 4)
+					{
+						dpos.article = eclats[2].trimmed ();
+						dpos.taille = eclats[3].toLongLong ();
+					}
+					else 
+					{
+						dpos.article = ch;
+						dpos.taille = eclats[2].toLongLong ();
+					}
+					listeE.append(dpos);
                     break;
                 }
-                // je ne suis pas sûr que ce dernier else soit nécessaire
             }
         }
         suiv = eclats[0];
@@ -361,19 +395,20 @@ QString Dictionnaire::pageXml (QStringList req)
     int i = 0;
     while (i < listeE.size())
     { 
-        if (ligneLiens.contains("<a href=\"#"+listeE[i].first+"\">"))
+        if (ligneLiens.contains("<a href=\"#"+listeE[i].article+"\">"))
             listeE.removeAt(i); 
         else
         {
-            ligneLiens.append ("<a href=\"#"+listeE[i].first+"\">"+listeE[i].first+"</a> ");
+            ligneLiens.append ("<a href=\"#"+listeE[i].article+"\">"+listeE[i].article+"</a> ");
             ++i;
         }
     }
     for (int i=0;i<listeE.size();i++)
     {
-        pg.append ("\n<div id=\""+listeE[i].first+"\">");
+        pg.append ("\n<div id=\""+listeE[i].article+"\">");
         pg.append ("</div><div>"+ligneLiens+"</div><div>"); 
-        QString np = entree_pos (listeE[i].second);
+		qDebug()<<listeE[i].article;
+        QString np = entree_pos (listeE[i].pos, listeE[i].taille);
         pg.append (np);
         pg.append ("</div>");
     }
@@ -382,14 +417,6 @@ QString Dictionnaire::pageXml (QStringList req)
         pg.prepend ("<link rel=\"stylesheet\" href=\""+repertoire+n+".css\" type=\"text/css\" />\n");
     }
     pg.prepend (auteur + " <a href=\"http://"+url+"\">"+url+ "</a> ");
-    // code de débogage
-	/*
-    QFile fdebug ("debug.html");
-    fdebug.open (QFile::WriteOnly | QFile::Text);
-    QTextStream fl (&fdebug);
-    fl << pg; 
-    fdebug.close ();
-	*/
     return pg;
 }
 
