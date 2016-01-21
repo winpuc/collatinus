@@ -295,7 +295,7 @@ QString Dictionnaire::pageXml (QStringList lReq)
 		qint64 fin   = fi.size();
 		QString ePrec;
 		bool trouve = false;
-		//int idebug=0;
+		int idebug=0;
 		while (!trouve)
 		{
 			// TODO : calculer ppr pos de fin de la 1ère ligne,
@@ -303,31 +303,73 @@ QString Dictionnaire::pageXml (QStringList lReq)
 			qint64 milieu = (debut+fin)/2;
 			fi.seek(milieu);
 			fi.readLine(); 
-			milieu = fi.pos();
+			//milieu = fi.pos();
 			QString lin = fi.readLine();
 			QString e = lin.section(':',0,0);
-			// TODO : trouver un moyen de récolter tous les homonymes
+			QString eh = e;
 			while (e.at(e.size()-1).isNumber()) e.chop(1);
+			qDebug()<<idebug<<eh<<e<<milieu<<fin;
 			int c = QString::compare(e,req,Qt::CaseInsensitive);
-			if (c == 0 || ePrec == e)
+			if (c == 0 || ePrec == eh)
 			{
+				QChar der = eh.right(1).at(0);
+				if (der.isNumber() && der!='1')
+				{
+					qDebug()<<"der"<<der;
+					req.append('1');
+					debut = 0;
+					fin = fi.size()-1;
+					qDebug()<<"req"<<req;
+					continue;
+				}
+				llew dpos;
 				QStringList ecl=lin.split(':');
-				qint64 p=ecl.at(1).toLongLong();
-				qint64 taille = ecl.at(2).toLongLong();
-				pg.append ("\n<div id=\""+e+"\">");
-				pg.append ("</div><div>"+ligneLiens+"</div><div>"); 
-				QString res = entree_pos(p,taille);
-				pg.append(res);
-				pg.append ("</div>");
-				trouve = true;
+				dpos.pos = ecl.at(1).toLongLong();
+                if (ecl.size() == 4)
+				{
+					dpos.article = ecl.at(2);
+					dpos.taille = ecl.at(3).toLongLong();
+				}
+                else 
+				{
+					dpos.article = e.trimmed();
+					dpos.taille = ecl[2].toLongLong();
+				}
+                listeE.append (dpos);
+				//trouve = true;
 			}
 			else if (c < 0) debut = milieu;
 			else if (c > 0) fin = milieu;
 			ePrec = e;
+			if (idebug++ == 15) break;
 		}
     }
 	fi.close();
-	return pg;
+    int i = 0;
+    while (i < listeE.size())
+    { 
+        if (ligneLiens.contains("<a href=\"#"+listeE[i].article+"\">"))
+            listeE.removeAt(i); 
+        else
+        {
+            ligneLiens.append ("<a href=\"#"+listeE[i].article+"\">"+listeE[i].article+"</a> ");
+            ++i;
+        }
+    }
+    for (int i=0;i<listeE.size();i++)
+    {
+        pg.append ("\n<div id=\""+listeE[i].article+"\">");
+        pg.append ("</div><div>"+ligneLiens+"</div><div>"); 
+        QString np = entree_pos (listeE[i].pos, listeE[i].taille);
+        pg.append (np);
+        pg.append ("</div>");
+    }
+    if (QFile::exists (repertoire + n +  ".css"))
+    {
+        pg.prepend ("<link rel=\"stylesheet\" href=\""+repertoire+n+".css\" type=\"text/css\" />\n");
+    }
+    pg.prepend (auteur + " <a href=\"http://"+url+"\">"+url+ "</a> ");
+    return pg;
 }
 
 /*
