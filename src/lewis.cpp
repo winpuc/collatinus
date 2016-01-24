@@ -315,12 +315,11 @@ QString Dictionnaire::pageXml (QStringList lReq)
 			qint64 milieu = (debut+fin)/2;
 			fi.seek(milieu);
 			fi.readLine(); 
-			QString lin = fi.readLine();
+			QString lin = fi.readLine().simplified();
 			QString e = lin.section(':',0,0);
 			QString eh = e;
 			e = chopNum (e);
-			//qDebug()<<idebug<<eh<<e<<milieu<<fin;
-			int c = QString::compare(e,req,Qt::CaseInsensitive);
+			int c  = QString::compare(e,req,Qt::CaseInsensitive);
 			if (c == 0 || ePrec == eh)
 			{
 				QChar der = eh.right(1).at(0);
@@ -336,7 +335,9 @@ QString Dictionnaire::pageXml (QStringList lReq)
 					llew dpos;
 					QStringList ecl=lin.split(':');
 					dpos.pos = ecl.at(1).toLongLong();
-                	if (ecl.size() == 4)
+					prec = ecl.at(4);
+					suiv = ecl.at(5);
+                	if (ecl.size() == 6)
 					{
 						dpos.article = ecl.at(2);
 						dpos.taille = ecl.at(3).toLongLong();
@@ -356,8 +357,15 @@ QString Dictionnaire::pageXml (QStringList lReq)
 						eh = enh;
 						enh = chopNum (enh);
 						trouve = (enh != e);
+						// ou (QString::compare(enh, e, Qt::CaseInsensitive) != 0);
 					}
-					else trouve = true;
+					else 
+					{
+						trouve = true;
+						prec = ecl.at(4);
+						suiv = ecl.at(5);
+						qDebug()<<prec<<suiv;
+					}
 				}
 			}
 			else if (c < 0) debut = milieu;
