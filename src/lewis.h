@@ -54,9 +54,10 @@ class Dictionnaire: public QObject
         QString     n; // nom
         int         pdj;
         QString     prec; // pages précédente et suivante
-		QString     readLineBack (QFile *f);
+		QString     readLineBack (QFile *f, int fois=1);
         QString     repertoire;
         QString     suiv;
+		qint64      tailleprec;
         QString     url;
         bool        xml;
         bool        xsl;

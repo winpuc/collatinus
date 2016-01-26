@@ -1300,7 +1300,6 @@ void MainWindow::montreWDic(bool visible)
  */
 void MainWindow::nouveau()
 {
-	qDebug()<<"nouveau";
 	if (precaution()) return;
 	editLatin->clear();
 	textEditLem->clear();

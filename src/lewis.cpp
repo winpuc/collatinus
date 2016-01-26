@@ -88,17 +88,22 @@ QString Dictionnaire::chopNum (const QString c)
 	return ret;
 }
 
-QString Dictionnaire::readLineBack (QFile *f)
+QString Dictionnaire::readLineBack (QFile *f, int fois)
 {
 	qint64 p = f->pos()-1;
+	qDebug()<<"pos3"<<p;
+	qDebug()<<fois<<"fois";
 	QString c;
-	while (c != "\n")
+	for (int i=0;i<fois;++i)
 	{
-		c = QString::fromUtf8 (f->read(1));
-		std::cout << c.toStdString();
-		p--; f->seek(p);
+		while (c != "\n")
+		{
+			c = QString::fromUtf8 (f->read(1));
+			std::cout << c.toStdString();
+			p--; f->seek(p);
+			qDebug()<<"p"<<p;
+		}
 	}
-	f->read(1);
 	QString r = f->readLine();
 	return r;
 	//return f->readLine();
@@ -288,7 +293,6 @@ QString Dictionnaire::pageXml (QStringList lReq)
 
     foreach (QString req, lReq)
     {
-		qDebug()<<"requête"<<req;
 		qint64 debut = 0;
 		qint64 fin   = fi.size();
 		QString ePrec;
@@ -302,11 +306,12 @@ QString Dictionnaire::pageXml (QStringList lReq)
 			fi.seek(milieu);
 			fi.readLine(); 
 			QString lin = fi.readLine().simplified();
-			//qDebug()<<lin<<debut<<milieu<<fin;
 			QString e = lin.section(':',0,0);
+			/*
 			QString esn = chopNum (e);
-			qDebug()<<"e="<<e<<esn;
 			int c  = QString::compare(esn,req,Qt::CaseInsensitive);
+			*/
+			int c  = QString::compare(e,req,Qt::CaseInsensitive);
 			if (c == 0 || ePrec == e)
 			{
 				while (!trouve)
@@ -316,18 +321,23 @@ QString Dictionnaire::pageXml (QStringList lReq)
 					dpos.pos = ecl.at(1).toLongLong();
 					//prec = ecl.at(4);
 					//suiv = ecl.at(5);
-                	if (ecl.size() > 3)
+                	if (ecl.size() > 6)
 					{
-						dpos.article = ecl.at(3);
+						dpos.article = ecl.at(6);
 						dpos.taille = ecl.at(2).toLongLong();
-						qDebug()<<lin<<"\n  "<<dpos.article<<dpos.taille;
+						prec = ecl.at(4);
+						suiv = ecl.at(5);
+						tailleprec = ecl.at(3).toLongLong();
 					}
                 	else 
 					{
 						dpos.article = e;
 						dpos.taille = ecl[2].toLongLong();
 					}
+					// calcul page précédente
                 	listeE.append (dpos);
+					trouve = true;
+					/*
 					// si n° d'homonymie > 1, tester l'article précédent
 					QString nh = e.right(1);
 					if (nh.at(0).isNumber() && nh != "1")
@@ -339,12 +349,7 @@ QString Dictionnaire::pageXml (QStringList lReq)
 						trouve = (nh=="1" || !nh.at(0).isNumber());
 						if (!trouve) e = en;
 					}
-					else 
-					{
-						trouve = true;
-						//prec = ecl.at(4);
-						//suiv = ecl.at(5);
-					}
+					*/
 				}
 			}
 			else if (c < 0) debut = milieu;
