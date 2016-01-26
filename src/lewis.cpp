@@ -23,6 +23,7 @@
 #include <QtXmlPatterns>
 
 #include <QDebug>
+#include <iostream>
 
 /****************
  * Dictionnaire *
@@ -87,27 +88,20 @@ QString Dictionnaire::chopNum (const QString c)
 	return ret;
 }
 
-/**
- * \fn Dictionnaire::convert
- *
- * Convertit un texte en XML en HTML à l'aide du fichier nom.xsl
- * \param source : le texte en XML
- * \return Le texte en HTML
- */
-QString Dictionnaire::convert (QString source)
+QString Dictionnaire::readLineBack (QFile *f)
 {
-    QXmlQuery query(QXmlQuery::XSLT20);
-    query.setFocus (source);
-    QString fichier = repertoire + n + ".xsl";
-    QFile xml2html (fichier);
-    xml2html.open (QIODevice::ReadOnly|QIODevice::Text);
-    query.setQuery (&xml2html);
-    QString html, retour;
-    QTextStream ts (&retour);
-    ts.setCodec ("UTF-8");
-    query.evaluateTo (&html);
-    ts << html;
-    return retour ;
+	qint64 p = f->pos()-1;
+	QString c;
+	while (c != "\n")
+	{
+		c = QString::fromUtf8 (f->read(1));
+		std::cout << c.toStdString();
+		p--; f->seek(p);
+	}
+	f->read(1);
+	QString r = f->readLine();
+	return r;
+	//return f->readLine();
 }
 
 /**
@@ -125,18 +119,9 @@ QString Dictionnaire::entree_pos (qint64 pos, qint64 taille)
     QByteArray ba = fz.read(taille);
 	QString linea = QString::fromUtf8(qUncompress(ba));
    	fz.close ();
-   	if (xsl)
-   	{
-       	linea = convert (linea);
-       	return linea;
-   	}
-   	else 
-   	{
-       	linea.replace("H1>","strong>");
-       	linea.prepend("<br/>\n");
-       	return linea;
-   	}
-   	return "Error. Nil legere potui.";
+    linea.replace("H1>","strong>");
+    linea.prepend("<br/>\n");
+    return linea;
 }
 
 /**
@@ -303,11 +288,12 @@ QString Dictionnaire::pageXml (QStringList lReq)
 
     foreach (QString req, lReq)
     {
+		qDebug()<<"requête"<<req;
 		qint64 debut = 0;
 		qint64 fin   = fi.size();
 		QString ePrec;
 		bool trouve = false;
-		//int idebug=0;
+		int idebug=0;
 		while (!trouve)
 		{
 			// TODO : calculer ppr pos de fin de la 1ère ligne,
@@ -316,62 +302,55 @@ QString Dictionnaire::pageXml (QStringList lReq)
 			fi.seek(milieu);
 			fi.readLine(); 
 			QString lin = fi.readLine().simplified();
+			//qDebug()<<lin<<debut<<milieu<<fin;
 			QString e = lin.section(':',0,0);
-			QString eh = e;
-			e = chopNum (e);
-			int c  = QString::compare(e,req,Qt::CaseInsensitive);
-			if (c == 0 || ePrec == eh)
+			QString esn = chopNum (e);
+			qDebug()<<"e="<<e<<esn;
+			int c  = QString::compare(esn,req,Qt::CaseInsensitive);
+			if (c == 0 || ePrec == e)
 			{
-				QChar der = eh.right(1).at(0);
-				if (der.isNumber() && der!='1')
-				{
-					req.append('1');
-					debut = 0;
-					fin = fi.size()-1;
-					continue;
-				}
 				while (!trouve)
 				{
 					llew dpos;
 					QStringList ecl=lin.split(':');
 					dpos.pos = ecl.at(1).toLongLong();
-					prec = ecl.at(4);
-					suiv = ecl.at(5);
-                	if (ecl.size() == 6)
+					//prec = ecl.at(4);
+					//suiv = ecl.at(5);
+                	if (ecl.size() > 3)
 					{
-						dpos.article = ecl.at(2);
-						dpos.taille = ecl.at(3).toLongLong();
+						dpos.article = ecl.at(3);
+						dpos.taille = ecl.at(2).toLongLong();
+						qDebug()<<lin<<"\n  "<<dpos.article<<dpos.taille;
 					}
                 	else 
 					{
-						dpos.article = eh;
+						dpos.article = e;
 						dpos.taille = ecl[2].toLongLong();
 					}
                 	listeE.append (dpos);
-					// si n° d'homonymie, tester l'article suivant
-					if (der.isNumber())
+					// si n° d'homonymie > 1, tester l'article précédent
+					QString nh = e.right(1);
+					if (nh.at(0).isNumber() && nh != "1")
 					{
-						lin = fi.readLine();
+						lin = readLineBack(&fi);
 						ecl = lin.split(':');
-						QString enh = ecl.at(0);
-						eh = enh;
-						enh = chopNum (enh);
-						trouve = (enh != e);
-						// ou (QString::compare(enh, e, Qt::CaseInsensitive) != 0);
+						QString en = ecl.at(0);
+						nh = en.right(1);
+						trouve = (nh=="1" || !nh.at(0).isNumber());
+						if (!trouve) e = en;
 					}
 					else 
 					{
 						trouve = true;
-						prec = ecl.at(4);
-						suiv = ecl.at(5);
-						qDebug()<<prec<<suiv;
+						//prec = ecl.at(4);
+						//suiv = ecl.at(5);
 					}
 				}
 			}
 			else if (c < 0) debut = milieu;
 			else if (c > 0) fin = milieu;
 			ePrec = e;
-			//if (idebug++ == 15) break;
+			if (idebug++ == 20) break;
 		}
     }
 	fi.close();

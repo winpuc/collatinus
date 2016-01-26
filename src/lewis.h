@@ -54,6 +54,7 @@ class Dictionnaire: public QObject
         QString     n; // nom
         int         pdj;
         QString     prec; // pages précédente et suivante
+		QString     readLineBack (QFile *f);
         QString     repertoire;
         QString     suiv;
         QString     url;
@@ -61,7 +62,6 @@ class Dictionnaire: public QObject
         bool        xsl;
     public:
         Dictionnaire (QString cfg, QObject *parent=0);
-        QString     convert (QString source);
         QString     entree_pos (qint64 pos, qint64 taille);
         bool        estXml ();
         QString     indexIu ();
