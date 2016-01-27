@@ -290,6 +290,7 @@ QString Dictionnaire::pageXml (QStringList lReq)
         return "Error";
     }
     ligneLiens.clear ();
+	prec.clear();
 
     foreach (QString req, lReq)
     {
@@ -319,7 +320,7 @@ QString Dictionnaire::pageXml (QStringList lReq)
 					{
 						dpos.article = ecl.at(6);
 						dpos.taille = ecl.at(2).toLongLong();
-						prec = ecl.at(4);
+						if (prec.isEmpty()) prec = ecl.at(4);
 						suiv = ecl.at(5);
 						tailleprec = ecl.at(3).toLongLong();
 					}
@@ -327,7 +328,7 @@ QString Dictionnaire::pageXml (QStringList lReq)
 					{
 						dpos.article = e;
 						dpos.taille = ecl.at(2).toLongLong();
-						prec = ecl.at(3);
+						if (prec.isEmpty()) prec = ecl.at(3);
 						suiv = ecl.at(4);
 						qDebug()<<"simple. e"<<e<<"pos"<<dpos.pos<<"taille"<<dpos.taille;
 					}
