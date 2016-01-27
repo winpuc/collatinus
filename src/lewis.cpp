@@ -307,10 +307,6 @@ QString Dictionnaire::pageXml (QStringList lReq)
 			fi.readLine(); 
 			QString lin = fi.readLine().simplified();
 			QString e = lin.section(':',0,0);
-			/*
-			QString esn = chopNum (e);
-			int c  = QString::compare(esn,req,Qt::CaseInsensitive);
-			*/
 			int c  = QString::compare(e,req,Qt::CaseInsensitive);
 			if (c == 0 || ePrec == e)
 			{
@@ -319,8 +315,6 @@ QString Dictionnaire::pageXml (QStringList lReq)
 					llew dpos;
 					QStringList ecl=lin.split(':');
 					dpos.pos = ecl.at(1).toLongLong();
-					//prec = ecl.at(4);
-					//suiv = ecl.at(5);
                 	if (ecl.size() > 6)
 					{
 						dpos.article = ecl.at(6);
@@ -332,7 +326,10 @@ QString Dictionnaire::pageXml (QStringList lReq)
                 	else 
 					{
 						dpos.article = e;
-						dpos.taille = ecl[2].toLongLong();
+						dpos.taille = ecl.at(2).toLongLong();
+						prec = ecl.at(3);
+						suiv = ecl.at(4);
+						qDebug()<<"simple. e"<<e<<"pos"<<dpos.pos<<"taille"<<dpos.taille;
 					}
 					// calcul page précédente
                 	listeE.append (dpos);
