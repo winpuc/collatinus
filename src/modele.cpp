@@ -119,15 +119,13 @@ Modele::Modele (QStringList ll, Lemmat *parent)
 {
 	_lemmatiseur = qobject_cast<Lemmat*>(parent);
 	_pere = 0;
-	QRegExp re("[;](\\w+)\\+{0,1}(\\$\\w+)");
 	QMultiMap<QString,int> msuff;
+	QRegExp re("[:;](\\w*)\\+{0,1}(\\$\\w+)");
 	foreach (QString l, ll)
 	{
-		bool debog = l.contains("$compar");
 		// remplacement des variables par leur valeur
 		while (re.indexIn(l) > -1)
 		{
-			if (debog) qDebug()<<"la"<<l;
 			QString v = re.cap(2);
 			QString var = _lemmatiseur->variable(v);
 			QString pre = re.cap(1);
@@ -136,7 +134,6 @@ Modele::Modele (QStringList ll, Lemmat *parent)
 			l.replace(v, var);
 		}
 		l.remove('+');
-		if (debog) qDebug()<<"lb"<<l;
 		QStringList eclats = l.simplified().split (":");
 	    //modele pere des des+ R   abs
 	    //  0    1    2   3    4   5
