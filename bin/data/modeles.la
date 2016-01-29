@@ -36,14 +36,16 @@
 !
 ! définition des variables: $<variable>:<valeurs>
 !
+!$compar=ŏr;ŏr;ōrĕm;ōrĭs;ōrī;ōrĕ;ōrēs;ōrēs;ōrēs;ōrŭm;ōrĭbŭs;ōrĭbŭs;ŏr;ŏr;ōrĕm;ōrĭs;ōrī;ōrĕ;ōrēs;ōrēs;ōrēs;ōrŭm;ōrĭbŭs;ōrĭbŭs;ŭs;ŭs;ŭs;ōrĭs;ōrī;ōrĕ;ōră;ōră;ōră;ōrŭm;ōrĭbŭs
+$compar=ŏr;ŏr;ōrĕm;ōrĭs;ōrī;ōrĕ;ōrēs;ōrēs;ōrēs;ōrŭm;ōrĭbŭs;ōrĭbŭs
 $em=ĕm;ēs;ĕt;ēmŭs;ētĭs;ēnt
+$ens=ēns;ēns;ēntĕm;ēntīs;ēntī;ēntĕ;ēntēs;ēntēs;ēntēs;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
 $im=ĭm;īs;ĭt;īmŭs;ītĭs;īnt
 $lupus=ŭs;ĕ;ŭm;ī;ō;ō;ī;ī;ōs;ōrŭm;īs;īs
 $templum=ŭm;ŭm;ŭm;ī;ō;ō;ă;ă;ă;ōrŭm;īs;īs
 $se=sē,sēsē;sŭī;sĭbī;sē,sēsē
 $tu=ū;ē;ŭī;ĭbĭ;ē
 $uita=ă;ă;ăm;āe;āe;ā;āe;āe;ās;ārum;īs;īs
-$compar=ĭŏr;ĭŏr;ĭōrĕm;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōrēs;ĭōrēs;ĭōrēs;ĭōrŭm;ĭōrĭbŭs;ĭōrĭbŭs;ĭŏr;ĭŏr;ĭōrĕm;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōrēs;ĭōrēs;ĭōrēs;ĭōrŭm;ĭōrĭbŭs;ĭōrĭbŭs;ĭŭs;ĭŭs;ĭŭs;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōră;ĭōră;ĭōră;ĭōrŭm;ĭōrĭbŭs
 
 modele:uita
 R:1:1,0
@@ -250,7 +252,8 @@ R:0:2,0
 R:1:2,ĭ
 R:2:2,īssĭm
 des:13-48:0:$lupus;$uita;$templum
-des:49-84:1:ŏr;ŏr;ōrĕm;ōrĭs;ōrī;ōrĕ;ōrēs;ōrēs;ōrēs;ōrŭm;ōrĭbŭs;ōrĭbŭs;ŏr;ŏr;ōrĕm;ōrĭs;ōrī;ōrĕ;ōrēs;ōrēs;ōrēs;ōrŭm;ōrĭbŭs;ōrĭbŭs;ŭs;ŭs;ŭs;ōrĭs;ōrī;ōrĕ;ōră;ōră;ōră;ōrŭm;ōrĭbŭs
+!des:49-84:1:ŏr;ŏr;ōrĕm;ōrĭs;ōrī;ōrĕ;ōrēs;ōrēs;ōrēs;ōrŭm;ōrĭbŭs;ōrĭbŭs;ŏr;ŏr;ōrĕm;ōrĭs;ōrī;ōrĕ;ōrēs;ōrēs;ōrēs;ōrŭm;ōrĭbŭs;ōrĭbŭs;ŭs;ŭs;ŭs;ōrĭs;ōrī;ōrĕ;ōră;ōră;ōră;ōrŭm;ōrĭbŭs
+des:49-84:1:$compar;$compar;ŭs;ŭs;ŭs;ōrĭs;ōrī;ōrĕ;ōră;ōră;ōră;ōrŭm;ōrĭbŭs
 des:85-120:2:$lupus;$uita;$templum
 
 modele:deni
@@ -327,7 +330,7 @@ des:15-24:1:ĕm;ĭs;ī;ī;ēs;ēs;ēs;ĭŭm;ĭbŭs
 des:27-36:1:ĕm;ĭs;ī;ī;ēs;ēs;ēs;ĭŭm;ĭbŭs
 des:37-48:1:ĕ;ĕ;ĕ;ĭs;ī;ī;ĭă;ĭă;ĭă;ĭŭm;ĭbŭs
 !des:49-84:1:ĭŏr;ĭŏr;ĭōrĕm;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōrēs;ĭōrēs;ĭōrēs;ĭōrŭm;ĭōrĭbŭs;ĭōrĭbŭs;ĭŏr;ĭŏr;ĭōrĕm;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōrēs;ĭōrēs;ĭōrēs;ĭōrŭm;ĭōrĭbŭs;ĭōrĭbŭs;ĭŭs;ĭŭs;ĭŭs;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōră;ĭōră;ĭōră;ĭōrŭm;ĭōrĭbŭs
-des:49-84:1:ĭ+$compar
+des:49-84:1:ĭ+$compar;ĭ+$compar;ĭŭs;ĭŭs;ĭŭs;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōră;ĭōră;ĭōră;ĭōrŭm;ĭōrĭbŭs
 
 modele:infans
 pere:fortis
@@ -586,8 +589,8 @@ des:181-186:0:ē;ētĕ;ētō;ētō;ētōtĕ;ēntō
 ! infinitif
 des:187:0:ērĕ
 ! participe présent
-des:189-200:0:ēns;ēns;ēntĕm;ēntīs;ēntī;ēntĕ;ēntēs;ēntēs;ēntēs;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
-des:201-212:0:ēns;ēns;ēntĕm;ēntīs;ēntī;ēntĕ;ēntēs;ēntēs;ēntēs;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
+des:189-200:0:$ens
+des:201-212:0:$ens
 des:213-224:0:ēns;ēns;ēns;ēntīs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
 ! gérondif, supin hérité de amo
 des:261-264:0:ēndŭm;ēndī;ēndō;ēndō
@@ -793,8 +796,8 @@ des:299-301:0:ētŏr;ētŏr;ēntŏr
 ! infinitif
 des:187:0:ērī
 ! participe présent
-des:189-200:0:ēns;ēns;ēntĕm;ēntīs;ēntī;ēntĕ;ēntēs;ēntēs;ēntēs;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
-des:201-212:0:ēns;ēns;ēntĕm;ēntīs;ēntī;ēntĕ;ēntēs;ēntēs;ēntēs;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
+des:189-200:0:$ens
+des:201-212:0:$ens
 des:213-224:0:ēns;ēns;ēns;ēntīs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
 ! gérondif et supin
 des:261-264:0:ēndŭm;ēndī;ēndō;ēndō
@@ -813,8 +816,8 @@ des:299-301:0:ĭtŏr;ĭtŏr;ūntŏr
 ! infinitif
 des:187:0:ī
 ! participe présent
-des:189-200:0:ēns;ēns;ēntĕm;ēntīs;ēntī;ēntĕ;ēntēs;ēntēs;ēntēs;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
-des:201-212:0:ēns;ēns;ēntĕm;ēntīs;ēntī;ēntĕ;ēntēs;ēntēs;ēntēs;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
+des:189-200:0:$ens
+des:201-212:0:$ens
 des:213-224:0:ēns;ēns;ēns;ēntīs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ēntĭŭm;ēntĭbŭs;ēntĭbŭs
 ! gérondif et supin
 des:261-264:0:ēndŭm;ēndī;ēndō;ēndō
@@ -832,8 +835,8 @@ des:299-301:3:ĭtŏr;ĭtŏr;ūntŏr
 ! infinitif
 des:187:3:ī
 ! participe présent
-des:189-200:0:ēns;ēns;ēntĕm;ēntīs;ēntī;ēntĕ;ēntēs;ēntēs;ēntēs;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
-des:201-212:0:ēns;ēns;ēntĕm;ēntīs;ēntī;ēntĕ;ēntēs;ēntēs;ēntēs;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
+des:189-200:0:$ens
+des:201-212:0:$ens
 des:213-224:0:ēns;ēns;ēns;ēntīs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
 ! gérondif et supin
 des:261-264:0:ēndŭm;ēndī;ēndō;ēndō
