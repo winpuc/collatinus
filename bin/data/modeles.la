@@ -43,6 +43,7 @@ $templum=ŭm;ŭm;ŭm;ī;ō;ō;ă;ă;ă;ōrŭm;īs;īs
 $se=sē,sēsē;sŭī;sĭbī;sē,sēsē
 $tu=ū;ē;ŭī;ĭbĭ;ē
 $uita=ă;ă;ăm;āe;āe;ā;āe;āe;ās;ārum;īs;īs
+$compar=ĭŏr;ĭŏr;ĭōrĕm;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōrēs;ĭōrēs;ĭōrēs;ĭōrŭm;ĭōrĭbŭs;ĭōrĭbŭs;ĭŏr;ĭŏr;ĭōrĕm;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōrēs;ĭōrēs;ĭōrēs;ĭōrŭm;ĭōrĭbŭs;ĭōrĭbŭs;ĭŭs;ĭŭs;ĭŭs;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōră;ĭōră;ĭōră;ĭōrŭm;ĭōrĭbŭs
 
 modele:uita
 R:1:1,0
@@ -320,11 +321,13 @@ modele:fortis
 pere:doctus
 R:0:2,0
 R:4:K
+R:5:2,ĭ
 des:13,14,25,26:4:-;-;-;-
 des:15-24:1:ĕm;ĭs;ī;ī;ēs;ēs;ēs;ĭŭm;ĭbŭs
 des:27-36:1:ĕm;ĭs;ī;ī;ēs;ēs;ēs;ĭŭm;ĭbŭs
 des:37-48:1:ĕ;ĕ;ĕ;ĭs;ī;ī;ĭă;ĭă;ĭă;ĭŭm;ĭbŭs
-des:49-84:1:ĭŏr;ĭŏr;ĭōrĕm;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōrēs;ĭōrēs;ĭōrēs;ĭōrŭm;ĭōrĭbŭs;ĭōrĭbŭs;ĭŏr;ĭŏr;ĭōrĕm;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōrēs;ĭōrēs;ĭōrēs;ĭōrŭm;ĭōrĭbŭs;ĭōrĭbŭs;ĭŭs;ĭŭs;ĭŭs;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōră;ĭōră;ĭōră;ĭōrŭm;ĭōrĭbŭs
+!des:49-84:1:ĭŏr;ĭŏr;ĭōrĕm;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōrēs;ĭōrēs;ĭōrēs;ĭōrŭm;ĭōrĭbŭs;ĭōrĭbŭs;ĭŏr;ĭŏr;ĭōrĕm;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōrēs;ĭōrēs;ĭōrēs;ĭōrŭm;ĭōrĭbŭs;ĭōrĭbŭs;ĭŭs;ĭŭs;ĭŭs;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōră;ĭōră;ĭōră;ĭōrŭm;ĭōrĭbŭs
+des:49-84:1:$compar+ĭ
 
 modele:infans
 pere:fortis
