@@ -327,7 +327,7 @@ des:15-24:1:ĕm;ĭs;ī;ī;ēs;ēs;ēs;ĭŭm;ĭbŭs
 des:27-36:1:ĕm;ĭs;ī;ī;ēs;ēs;ēs;ĭŭm;ĭbŭs
 des:37-48:1:ĕ;ĕ;ĕ;ĭs;ī;ī;ĭă;ĭă;ĭă;ĭŭm;ĭbŭs
 !des:49-84:1:ĭŏr;ĭŏr;ĭōrĕm;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōrēs;ĭōrēs;ĭōrēs;ĭōrŭm;ĭōrĭbŭs;ĭōrĭbŭs;ĭŏr;ĭŏr;ĭōrĕm;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōrēs;ĭōrēs;ĭōrēs;ĭōrŭm;ĭōrĭbŭs;ĭōrĭbŭs;ĭŭs;ĭŭs;ĭŭs;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōră;ĭōră;ĭōră;ĭōrŭm;ĭōrĭbŭs
-des:49-84:1:$compar+ĭ
+des:49-84:1:ĭ+$compar
 
 modele:infans
 pere:fortis

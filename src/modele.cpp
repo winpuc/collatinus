@@ -119,21 +119,17 @@ Modele::Modele (QStringList ll, Lemmat *parent)
 {
 	_lemmatiseur = qobject_cast<Lemmat*>(parent);
 	_pere = 0;
-	QRegExp re("[;+]");
+	QRegExp re("(\\$\\w+)");
 	QMultiMap<QString,int> msuff;
 	foreach (QString l, ll)
 	{
 		// remplacement des variables par leur valeur
-		while (l.contains ('$'))
+		while (re.indexIn(l) > -1)
 		{
-			int d=l.indexOf ('$');
-			int f = l.indexOf(re, d);
-			l.remove('+');
-			QString v;
-			if (f<0) v = l.mid (d);
-			else v = l.mid (d, f-d);
-			l.replace (v, _lemmatiseur->variable (v));
+			QString v = re.cap(1);
+			l.replace(v, _lemmatiseur->variable(v));
 		}
+		l.remove('+');
 		QStringList eclats = l.simplified().split (":");
 	    //modele pere des des+ R   abs
 	    //  0    1    2   3    4   5
@@ -433,7 +429,7 @@ QList<int> Modele::morphos ()
 QChar Modele::pos()
 {
 	if (estUn("uita") || estUn("lupus") || estUn("miles")
-		|| estUn("manus") || estUn("res"))
+		|| estUn("manus") || estUn("res") || estUn("perseus")) 
 		return 'n';
 	if (estUn ("doctus") || estUn ("fortis"))
 		return 'a';
