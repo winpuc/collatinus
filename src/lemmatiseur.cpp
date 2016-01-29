@@ -363,6 +363,14 @@ MapLem Lemmat::lemmatiseM (QString f, bool debPhr)
 			// TODO : aequeque est la seule occurrence
             // de -queque dans le corpus classique
 			mm = lemmatiseM (sf, debPhr);
+			foreach (Lemme *l, mm.keys())
+			{
+				if (suf.endsWith("e")) 
+					suf.chop(1); suf.append("ĕ");
+				QList<SLem> ls = mm.value(l);
+				for (int i=0;i<ls.count();++i)
+					mm[l][i].grq += suf;
+			}
 		}
 	if (debPhr && f.at (0).isUpper ())
 	{

@@ -29,6 +29,8 @@
 #include <QRegExp>
 #include "ch.h"
 
+#include<QDebug>
+
 /**
  * \fn Ch::ajoute (QString mot, QStringList liste)
  * \brief Ajoute mot au début de chaque item de liste.
@@ -140,6 +142,9 @@ QString Ch::deramise(QString r)
  */
 void Ch::elide(QString *mp)
 {
+	//"Tāntāene"
+	bool debog = (*mp == "Tāntāene");
+	if (debog) qDebug()<<"tantaene"<<*mp;
     int taille = mp->size ();
     if ((taille > 1)
 		&& ((mp->endsWith ('m') 
@@ -147,16 +152,19 @@ void Ch::elide(QString *mp)
 			|| mp->endsWith ("\u0306"))
         && voyelles.contains (mp->at (taille - 2)))
     {
+		if (debog) qDebug()<<"cond1";
         deQuant (mp);
         mp->insert (taille - 2, '[');
         mp->append (']');
     }
     else if (voyelles.contains (mp->at (taille - 1)) && *mp !="\u014d")
     {
+		if (debog) qDebug()<<"cond2";
         deQuant (mp);
         mp->insert (taille - 1, '[');
         mp->append (']');
     }
+	if (debog) qDebug()<<*mp;
 }
 
 /**
