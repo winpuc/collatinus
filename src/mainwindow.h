@@ -120,6 +120,7 @@ private slots:
 	void lancer();
 	void lemmatiseLigne();
     void lemmatiseTxt();
+	void maj();
 	void montreWDic(bool visible);
 	void nouveau();
 	void ouvrir();
@@ -183,6 +184,7 @@ private:
 	QAction      *findAct;
 	QAction      *frAct;
 	QAction      *lancAct;
+	QAction      *majAct;
 	QAction      *nouvAct;
 	QAction      *ouvrirAct;
 	QAction      *printAct;

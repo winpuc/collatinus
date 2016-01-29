@@ -25,6 +25,7 @@
 
 #include "flexion.h"
 #include "mainwindow.h"
+#include "maj.h"
 
 /**
  * \fn EditLatin::EditLatin (QWidget *parent): QTextEdit (parent)
@@ -264,12 +265,15 @@ void MainWindow::afficheLemsDic(QStringList ll, int no)
  */
 void MainWindow::afficheLemsDicW(QStringList ll, int no)
 {
+	qDebug()<<"::afficheLemsDicW"<<ll<<no;
 	if (textBrowserW == 0) return;
 	//lemsDic = ll;
     if (ll.empty () || no < 0 || listeD.courant2 () == NULL) 
         return;
     textBrowserW->clear ();
+	qDebug()<<"OKa listeD"<<ll;
     textBrowserW->setHtml (listeD.courant2()->page (ll, no));
+	qDebug()<<"OKb";
     lineEditDicW->setText (ll.at (no));  
     if (listeD.courant2()->estXml ())
     {
@@ -609,13 +613,14 @@ void MainWindow::createActions()
     connect(undoAct, SIGNAL(triggered()), this, SLOT(undo()));
 	// aussi SLOT(redo())
 	*/
-	alphaAct = new QAction(QIcon(":res/edit-alpha.svg"), tr("Lancer et classer &alphabétiquement"), this);
+	alphaAct   = new QAction(QIcon(":res/edit-alpha.svg"), tr("Lancer et classer &alphabétiquement"), this);
     aproposAct = new QAction(QIcon(":/res/collatinus.svg"), tr("à &Propos"), this);
-	balaiAct = new QAction(QIcon(":res/edit-clear.svg"), tr("&Effacer les résultats"), this);
-	copieAct = new QAction(QIcon(":res/copie.svg"), tr("&Copier dans un traitement de textes"), this);
-	deZoomAct = new QAction(QIcon(":res/dezoom.svg"), tr("Plus petit"), this);
-	findAct = new QAction(QIcon(":res/edit-find.svg"), tr("&Chercher"), this);
-	lancAct = new QAction(QIcon(":res/gear.svg"), tr("&Lancer"), this);
+	balaiAct   = new QAction(QIcon(":res/edit-clear.svg"), tr("&Effacer les résultats"), this);
+	copieAct   = new QAction(QIcon(":res/copie.svg"), tr("&Copier dans un traitement de textes"), this);
+	deZoomAct  = new QAction(QIcon(":res/dezoom.svg"), tr("Plus petit"), this);
+	findAct    = new QAction(QIcon(":res/edit-find.svg"), tr("&Chercher"), this);
+	lancAct    = new QAction(QIcon(":res/gear.svg"), tr("&Lancer"), this);
+	majAct     = new QAction(tr("Télécharger lexiques et dictionnaires"), this);
 	nouvAct = new QAction(QIcon(":/res/document-new.svg"), tr("&Nouveau"), this);
 	ouvrirAct = new QAction(QIcon(":/res/document-open.svg"), tr("&Ouvrir"), this);
 	exportAct = new QAction(QIcon(":res/pdf.svg"), tr("Exporter en pdf"), this);
@@ -633,12 +638,12 @@ void MainWindow::createActions()
 	frAct->setCheckable(true);
 
 	// raccourcis
-    printAct->setShortcuts(QKeySequence::Print);
 	findAct->setShortcut(QKeySequence::Find);
-	reFindAct->setShortcut(QKeySequence(tr("Ctrl+J")));
-    quitAct->setShortcut(QKeySequence (tr("Ctrl+Q"))); // QKeySequence::Quit inopérant
 	nouvAct->setShortcuts(QKeySequence::New);
 	ouvrirAct->setShortcuts(QKeySequence::Open);
+    printAct->setShortcuts(QKeySequence::Print);
+	reFindAct->setShortcut(QKeySequence(tr("Ctrl+J")));
+    quitAct->setShortcut(QKeySequence (tr("Ctrl+Q"))); // QKeySequence::Quit inopérant
 
 	// lemmatisation et options
 	// ordre alpha
@@ -744,6 +749,7 @@ void MainWindow::createConnections()
 	connect(dicActW, SIGNAL(triggered()), this, SLOT(afficheLemsDicW()));
 	connect(dicLittActW, SIGNAL(triggered()), this, SLOT(afficheLemsDicLittW()));
     connect(lineEditDicW, SIGNAL(returnPressed ()), this, SLOT(afficheLemsDicW()));
+	connect(majAct, SIGNAL(triggered()), this, SLOT(maj()));
     connect(postButtonW, SIGNAL(clicked ()), this, SLOT(clicPostW()));
 	connect(syncWDAct, SIGNAL(triggered()), this, SLOT(syncWD()));
     connect(textBrowserW, SIGNAL(anchorClicked(QUrl)), this, SLOT(afficheLienW(QUrl)));
@@ -841,6 +847,8 @@ void MainWindow::createMenus()
 	optMenu->addAction(majPertAct);
 	optMenu->addAction(morphoAct);
     optMenu->addAction(nonRecAct);
+	optMenu->addSeparator();
+	optMenu->addAction(majAct);
 
     helpMenu = menuBar()->addMenu(tr("&Aide"));
     helpMenu->addAction(aproposAct);
@@ -1277,6 +1285,19 @@ void MainWindow::lemmatiseTxt()
     else
         textEditLem->setPlainText(lemmatiseur->lemmatiseT(editLatin->toPlainText()));
 	// setUpdatesEnabled(true);
+}
+
+/**
+ * \fn void MainWindow::maj()
+ * \brief Lance le dialogue de mise à jour des 
+ *        lexiques et dictionnaires.
+ */
+
+void MainWindow::maj()
+{
+	Maj *majDial = new Maj ();
+	majDial->exec();
+	delete majDial;
 }
 
 /**

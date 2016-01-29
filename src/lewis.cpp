@@ -88,11 +88,10 @@ QString Dictionnaire::chopNum (const QString c)
 	return ret;
 }
 
+/*
 QString Dictionnaire::readLineBack (QFile *f, int fois)
 {
 	qint64 p = f->pos()-1;
-	qDebug()<<"pos3"<<p;
-	qDebug()<<fois<<"fois";
 	QString c;
 	for (int i=0;i<fois;++i)
 	{
@@ -108,6 +107,7 @@ QString Dictionnaire::readLineBack (QFile *f, int fois)
 	return r;
 	//return f->readLine();
 }
+*/
 
 /**
  * \fn Dictionnaire::entree_pos
@@ -330,7 +330,6 @@ QString Dictionnaire::pageXml (QStringList lReq)
 						dpos.taille = ecl.at(2).toLongLong();
 						if (prec.isEmpty()) prec = ecl.at(3);
 						suiv = ecl.at(4);
-						qDebug()<<"simple. e"<<e<<"pos"<<dpos.pos<<"taille"<<dpos.taille;
 					}
 					// calcul page précédente
                 	listeE.append (dpos);

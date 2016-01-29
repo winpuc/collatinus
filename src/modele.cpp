@@ -119,6 +119,7 @@ Modele::Modele (QStringList ll, Lemmat *parent)
 {
 	_lemmatiseur = qobject_cast<Lemmat*>(parent);
 	_pere = 0;
+	QRegExp re("[;+]");
 	QMultiMap<QString,int> msuff;
 	foreach (QString l, ll)
 	{
@@ -126,7 +127,8 @@ Modele::Modele (QStringList ll, Lemmat *parent)
 		while (l.contains ('$'))
 		{
 			int d=l.indexOf ('$');
-			int f=l.indexOf (';', d);
+			int f = l.indexOf(re, d);
+			l.remove('+');
 			QString v;
 			if (f<0) v = l.mid (d);
 			else v = l.mid (d, f-d);
