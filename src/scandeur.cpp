@@ -389,5 +389,5 @@ QString Lemmat::scandeTxt (QString texte, bool stats)
 		// Pour séparer la liste du texte.
 		// foreach (QString ligne, vers) aff.prepend(ligne);
     }
-    return aff.join (" ");
+    return aff.join ("");
 }
