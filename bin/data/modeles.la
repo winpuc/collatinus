@@ -545,9 +545,9 @@ des:189-200:0:āns;āns;āntĕm;āntīs;āntī;āntĕ;āntēs;āntēs;āntēs;ā
 des:201-212:0:āns;āns;āntĕm;āntīs;āntī;āntĕ;āntēs;āntēs;āntēs;āntĭŭm,āntŭm;āntĭbŭs;āntĭbŭs
 des:213-224:0:āns;āns;āns;āntīs;āntī;āntĕ;āntĭă;āntĭă;āntĭă;āntĭŭm,āntŭm;āntĭbŭs;āntĭbŭs
 ! participe futur
-des:225-236:2:ūrŭs;ūrĕ;ūrŭm;ūrī;ūrō;ūrō;ūrī;ūrī;ūrōs;ūrōrŭm;ūrīs;ūrīs
-des:237-248:2:ūră;ūră;ūrăm;ūrāe;ūrāe;ūrā;ūrāe;ūrāe;ūrās;ūrārum;ūrīs;ūrīs
-des:249-260:2:ūrŭm;ūrŭm;ūrŭm;ūrī;ūrō;ūrō;ūră;ūră;ūră;ūrōrŭm;ūrīs;ūrīs
+des:225-236:2:ūr+$lupus
+des:237-248:2:ūr+$uita
+des:249-260:2:ūr+$templum
 ! gérondif et supin
 des:261-264:0:āndŭm;āndī;āndō;āndō
 des:265,266:2:ŭm;ū
@@ -563,15 +563,15 @@ des:297,298:0:ārĕ;āmĭnī
 des:299-301:0:ātŏr;ātŏr;āntŏr
 des:302:0:ārī
 ! participe parfait
-!des:303-314:2:ŭs;ĕ;ŭm;ī;ō;ō;ī;ī;ōs;ōrŭm;īs;īs
-!des:315-326:2:ă;ă;ăm;āe;āe;ā;āe;āe;ās;ārum;īs;īs
 des:303-314:2:$lupus
 des:315-326:2:$uita
 des:327-338:2:$templum
 ! adjectif verbal
-des:339-350:0:āndŭs;āndĕ;āndŭm;āndī;āndō;āndō;āndī;āndī;āndōs;āndōrŭm;āndīs;āndīs
-des:351-362:0:āndă;āndă;āndăm;āndāe;āndāe;āndā;āndāe;āndāe;āndās;āndārum;āndīs;āndīs
-des:363-374:0:āndŭm;āndŭm;āndŭm;āndī;āndō;āndō;āndă;āndă;āndă;āndōrŭm;āndīs;āndīs
+des:339-350:0:ānd+$lupus
+!des:351-362:0:āndă;āndă;āndăm;āndāe;āndāe;āndā;āndāe;āndāe;āndās;āndārum;āndīs;āndīs
+des:351-362:0:ānd+$uita
+!des:363-374:0:āndŭm;āndŭm;āndŭm;āndī;āndō;āndō;āndă;āndă;āndă;āndōrŭm;āndīs;āndīs
+des:363-374:0:ānd+$templum
 
 modele:moneo
 pere:amo

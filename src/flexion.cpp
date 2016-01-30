@@ -226,8 +226,8 @@ QString Flexion::tabAdj()
 	for (int i=25;i<31;++i)
 		fl<<lina<<cas[i-25]<<linb<<forme(i)<<linb<<forme(i+36)<<linb<<forme(i+72)<<linc;
 	fl<<"<tr><td colspan=4>pluriel</td></tr>";
-	for (int i=32;i<38;++i)
-		fl<<lina<<cas[i-32]<<linb<<forme(i)<<linb<<forme(i+36)<<linb<<forme(i+72)<<linc;
+	for (int i=31;i<37;++i)
+		fl<<lina<<cas[i-31]<<linb<<forme(i)<<linb<<forme(i+36)<<linb<<forme(i+72)<<linc;
 	fl<<queue<<"</p>";
 
 	fl<<"<p>"<<genres[2]<<"<p>";
