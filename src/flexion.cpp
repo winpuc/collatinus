@@ -269,9 +269,9 @@ QString Flexion::tabV()
 	// menu
 	QString menu;
 	QTextStream(&menu)
-        <<"<a name=\""<<_lemme->cle()<<"\"></a>"
-        <<"<a href\"#actif\">ACTIF</a><br/>"
-		<<"<a href=\"#actif\">indicatif</a>&nbsp;"
+        <<"<a name=\""<<_lemme->cle()<<"\"></a><br/>"
+        <<"<a href=\"#actif\">ACTIF</a><br/>"
+		<<"<a href=\"#indactif\">indicatif</a>&nbsp;"
 		<<"<a href=\"#subactif\">subjonctif</a>&nbsp;"
 	    <<"<a href=\"#impactif\">imp&eacute;ratif et infinitif</a>&nbsp;"
 	    <<"<a href=\"#partpres\">participe pr&eacute;sent</a>&nbsp;"
