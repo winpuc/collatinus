@@ -55,7 +55,12 @@ Lemmat::Lemmat (QObject *parent): QObject (parent)
 	_majPert = false;
 	_morpho  = false;
 	// suffixes
-	suffixes << "ne"<<"que"<<"ue"<<"ve";
+	//suffixes << "ne"<<"que"<<"ue"<<"ve";
+	suffixes.insert ("ne", "nĕ");
+	suffixes.insert ("que", "quĕ");
+	suffixes.insert ("ue", "uĕ");
+	suffixes.insert ("ve", "vĕ");
+	suffixes.insert ("st", "st");
 	// assimilations
 	ajAssims();
 	// contractions
@@ -355,7 +360,7 @@ MapLem Lemmat::lemmatiseM (QString f, bool debPhr)
 	QTextStream fl (&res);
 	MapLem mm = lemmatise (f);
 	// suffixes
-	foreach (QString suf, suffixes)
+	foreach (QString suf, suffixes.keys())
 		if (mm.empty() && f.endsWith (suf))
 		{
 			QString sf = f;
@@ -365,11 +370,9 @@ MapLem Lemmat::lemmatiseM (QString f, bool debPhr)
 			mm = lemmatiseM (sf, debPhr);
 			foreach (Lemme *l, mm.keys())
 			{
-				//if (suf.endsWith("e")) 
-				//	suf.chop(1); suf.append("ĕ");
 				QList<SLem> ls = mm.value(l);
 				for (int i=0;i<ls.count();++i)
-					mm[l][i].grq += suf;
+					mm[l][i].grq += suffixes.value(suf);
 			}
 		}
 	if (debPhr && f.at (0).isUpper ())

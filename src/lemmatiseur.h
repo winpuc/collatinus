@@ -116,7 +116,8 @@ class Lemmat: public QObject
 		QString               morpho (int i);
         QString               parPos (QString f);
 		QString               scandeTxt (QString texte, bool stats);
-		QStringList           suffixes;
+		//QStringList           suffixes;
+		QMap<QString,QString> suffixes;
 		QString               variable (QString v);
 
 		// accesseurs d'options
