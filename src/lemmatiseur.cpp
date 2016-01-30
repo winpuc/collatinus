@@ -55,12 +55,11 @@ Lemmat::Lemmat (QObject *parent): QObject (parent)
 	_majPert = false;
 	_morpho  = false;
 	// suffixes
-	//suffixes << "ne"<<"que"<<"ue"<<"ve";
-	suffixes.insert ("ne", "nĕ");
+	suffixes.insert ("ne",  "nĕ");
 	suffixes.insert ("que", "quĕ");
-	suffixes.insert ("ue", "uĕ");
-	suffixes.insert ("ve", "vĕ");
-	suffixes.insert ("st", "st");
+	suffixes.insert ("ue",  "vĕ");
+	suffixes.insert ("ve",  "vĕ");
+	suffixes.insert ("st",  "st");
 	// assimilations
 	ajAssims();
 	// contractions
