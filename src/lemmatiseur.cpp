@@ -55,7 +55,7 @@ Lemmat::Lemmat (QObject *parent): QObject (parent)
 	_majPert = false;
 	_morpho  = false;
 	// suffixes
-	suffixes << "ne"<<"que"<<"ue";
+	suffixes << "ne"<<"que"<<"ue"<<"ve";
 	// assimilations
 	ajAssims();
 	// contractions
@@ -365,8 +365,8 @@ MapLem Lemmat::lemmatiseM (QString f, bool debPhr)
 			mm = lemmatiseM (sf, debPhr);
 			foreach (Lemme *l, mm.keys())
 			{
-				if (suf.endsWith("e")) 
-					suf.chop(1); suf.append("ĕ");
+				//if (suf.endsWith("e")) 
+				//	suf.chop(1); suf.append("ĕ");
 				QList<SLem> ls = mm.value(l);
 				for (int i=0;i<ls.count();++i)
 					mm[l][i].grq += suf;
