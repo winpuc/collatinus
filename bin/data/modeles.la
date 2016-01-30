@@ -252,7 +252,6 @@ R:0:2,0
 R:1:2,ĭ
 R:2:2,īssĭm
 des:13-48:0:$lupus;$uita;$templum
-!des:49-84:1:ŏr;ŏr;ōrĕm;ōrĭs;ōrī;ōrĕ;ōrēs;ōrēs;ōrēs;ōrŭm;ōrĭbŭs;ōrĭbŭs;ŏr;ŏr;ōrĕm;ōrĭs;ōrī;ōrĕ;ōrēs;ōrēs;ōrēs;ōrŭm;ōrĭbŭs;ōrĭbŭs;ŭs;ŭs;ŭs;ōrĭs;ōrī;ōrĕ;ōră;ōră;ōră;ōrŭm;ōrĭbŭs
 des:49-84:1:$compar;$compar;ŭs;ŭs;ŭs;ōrĭs;ōrī;ōrĕ;ōră;ōră;ōră;ōrŭm;ōrĭbŭs
 des:85-120:2:$lupus;$uita;$templum
 
@@ -300,17 +299,16 @@ des+:37-40:0:ŏn;ŏn;ŏn
 modele:duo
 pere:doctus
 R:0:1,0
-!R:1:K
 des:19,43,45:0:ŏ
 des:23,24,35,36,47,48:0:ōbŭs
 abs:22,32,42,13-18,25-30,37-42
 
 modele:miser
 pere:doctus
-R:0:0,0
-R:1:0,0
+R:0:K
+R:1:0,ĭ
 R:2:0,rĭm
-des:13,14:1:-;-
+des:13,14:0:-;-
 
 modele:pulcher
 pere:doctus
@@ -329,7 +327,6 @@ des:13,14,25,26:4:-;-;-;-
 des:15-24:1:ĕm;ĭs;ī;ī;ēs;ēs;ēs;ĭŭm;ĭbŭs
 des:27-36:1:ĕm;ĭs;ī;ī;ēs;ēs;ēs;ĭŭm;ĭbŭs
 des:37-48:1:ĕ;ĕ;ĕ;ĭs;ī;ī;ĭă;ĭă;ĭă;ĭŭm;ĭbŭs
-!des:49-84:1:ĭŏr;ĭŏr;ĭōrĕm;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōrēs;ĭōrēs;ĭōrēs;ĭōrŭm;ĭōrĭbŭs;ĭōrĭbŭs;ĭŏr;ĭŏr;ĭōrĕm;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōrēs;ĭōrēs;ĭōrēs;ĭōrŭm;ĭōrĭbŭs;ĭōrĭbŭs;ĭŭs;ĭŭs;ĭŭs;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōră;ĭōră;ĭōră;ĭōrŭm;ĭōrĭbŭs
 des:49-84:1:ĭ+$compar;ĭ+$compar;ĭŭs;ĭŭs;ĭŭs;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōră;ĭōră;ĭōră;ĭōrŭm;ĭōrĭbŭs
 
 modele:infans
