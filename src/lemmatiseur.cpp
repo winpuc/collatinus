@@ -434,6 +434,8 @@ MapLem Lemmat::lemmatiseM (QString f, bool debPhr)
  *        de rejeter les échecs en fin de liste. D'autres
  *        paramètres, comme le format de sortie txt ou html,
  *        sont donnés par des variables de classe.
+ *	      Les paramètres et options true outrepassent les false,
+ *        _majPert et _html sont dans les options de la classe.
  */
 QString Lemmat::lemmatiseT (QString t,
 							   bool alpha,
@@ -444,8 +446,6 @@ QString Lemmat::lemmatiseT (QString t,
     // pour mesurer :
 	// QElapsedTimer timer;
 	// timer.start();
-	// Les paramètres et options true outrepassent les false,
-    // _majPert et _html sont dans les options de la classe.
     alpha = alpha || _alpha;
 	cumVocibus = cumVocibus || _formeT;
 	cumMorpho = cumMorpho || _morpho;
