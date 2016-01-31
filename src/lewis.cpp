@@ -306,6 +306,7 @@ QString Dictionnaire::pageXml (QStringList lReq)
 			qint64 milieu = (debut+fin)/2;
 			fi.seek(milieu);
 			fi.readLine(); 
+			milieu = fi.pos();
 			QString lin = fi.readLine().simplified();
 			QString e = lin.section(':',0,0);
 			int c  = QString::compare(e,req,Qt::CaseInsensitive);
