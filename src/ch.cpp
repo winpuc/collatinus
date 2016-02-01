@@ -120,7 +120,7 @@ void Ch::deQuant (QString *c)
 }
 
 /**
- * \fn Ch::deramise(QString r)
+ * \fn QString Ch::deramise(QString r)
  * \brief retourne une graphie non-ramiste
  *        de r, càd dont tous les j deviennent i,
  *        et tous les v deviennent u. Les V majuscules
@@ -165,6 +165,20 @@ void Ch::elide(QString *mp)
         mp->append (']');
     }
 	if (debog) qDebug()<<*mp;
+}
+
+void Ch::genStrNum (const QString s, QString *ch, int *n)
+{
+	ch->clear();
+	*n = 0;
+	for (int i=0;i<s.length();++i)
+		if (!s.at(i).isNumber())
+			ch->append(s.at(i));
+		else
+		{
+			*n = s.mid(i).toInt();
+			break;
+		}
 }
 
 /**

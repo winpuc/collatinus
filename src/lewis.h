@@ -51,6 +51,7 @@ class Dictionnaire: public QObject
         bool        jv;
         QStringList _liens;
         QString     ligneLiens;
+		QString     linPrec(QTextStream *s, qint64 pos);
         QString     n; // nom
         int         pdj;
         QString     prec; // pages précédente et suivante

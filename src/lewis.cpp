@@ -19,11 +19,13 @@
  * © Yves Ouvrard, 2009 - 2016    
  */
 
-#include "lewis.h"
 #include <QtXmlPatterns>
 
+#include "lewis.h"
+#include "ch.h"
+
 #include <QDebug>
-#include <iostream>
+//#include <iostream>
 
 /****************
  * Dictionnaire *
@@ -88,27 +90,6 @@ QString Dictionnaire::chopNum (const QString c)
 	return ret;
 }
 
-/*
-QString Dictionnaire::readLineBack (QFile *f, int fois)
-{
-	qint64 p = f->pos()-1;
-	QString c;
-	for (int i=0;i<fois;++i)
-	{
-		while (c != "\n")
-		{
-			c = QString::fromUtf8 (f->read(1));
-			std::cout << c.toStdString();
-			p--; f->seek(p);
-			qDebug()<<"p"<<p;
-		}
-	}
-	QString r = f->readLine();
-	return r;
-	//return f->readLine();
-}
-*/
-
 /**
  * \fn Dictionnaire::entree_pos
  *
@@ -152,11 +133,23 @@ void Dictionnaire::vide_ligneLiens ()
 }
 
 /**
+ * \fn QString Dictionnaire::linPrec(QFile *f, qint64 pos)
+ * \brief Lit à rebours d'une ligne avant pos.
+ */
+QString Dictionnaire::linPrec(QTextStream *s, qint64 pos)
+{
+	pos -= 80;
+	s->seek(pos);
+	QString buf = s->read(80);
+	QStringList sl = buf.split('\n', QString::SkipEmptyParts);
+	return sl.last();
+}
+
+/**
  * \fn Dictionnaire::lis_index_djvu
  *
- * Lit le fichier d'index du dico en djvu
- *
- * Cf. vide_index ()
+ * \brief Lit le fichier d'index du dico en djvu
+ *        Cf. vide_index ()
  * @return false si la lecture échoue
  */
 bool Dictionnaire::lis_index_djvu ()
@@ -283,6 +276,7 @@ QString Dictionnaire::pageXml (QStringList lReq)
     QString pg; // contenu de la page de retour
     QList<llew> listeE;
     QFile fi(idxJv);
+	QTextStream si(&fi);
 	if (!fi.open(QFile::ReadOnly | QFile::Text))
     {
         prec = "error";
@@ -294,65 +288,94 @@ QString Dictionnaire::pageXml (QStringList lReq)
 
     foreach (QString req, lReq)
     {
+		QString chreq;    // partie alpha de req
+		int     num;   // partie num de req
+		QString che; int nume; // idem pour la ligne idx
 		qint64 debut = 0;
 		qint64 fin   = fi.size();
 		QString ePrec;
 		bool trouve = false;
 		int idebug=0;
+		QString lin;
+		Ch::genStrNum (req, &chreq, &num);
 		while (!trouve)
 		{
-			// TODO : calculer ppr pos de fin de la 1ère ligne,
-			//        et revenir à 0 si le pos est < ppr.
 			qint64 milieu = (debut+fin)/2;
-			fi.seek(milieu);
-			fi.readLine(); 
-			QString lin = fi.readLine().simplified();
+			si.seek(milieu);
+			si.readLine(); 
+			milieu = si.pos();
+			lin = si.readLine().simplified();
 			QString e = lin.section(':',0,0);
-			int c  = QString::compare(e,req,Qt::CaseInsensitive);
+			Ch::genStrNum (e, &che, &nume);
+			int c  = QString::compare(che,chreq,Qt::CaseInsensitive);
+			qDebug()<<"A. che"<<che<<"chreq"<<chreq;
+			if (c==0 && num !=nume)
+			{
+				qDebug()<<"------------ c==0 num"<<num<<"nume"<<nume;
+				if (num<2 && nume > 1)
+				{
+					while (nume > 1)
+					{
+						qDebug()<<"       linA"<<lin<<"milieu"<<milieu;
+						lin = linPrec (&si, milieu);
+						milieu -= lin.size()+1;
+						qDebug()<<"       linB"<<lin<<"milieu"<<milieu;
+						Ch::genStrNum(lin.section(':',0,0), &che, &nume);
+					}
+				}
+				else if (num < nume)
+				{
+					qDebug()<<"num < nume:"<<num<<nume;
+					while (num < nume)
+					{
+						lin = linPrec (&si, milieu);
+						milieu -= lin.size()+1;
+						Ch::genStrNum(lin.section(':',0,0), &che, &nume);
+					}
+				}
+				else // if (num > nume)
+				{
+					qDebug()<<"num > nume:"<<num<<nume;
+					while (num > nume)
+					{
+						lin = si.readLine();
+						Ch::genStrNum(lin.section(':',0,0), &che, &nume);
+					}
+				}
+			}
+			else 
+			{
+				qDebug()<<"B. e"<<e<<"req"<<req;
+				c = QString::compare(e,req,Qt::CaseInsensitive);
+			}
 			if (c == 0 || ePrec == e)
 			{
-				while (!trouve)
+				qDebug()<<"      --Trouvé--";
+				llew dpos;
+				QStringList ecl=lin.split(':');
+				dpos.pos = ecl.at(1).toLongLong();
+                if (ecl.size() > 6)
 				{
-					llew dpos;
-					QStringList ecl=lin.split(':');
-					dpos.pos = ecl.at(1).toLongLong();
-                	if (ecl.size() > 6)
-					{
-						dpos.article = ecl.at(6);
-						dpos.taille = ecl.at(2).toLongLong();
-						if (prec.isEmpty()) prec = ecl.at(4);
-						suiv = ecl.at(5);
-						tailleprec = ecl.at(3).toLongLong();
-					}
-                	else 
-					{
-						dpos.article = e;
-						dpos.taille = ecl.at(2).toLongLong();
-						if (prec.isEmpty()) prec = ecl.at(3);
-						suiv = ecl.at(4);
-					}
-					// calcul page précédente
-                	listeE.append (dpos);
-					trouve = true;
-					/*
-					// si n° d'homonymie > 1, tester l'article précédent
-					QString nh = e.right(1);
-					if (nh.at(0).isNumber() && nh != "1")
-					{
-						lin = readLineBack(&fi);
-						ecl = lin.split(':');
-						QString en = ecl.at(0);
-						nh = en.right(1);
-						trouve = (nh=="1" || !nh.at(0).isNumber());
-						if (!trouve) e = en;
-					}
-					*/
+					dpos.article = ecl.at(6);
+					dpos.taille = ecl.at(2).toLongLong();
+					if (prec.isEmpty()) prec = ecl.at(4);
+					suiv = ecl.at(5);
 				}
+                else 
+				{
+					dpos.article = e;
+					dpos.taille = ecl.at(2).toLongLong();
+					if (prec.isEmpty()) prec = ecl.at(3);
+					suiv = ecl.at(4);
+				}
+                listeE.append (dpos);
+				qDebug()<<"pos"<<dpos.pos<<"    "<<lin;
+				trouve = true;
 			}
 			else if (c < 0) debut = milieu;
 			else if (c > 0) fin = milieu;
 			ePrec = e;
-			if (idebug++ == 20) break;
+			if (idebug++ == 30) break;
 		}
     }
 	fi.close();

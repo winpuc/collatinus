@@ -13,9 +13,10 @@ namespace Ch
 	void           allonge (QString *f);
 	QString        atone(const QString a, bool bdc=false);
 	void           deQuant (QString *c);
+    QString const  consonnes="bcdfgjklmnpqrstvxz";
+	void           genStrNum (const QString s, QString *ch, int *n);
 	QString        deramise (QString r);
 	void           elide (QString *mp);
-    QString const  consonnes="bcdfgjklmnpqrstvxz";
 	const QRegExp  reAlphas("(\\w+)");
 	const QRegExp  reEspace("\\s+");
 	const QRegExp  reLettres("\\w");
