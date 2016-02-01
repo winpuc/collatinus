@@ -301,17 +301,10 @@ QString Dictionnaire::pageXml (QStringList lReq)
 		while (!trouve)
 		{
 			qint64 milieu = (debut+fin)/2;
-<<<<<<< HEAD
 			si.seek(milieu);
 			si.readLine(); 
 			milieu = si.pos();
 			lin = si.readLine().simplified();
-=======
-			fi.seek(milieu);
-			fi.readLine(); 
-			milieu = fi.pos();
-			QString lin = fi.readLine().simplified();
->>>>>>> 4d81d593630388fef65e6c066dbf55d3169cfd37
 			QString e = lin.section(':',0,0);
 			Ch::genStrNum (e, &che, &nume);
 			int c  = QString::compare(che,chreq,Qt::CaseInsensitive);
