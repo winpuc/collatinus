@@ -19,13 +19,10 @@
  * © Yves Ouvrard, 2009 - 2016    
  */
 
+#include "lewis.h"
 #include <QtXmlPatterns>
 
-#include "lewis.h"
-#include "ch.h"
-
 #include <QDebug>
-//#include <iostream>
 
 /****************
  * Dictionnaire *
@@ -133,23 +130,11 @@ void Dictionnaire::vide_ligneLiens ()
 }
 
 /**
- * \fn QString Dictionnaire::linPrec(QFile *f, qint64 pos)
- * \brief Lit à rebours d'une ligne avant pos.
- */
-QString Dictionnaire::linPrec(QTextStream *s, qint64 pos)
-{
-	pos -= 80;
-	s->seek(pos);
-	QString buf = s->read(80);
-	QStringList sl = buf.split('\n', QString::SkipEmptyParts);
-	return sl.last();
-}
-
-/**
  * \fn Dictionnaire::lis_index_djvu
  *
- * \brief Lit le fichier d'index du dico en djvu
- *        Cf. vide_index ()
+ * Lit le fichier d'index du dico en djvu
+ *
+ * Cf. vide_index ()
  * @return false si la lecture échoue
  */
 bool Dictionnaire::lis_index_djvu ()
@@ -269,14 +254,13 @@ QString Dictionnaire::pageDjvu (QStringList req, int no)
 /**
  * \fn QString Dictionnaire::pageXml (QStringList req)
  * \brief Renvoie les entrées du dictionnaire xml actif
- *        demandées par req.
+ *        demandées par lReq.
  */
 QString Dictionnaire::pageXml (QStringList lReq)
 {
     QString pg; // contenu de la page de retour
     QList<llew> listeE;
     QFile fi(idxJv);
-	QTextStream si(&fi);
 	if (!fi.open(QFile::ReadOnly | QFile::Text))
     {
         prec = "error";
@@ -288,95 +272,87 @@ QString Dictionnaire::pageXml (QStringList lReq)
 
     foreach (QString req, lReq)
     {
-		QString chreq;    // partie alpha de req
-		int     num;   // partie num de req
-		QString che; int nume; // idem pour la ligne idx
 		qint64 debut = 0;
-		qint64 fin   = fi.size();
-		QString ePrec;
-		bool trouve = false;
-		int idebug=0;
-		QString lin;
-		Ch::genStrNum (req, &chreq, &num);
-		while (!trouve)
+        qint64 fin   = fi.size()-1;
+        QString lin;
+        bool fini = false;
+		//int idebug=0;
+        int c = 1;
+        qint64 milieu;
+        while (!fini)
 		{
-			qint64 milieu = (debut+fin)/2;
-			si.seek(milieu);
-			si.readLine(); 
-			milieu = si.pos();
-			lin = si.readLine().simplified();
-			QString e = lin.section(':',0,0);
-			Ch::genStrNum (e, &che, &nume);
-			int c  = QString::compare(che,chreq,Qt::CaseInsensitive);
-			qDebug()<<"A. che"<<che<<"chreq"<<chreq;
-			if (c==0 && num !=nume)
-			{
-				qDebug()<<"------------ c==0 num"<<num<<"nume"<<nume;
-				if (num<2 && nume > 1)
-				{
-					while (nume > 1)
-					{
-						qDebug()<<"       linA"<<lin<<"milieu"<<milieu;
-						lin = linPrec (&si, milieu);
-						milieu -= lin.size()+1;
-						qDebug()<<"       linB"<<lin<<"milieu"<<milieu;
-						Ch::genStrNum(lin.section(':',0,0), &che, &nume);
-					}
-				}
-				else if (num < nume)
-				{
-					qDebug()<<"num < nume:"<<num<<nume;
-					while (num < nume)
-					{
-						lin = linPrec (&si, milieu);
-						milieu -= lin.size()+1;
-						Ch::genStrNum(lin.section(':',0,0), &che, &nume);
-					}
-				}
-				else // if (num > nume)
-				{
-					qDebug()<<"num > nume:"<<num<<nume;
-					while (num > nume)
-					{
-						lin = si.readLine();
-						Ch::genStrNum(lin.section(':',0,0), &che, &nume);
-					}
-				}
-			}
-			else 
-			{
-				qDebug()<<"B. e"<<e<<"req"<<req;
-				c = QString::compare(e,req,Qt::CaseInsensitive);
-			}
-			if (c == 0 || ePrec == e)
-			{
-				qDebug()<<"      --Trouvé--";
-				llew dpos;
-				QStringList ecl=lin.split(':');
-				dpos.pos = ecl.at(1).toLongLong();
-                if (ecl.size() > 6)
-				{
-					dpos.article = ecl.at(6);
-					dpos.taille = ecl.at(2).toLongLong();
-					if (prec.isEmpty()) prec = ecl.at(4);
-					suiv = ecl.at(5);
-				}
-                else 
-				{
-					dpos.article = e;
-					dpos.taille = ecl.at(2).toLongLong();
-					if (prec.isEmpty()) prec = ecl.at(3);
-					suiv = ecl.at(4);
-				}
-                listeE.append (dpos);
-				qDebug()<<"pos"<<dpos.pos<<"    "<<lin;
-				trouve = true;
-			}
-			else if (c < 0) debut = milieu;
-			else if (c > 0) fin = milieu;
-			ePrec = e;
-			if (idebug++ == 30) break;
-		}
+            //milieu = (debut+fin)/2;
+			//fi.seek(milieu);
+
+ 			// Je recale milieu sur le début de ligne, pour qu'au tour 
+			// d'après début et fin soient sur des débuts de lignes.
+			fi.seek((debut+fin)/2);
+			fi.readLine(); 
+            milieu = fi.pos();
+            if (milieu >= fin)
+            {
+                fi.seek(debut);
+                fi.readLine();
+                milieu = fi.pos();
+            }
+            if (milieu < fin)
+            {
+                lin = fi.readLine().simplified();
+                QString e = lin.section(':',0,0);
+                c  = QString::compare(e,req,Qt::CaseInsensitive);
+                if (c == 0) fini = true;
+                else if (c < 0) debut = milieu;
+                else fin = milieu;
+            }
+            else fini = true;
+        }
+        // Je sors de la boucle quand j'ai trouvé la requête (c == 0)
+        // ou quand elle n'est pas satisfaite et qu'il n'y a plus espoir.
+        if (c != 0)
+        {
+            // La requête n'est pas exactement l'entrée du dico.
+            // Je dois encore lire la ligne XXX commentaire pertinent ?
+            if (fi.atEnd())
+            {
+                // Le mot demandé est après le dernier du dico
+                fi.seek(debut);
+            }
+            lin = fi.readLine();
+        }
+
+        fini = false; // Je dois sortir au moins une ligne.
+        QStringList ecl=lin.split(':');
+        while (!fini)
+        {
+            llew dpos;
+            dpos.pos = ecl.at(1).toLongLong();
+            if (ecl.size() > 6)
+            {
+                dpos.article = ecl.at(6).trimmed();
+                dpos.taille = ecl.at(2).toLongLong();
+                if (prec.isEmpty()) prec = ecl.at(4);
+                suiv = ecl.at(5);
+                tailleprec = ecl.at(3).toLongLong();
+            }
+            else
+            {
+                dpos.article = ecl.at(0).trimmed();
+                dpos.taille = ecl.at(2).toLongLong();
+                if (prec.isEmpty()) prec = ecl.at(3);
+                suiv = ecl.at(4);
+            }
+            listeE.append (dpos);
+			// Ne pas lire au-delà de la fin du fichier
+            if (fi.atEnd()) fini = true;
+            else
+            {
+                lin = fi.readLine();
+                ecl=lin.split(':');
+                QString eSansNum = ecl[0];
+                if (eSansNum[eSansNum.size()-1].isDigit()) eSansNum.chop(1);
+                fini = (eSansNum.toLower() != req.toLower());
+            }
+        }
     }
 	fi.close();
     int i = 0;
