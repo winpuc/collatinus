@@ -1097,12 +1097,10 @@ void MainWindow::dialogueCopie()
 	cbLemmatisation = new QCheckBox (tr("Lemmatisation"));
 	cbScansion      = new QCheckBox (tr("Scansion"));
 
-    QPushButton *appliButton   = new QPushButton("Appliquer");
-    QPushButton *cloreButton   = new QPushButton("Fermer");
+    QPushButton *appliButton   = new QPushButton(tr("Appliquer"));
+    QPushButton *cloreButton   = new QPushButton(tr("Fermer"));
 
     QVBoxLayout *topLayout     = new QVBoxLayout;
-    //topLayout->setMargin(10);
-    //topLayout->setSpacing(10);
     topLayout->addWidget(icon);
     topLayout->addWidget(text);
 
@@ -1296,6 +1294,7 @@ void MainWindow::lemmatiseTxt()
 void MainWindow::maj()
 {
 	Maj *majDial = new Maj ();
+	majDial->setFont(editLatin->font());
 	majDial->exec();
 	delete majDial;
 }

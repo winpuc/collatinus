@@ -53,6 +53,12 @@ Branche de mise à jour des lexiques.
   * Un bouton qui lance un QFileDialog de sélection des fichiers téléchargés ;
   * Un bouton OK pour lancer la décompression et copie des fichiers ;
   * Un bouton Annuler.
+- Moyens d'identifier la version des dictionnaires et lexiques installés :
+  1. Version dans l'en-tête de chaque fichier ;
+  2. Faire marcher C11 avec des fichiers versionnés, et indication de remplacement ;
+  3. Paquet versionné, prise de version et enregistrement dans les préférences, 
+     et dépaquetage sans version.
+
 
 ## DOC
 - Un modèle d'utilisation des docks est dans les exemples Qt5 : 

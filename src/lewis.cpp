@@ -311,7 +311,7 @@ QString Dictionnaire::pageXml (QStringList lReq)
         if (c != 0)
         {
             // La requête n'est pas exactement l'entrée du dico.
-            // Je dois encore lire la ligne XXX commentaire pertinent ?
+            // Je dois encore lire la ligne
             if (fi.atEnd())
             {
                 // Le mot demandé est après le dernier du dico
