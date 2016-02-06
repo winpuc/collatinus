@@ -1,8 +1,10 @@
 /*       maj.cpp      */
 
 # include <QApplication>
-# include <QFileDialog>
 # include <QDir>
+# include <QFileDialog>
+# include <QFileInfo>
+# include <QMessageBox>
 # include <QPushButton>
 # include <QVBoxLayout>
 
@@ -29,10 +31,12 @@ Maj::Maj (QDialog *parent): QDialog (parent)
 		 "ci-dessous.<br/>\n"
 		"Il est conseillé de revenir régulièrement sur "
 		 "(<em>encore le site</em>) "
-		 "pour vérifier que l'on possède la dernière version "
+		 "pour vérifier que l'on possède les dernières versions "
 		 "des lexiques et dictionnaires. Voici la liste de "
-		 "ce qui est installé sur cet ordinateur. Les versions sont "
-		 "à la fin de chaque ligne, après le dernier tiret. :\n<ul>\n<li>"
+		 "ce qui est installé sur cet ordinateur. "
+		 "Par exemple, le nom\n"
+		 "<b>Lewis_and_Short_1879-fev16.cz</b>\n"
+		 "signifie que ce dictionnaire a été mis en ligne en février 2016.\n<ul>\n<li>"
 		 );
 	// liste des lexiques et dictionnaires + version
 	label = new QLabel (this);
@@ -66,12 +70,73 @@ Maj::Maj (QDialog *parent): QDialog (parent)
 	connect (cloreButton, SIGNAL(clicked()), this, SLOT(close()));
 }
 
-QStringList Maj::selectionne ()
+void Maj::installe (QString nfcol)
+{
+	// nom du paquet
+	QString nom = QFileInfo(nfcol).baseName();
+	// fichiers destination
+    QString nf (qApp->applicationDirPath()+"/data/dicos/"+nom);
+	QString nfcz  = nf+".cz"; //"Lewis_and_Short_1879-fev16.cz";
+	QString nfidx = nf+".idx";
+	QString nfcfg = nf+".cfg";
+	// adresses
+	qint64 aidx;
+	qint64 acfg;
+	qint64 tcfg;
+	// ouvertures
+	QFile fcol(nfcol);
+	fcol.open (QFile::ReadOnly);
+	QFile fcz(nfcz);
+	if (!fcz.open(QFile::WriteOnly))
+	{
+		QMessageBox::critical (this, 
+			 tr("Collatinus 11"),
+			 tr("Impossible d'ouvrir le fichier"
+			 	+nfcz.toUtf8()+
+				". Vérifiez vos drois d'accès, et éventuellent "
+				"connectez-vous en administrateur avant de lancer Collatinus."));
+		return;
+	}
+	QFile fidx(nfidx);
+	fidx.open(QFile::WriteOnly);
+	QFile fcfg(nfcfg);
+	fcfg.open(QFile::WriteOnly);
+	// lecture des adresses en queue de fichier
+	fcol.seek (fcol.size()-100);
+	QString lin;
+	while (!lin.startsWith("idx:"))
+		lin = fcol.readLine().trimmed();
+	aidx = lin.section(':',1,1).toLongLong();
+	lin = fcol.readLine().trimmed();
+	acfg = lin.section(':',1,1).toLongLong();
+	tcfg = lin.section(':',2,2).toLongLong();
+	// écriture cz
+	fcol.reset();
+	fcz.write(fcol.read(aidx));
+	// décompression et écriture idx
+	fidx.write(qUncompress(fcol.read(acfg-fcol.pos())));
+	// décompression et écriture cfg
+	fcfg.write(qUncompress(fcol.read(tcfg)));
+	// fermetures
+	fcol.close();
+	fcz.close();
+	fidx.close();
+	fcfg.close();
+	// info
+}
+
+void Maj::selectionne ()
 {
 	QStringList nfichiers = QFileDialog::getOpenFileNames
 		(this, "Sélectionner un ou plusieurs paquets",
 		 QDir::homePath(), "paquets dictionnaires (*.col)");
-	return nfichiers;
+	listeF = nfichiers;
+	if (listeF.empty()) return;
+	foreach (QString nfcol, listeF) 
+	{
+		installe(nfcol);
+		qDebug()<<"installé"<<nfcol;
+	}
 }
 
 void Maj::setFont(QFont font)

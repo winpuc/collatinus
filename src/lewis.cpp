@@ -306,12 +306,13 @@ QString Dictionnaire::pageXml (QStringList lReq)
             }
             else fini = true;
         }
-        // Je sors de la boucle quand j'ai trouvé la requête (c == 0)
-        // ou quand elle n'est pas satisfaite et qu'il n'y a plus espoir.
+		// Je sors de la boucle quand j'ai trouvé la requête (c == 0)
+		// ou quand elle n'est pas satisfaite et qu'il n'y a plus espoir.
+
+		// La requête n'est pas exactement l'entrée du dico.
+		// Je dois encore lire la ligne
         if (c != 0)
         {
-            // La requête n'est pas exactement l'entrée du dico.
-            // Je dois encore lire la ligne
             if (fi.atEnd())
             {
                 // Le mot demandé est après le dernier du dico
@@ -350,7 +351,7 @@ QString Dictionnaire::pageXml (QStringList lReq)
                 ecl=lin.split(':');
                 QString eSansNum = ecl[0];
                 if (eSansNum[eSansNum.size()-1].isDigit()) eSansNum.chop(1);
-                fini = (eSansNum.toLower() != req.toLower());
+				fini = (QString::compare(eSansNum, req, Qt::CaseInsensitive) != 0);
             }
         }
     }

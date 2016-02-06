@@ -13,10 +13,11 @@ class Maj: public QDialog
 	Q_OBJECT
 
 	private:
-		QLabel     *label;
-		void        installe (QString nfc);   // décompresse nfc et l'installe dans data/dicos/
+		void         installe (QString nfcol);  // décompresse nfcol et l'installe dans data/dicos/
+		QLabel      *label;
+		QStringList  listeF;                 // liste des fichiers téléchargés
 	private slots:
-		QStringList selectionne ();           // lance un dialogue de sélection de fichier
+		void         selectionne();          // lance un dialogue de sélection de fichier
 	public:
 		Maj (QDialog *parent=0);
 		void setFont (QFont font);

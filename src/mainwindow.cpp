@@ -1296,7 +1296,6 @@ void MainWindow::maj()
 	Maj *majDial = new Maj ();
 	majDial->setFont(editLatin->font());
 	majDial->exec();
-	delete majDial;
 }
 
 /**
