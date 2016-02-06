@@ -338,9 +338,9 @@ QString Dictionnaire::pageXml (QStringList lReq)
             else
             {
                 dpos.article = ecl.at(0).trimmed();
-                dpos.taille = ecl.at(2).toLongLong();
-                if (prec.isEmpty()) prec = ecl.at(3);
-                suiv = ecl.at(4);
+                dpos.taille = ecl.at(1).toLongLong();
+                if (prec.isEmpty()) prec = ecl.at(2);
+                suiv = ecl.at(3);
             }
             listeE.append (dpos);
 			// Ne pas lire au-delà de la fin du fichier
