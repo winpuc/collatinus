@@ -265,15 +265,12 @@ void MainWindow::afficheLemsDic(QStringList ll, int no)
  */
 void MainWindow::afficheLemsDicW(QStringList ll, int no)
 {
-	qDebug()<<"::afficheLemsDicW"<<ll<<no;
 	if (textBrowserW == 0) return;
 	//lemsDic = ll;
     if (ll.empty () || no < 0 || listeD.courant2 () == NULL) 
         return;
     textBrowserW->clear ();
-	qDebug()<<"OKa listeD"<<ll;
     textBrowserW->setHtml (listeD.courant2()->page (ll, no));
-	qDebug()<<"OKb";
     lineEditDicW->setText (ll.at (no));  
     if (listeD.courant2()->estXml ())
     {
