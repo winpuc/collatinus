@@ -122,7 +122,6 @@ void Maj::installe (QString nfcol)
 	fcz.close();
 	fidx.close();
 	fcfg.close();
-	// info
 }
 
 void Maj::selectionne ()
@@ -137,6 +136,12 @@ void Maj::selectionne ()
 		installe(nfcol);
 		qDebug()<<"installé"<<nfcol;
 	}
+	// info
+	QMessageBox::information(this,
+			 tr("Collatinus 11"),
+			 tr("L'installation s'est bien passée. "
+				"Au prochain lancement, les nouveaux lexiques "
+				"et dictionnaires seront disponibles."));
 }
 
 void Maj::setFont(QFont font)
