@@ -36,7 +36,6 @@
 !
 ! définition des variables: $<variable>:<valeurs>
 !
-!$compar=ŏr;ŏr;ōrĕm;ōrĭs;ōrī;ōrĕ;ōrēs;ōrēs;ōrēs;ōrŭm;ōrĭbŭs;ōrĭbŭs;ŏr;ŏr;ōrĕm;ōrĭs;ōrī;ōrĕ;ōrēs;ōrēs;ōrēs;ōrŭm;ōrĭbŭs;ōrĭbŭs;ŭs;ŭs;ŭs;ōrĭs;ōrī;ōrĕ;ōră;ōră;ōră;ōrŭm;ōrĭbŭs
 $compar=ŏr;ŏr;ōrĕm;ōrĭs;ōrī;ōrĕ;ōrēs;ōrēs;ōrēs;ōrŭm;ōrĭbŭs;ōrĭbŭs
 $em=ĕm;ēs;ĕt;ēmŭs;ētĭs;ēnt
 $ens=ēns;ēns;ēntĕm;ēntīs;ēntī;ēntĕ;ēntēs;ēntēs;ēntēs;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
@@ -523,7 +522,7 @@ modele:amo
 R:0:1,0
 R:1:1,āu
 R:2:1,āt
-des:121-126:0:o;ās;ăt;āmŭs;ātĭs;ānt
+des:121-126:0:ō̆;ās;ăt;āmŭs;ātĭs;ānt
 des:127-132:0:ābăm;ābās;ābăt;ābāmŭs;ābātĭs;ābānt
 des:133-138:0:ābo;ābĭs;ābĭt;ābĭmŭs;ābĭtĭs;ābūnt
 des:139-144:1:ī;īstī;ĭt;ĭmŭs;īstĭs;erūnt,ērĕ

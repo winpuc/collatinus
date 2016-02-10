@@ -558,6 +558,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 	if (!nfAb.isEmpty()) settings.setValue("nfAb", nfAb);
 	settings.endGroup();
 	settings.beginGroup("options");
+	//settings.setValue("police", font.family());
 	settings.setValue("zoom", editLatin->font().pointSize());
 	// options
 	settings.setValue("alpha", alphaOptAct->isChecked());
@@ -616,6 +617,7 @@ void MainWindow::createActions()
 	copieAct   = new QAction(QIcon(":res/copie.svg"), tr("&Copier dans un traitement de textes"), this);
 	deZoomAct  = new QAction(QIcon(":res/dezoom.svg"), tr("Plus petit"), this);
 	findAct    = new QAction(QIcon(":res/edit-find.svg"), tr("&Chercher"), this);
+	fontAct    = new QAction(tr("Police de caractères"), this);
 	lancAct    = new QAction(QIcon(":res/gear.svg"), tr("&Lancer"), this);
 	majAct     = new QAction(tr("Télécharger lexiques et dictionnaires"), this);
 	nouvAct = new QAction(QIcon(":/res/document-new.svg"), tr("&Nouveau"), this);
@@ -763,12 +765,13 @@ void MainWindow::createConnections()
 	connect(copieAct, SIGNAL(triggered()), this, SLOT(dialogueCopie()));
 	connect(exportAct, SIGNAL(triggered()), this, SLOT(exportPdf()));
 	connect(findAct, SIGNAL(triggered()), this, SLOT(recherche()));
-	connect(reFindAct, SIGNAL(triggered()), this, SLOT(rechercheBis()));
+	connect(fontAct, SIGNAL(triggered()), this, SLOT(police()));
 	connect(lancAct, SIGNAL(triggered()), this, SLOT(lancer()));
 	connect(nouvAct, SIGNAL(triggered()), this, SLOT(nouveau()));
 	connect(ouvrirAct, SIGNAL(triggered()), this, SLOT(ouvrir()));
 	connect(printAct, SIGNAL(triggered()), this, SLOT(imprimer()));
 	connect(quitAct, SIGNAL(triggered()), this, SLOT(close()));
+	connect(reFindAct, SIGNAL(triggered()), this, SLOT(rechercheBis()));
 	connect(statAct, SIGNAL(triggered()), this, SLOT(stat()));
 }
 
@@ -845,6 +848,7 @@ void MainWindow::createMenus()
 	optMenu->addAction(morphoAct);
     optMenu->addAction(nonRecAct);
 	optMenu->addSeparator();
+	optMenu->addAction(fontAct);
 	optMenu->addAction(majAct);
 
     helpMenu = menuBar()->addMenu(tr("&Aide"));
@@ -1336,6 +1340,22 @@ void MainWindow::ouvrir()
 	nfAd.prepend ("coll-");
 }
 
+void MainWindow::police()
+{
+	bool ok;
+	QFont police = QFontDialog::getFont(&ok, font, this);
+	if ( ok ) 
+	{
+		font = police;
+		editLatin->setFont(font);
+		textEditLem->setFont(font);
+		textBrowserDic->setFont(font);
+		textBrowserW->setFont(font);
+		textEditScand->setFont(font);
+		textBrowserFlex->setFont(font);
+	}
+}
+
 /**
  * \fn bool MainWindow::precaution()
  * \brief Dialogue de précaution avant l'effacement du texte latin.
@@ -1387,6 +1407,7 @@ void MainWindow::readSettings()
 	settings.beginGroup("options");
 	// police
 	font.setPointSize (settings.value("zoom").toInt());
+	//font.setFamily(settings.value("police").toString());
 	editLatin->setFont(font);
 	textEditLem->setFont(font);
 	textBrowserDic->setFont(font);

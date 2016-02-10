@@ -5,7 +5,7 @@ lundi 4 janvier 2016
 ## COMPILATION
 Requis :
 - Un compilateur C++ ;
-- Les bibliothèques Qt 5.\*
+- Les bibliothèques Qt 5.
 - Ajuster le PATH de la machine pour que
   compilateur et bibliothèques soit accessibles
   depuis le répertoire de développement ;
@@ -28,6 +28,7 @@ Requis :
 - flexion de facio et fio, et des composés
 
 ## À FAIRE :
+- <div style="font-family: sans-serif, Times;">o long-ou-bref o᷋ ō̆ . Vim : o + tiret + Ctrl-V + u306 !!</div>
 - Dans le presse-papier, insérer une signature "édité avec C11+url";
   idem pour l'impression ?
 - Nettoyage des -pte -met -quoi dans les traductions ;

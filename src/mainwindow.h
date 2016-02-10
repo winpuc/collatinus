@@ -124,6 +124,7 @@ private slots:
 	void montreWDic(bool visible);
 	void nouveau();
 	void ouvrir();
+	void police();
 	void readSettings();
 	void recherche();
 	void rechercheBis();
@@ -179,10 +180,11 @@ private:
 	QAction      *dicLittAct;
 	QAction      *dicLittActW;
 	QAction      *enAct;
-	QAction      *visibleWAct;
 	QAction      *exportAct;
+	QAction      *fontAct;
 	QAction      *findAct;
 	QAction      *frAct;
+	QActionGroup *grCibles;
 	QAction      *lancAct;
 	QAction      *majAct;
 	QAction      *nouvAct;
@@ -193,8 +195,8 @@ private:
 	QAction      *statAct;
 	QAction      *syncDWAct;
 	QAction      *syncWDAct;
+	QAction      *visibleWAct;
 	QAction      *zoomAct;
-	QActionGroup *grCibles;
 	// QAction *undoAct;
 	// widgets, variables et fonctions du dock dictionnaires
 	QComboBox   *comboGlossaria;
