@@ -29,6 +29,10 @@ Requis :
 
 ## À FAIRE :
 - <div style="font-family: sans-serif, Times;">o long-ou-bref o᷋ ō̆ . Vim : o + tiret + Ctrl-V + u306 !!</div>
+- Le traitement des assimilations perturbe le résultat de la scansion
+- Compiler pour Win
+- Version web (emscripten ?)
+- écrire un man
 - Dans le presse-papier, insérer une signature "édité avec C11+url";
   idem pour l'impression ?
 - Nettoyage des -pte -met -quoi dans les traductions ;

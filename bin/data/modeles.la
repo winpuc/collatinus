@@ -573,7 +573,7 @@ des:363-374:0:ānd+$templum
 modele:moneo
 pere:amo
 R:0:2,0
-des:121-126:0:ĕo;ēs;ĕt;ēmŭs;ētĭs;ēnt
+des:121-126:0:ĕō̆;ēs;ĕt;ēmŭs;ētĭs;ēnt
 des:127-132:0:ēbăm;ēbās;ēbăt;ēbāmŭs;ēbātĭs;ēbānt
 des:133-138:0:ēbo;ēbĭs;ēbĭt;ēbĭmŭs;ēbĭtĭs;ēbūnt
 ! subjonctif
@@ -608,7 +608,7 @@ des:363-374:0:ēndŭm;ēndŭm;ēndŭm;ēndī;ēndō;ēndō;ēndă;ēndă;ēndă;
 modele:lego
 pere:moneo
 R:0:1,0
-des:121-126:0:o;ĭs;ĭt;ĭmŭs;ĭtĭs;ūnt
+des:121-126:0:ō̆;ĭs;ĭt;ĭmŭs;ĭtĭs;ūnt
 des:133-138:0:ăm;ēs;ĕt;ēmus;ētis;ēnt
 ! subjonctif
 des:157-162:0:ăm;ās;ăt;āmŭs;ātĭs;ānt
@@ -649,7 +649,7 @@ modele:aio
 pere:lego
 R:0:2,ĭ
 R:3:1,0
-des:121,126:3:o;ūnt
+des:121,126:3:ō̆;ūnt
 des:122-125:0:s;t;mus;tis
 des:127-132:0:ēbăm;ēbās;ēbăt;ēbāmŭs;ēbātĭs;ēbānt
 des+:127-132:0:băm;bās;băt;bāmŭs;bātĭs;bānt
@@ -668,7 +668,7 @@ modele:capio
 pere:lego
 R:3:2,0
 !indicatif
-des:121-126:3:ĭo;ĭs;ĭt;ĭmŭs;ĭtĭs;ĭūnt
+des:121-126:3:ĭō̆;ĭs;ĭt;ĭmŭs;ĭtĭs;ĭūnt
 ! subjonctif
 des:163-168:3:ĕrĕm;ĕrēs;ĕrĕt;ĕrēmŭs;ĕrētĭs;ĕrēnt
 ! impératif

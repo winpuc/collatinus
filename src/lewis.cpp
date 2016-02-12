@@ -318,7 +318,7 @@ QString Dictionnaire::pageXml (QStringList lReq)
                 // Le mot demandé est après le dernier du dico
                 fi.seek(debut);
             }
-            lin = fi.readLine();
+            lin = fi.readLine().trimmed();
         }
 
         fini = false; // Je dois sortir au moins une ligne.
@@ -327,20 +327,20 @@ QString Dictionnaire::pageXml (QStringList lReq)
         {
             llew dpos;
             dpos.pos = ecl.at(1).toLongLong();
-            if (ecl.size() > 6)
+            if (ecl.size() > 5)
             {
-                dpos.article = ecl.at(6).trimmed();
+                dpos.article = ecl.at(5).trimmed();
                 dpos.taille = ecl.at(2).toLongLong();
-                if (prec.isEmpty()) prec = ecl.at(4);
-                suiv = ecl.at(5);
+                prec = ecl.at(3);
+                suiv = ecl.at(4);
                 tailleprec = ecl.at(3).toLongLong();
             }
             else
             {
                 dpos.article = ecl.at(0).trimmed();
-                dpos.taille = ecl.at(1).toLongLong();
-                if (prec.isEmpty()) prec = ecl.at(2);
-                suiv = ecl.at(3);
+                dpos.taille = ecl.at(2).toLongLong();
+                prec = ecl.at(3);
+                suiv = ecl.at(4);
             }
             listeE.append (dpos);
 			// Ne pas lire au-delà de la fin du fichier
