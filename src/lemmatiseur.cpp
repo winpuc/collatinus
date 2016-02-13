@@ -97,7 +97,8 @@ void Lemmat::ajAssims ()
 		if (lin.isEmpty() || lin.startsWith ("!"))
 			continue;
 		QStringList liste = lin.split(':');
-		assims.insert(liste.at(0), liste.at(1));
+		assimsq.insert(liste.at(0), liste.at(1));
+		assims.insert(Ch::atone(liste.at(0)), Ch::atone(liste.at(1)));
 	}
     fAssims.close ();
 }
@@ -188,6 +189,7 @@ void Lemmat::ajRadicaux (Lemme *l)
  * \brief Cherche si la chaîne a peut subir
  *        une assimilation, et renvoie
  *        cette chaîne éventuellement assimilée.
+ *        *version avec quantités*
  */
 QString Lemmat::assim (QString a)
 {
@@ -195,6 +197,24 @@ QString Lemmat::assim (QString a)
 		if (a.startsWith (d))
 		{
 			a.replace (d, assims.value (d));
+			return a;
+		}
+	return a;
+}
+
+/**
+ * \fn QString Lemmat::assimq (QString a)
+ * \brief Cherche si la chaîne a peut subir
+ *        une assimilation, et renvoie
+ *        cette chaîne éventuellement assimilée.
+ *        *version avec quantités*
+ */
+QString Lemmat::assimq (QString a)
+{
+	foreach (QString d, assimsq.keys())
+		if (a.startsWith (d))
+		{
+			a.replace (d, assimsq.value (d));
 			return a;
 		}
 	return a;
@@ -248,11 +268,32 @@ QString Lemmat::decontracte (QString d)
 QString Lemmat::desassim (QString a)
 {
 	foreach (QString d, assims.values ())
+	{
 		if (a.startsWith (d))
 		{
 			a.replace (d, assims.key (d));
 			return a;
 		}
+	}
+	return a;
+}
+
+/**
+ * \fn QString Lemmat::desassimq (QString a)
+ * \brief Essaie de remplacer l'assimilation de a
+ *        par sa forme non assimilée, et renvoie
+ *        le résultat.
+ */
+QString Lemmat::desassimq (QString a)
+{
+	foreach (QString d, assimsq.values ())
+	{
+		if (a.startsWith (d))
+		{
+			a.replace (d, assimsq.key (d));
+			return a;
+		}
+	}
 	return a;
 }
 
@@ -355,6 +396,7 @@ bool Lemmat::inv (Lemme *l, const MapLem ml)
  */
 MapLem Lemmat::lemmatiseM (QString f, bool debPhr)
 {
+	// test debog
 	QString res;
 	QTextStream fl (&res);
 	MapLem mm = lemmatise (f);
@@ -381,23 +423,21 @@ MapLem Lemmat::lemmatiseM (QString f, bool debPhr)
 		foreach (Lemme *nl, nmm.keys())
 			mm.insert (nl, nmm.value (nl));
 	}
-	// assimilation
+	// assimilations
 	if (mm.empty())
 	{
 		QString fa = assim (f);
 		if (fa != f)
 		{
-			MapLem nmm = lemmatise (fa);
+			MapLem nmm = lemmatiseM(fa);
+			// désassimiler les résultats
 			foreach (Lemme *nl, nmm.keys())
+			{
+				for (int i=0;i<nmm[nl].count();++i)
+					nmm[nl][i].grq = desassimq(nmm[nl][i].grq);
 				mm.insert (nl, nmm.value (nl));
+			}
 		}
-	}
-	QString fd = decontracte (f);
-	if (fd != f)
-	{
-		MapLem nmm = lemmatise (fd);
-		foreach (Lemme *nl, nmm.keys())
-			mm.insert (nl, nmm.value (nl));
 	}
 	if (mm.empty())
 	{
@@ -406,9 +446,22 @@ MapLem Lemmat::lemmatiseM (QString f, bool debPhr)
 		{
 			MapLem nmm = lemmatise (fa);
 			foreach (Lemme *nl, nmm.keys())
+			{
+				for (int i=0;i<nmm[nl].count();++i)
+					nmm[nl][i].grq = assimq(nmm[nl][i].grq);
 				mm.insert (nl, nmm.value (nl));
+			}
 		}
 	}
+	// contractions
+	QString fd = decontracte (f);
+	if (fd != f)
+	{
+		MapLem nmm = lemmatise (fd);
+		foreach (Lemme *nl, nmm.keys())
+			mm.insert (nl, nmm.value (nl));
+	}
+	// majuscule initiale
 	if (mm.empty())
 	{
 		f[0] = f.at (0).toUpper();
@@ -856,10 +909,7 @@ QString Lemmat::parPos(QString f)
     bool maj = f.at(0).isUpper ();
     f = f.toLower ();
     foreach (Reglep r, _reglesp)
-    {
         f.replace (r.first, r.second);
-        //f = f.trimmed ();
-    }
     if (maj) f[0] = f[0].toUpper ();
     return f;
 }

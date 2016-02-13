@@ -40,7 +40,7 @@ typedef struct {
 	QString grq;
 	QString morpho;
 } SLem;
-//typedef QMap<Lemme*,QStringList> MapLem;
+
 typedef QMap<Lemme*,QList<SLem> > MapLem;
 
 typedef QPair<QRegExp,QString> Reglep;
@@ -60,6 +60,7 @@ class Lemmat: public QObject
 		void                             lisTraductions();
 		// variables et utils
 		QMap<QString,QString>            assims;
+		QMap<QString,QString>            assimsq;
 		QStringList                      cherchePieds (int nbr, QString ligne, int i, bool pentam);
 		QMap<QString,QString>           _contractions;
 		QMultiMap<QString,Desinence*>   _desinences;
@@ -89,9 +90,11 @@ class Lemmat: public QObject
 		void                  ajModele (Modele *m);
 		void                  ajRadicaux (Lemme *l);
 		QString               assim (QString a);
+		QString               assimq(QString a);
 		QString               cible();
 		QMap<QString,QString> cibles();
 		QString               desassim (QString a);
+		QString               desassimq(QString a);
 		static QString        deramise (QString r);
 		QStringList           frequences (QString txt);
 		MapLem                lemmatise (QString f);                    // lemmatise une forme

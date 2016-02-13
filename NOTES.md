@@ -26,10 +26,10 @@ Requis :
 - Flexion de moenia, ium. Vérifier les modèles pluriels.
 - Flexion de multus et ses degrés allogènes (plus, plurimus)
 - flexion de facio et fio, et des composés
+- affichage voyelle + long-ou-bref. Dans vim : o + tiret + Ctrl-V + u306
+
 
 ## À FAIRE :
-- <div style="font-family: sans-serif, Times;">o long-ou-bref o᷋ ō̆ . Vim : o + tiret + Ctrl-V + u306 !!</div>
-- Le traitement des assimilations perturbe le résultat de la scansion
 - Compiler pour Win
 - Version web (emscripten ?)
 - écrire un man
