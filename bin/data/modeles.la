@@ -208,6 +208,10 @@ pere:ciuis
 des:3:1:-
 des:6,7-9:1:ī;ĭă;ĭa;ĭa
 
+modele:moenia
+pere:mare
+abs:1-6
+
 modele:animal
 pere:mare
 R:2:K
