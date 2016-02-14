@@ -7,7 +7,7 @@ Requis :
 - Un compilateur C++ ;
 - Les bibliothèques Qt 5.
 - Ajuster le PATH de la machine pour que
-  compilateur et bibliothèques soit accessibles
+  compilateur et bibliothèques soient accessibles
   depuis le répertoire de développement ;
 - En ligne de commande :
   * $ qmake
@@ -23,13 +23,11 @@ Requis :
   ou après avoir installé un raccourci.
 
 ## BOGUES ET PROBLÈMES
-- Flexion de moenia, ium. Vérifier les modèles pluriels.
 - Flexion de multus et ses degrés allogènes (plus, plurimus)
-- flexion de facio et fio, et des composés
-- affichage voyelle + long-ou-bref. Dans vim : o + tiret + Ctrl-V + u306
-
 
 ## À FAIRE :
+- Fichier en paramètre
+- Flexion : revenir en début de page
 - Compiler pour Win
 - Version web (emscripten ?)
 - écrire un man
