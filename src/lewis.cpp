@@ -20,7 +20,6 @@
  */
 
 #include "lewis.h"
-#include <QtXmlPatterns>
 
 #include <QDebug>
 

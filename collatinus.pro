@@ -8,7 +8,6 @@ DEPENDPATH += .
 
 qtHaveModule(printsupport): QT += printsupport
 QT += widgets
-QT += xmlpatterns
 QT += network
 QT += svg
 
