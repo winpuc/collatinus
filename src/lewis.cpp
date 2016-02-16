@@ -317,7 +317,7 @@ QString Dictionnaire::pageXml (QStringList lReq)
                 // Le mot demandé est après le dernier du dico
                 fi.seek(debut);
             }
-            lin = fi.readLine().trimmed();
+            lin = fi.readLine().simplified();
         }
 
         fini = false; // Je dois sortir au moins une ligne.
@@ -346,7 +346,7 @@ QString Dictionnaire::pageXml (QStringList lReq)
             if (fi.atEnd()) fini = true;
             else
             {
-                lin = fi.readLine();
+                lin = fi.readLine().simplified();
                 ecl=lin.split(':');
                 QString eSansNum = ecl[0];
                 if (eSansNum[eSansNum.size()-1].isDigit()) eSansNum.chop(1);
