@@ -96,9 +96,12 @@ void EditLatin::mouseReleaseEvent (QMouseEvent *e)
         	else mainwindow->textEditLem->insertPlainText(mainwindow->lemmatiseur->lemmatiseT(st));
 		}
     }
+	// 2. dock scansion
+	if (!mainwindow->dockScand->visibleRegion().isEmpty())
+		mainwindow->textEditScand->setHtml(mainwindow->lemmatiseur->scandeTxt (st, false));
 	if (unSeulMot)
 	{
-		// 2. dock de flexion
+		// 3. dock de flexion
 		if (!mainwindow->dockFlex->visibleRegion().isEmpty())
 		{
 			if (!ml.empty())
@@ -108,7 +111,7 @@ void EditLatin::mouseReleaseEvent (QMouseEvent *e)
 				mainwindow->textBrowserFlex->moveCursor (QTextCursor::Start);
 			}
 		}
-		// 3. dock dictionnaires
+		// 4. dock dictionnaires
 		QStringList lemmes = mainwindow->lemmatiseur->lemmes(ml);
 		if (!mainwindow->dockDic->visibleRegion().isEmpty())
 			mainwindow->afficheLemsDic(lemmes);
