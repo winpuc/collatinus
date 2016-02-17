@@ -26,9 +26,10 @@ Requis :
 - Flexion de multus et ses degrés allogènes (plus, plurimus)
 
 ## À FAIRE :
-- Georges : des erreurs de décompression
-- Feuilletage : retour ligne dans le bouton
-- Scansion d'un seul mot du texte (clic)
+- Proposer une traduction française fléchie ?
+- Tester des liens syntaxiques
+- téléchargement : éliminer les fichiers homonymes d'une 
+  version antérieure.
 - Fichier en paramètre
 - Flexion : revenir en début de page
 - Compiler pour Win
