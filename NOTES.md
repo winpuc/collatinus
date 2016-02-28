@@ -26,8 +26,16 @@ Requis :
 - Flexion de multus et ses degrés allogènes (plus, plurimus)
 
 ## À FAIRE :
-- Proposer une traduction française fléchie ?
+- Créer une branche exponct (u exponctué de volvo, sanguinis, unicode 1EE5 ụ )
 - Tester des liens syntaxiques
+  * dock syntaxe
+  * clic sur un mot -> recherche de liens (as|des)cendants
+  * morpho du mot
+  * lien avec un autre mot
+  * id du lien
+  * traduction approximative du lien
+  * éventuellement : possibilité de déclarer un lien comme sûr,   
+    ce qui permet d'éliminer par le suite des concurrents.
 - téléchargement : éliminer les fichiers homonymes d'une 
   version antérieure.
 - Fichier en paramètre
