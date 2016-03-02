@@ -26,7 +26,6 @@
 #include <QMap>
 #include <QString>
 #include <QStringList>
-#include <QTextBrowser>
 
 #include "irregs.h"
 #include "lemme.h"
@@ -70,7 +69,6 @@ class Lemmat: public QObject
 		QMultiMap<QString,Irreg*>       _irregs;
 		QString                         _cible; // langue courante, 2 caractères
 		QMap<QString,QString>           _cibles;
-		QTextBrowser                    _lemmatiseur;
 		QMap<QString, Lemme*>           _lemmes;
 		QMap<QString, Modele*>          _modeles;
 		QStringList                     _morphos;
