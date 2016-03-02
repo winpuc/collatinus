@@ -30,7 +30,8 @@ HEADERS += src/ch.h \
            src/lewis.h \
            src/mainwindow.h \
 		   src/maj.h \
-           src/modele.h
+           src/modele.h \
+           src/syntaxe.h
 SOURCES += src/ch.cpp \
            src/flexion.cpp \
 		   src/frequences.cpp \
@@ -42,7 +43,8 @@ SOURCES += src/ch.cpp \
 		   src/maj.cpp \
            src/mainwindow.cpp \
            src/modele.cpp \
-           src/scandeur.cpp
+           src/scandeur.cpp \
+           src/syntaxe.cpp
 
 RESOURCES += collatinus.qrc
 
