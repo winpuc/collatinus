@@ -1,0 +1,41 @@
+!           syntaxe.la
+!   Base de règles syntaxiques pour Collatinus 11
+!
+! Format :
+! id:nom_de_la_règle           // champ obligatoire, placé en tête
+! pere:id_de_la_règle_parente  // héritage, champ facultatif
+! super:lemme1,lemme2,...,lemmeN:POS1 POS2:trait_morpho trait morpho trait morpho
+! sub:lemme1,lemme2,...,lemmeN:trait_morpho trait morpho trait morpho
+! accord:cgnp   // une ou plusieurs des caractères c(as) g(enre) n(ombre) p(ersonne)
+! sens:> ou < // la flèche est orientée du père au fils. > = père avant le fils
+! tr:trad_avant P(:<tr>) trad_entre B(:<tr>) trad_après 
+!
+!   // P = traduction de super. si suivi de :tr,
+!   //  remplacer la trad. de super ou sub par la chaîne <tr>
+!
+! Parmi les problèmes : dans les éléments interdits, il
+! faut compter par défaut tous les éléments non résolus. 
+!
+
+id:accPrep
+doc:complément prépositionnel à l'accusatif
+super:$prepacc:
+sub:n pr:acc
+
+id:cod
+doc:complément d'objet direct
+super:v:ind subj
+ѕub:n pr:acc
+
+id:nCoord
+doc:nom coordonné
+sens:>
+super:n pr:
+sub:n pr:
+accord:c
+
+id:prep
+doc:préposition dépendant d'un verbe
+super:v:
+sub:$prepacc,$prepabl:
+
