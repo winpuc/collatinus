@@ -61,6 +61,7 @@ public:
 	QDockWidget      *dockDic;
 	QDockWidget      *dockScand;
 	QDockWidget      *dockFlex;
+	QDockWidget      *dockSynt;
 	// et second dictionnaire
 	QWidget          *wDic;
 	// cœur
@@ -73,6 +74,7 @@ public:
 	QTextBrowser     *textBrowserDic;
 	QTextBrowser     *textBrowserW;
     QTextBrowser     *textBrowserFlex;
+    QTextBrowser     *textBrowserSynt;
 	QLineEdit        *lineEditLem;
 	QLineEdit        *lineEditDic;
 	QLineEdit        *lineEditDicW;
@@ -215,6 +217,7 @@ private:
 	QWidget         *dockWidgetDic;
 	QWidget         *dockWidgetScand;
 	QWidget         *dockWidgetFlex;
+	QWidget         *dockWidgetSynt;
 	bool             dockVisible(QDockWidget *d);         
 	// fonctions et variables diverses
 	void             charger(QString f);

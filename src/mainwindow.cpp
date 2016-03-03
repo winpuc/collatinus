@@ -1023,14 +1023,30 @@ void MainWindow::createDockWindows()
 	vLayoutFlex->addWidget (textBrowserFlex);
 	dockFlex->setWidget (dockWidgetFlex);
 
+	dockSynt = new QDockWidget(tr("Syntaxe"), this);
+	dockSynt->setObjectName("docksynt");
+    dockSynt->setFloating(false);
+    dockSynt->setFeatures(QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable);
+    dockSynt->setAllowedAreas(Qt::BottomDockWidgetArea);
+    dockWidgetSynt = new QWidget (dockSynt);
+    QVBoxLayout *vLayoutSynt = new QVBoxLayout (dockWidgetSynt);
+    QHBoxLayout *hLayoutSynt = new QHBoxLayout ();
+    textBrowserSynt = new QTextBrowser(dockWidgetSynt);
+	textBrowserSynt->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+	vLayoutSynt->addLayout (hLayoutSynt);
+	vLayoutSynt->addWidget (textBrowserSynt);
+	dockSynt->setWidget (dockWidgetSynt);
+
 	addDockWidget(Qt::BottomDockWidgetArea, dockLem);
 	addDockWidget(Qt::BottomDockWidgetArea, dockDic);
 	addDockWidget(Qt::BottomDockWidgetArea, dockScand);
 	addDockWidget(Qt::BottomDockWidgetArea, dockFlex);
+	addDockWidget(Qt::BottomDockWidgetArea, dockSynt);
 
 	tabifyDockWidget (dockLem, dockDic);
     tabifyDockWidget (dockDic, dockScand);
     tabifyDockWidget (dockScand, dockFlex);
+    tabifyDockWidget (dockFlex, dockSynt);
 
 	setTabPosition(Qt::BottomDockWidgetArea, QTabWidget::North );
 	dockLem->raise();
