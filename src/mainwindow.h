@@ -27,6 +27,7 @@
 #include "flexion.h"
 #include "lemmatiseur.h"
 #include "lewis.h"
+#include "syntaxe.h"
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -67,6 +68,7 @@ public:
 	// cœur
 	Lemmat           *lemmatiseur;
 	Flexion          *flechisseur;
+	Syntaxe          *syntaxe;
 	// widgets d'édition et d'affichage
 	EditLatin        *editLatin;
     QTextEdit        *textEditLem;

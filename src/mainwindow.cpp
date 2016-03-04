@@ -117,6 +117,16 @@ void EditLatin::mouseReleaseEvent (QMouseEvent *e)
 			mainwindow->afficheLemsDic(lemmes);
 		if (mainwindow->wDic->isVisible() && mainwindow->syncAct->isChecked())
 			mainwindow->afficheLemsDicW(lemmes);
+		// 5. dock Syntaxe
+		if (!mainwindow->dockSynt->visibleRegion().isEmpty())
+		{
+			// test : mainwindow->textBrowserSynt->append (st);
+			// passer le texte au module syntaxe pour calcul
+			// appondre le résultat
+			//QTextCursor cursor = textCursor();
+			mainwindow->textBrowserSynt->append
+				(mainwindow->syntaxe->analyse(toPlainText(), textCursor().position()));
+		}
 	}
 	QTextEdit::mouseReleaseEvent (e);
 }
@@ -140,6 +150,7 @@ MainWindow::MainWindow()
 
 	lemmatiseur = new Lemmat(this);
 	flechisseur = new Flexion (lemmatiseur);
+	syntaxe = new Syntaxe (editLatin->toPlainText(), lemmatiseur);
 
 	setLangue();
 
@@ -153,6 +164,7 @@ MainWindow::MainWindow()
 	createDicos();
 	createDicos(false);
 	createCibles();
+
 
     setWindowTitle(tr("Collatinus 11"));
 	setWindowIcon(QIcon (":/res/collatinus.svg"));

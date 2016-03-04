@@ -24,18 +24,18 @@ sub:n pr:acc
 
 id:cod
 doc:complément d'objet direct
-super:v:ind subj
-ѕub:n pr:acc
+super::v:ind subj
+ѕub::n pr:acc
 
 id:nCoord
 doc:nom coordonné
 sens:>
-super:n pr:
-sub:n pr:
+super::n pr:
+sub::n pr:
 accord:c
 
 id:prep
 doc:préposition dépendant d'un verbe
-super:v:
-sub:$prepacc,$prepabl:
+super::v:
+sub:$prepacc,$prepabl::
 

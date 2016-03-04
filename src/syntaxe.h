@@ -27,16 +27,22 @@ vers la gauche, puis vers la droite.
 #ifndef SYNTAXE_H
 #define SYNTAXE_H
 
+#include <QString>
 #include "lemmatiseur.h"
+
+class RegleS;
 
 class ElS: public QObject
 {
 	Q_OBJECT
 
 	private:
+		RegleS        *_regle;
 		QStringList    _lemmes;
 		QStringList    _pos;
 		QStringList    _morphos;
+	public:
+		ElS(QString lin, RegleS *parent);
 };
 
 class RegleS: public QObject
@@ -45,12 +51,14 @@ class RegleS: public QObject
 
 	private:
 		QString        _accord;
+		QString        _doc;
 		QString        _id;
+		QString        _idPere;
 		RegleS        *_pere;
 		QString        _sens;
 		ElS           *_super;
 		ElS           *_sub;
-		QString        _traduction;
+		QString        _tr;
 	public:
 		RegleS (QStringList lignes);
 };
@@ -61,9 +69,14 @@ class Syntaxe: public QObject
 	Q_OBJECT
 
 	private:
+		Lemmat        *_lemmatiseur;
 		QList<RegleS*> _regles;
+		QString        _texte;
 	public:
-		Syntaxe ();
+		Syntaxe (QString t, Lemmat *parent);
+		QString analyse(QString t, int p);
+		QString motSous(int p);
+		void    setText(QString t);
 };
 
 #endif
