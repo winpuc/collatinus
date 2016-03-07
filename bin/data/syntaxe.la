@@ -19,8 +19,8 @@
 
 id:accPrep
 doc:complément prépositionnel à l'accusatif
-super:$prepacc:
-sub:n pr:acc
+super:$prepacc::
+sub::n pr:acc
 
 id:cod
 doc:complément d'objet direct

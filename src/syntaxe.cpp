@@ -5,13 +5,6 @@
 
 ElS::ElS(QString lin, RegleS *parent)
 {
-	/*
-		QStringList    _lemmes;
-		QStringList    _pos;
-		QStringList    _morphos;
-	*/
-	//super:v:ind subj
-	//ѕub:n pr:acc
 	_regle = parent;	
 	QStringList ecl = lin.split(':', QString::KeepEmptyParts);
 	_pos    = ecl.at(1).split(',');
@@ -79,13 +72,92 @@ Syntaxe::Syntaxe(QString t, Lemmat *parent)
     fs.close ();
 }
 
+/*
 QString Syntaxe::analyse (QString t, int p)
 {
 	setText (t);
-	QString mot = motSous(p);
-	// analyse régressive
-	// analyse progressive
-	return mot;
+	// se placer à la fin du mot
+	while (p < t.length()-1 && t.at(p).isLetter()) ++p;
+	QString motCour = motSous(p);
+	QStringList ret;
+	ret<<"\n-----------------\nRecherche à partir de "+motCour+"\n";
+	MapLem maplem = _lemmatiseur->lemmatiseM(motCour, true);
+	// pour chaque lemme de motCour
+	foreach (Lemme *lem, maplem.keys())
+	{
+		_lemCour = lem->gr();
+		_posCour = lem->pos();
+		// pour chaque pos+morpho de motCour
+		foreach (SLem sl, maplem.value(lem))
+		{
+			_morphCour = sl.morpho;
+			int pr = p;
+			QString motS;
+			QChar chp = t.at(pr);
+			// recherche régressive
+			int incr = -1;
+			do
+			{
+				bool limiteP = false;
+				while (chp.isLetter())
+				{
+					pr += incr;
+					chp = t.at(pr);
+				}
+                // TODO changer l'algo pour extraire la
+                // chaîne entre deux mots, et
+                // l'analyser globalement
+                //  - pour pouvoir tenir compte de
+                //    ponctuations != limite de P ;
+                //  - pour détecter une limite de
+                //    phrase.
+                // aller jusqu'à la limite de mot
+				while (pr > 0 && pr < t.length()-1 && !t.at(pr+1).isLetter())
+				{
+					pr += incr;
+					chp = t.at(pr);
+					// détecter une limite de phrase
+					// deux lignes vides = limite de phrase
+					if ((pr==0 || pr==t.length())
+						|| (QString(".?!;:").contains(chp))
+						|| (chp == '\n' && t.at(pr+incr) == '\n'))
+						limiteP = true;
+				}
+				if (!limiteP)
+				{
+					motS = motSous(pr);
+					ret << "nouveau mot "+motS;
+					while (t.at(pr+incr).isLetter()) pr += incr;
+				}
+				else
+				{
+					ret << "limite de phrase";
+					// revenir à la position de motCour
+					pr = p+1;
+					incr += 2;
+				}
+			} while (incr < 3);
+		}
+	}
+	return ret.join('\n');
+}
+*/
+
+QString Syntaxe::analyse (QString t, int p)
+{
+	setText (t);
+	const QString ponct (".;!?");
+	// déterminer les limites de la phrase
+	int lg = p;
+	while (lg > 0 && (!ponct.contains(t.at(lg))) 
+		   && (t.at(lg) != '\n' && t.at(lg-1) != '\n')) --lg;
+	int ld = p;
+	while ((ld < t.length()-1) && (!ponct.contains(t.at(ld)))
+		   && (t.at(ld) != '\n' && t.at(ld+1) != '\n')) ++ld;
+	QString phr = t.mid(lg, ld-lg);
+	phr = phr.simplified();
+	phr.replace('\n', ' ');
+	return phr;
 }
 
 QString Syntaxe::motSous(int p)

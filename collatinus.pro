@@ -8,8 +8,8 @@ DEPENDPATH += .
 
 qtHaveModule(printsupport): QT += printsupport
 QT += widgets
-QT += network
-QT += svg
+#QT += network
+#QT += svg
 
 CONFIG += release_binary
 

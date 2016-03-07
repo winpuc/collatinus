@@ -61,6 +61,8 @@ class RegleS: public QObject
 		QString        _tr;
 	public:
 		RegleS (QStringList lignes);
+		bool            estSub(QString m);
+		bool            estSuper(QString m);
 };
 
 class Syntaxe: public QObject
@@ -72,6 +74,11 @@ class Syntaxe: public QObject
 		Lemmat        *_lemmatiseur;
 		QList<RegleS*> _regles;
 		QString        _texte;
+		// variables motCour
+		QString        _motCour;
+		QString        _lemCour;
+		QString        _posCour;
+		QString        _morphCour;
 	public:
 		Syntaxe (QString t, Lemmat *parent);
 		QString analyse(QString t, int p);

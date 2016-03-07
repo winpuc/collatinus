@@ -1178,6 +1178,7 @@ void MainWindow::effaceRes()
 	if (dockVisible(dockLem)) textEditLem->clear();
 	if (dockVisible(dockFlex)) textBrowserFlex->clear();
 	if (dockVisible(dockScand)) textEditScand->clear();
+	if (dockVisible(dockSynt)) textBrowserSynt->clear();
 }
 
 /**
