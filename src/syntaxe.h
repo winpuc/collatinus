@@ -65,6 +65,23 @@ class RegleS: public QObject
 		bool            estSuper(QString m);
 };
 
+class Mot: public QObject
+{
+
+	Q_OBJECT
+
+	private:
+		QChar   _ponctD;
+		QChar   _ponctG;
+		QString _gr;
+	public:
+		Mot (QString g);
+		QChar ponctD(QChar p);
+		QChar ponctG(QChar p);
+		void  setPonctD(QChar c);
+		void  setPonctG(QChar c);
+};
+
 class Syntaxe: public QObject
 {
 
@@ -79,6 +96,7 @@ class Syntaxe: public QObject
 		QString        _lemCour;
 		QString        _posCour;
 		QString        _morphCour;
+		QList<Mot*>    _mots;
 	public:
 		Syntaxe (QString t, Lemmat *parent);
 		QString analyse(QString t, int p);
