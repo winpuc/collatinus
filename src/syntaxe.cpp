@@ -49,6 +49,36 @@ Mot::Mot(QString g)
 	_gr = g;
 }
 
+QString Mot::gr()
+{
+	return _gr;
+}
+
+QString Mot::humain()
+{
+	QString ret;
+	QTextStream fl(&ret);
+	fl << _gr << "\n";
+	foreach (Lemme *lem, _morphos.keys())
+		fl << lem->grq() << "    - "<<lem->traduction("fr")<<"\n";
+	return ret;
+}
+
+QChar Mot::ponctD()
+{
+	return _ponctD;
+}
+
+QChar Mot::ponctG()
+{
+	return _ponctG;
+}
+
+void Mot::setMorphos(MapLem m)
+{
+	_morphos = m;
+}
+
 void Mot::setPonctD(QChar p)
 {
 	_ponctD = p;
@@ -61,7 +91,6 @@ void Mot::setPonctG(QChar p)
 
 Syntaxe::Syntaxe(QString t, Lemmat *parent)
 {
-	//_lemmatiseur = qobject_cast<Lemmat*>(parent);
 	_lemmatiseur = parent;
 	setText (t);
 	// lecture des données
@@ -95,33 +124,71 @@ Syntaxe::Syntaxe(QString t, Lemmat *parent)
 
 QString Syntaxe::analyse (QString t, int p)
 {
-	// déterminer les limites de la phrase
-	const QString ponct (".;!?");
-	int lg = p;
-	while (lg > 0 && (!ponct.contains(t.at(lg))) 
-		   && (!(t.at(lg) == '\n' && t.at(lg-1) == '\n'))) --lg;
-	int ld = p;
-	while ((ld < t.length()-1) && (!ponct.contains(t.at(ld)))
-		   && (!(t.at(ld) == '\n' && t.at(ld+1) == '\n'))) ++ld;
-	++ld;
-	QString phr = t.mid(lg, ld-lg);
-	_txt = phr.simplified();
-	_txt.replace('\n', ' ');
-	// mots et séparateurs de mots
-	QStringList ecl = _txt.split(QRegExp("\\b"));
-	for (int i=1;i<ecl.count();i+=2)
-		_mots.append(new Mot(ecl.at(i)));
-	for (int i=0;i<ecl.count();i+=2)
+	const QList<QChar> chl;
+	const int tl = t.length()-1;
+	const QString pp = ".;!?";
+	_motsP.clear();
+	_motsS.clear();
+	// avancer jusqu'à la fin du mot sous le curseur
+	while (p<tl-1 && t.at(p+1).isLetter()) ++p;
+	bool limite=false;
+	QString m;
+	QChar ponctD = '\0';
+	QChar ponctG = '\0';
+	// mots à gauche de motCour
+	int i = p;
+	while (i>-1 && !limite)
 	{
-		QString sep = ecl.at(i);
-		for (int is=0;is<sep.length();++is)
-			if (!sep.at(is).isSpace())
-			{
-				if (is>0) _mots.at(is-1)->setPonctD (sep.at(is));
-				if (is<sep.length()) _mots.at(is+1)->setPonctG(sep.at(is));
-			}
+		QChar c = t.at(i);
+		if (c.isLetter()) m.prepend (c);
+		else if (!m.isEmpty())
+		{
+			Mot *nm = new Mot(m);
+			nm->setMorphos(_lemmatiseur->lemmatiseM(m));
+			_motsP << nm;
+			m.clear();
+			nm->setPonctG(ponctG);
+			nm->setPonctD(ponctD);
+			ponctG = ponctD;
+			ponctD = '\0';
+		}
+		limite = (pp.contains(c) 
+				  || (i>0 && c=='\n' && t.at(i-1)=='\n'));
+		if (!limite && c.isPunct())
+			ponctD = c;
+		--i;
 	}
-	return motCourant->gr();
+	// mots à droite de motCour.
+	limite = false;
+	i = p+1;
+	while (i<tl && !limite)
+	{
+		QChar c = t.at(i);
+		if (c.isLetter()) m.append (c);
+		else if (!m.isEmpty())
+		{
+			Mot *nm = new Mot(m);
+			_motsS << nm;
+			m.clear();
+			nm->setPonctD(ponctG);
+			nm->setPonctG(ponctD);
+			ponctD = ponctG;
+			ponctG = '\0';
+		}
+		limite = (pp.contains(c)
+				  || (i<tl-1 && c=='\n' && t.at(i+1)=='\n'));
+		if (!limite && c.isPunct())
+			ponctG = c;
+		++i;
+	}
+	// debog
+	QStringList ret;
+	foreach (Mot *mot, _motsP)
+		ret << mot->humain();
+	ret << "----------";
+	foreach (Mot *mot, _motsS)
+		ret << mot->humain();
+	return ret.join (' ');
 }
 
 QString Syntaxe::motSous(int p)

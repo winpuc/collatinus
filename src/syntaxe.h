@@ -71,13 +71,19 @@ class Mot: public QObject
 	Q_OBJECT
 
 	private:
-		QChar   _ponctD;
-		QChar   _ponctG;
-		QString _gr;
+		QString          _gr;
+		MapLem           _morphos;
+		QChar            _ponctD;
+		QChar            _ponctG;
+		QList<RegleS*>   _rSub;
+		QList<RegleS*>   _rSuper;
 	public:
 		Mot (QString g);
-		QChar ponctD(QChar p);
-		QChar ponctG(QChar p);
+		QString gr();
+		QString humain();
+		QChar ponctD();
+		QChar ponctG();
+		void  setMorphos(MapLem m);
 		void  setPonctD(QChar c);
 		void  setPonctG(QChar c);
 };
@@ -93,10 +99,8 @@ class Syntaxe: public QObject
 		QString        _texte;
 		// variables motCour
 		QString        _motCour;
-		QString        _lemCour;
-		QString        _posCour;
-		QString        _morphCour;
-		QList<Mot*>    _mots;
+		QList<Mot*>    _motsP;
+		QList<Mot*>    _motsS;
 	public:
 		Syntaxe (QString t, Lemmat *parent);
 		QString analyse(QString t, int p);
