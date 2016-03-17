@@ -43,7 +43,12 @@ class ElS: public QObject
 		QStringList    _morphos;
 	public:
 		ElS(QString lin, RegleS *parent);
+		bool		   okLem(QString l);
+		bool           okPos(QString p);
+		bool           okMorpho(QString m);
 };
+
+class Mot;
 
 class RegleS: public QObject
 {
@@ -61,8 +66,23 @@ class RegleS: public QObject
 		QString        _tr;
 	public:
 		RegleS (QStringList lignes);
-		bool            estSub(QString m);
-		bool            estSuper(QString m);
+		bool            estSub(Lemme *l, QString morpho, bool ante);
+		bool            estSuper(Lemme *l, QString morpho);
+};
+
+class Super: public QObject
+{
+	Q_OBJECT
+
+	private:
+		RegleS       *_regle;
+		QStringList   _morpho;
+		Mot          *_mot;
+	public:
+		Super(RegleS *r, QStringList m, Mot *parent);
+		RegleS*       regle();
+		QStringList   morpho();
+		Mot*          mot();
 };
 
 class Mot: public QObject
@@ -76,16 +96,21 @@ class Mot: public QObject
 		QChar            _ponctD;
 		QChar            _ponctG;
 		QList<RegleS*>   _rSub;
-		QList<RegleS*>   _rSuper;
+		QList<Super*>    _super;
 	public:
 		Mot (QString g);
+		void    addRSub(RegleS *r);
+		void    addSuper(RegleS *r, QStringList m);
 		QString gr();
 		QString humain();
-		QChar ponctD();
-		QChar ponctG();
-		void  setMorphos(MapLem m);
-		void  setPonctD(QChar c);
-		void  setPonctG(QChar c);
+		MapLem  morphos();   
+		QChar   ponctD();
+		QChar   ponctG();
+		void    setMorphos(MapLem m);
+		void    setPonctD(QChar c);
+		void    setPonctG(QChar c);
+		void    setRSub(QList<RegleS*>);
+		void    setRSuper(QList<RegleS*>);
 };
 
 class Syntaxe: public QObject
@@ -98,7 +123,7 @@ class Syntaxe: public QObject
 		QList<RegleS*> _regles;
 		QString        _texte;
 		// variables motCour
-		QString        _motCour;
+		Mot           *_motCour;
 		QList<Mot*>    _motsP;
 		QList<Mot*>    _motsS;
 	public:

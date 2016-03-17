@@ -19,8 +19,14 @@
 
 id:accPrep
 doc:complément prépositionnel à l'accusatif
-super:$prepacc::
+super:ad,adversus,apud,contra,in,intra,ob,per,post,praeter,propter,super,usque:::
 sub::n pr:acc
+
+id:adv
+doc:Un adverbe dépend le plus souvent d'un verbe.
+super::v:
+sub::adv:
+tr:<super> <sub>
 
 id:cod
 doc:complément d'objet direct

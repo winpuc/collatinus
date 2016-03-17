@@ -13,6 +13,33 @@ ElS::ElS(QString lin, RegleS *parent)
 	_morphos = ecl.at(3).split(' ');
 }
 
+bool ElS::okLem(QString lem)
+{
+	return _lemmes.isEmpty() || _lemmes.contains(lem);
+}
+
+bool ElS::okMorpho(QString m)
+{
+	if (_morphos.isEmpty()) return true;
+	QStringList lm = m.split(' ');
+	foreach (QString em, _morphos)
+	{
+		bool ok = false;
+		foreach (QString elm, lm)
+		{
+			if (elm.startsWith(em))
+				ok = true;
+		}
+		if (!ok) return false;
+	}
+	return true;
+}
+
+bool ElS::okPos(QString p)
+{
+	return _pos.isEmpty() || _pos.contains(p);
+}
+
 RegleS::RegleS(QStringList lignes)
 {
 	QStringList cles = QStringList()
@@ -39,14 +66,63 @@ RegleS::RegleS(QStringList lignes)
 	}
 }
 
+/*
+typedef struct {
+	QString grq;
+	QString morpho;
+} SLem;
+
+typedef QMap<Lemme*,QList<SLem> > MapLem;
+*/
+
+bool RegleS::estSub(Lemme *l, QString morpho, bool ante)
+{
+	// sens
+	if (ante && _sens == ">") return false;
+	// lemme
+	if (!_sub->okLem(l->gr())) return false;
+	// pos
+	if (!_sub->okPos(l->pos())) return false;
+	// morpho
+	if (!_sub->okMorpho(morpho)) return false;
+	return true;
+}
+
+bool RegleS::estSuper(Lemme *l, QString morpho)
+{
+	// lemme
+	if (!_super->okLem(l->gr())) return false;
+	// pos
+	if (!_super->okPos(l->pos())) return false;
+	// morpho
+	if (!_super->okMorpho(morpho)) return false;
+	return true;
+}
+
+Super::Super (RegleS *r, QStringList m, Mot *parent)
+{
+	_regle = r;
+	_morpho = m;
+	_mot = parent;
+}
+
 /**
  * \fn Mot::Mot(QString g)
  * \brief Créateur de la classe Mot.
  */
-
 Mot::Mot(QString g)
 {
 	_gr = g;
+}
+
+void Mot::addRSub(RegleS *r)
+{
+	_rSub.append (r);
+}
+
+void Mot::addSuper(RegleS *r, QStringList m)
+{
+	_super.append (new Super(r, m, this));
 }
 
 QString Mot::gr()
@@ -62,6 +138,11 @@ QString Mot::humain()
 	foreach (Lemme *lem, _morphos.keys())
 		fl << lem->grq() << "    - "<<lem->traduction("fr")<<"\n";
 	return ret;
+}
+
+MapLem Mot::morphos()
+{
+	return _morphos;
 }
 
 QChar Mot::ponctD()
@@ -158,7 +239,27 @@ QString Syntaxe::analyse (QString t, int p)
 			ponctD = c;
 		--i;
 	}
-	// mots à droite de motCour.
+	// le premier mot de la liste est le mot Courant. 
+	_motCour = _motsP.takeFirst();
+
+	// Peuplement des listes _rSub et _rSuper
+	// pour chaque règle syntaxique
+	foreach (RegleS *r, _regles)
+	{
+		// pour chaque lemme de motCour
+		foreach (Lemme *l, _motCour->morphos().keys())
+		{
+			// pour chaque morpho du lemme
+			QList<SLem> lsl = _motCour->morphos().value(l);
+			foreach (SLem sl, lsl)
+			{
+				QString m = sl.morpho;
+				// bool RegleS::estSuper(Lemme *l, QString morpho)
+				if (r->estSuper(l, m))
+					_motCour->addSuper(r,m.split(' '));
+			}
+		}
+	}
 	limite = false;
 	i = p+1;
 	while (i<tl && !limite)
