@@ -28,7 +28,7 @@ HEADERS += src/ch.h \
            src/lemmatiseur.h \
            src/lemme.h \
            src/lewis.h \
-		   src/libflexfr.h \
+		   src/flexfr.h \
            src/mainwindow.h \
 		   src/maj.h \
            src/modele.h \
@@ -40,7 +40,7 @@ SOURCES += src/ch.cpp \
            src/lemmatiseur.cpp \
            src/lemme.cpp \
            src/lewis.cpp \
-		   src/libflexfr.cpp \
+		   src/flexfr.cpp \
            src/main.cpp \
 		   src/maj.cpp \
            src/mainwindow.cpp \
