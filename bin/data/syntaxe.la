@@ -4,11 +4,12 @@
 ! Format :
 ! id:nom_de_la_règle           // champ obligatoire, placé en tête
 ! pere:id_de_la_règle_parente  // héritage, champ facultatif
-! super:lemme1,lemme2,...,lemmeN:POS1 POS2:trait_morpho trait morpho trait morpho
+! super:lemme1,lemme2,...,lemmeN:POS1 POS2 POSn:trait_morpho trait morpho trait morpho
 ! sub:lemme1,lemme2,...,lemmeN:trait_morpho trait morpho trait morpho
 ! accord:cgnp   // une ou plusieurs des caractères c(as) g(enre) n(ombre) p(ersonne)
 ! sens:> ou < // la flèche est orientée du père au fils. > = père avant le fils
 ! tr:trad_avant P(:<tr>) trad_entre B(:<tr>) trad_après 
+! codes pos : v verbe a adverbe n nom
 !
 !   // P = traduction de super. si suivi de :tr,
 !   //  remplacer la trad. de super ou sub par la chaîne <tr>
@@ -24,12 +25,14 @@ sub::n pr:acc
 
 id:adv
 doc:Un adverbe dépend le plus souvent d'un verbe.
+f:<sub> compl. circ. de <super>
 super::v:
-sub::adv:
+sub::d:
 tr:<super> <sub>
 
 id:cod
 doc:complément d'objet direct
+f:<super> COD de <sub>
 super::v:ind subj
 ѕub::n pr:acc
 

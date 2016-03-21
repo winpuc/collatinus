@@ -8,9 +8,9 @@ ElS::ElS(QString lin, RegleS *parent)
 {
 	_regle = parent;	
 	QStringList ecl = lin.split(':', QString::KeepEmptyParts);
-	_pos    = ecl.at(1).split(',');
-	_lemmes = ecl.at(2).split(',');
-	_morphos = ecl.at(3).split(' ');
+	_lemmes = ecl.at(1).split(',',QString::SkipEmptyParts);
+	_pos    = ecl.at(2).split(',',QString::SkipEmptyParts);
+	_morphos = ecl.at(3).split(' ',QString::SkipEmptyParts);
 }
 
 bool ElS::okLem(QString lem)
@@ -45,7 +45,7 @@ RegleS::RegleS(QStringList lignes)
 	QStringList cles = QStringList()
 		<<"id"<<"doc"<<"pere"<<"super"<<"sub"
 	//     0     1       2       3       4
-		<<"sens"<<"accord"<<"tr";
+		<<"sens"<<"accord"<<"tr"<<"f";
 	//      5        6        7
 	foreach (QString lin, lignes)
 	{
@@ -61,19 +61,21 @@ RegleS::RegleS(QStringList lignes)
 			case 5: _sens   = ecl.at(1);break;
 			case 6: _accord = ecl.at(1);break;
 			case 7: _tr     = ecl.at(1);break;
+			case 8: _f      = ecl.at(1);break;
 			default:break;
 		}
 	}
 }
 
-/*
-typedef struct {
-	QString grq;
-	QString morpho;
-} SLem;
+QString RegleS::doc()
+{
+	return _doc;
+}
 
-typedef QMap<Lemme*,QList<SLem> > MapLem;
-*/
+QString RegleS::id()
+{
+	return _id;
+}
 
 bool RegleS::estSub(Lemme *l, QString morpho, bool ante)
 {
@@ -99,11 +101,34 @@ bool RegleS::estSuper(Lemme *l, QString morpho)
 	return true;
 }
 
+QString RegleS::fonction(Mot *super, Mot *sub)
+{
+	QString ret = _f;
+	if (super != NULL) ret.replace("<super>", super->gr());
+	if (sub != NULL) ret.replace("<sub>", sub->gr());
+	return ret;
+}
+
+QString RegleS::tr()
+{
+	return _tr;
+}
+
 Super::Super (RegleS *r, QStringList m, Mot *parent)
 {
 	_regle = r;
 	_morpho = m;
 	_mot = parent;
+}
+
+Mot* Super::mot()
+{
+	return _mot;
+}
+
+RegleS* Super::regle()
+{
+	return _regle;
 }
 
 /**
@@ -168,6 +193,11 @@ void Mot::setPonctD(QChar p)
 void Mot::setPonctG(QChar p)
 {
 	_ponctG = p;
+}
+
+QList<Super*> Mot::super()
+{
+	return _super;
 }
 
 Syntaxe::Syntaxe(QString t, Lemmat *parent)
@@ -254,7 +284,6 @@ QString Syntaxe::analyse (QString t, int p)
 			foreach (SLem sl, lsl)
 			{
 				QString m = sl.morpho;
-				// bool RegleS::estSuper(Lemme *l, QString morpho)
 				if (r->estSuper(l, m))
 					_motCour->addSuper(r,m.split(' '));
 			}
@@ -282,13 +311,32 @@ QString Syntaxe::analyse (QString t, int p)
 			ponctG = c;
 		++i;
 	}
-	// debog
+	// recherche des liens 
 	QStringList ret;
-	foreach (Mot *mot, _motsP)
-		ret << mot->humain();
-	ret << "----------";
-	foreach (Mot *mot, _motsS)
-		ret << mot->humain();
+	// pour chaque mot précédent
+	for (int i=0;i<_motsP.count();++i)
+	{
+		Mot *mp = _motsP.at(i);
+		// mp est-іl subordonné à _motCour ?
+		// pour chaque Super de mp
+		foreach (Super* sup, _motCour->super())
+		{
+			//pour chaque lemme de mp
+			foreach(Lemme *l, mp->morphos().keys())
+			{
+				// pour chaque morpho du lemme
+				QList<SLem> lsl = mp->morphos().value(l);
+				foreach (SLem sl, lsl)
+					if (sup->regle()->estSub(l, m, true))
+					{
+						ret << sup->regle()->fonction(_motCour, mp) << "<br/>\n"
+							<< sup->regle()->doc() << "<br/>\n";
+					}
+			}
+		}
+		// motCour est-il subordonné à mp ?
+	}
+	ret.removeDuplicates();
 	return ret.join (' ');
 }
 

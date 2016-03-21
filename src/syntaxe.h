@@ -57,6 +57,7 @@ class RegleS: public QObject
 	private:
 		QString        _accord;
 		QString        _doc;
+		QString        _f;
 		QString        _id;
 		QString        _idPere;
 		RegleS        *_pere;
@@ -66,8 +67,12 @@ class RegleS: public QObject
 		QString        _tr;
 	public:
 		RegleS (QStringList lignes);
+		QString         doc();
+		QString         id();
+		QString         fonction(Mot *super=0, Mot *sub=0);
 		bool            estSub(Lemme *l, QString morpho, bool ante);
 		bool            estSuper(Lemme *l, QString morpho);
+		QString         tr();
 };
 
 class Super: public QObject
@@ -99,18 +104,19 @@ class Mot: public QObject
 		QList<Super*>    _super;
 	public:
 		Mot (QString g);
-		void    addRSub(RegleS *r);
-		void    addSuper(RegleS *r, QStringList m);
-		QString gr();
-		QString humain();
-		MapLem  morphos();   
-		QChar   ponctD();
-		QChar   ponctG();
-		void    setMorphos(MapLem m);
-		void    setPonctD(QChar c);
-		void    setPonctG(QChar c);
-		void    setRSub(QList<RegleS*>);
-		void    setRSuper(QList<RegleS*>);
+		void          addRSub(RegleS *r);
+		void          addSuper(RegleS *r, QStringList m);
+		QString       gr();
+		QString       humain();
+		MapLem        morphos();   
+		QChar         ponctD();
+		QChar         ponctG();
+		void          setMorphos(MapLem m);
+		void          setPonctD(QChar c);
+		void          setPonctG(QChar c);
+		void          setRSub(QList<RegleS*>);
+		void          setRSuper(QList<RegleS*>);
+		QList<Super*> super();
 };
 
 class Syntaxe: public QObject

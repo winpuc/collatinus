@@ -725,6 +725,7 @@ void MainWindow::createConnections()
 	connect (zoomAct, SIGNAL(triggered()), textBrowserDic, SLOT(zoomIn()));
 	connect (zoomAct, SIGNAL(triggered()), textBrowserW, SLOT(zoomIn()));
 	connect (zoomAct, SIGNAL(triggered()), textBrowserFlex, SLOT(zoomIn()));
+	connect (zoomAct, SIGNAL(triggered()), textBrowserSynt, SLOT(zoomIn()));
 	connect (zoomAct, SIGNAL(triggered()), textEditLem, SLOT(zoomIn()));
 	connect (zoomAct, SIGNAL(triggered()), textEditScand, SLOT(zoomIn()));
 
@@ -732,6 +733,7 @@ void MainWindow::createConnections()
 	connect (deZoomAct, SIGNAL(triggered()), textBrowserDic, SLOT(zoomOut()));
 	connect (deZoomAct, SIGNAL(triggered()), textBrowserW, SLOT(zoomOut()));
 	connect (deZoomAct, SIGNAL(triggered()), textBrowserFlex, SLOT(zoomOut()));
+	connect (deZoomAct, SIGNAL(triggered()), textBrowserSynt, SLOT(zoomOut()));
 	connect (deZoomAct, SIGNAL(triggered()), textEditLem, SLOT(zoomOut()));
 	connect (deZoomAct, SIGNAL(triggered()), textEditScand, SLOT(zoomOut()));
 
@@ -1385,6 +1387,7 @@ void MainWindow::police()
 		textBrowserW->setFont(font);
 		textEditScand->setFont(font);
 		textBrowserFlex->setFont(font);
+		textBrowserSynt->setFont(font);
 	}
 }
 
@@ -1446,6 +1449,7 @@ void MainWindow::readSettings()
 	textBrowserW->setFont(font);
 	textEditScand->setFont(font);
 	textBrowserFlex->setFont(font);
+	textBrowserSynt->setFont(font);
 	// options de lemmatisation
 	alphaOptAct->setChecked (settings.value("alpha").toBool());
 	formeTAct->setChecked (settings.value("formetxt").toBool());
