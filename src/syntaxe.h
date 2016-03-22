@@ -81,13 +81,15 @@ class Super: public QObject
 
 	private:
 		RegleS       *_regle;
+		Lemme        *_lemme;
 		QStringList   _morpho;
 		Mot          *_mot;
 	public:
-		Super(RegleS *r, QStringList m, Mot *parent);
-		RegleS*       regle();
+		Super(RegleS *r, Lemme *l, QStringList m, Mot *parent);
+		Lemme*        lemme();
 		QStringList   morpho();
 		Mot*          mot();
+		RegleS*       regle();
 };
 
 class Mot: public QObject
@@ -105,7 +107,7 @@ class Mot: public QObject
 	public:
 		Mot (QString g);
 		void          addRSub(RegleS *r);
-		void          addSuper(RegleS *r, QStringList m);
+		void          addSuper(RegleS *r, Lemme *l, QStringList m);
 		QString       gr();
 		QString       humain();
 		MapLem        morphos();   
@@ -117,6 +119,7 @@ class Mot: public QObject
 		void          setRSub(QList<RegleS*>);
 		void          setRSuper(QList<RegleS*>);
 		QList<Super*> super();
+		QString       traduc(Lemme *l, QString m);
 };
 
 class Syntaxe: public QObject
@@ -137,6 +140,8 @@ class Syntaxe: public QObject
 		QString analyse(QString t, int p);
 		QString motSous(int p);
 		void    setText(QString t);
+		QString tr(RegleS *r, Lemme *sup, QString msup, Lemme *sub, QString msub);
+		QString trLemme (Lemme *l, QString m);
 };
 
 #endif

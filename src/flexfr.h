@@ -733,12 +733,10 @@ class TVbattre: public TVtir
 };
 
 bool IsLast(QString chaine, QString mot);
+
 Verbe * verbe_m (QString inf);
 QString conjugue(QString inf, int P=1, int T=1, int M=1, int V=1, bool Pr=false, int g=0, int n=0);
-QString conjnat(QString inf="aimer", QString P="je", QString T="pr\303\251sent",
-					 QString M="indicatif", QString V="actif", bool Pr=false);
-
-//QString tableau (QString verbe, int voix);
+QString conjnat(QString inf, QString morpho);
 
 // ------------------------------------------------------------
 //  Flexion des noms
@@ -909,6 +907,6 @@ class Tout: public Adjectif
 
 bool pas_de_passif (QString inf);
 QString tableau (QString verbe, int voix);
-QString Pluriel(QString n);
-QString Accorde(QString adj, int g, int n);
+QString pluriel(QString l, QString n);
+QString accorde(QString adj, QString m);
 #endif

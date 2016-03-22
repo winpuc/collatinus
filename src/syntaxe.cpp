@@ -3,6 +3,7 @@
 #include <QFile>
 #include <QRegExp>
 #include "syntaxe.h"
+#include "flexfr.h"
 
 ElS::ElS(QString lin, RegleS *parent)
 {
@@ -114,11 +115,22 @@ QString RegleS::tr()
 	return _tr;
 }
 
-Super::Super (RegleS *r, QStringList m, Mot *parent)
+Super::Super (RegleS *r, Lemme *l, QStringList m, Mot *parent)
 {
 	_regle = r;
+	_lemme = l;
 	_morpho = m;
 	_mot = parent;
+}
+
+Lemme* Super::lemme()
+{
+	return _lemme;
+}
+
+QStringList Super::morpho()
+{
+	return _morpho;
 }
 
 Mot* Super::mot()
@@ -145,9 +157,9 @@ void Mot::addRSub(RegleS *r)
 	_rSub.append (r);
 }
 
-void Mot::addSuper(RegleS *r, QStringList m)
+void Mot::addSuper(RegleS *r, Lemme *l, QStringList m)
 {
-	_super.append (new Super(r, m, this));
+	_super.append (new Super(r, l, m, this));
 }
 
 QString Mot::gr()
@@ -198,6 +210,21 @@ void Mot::setPonctG(QChar p)
 QList<Super*> Mot::super()
 {
 	return _super;
+}
+
+QString Mot::traduc(Lemme *l, QString m)
+{
+	QStringList ltr = l->traduction("fr").split(QRegExp("[;,]"));
+	QStringList ret;
+	foreach (QString tr, ltr)
+		switch (l->pos().unicode())
+		{
+			case 'a': ret << accorde(tr, m); break;
+			case 'n': ret << pluriel(tr, m); break;
+			case 'v': ret << conjnat(tr, m); break;
+			default: ret << tr;
+		}
+	return ret.join(", ");
 }
 
 Syntaxe::Syntaxe(QString t, Lemmat *parent)
@@ -283,9 +310,9 @@ QString Syntaxe::analyse (QString t, int p)
 			QList<SLem> lsl = _motCour->morphos().value(l);
 			foreach (SLem sl, lsl)
 			{
-				QString m = sl.morpho;
-				if (r->estSuper(l, m))
-					_motCour->addSuper(r,m.split(' '));
+				QString msup = sl.morpho;
+				if (r->estSuper(l, msup))
+					_motCour->addSuper(r,l,msup.split(' '));
 			}
 		}
 	}
@@ -330,7 +357,8 @@ QString Syntaxe::analyse (QString t, int p)
 					if (sup->regle()->estSub(l, m, true))
 					{
 						ret << sup->regle()->fonction(_motCour, mp) << "<br/>\n"
-							<< sup->regle()->doc() << "<br/>\n";
+							<< sup->regle()->doc()
+							<< "<br/>traduction : "<<tr(sup->regle(), sup->lemme(), sup->morpho().join(' '), l, sl.morpho) << "<br/>\n";
 					}
 			}
 		}
@@ -358,4 +386,29 @@ QString Syntaxe::motSous(int p)
 void Syntaxe::setText (QString t)
 {
 	_texte = t;
+}
+
+QString Syntaxe::tr(RegleS *r, Lemme *sup, QString msup, Lemme *sub, QString msub)
+{
+	QString t = r->tr();
+	QString trsup = trLemme (sup, msup);
+	QString trsub = trLemme (sub, msub);
+	t.replace("<super>", trsup);
+	t.replace("<sub>", trsub);
+	return t;
+}
+
+QString Syntaxe::trLemme (Lemme *l, QString m)
+{
+	QStringList ltr = l->traduction("fr").split(QRegExp("[;,]"));
+	QStringList ret;
+	foreach (QString tr, ltr)
+		switch (l->pos().unicode())
+		{
+			case 'a': ret << accorde(tr, m); break;
+			case 'n': ret << pluriel(tr, m); break;
+			case 'v': ret << conjnat(tr, m); break;
+			default: ret << tr;
+		}
+	return ret.join(", ");
 }

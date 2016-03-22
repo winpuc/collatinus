@@ -2203,26 +2203,19 @@ QString conjnat(QString inf, QString morpho)
 	int g=0;
 
 	int n=0;
-	foreach (QString trait, morpho)
+	QStringList lm = morpho.split(' ');
+	foreach (QString trait, lm)
 	{
 		n = personnes.indexOf(trait); if (n >= 0) {p = n+1;continue;}
 		n = nombres.indexOf(trait);   if (n >= 0) {nb = n+1;continue;}
 		n = temps.indexOf(trait);     if (n >= 0) {t = n+1;continue;}
-		n = modes.indexOf(trait);     if (n >= 0) {t = n+1;continue;}
+		n = modes.indexOf(trait);     if (n >= 0) {m = n+1;continue;}
 		n = voix.indexOf(trait);      if (n >= 0) {v = n+1;continue;}
 		n = genres.indexOf(trait);    if (n >= 0) {g = n+1;continue;}
 	}
 	int pnb = p * nb;
 	return conjugue(inf, pnb, t, m, v, (p!=3), g, nb); 
 }
-
-/*
-QString conjnat(QString inf, QString P, QString T, QString M, QString V, bool Pr)
-{
-	// comme conjugue(), mais avec des paramètres chaîne en langage naturel
-	return conjugue(inf, index_t (personne, P, 6), index_t (temps, T, 8), index_t(mode, M, 7), index_t(voix, V, 2), Pr); 
-}		 
-*/
 
 QString tableau (QString verbe, int voix)
 {
@@ -2484,16 +2477,17 @@ QString Tout::pluriel (bool fem)
 	return "tous";
 }
 
-QString Pluriel(QString n)
+QString pluriel(QString l, QString n)
 {
+	if (n=="singulier") return l;
 	QString irregs[6] = {"bonhomme", "grand-mère", "grand-père", "madame",
 		"mademoiselle", "monsieur"};
 	QString irregp[6] = {"bonshommes", "grands-mères",
 		"grands-pères","mesdames", "mesdemoiselles", "messieurs"};
-	int i = index_t (irregs, n, 6);
+	int i = index_t (irregs, l, 6);
 	if (i > -1) return irregp[i];
 	QString result;
-	Nom * nom = nom_m (n);
+	Nom * nom = nom_m (l);
 	if (nom != NULL)
 	{
 		result = nom->pluriel ();
@@ -2503,9 +2497,13 @@ QString Pluriel(QString n)
 	return "Échec de la recherche";
 }
 
-QString Accorde(QString adj, int g, int n)
+QString accorde(QString adj, QString m)
 {
 	QString result;
+	int genre=1;
+	int nombre=1;
+	if (m.contains("féminin")) genre=2;
+	if (m.contains("pluriel")) nombre=2;
 	Adjectif * inst = NULL;
 	if (IsLast("el", adj) || IsLast("eil", adj) || adj == "gentil" || adj== "nul")
 		inst = new ElEil(adj);
@@ -2538,7 +2536,7 @@ QString Accorde(QString adj, int g, int n)
 	else inst = new Adjectif(adj);
 	if (inst != NULL)
 	{
-		result = inst->accorde(g, n);
+		result = inst->accorde(genre, nombre);
 		delete inst;
 	}
 	else result = "Échec de la recherche.";

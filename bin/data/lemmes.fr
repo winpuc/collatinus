@@ -43,7 +43,7 @@ abluo:laver, purifier
 abnego:refuser catégoriquement, nier
 abnuo:faire signe que non, refuser
 aboleo:détruire, supprimer
-abolitio:la suppression, l'abolition
+abolitio:la suppression, abolition
 Aborigines:les premiers habitants d'un pays, les Aborigènes
 aborior:mourir, avorter
 Abraham:Abraham
@@ -58,11 +58,11 @@ abscondo:cacher loin, dérober à la vue, dissimuler
 absens:absent
 absentia:absence
 absidatus:arqué, voûté
-absida:1 - l'arc, voûte. - 2 - la course d'une planète. - 3 - le choeur (d'une église), l'abside.
+absida:arc, voûte; course d'une planète; choeur (d'une église); abside.
 absilio:fuir en sautant, fuir. - tr. - quitter en sautant.
 absimilis:différent
 absisto:s'éloigner, renoncer
-absis:1 - la voûte, l'arc. - 2 - l'abside. - 3 - un plat creux. - 4 - l'orbite (chemin décrit par une planète)
+absis:voûte, arc; abside; plat (creux); orbite (chemin décrit par une planète)
 absolutio:1. l'acquittement 2. l'achèvement, la perfection 3. l'exactitude
 absolvo:laisser libre, acquitter
 absonus:faux, discordant, choquant
@@ -1077,22 +1077,22 @@ aureus:d'or
 auricula:(petite) oreille
 aurifer:chargé d'or
 aurifex:orfèvre
-auriga:le conducteur de char, l'aurige
-aurigo:conduire un char
+auriga:aurige, conducteur de char
+aurigo:conduire (un char)
 auris:oreille
-aurora:l'aurore, le Levant (Aurora,ae, f. : Aurore (épouse de Tithon)
+aurora:aurore, Levant (Aurora,ae, f. : Aurore, épouse de Tithon)
 aurum:or
 ausculor:embrasser
-auscultatus:l'action d'écouter
+auscultatus:action d'écouter
 ausculto:écouter
 Ausonius:Ausonien, romain, italien
 auspex:l'auspice
 auspicium:auspice
 auspico:prendre les auspices pour une chose (alicui rei) (auspicor, ari : même sens + commencer)
 auster:le sud, le midi ; Auster, tri : le vent du sud, l'Auster
-ausum:l'entreprise hardie, le crime, le forfait
+ausum:entreprise hardie, crime, forfait
 autem:or, cependant, quant à -
-automatum:l'automate, la machine, le mouvement automatique
+automatum:automate, machine, mouvement automatique
 autumno:caractériser l'automne, annoncer l'automne
 autumnus:automne
 autumo:dire, affirmer
@@ -1100,8 +1100,8 @@ aut:ou, ou bien
 auxiliaris:qui secourt, auxiliaire (auxiliaris, is : le soldat des troupes auxiliaires)
 auxiliarius:de secours, venant au secours
 auxilior:aider, porter secours; soulager, guérir
-auxilium:l'aide, le secours (auxilia, orum : les troupes de secours)
-avaritia:la cupidité, l'avarice
+auxilium:aide, secours (auxilia, orum : les troupes de secours)
+avaritia:cupidité, avarice
 avarus:avare
 avarus2:avare
 aveho:emmener, détourner (au passif : s'en aller, se retirer)
@@ -1114,8 +1114,8 @@ aversor:avoir de l'aversion
 aversus:détourné, hostile
 averto:1 - détourner, donner une autre direction; qqf. se détourner. - 2 - repousser, écarter, éloigner, détacher, aliéner. - 3 - détourner à son profit, dérober, soustraire, emporter.
 ave:salut !
-avia:l'aïeule
-aviditas:le désir ardent, l'avidité
+avia:aïeule
+aviditas:désir ardent, avidité
 avide:avidement
 avidus:désireux, avide
 avis:oiseau
