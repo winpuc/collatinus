@@ -2492,7 +2492,6 @@ QString pluriel(QString l, QString n)
 	{
 		result = nom->pluriel ();
 		delete nom;
-		return result;
 	}
 	return "Échec de la recherche";
 }

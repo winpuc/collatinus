@@ -47,6 +47,8 @@ const QStringList Flexion::cas = QStringList()
 	<< "nominatif"<<"vocatif"<<"accusatif"<<"génitif"<<"datif"<<"ablatif";
 const QStringList Flexion::genres = QStringList()
 	<<"masculin"<<"féminin"<<"neutre";
+const QStringList Flexion::nombres = QStringList()
+	<<"singulier"<<"pluriel";
 const QStringList Flexion::temps = QStringList()
 	<<"présent"<<"imparfait"<<"futur"
 	<<"parfait"<<"plus-que-parfait"<<"futur antérieur";

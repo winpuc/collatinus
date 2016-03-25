@@ -18,13 +18,15 @@
 ! faut compter par défaut tous les éléments non résolus. 
 !
 
-id:accPrep
-doc:complément prépositionnel à l'accusatif
-super:ad,adversus,apud,contra,in,intra,ob,per,post,praeter,propter,super,usque:::
-sub::n pr:acc
+id:ablAbs
+doc:L'ablatif absolu est le groupe formé par un participe à l'ablatif accordé avec un nom ou un pronom, et les groupes subordonnés à ces deux éléments
+super::v:abl
+sub::n,p:abl
+accord:cng
+tr:<sub> <super>
 
 id:adv
-doc:Un adverbe dépend le plus souvent d'un verbe.
+doc:Un adverbe dépend le plus souvent d'un verbe
 f:<sub> compl. circ. de <super>
 super::v:
 sub::d:
@@ -35,16 +37,41 @@ doc:complément d'objet direct
 f:<super> COD de <sub>
 super::v:ind subj
 ѕub::n pr:acc
+tr:<super> <sub>
+
+id:cdn
+doc:Un nom ou un pronom au génitif est complément d'un autre nom ou d'un pronom
+f:<sub> complément du (pro)nom <super>
+super::n,p:
+sub::n,p:gén
+tr:<super> de <sub>
 
 id:nCoord
 doc:nom coordonné
 sens:>
-super::n pr:
+super::n,p:
 sub::n pr:
 accord:c
 
 id:prep
-doc:préposition dépendant d'un verbe
+doc:Une préposition dépend le plus souvent d'un verbe
+f:<sub> prép. dépendant du verbe <super>
 super::v:
-sub:$prepacc,$prepabl::
+sub::r:
+tr:<super> <sub>
+
+id:regimeAcc
+doc:de nombreuses prépositions sont suivies de l'accusatif
+f:<sub> régime à l'accusatif de la préposition <super>
+sens:>
+super:ad,adversus,apud,contra,in,intra,ob,per,post,praeter,propter,super,usque:::
+sub::n,p:acc
+tr:<super> <sub>
+
+id:sujet
+doc:un nom ou un pronom au nominatif est sujet d'un verbe conjugué
+super::v:indic
+sub::n,p:nomin
+tr:<sub> <super>
+accord:n
 

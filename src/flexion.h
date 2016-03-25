@@ -42,9 +42,6 @@ class Flexion: public QObject
 		QString const static     linb;
 		QString const static     linc;
 		QString const static     queue;
-		QStringList const static cas;
-		QStringList const static genres;
-		QStringList const static temps;
 		// menu
 		QString                  menuLem;
 		// construction des tableaux par pos
@@ -55,6 +52,10 @@ class Flexion: public QObject
 		QString                  tabV();
 	public:
 		Flexion (QObject *parent=0);
+		QStringList const static cas;
+		QStringList const static genres;
+		QStringList const static nombres;
+		QStringList const static temps;
 		QString           forme (int m, bool label=false);
 		QString static    gras (QString g);
 		QStringList       menu ();

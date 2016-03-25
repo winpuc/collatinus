@@ -46,6 +46,7 @@ class ElS: public QObject
 		bool		   okLem(QString l);
 		bool           okPos(QString p);
 		bool           okMorpho(QString m);
+		QStringList    pos();
 };
 
 class Mot;
@@ -67,6 +68,7 @@ class RegleS: public QObject
 		QString        _tr;
 	public:
 		RegleS (QStringList lignes);
+		QString         accord();
 		QString         doc();
 		QString         id();
 		QString         fonction(Mot *super=0, Mot *sub=0);
@@ -86,6 +88,7 @@ class Super: public QObject
 		Mot          *_mot;
 	public:
 		Super(RegleS *r, Lemme *l, QStringList m, Mot *parent);
+		bool          estSub(Lemme *l, QString morpho, bool ante);
 		Lemme*        lemme();
 		QStringList   morpho();
 		Mot*          mot();
@@ -128,6 +131,7 @@ class Syntaxe: public QObject
 	Q_OBJECT
 
 	private:
+		bool            accord(QString ma, QString mb, QString cgn);
 		Lemmat        *_lemmatiseur;
 		QList<RegleS*> _regles;
 		QString        _texte;

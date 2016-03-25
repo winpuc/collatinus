@@ -144,7 +144,6 @@ Lemme::Lemme (QString linea, QObject *parent)
 	int pos = c.indexIn(_indMorph);
 	if (pos > -1)
     {
-        //_renvoi = Lemmat::deramise (_indMorph.mid (pos + 4));
         _renvoi = c.cap(1);
     }
     else _renvoi = "";
