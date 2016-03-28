@@ -46,18 +46,35 @@ super::n,p:
 sub::n,p:gén
 tr:<super> de <sub>
 
+id:epithete
+doc:l'adjectif épithète s'accorde en genre, nombre et cas avec le nom
+super::n:
+sub::a:
+accord:cgn
+tr:<super> <sub>
+
 id:nCoord
-doc:nom coordonné
+doc:nom juxtaposé
 sens:>
 super::n,p:
-sub::n pr:
+sub::n,p:
 accord:c
+sens:>
+tr:<super> <sub>
 
 id:prep
 doc:Une préposition dépend le plus souvent d'un verbe
 f:<sub> prép. dépendant du verbe <super>
 super::v:
 sub::r:
+tr:<super> <sub>
+
+id:regimeAbl
+doc:de nombreuses prépositions sont suivies de l'ablatif
+f:<sub> régime à l'ablatif de la préposition <super>
+sens:>
+super:a,ab,de,ex:r::
+sub::n,p:abl
 tr:<super> <sub>
 
 id:regimeAcc
@@ -70,6 +87,7 @@ tr:<super> <sub>
 
 id:sujet
 doc:un nom ou un pronom au nominatif est sujet d'un verbe conjugué
+f:<sub> ѕujet du verbe <super>
 super::v:indic
 sub::n,p:nomin
 tr:<sub> <super>

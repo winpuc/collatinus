@@ -4,7 +4,6 @@
 #include <QRegExp>
 #include "flexion.h"
 #include "syntaxe.h"
-#include "flexfr.h"
 
 ElS::ElS(QString lin, RegleS *parent)
 {
@@ -63,8 +62,8 @@ RegleS::RegleS(QStringList lignes)
 			case 0: _id     = ecl.at(1);break;
 			case 1: _doc    = ecl.at(1);break;
 			case 2: _idPere = ecl.at(1);break;
-			case 3: _super  = new ElS(lin, this);
-			case 4: _sub    = new ElS(lin, this);
+			case 3: _super  = new ElS(lin, this);break;
+			case 4: _sub    = new ElS(lin, this);break;
 			case 5: _sens   = ecl.at(1);break;
 			case 6: _accord = ecl.at(1);break;
 			case 7: _tr     = ecl.at(1);break;
@@ -116,11 +115,11 @@ bool RegleS::estSuper(Lemme *l, QString morpho)
 /*
 bool RegleS::estSub(Lemme *l, QString morpho, bool ante)
 {
-	bool debog = _id=="cdn" && l->gr()=="Egerius";
-	if (debog) qDebug()<<"estSub"<<"cdn"<<l->gr()<<morpho;
+	bool debog = _id=="regimeAbl" && l->gr()=="hic";
+	if (debog) qDebug()<<"estSub"<<l->gr()<<morpho<<"ante"<<ante<<"sens"<<_sens;
 	// sens
 	if (ante && _sens == ">") return false;
-	if (debog) qDebug()<<"    OK sens";
+	if (debog) qDebug()<<"    OK sens"<<_sens;
 	// lemme
 	if (!_sub->okLem(l->gr())) return false;
 	if (debog) qDebug()<<"    OK lemme";
@@ -266,30 +265,6 @@ QList<Super*> Mot::super()
 	return _super;
 }
 
-QString Mot::traduc(Lemme *l, QString m)
-{
-	QStringList ltr = l->traduction("fr").split(QRegExp("[;,]"));
-	QStringList ret;
-	foreach (QString tr, ltr)
-	{
-		//tr.remove(QRegExp("\\([^)]*\\)"));
-		switch (l->pos().unicode())
-		{
-			case 'a': ret << accorde(tr, m); break;
-			case 'n': 
-					  {
-					  	  if (m.contains("plur"))
-						  	  ret << pluriel(tr, m);
-						  else ret << tr;
-						  break;
-					  }
-			case 'v': ret << conjnat(tr, m); break;
-			default: ret << tr;
-		}
-	}
-	return ret.join(", ");
-}
-
 Syntaxe::Syntaxe(QString t, Lemmat *parent)
 {
 	_lemmatiseur = parent;
@@ -321,6 +296,7 @@ Syntaxe::Syntaxe(QString t, Lemmat *parent)
 		slr.append (l);
 	}
     fs.close ();
+    _pronom = new Pronom();
 }
 
 bool Syntaxe::accord(QString ma, QString mb, QString cgn)
@@ -429,63 +405,69 @@ QString Syntaxe::analyse (QString t, int p)
 	// recherche des liens 
 	QStringList ret;
 	// pour chaque mot précédent
-	for (int i=0;i<_motsP.count();++i)
+	for (int i=0;(i<_motsP.count() || i<_motsS.count());++i)
 	{
-		Mot *mp = _motsP.at(i);
-		// mp est-іl subordonné à _motCour ?
-		// pour chaque Super de mp
-		foreach (Super* sup, _motCour->super())
-		{
-			//pour chaque lemme de mp
-			foreach(Lemme *l, mp->morphos().keys())
-			{
-				// pour chaque morpho du lemme
-				QList<SLem> lsl = mp->morphos().value(l);
-				foreach (SLem sl, lsl)
-					if (sup->estSub(l, sl.morpho, true)
-						&& (accord(sup->morpho().join(' '), sl.morpho, sup->regle()->accord())))
-					{
-						QString lin;
-						QTextStream (&lin)
-						 	<< sup->regle()->fonction(_motCour, mp)
-							<< "<br/>    " << sup->regle()->doc()
-							<< "<br/>    tr. <em>"<<tr(sup->regle(), sup->lemme(), sup->morpho().join(' '), l, sl.morpho)
-							<< "</em>";
-						ret << lin;
-					}
-			}
-		}
+        if (i < _motsP.count())
+        {
+		    Mot *mp = _motsP.at(i);
+		    // mp est-іl subordonné à _motCour ?
+		    // pour chaque Super de mp
+		    foreach (Super* sup, _motCour->super())
+		    {
+			    //pour chaque lemme de mp
+			    foreach(Lemme *l, mp->morphos().keys())
+			    {
+				    // pour chaque morpho du lemme
+				    QList<SLem> lsl = mp->morphos().value(l);
+				    foreach (SLem sl, lsl)
+					    if (sup->estSub(l, sl.morpho, true)
+						    && (accord(sup->morpho().join(' '), sl.morpho, sup->regle()->accord())))
+					    {
+						    QString lin;
+						    QTextStream (&lin)
+						 	    << sup->regle()->fonction(_motCour, mp)
+							    << "<br/>    " << sup->regle()->doc()
+							    << "<br/>    <em>"
+							    << tr(sup->regle(), sup->lemme(), sup->morpho().join(' '), l, sl.morpho)
+							    << "</em>";
+						    ret << lin;
+					    }
+			    }
+		    }
+        }
 		// motCour est-il subordonné à mp ?
-	}
-	// pour chaque mot suivant
-	for (int i=0;i<_motsS.count();++i)
-	{
-		Mot *ms = _motsS.at(i);
-		// mp est-іl subordonné à _motCour ?
-		// pour chaque Super de mp
-		foreach (Super* sup, _motCour->super())
-		{
-			//pour chaque lemme de mp
-			foreach(Lemme *l, ms->morphos().keys())
-			{
-				// pour chaque morpho du lemme
-				QList<SLem> lsl = ms->morphos().value(l);
-				foreach (SLem sl, lsl)
-				{
-					if (sup->estSub(l, sl.morpho, false)
-						&& (accord(sup->morpho().join(' '), sl.morpho, sup->regle()->accord())))
-					{
-						QString lin;
-						QTextStream(&lin)
-						 	<< sup->regle()->fonction(_motCour, ms)
-							<< "<br/>    " << sup->regle()->doc()
-							<< "<br/>    tr. <em>"<<tr(sup->regle(), sup->lemme(), sup->morpho().join(' '), l, sl.morpho)
-							<< "</em>";
-						ret << lin;
-					}
-				}
-			}
-		}
+	    // pour chaque mot suivant
+        if (i < _motsS.count())
+        {
+		    Mot *ms = _motsS.at(i);
+			qDebug()<<"ms"<<ms->gr();
+		    // mp est-іl subordonné à _motCour ?
+		    // pour chaque Super de mp
+		    foreach (Super* sup, _motCour->super())
+		    {
+			    //pour chaque lemme de mp
+			    foreach(Lemme *l, ms->morphos().keys())
+			    {
+				    // pour chaque morpho du lemme
+				    QList<SLem> lsl = ms->morphos().value(l);
+				    foreach (SLem sl, lsl)
+				    {
+					    if (sup->estSub(l, sl.morpho, false)
+						    && (accord(sup->morpho().join(' '), sl.morpho, sup->regle()->accord())))
+					    {
+						    QString lin;
+						    QTextStream(&lin)
+						 	    << sup->regle()->fonction(_motCour, ms)
+							    << "<br/>    " << sup->regle()->doc()
+							    << "<br/>    <em>"
+                                << tr(sup->regle(), sup->lemme(), sup->morpho().join(' '), l, sl.morpho)
+							    << "</em>";
+						    ret << lin;
+					    }
+				    }
+			    }
+		    }
+        }
 		// motCour est-il subordonné à mp ?
 	}
 	ret.removeDuplicates();
@@ -524,8 +506,8 @@ QString Syntaxe::tr(RegleS *r, Lemme *sup, QString msup, Lemme *sub, QString msu
 
 QString Syntaxe::trLemme (Lemme *l, QString m)
 {
-	QStringList ltr = l->traduction("fr").split(QRegExp("[;,]"));
 	QStringList ret;
+	QStringList ltr = l->traduction("fr").split(QRegExp("[;,]"));
 	foreach (QString tr, ltr)
 	{
 		tr.remove (QRegExp ("[(\\[][^)^\\]]*[)\\]]"));
@@ -539,9 +521,12 @@ QString Syntaxe::trLemme (Lemme *l, QString m)
 						  else ret << tr;
 						  break;
 					  }
+            case 'p': ret << _pronom->accorde(tr,m);break;
 			case 'v': ret << conjnat(tr, m); break;
 			default: ret << tr;
 		}
+        //if (l->pos()=='p') qDebug()<<m<<_pronom->accorde(tr,m)<<"RET"<<ret;
 	}
+    ret.removeDuplicates();
 	return ret.join(", ");
 }

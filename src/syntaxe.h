@@ -29,6 +29,7 @@ vers la gauche, puis vers la droite.
 
 #include <QString>
 #include "lemmatiseur.h"
+#include "flexfr.h"
 
 class RegleS;
 
@@ -122,7 +123,6 @@ class Mot: public QObject
 		void          setRSub(QList<RegleS*>);
 		void          setRSuper(QList<RegleS*>);
 		QList<Super*> super();
-		QString       traduc(Lemme *l, QString m);
 };
 
 class Syntaxe: public QObject
@@ -139,6 +139,7 @@ class Syntaxe: public QObject
 		Mot           *_motCour;
 		QList<Mot*>    _motsP;
 		QList<Mot*>    _motsS;
+        Pronom        *_pronom;
 	public:
 		Syntaxe (QString t, Lemmat *parent);
 		QString analyse(QString t, int p);

@@ -19,6 +19,7 @@ Pour tout contact avec l'auteur : yves.ouvrard@collatinus.org
 #ifndef LIBFLEXFR_H
 #define LIBFLEXFR_H
 
+#include <QMap>
 #include <QString>
 #include <QStringList>
 
@@ -903,6 +904,15 @@ class Tout: public Adjectif
 	public:
 		Tout (QString a): Adjectif (a) {}
 		virtual QString pluriel (bool fem);
+};
+
+class Pronom
+{
+    private:
+        QMap<QString,QString> map;
+    public:
+        Pronom();
+        QString accorde(QString p, QString m); 
 };
 
 bool pas_de_passif (QString inf);

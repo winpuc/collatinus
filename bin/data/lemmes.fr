@@ -3279,7 +3279,7 @@ egens:1 - qui est dépourvu de, qui manque de, dénué de, privé de. - 2 - indi
 egenus:qui manque de
 egeo:manquer de
 Egeria:Egérie, nymphe qu'inspira le roi Numa au cours de ses entrevues
-Egerius:Egerius, frère de Tarquin l'Ancien
+Egerius:Egerius (frère de Tarquin l'Ancien)
 egero:- tr. - emporter dehors, retirer, enlever
 egestas:1 - le manque, le défaut, la privation, la disette, la pénurie. - 2 - l'indigence, la misère, le besoin, la détresse, l'indigence.
 egestio:l'action de rendre
@@ -4364,7 +4364,7 @@ hiberna:les quartiers d'hiver
 hiberno:hiverner, être en quartiers d'hiver
 hibernus:d'hiver, hivernal
 Hiberus:de l'Ibérie
-hic:ce, cette, celui-ci, celle-ci
+hic:ce, celui-ci
 hic2:ici
 hiemo:hiverner
 hiems:l'hiver
@@ -8749,7 +8749,7 @@ sexaginta:soixante
 sexcenti:six cents
 sexiens:six fois
 Sextius:Sextius
-Sextus:Sextus, abr. Sex.
+Sextus:Sextus (abr. Sex.)
 sextus2:sixième
 sexus:le sexe
 sex:six
@@ -9833,26 +9833,26 @@ uva:raisin, vigne
 uvidus:humide, mouillé, un peu ivre
 uxorius:d'épouse, de femme mariée
 uxor:épouse, femme
-vacatio:l'exemption, la dispense
+vacatio:exemption, dispense
 vacca:vache
-vacillatio:le balancement
+vacillatio:balancement
 vacillo:vaciller, branler, chanceler
 vacivus:dépourvu de (+ Gén.)
 vaco:être vide, être inoccupé, oisif
 vacuefacio:rendre vide, vider
-vacuum:le terrain inoccupé
+vacuum:terrain inoccupé
 vacuus:vide
 vadimonium:engagement, promesse de comparaître
 vadosus:qui a beaucoup de gués, souvent guéable, houleux
 vado:aller
-vadum:le bas-fond
+vadum:bas-fond
 vae:las! hélas! malheur!
 vafer:rusé, adroit
 vagina:fourreau
 vagitus:vagissement, cri
 vagor:errer
 vagus:vagabond, errant, nomade, incertain, indéfini, déréglé
-Vahalis:le Waal (bras du Rhin)
+Vahalis:Waal (bras du Rhin)
 valde:certainement, parfaitement
 valeo:avoir de la valeur, être fort
 Valeria:Valeria
@@ -9880,14 +9880,14 @@ vario:varier, diversifier
 varius:varié, divers
 Varro:Varron
 Varus:Varus
-vasculum:le petit vase
-vastatio:le dévastation, le destruction
+vasculum:petit vase
+vastatio:dévastation, destruction
 vastitudo:1. taille, grandeur 2. ruine, destruction
 vasto:dévaster
 vastus:vide, désert, désolé, vaste
 vasum:comme uas, uasis : pot, vaisseau
 vas:vase
-vates:le devin, le poète
+vates:devin, poète
 vatia:Vatia
 vaticinatio:la prédiction, l'oracle, la prophétie
 vaticinor:prophétiser, extravaguer
@@ -9906,8 +9906,8 @@ vehementer:violemment, passionnément, beaucoup
 vehiculum:véhicule
 veho:transporter
 Veiens:de Véies (Etrurie)
-velabrum:le voile (qu'on étendait au-dessus du théâtre)
-velamen:la couverture, le vêtement, la robe
+velabrum:voile (qu'on étendait au-dessus du théâtre)
+velamen:couverture, vêtement, robe
 Velanius:Velanius (nom d'homme)
 Velinus:: de Vélia (ville de Lucanie)
 velitor:1. engager le combat 2. menacer de

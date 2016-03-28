@@ -108,7 +108,7 @@ void EditLatin::mouseReleaseEvent (QMouseEvent *e)
 			{
 				mainwindow->textBrowserFlex->clear();
 				mainwindow->textBrowserFlex->append (mainwindow->flechisseur->tableaux(&ml));
-				mainwindow->textBrowserFlex->moveCursor (QTextCursor::Start);
+				mainwindow->textBrowserFlex->moveCursor(QTextCursor::Start);
 			}
 		}
 		// 4. dock dictionnaires
@@ -120,12 +120,12 @@ void EditLatin::mouseReleaseEvent (QMouseEvent *e)
 		// 5. dock Syntaxe
 		if (!mainwindow->dockSynt->visibleRegion().isEmpty())
 		{
-			// test : mainwindow->textBrowserSynt->append (st);
 			// passer le texte au module syntaxe pour calcul
 			// appondre le résultat
 			//QTextCursor cursor = textCursor();
-			mainwindow->textBrowserSynt->append
+			mainwindow->textBrowserSynt->setText
 				(mainwindow->syntaxe->analyse(toPlainText(), textCursor().position()));
+			mainwindow->textBrowserSynt->moveCursor(QTextCursor::Start);
 		}
 	}
 	QTextEdit::mouseReleaseEvent (e);

@@ -178,7 +178,7 @@ Verbe::Verbe (QString i)
 Verbe::~Verbe () {}
 
 const QStringList personnes = QStringList() <<"1ère"<<"2ème"<<"3ème";
-const QStringList temps = QStringList() <<"présent"<<"futur"<<"imparfait"<<"passé simple"
+const QStringList temps = QStringList() <<"présent"<<"futur"<<"imparfait"<<"parfait"   //"passé simple"
  <<"passé composé"<<"futur antérieur"<<"plus-que-parfait" <<"passé antérieur";
 const QStringList modes = QStringList() <<"indicatif"<<"subjonctif"<<"conditionnel"
  <<"impératif"<<"infinitif"<<"participe"<<"gérondif";
@@ -2308,7 +2308,7 @@ Nom * nom_m (QString n)
 	QString aueus[6] = {"landau", "sarrau", "bleu", "pneu", "émeu", "lieu (poisson)"};
 	QString oux[7] = {"bijou", "caillou", "chou", "genou", "hibou", "joujou", "pou"};
 	QString inex = "pas de plurie";
-	QString result = "Échec de la recherche";
+	QString result = "nom_m Échec de la recherche";
 	//QString nom = Nom(n);
 	Nom * nom = NULL;
 	QChar d = derniere (n);
@@ -2477,6 +2477,33 @@ QString Tout::pluriel (bool fem)
 	return "tous";
 }
 
+Pronom::Pronom()
+{
+    map.insert("ce","cette,ces,ces");
+    map.insert("celui","celle,ceux,celles");
+    map.insert("celui-ci","celle-ci,ceux-ci,celles-ci");
+    map.insert("le","la,les,les");
+    map.insert("un","une,des,des");
+}
+
+QString Pronom::accorde(QString p, QString m)
+{
+    p = p.simplified();
+    if (!map.keys().contains(p))
+        return p.append('*');
+    if(m.contains("fém"))
+    {
+        if (m.contains("plur"))
+            return map.value(p).section(',',2,2);
+        return map.value(p).section(',',0,0);
+    }
+    else if (m.contains("plur"))
+    {
+        return map.value(p).section(',',1,1);
+    }
+    else return p;
+}
+
 QString pluriel(QString l, QString n)
 {
 	if (n=="singulier") return l;
@@ -2490,8 +2517,9 @@ QString pluriel(QString l, QString n)
 	Nom * nom = nom_m (l);
 	if (nom != NULL)
 	{
-		result = nom->pluriel ();
+		result = nom->pluriel();
 		delete nom;
+        return result;
 	}
 	return "Échec de la recherche";
 }
@@ -2541,4 +2569,3 @@ QString accorde(QString adj, QString m)
 	else result = "Échec de la recherche.";
 	return result;
 }	
-
