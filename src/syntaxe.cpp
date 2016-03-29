@@ -332,17 +332,17 @@ QString Syntaxe::analyse (QString t, int p)
 	_motsS.clear();
 	// avancer jusqu'à la fin du mot sous le curseur
 	while (p<tl-1 && t.at(p+1).isLetter()) ++p;
-	bool limite=false;
 	QString m;
 	QChar ponctD = '\0';
 	QChar ponctG = '\0';
 	// mots à gauche de motCour
 	int i = p;
+	bool limite=false;
 	while (i>-1 && !limite)
 	{
 		QChar c = t.at(i);
 		if (c.isLetter()) m.prepend (c);
-		else if (!m.isEmpty())
+		if ((!c.isLetter() || i==0) && !m.isEmpty())
 		{
 			Mot *nm = new Mot(m);
 			nm->setMorphos(_lemmatiseur->lemmatiseM(m));
@@ -359,6 +359,7 @@ QString Syntaxe::analyse (QString t, int p)
 			ponctD = c;
 		--i;
 	}
+
 	// le premier mot de la liste est le mot Courant. 
 	_motCour = _motsP.takeFirst();
 
@@ -440,7 +441,6 @@ QString Syntaxe::analyse (QString t, int p)
         if (i < _motsS.count())
         {
 		    Mot *ms = _motsS.at(i);
-			qDebug()<<"ms"<<ms->gr();
 		    // mp est-іl subordonné à _motCour ?
 		    // pour chaque Super de mp
 		    foreach (Super* sup, _motCour->super())
