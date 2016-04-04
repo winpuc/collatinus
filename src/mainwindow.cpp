@@ -192,7 +192,7 @@ void MainWindow::afficheLemsDic (bool litt, bool prim)
 	if (prim) lineEdit = lineEditDic;
 	else lineEdit = lineEditDicW;
     if (lineEdit->text ().isEmpty ())
-        return;
+		return;
 	lemsDic.clear();    
     QStringList requete;
     if (!litt)
@@ -363,15 +363,15 @@ void MainWindow::apropos ()
          "COLLATINVS\nLinguae latinae lemmatizatio \n"
          "Licentia GPL, © Yves Ouvrard, 2009 - 2016 \n"
          "Nonnullas partes operis scripsit Philippe Verkerk\n"
-         "Versio "VERSION"\n"
-         "Gratias illis habeo :\n"
-         "William Whitaker †\n"
-         "Jose Luis Redrejo,\n"
-         "Georges Khaznadar,\n"
-         "Matthias Bussonier,\n"
-         "Gérard Jeanneau,\n"
-         "Jean-Paul Woitrain,\n"
-         "Perseus Digital Library <http://www.perseus.tufts.edu>"));
+		 "Versio "VERSION"\n"
+		 "Gratias illis habeo :\n"
+		 "William Whitaker †\n"
+		 "Jose Luis Redrejo,\n"
+		 "Georges Khaznadar,\n"
+		 "Matthias Bussonier,\n"
+		 "Gérard Jeanneau,\n"
+		 "Jean-Paul Woitrain,\n"
+		 "Perseus Digital Library <http://www.perseus.tufts.edu>"));
 }
 
 /**
@@ -1426,8 +1426,8 @@ void MainWindow::readSettings()
     QSettings settings("Collatinus", "collatinus11");
 	// état de la fenêtre
 	settings.beginGroup("fenetre");
-    restoreGeometry(settings.value("geometry").toByteArray());
-    restoreState(settings.value("windowState").toByteArray());
+	restoreGeometry(settings.value("geometry").toByteArray());
+	restoreState(settings.value("windowState").toByteArray());
 	settings.endGroup();
 	// dernier fichier chargé
 	settings.beginGroup("fichiers");

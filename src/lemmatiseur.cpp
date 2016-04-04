@@ -606,7 +606,7 @@ QString Lemmat::lemmatiseT (QString t,
             lRet.append("<li>"+item+"</li>");
         else lRet.append("* "+item+"\n");
     }
-    if (_html)
+	if (_html)
         lRet.append("</ul>");
 	// non-reconnus en fin de liste si l'option nreconnu
 	// est armée

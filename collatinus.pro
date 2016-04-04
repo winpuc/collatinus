@@ -43,7 +43,7 @@ SOURCES += src/ch.cpp \
 		   src/flexfr.cpp \
            src/main.cpp \
 		   src/maj.cpp \
-           src/mainwindow.cpp \
+		   src/mainwindow.cpp \
            src/modele.cpp \
            src/scandeur.cpp \
            src/syntaxe.cpp
