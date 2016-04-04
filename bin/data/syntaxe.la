@@ -20,6 +20,7 @@
 
 id:ablAbs
 doc:L'ablatif absolu est le groupe formé par un participe à l'ablatif accordé avec un nom ou un pronom, et les groupes subordonnés à ces deux éléments
+f:<sub> ablatif absolu avec <super>
 super::v:abl
 sub::n,p:abl
 accord:cng
@@ -48,13 +49,15 @@ tr:<super> de <sub>
 
 id:epithete
 doc:l'adjectif épithète s'accorde en genre, nombre et cas avec le nom
+f:<sub> épithète de <super>
 super::n:
 sub::a:
 accord:cgn
 tr:<super> <sub>
 
-id:nCoord
-doc:nom juxtaposé
+id:nApp
+doc:un nom apposé suit directement un autre nom, est complètement accordé avec lui, et représente la même personne ou chose.
+f:<sub> apposé à <super>
 sens:>
 super::n,p:
 sub::n,p:

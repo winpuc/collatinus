@@ -3,25 +3,52 @@
 /*
    Module d'analyse syntaxique.
 
-Une règle a deux membres : père et fils
-Une expression peut avoir trois membres ou plus. Exemple :
-nominatif + datif + sum
-On résout en posant une règle supplémentaire
+- TODO Une règle a deux membres : père et fils
+  Une expression peut avoir trois membres ou plus.
+  Exemple :
+    nominatif + datif + sum
+    On résout en posant une règle supplémentaire
+    sumDatif:
+    - fils datif
+    - sum père d'un sujet au nominatif.
 
-sumDatif:
-- fils datif
-- sum père d'un sujet au nominatif.
+- TODO  La recherche par super est faite. Il faut faire une
+  recherche par sub.
 
-Algo : toujours envisager le mot cliqué comme sub. Recherche
-vers la gauche, puis vers la droite.
+- Trouver le moyen d'exprimer la projectivité dans la hiérarchisation des liens
+  . si le mot suivant n'est pas lié à motCour
+    . chercher s'il est lié au mot précédent.
+	  . si oui, continuer
+	  . si non chercher s'il est lié au mot suivant.
+	    . si oui, on peut continuer à condition que la morpho
+		  du mot suivant lui permette d'être lié à motCour.
+		  . si non, le groupe est terminé.
 
-- si on rencontre le super immédiatement à gauche ou à droite,
-  on peut renvoyer le résultat.
-- si l'élément n'est pas le super, on passe la main à cet 
-  élément, qui doit chercher un père à son tour.
-- si le père est trouvé, on considère l'élément étranger comme
-  résolu, et on reprend la recherche précédente.
+ . Exemple de structure sur laquelle travailler : 
+   "incidit de uxoribus mentio."  On en vient à parler des épouses.
+      | |   ||    |       |
+      | +---++----+       |
+      +-------------------+
 
+ . Il faudrait que certains mots+lien soient bloquants.  Une
+   préposition bloque les expansions à droite du verbe
+   jusqu'à ce que son régime soit lu. 
+   bloquant = lien prioritaire ? Soit la phrase
+   De uxoribus incidit mentio.
+   /uxoribus/ pourrait être le sub de /incidit/, mais
+   comme il peut être aussi le sub de /de/, on peut
+   dire que le lien de -> uxoribus est prioritaire
+   sur le lien uxoribus <- incidit. 
+
+ . TODO : rejeter les liens grisés en fin d'affichage.
+
+ . Phrase de test :
+    Forte potantibus his apud Sextum Tarquinium, ubi et
+    Collatinus cenabat Tarquinius, Egeri filius, incidit de
+    uxoribus mentio.
+
+ .  Solution 1: Analyser toute la phrase avant d'afficher les
+    liens du mot cliqué ?
 */
 
 #ifndef SYNTAXE_H
@@ -66,6 +93,7 @@ class RegleS: public QObject
 		QString        _sens;
 		ElS           *_super;
 		ElS           *_sub;
+        QString        _synt;
 		QString        _tr;
 	public:
 		RegleS (QStringList lignes);
@@ -75,6 +103,7 @@ class RegleS: public QObject
 		QString         fonction(Mot *super=0, Mot *sub=0);
 		bool            estSub(Lemme *l, QString morpho, bool ante);
 		bool            estSuper(Lemme *l, QString morpho);
+        bool            bloquant();
 		QString         tr();
 };
 
@@ -136,9 +165,9 @@ class Syntaxe: public QObject
 		QList<RegleS*> _regles;
 		QString        _texte;
 		// variables motCour
-		Mot           *_motCour;
-		QList<Mot*>    _motsP;
-		QList<Mot*>    _motsS;
+		Mot           *_motCour; // mot courant
+		QList<Mot*>    _motsP;   // mots précédents
+		QList<Mot*>    _motsS;   // mots suivants
         Pronom        *_pronom;
 	public:
 		Syntaxe (QString t, Lemmat *parent);

@@ -2527,11 +2527,11 @@ QString pluriel(QString l, QString n)
 QString accorde(QString adj, QString m)
 {
 	QString result;
-	int genre=1;
-	int nombre=1;
-	if (m.contains("féminin")) genre=2;
-	if (m.contains("pluriel")) nombre=2;
-	Adjectif * inst = NULL;
+	int genre=0;
+	int nombre=0;
+	if (m.contains("féminin")) genre=1;
+	if (m.contains("pluriel")) nombre=1;
+	Adjectif *inst = NULL;
 	if (IsLast("el", adj) || IsLast("eil", adj) || adj == "gentil" || adj== "nul")
 		inst = new ElEil(adj);
 	else if (IsLast("al", adj))

@@ -5,6 +5,14 @@
 #include "flexion.h"
 #include "syntaxe.h"
 
+/**
+ * \fn ElS::ElS(QString lin, RegleS *parent)
+ * La classe ElS enregistre les éléments requis
+ * des deux mots (super et sub) d'un lien syntaxique
+ * Il est donc utilisé deux fois par la classe RegleS.
+ * Son créateur s'appuie sur une ligne du fichier
+ * bin/data/syntaxe.la.
+ */
 ElS::ElS(QString lin, RegleS *parent)
 {
 	_regle = parent;	
@@ -51,8 +59,8 @@ RegleS::RegleS(QStringList lignes)
 	QStringList cles = QStringList()
 		<<"id"<<"doc"<<"pere"<<"super"<<"sub"
 	//     0     1       2       3       4
-		<<"sens"<<"accord"<<"tr"<<"f";
-	//      5        6        7
+		<<"sens"<<"accord"<<"tr"<<"f"<<"synt";
+	//      5        6        7    8     9
 	foreach (QString lin, lignes)
 	{
 		QStringList ecl = lin.split(':');
@@ -68,6 +76,7 @@ RegleS::RegleS(QStringList lignes)
 			case 6: _accord = ecl.at(1);break;
 			case 7: _tr     = ecl.at(1);break;
 			case 8: _f      = ecl.at(1);break;
+            case 9: _synt   = ecl.at(1);break;
 			default:break;
 		}
 	}
@@ -76,6 +85,11 @@ RegleS::RegleS(QStringList lignes)
 QString RegleS::accord()
 {
 	return _accord;
+}
+
+bool RegleS::bloquant()
+{
+    return _synt.contains('b');
 }
 
 QString RegleS::doc()
@@ -152,8 +166,8 @@ bool RegleS::estSuper(Lemme *l, QString morpho)
 QString RegleS::fonction(Mot *super, Mot *sub)
 {
 	QString ret = _f;
-	if (super != NULL) ret.replace("<super>", super->gr());
-	if (sub != NULL) ret.replace("<sub>", sub->gr());
+	if (super != NULL) ret.replace("<super>", "<em>"+super->gr()+"</em>");
+	if (sub != NULL) ret.replace("<sub>", "<em>"+sub->gr()+"</em>");
 	return ret;
 }
 
@@ -203,6 +217,8 @@ RegleS* Super::regle()
 Mot::Mot(QString g)
 {
 	_gr = g;
+    _ponctD = '\0';
+    _ponctG = '\0';
 }
 
 void Mot::addRSub(RegleS *r)
@@ -363,7 +379,7 @@ QString Syntaxe::analyse (QString t, int p)
 	// le premier mot de la liste est le mot Courant. 
 	_motCour = _motsP.takeFirst();
 
-	// Peuplement des listes _rSub et _rSuper
+	// Peuplement des listes _sub et _super
 	// pour chaque règle syntaxique
 	foreach (RegleS *r, _regles)
 	{
@@ -403,14 +419,22 @@ QString Syntaxe::analyse (QString t, int p)
 			ponctG = c;
 		++i;
 	}
-	// recherche des liens 
+	// RECHERCHE DES LIENS 
 	QStringList ret;
+	// divs à griser après la sortie du groupe ou l'entrée dans un sous-groupe
+	QString divP = "<div>";
+	QString divS = "<div>"; 
 	// pour chaque mot précédent
 	for (int i=0;(i<_motsP.count() || i<_motsS.count());++i)
 	{
         if (i < _motsP.count())
         {
+			bool estLie = false;
 		    Mot *mp = _motsP.at(i);
+            // provisoire : une ponctuation rend le
+            // lien improbable.
+            if (mp->ponctD() != '\0')
+                divP = "<div style=\"color:grey\">";
 		    // mp est-іl subordonné à _motCour ?
 		    // pour chaque Super de mp
 		    foreach (Super* sup, _motCour->super())
@@ -421,25 +445,31 @@ QString Syntaxe::analyse (QString t, int p)
 				    // pour chaque morpho du lemme
 				    QList<SLem> lsl = mp->morphos().value(l);
 				    foreach (SLem sl, lsl)
+					{
 					    if (sup->estSub(l, sl.morpho, true)
 						    && (accord(sup->morpho().join(' '), sl.morpho, sup->regle()->accord())))
 					    {
 						    QString lin;
 						    QTextStream (&lin)
+								<< divP
 						 	    << sup->regle()->fonction(_motCour, mp)
 							    << "<br/>    " << sup->regle()->doc()
 							    << "<br/>    <em>"
 							    << tr(sup->regle(), sup->lemme(), sup->morpho().join(' '), l, sl.morpho)
-							    << "</em>";
+							    << "</em></div>";
 						    ret << lin;
+							estLie = true;
 					    }
+					}
 			    }
 		    }
+			if (!estLie) divP = "<div style=\"color:grey\">";
         }
 		// motCour est-il subordonné à mp ?
 	    // pour chaque mot suivant
         if (i < _motsS.count())
         {
+			bool estLie = false;
 		    Mot *ms = _motsS.at(i);
 		    // mp est-іl subordonné à _motCour ?
 		    // pour chaque Super de mp
@@ -457,16 +487,19 @@ QString Syntaxe::analyse (QString t, int p)
 					    {
 						    QString lin;
 						    QTextStream(&lin)
+								<< divS
 						 	    << sup->regle()->fonction(_motCour, ms)
 							    << "<br/>    " << sup->regle()->doc()
 							    << "<br/>    <em>"
                                 << tr(sup->regle(), sup->lemme(), sup->morpho().join(' '), l, sl.morpho)
 							    << "</em>";
 						    ret << lin;
+							estLie = true;
 					    }
 				    }
 			    }
 		    }
+			if (!estLie) divS = "<div style=\"color:grey\">";
         }
 		// motCour est-il subordonné à mp ?
 	}
@@ -510,9 +543,12 @@ QString Syntaxe::trLemme (Lemme *l, QString m)
 	QStringList ltr = l->traduction("fr").split(QRegExp("[;,]"));
 	foreach (QString tr, ltr)
 	{
+		// supprimer les parenthèses dans la ligne de bin/data/lemmes.fr
 		tr.remove (QRegExp ("[(\\[][^)^\\]]*[)\\]]"));
 		switch (l->pos().unicode())
 		{
+            // TODO : l'adjectif français doit avoir la
+            // morpho de son super !
 			case 'a': ret << accorde(tr, m); break;
 			case 'n':
 					  {
