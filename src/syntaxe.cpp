@@ -344,8 +344,12 @@ QString Syntaxe::analyse (QString t, int p)
 	const QList<QChar> chl;
 	const int tl = t.length()-1;
 	const QString pp = ".;!?";
-	_motsP.clear();
-	_motsS.clear();
+	_motsP.clear(); // _motsP : liste des mots *Précédents*
+	_motsS.clear(); // _motsS : liste des mots *Suivants*
+	// Les listes _motsP et _motsS sont ordonnées suivant leur
+	// proximité de motCourant. La liste _motsP est donc ordonné
+	// de manière régressive par rapport au sens de lecture G->D. 
+
 	// avancer jusqu'à la fin du mot sous le curseur
 	while (p<tl-1 && t.at(p+1).isLetter()) ++p;
 	QString m;
@@ -379,7 +383,7 @@ QString Syntaxe::analyse (QString t, int p)
 	// le premier mot de la liste est le mot Courant. 
 	_motCour = _motsP.takeFirst();
 
-	// Peuplement des listes _sub et _super
+	// Peuplement de la liste _super
 	// pour chaque règle syntaxique
 	foreach (RegleS *r, _regles)
 	{
@@ -424,6 +428,8 @@ QString Syntaxe::analyse (QString t, int p)
 	// divs à griser après la sortie du groupe ou l'entrée dans un sous-groupe
 	QString divP = "<div>";
 	QString divS = "<div>"; 
+	bool courSubP = false;  // _motCour n'est pas encore sub à gauche
+	bool courSubS = false;  // _motCour n'est pas encore sub à droite
 	// pour chaque mot précédent
 	for (int i=0;(i<_motsP.count() || i<_motsS.count());++i)
 	{
@@ -435,8 +441,11 @@ QString Syntaxe::analyse (QString t, int p)
             // lien improbable.
             if (mp->ponctD() != '\0')
                 divP = "<div style=\"color:grey\">";
+			// si _motCour a un père, il ne peux pas avoir de sub plus loin.
+			// On brise donc la boucle.
+			if (courSubP) break;
 		    // mp est-іl subordonné à _motCour ?
-		    // pour chaque Super de mp
+		    // pour chaque Super de _motCour
 		    foreach (Super* sup, _motCour->super())
 		    {
 			    //pour chaque lemme de mp
@@ -463,6 +472,34 @@ QString Syntaxe::analyse (QString t, int p)
 					}
 			    }
 		    }
+			// _motCour est-il subordonné à mp ?
+			// pour chaque Super de _mp
+			foreach (Super *sup, mp->super())
+			{
+				// pour chaque lemme de _motCour
+				foreach (Lemme *l, _motCour->morphos().keys())
+				{
+					// pour chaque morpho du lemme
+				    QList<SLem> lsl = _motCour->morphos().value(l);
+				    foreach (SLem sl, lsl)
+					{
+					    if (sup->estSub(l, sl.morpho, true)
+						    && (accord(sup->morpho().join(' '), sl.morpho, sup->regle()->accord())))
+					    {
+						    QString lin;
+						    QTextStream (&lin)
+								<< divP
+						 	    << sup->regle()->fonction(_motCour, mp)
+							    << "<br/>    " << sup->regle()->doc()
+							    << "<br/>    <em>"
+							    << tr(sup->regle(), sup->lemme(), sup->morpho().join(' '), l, sl.morpho)
+							    << "</em></div>";
+						    ret << lin;
+							courSubP = true;
+					    }
+					}
+				}
+			}
 			if (!estLie) divP = "<div style=\"color:grey\">";
         }
 		// motCour est-il subordonné à mp ?
@@ -471,8 +508,11 @@ QString Syntaxe::analyse (QString t, int p)
         {
 			bool estLie = false;
 		    Mot *ms = _motsS.at(i);
+			// si _motCour a un père, il ne peux pas avoir de sub plus loin.
+			// On brise donc la boucle.
+			if (courSubS) break;
 		    // mp est-іl subordonné à _motCour ?
-		    // pour chaque Super de mp
+		    // pour chaque Super de _motCour
 		    foreach (Super* sup, _motCour->super())
 		    {
 			    //pour chaque lemme de mp
@@ -500,8 +540,35 @@ QString Syntaxe::analyse (QString t, int p)
 			    }
 		    }
 			if (!estLie) divS = "<div style=\"color:grey\">";
+		    // _motCour est-іl subordonné à mp
+		    // pour chaque Super de _ms
+		    foreach (Super* sup, ms->super())
+		    {
+			    //pour chaque lemme de _motCour
+			    foreach(Lemme *l, _motCour->morphos().keys())
+			    {
+				    // pour chaque morpho du lemme
+				    QList<SLem> lsl = _motCour->morphos().value(l);
+				    foreach (SLem sl, lsl)
+				    {
+					    if (sup->estSub(l, sl.morpho, false)
+						    && (accord(sup->morpho().join(' '), sl.morpho, sup->regle()->accord())))
+					    {
+						    QString lin;
+						    QTextStream(&lin)
+								<< divS
+						 	    << sup->regle()->fonction(_motCour, ms)
+							    << "<br/>    " << sup->regle()->doc()
+							    << "<br/>    <em>"
+                                << tr(sup->regle(), sup->lemme(), sup->morpho().join(' '), l, sl.morpho)
+							    << "</em>";
+						    ret << lin;
+							courSubS = true;
+					    }
+				    }
+			    }
+		    }
         }
-		// motCour est-il subordonné à mp ?
 	}
 	ret.removeDuplicates();
 	return ret.join ("<hr/>");

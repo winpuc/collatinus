@@ -12,9 +12,6 @@
     - fils datif
     - sum père d'un sujet au nominatif.
 
-- TODO  La recherche par super est faite. Il faut faire une
-  recherche par sub.
-
 - Trouver le moyen d'exprimer la projectivité dans la hiérarchisation des liens
   . si le mot suivant n'est pas lié à motCour
     . chercher s'il est lié au mot précédent.
@@ -42,10 +39,8 @@
 
  . TODO : rejeter les liens grisés en fin d'affichage.
 
- . Phrase de test :
-    Forte potantibus his apud Sextum Tarquinium, ubi et
-    Collatinus cenabat Tarquinius, Egeri filius, incidit de
-    uxoribus mentio.
+ . Hypothèse : lorsque un mot a trouvé son super, les
+     mots suivants ne peuvent être sub de ce mot.
 
  .  Solution 1: Analyser toute la phrase avant d'afficher les
     liens du mot cliqué ?

@@ -28,8 +28,6 @@ Requis :
 ## À FAIRE :
 - Créer une branche exponct (u exponctué de volvo, sanguinis, unicode 1EE5 ụ )
 - Tester des liens syntaxiques
-  * dock syntaxe
-  * clic sur un mot -> recherche de liens (as|des)cendants
   * morpho du mot
   * lien avec un autre mot
   * id du lien
@@ -57,6 +55,18 @@ Requis :
 - Système d'hyperliens dans les résultats, qui permet d'afficher
   des entrées. Par exemple, le lemme multus donne ses degrés par
   un hyperlien vers plus, pluris, et vers plurimus, a, um.
+
+## Syntaxe
+Forte potantibus his apud Sextum Tarquinium, ubi et Collatinus cenabat Tarquinius, Egeri filius, incidit de uxoribus mentio.
+  ^    | ^ | |    ^  ^ ||   ^ |       ^      ^ | ^   | | ^      | ^      ^  |         ^   | ^     | | |  ^|    ^       ^
+  |    | | | |    |  | ||   | |       |      | | |   | | |      | |      |  |         |   | |     | | |  ||    |       |
+  `----´ | | `----´  | ||   | |       |      | | `---´ | `------´ |      |  |         `---´ |     | | `--´ `---´       |
+         | `---------´ |`---´ `-------´      | |       `----------|------´  `---------------´     | `------------------´
+         |             `---------------------´ `------------------´                               |
+         `----------------------------------------------------------------------------------------´
+
+   * Hypothèse : lorsque un mot a trouvé son super, les
+     mots suivants ne peuvent être sub de ce mot.
 
 ## Branche maj
 Branche de mise à jour des lexiques.
