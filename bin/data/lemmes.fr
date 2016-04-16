@@ -4659,8 +4659,8 @@ incesso:attaquer, assaillir, invectiver, accuser, inculper, envahir
 incessus:marche, progression
 incestus:impur, incestueux
 inchoo:commencer
+incido:tomber sur/dans, arriver, se présenter
 incido2:couper, tailler, graver
-incido:tomber dans, arriver, se présenter
 incingo:ceindre
 incipio:commencer
 incitamentum:aiguillon, stimulant

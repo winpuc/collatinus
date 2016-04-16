@@ -1,4 +1,28 @@
-/*         syntaxe.cpp      */
+/*                 syntaxe.cpp
+ * 
+ *  This file is part of COLLATINUS.
+ *                                                                            
+ *  COLLATINUS is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *                                                                            
+ *  COLLATINVS is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *                                                                            
+ *  You should have received a copy of the GNU General Public License
+ *  along with COLLATINUS; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * © Yves Ouvrard, 2009 - 2016    
+ */
+
+/**
+ * \file syntaxe.cpp
+ * \brief module d'analyse syntaxique
+ */
 
 #include <QFile>
 #include <QRegExp>
@@ -7,7 +31,7 @@
 
 /**
  * \fn ElS::ElS(QString lin, RegleS *parent)
- * La classe ElS enregistre les éléments requis
+ * \brief La classe ElS enregistre les éléments requis
  * des deux mots (super et sub) d'un lien syntaxique
  * Il est donc utilisé deux fois par la classe RegleS.
  * Son créateur s'appuie sur une ligne du fichier
@@ -126,43 +150,6 @@ bool RegleS::estSuper(Lemme *l, QString morpho)
 	return true;
 }
 
-/*
-bool RegleS::estSub(Lemme *l, QString morpho, bool ante)
-{
-	bool debog = _id=="regimeAbl" && l->gr()=="hic";
-	if (debog) qDebug()<<"estSub"<<l->gr()<<morpho<<"ante"<<ante<<"sens"<<_sens;
-	// sens
-	if (ante && _sens == ">") return false;
-	if (debog) qDebug()<<"    OK sens"<<_sens;
-	// lemme
-	if (!_sub->okLem(l->gr())) return false;
-	if (debog) qDebug()<<"    OK lemme";
-	// pos
-	if (!_sub->okPos(l->pos())) return false;
-	if (debog) qDebug()<<"    OK pos";
-	// morpho
-	if (!_sub->okMorpho(morpho)) return false;
-	if (debog) qDebug()<<"    OK morpho";
-	return true;
-}
-
-bool RegleS::estSuper(Lemme *l, QString morpho)
-{
-	bool debog = _id=="cdn";
-	if (debog) qDebug()<<"estSuper"<<"cdn"<<l->gr()<<morpho;
-	// lemme
-	if (!_super->okLem(l->gr())) return false;
-	if (debog) qDebug() << "   lemme OK pos"<<l->pos()<<"_super->pos()"<<_super->pos();
-	// pos
-	if (!_super->okPos(l->pos())) return false;
-	if (debog) qDebug() << "   OK pos";
-	// morpho
-	if (!_super->okMorpho(morpho)) return false;
-	if (debog) qDebug() << "   morpho OK";
-	return true;
-}
-*/
-
 QString RegleS::fonction(Mot *super, Mot *sub)
 {
 	QString ret = _f;
@@ -182,6 +169,12 @@ Super::Super (RegleS *r, Lemme *l, QStringList m, Mot *parent)
 	_lemme = l;
 	_morpho = m;
 	_mot = parent;
+	_motSub = NULL;
+}
+
+void Super::addSub(Mot *m)
+{
+	_motSub = m;
 }
 
 bool Super::estSub(Lemme *l, QString morpho, bool ante)
@@ -203,6 +196,11 @@ QStringList Super::morpho()
 Mot* Super::mot()
 {
 	return _mot;
+}
+
+Mot* Super::motSub()
+{
+	return _motSub;
 }
 
 RegleS* Super::regle()
@@ -251,12 +249,22 @@ MapLem Mot::morphos()
 	return _morphos;
 }
 
-QChar Mot::ponctD()
+bool Mot::orphelin()
+{
+	return _super.empty();
+}
+
+QString Mot::ponctD()
 {
 	return _ponctD;
 }
 
-QChar Mot::ponctG()
+int Mot::rang()
+{
+	return _rang;
+}
+
+QString Mot::ponctG()
 {
 	return _ponctG;
 }
@@ -266,12 +274,17 @@ void Mot::setMorphos(MapLem m)
 	_morphos = m;
 }
 
-void Mot::setPonctD(QChar p)
+void Mot::setPonctD(QString p)
 {
 	_ponctD = p;
 }
 
-void Mot::setPonctG(QChar p)
+void Mot::setRang(int r)
+{
+	_rang = r;
+}
+
+void Mot::setPonctG(QString p)
 {
 	_ponctG = p;
 }
@@ -339,13 +352,65 @@ bool Syntaxe::accord(QString ma, QString mb, QString cgn)
 	return true;
 }
 
+/**
+ * \fn QString Syntaxe::analyse (QString t, int p)
+ * \brief Analyse de la phrase courante à la position p
+ *        du texte t.
+ */
 QString Syntaxe::analyse (QString t, int p)
 {
 	const QList<QChar> chl;
 	const int tl = t.length()-1;
 	const QString pp = ".;!?";
-	_motsP.clear(); // _motsP : liste des mots *Précédents*
-	_motsS.clear(); // _motsS : liste des mots *Suivants*
+	// régression au début de la phrase
+	int dph = p;
+	while (dph > 0 && !pp.contains(t.at(dph))) --dph;
+	// calcul de la position du mot courant
+	QString ante = t.mid (dph, p-dph);
+	QStringList lante = ante.split(QRegExp("\\s"));
+	//int pmc = lante.count(); // pmc = position du mot courant.
+	// progression jusqu'en fin de phrase 
+	int fph = p;
+	while (fph < tl && !pp.contains(t.at(fph))) ++fph;
+	// construction des mots
+	QString phr = t.mid(dph, fph-dph);
+	QStringList lm = phr.split(QRegExp("\\b"));
+	for (int i=1;i<lm.count()-1;i+=2)
+	{
+		QString m = lm.at(i);
+		Mot *nm = new Mot(m);
+		nm->setMorphos(_lemmatiseur->lemmatiseM(m));
+		QString pprec = lm.at(i-1);
+		pprec.remove (QRegExp("\\s"));
+		nm->setPonctG(pprec);
+		QString psuiv = lm.at(i+1);
+		psuiv.remove (QRegExp("\\s"));
+		nm->setPonctD(psuiv);
+		_mots.append (nm);
+		nm->setRang(_mots.count());
+	}
+	//QString ret;
+
+    // Analyse de la phrase, algorithme copié depuis ../NOTES.md
+	// Initialiser r = 0, x = 1.
+	r = 0; x = 1;
+	_rapport.clear();
+	int g;
+	do 
+	{
+		g = groupe(); 
+		++x;
+	}
+	while (g > -1);
+
+	return "en test";
+}
+
+QString Syntaxe::analyseM (QString t, int p)
+{
+	const QList<QChar> chl;
+	const int tl = t.length()-1;
+	const QString pp = ".;!?";
 	// Les listes _motsP et _motsS sont ordonnées suivant leur
 	// proximité de motCourant. La liste _motsP est donc ordonné
 	// de manière régressive par rapport au sens de lecture G->D. 
@@ -456,7 +521,10 @@ QString Syntaxe::analyse (QString t, int p)
 				    foreach (SLem sl, lsl)
 					{
 					    if (sup->estSub(l, sl.morpho, true)
-						    && (accord(sup->morpho().join(' '), sl.morpho, sup->regle()->accord())))
+						    && (accord(sup->morpho().join(' '), sl.morpho, sup->regle()->accord()))
+							// contiguïté sans virgule
+							//&& (sup->regle())
+							)
 					    {
 						    QString lin;
 						    QTextStream (&lin)
@@ -574,6 +642,57 @@ QString Syntaxe::analyse (QString t, int p)
 	return ret.join ("<hr/>");
 }
 
+/**
+ * \fn int Syntaxe::groupe()
+ * \brief renvoie le rang du père de mot[r]
+ */
+int Syntaxe::groupe()
+{
+	Mot *courant = _mots.at(r);
+	qDebug()<<"groupe"<<courant->gr();
+	// 0. si r == 0, passer à 3 (progressive)
+	if (r > 0)
+	{
+    	// 2. Recherche régressive
+		//  . Si mot[r] est orphelin, tester le mot[r-x] comme super,
+		//    et si c'est positif
+		//	    * déclarer mot[r-x] comme super : 
+		//		* initialiser x = 1;
+		//		* passer à 3 ;
+		//	. si mot[r-x] a déjà un super, c'est qu'il est à sa gauche. donc,
+		//      affecter r = mot[r-x]->rangSuper(), et revenir à 2 ;
+		//	. si mot[r-x] est sub, l'intégrer au groupe, décrémenter r (si r > 0), 
+		//	  revenir à 2.
+		//	. si mot[r-x] n'est pas sub, intialiser x = 1 passer à 3.
+	}
+    // 3. Recherche progressive
+	//    . Si mot[r] n'a pas encore de Super, tester le mot[r+x]
+	//      pour savoir s'il est super.
+	if (orphelin(courant) && super(_mots.at(r+x), courant))
+	{
+		// 	. si oui, déclarer mot[r+x] comme super, 
+		//	. clore la recherche : renvoyer le n° du super.
+		return r+x;
+	}
+    //    . Tester le mot[r+x] pour savoir s'il est sub.
+	bool estNoyau = true;
+	qDebug()<<"   OK";
+	while (estNoyau)
+	{
+		qDebug()<<"    nb super de courant"<<courant->super().count();
+		//    . s'il est sub, l'intégrer au groupe, incrémenter x
+		//	  et revenir à 3.
+		if (super(courant, _mots.at(r+x)))
+		{
+			// l'intégrer au groupe, incrémenter x
+			++x;
+		}
+		else estNoyau = false;
+	}
+	//	. Si le mot n'a pas de père, sortie de l'algo.
+	return -1;
+}
+
 QString Syntaxe::motSous(int p)
 {
 	QString mot;
@@ -589,9 +708,41 @@ QString Syntaxe::motSous(int p)
 	return mot;
 }
 
+bool Syntaxe::orphelin(Mot *m)
+{
+	for (int i=0;i<m->rang();++i)
+		if (super(_mots.at(i), m))
+			return false;
+	return true;
+}
+
 void Syntaxe::setText (QString t)
 {
 	_texte = t;
+}
+
+bool Syntaxe::super(Mot *sup, Mot *sub)
+{
+	foreach (Super *s, sup->super())
+	{
+		// tester toutes les possibilités du mot sub
+		foreach(Lemme *l, sub->morphos().keys())
+		{
+			// pour chaque morpho du lemme
+			QList<SLem> lsl = sub->morphos().value(l);
+			foreach (SLem sl, lsl)
+			{
+				if (s->estSub(l, sl.morpho, false)
+					&& (accord(s->morpho().join(' '), sl.morpho, s->regle()->accord())))
+				{
+					s->addSub(sub);
+			    }
+			}
+		}
+		if (s->motSub() == sub)
+			return true;
+	}
+	return false;
 }
 
 QString Syntaxe::tr(RegleS *r, Lemme *sup, QString msup, Lemme *sub, QString msub)

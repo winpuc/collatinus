@@ -2,8 +2,10 @@
 
 lundi 4 janvier 2016 
 
+<!-- voir syntaxe Algo -->
+
 ## COMPILATION
-Requis :
+Requis :  
 - Un compilateur C++ ;
 - Les bibliothèques Qt 5.
 - Ajuster le PATH de la machine pour que
@@ -14,7 +16,7 @@ Requis :
   * $ make
 - Créer les répertoires bin/, bin/data et bin/data/dicos
 - Placer dans bin/data/ les lexiques téléchargeables 
-  [à l'adresse](http://outils.biblissima.fr/collatinus/)
+  à l'adresse [http://outils.biblissima.fr/collatinus/](http://outils.biblissima.fr/collatinus/)
 - Placer dans bin/data/dicos les dictionnaires xml et
   djvu les dictionnaires téléchargeables à la même adresse ;
 - Lancer Collatinus en ligne de commande :    
@@ -56,17 +58,59 @@ Requis :
   des entrées. Par exemple, le lemme multus donne ses degrés par
   un hyperlien vers plus, pluris, et vers plurimus, a, um.
 
-## Syntaxe
-Forte potantibus his apud Sextum Tarquinium, ubi et Collatinus cenabat Tarquinius, Egeri filius, incidit de uxoribus mentio.
-  ^    | ^ | |    ^  ^ ||   ^ |       ^      ^ | ^   | | ^      | ^      ^  |         ^   | ^     | | |  ^|    ^       ^
-  |    | | | |    |  | ||   | |       |      | | |   | | |      | |      |  |         |   | |     | | |  ||    |       |
-  `----´ | | `----´  | ||   | |       |      | | `---´ | `------´ |      |  |         `---´ |     | | `--´ `---´       |
-         | `---------´ |`---´ `-------´      | |       `----------|------´  `---------------´     | `------------------´
-         |             `---------------------´ `------------------´                               |
-         `----------------------------------------------------------------------------------------´
-
-   * Hypothèse : lorsque un mot a trouvé son super, les
+## Branche syntaxe
+     Forte potantibus his apud Sextum Tarquinium, ubi et Collatinus cenabat Tarquinius, Egeri filius, incidit de uxoribus mentio.  
+     ^     |  ^ | |   ^   ^ ||  ^ |        ^      ^ | ^   | | ^      | ^      ^  |         ^   | ^     | | |  ^|    ^       ^  
+     |     |  | | |   |   | ||  | |        |      | | |   | | |      | |      |  |         |   | |     | | |  ||    |       |  
+     +----/   | | +---+   | ||  | |        |      | | +---+ | +------+ |      |  |         +---+ |     | | +--/ \---+       |  
+              | +---------+ | \-+ +--------+      | |       +----------|------+  +---------------+     | +------------------+  
+              |             +---------------------/ \------------------+                               |  
+              +----------------------------------------------------------------------------------------+  
+   * **Contrainte** : Tout mot doit trouver son sub, sauf un, qui est
+      un verbe conjugué à l'indicatif ou à l'impératif, Quelquefois un
+	  nom.
+   * **Hypothèse** : En allant de G à D, lorsque un mot a trouvé son super, les
      mots suivants ne peuvent être sub de ce mot.
+   * **Hypothèse** : les prépositions et conj. de subordination sont bloquantes
+      - elles ne permettent aux mots précédent de chercher des sub après elles
+	    que si elles-mêmes ont trouvé un sub.
+      - Elles n'ont pas d'homonyme, et si elles en ont,
+	    ils sont eux aussi bloquants (ex. *cum*)
+	    (vraiment pas sûr). Le pr. relatif peut
+	    être considéré comme bloquant, mais il a des formes ambiguës.
+   * Attention aux hyperbates : _Collatinus cenabat Tarquinius_
+    Collatinus cenabat Tarquinius.
+       ^   |     |        ^
+       |   +-----|--------+
+       +---------+    
+
+   * Algo :
+	   (qui souffre sans doute d'erreurs logiques.)
+	 Initialiser r = 0, x = 1.
+	 0. si r == 0, passer à 3.
+     2. Recherche régressive
+	    . Si mot[r] est orphelin, tester le mot[r-x] comme super,
+	      et si c'est positif
+		    * déclarer mot[r-x] comme super : 
+			* initialiser x = 1;
+			* passer à 3 ;
+		. si mot[r-x] a déjà un super, c'est qu'il est à sa gauche. donc,
+	      affecter r = mot[r-x]->rangSuper(), et revenir à 2 ;
+		. si mot[r-x] est sub, l'intégrer au groupe, décrémenter r (si r > 0), 
+		  revenir à 2.
+		. si mot[r-x] n'est pas sub, intialiser x = 1 passer à 3.
+     3. Recherche progressive
+	    . Si mot[r] n'a pas encore de Super, tester le mot[r+x]
+	    pour savoir s'il est super.
+	 	. si oui, déclarer mot[r+x] comme super, interrompre la
+		  recherche de subs, 
+		. clore la recherche : renvoyer le n° du super.
+        . Tester le mot[r+x] pour savoir s'il est sub.
+	    . s'il est sub, l'intégrer au groupe, incrémenter x
+		  et revenir à 3.
+		. sinon, r = r+x; x = 1; et revenir à 0; on reprendra
+		  à 3 avec r = noyau du père de mot[r+x]
+		. Si le mot n'a pas de père, sortie de l'algo.
 
 ## Branche maj
 Branche de mise à jour des lexiques.

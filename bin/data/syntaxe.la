@@ -4,19 +4,20 @@
 ! Format :
 ! id:nom_de_la_règle           // champ obligatoire, placé en tête
 ! pere:id_de_la_règle_parente  // héritage, champ facultatif
-! super:lemme1,lemme2,...,lemmeN:POS1 POS2 POSn:trait_morpho trait morpho trait morpho
+! super:lemme1,lemme2,...,lemmeN:pos1 pos2 posn:trait_morpho trait morpho trait morpho
 ! sub:lemme1,lemme2,...,lemmeN:trait_morpho trait morpho trait morpho
-! accord:cgnp   // une ou plusieurs des caractères c(as) g(enre) n(ombre) p(ersonne)
-! sens:> ou < // la flèche est orientée du père au fils. > = père avant le fils
+! accord:cgnp                  // une ou plusieurs des caractères c(as) g(enre) n(ombre) p(ersonne)
+! sens:> ou <                  // la flèche est orientée du père au fils. > = père avant le fils
+! synt:[chaine]                // une suite de caractères voir les codes synt
 ! tr:trad_avant P(:<tr>) trad_entre B(:<tr>) trad_après 
-! codes pos : v verbe a adverbe n nom
+!    Dans le champ tr, <super> et <sub> sont à remplacer par la trad. française fléchie du mot.
 !
-!   // P = traduction de super. si suivi de :tr,
-!   //  remplacer la trad. de super ou sub par la chaîne <tr>
+! Codes pos pour super et sub : v verbe a adverbe n nom
+! Les traits morphos sont les débuts des traits morphos français, qu'on 
+! peut réduire à leur minimum reconnaissable. impa=imparfait impé=impératif
 !
-! Parmi les problèmes : dans les éléments interdits, il
-! faut compter par défaut tous les éléments non résolus. 
-!
+! Codes synt : b = bloquant : on ne sort pas du groupe tant que sub n'est pas trouvé à droite. 
+!              c = contigu : si <super> et <sub> se suivent immédiatement, ponctuation interdite
 
 id:ablAbs
 doc:L'ablatif absolu est le groupe formé par un participe à l'ablatif accordé avec un nom ou un pronom, et les groupes subordonnés à ces deux éléments
@@ -32,6 +33,9 @@ f:<sub> compl. circ. de <super>
 super::v:
 sub::d:
 tr:<super> <sub>
+
+id:advRel
+doc:ubi, quando, unde, adv. relatif, sont subordonnés un compl. circ.
 
 id:cod
 doc:complément d'objet direct
@@ -58,7 +62,6 @@ tr:<super> <sub>
 id:nApp
 doc:un nom apposé suit directement un autre nom, est complètement accordé avec lui, et représente la même personne ou chose.
 f:<sub> apposé à <super>
-sens:>
 super::n,p:
 sub::n,p:
 accord:c
@@ -70,6 +73,7 @@ doc:Une préposition dépend le plus souvent d'un verbe
 f:<sub> prép. dépendant du verbe <super>
 super::v:
 sub::r:
+synt:b
 tr:<super> <sub>
 
 id:regimeAbl
@@ -93,6 +97,7 @@ doc:un nom ou un pronom au nominatif est sujet d'un verbe conjugué
 f:<sub> ѕujet du verbe <super>
 super::v:indic
 sub::n,p:nomin
+synt:c
 tr:<sub> <super>
 accord:n
 

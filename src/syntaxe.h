@@ -1,4 +1,28 @@
-/*           syntaxe.h        */
+/*                 syntaxe.h
+ * 
+ *  This file is part of COLLATINUS.
+ *                                                                            
+ *  COLLATINUS is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *                                                                            
+ *  COLLATINVS is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *                                                                            
+ *  You should have received a copy of the GNU General Public License
+ *  along with COLLATINUS; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * © Yves Ouvrard, 2009 - 2016    
+ */
+
+/**
+ * \file syntaxe.h
+ * \brief module d'analyse syntaxique
+ */
 
 /*
    Module d'analyse syntaxique.
@@ -111,25 +135,31 @@ class Super: public QObject
 		Lemme        *_lemme;
 		QStringList   _morpho;
 		Mot          *_mot;
+		Mot          *_motSub;
 	public:
 		Super(RegleS *r, Lemme *l, QStringList m, Mot *parent);
+		void          addSub(Mot *m);
 		bool          estSub(Lemme *l, QString morpho, bool ante);
 		Lemme*        lemme();
 		QStringList   morpho();
 		Mot*          mot();
+		Mot*          motSub();
 		RegleS*       regle();
 };
 
 class Mot: public QObject
 {
+	// TODO : il manque un vrai champ Mot *_super, ou une liste de Mots.
+	//        La liste actuelle ne donne pas les subs.
 
 	Q_OBJECT
 
 	private:
 		QString          _gr;
 		MapLem           _morphos;
-		QChar            _ponctD;
-		QChar            _ponctG;
+		QString          _ponctD;
+		QString          _ponctG;
+		int              _rang;
 		QList<RegleS*>   _rSub;
 		QList<Super*>    _super;
 	public:
@@ -139,14 +169,17 @@ class Mot: public QObject
 		QString       gr();
 		QString       humain();
 		MapLem        morphos();   
-		QChar         ponctD();
-		QChar         ponctG();
+		bool          orphelin();
+		QString       ponctD();
+		QString       ponctG();
+		int           rang();
 		void          setMorphos(MapLem m);
-		void          setPonctD(QChar c);
-		void          setPonctG(QChar c);
+		void          setPonctD(QString c);
+		void          setPonctG(QString c);
+		void          setRang(int r);
 		void          setRSub(QList<RegleS*>);
 		void          setRSuper(QList<RegleS*>);
-		QList<Super*> super();
+		QList<Super*> super(); // liste des règles qui peuvent faire du mot un super
 };
 
 class Syntaxe: public QObject
@@ -156,19 +189,27 @@ class Syntaxe: public QObject
 
 	private:
 		bool            accord(QString ma, QString mb, QString cgn);
+		int             groupe();
 		Lemmat        *_lemmatiseur;
 		QList<RegleS*> _regles;
+		Mot*            superDe(Mot *m);
 		QString        _texte;
 		// variables motCour
 		Mot           *_motCour; // mot courant
+		QList<Mot*>    _mots;
 		QList<Mot*>    _motsP;   // mots précédents
 		QList<Mot*>    _motsS;   // mots suivants
         Pronom        *_pronom;
+		int             r, x;
+		QString        _rapport;
 	public:
 		Syntaxe (QString t, Lemmat *parent);
 		QString analyse(QString t, int p);
+		QString analyseM(QString t, int p);
 		QString motSous(int p);
+		bool    orphelin(Mot *m);
 		void    setText(QString t);
+		bool    super(Mot *sup, Mot *sub);
 		QString tr(RegleS *r, Lemme *sup, QString msup, Lemme *sub, QString msub);
 		QString trLemme (Lemme *l, QString m);
 };
