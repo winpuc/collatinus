@@ -136,15 +136,19 @@ class Super: public QObject
 		QStringList   _morpho;
 		Mot          *_mot;
 		Mot          *_motSub;
+		QString       _traduction;
 	public:
 		Super(RegleS *r, Lemme *l, QStringList m, Mot *parent);
 		void          addSub(Mot *m);
 		bool          estSub(Lemme *l, QString morpho, bool ante);
 		Lemme*        lemme();
+		QString       strMorpho();
 		QStringList   morpho();
 		Mot*          mot();
 		Mot*          motSub();
 		RegleS*       regle();
+		void          setTraduction(QString t);
+		QString       traduction();
 };
 
 class Mot: public QObject
@@ -156,6 +160,7 @@ class Mot: public QObject
 
 	private:
 		QString          _gr;
+		QString          _affLiens;
 		MapLem           _morphos;
 		QString          _ponctD;
 		QString          _ponctG;
@@ -164,10 +169,12 @@ class Mot: public QObject
 		QList<Super*>    _super;
 	public:
 		Mot (QString g);
+		void          addLien(QString l);
 		void          addRSub(RegleS *r);
 		void          addSuper(RegleS *r, Lemme *l, QStringList m);
 		QString       gr();
 		QString       humain();
+		QString       liens(); // renvoie _affliens
 		MapLem        morphos();   
 		bool          orphelin();
 		QString       ponctD();
@@ -180,6 +187,7 @@ class Mot: public QObject
 		void          setRSub(QList<RegleS*>);
 		void          setRSuper(QList<RegleS*>);
 		QList<Super*> super(); // liste des règles qui peuvent faire du mot un super
+		bool          superDe(Mot *m);
 };
 
 class Syntaxe: public QObject
@@ -189,7 +197,7 @@ class Syntaxe: public QObject
 
 	private:
 		bool            accord(QString ma, QString mb, QString cgn);
-		int             groupe();
+		int             groupe(int r);
 		Lemmat        *_lemmatiseur;
 		QList<RegleS*> _regles;
 		Mot*            superDe(Mot *m);
@@ -206,12 +214,13 @@ class Syntaxe: public QObject
 		Syntaxe (QString t, Lemmat *parent);
 		QString analyse(QString t, int p);
 		QString analyseM(QString t, int p);
+		bool    estSuper(Mot *sup, Mot *sub);
 		QString motSous(int p);
 		bool    orphelin(Mot *m);
 		void    setText(QString t);
-		bool    super(Mot *sup, Mot *sub);
+		bool    super(Mot *sup, Mot *sub); // construit le lien
 		QString tr(RegleS *r, Lemme *sup, QString msup, Lemme *sub, QString msub);
-		QString trLemme (Lemme *l, QString m);
+		QString trLemme(Lemme *l, QString m);
 };
 
 #endif

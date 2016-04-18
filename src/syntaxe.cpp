@@ -1,4 +1,7 @@
-/*                 syntaxe.cpp
+/*                 syntaxe.cpp * *  This file is part of COLLATINUS.  *                                                                            *  COLLATINUS is free software; you can redistribute it and/or modify *  it under the terms of the GNU General Public License as published by *  the Free Software Foundation; either version 2 of the License, or *  (at your option) any later version.
+ *                                                                            
+ *  COLLATINVS is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  * 
  *  This file is part of COLLATINUS.
  *                                                                            
@@ -170,6 +173,7 @@ Super::Super (RegleS *r, Lemme *l, QStringList m, Mot *parent)
 	_morpho = m;
 	_mot = parent;
 	_motSub = NULL;
+	_traduction = "<em>non traduit</em>";
 }
 
 void Super::addSub(Mot *m)
@@ -208,6 +212,21 @@ RegleS* Super::regle()
 	return _regle;
 }
 
+void Super::setTraduction(QString t)
+{
+	_traduction = t;
+}
+
+QString Super::strMorpho()
+{
+	return _morpho.join(' ');
+}
+
+QString Super::traduction()
+{
+	return _traduction;
+}
+
 /**
  * \fn Mot::Mot(QString g)
  * \brief Créateur de la classe Mot.
@@ -215,8 +234,15 @@ RegleS* Super::regle()
 Mot::Mot(QString g)
 {
 	_gr = g;
+	_affLiens.clear();
     _ponctD = '\0';
     _ponctG = '\0';
+}
+
+void Mot::addLien(QString l)
+{
+	qDebug()<<"    "<<_gr<<"addlien"<<l;
+	_affLiens.append(l);
 }
 
 void Mot::addRSub(RegleS *r)
@@ -242,6 +268,11 @@ QString Mot::humain()
 	foreach (Lemme *lem, _morphos.keys())
 		fl << lem->grq() << "    - "<<lem->traduction("fr")<<"\n";
 	return ret;
+}
+
+QString Mot::liens()
+{
+	return _affLiens;
 }
 
 MapLem Mot::morphos()
@@ -292,6 +323,13 @@ void Mot::setPonctG(QString p)
 QList<Super*> Mot::super()
 {
 	return _super;
+}
+
+bool Mot::superDe(Mot *m)
+{
+	foreach (Super *s, _super)
+		if (s->motSub() == m) return true;
+	return false;
 }
 
 Syntaxe::Syntaxe(QString t, Lemmat *parent)
@@ -357,18 +395,20 @@ bool Syntaxe::accord(QString ma, QString mb, QString cgn)
  * \brief Analyse de la phrase courante à la position p
  *        du texte t.
  */
-QString Syntaxe::analyse (QString t, int p)
+QString Syntaxe::analyse(QString t, int p)
 {
 	const QList<QChar> chl;
 	const int tl = t.length()-1;
 	const QString pp = ".;!?";
+	// supprimer les non-alpha de tête
 	// régression au début de la phrase
 	int dph = p;
 	while (dph > 0 && !pp.contains(t.at(dph))) --dph;
 	// calcul de la position du mot courant
 	QString ante = t.mid (dph, p-dph);
-	QStringList lante = ante.split(QRegExp("\\s"));
-	//int pmc = lante.count(); // pmc = position du mot courant.
+	while (!ante.at(0).isLetter()) ante.remove(0,1);
+	QStringList lante = ante.split(QRegExp("\\W+"));
+	int pmc = lante.count(); // pmc = position du mot courant.
 	// progression jusqu'en fin de phrase 
 	int fph = p;
 	while (fph < tl && !pp.contains(t.at(fph))) ++fph;
@@ -389,21 +429,12 @@ QString Syntaxe::analyse (QString t, int p)
 		_mots.append (nm);
 		nm->setRang(_mots.count());
 	}
-	//QString ret;
 
-    // Analyse de la phrase, algorithme copié depuis ../NOTES.md
-	// Initialiser r = 0, x = 1.
-	r = 0; x = 1;
-	_rapport.clear();
-	int g;
-	do 
-	{
-		g = groupe(); 
-		++x;
-	}
-	while (g > -1);
-
-	return "en test";
+	int nbmots = _mots.count();
+	r = 0;
+	while (r < nbmots && r > -1)
+		r = groupe(r);
+	return _mots.at(pmc)->liens();
 }
 
 QString Syntaxe::analyseM (QString t, int p)
@@ -642,54 +673,45 @@ QString Syntaxe::analyseM (QString t, int p)
 	return ret.join ("<hr/>");
 }
 
+bool Syntaxe::estSuper(Mot *sup, Mot *sub)
+{
+	foreach(Super *s, sup->super())
+		if (s->motSub() == sub)
+			return true;
+	return false;
+}
+
 /**
  * \fn int Syntaxe::groupe()
  * \brief renvoie le rang du père de mot[r]
  */
-int Syntaxe::groupe()
+int Syntaxe::groupe(int r)
 {
-	Mot *courant = _mots.at(r);
-	qDebug()<<"groupe"<<courant->gr();
-	// 0. si r == 0, passer à 3 (progressive)
-	if (r > 0)
+	/*
+	 	. si mot[r] orphelin, tester mot[r+x] comme super de mot[r]
+	 	. si négatif
+	    	. bool enGroupe = true
+			. tant que (enGroupe et r+x >0 et < nbmots)
+	 			. tester mot[r+x] comme sub de mot[r]
+				. si positif incrémenter x
+				. si négatif, tester groupe (r+x);
+			. renvoyer r+x
+	 */
+	qDebug()<<"groupe("<<r<<");";
+	Mot *cour = _mots.at(r);
+	int x = 1;
+	while (r+x < _mots.count())
 	{
-    	// 2. Recherche régressive
-		//  . Si mot[r] est orphelin, tester le mot[r-x] comme super,
-		//    et si c'est positif
-		//	    * déclarer mot[r-x] comme super : 
-		//		* initialiser x = 1;
-		//		* passer à 3 ;
-		//	. si mot[r-x] a déjà un super, c'est qu'il est à sa gauche. donc,
-		//      affecter r = mot[r-x]->rangSuper(), et revenir à 2 ;
-		//	. si mot[r-x] est sub, l'intégrer au groupe, décrémenter r (si r > 0), 
-		//	  revenir à 2.
-		//	. si mot[r-x] n'est pas sub, intialiser x = 1 passer à 3.
-	}
-    // 3. Recherche progressive
-	//    . Si mot[r] n'a pas encore de Super, tester le mot[r+x]
-	//      pour savoir s'il est super.
-	if (orphelin(courant) && super(_mots.at(r+x), courant))
-	{
-		// 	. si oui, déclarer mot[r+x] comme super, 
-		//	. clore la recherche : renvoyer le n° du super.
-		return r+x;
-	}
-    //    . Tester le mot[r+x] pour savoir s'il est sub.
-	bool estNoyau = true;
-	qDebug()<<"   OK";
-	while (estNoyau)
-	{
-		qDebug()<<"    nb super de courant"<<courant->super().count();
-		//    . s'il est sub, l'intégrer au groupe, incrémenter x
-		//	  et revenir à 3.
-		if (super(courant, _mots.at(r+x)))
+		// si mot[r] orphelin, tester mot[r+x] comme super de mot[r]
+		if (cour->orphelin())
 		{
-			// l'intégrer au groupe, incrémenter x
-			++x;
+	 	    // si positif, retourner r+x.
+			if (super(_mots.at(r+x), cour))
+				return r+x;
 		}
-		else estNoyau = false;
+		if (super(_mots.at(r+x), cour)) ++x;
+		else return groupe(r+x);
 	}
-	//	. Si le mot n'a pas de père, sortie de l'algo.
 	return -1;
 }
 
@@ -711,7 +733,7 @@ QString Syntaxe::motSous(int p)
 bool Syntaxe::orphelin(Mot *m)
 {
 	for (int i=0;i<m->rang();++i)
-		if (super(_mots.at(i), m))
+		if (estSuper(_mots.at(i), m))
 			return false;
 	return true;
 }
@@ -736,6 +758,11 @@ bool Syntaxe::super(Mot *sup, Mot *sub)
 					&& (accord(s->morpho().join(' '), sl.morpho, s->regle()->accord())))
 				{
 					s->addSub(sub);
+					// ajouter les chaînes d'affichage (règle, lien, traduction)
+					QString t = tr(s->regle(), s->lemme(), s->strMorpho(),
+								   l, sl.morpho);
+					sup->addLien(t);
+					sub->addLien(t);
 			    }
 			}
 		}

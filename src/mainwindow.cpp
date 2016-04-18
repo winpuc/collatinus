@@ -121,10 +121,9 @@ void EditLatin::mouseReleaseEvent (QMouseEvent *e)
 		if (!mainwindow->dockSynt->visibleRegion().isEmpty())
 		{
 			// passer le texte au module syntaxe pour calcul
+			mainwindow->textBrowserSynt->setText(mainwindow->syntaxe->analyse(toPlainText(), textCursor().position()));
 			// appondre le résultat
-			//QTextCursor cursor = textCursor();
-			mainwindow->textBrowserSynt->setText
-				(mainwindow->syntaxe->analyse(toPlainText(), textCursor().position()));
+			// = liens du mot cliqué.
 			mainwindow->textBrowserSynt->moveCursor(QTextCursor::Start);
 		}
 	}

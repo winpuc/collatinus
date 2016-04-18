@@ -59,6 +59,8 @@ Requis :
   un hyperlien vers plus, pluris, et vers plurimus, a, um.
 
 ## Branche syntaxe
+   * But : ne donner que le(s) père(s) du mot cliqué, avec traduction.
+   * Arbre en arcs :
      Forte potantibus his apud Sextum Tarquinium, ubi et Collatinus cenabat Tarquinius, Egeri filius, incidit de uxoribus mentio.  
      ^     |  ^ | |   ^   ^ ||  ^ |        ^      ^ | ^   | | ^      | ^      ^  |         ^   | ^     | | |  ^|    ^       ^  
      |     |  | | |   |   | ||  | |        |      | | |   | | |      | |      |  |         |   | |     | | |  ||    |       |  
@@ -85,32 +87,26 @@ Requis :
        +---------+    
 
    * Algo :
-	   (qui souffre sans doute d'erreurs logiques.)
-	 Initialiser r = 0, x = 1.
-	 0. si r == 0, passer à 3.
-     2. Recherche régressive
-	    . Si mot[r] est orphelin, tester le mot[r-x] comme super,
-	      et si c'est positif
-		    * déclarer mot[r-x] comme super : 
-			* initialiser x = 1;
-			* passer à 3 ;
-		. si mot[r-x] a déjà un super, c'est qu'il est à sa gauche. donc,
-	      affecter r = mot[r-x]->rangSuper(), et revenir à 2 ;
-		. si mot[r-x] est sub, l'intégrer au groupe, décrémenter r (si r > 0), 
-		  revenir à 2.
-		. si mot[r-x] n'est pas sub, intialiser x = 1 passer à 3.
-     3. Recherche progressive
-	    . Si mot[r] n'a pas encore de Super, tester le mot[r+x]
-	    pour savoir s'il est super.
-	 	. si oui, déclarer mot[r+x] comme super, interrompre la
-		  recherche de subs, 
-		. clore la recherche : renvoyer le n° du super.
-        . Tester le mot[r+x] pour savoir s'il est sub.
-	    . s'il est sub, l'intégrer au groupe, incrémenter x
-		  et revenir à 3.
-		. sinon, r = r+x; x = 1; et revenir à 0; on reprendra
-		  à 3 avec r = noyau du père de mot[r+x]
-		. Si le mot n'a pas de père, sortie de l'algo.
+     1. Analyser entièrement la phrase
+	 2. Donner le(s) super(s) du mot r, et ses subs.
+
+	 I. Analyse de la phrase par progression
+	 while (r < nmbots) r = groupe(r);
+	 return mots[r]->liens();
+
+	int groupe(r)
+	{
+	 	. tester mot[r+x] comme super de mot[r]
+	 	. si positif,
+	 		. retourner r+x.
+	 	. si négatif
+	    	. bool enGroupe = true
+			. tant que (enGroupe et r+x >0 et < nbmots)
+	 			. tester mot[r+x] comme sub de mot[r]
+				. si positif incrémenter x
+				. si négatif, tester groupe (r+x);
+			. renvoyer r+x
+	}
 
 ## Branche maj
 Branche de mise à jour des lexiques.
