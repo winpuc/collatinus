@@ -166,7 +166,7 @@ QString RegleS::tr()
 	return _tr;
 }
 
-Super::Super (RegleS *r, Lemme *l, QStringList m, Mot *parent)
+Super::Super (RegleS *r, Lemme *l, QString m, Mot *parent)
 {
 	_regle = r;
 	_lemme = l;
@@ -192,7 +192,7 @@ Lemme* Super::lemme()
 	return _lemme;
 }
 
-QStringList Super::morpho()
+QString Super::morpho()
 {
 	return _morpho;
 }
@@ -217,11 +217,6 @@ void Super::setTraduction(QString t)
 	_traduction = t;
 }
 
-QString Super::strMorpho()
-{
-	return _morpho.join(' ');
-}
-
 QString Super::traduction()
 {
 	return _traduction;
@@ -241,8 +236,8 @@ Mot::Mot(QString g)
 
 void Mot::addLien(QString l)
 {
-	qDebug()<<"    "<<_gr<<"addlien"<<l;
-	_affLiens.append(l);
+	if (!_affLiens.contains(l))
+		_affLiens.append(l);
 }
 
 void Mot::addRSub(RegleS *r)
@@ -250,7 +245,7 @@ void Mot::addRSub(RegleS *r)
 	_rSub.append (r);
 }
 
-void Mot::addSuper(RegleS *r, Lemme *l, QStringList m)
+void Mot::addSuper(RegleS *r, Lemme *l, QString m)
 {
 	_super.append (new Super(r, l, m, this));
 }
@@ -272,7 +267,7 @@ QString Mot::humain()
 
 QString Mot::liens()
 {
-	return _affLiens;
+	return _affLiens.join("<br/>");
 }
 
 MapLem Mot::morphos()
@@ -408,7 +403,7 @@ QString Syntaxe::analyse(QString t, int p)
 	QString ante = t.mid (dph, p-dph);
 	while (!ante.at(0).isLetter()) ante.remove(0,1);
 	QStringList lante = ante.split(QRegExp("\\W+"));
-	int pmc = lante.count(); // pmc = position du mot courant.
+	int pmc = lante.count()-1; // pmc = position du mot courant.
 	// progression jusqu'en fin de phrase 
 	int fph = p;
 	while (fph < tl && !pp.contains(t.at(fph))) ++fph;
@@ -426,10 +421,28 @@ QString Syntaxe::analyse(QString t, int p)
 		QString psuiv = lm.at(i+1);
 		psuiv.remove (QRegExp("\\s"));
 		nm->setPonctD(psuiv);
+		// Peuplement de la liste _super
+		// pour chaque règle syntaxique
+		foreach (RegleS *r, _regles)
+		{
+			// pour chaque lemme de motCour
+			foreach (Lemme *l, nm->morphos().keys())
+			{
+				// pour chaque morpho du lemme
+				QList<SLem> lsl = nm->morphos().value(l);
+				foreach (SLem sl, lsl)
+				{
+					QString msup = sl.morpho;
+					if (r->estSuper(l, msup))
+					{
+						nm->addSuper(r, l, msup);
+					}
+				}
+			}
+		}
 		_mots.append (nm);
 		nm->setRang(_mots.count());
 	}
-
 	int nbmots = _mots.count();
 	r = 0;
 	while (r < nbmots && r > -1)
@@ -492,7 +505,7 @@ QString Syntaxe::analyseM (QString t, int p)
 			{
 				QString msup = sl.morpho;
 				if (r->estSuper(l, msup))
-					_motCour->addSuper(r,l,msup.split(' '));
+					_motCour->addSuper(r,l,msup);
 			}
 		}
 	}
@@ -552,7 +565,7 @@ QString Syntaxe::analyseM (QString t, int p)
 				    foreach (SLem sl, lsl)
 					{
 					    if (sup->estSub(l, sl.morpho, true)
-						    && (accord(sup->morpho().join(' '), sl.morpho, sup->regle()->accord()))
+						    && (accord(sup->morpho(), sl.morpho, sup->regle()->accord()))
 							// contiguïté sans virgule
 							//&& (sup->regle())
 							)
@@ -563,7 +576,7 @@ QString Syntaxe::analyseM (QString t, int p)
 						 	    << sup->regle()->fonction(_motCour, mp)
 							    << "<br/>    " << sup->regle()->doc()
 							    << "<br/>    <em>"
-							    << tr(sup->regle(), sup->lemme(), sup->morpho().join(' '), l, sl.morpho)
+							    << tr(sup->regle(), sup->lemme(), sup->morpho(), l, sl.morpho)
 							    << "</em></div>";
 						    ret << lin;
 							estLie = true;
@@ -583,7 +596,7 @@ QString Syntaxe::analyseM (QString t, int p)
 				    foreach (SLem sl, lsl)
 					{
 					    if (sup->estSub(l, sl.morpho, true)
-						    && (accord(sup->morpho().join(' '), sl.morpho, sup->regle()->accord())))
+						    && (accord(sup->morpho(), sl.morpho, sup->regle()->accord())))
 					    {
 						    QString lin;
 						    QTextStream (&lin)
@@ -591,7 +604,7 @@ QString Syntaxe::analyseM (QString t, int p)
 						 	    << sup->regle()->fonction(_motCour, mp)
 							    << "<br/>    " << sup->regle()->doc()
 							    << "<br/>    <em>"
-							    << tr(sup->regle(), sup->lemme(), sup->morpho().join(' '), l, sl.morpho)
+							    << tr(sup->regle(), sup->lemme(), sup->morpho(), l, sl.morpho)
 							    << "</em></div>";
 						    ret << lin;
 							courSubP = true;
@@ -622,7 +635,7 @@ QString Syntaxe::analyseM (QString t, int p)
 				    foreach (SLem sl, lsl)
 				    {
 					    if (sup->estSub(l, sl.morpho, false)
-						    && (accord(sup->morpho().join(' '), sl.morpho, sup->regle()->accord())))
+						    && (accord(sup->morpho(), sl.morpho, sup->regle()->accord())))
 					    {
 						    QString lin;
 						    QTextStream(&lin)
@@ -630,7 +643,7 @@ QString Syntaxe::analyseM (QString t, int p)
 						 	    << sup->regle()->fonction(_motCour, ms)
 							    << "<br/>    " << sup->regle()->doc()
 							    << "<br/>    <em>"
-                                << tr(sup->regle(), sup->lemme(), sup->morpho().join(' '), l, sl.morpho)
+                                << tr(sup->regle(), sup->lemme(), sup->morpho(), l, sl.morpho)
 							    << "</em>";
 						    ret << lin;
 							estLie = true;
@@ -651,7 +664,7 @@ QString Syntaxe::analyseM (QString t, int p)
 				    foreach (SLem sl, lsl)
 				    {
 					    if (sup->estSub(l, sl.morpho, false)
-						    && (accord(sup->morpho().join(' '), sl.morpho, sup->regle()->accord())))
+						    && (accord(sup->morpho(), sl.morpho, sup->regle()->accord())))
 					    {
 						    QString lin;
 						    QTextStream(&lin)
@@ -659,7 +672,7 @@ QString Syntaxe::analyseM (QString t, int p)
 						 	    << sup->regle()->fonction(_motCour, ms)
 							    << "<br/>    " << sup->regle()->doc()
 							    << "<br/>    <em>"
-                                << tr(sup->regle(), sup->lemme(), sup->morpho().join(' '), l, sl.morpho)
+                                << tr(sup->regle(), sup->lemme(), sup->morpho(), l, sl.morpho)
 							    << "</em>";
 						    ret << lin;
 							courSubS = true;
@@ -697,7 +710,6 @@ int Syntaxe::groupe(int r)
 				. si négatif, tester groupe (r+x);
 			. renvoyer r+x
 	 */
-	qDebug()<<"groupe("<<r<<");";
 	Mot *cour = _mots.at(r);
 	int x = 1;
 	while (r+x < _mots.count())
@@ -755,14 +767,16 @@ bool Syntaxe::super(Mot *sup, Mot *sub)
 			foreach (SLem sl, lsl)
 			{
 				if (s->estSub(l, sl.morpho, false)
-					&& (accord(s->morpho().join(' '), sl.morpho, s->regle()->accord())))
+					&& (accord(s->morpho(), sl.morpho, s->regle()->accord())))
 				{
 					s->addSub(sub);
 					// ajouter les chaînes d'affichage (règle, lien, traduction)
-					QString t = tr(s->regle(), s->lemme(), s->strMorpho(),
-								   l, sl.morpho);
-					sup->addLien(t);
-					sub->addLien(t);
+					QString lien = s->regle()->fonction(sup, sub);
+					QString trad = tr(s->regle(), s->lemme(), s->morpho(), l, sl.morpho);
+					QTextStream ts(&lien);
+					ts << " tr. <em>" << trad << "</em>";
+					sup->addLien(lien);
+					sub->addLien(lien);
 			    }
 			}
 		}

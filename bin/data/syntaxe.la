@@ -34,8 +34,8 @@ super::v:
 sub::d:
 tr:<super> <sub>
 
-id:advRel
-doc:ubi, quando, unde, adv. relatif, sont subordonnés un compl. circ.
+!id:advRel
+!doc:ubi, quando, unde, adv. relatif, sont subordonnés un compl. circ.
 
 id:cod
 doc:complément d'objet direct

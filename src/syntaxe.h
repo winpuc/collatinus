@@ -133,17 +133,16 @@ class Super: public QObject
 	private:
 		RegleS       *_regle;
 		Lemme        *_lemme;
-		QStringList   _morpho;
+		QString       _morpho;
 		Mot          *_mot;
 		Mot          *_motSub;
 		QString       _traduction;
 	public:
-		Super(RegleS *r, Lemme *l, QStringList m, Mot *parent);
+		Super(RegleS *r, Lemme *l, QString m, Mot *parent);
 		void          addSub(Mot *m);
 		bool          estSub(Lemme *l, QString morpho, bool ante);
 		Lemme*        lemme();
-		QString       strMorpho();
-		QStringList   morpho();
+		QString       morpho();
 		Mot*          mot();
 		Mot*          motSub();
 		RegleS*       regle();
@@ -160,7 +159,7 @@ class Mot: public QObject
 
 	private:
 		QString          _gr;
-		QString          _affLiens;
+		QStringList      _affLiens;
 		MapLem           _morphos;
 		QString          _ponctD;
 		QString          _ponctG;
@@ -171,7 +170,7 @@ class Mot: public QObject
 		Mot (QString g);
 		void          addLien(QString l);
 		void          addRSub(RegleS *r);
-		void          addSuper(RegleS *r, Lemme *l, QStringList m);
+		void          addSuper(RegleS *r, Lemme *l, QString m);
 		QString       gr();
 		QString       humain();
 		QString       liens(); // renvoie _affliens
