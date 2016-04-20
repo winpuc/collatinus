@@ -711,20 +711,23 @@ int Syntaxe::groupe(int r)
 			. renvoyer r+x
 	 */
 	Mot *cour = _mots.at(r);
+	bool debog = (cour->gr() == "apud");
 	int x = 1;
 	while (r+x < _mots.count())
 	{
+		Mot *mTest = _mots.at(r+x);
+		if (debog) qDebug()<<"test"<< cour->gr() <<"<->"<<mTest->gr();
 		// si mot[r] orphelin, tester mot[r+x] comme super de mot[r]
 		if (cour->orphelin())
 		{
 	 	    // si positif, retourner r+x.
-			if (super(_mots.at(r+x), cour))
+			if (super(mTest, cour))
 				return r+x;
 		}
-		if (super(_mots.at(r+x), cour)) ++x;
+		if (super(cour, mTest)) ++x;
 		else return groupe(r+x);
 	}
-	return -1;
+	return ++r;
 }
 
 QString Syntaxe::motSous(int p)
