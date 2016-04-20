@@ -104,7 +104,7 @@ Requis :
 			. tant que (enGroupe et r+x >0 et < nbmots)
 	 			. tester mot[r+x] comme sub de mot[r]
 				. si positif incrémenter x
-				. si négatif, tester groupe (r+x);
+				. si négatif, sortir de la boucle
 			. renvoyer r+x
 	}
 
