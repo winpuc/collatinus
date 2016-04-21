@@ -25,6 +25,7 @@ Requis :
   ou après avoir installé un raccourci.
 
 ## BOGUES ET PROBLÈMES
+- Plantage après Fichier/Nouveau
 - Flexion de multus et ses degrés allogènes (plus, plurimus)
 
 ## À FAIRE :

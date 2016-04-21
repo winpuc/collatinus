@@ -97,7 +97,7 @@ sub::n,p:acc
 tr:<super> <sub>
 
 id:sujet
-doc:un nom ou un pronom au nominatif est sujet d'un verbe conjugué
+doc:un nom ou un pronom au nominatif peut être sujet d'un verbe à l'indicatif
 f:<sub> ѕujet du verbe <super>
 super::v:indic
 sub::n,p:nomin
@@ -105,3 +105,13 @@ synt:c
 tr:<sub> <super>
 accord:n
 
+id:sujetSubj
+doc:un nom ou un pronom au nominatif peut être sujet d'un verbe au subjonctif
+f:<sub> ѕujet du verbe <super>
+super::v:subj
+sub::n,p:nomin
+synt:c
+tr:<sub> <super>
+accord:n
+
+! explicit

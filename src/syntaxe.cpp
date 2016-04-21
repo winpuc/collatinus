@@ -277,7 +277,9 @@ MapLem Mot::morphos()
 
 bool Mot::orphelin()
 {
-	return _super.empty();
+	foreach (Super *s, _super)
+		if (s->motSub() != NULL) return false;
+	return true;
 }
 
 QString Mot::ponctD()
@@ -392,6 +394,9 @@ bool Syntaxe::accord(QString ma, QString mb, QString cgn)
  */
 QString Syntaxe::analyse(QString t, int p)
 {
+	// effacer l'analyse précédentre
+	_mots.clear();
+	// initialisations
 	const QList<QChar> chl;
 	const int tl = t.length()-1;
 	const QString pp = ".;!?";
@@ -700,16 +705,6 @@ bool Syntaxe::estSuper(Mot *sup, Mot *sub)
  */
 int Syntaxe::groupe(int r)
 {
-	/*
-	 	. si mot[r] orphelin, tester mot[r+x] comme super de mot[r]
-	 	. si négatif
-	    	. bool enGroupe = true
-			. tant que (enGroupe et r+x >0 et < nbmots)
-	 			. tester mot[r+x] comme sub de mot[r]
-				. si positif incrémenter x
-				. si négatif, tester groupe (r+x);
-			. renvoyer r+x
-	 */
 	Mot *cour = _mots.at(r);
 	int x = 1;
 	while (r+x < _mots.count())
