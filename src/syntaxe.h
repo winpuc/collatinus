@@ -159,8 +159,10 @@ class Mot: public QObject
 	Q_OBJECT
 
 	private:
-		QString          _gr;
 		QStringList      _affLiens;
+		QString          _gr;
+		int              _grPrim; // rang du premier mot du groupe
+		int              _grUlt;  // rang du dernier mot du groupe
 		MapLem           _morphos;
 		QString          _ponctD;
 		QString          _ponctG;
@@ -173,6 +175,9 @@ class Mot: public QObject
 		void          addRSub(RegleS *r);
 		void          addSuper(RegleS *r, Lemme *l, QString m);
 		QString       gr();
+		void          grCalc();   // met à jour _grPrim et _grUlt;
+		int           grPrim();
+		int           grUlt();
 		QString       humain();
 		QString       liens(); // renvoie _affliens
 		MapLem        morphos();   
@@ -188,6 +193,7 @@ class Mot: public QObject
 		void          setRSuper(QList<RegleS*>);
 		QList<Super*> super(); // liste des règles qui peuvent faire du mot un super
 		bool          superDe(Mot *m);
+		bool          terminal(); // pas de sub
 };
 
 class Syntaxe: public QObject
@@ -221,6 +227,7 @@ class Syntaxe: public QObject
 		bool    super(Mot *sup, Mot *sub); // construit le lien
 		QString tr(RegleS *r, Lemme *sup, QString msup, Lemme *sub, QString msub);
 		QString trLemme(Lemme *l, QString m);
+		bool    virgule(Mot *ma, Mot *mb); // vrai si une virgule sépare 2 mots successifs
 };
 
 #endif

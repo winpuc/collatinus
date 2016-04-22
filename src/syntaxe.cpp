@@ -263,6 +263,39 @@ QString Mot::gr()
 	return _gr;
 }
 
+void Mot::grCalc()
+{
+	foreach (Super *s, _super)
+	{		
+		if (s->motSub() == NULL) continue;
+		if (s->motSub()->terminal())
+		{
+			if (s->motSub()->rang() < _grPrim)
+				_grPrim = s->motSub()->rang();
+			if (s->motSub()->rang() > _grUlt)
+				_grUlt = s->motSub()->rang();
+		}
+		else
+		{
+			s->motSub()->grCalc();
+			int grp = s->motSub()->grPrim();
+			if (grp < _grPrim) _grPrim = grp;
+			int gru = s->motSub()->grUlt();
+			if (gru > _grUlt) _grUlt = gru;
+		}
+	}
+}
+
+int Mot::grPrim()
+{
+	return _grPrim;
+}
+
+int Mot::grUlt()
+{
+	return _grUlt;
+}
+
 QString Mot::humain()
 {
 	QString ret;
@@ -317,7 +350,9 @@ void Mot::setPonctD(QString p)
 
 void Mot::setRang(int r)
 {
-	_rang = r;
+	_rang   = r;
+	_grPrim = r;
+	_grUlt  = r;
 }
 
 void Mot::setPonctG(QString p)
@@ -335,6 +370,13 @@ bool Mot::superDe(Mot *m)
 	foreach (Super *s, _super)
 		if (s->motSub() == m) return true;
 	return false;
+}
+
+bool Mot::terminal()
+{
+	foreach (Super *s, _super)
+		if (s->motSub() != NULL) return false;
+	return true;
 }
 
 Syntaxe::Syntaxe(QString t, Lemmat *parent)
@@ -427,7 +469,7 @@ QString Syntaxe::analyse(QString t, int p)
 	{
 		QString m = lm.at(i);
 		Mot *nm = new Mot(m);
-		nm->setMorphos(_lemmatiseur->lemmatiseM(m));
+		nm->setMorphos(_lemmatiseur->lemmatiseM(m, true));
 		QString pprec = lm.at(i-1);
 		pprec.remove (QRegExp("\\s"));
 		nm->setPonctG(pprec);
@@ -487,7 +529,7 @@ QString Syntaxe::analyseM (QString t, int p)
 		if ((!c.isLetter() || i==0) && !m.isEmpty())
 		{
 			Mot *nm = new Mot(m);
-			nm->setMorphos(_lemmatiseur->lemmatiseM(m));
+			nm->setMorphos(_lemmatiseur->lemmatiseM(m, true));
 			_motsP << nm;
 			m.clear();
 			nm->setPonctG(ponctG);
@@ -580,7 +622,7 @@ QString Syntaxe::analyseM (QString t, int p)
 					    if (sup->estSub(l, sl.morpho, true)
 						    && (accord(sup->morpho(), sl.morpho, sup->regle()->accord()))
 							// contiguïté sans virgule
-							//&& (sup->regle())
+							&& (!(sup->regle()->synt().contains('c') && virgule(_motCour, mp)))
 							)
 					    {
 						    QString lin;
@@ -807,7 +849,7 @@ QString Syntaxe::tr(RegleS *r, Lemme *sup, QString msup, Lemme *sub, QString msu
 	return t;
 }
 
-QString Syntaxe::trLemme (Lemme *l, QString m)
+QString Syntaxe::trLemme(Lemme *l, QString m)
 {
 	QStringList ret;
 	QStringList ltr = l->traduction("fr").split(QRegExp("[;,]"));
@@ -836,3 +878,13 @@ QString Syntaxe::trLemme (Lemme *l, QString m)
     ret.removeDuplicates();
 	return ret.join(", ");
 }
+
+bool Syntaxe::virgule(Mot *ma, Mot *mb)
+{
+	int ecart = ma->rang() - mb->rang();
+	if (abs(ecart) > 1) return false;
+	if ((ecart < 0) && !ma->ponctG().isEmpty()) return true;
+	if ((ecart > 0) && !ma->ponctD().isEmpty()) return true;
+	return false;
+}
+

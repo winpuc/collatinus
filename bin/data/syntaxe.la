@@ -54,6 +54,7 @@ doc:Un nom ou un pronom au génitif est complément d'un autre nom ou d'un prono
 f:<sub> complément du (pro)nom <super>
 super::n,p:
 sub::n,p:gén
+synt:u
 tr:<super> de <sub>
 
 id:epithete
