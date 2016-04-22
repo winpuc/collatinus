@@ -30,12 +30,7 @@ Requis :
 
 ## À FAIRE :
 - Créer une branche exponct (u exponctué de volvo, sanguinis, unicode 1EE5 ụ )
-- Tester des liens syntaxiques
-  * morpho du mot
-  * lien avec un autre mot
-  * id du lien
-  * traduction approximative du lien
-  * éventuellement : possibilité de déclarer un lien comme sûr,   
+- éventuellement : possibilité de déclarer un lien comme sûr,   
     ce qui permet d'éliminer par le suite des concurrents.
 - téléchargement : éliminer les fichiers homonymes d'une 
   version antérieure.
@@ -86,28 +81,8 @@ Requis :
        ^   |     |        ^
        |   +-----|--------+
        +---------+    
+   * Écrire des fonctions de début et din de groupe (super -> sub -> sub etc.).
 
-   * Algo :
-     1. Analyser entièrement la phrase
-	 2. Donner le(s) super(s) du mot r, et ses subs.
-
-	 I. Analyse de la phrase par progression
-	 while (r < nmbots) r = groupe(r);
-	 return mots[r]->liens();
-
-	int groupe(r)
-	{
-	 	. tester mot[r+x] comme super de mot[r]
-	 	. si positif,
-	 		. retourner r+x.
-	 	. si négatif
-	    	. bool enGroupe = true
-			. tant que (enGroupe et r+x >0 et < nbmots)
-	 			. tester mot[r+x] comme sub de mot[r]
-				. si positif incrémenter x
-				. si négatif, sortir de la boucle
-			. renvoyer r+x
-	}
 
 ## Branche maj
 Branche de mise à jour des lexiques.
