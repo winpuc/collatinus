@@ -18,6 +18,7 @@
 !
 ! Codes synt : b = bloquant : on ne sort pas du groupe tant que sub n'est pas trouvé à droite. 
 !              c = contigu : si <super> et <sub> se suivent immédiatement, ponctuation interdite
+!              u = unique : le super n'a qu'un sub utilisant cette règle
 
 id:ablAbs
 doc:L'ablatif absolu est le groupe formé par un participe à l'ablatif accordé avec un nom ou un pronom, et les groupes subordonnés à ces deux éléments
@@ -68,7 +69,7 @@ doc:un nom apposé suit directement un autre nom, est complètement accordé ave
 f:<sub> apposé à <super>
 super::n,p:
 sub::n,p:
-accord:c
+accord:cn
 sens:>
 tr:<super> <sub>
 
@@ -86,6 +87,7 @@ f:<sub> régime à l'ablatif de la préposition <super>
 sens:>
 super:a,ab,de,ex:r::
 sub::n,p:abl
+synt:u
 tr:<super> <sub>
 
 id:regimeAcc
@@ -94,6 +96,7 @@ f:<sub> régime à l'accusatif de la préposition <super>
 sens:>
 super:ad,adversus,apud,contra,in,intra,ob,per,post,praeter,propter,super,usque:::
 sub::n,p:acc
+synt:u
 tr:<super> <sub>
 
 id:sujet

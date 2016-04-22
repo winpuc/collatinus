@@ -161,6 +161,11 @@ QString RegleS::fonction(Mot *super, Mot *sub)
 	return ret;
 }
 
+QString RegleS::synt()
+{
+	return _synt;
+}
+
 QString RegleS::tr()
 {
 	return _tr;
@@ -183,7 +188,10 @@ void Super::addSub(Mot *m)
 
 bool Super::estSub(Lemme *l, QString morpho, bool ante)
 {
-	if (!_regle->estSub(l, morpho, ante)) return false;
+	if (!_regle->estSub(l, morpho, ante))
+		return false;
+	if (_motSub != NULL && _regle->synt().contains('u'))
+		return false;
 	return true;
 }
 

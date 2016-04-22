@@ -117,12 +117,13 @@ class RegleS: public QObject
 	public:
 		RegleS (QStringList lignes);
 		QString         accord();
+        bool            bloquant();
 		QString         doc();
-		QString         id();
-		QString         fonction(Mot *super=0, Mot *sub=0);
 		bool            estSub(Lemme *l, QString morpho, bool ante);
 		bool            estSuper(Lemme *l, QString morpho);
-        bool            bloquant();
+		QString         fonction(Mot *super=0, Mot *sub=0);
+		QString         id();
+		QString         synt();
 		QString         tr();
 };
 
