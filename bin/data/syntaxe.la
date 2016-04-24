@@ -45,8 +45,8 @@ tr:<super>..., <sub>...
 id:cod
 doc:complément d'objet direct
 f:<super> COD de <sub>
-super::v:ind subj
-ѕub::n pr:acc
+super::v:act
+sub::n,p:acc
 tr:<super> <sub>
 
 id:cdn
@@ -108,6 +108,14 @@ sub::n,p:nomin
 synt:cu
 tr:<sub> <super>
 accord:n
+
+id:sujetInfNarr
+doc:un nom ou un pronom au nominatif peut être sujet d'un verbe à l'infinitif de narration
+f:<sub> ѕujet du verbe <super>
+super::v:infin
+sub::n,p:nomin
+synt:cu
+tr:<sub> de <super>
 
 id:sujetSubj
 doc:un nom ou un pronom au nominatif peut être sujet d'un verbe au subjonctif
