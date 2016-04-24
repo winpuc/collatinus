@@ -128,17 +128,17 @@ Lemme::Lemme (QString linea, QObject *parent)
 	// écrire un contrôle d'erreur
 
 	_indMorph = eclats.at (4);
-	_pos = '-';
-    if      (_indMorph.contains ("adj.")) _pos = 'a';
-    else if (_indMorph.contains ("conj")) _pos = 'c';
-    else if (_indMorph.contains ("excl")) _pos = 'e';
-    else if (_indMorph.contains ("interj")) _pos = 'i';
-    else if (_indMorph.contains ("num")) _pos = 'm';
-    else if (_indMorph.contains ("pron.")) _pos = 'p';
-	else if (_indMorph.contains ("prép")) _pos = 'r';
-    else if (_indMorph.contains ("adv")) _pos = 'd';
-    else if (_indMorph.contains ("n. ")) _pos = 'n';
-	else _pos = _modele->pos();
+	_pos.clear();
+    if      (_indMorph.contains ("adj."))   _pos.append('a');
+    else if (_indMorph.contains ("conj"))   _pos.append('c');
+    else if (_indMorph.contains ("excl"))   _pos.append('e');
+    else if (_indMorph.contains ("interj")) _pos.append('i');
+    else if (_indMorph.contains ("num"))    _pos.append('m');
+    else if (_indMorph.contains ("pron."))  _pos.append('p');
+	else if (_indMorph.contains ("prép"))   _pos.append('r');
+    else if (_indMorph.contains ("adv"))    _pos.append('d');
+    else if (_indMorph.contains ("n. "))    _pos.append('n');
+	else _pos.append(_modele->pos());
 
 	QRegExp c("cf\\.\\s(\\w+)$");
 	int pos = c.indexIn(_indMorph);
@@ -353,7 +353,7 @@ QString Lemme::oteNh (QString g, int &nh)
  *        catégorie (part of speech, pars orationis)
  *        du lemme.
  */
-QChar Lemme::pos ()
+QString Lemme::pos ()
 {
 	return _pos;
 }

@@ -189,9 +189,13 @@ void Super::addSub(Mot *m)
 bool Super::estSub(Lemme *l, QString morpho, bool ante)
 {
 	if (!_regle->estSub(l, morpho, ante))
+	{
 		return false;
+	}
 	if (_motSub != NULL && _regle->synt().contains('u'))
+	{
 		return false;
+	}
 	return true;
 }
 
@@ -807,6 +811,8 @@ void Syntaxe::setText (QString t)
 
 bool Syntaxe::super(Mot *sup, Mot *sub)
 {
+	//bool debog = sup->gr()=="laudare" && sub->gr()=="suam";
+	//if (debog) 
 	foreach (Super *s, sup->super())
 	{
 		// tester toutes les possibilités du mot sub
@@ -856,6 +862,18 @@ QString Syntaxe::trLemme(Lemme *l, QString m)
 	{
 		// supprimer les parenthèses dans la ligne de bin/data/lemmes.fr
 		tr.remove (QRegExp ("[(\\[][^)^\\]]*[)\\]]"));
+		QString pos = l->pos();
+		if (pos.contains('a')) ret << accorde(tr, m);
+		if (pos.contains('n'))
+		{
+			if (m.contains("plur"))
+				ret << pluriel(tr, m);
+			else ret << tr;
+		}
+		if (pos.contains('p')) ret << _pronom->accorde(tr,m);
+		if (pos.contains('v')) ret << conjnat(tr, m);
+		if (ret.empty()) ret << tr;
+		/*
 		switch (l->pos().unicode())
 		{
             // TODO : l'adjectif français doit avoir la
@@ -872,7 +890,7 @@ QString Syntaxe::trLemme(Lemme *l, QString m)
 			case 'v': ret << conjnat(tr, m); break;
 			default: ret << tr;
 		}
-        //if (l->pos()=='p') qDebug()<<m<<_pronom->accorde(tr,m)<<"RET"<<ret;
+		*/
 	}
     ret.removeDuplicates();
 	return ret.join(", ");

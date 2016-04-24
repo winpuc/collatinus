@@ -65,7 +65,7 @@ class Lemme: public QObject
 		int                     _nh;
 		Lemmat*                 _lemmatiseur;
 		QList<int>              _morphosIrrExcl;
-		QChar                   _pos;
+		QString                 _pos;
 		QMultiMap<int,Radical*> _radicaux;
 		QString                 _renvoi;
 		QMap<QString,QString>   _traduction;
@@ -86,7 +86,7 @@ class Lemme: public QObject
 		Modele*         modele ();
 		int             nh();
 		QString static  oteNh (QString g, int &nh);
-		QChar           pos ();
+		QString         pos ();
 		QList<Radical*> radical (int r);
 		bool            renvoi();
 		QString         traduction(QString l);

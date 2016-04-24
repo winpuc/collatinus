@@ -122,6 +122,17 @@ QString Flexion::tableau (Lemme *l)
 {
 	if (l == 0) return "lemme absent\n";
 	setLemme (l);
+	QStringList ret;
+	QString pos = l->pos();
+	if (pos.contains('n')) ret.append(tabNom());
+	if (pos.contains('p')) ret.append(tabPron());
+	if (pos.contains('a')) ret.append(tabAdj());
+	if (pos.contains('d')) ret.append(tabAdv());
+	if (pos.contains('v')) ret.append(tabV());
+	if (ret.empty()) return l->humain();
+	ret.removeDuplicates();
+	return ret.join("");
+	/*
 	switch (l->pos().unicode())
 	{
 		case 'n': return tabNom ();
@@ -131,7 +142,7 @@ QString Flexion::tableau (Lemme *l)
 		case 'v': return tabV();
 		default: return l->humain();
 	}
-	return "erreur tableau";
+	*/
 }
 
 /**
