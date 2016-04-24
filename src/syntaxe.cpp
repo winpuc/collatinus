@@ -767,15 +767,12 @@ int Syntaxe::groupe(int r)
 			if (super(mTest, cour))
 				return r+x;
 		}
-		if (super(cour, mTest)) ++x;
+		if (super(cour, mTest))
+        {
+            groupe(r+x); // TODO PROVISOIRE, attention à la redondance.
+            x = _mots.at(r+x)->grUlt() - r + 1;
+        }
 		else break;
-		/*
-		else
-		{
-			qDebug()<<"   récursion"<<r<<x<<_mots.at(r+x)->gr();
-			return groupe(r+x);
-		}
-		*/
 	}
 	return ++r;
 }
@@ -820,7 +817,9 @@ bool Syntaxe::super(Mot *sup, Mot *sub)
 			foreach (SLem sl, lsl)
 			{
 				if (s->estSub(l, sl.morpho, false)
-					&& (accord(s->morpho(), sl.morpho, s->regle()->accord())))
+					&& (accord(s->morpho(), sl.morpho, s->regle()->accord()))
+                    && !(s->regle()->synt().contains('c') && virgule(sup, sub))
+                    )
 				{
 					s->addSub(sub);
 					// ajouter les chaînes d'affichage (règle, lien, traduction)
@@ -883,8 +882,8 @@ bool Syntaxe::virgule(Mot *ma, Mot *mb)
 {
 	int ecart = ma->rang() - mb->rang();
 	if (abs(ecart) > 1) return false;
-	if ((ecart < 0) && !ma->ponctG().isEmpty()) return true;
-	if ((ecart > 0) && !ma->ponctD().isEmpty()) return true;
+	if ((ecart < 0) && !ma->ponctD().isEmpty()) return true;
+	if ((ecart > 0) && !ma->ponctG().isEmpty()) return true;
 	return false;
 }
 

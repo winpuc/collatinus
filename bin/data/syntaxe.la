@@ -54,7 +54,7 @@ doc:Un nom ou un pronom au génitif est complément d'un autre nom ou d'un prono
 f:<sub> complément du (pro)nom <super>
 super::n,p:
 sub::n,p:gén
-synt:u
+synt:cu
 tr:<super> de <sub>
 
 id:epithete
@@ -105,7 +105,7 @@ doc:un nom ou un pronom au nominatif peut être sujet d'un verbe à l'indicatif
 f:<sub> ѕujet du verbe <super>
 super::v:indic
 sub::n,p:nomin
-synt:c
+synt:cu
 tr:<sub> <super>
 accord:n
 
