@@ -82,8 +82,6 @@ Requis :
        ^   |     |        ^
        |   +-----|--------+
        +---------+    
-   * Écrire des fonctions de début et din de groupe (super -> sub -> sub etc.).
-
 
 ## Branche maj
 Branche de mise à jour des lexiques.
