@@ -658,6 +658,10 @@ des:122-125:0:s;t;mus;tis
 des:127-132:0:ēbăm;ēbās;ēbăt;ēbāmŭs;ēbātĭs;ēbānt
 des+:127-132:0:băm;bās;băt;bāmŭs;bātĭs;bānt
 
+modele:dico
+pere:lego
+des+:181:0:-
+
 modele:uolo
 pere:lego
 R:5:3,0
