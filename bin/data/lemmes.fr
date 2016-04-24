@@ -5414,7 +5414,7 @@ latus2:large
 latus:le côté
 laudabilis:louable
 laudatio:éloge
-laudo:1. louer, approuver, vanter 2. prononcer un éloge 3. citer, nommer
+laudo:louer, approuver, vanter
 laurea:laurier
 Laurentes:les Laurentes (peuple du Latium)
 Laureolus:Laureolus (célèbre voleur)
@@ -9256,7 +9256,7 @@ susurrus:le chucotement, le murmure
 sus:le cochon - f. : la truie
 sutor:le cordonnier
 sutrina:boutique de cordonnier
-suus:adj. : son; pronom : le sien, le leur
+suus:adj. pron. : son; le sien, la sienne, le/la leur
 sybota:porcher
 Sychaeus:Sychée (époux de Didon)
 sycophantia:la fourberie, l'imposture

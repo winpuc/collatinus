@@ -31,6 +31,7 @@ Requis :
 
 ## À FAIRE :
 - Créer une branche exponct (u exponctué de volvo, sanguinis, unicode 1EE5 ụ )
+- Lemme::pos étant un char, le transformer en string, pour tenir compte des pos multiples.
 - éventuellement : possibilité de déclarer un lien comme sûr,   
     ce qui permet d'éliminer par le suite des concurrents.
 - téléchargement : éliminer les fichiers homonymes d'une 
