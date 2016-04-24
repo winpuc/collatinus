@@ -26,6 +26,7 @@ Requis :
 
 ## BOGUES ET PROBLÈMES
 - Plantage après Fichier/Nouveau
+- Syntaxe : sujet, verbe : la virgule ne bloque pas le lien.
 - Flexion de multus et ses degrés allogènes (plus, plurimus)
 
 ## À FAIRE :
