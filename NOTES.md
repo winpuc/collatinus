@@ -19,6 +19,10 @@ Requis :
   à l'adresse [http://outils.biblissima.fr/collatinus/](http://outils.biblissima.fr/collatinus/)
 - Placer dans bin/data/dicos les dictionnaires xml et
   djvu les dictionnaires téléchargeables à la même adresse ;
+- Générer le fichier de traductions anglaises :    
+  $ lrelease collatinus.pro   
+  … et le déplacer dans bin/ :    
+  $ mv collatinus\_en.qm bin/
 - Lancer Collatinus en ligne de commande :    
   * $ cd bin
   * $ ./collatinus    
