@@ -30,7 +30,7 @@ HEADERS += src/ch.h \
            src/lewis.h \
            src/mainwindow.h \
 		   src/maj.h \
-           src/modele.h \
+           src/modele.h
 SOURCES += src/ch.cpp \
            src/flexion.cpp \
 		   src/frequences.cpp \
