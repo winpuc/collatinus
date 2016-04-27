@@ -362,7 +362,7 @@ MapLem Lemmat::lemmatise (QString f)
 				{
 					if (des->morphoNum() < _morphos.count()-1)
 					{
-						SLem sl = {rad->grq()+des->grq(),morpho (des->morphoNum())};
+						SLem sl = {rad->grq()+des->grq(), morpho(des->morphoNum())};
 						result[l].prepend(sl);
 					}
 					else 
