@@ -28,9 +28,6 @@
 !    n2 : nombre de caractères à ôter de la forme canonique 
 !    ch : chaîne à ajouter à la chaîne obtenue pour avoir le radical
 ! des:<intervalle>:<num>:<listeDes>
-! Si une désinence de même morpho s'ajoute à celle du modèle parent au lieu
-! de l'écraser, on écrit
-! des+:<intervalle>:<num>:<listeDes>
 ! <intervalle> = liste de n° de morphologies séparées par des virgules,
 !               ou intervalle de numéros <premier>-<dernier>. Les deux
 !               définitions sont compatibles.
@@ -724,32 +721,33 @@ des:163-168:3:ĭĕrĕm;ĭĕrēs;ĭĕrĕt;ĭĕrēmŭs;ĭĕrētĭs;ĭĕrēnt
 
 modele:sum
 pere:lego
-R:0:1,0
+R:0:2,0
 R:4:3,0
 R:5:3,ĕr
 R:6:2,0
 R:7:3,ēss
 abs:189-374
 ! indicatif
-des:121,124,126:0:m;mŭs;nt
-des:122,123,125:4:ĕs;ēst;ēstĭs
-des:127-132:5:ăm;ās;ăt;āmŭs;ātĭs;ānt
-des:133-138:5:o;ĭs;ĭt;ĭmŭs;ĭtĭs;ūnt
+des:121,124,126:0:ŭm;ŭmŭs;ūnt
+des:122,123,125:2:ĕs;ēst;ēstĭs
+des:127-132:2:ĕrăm;ĕrās;ĕrăt;ĕrāmŭs;ĕrātĭs;ĕrānt
+des:133-138:2:ĕro;ĕrĭs;ĕrĭt;ĕrĭmŭs;ĕrĭtĭs;ĕrūnt
 ! subjonctif
 des:157-162:6:$im
 des:163-168:7:$em
 des:166-168,171:4:fŏrĕm;fŏrēs;fŏrĕt;fŏrēnt
 ! impératif
-des:181-186:4:ĕs;ēstĕ;ēstō;ēstō;ēstōtĕ;sūntō
+des:181-185:2:ĕs;ēstĕ;ēstō;ēstō;ēstōtĕ
+des:186:0:ūntō
 ! infinitif
 des:187:7:ĕ
 des:416:4:fŏrĕ
 
-modele:possum
-pere:sum
-R:4:4,t
-R:5:4,tĕr
-R:7:2,0
+!modele:possum
+!pere:sum
+!R:4:4,t
+!R:5:4,tĕr
+!R:7:2,0
 
 modele:prosum
 pere:sum
