@@ -28,6 +28,9 @@
 !    n2 : nombre de caractères à ôter de la forme canonique 
 !    ch : chaîne à ajouter à la chaîne obtenue pour avoir le radical
 ! des:<intervalle>:<num>:<listeDes>
+! Si une désinence de même morpho s'ajoute à celle du modèle parent au lieu
+! de l'écraser, on écrit
+! des+:<intervalle>:<num>:<listeDes>
 ! <intervalle> = liste de n° de morphologies séparées par des virgules,
 !               ou intervalle de numéros <premier>-<dernier>. Les deux
 !               définitions sont compatibles.
@@ -658,10 +661,6 @@ des:122-125:0:s;t;mus;tis
 des:127-132:0:ēbăm;ēbās;ēbăt;ēbāmŭs;ēbātĭs;ēbānt
 des+:127-132:0:băm;bās;băt;bāmŭs;bātĭs;bānt
 
-modele:dico
-pere:lego
-des+:181:0:-
-
 modele:uolo
 pere:lego
 R:5:3,0
@@ -743,11 +742,11 @@ des:186:0:ūntō
 des:187:7:ĕ
 des:416:4:fŏrĕ
 
-!modele:possum
-!pere:sum
+modele:possum
+pere:sum
 !R:4:4,t
 !R:5:4,tĕr
-!R:7:2,0
+R:7:2,0
 
 modele:prosum
 pere:sum
