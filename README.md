@@ -1,5 +1,6 @@
-# Collatinus-11
-version 11 du lemmatiseur-scandeur-analyseur morphologique latin Collatinus
+# Collatinus
+Sources du lemmatiseur-scandeur-analyseur morphologique latin Collatinus.
+Les sources de la version 10 sont sur le dépôt [collatinus-10-src](https://github.com/biblissima/collatinus-10-src).
 
 **Collatinus est une application libre, gratuite et
 multi-plateforme (Mac, Windows et Debian GNU/Linux),
