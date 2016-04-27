@@ -336,7 +336,8 @@ void MainWindow::alpha()
 	// première et la dernière ligne.
 	bool tmpAlpha = lemmatiseur->optAlpha();
 	lemmatiseur->setAlpha(true);
-	lemmatiseTxt();
+    lancer();
+//	lemmatiseTxt();
 	lemmatiseur->setAlpha(tmpAlpha);
 }
 
