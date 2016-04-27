@@ -548,7 +548,8 @@ QString Lemmat::lemmatiseT (QString t,
                     {
                         lin.append("<ul>");
                         foreach (SLem m, map.value(l))
-                            lin.append ("<li>"+m.grq+" "+m.morpho+"</li>");
+                            if (m.sufq.isEmpty()) lin.append ("<li>"+m.grq+" "+m.morpho+"</li>");
+                            else lin.append ("<li>"+m.grq+" + "+m.sufq+" "+m.morpho+"</li>");
                         lin.append("</ul>");
                     }
                 }
@@ -563,7 +564,8 @@ QString Lemmat::lemmatiseT (QString t,
                     if (cumMorpho && !inv(l, map))
                     {
                         foreach (SLem m, map.value(l))
-                            lin.append ("    . "+m.grq+" "+m.morpho+"\n");
+                            if (m.sufq.isEmpty()) lin.append ("    . "+m.grq+" "+m.morpho+"\n");
+                            else lin.append ("    . "+m.grq+" + "+m.sufq+" "+m.morpho+"\n");
                     }
                 }
             }
