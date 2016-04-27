@@ -98,7 +98,7 @@ void EditLatin::mouseReleaseEvent (QMouseEvent *e)
     }
 	// 2. dock scansion
 	if (!mainwindow->dockScand->visibleRegion().isEmpty())
-		mainwindow->textEditScand->setHtml(mainwindow->lemmatiseur->scandeTxt (st, false));
+        mainwindow->textEditScand->append(mainwindow->lemmatiseur->scandeTxt (st, false));
 	if (unSeulMot)
 	{
 		// 3. dock de flexion
