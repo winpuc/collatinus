@@ -80,13 +80,6 @@ modele:dea
 pere:uita
 des+:11,12:1:ăbŭs
 
-modele:abraham
-R:0:0,0
-R:1:2,0
-des:1-6:0:-
-des:4:1:āe
-abs:7-12
-
 modele:lupus
 R:1:2,0
 des:1-12:1:$lupus
@@ -259,6 +252,17 @@ des:1-3,7-9:1:ŭ;ŭ;ŭ;ŭă;ŭă;ŭă
 modele:res
 R:1:2,0
 des:1-12:1:ēs;ēs;ĕm;ĕī;ĕī;ē;ēs;ēs;ēs;ērŭm;ēbŭs;ēbŭs
+
+modele:abraham
+R:0:0,0
+R:1:2,0
+des:1-6:0:-
+des:4:1:āe
+abs:7-12
+
+modele:jesus
+R:0:2,0
+des:1-6:0:ūs;ūs,ū;ūs,ŭm;ūs;ūs,ū
 
 modele:doctus
 R:0:2,0
