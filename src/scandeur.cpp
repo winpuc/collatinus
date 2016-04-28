@@ -181,7 +181,7 @@ QStringList Lemmat::formeq (QString forme, bool *nonTrouve, bool debPhr, int acc
  */
 QString Lemmat::scandeTxt (QString texte, int accent, bool stats)
 {
-    if (accent == 0 && _alpha) accent = 7;
+    accent = accent & 7;
     QString schemaMetric;
     QMap <QString, int> freqMetric;
     bool deb_phr;
