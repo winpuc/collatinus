@@ -309,10 +309,11 @@ QString Lemmat::desassimq (QString a)
  */
 MapLem Lemmat::lemmatise (QString f)
 {
-	f = Ch::deramise (f);
+	MapLem result;
+	if (f.isEmpty()) return result;
 	f.replace("æ","ae");
 	f.replace("œ","oe");
-	MapLem result;
+	f = Ch::deramise (f);
 	// formes irrégulières
 	QList<Irreg*> lirr = _irregs.values (f);
 	foreach (Irreg* irr, lirr)
@@ -402,6 +403,7 @@ MapLem Lemmat::lemmatiseM (QString f, bool debPhr)
 	QString res;
 	QTextStream fl (&res);
 	MapLem mm = lemmatise (f);
+	if (f.isEmpty()) return mm;
 	// suffixes
 	foreach (QString suf, suffixes.keys())
 		if (mm.empty() && f.endsWith (suf))
