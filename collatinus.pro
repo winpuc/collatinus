@@ -11,7 +11,7 @@ QT += widgets
 QT += network
 QT += svg
 
-CONFIG += release_binary
+CONFIG += release_binary debug
 
 TRANSLATIONS    = collatinus_en.ts \
                   collatinus_fr.ts
