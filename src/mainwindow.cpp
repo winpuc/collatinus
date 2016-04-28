@@ -468,6 +468,7 @@ void MainWindow::charger (QString f)
  */
 void MainWindow::clicAnte ()
 {
+    if (!listeD.courant()) return;
     listeD.courant ()->vide_ligneLiens ();
     if (listeD.courant ()->estXml ())
     {
@@ -489,6 +490,7 @@ void MainWindow::clicAnte ()
  */
 void MainWindow::clicAnteW()
 {
+    if (!listeD.courant2()) return;
     listeD.courant2()->vide_ligneLiens ();
     if (listeD.courant2()->estXml ())
     {
@@ -509,6 +511,7 @@ void MainWindow::clicAnteW()
  */
 void MainWindow::clicPost ()
 {
+    if (!listeD.courant()) return;
     listeD.courant ()->vide_ligneLiens ();
     if (listeD.courant ()->estXml ())
     { 
@@ -530,6 +533,7 @@ void MainWindow::clicPost ()
  */
 void MainWindow::clicPostW()
 {
+    if (!listeD.courant2()) return;
     listeD.courant2()->vide_ligneLiens ();
     if (listeD.courant2()->estXml ())
     { 
