@@ -616,7 +616,7 @@ QString Lemmat::lemmatiseT (QString t,
         lRet.append("</ul>");
 	// non-reconnus en fin de liste si l'option nreconnu
 	// est armée
-	if (nreconnu && !nonReconnus.empty())
+    if (nreconnu && !nonReconnus.empty())
 	{
 		nonReconnus.removeDuplicates();
         QString nl;
