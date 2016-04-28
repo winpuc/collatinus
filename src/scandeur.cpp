@@ -195,8 +195,8 @@ QString Lemmat::scandeTxt (QString texte, int accent, bool stats)
 		QStringList separ;
 		if (ligne.isEmpty()) separ.append (ligne);
 	    else separ = ligne.split (QRegExp ("\\b"));
-		if (separ.at(0).at(0).isLetter()) separ.prepend("");
-		if (separ.at(separ.count()-1).at(0).isLetter()) separ.append("");
+		if (separ.count() > 0 && separ.at(0).count() > 0 && separ.at(0).at(0).isLetter()) separ.prepend("");
+		if (separ.count() > 0 && separ.at(separ.count()-1).count() > 0 && separ.at(separ.count()-1).at(0).isLetter()) separ.append("");
         // J'ai maintenant une liste de formes et une liste de séparateurs
         // la ligne d'origine est la concaténation de separ[i]
         // Les termes pairs sont les séparateurs.
