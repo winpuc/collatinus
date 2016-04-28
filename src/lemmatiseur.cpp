@@ -311,8 +311,6 @@ MapLem Lemmat::lemmatise (QString f)
 {
 	MapLem result;
 	if (f.isEmpty()) return result;
-	f.replace("æ","ae");
-	f.replace("œ","oe");
 	f = Ch::deramise (f);
 	// formes irrégulières
 	QList<Irreg*> lirr = _irregs.values (f);
