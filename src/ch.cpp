@@ -120,6 +120,19 @@ void Ch::deQuant (QString *c)
 }
 
 /**
+ * \fn Ch::deAccent(QString *c)
+ * \brief Supprime tous les accents d'un texte (acute, macron, breve)
+ */
+void Ch::deAccent (QString *c)
+{
+    c.normalized(QString::NormalizationForm_D,QChar::currentUnicodeVersion());
+    c.remove("\u0301");
+    c.remove("\u0306");
+    c.remove("\u0304");
+    return c;
+}
+
+/**
  * \fn QString Ch::deramise(QString r)
  * \brief retourne une graphie non-ramiste
  *        de r, càd dont tous les j deviennent i,
