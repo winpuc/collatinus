@@ -92,6 +92,7 @@ public:
 	QAction          *calepAct;
 	// gr() de la dernière lemmatisation
 	QStringList       lemsDic;
+    int         lireOptionsAccent();
 
 private slots: 
 	void afficheLemsDic (bool litt=false,bool prim=true); // ligne de saisie
@@ -134,6 +135,8 @@ private slots:
 	void stat();
 	void syncDW();
 	void syncWD();
+    // Slots d'accentuation
+    void setAccent(bool b);
 
 public slots:
 	void afficheLemsDic(QStringList ll, int no=0);
@@ -170,6 +173,15 @@ private:
 	QAction      *majPertAct;
 	QAction      *morphoAct;
     QAction      *nonRecAct;
+    // bascule d'accentuation
+    QAction     *accentAct;
+    // et options
+    QActionGroup    *optionsAccent;
+    QAction     *longueAct;
+    QAction     *breveAct;
+    QAction     *ambigueAct;
+    QAction     *hyphenAct;
+
 	// actions et groupes d'actions
 	QAction      *aproposAct;
 	QAction      *balaiAct;

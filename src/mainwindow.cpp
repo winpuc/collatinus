@@ -98,7 +98,10 @@ void EditLatin::mouseReleaseEvent (QMouseEvent *e)
     }
 	// 2. dock scansion
 	if (!mainwindow->dockScand->visibleRegion().isEmpty())
-        mainwindow->textEditScand->append(mainwindow->lemmatiseur->scandeTxt (st, false));
+    {
+        int accent = mainwindow->lireOptionsAccent();
+        mainwindow->textEditScand->append(mainwindow->lemmatiseur->scandeTxt (st, accent, false));
+    }
 	if (unSeulMot)
 	{
 		// 3. dock de flexion
@@ -572,7 +575,13 @@ void MainWindow::closeEvent(QCloseEvent *event)
 	settings.setValue("morpho", morphoAct->isChecked());
     settings.setValue("nonrec", nonRecAct->isChecked());
 	settings.setValue("cible", lemmatiseur->cible());
-	settings.endGroup();
+    // accentuation
+    settings.setValue("accentuation", accentAct->isChecked());
+    settings.setValue("longue", longueAct->isChecked());
+    settings.setValue("breve", breveAct->isChecked());
+    settings.setValue("ambigue", ambigueAct->isChecked());
+    settings.setValue("hyphenation", hyphenAct->isChecked());
+    settings.endGroup();
 	settings.beginGroup("dictionnaires");
 	settings.setValue("courant", comboGlossaria->currentIndex());
 	settings.setValue("wdic", wDic->isVisible());
@@ -670,7 +679,27 @@ void MainWindow::createActions()
     // non reconnus en fin de lemmatisation
     nonRecAct = new QAction(tr("grouper échecs"), this);
 	nonRecAct->setCheckable(true); 
-	// actions pour les dictionnaires
+
+    // actions pour les accents
+    accentAct = new QAction(tr("accentuer"),this);
+    accentAct->setCheckable(true);
+    accentAct->setChecked(false);
+    optionsAccent = new QActionGroup(this);
+    longueAct = new QAction(tr("   -̆ => ¯ "),this);
+    longueAct->setCheckable(true);
+    breveAct = new QAction(tr("   -̆ => ˘ "),this);
+    breveAct->setCheckable(true);
+    ambigueAct = new QAction(tr("   -̆ => pas d'accent"),this);
+    ambigueAct->setCheckable(true);
+    ambigueAct->setChecked(true);
+    hyphenAct = new QAction(tr("marquer les syllabes"),this);
+    hyphenAct->setCheckable(true);
+    hyphenAct->setEnabled(false);
+    optionsAccent->addAction(longueAct);
+    optionsAccent->addAction(breveAct);
+    optionsAccent->addAction(ambigueAct);
+    optionsAccent->setEnabled(false);
+    // actions pour les dictionnaires
 	dicAct = new QAction(QIcon(":/res/dicolem.svg"), tr("Lemmatiser et chercher"), this);
 	dicLittAct = new QAction(QIcon(":/res/dicolitt.svg"), tr("Chercher"), this);
 	dicActW = new QAction(QIcon(":/res/dicolem.svg"), tr("Lemmatiser et chercher"), this);
@@ -737,6 +766,13 @@ void MainWindow::createConnections()
 	connect(morphoAct, SIGNAL(toggled(bool)), lemmatiseur, SLOT(setMorpho(bool)));
     connect(nonRecAct, SIGNAL(toggled(bool)), lemmatiseur, SLOT(setNonRec(bool)));
 
+    // actions et options de l'accentuation
+    connect(accentAct, SIGNAL(toggled(bool)), this, SLOT(setAccent(bool)));
+/*    connect(longueAct, SIGNAL(toggled(bool)), this, SLOT(setLongue(bool)));
+    connect(breveAct, SIGNAL(toggled(bool)), this, SLOT(setBreve(bool)));
+    connect(ambigueAct, SIGNAL(toggled(bool)), this, SLOT(setAmbigue(bool)));
+    connect(hyphenAct, SIGNAL(toggled(bool)), this, SLOT(setHyphen(bool)));
+*/
 	// actions des dictionnaires
     connect(anteButton, SIGNAL(clicked ()), this, SLOT(clicAnte ()));
     connect(comboGlossaria, SIGNAL(currentIndexChanged(QString)),this,SLOT(changeGlossarium(QString)));
@@ -852,7 +888,14 @@ void MainWindow::createMenus()
 	optMenu->addAction(morphoAct);
     optMenu->addAction(nonRecAct);
 	optMenu->addSeparator();
-	optMenu->addAction(fontAct);
+    optMenu->addAction(accentAct);
+//    optMenu->addAction(optionsAccent)
+    optMenu->addAction(longueAct);
+    optMenu->addAction(breveAct);
+    optMenu->addAction(ambigueAct);
+    optMenu->addAction(hyphenAct);
+    optMenu->addSeparator();
+    optMenu->addAction(fontAct);
 	optMenu->addAction(majAct);
 
     helpMenu = menuBar()->addMenu(tr("&Aide"));
@@ -1000,7 +1043,23 @@ void MainWindow::createDockWindows()
     lineEditScand = new QLineEdit (dockWidgetScand);
     QSpacerItem *hSpacerScand = new QSpacerItem (40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 	hLayoutScand->addWidget (lineEditScand);
-	hLayoutScand->addItem (hSpacerScand);
+    // ajouter ici des boutons...
+    QToolButton *tbAccent = new QToolButton (this);
+    tbAccent->setDefaultAction(accentAct);
+    QToolButton *tbLongue = new QToolButton (this);
+    tbLongue->setDefaultAction(longueAct);
+    QToolButton *tbBreve = new QToolButton (this);
+    tbBreve->setDefaultAction(breveAct);
+    QToolButton *tbAmbigue = new QToolButton (this);
+    tbAmbigue->setDefaultAction(ambigueAct);
+    QToolButton *tbHyphen = new QToolButton (this);
+    tbHyphen->setDefaultAction(hyphenAct);
+    hLayoutScand->addWidget (tbAccent);
+    hLayoutScand->addWidget (tbLongue);
+    hLayoutScand->addWidget (tbBreve);
+    hLayoutScand->addWidget (tbAmbigue);
+    hLayoutScand->addWidget (tbHyphen);
+//    hLayoutScand->addItem (hSpacerScand);
     textEditScand = new QTextEdit(dockWidgetScand);
 	vLayoutScand->addLayout (hLayoutScand);
 	vLayoutScand->addWidget (textEditScand);
@@ -1425,7 +1484,15 @@ void MainWindow::readSettings()
 	majPertAct->setChecked (settings.value("majpert").toBool());
 	morphoAct->setChecked (settings.value("morpho").toBool());
     nonRecAct->setChecked (settings.value("nonrec").toBool());
-	QString l = settings.value("cible").toString();
+    // options d'accentuation
+    accentAct->setChecked(settings.value("accentuation").toBool());
+    optionsAccent->setEnabled(settings.value("accentuation").toBool());
+    longueAct->setChecked(settings.value("longue").toBool());
+    breveAct->setChecked(settings.value("breve").toBool());
+    ambigueAct->setChecked(settings.value("ambigue").toBool());
+    hyphenAct->setChecked(settings.value("hyphenation").toBool());
+
+    QString l = settings.value("cible").toString();
 	lemmatiseur->setCible (l);
     foreach (QAction * action, grCibles->actions ())
         if (action->text () == lemmatiseur->cibles()[l])
@@ -1501,7 +1568,8 @@ void MainWindow::rechercheBis()
  */
 void MainWindow::scandeLigne()
 {
-	textEditScand->setHtml(lemmatiseur->scandeTxt (lineEditScand->text(), false));
+    int accent = lireOptionsAccent();
+    textEditScand->setHtml(lemmatiseur->scandeTxt (lineEditScand->text(), accent, false));
 }
 
 /**
@@ -1511,7 +1579,8 @@ void MainWindow::scandeLigne()
  */
 void MainWindow::scandeTxt()
 {
-	textEditScand->setHtml(lemmatiseur->scandeTxt (editLatin->toPlainText(), false));
+    int accent = lireOptionsAccent();
+    textEditScand->setHtml(lemmatiseur->scandeTxt (editLatin->toPlainText(), accent, false));
 }
 
 /**
@@ -1593,4 +1662,23 @@ void MainWindow::syncWD()
 {
 	lineEditDic->setText(lineEditDicW->text());
 	afficheLemsDic();
+}
+
+void MainWindow::setAccent(bool b)
+{
+    optionsAccent->setEnabled(b);
+    hyphenAct->setEnabled(b);
+}
+
+int MainWindow::lireOptionsAccent()
+{
+    int retour = 0;
+    if (accentAct->isChecked())
+    {
+        if (hyphenAct->isChecked()) retour = 4;
+        if (longueAct->isChecked()) return retour+1;
+        if (breveAct->isChecked()) return retour+2;
+        retour += 3;
+    }
+    return retour;
 }
