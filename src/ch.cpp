@@ -123,7 +123,7 @@ void Ch::deQuant (QString *c)
  * \fn Ch::deAccent(QString *c)
  * \brief Supprime tous les accents d'un texte (acute, macron, breve)
  */
-void Ch::deAccent (QString *c)
+QString Ch::deAccent (QString c)
 {
     c.normalized(QString::NormalizationForm_D,QChar::currentUnicodeVersion());
     c.remove("\u0301");
