@@ -310,6 +310,8 @@ QString Lemmat::desassimq (QString a)
 MapLem Lemmat::lemmatise (QString f)
 {
 	f = Ch::deramise (f);
+	f.replace("æ","ae");
+	f.replace("œ","oe");
 	MapLem result;
 	// formes irrégulières
 	QList<Irreg*> lirr = _irregs.values (f);
@@ -397,7 +399,6 @@ bool Lemmat::inv (Lemme *l, const MapLem ml)
  */
 MapLem Lemmat::lemmatiseM (QString f, bool debPhr)
 {
-	// test debog
 	QString res;
 	QTextStream fl (&res);
 	MapLem mm = lemmatise (f);
