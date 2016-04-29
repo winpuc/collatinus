@@ -11,7 +11,10 @@ QT += widgets
 QT += network
 QT += svg
 
-CONFIG += release_binary
+QMAKE_CXXFLAGS += -Wall -Wextra -pedantic -fstack-protector-strong
+QMAKE_CPPFLAGS += -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2
+
+CONFIG += release_binary debug
 
 TRANSLATIONS    = collatinus_en.ts \
                   collatinus_fr.ts
