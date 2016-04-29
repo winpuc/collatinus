@@ -89,8 +89,8 @@ class ListeDic: public QObject
 
     private:
     QMultiMap<QString, Dictionnaire*> liste;
-    Dictionnaire * currens;
-    Dictionnaire * currens2;
+    Dictionnaire * currens = NULL;
+    Dictionnaire * currens2 = NULL;
 
     public:
     Dictionnaire * dictionnaire_par_nom (QString nom);

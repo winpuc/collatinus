@@ -78,7 +78,7 @@ void EditLatin::mouseReleaseEvent (QMouseEvent *e)
     QTextCursor cursor = textCursor();
     if (!cursor.hasSelection())
         cursor.select(QTextCursor::WordUnderCursor);
-	QString st = cursor.selectedText();
+    QString st = cursor.selectedText();
 	bool unSeulMot = !st.contains (' ');
 	MapLem ml = mainwindow->lemmatiseur->lemmatiseM (st);
 	// 1. dock de lemmatisation
@@ -181,7 +181,7 @@ void MainWindow::afficheLemsDic (bool litt, bool prim)
 	else lineEdit = lineEditDicW;
     if (lineEdit->text ().isEmpty ())
         return;
-	lemsDic.clear();    
+    lemsDic.clear();    
     QStringList requete;
     if (!litt)
     {
@@ -352,7 +352,7 @@ void MainWindow::apropos ()
          "COLLATINVS\nLinguae latinae lemmatizatio \n"
          "Licentia GPL, © Yves Ouvrard, 2009 - 2016 \n"
          "Nonnullas partes operis scripsit Philippe Verkerk\n"
-         "Versio "VERSION"\n"
+         "Versio " VERSION "\n"
          "Gratias illis habeo :\n"
          "William Whitaker †\n"
          "Jose Luis Redrejo,\n"
@@ -468,6 +468,7 @@ void MainWindow::charger (QString f)
  */
 void MainWindow::clicAnte ()
 {
+    if (!listeD.courant()) return;
     listeD.courant ()->vide_ligneLiens ();
     if (listeD.courant ()->estXml ())
     {
@@ -489,6 +490,7 @@ void MainWindow::clicAnte ()
  */
 void MainWindow::clicAnteW()
 {
+    if (!listeD.courant2()) return;
     listeD.courant2()->vide_ligneLiens ();
     if (listeD.courant2()->estXml ())
     {
@@ -509,6 +511,7 @@ void MainWindow::clicAnteW()
  */
 void MainWindow::clicPost ()
 {
+    if (!listeD.courant()) return;
     listeD.courant ()->vide_ligneLiens ();
     if (listeD.courant ()->estXml ())
     { 
@@ -530,6 +533,7 @@ void MainWindow::clicPost ()
  */
 void MainWindow::clicPostW()
 {
+    if (!listeD.courant2()) return;
     listeD.courant2()->vide_ligneLiens ();
     if (listeD.courant2()->estXml ())
     { 
@@ -1430,7 +1434,7 @@ void MainWindow::readSettings()
     foreach (QAction * action, grCibles->actions ())
         if (action->text () == lemmatiseur->cibles()[l])
             action->setChecked (true);
-	settings.endGroup();
+    settings.endGroup();
 	// options appliquées au lemmatiseur
     lemmatiseur->setAlpha (alphaOptAct->isChecked());
     lemmatiseur->setFormeT (formeTAct->isChecked());
