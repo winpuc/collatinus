@@ -5,7 +5,7 @@ lundi 4 janvier 2016
 <!-- voir syntaxe Algo -->
 
 ## COMPILATION
-Requis :  
+Requis :
 - Un compilateur C++ ;
 - Les bibliothèques Qt 5.
 - Ajuster le PATH de la machine pour que
@@ -17,6 +17,11 @@ Requis :
 - Créer les répertoires bin/, bin/data et bin/data/dicos
 - Placer dans bin/data/ les lexiques téléchargeables 
   à l'adresse [http://outils.biblissima.fr/collatinus/](http://outils.biblissima.fr/collatinus/)
+- Générer le fichier de traductions anglaises :    
+  $ lrelease collatinus.pro    
+… et le déplacer dans bin/ :    
+  $ mv collatinus\_en.qm bin/
+>>>>>>> master
 - Placer dans bin/data/dicos les dictionnaires xml et
   djvu les dictionnaires téléchargeables à la même adresse ;
 - Générer le fichier de traductions anglaises :    

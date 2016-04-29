@@ -26,7 +26,6 @@
 #include <QMap>
 #include <QString>
 #include <QStringList>
-#include <QTextBrowser>
 
 #include "irregs.h"
 #include "lemme.h"
@@ -39,6 +38,7 @@ class Radical;
 typedef struct {
 	QString grq;
 	QString morpho;
+    QString sufq;
 } SLem;
 
 typedef QMap<Lemme*,QList<SLem> > MapLem;
@@ -65,12 +65,11 @@ class Lemmat: public QObject
 		QMap<QString,QString>           _contractions;
 		QMultiMap<QString,Desinence*>   _desinences;
 		QString                          decontracte (QString d);
-		QStringList                      formeq (QString forme, bool *nonTrouve, bool debPhr);
+        QStringList                      formeq (QString forme, bool *nonTrouve, bool debPhr, int accent = 0);
 		bool                             inv(Lemme *l, const MapLem ml);
 		QMultiMap<QString,Irreg*>       _irregs;
 		QString                         _cible; // langue courante, 2 caractères
 		QMap<QString,QString>           _cibles;
-		QTextBrowser                    _lemmatiseur;
 		QMap<QString, Lemme*>           _lemmes;
 		QMap<QString, Modele*>          _modeles;
 		QStringList                     _morphos;
@@ -118,7 +117,7 @@ class Lemmat: public QObject
 	    Modele*               modele (QString m);
 		QString               morpho (int i);
         QString               parPos (QString f);
-		QString               scandeTxt (QString texte, bool stats);
+        QString               scandeTxt (QString texte, int accent = 0, bool stats = false);
 		//QStringList           suffixes;
 		QMap<QString,QString> suffixes;
 		QString               variable (QString v);

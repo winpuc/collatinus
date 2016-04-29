@@ -9,9 +9,11 @@ DEPENDPATH += .
 qtHaveModule(printsupport): QT += printsupport
 QT += widgets
 #QT += network
-#QT += svg
 
-CONFIG += release_binary
+QMAKE_CXXFLAGS += -Wall -Wextra -pedantic -fstack-protector-strong
+QMAKE_CPPFLAGS += -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2
+
+CONFIG += release_binary debug
 
 TRANSLATIONS    = collatinus_en.ts \
                   collatinus_fr.ts
@@ -28,11 +30,11 @@ HEADERS += src/ch.h \
            src/lemmatiseur.h \
            src/lemme.h \
            src/lewis.h \
-		   src/flexfr.h \
+           src/flexfr.h \
            src/mainwindow.h \
 		   src/maj.h \
-           src/modele.h \
            src/syntaxe.h
+
 SOURCES += src/ch.cpp \
            src/flexion.cpp \
 		   src/frequences.cpp \
@@ -40,10 +42,10 @@ SOURCES += src/ch.cpp \
            src/lemmatiseur.cpp \
            src/lemme.cpp \
            src/lewis.cpp \
-		   src/flexfr.cpp \
+           src/flexfr.cpp \
            src/main.cpp \
 		   src/maj.cpp \
-		   src/mainwindow.cpp \
+           src/mainwindow.cpp \
            src/modele.cpp \
            src/scandeur.cpp \
            src/syntaxe.cpp
@@ -51,7 +53,7 @@ SOURCES += src/ch.cpp \
 RESOURCES += collatinus.qrc
 
 macx:{
-    TARGET = Collatinus
+    TARGET = Collatinus_11
     #note mac os x, fair un $ qmake -spec macx-g++
     #CONFIG += x86 ppc
     QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.8
@@ -62,18 +64,18 @@ macx:{
 
     # install into app bundle
     # à changer en ressources
-#    data.path = Collatinus.app/Contents/MacOS
-#    data.files =  ressources/*
+    data.path = Collatinus_11.app/Contents/MacOS/data
+    data.files =  bin/data/*
 #    deploy.depends = install_documentation
-#    deploy.depends += install
-#    documentation.path = Collatinus.app/Contents/MacOS/doc/
+    deploy.depends += install
+#    documentation.path = Collatinus_11.app/Contents/MacOS/doc/
 #    documentation.files = doc/*.html doc/*.css
     # ajouter un cible qui fait macdeploy Collatinus.app
-    deploy.commands = macdeployqt Collatinus.app
+    deploy.commands = macdeployqt Collatinus_11.app
 #    dmg.depends = deploy
 #	dmg.commands = ./MacOS/Collatinus.sh
 #    INSTALLS += documentation
-#    INSTALLS += data
+    INSTALLS += data
     QMAKE_EXTRA_TARGETS += deploy
 #    QMAKE_EXTRA_TARGETS += dmg
 }

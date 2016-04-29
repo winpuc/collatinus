@@ -311,6 +311,11 @@ MapLem Lemmat::lemmatise (QString f)
 {
 	MapLem result;
 	if (f.isEmpty()) return result;
+	QString f_lower = f.toLower();
+	int cnt_v = f_lower.count("v");
+	int cnt_ae = f_lower.count("æ");
+	int cnt_oe = f_lower.count("œ");
+	if (f_lower.endsWith("æ")) cnt_ae -= 1;
 	f = Ch::deramise (f);
 	// formes irrégulières
 	QList<Irreg*> lirr = _irregs.values (f);
@@ -318,7 +323,7 @@ MapLem Lemmat::lemmatise (QString f)
 	{
 		foreach (int m, irr->morphos())
 		{
-		   	SLem sl = {irr->grq(),morpho(m)};
+            SLem sl = {irr->grq(),morpho(m),""};
 			//result[irr->lemme()].prepend (morpho (m));	
 			result[irr->lemme()].prepend (sl);	
 		}
@@ -367,7 +372,8 @@ MapLem Lemmat::lemmatise (QString f)
 					}
 					else 
 					{
-						SLem sl = {"-",""};
+                        SLem sl = {l->grq(),"-",""};
+//						SLem sl = {"-",""};
 						result[l].prepend(sl);
 					}
 				}
@@ -384,7 +390,7 @@ MapLem Lemmat::lemmatise (QString f)
  */
 bool Lemmat::inv (Lemme *l, const MapLem ml)
 {
-	return ml.value(l).at(0).grq == "-";
+    return ml.value(l).at(0).morpho == "-";
 }
 
 /**
@@ -397,10 +403,10 @@ bool Lemmat::inv (Lemme *l, const MapLem ml)
  */
 MapLem Lemmat::lemmatiseM (QString f, bool debPhr)
 {
-	// test debog
 	QString res;
 	QTextStream fl (&res);
 	MapLem mm = lemmatise (f);
+	if (f.isEmpty()) return mm;
 	// suffixes
 	foreach (QString suf, suffixes.keys())
 		if (mm.empty() && f.endsWith (suf))
@@ -414,7 +420,7 @@ MapLem Lemmat::lemmatiseM (QString f, bool debPhr)
 			{
 				QList<SLem> ls = mm.value(l);
 				for (int i=0;i<ls.count();++i)
-					mm[l][i].grq += suffixes.value(suf);
+                    mm[l][i].sufq = suffixes.value(suf);
 			}
 		}
 	if (debPhr && f.at (0).isUpper ())
@@ -548,7 +554,8 @@ QString Lemmat::lemmatiseT (QString t,
                     {
                         lin.append("<ul>");
                         foreach (SLem m, map.value(l))
-                            lin.append ("<li>"+m.grq+" "+m.morpho+"</li>");
+                            if (m.sufq.isEmpty()) lin.append ("<li>"+m.grq+" "+m.morpho+"</li>");
+                            else lin.append ("<li>"+m.grq+" + "+m.sufq+" "+m.morpho+"</li>");
                         lin.append("</ul>");
                     }
                 }
@@ -563,7 +570,8 @@ QString Lemmat::lemmatiseT (QString t,
                     if (cumMorpho && !inv(l, map))
                     {
                         foreach (SLem m, map.value(l))
-                            lin.append ("    . "+m.grq+" "+m.morpho+"\n");
+                            if (m.sufq.isEmpty()) lin.append ("    . "+m.grq+" "+m.morpho+"\n");
+                            else lin.append ("    . "+m.grq+" + "+m.sufq+" "+m.morpho+"\n");
                     }
                 }
             }
@@ -611,7 +619,7 @@ QString Lemmat::lemmatiseT (QString t,
         lRet.append("</ul>");
 	// non-reconnus en fin de liste si l'option nreconnu
 	// est armée
-	if (nreconnu && !nonReconnus.empty())
+    if (nreconnu && !nonReconnus.empty())
 	{
 		nonReconnus.removeDuplicates();
         QString nl;

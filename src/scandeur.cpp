@@ -135,12 +135,17 @@ QStringList Lemmat::cherchePieds (int nbr, QString ligne, int i, bool pentam)
  * \brief Renvoie forme scandée de toutes les manières possibles en appliquant
  *        les quantités données par les dictionnaires et les règles prosodiques. 
  */
-QStringList Lemmat::formeq (QString forme, bool *nonTrouve, bool debPhr)
+QStringList Lemmat::formeq (QString forme, bool *nonTrouve, bool debPhr, int accent)
 {
     *nonTrouve = true;
     if (forme.isEmpty ()) return QStringList();
 	MapLem mp = lemmatiseM (forme, debPhr);
-    if (mp.empty ()) return QStringList () << forme;
+    if (mp.empty ())
+    {
+        if (accent == 0)
+        return QStringList () << parPos(forme);
+        else return QStringList () << forme;
+    }
     *nonTrouve = false;
     QStringList lforme;
 	bool maj = forme.at(0).isUpper();
@@ -148,9 +153,11 @@ QStringList Lemmat::formeq (QString forme, bool *nonTrouve, bool debPhr)
 	{
 		foreach (SLem s, mp.value(l))
 		{
-			QString f;
-			if (s.grq == "-") f = l->grq();
-			else f = parPos(s.grq);
+            QString f = Ch::ajoutSuff(s.grq,s.sufq,"",accent);
+// Le 3e paramètre, actuellement "", est prévu pour accepter l->getHyphen(). Donc
+//            QString f = Ch::ajoutSuff(s.grq,s.sufq,l->getHyphen(),accent);
+//			if (s.grq == "-") f = l->grq();
+//			else f = parPos(s.grq);
 			if (maj) f[0] = f[0].toUpper();
 			lforme.append (f);
 		}
@@ -161,11 +168,20 @@ QStringList Lemmat::formeq (QString forme, bool *nonTrouve, bool debPhr)
 
 /**
  * \fn QString Lemmat::scandeTxt (QString texte, bool stats)
- * \brief Scande texte, avec les statistiques si stats
- *        est à true, et renvoie le résultat
+ * \brief Scande le texte, avec les statistiques si stats
+ *        est à true, et renvoie le résultat.
+ * \param   texte : le texte à scander ou à accentuer
+ *          stats : booléen qui affiche ou non les statistiques
+ *          accent : un entier qui détermine si le résultat est
+ * scandé ou accentué. Les valeurs permises sont 0 (texte scandé),
+ * 1-3 texte accentué, 5-7 texte accentué avec les syllabes marquées.
+ * Les valeurs non-nulles règlent le comportement de l'accent si la pénultième
+ * est commune : 1 et 5 la considère comme longue, 2 et 6 comme brève,
+ * 3 et 7 ne place pas l'accent car la pénultième est ambiguë.
  */
-QString Lemmat::scandeTxt (QString texte, bool stats)
+QString Lemmat::scandeTxt (QString texte, int accent, bool stats)
 {
+    accent = accent & 7;
     QString schemaMetric;
     QMap <QString, int> freqMetric;
     bool deb_phr;
@@ -179,8 +195,8 @@ QString Lemmat::scandeTxt (QString texte, bool stats)
 		QStringList separ;
 		if (ligne.isEmpty()) separ.append (ligne);
 	    else separ = ligne.split (QRegExp ("\\b"));
-		if (separ.at(0).at(0).isLetter()) separ.prepend("");
-		if (separ.at(separ.count()-1).at(0).isLetter()) separ.append("");
+		if (separ.count() > 0 && separ.at(0).count() > 0 && separ.at(0).at(0).isLetter()) separ.prepend("");
+		if (separ.count() > 0 && separ.at(separ.count()-1).count() > 0 && separ.at(separ.count()-1).at(0).isLetter()) separ.append("");
         // J'ai maintenant une liste de formes et une liste de séparateurs
         // la ligne d'origine est la concaténation de separ[i]
         // Les termes pairs sont les séparateurs.
@@ -197,7 +213,7 @@ QString Lemmat::scandeTxt (QString texte, bool stats)
         }
         bool nonTr, nonTrSuiv;
         QStringList lforme;
-        QStringList lfs = formeq (separ[1], &nonTrSuiv, true);
+        QStringList lfs = formeq (separ[1], &nonTrSuiv, true, accent);
         schemaMetric = "";
         for (int i=1;i<separ.length();i+=2)
         {
@@ -207,12 +223,15 @@ QString Lemmat::scandeTxt (QString texte, bool stats)
             if (i < separ.length ()-2)
             {
                 deb_phr = separ[i+1].contains (Ch::rePonct);
-                lfs = formeq (separ[i+2], &nonTrSuiv, deb_phr);
-                if (Ch::consonnes.contains(lfs[0].at(0).toLower()))
-                    for (int j=0;j<lforme.length();++j)
-                        Ch::allonge (&lforme[j]);
-                else for (int j=0;j<lforme.length();++j)
-                    Ch::elide (&lforme[j]);
+                lfs = formeq (separ[i+2], &nonTrSuiv, deb_phr, accent);
+                if (accent == 0)
+                {
+                    if (Ch::consonnes.contains(lfs[0].at(0).toLower()))
+                        for (int j=0;j<lforme.length();++j)
+                            Ch::allonge (&lforme[j]);
+                    else for (int j=0;j<lforme.length();++j)
+                        Ch::elide (&lforme[j]);
+                }
             }
             lforme.removeDuplicates ();
             // C'est le bon moment pour extraire le schéma métrique

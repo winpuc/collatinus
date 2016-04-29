@@ -16,6 +16,7 @@ namespace Ch
     QString const  consonnes="bcdfgjklmnpqrstvxz";
 	void           genStrNum (const QString s, QString *ch, int *n);
 	QString        deramise (QString r);
+	QString        deAccent (QString c);
 	void           elide (QString *mp);
 	const QRegExp  reAlphas("(\\w+)");
 	const QRegExp  reEspace("\\s+");
@@ -25,5 +26,11 @@ namespace Ch
 	QString        versPC (QString k);
 	QString        versPedeCerto (QString k);
 	QString const  voyelles="āăēĕīĭōŏūŭȳўĀĂĒĔĪĬŌŎŪŬȲЎ"; 
+
+    QChar const    separSyll = 0x02CC;
+    QString        transforme (QString k);
+    QString        accentue (QString l);
+    QString        ajoutSuff(QString fq, QString suffixe, QString l_etym, int accent);
+
 }
 #endif
