@@ -29,761 +29,766 @@ Verbe est la classe de base. J'ai pris le premier groupe comme référence,
  */
 class Verbe
 {
-	protected:
-		QString inf;
-		QString modele;
-		int pronominal;
-	public:
-		Verbe (QString i);
-		virtual ~Verbe ();
+   protected:
+    QString inf;
+    QString modele;
+    int pronominal;
 
-		virtual QString GetModele ();
-		virtual QString GetDesFut(int index);
-		virtual QString GetDesImpf(int index);
-		virtual QString GetDesPsAi(int index);
-		virtual QString GetDesPsI(int index);
-		virtual QString GetDesPsU(int index);
-		virtual QString GetDesSubjPres(int index);
-		// utiles
-		virtual QString circonflexe();
-		// auxiliaire
-		virtual QString auxiliaire();
-		// radicaux
-		virtual QString RadPres(int P);
-		virtual QString RadFut();
-		virtual QString RadPs();
-		// manipulations : pronoms-radical-dsinence
-		virtual QString elide(QString A, QString B);
-		virtual QString Pron(int P, QString F, bool refl);
-		virtual QString RD (QString R, QString D);
-		virtual QString compose (QString A, int P, int T, int M, int V);
-		// temps
-		virtual QString IndPres (int P);
-		virtual QString IndFut (int P);
-		virtual QString IndImpf (int P);
-		virtual QString IndPs (int P);
-		virtual QString SubjPres (int P);
-		virtual QString ImperPres (int P);
-		virtual QString PartPres ();
-		virtual QString OteReflechi (QString F);
-		virtual QString PP ();
-		// procdure de flexion
-		virtual QString conjugue (int P, int T, int M, int V, bool pr=false, int g=0, int n=0);
+   public:
+    Verbe(QString i);
+    virtual ~Verbe();
+
+    virtual QString GetModele();
+    virtual QString GetDesFut(int index);
+    virtual QString GetDesImpf(int index);
+    virtual QString GetDesPsAi(int index);
+    virtual QString GetDesPsI(int index);
+    virtual QString GetDesPsU(int index);
+    virtual QString GetDesSubjPres(int index);
+    // utiles
+    virtual QString circonflexe();
+    // auxiliaire
+    virtual QString auxiliaire();
+    // radicaux
+    virtual QString RadPres(int P);
+    virtual QString RadFut();
+    virtual QString RadPs();
+    // manipulations : pronoms-radical-dsinence
+    virtual QString elide(QString A, QString B);
+    virtual QString Pron(int P, QString F, bool refl);
+    virtual QString RD(QString R, QString D);
+    virtual QString compose(QString A, int P, int T, int M, int V);
+    // temps
+    virtual QString IndPres(int P);
+    virtual QString IndFut(int P);
+    virtual QString IndImpf(int P);
+    virtual QString IndPs(int P);
+    virtual QString SubjPres(int P);
+    virtual QString ImperPres(int P);
+    virtual QString PartPres();
+    virtual QString OteReflechi(QString F);
+    virtual QString PP();
+    // procdure de flexion
+    virtual QString conjugue(int P, int T, int M, int V, bool pr = false,
+                             int g = 0, int n = 0);
 };
 
-class TVeter: public Verbe
+class TVeter : public Verbe
 {
-	public:
-		TVeter (QString i): Verbe (i) {modele="TVeter";}
-		QString RD (QString R, QString D);
+   public:
+    TVeter(QString i) : Verbe(i) { modele = "TVeter"; }
+    QString RD(QString R, QString D);
 };
 
-class  TVettell: public Verbe
+class TVettell : public Verbe
 {
-	/* Verbes en -eter et -eler qui doublent leur t (ou l)
-		devant  les dsinences en -e */
-	public:
-		TVettell (QString i): Verbe (i) {modele="TVeTTel";}
-		QString RD (QString R, QString D);
+    /* Verbes en -eter et -eler qui doublent leur t (ou l)
+        devant  les dsinences en -e */
+   public:
+    TVettell(QString i) : Verbe(i) { modele = "TVeTTel"; }
+    QString RD(QString R, QString D);
 };
 
-class  TVebrer: public Verbe
+class TVebrer : public Verbe
 {
-	public:
-		TVebrer (QString i): Verbe (i) {modele="TVebrer";}
-		virtual QString RD(QString R, QString D);
+   public:
+    TVebrer(QString i) : Verbe(i) { modele = "TVebrer"; }
+    virtual QString RD(QString R, QString D);
 };
 
-class TVyer: public Verbe
+class TVyer : public Verbe
 {
-	public:
-		TVyer (QString i): Verbe (i) {}
-		virtual QString RD(QString R, QString D);
-		virtual QString RadFut();
+   public:
+    TVyer(QString i) : Verbe(i) {}
+    virtual QString RD(QString R, QString D);
+    virtual QString RadFut();
 };
 
-class TVavoir: public Verbe
+class TVavoir : public Verbe
 {
-	public:
-		TVavoir (QString i): Verbe (i) {}
-		virtual QString RadFut ();
-		virtual QString IndPres (int P);
-		virtual QString IndImpf (int P);
-		virtual QString IndPs (int P);
-		virtual QString SubjPres (int P);
-		virtual QString ImperPres(int P);
-		virtual QString PartPres();
-		virtual QString PP ();
+   public:
+    TVavoir(QString i) : Verbe(i) {}
+    virtual QString RadFut();
+    virtual QString IndPres(int P);
+    virtual QString IndImpf(int P);
+    virtual QString IndPs(int P);
+    virtual QString SubjPres(int P);
+    virtual QString ImperPres(int P);
+    virtual QString PartPres();
+    virtual QString PP();
 };
 
-class TVetre: public Verbe
+class TVetre : public Verbe
 {
-	public:
-		TVetre (QString i): Verbe (i) {}
-		virtual QString RadFut ();
-		QString RadPs ();
-		virtual QString IndPres (int P);
-		virtual QString IndImpf(int P);
-		virtual QString IndPs (int P);
-		QString SubjPres(int P);
-		QString ImperPres (int P);
-		QString PartPres();
-		QString PP();
+   public:
+    TVetre(QString i) : Verbe(i) {}
+    virtual QString RadFut();
+    QString RadPs();
+    virtual QString IndPres(int P);
+    virtual QString IndImpf(int P);
+    virtual QString IndPs(int P);
+    QString SubjPres(int P);
+    QString ImperPres(int P);
+    QString PartPres();
+    QString PP();
 };
 
-class TValler: public Verbe
+class TValler : public Verbe
 {
-	public:
-		TValler (QString i): Verbe (i) {}
-		virtual QString RadFut();
-		virtual QString IndPres (int P);
-		virtual QString SubjPres (int P);
-		virtual QString ImperPres (int P);
+   public:
+    TValler(QString i) : Verbe(i) {}
+    virtual QString RadFut();
+    virtual QString IndPres(int P);
+    virtual QString SubjPres(int P);
+    virtual QString ImperPres(int P);
 };
 
-class TVcueillir: public Verbe
+class TVcueillir : public Verbe
 {
-	public:
-		TVcueillir (QString i): Verbe (i) {}
-		virtual QString RadFut();
-		virtual QString PP();
+   public:
+    TVcueillir(QString i) : Verbe(i) {}
+    virtual QString RadFut();
+    virtual QString PP();
 };
 
-class TVsst: public Verbe
+class TVsst : public Verbe
 {
-	public:
-		TVsst (QString i): Verbe (i) {}
-		virtual QString RadPres(int P);
-		virtual QString IndPres(int P);
-		virtual QString IndPs(int P);
-		virtual QString PP();
+   public:
+    TVsst(QString i) : Verbe(i) {}
+    virtual QString RadPres(int P);
+    virtual QString IndPres(int P);
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
 // héritiers de TVsst
 
-class TVaitre: public TVsst		 // paraître
+class TVaitre : public TVsst  // paraître
 {
-	protected:
-		size_t pcirc;
-	public:
-		TVaitre (QString i);
-		virtual QString RadPres(int P);
-		QString RadPs();
-		virtual QString IndPs(int P);
-		QString PP();
+   protected:
+    size_t pcirc;
+
+   public:
+    TVaitre(QString i);
+    virtual QString RadPres(int P);
+    QString RadPs();
+    virtual QString IndPs(int P);
+    QString PP();
 };
 
-class TVnaitre: public TVaitre
+class TVnaitre : public TVaitre
 {
-	public:
-		TVnaitre (QString i): TVaitre (i) {modele="TVnaitre";}
-		virtual QString RadPs();
-		virtual QString IndPs(int P);
-		virtual QString PP();
+   public:
+    TVnaitre(QString i) : TVaitre(i) { modele = "TVnaitre"; }
+    virtual QString RadPs();
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
-class TVpaitre: public TVaitre
+class TVpaitre : public TVaitre
 {
-	// distinguer repaître, qui a un pp.
-	public:
-		TVpaitre (QString i): TVaitre (i) {modele="TVpaitre";}
-		virtual QString IndPs (int P);
-		QString RadPs();
-		QString PP();
+    // distinguer repaître, qui a un pp.
+   public:
+    TVpaitre(QString i) : TVaitre(i) { modele = "TVpaitre"; }
+    virtual QString IndPs(int P);
+    QString RadPs();
+    QString PP();
 };
 
 class TVboire : public TVsst
 {
-	public:
-		TVboire (QString i): TVsst(i) {modele="TVboire";}
-		virtual QString RadPres(int P);
-		virtual QString RadPs();
-		virtual QString IndPs(int P);
-		virtual QString SubjPres(int P);
-		virtual QString PP();
+   public:
+    TVboire(QString i) : TVsst(i) { modele = "TVboire"; }
+    virtual QString RadPres(int P);
+    virtual QString RadPs();
+    virtual QString IndPs(int P);
+    virtual QString SubjPres(int P);
+    virtual QString PP();
 };
 
-class TVbouillir: public TVsst
+class TVbouillir : public TVsst
 {
-	public:
-		TVbouillir (QString i): TVsst(i) {}
-		virtual QString RadPres(int P);
+   public:
+    TVbouillir(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
 };
 
-class TVcevoir: public TVsst
+class TVcevoir : public TVsst
 {
-	public:
-		TVcevoir (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadFut();
-		virtual QString RadPs();
-		virtual QString IndPs (int P);
-		virtual QString PP();
+   public:
+    TVcevoir(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadFut();
+    virtual QString RadPs();
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
-class  TVchoir: public TVsst
+class TVchoir : public TVsst
 {
-	public:
-		TVchoir (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadPs();
-		virtual QString IndPres (int P);
-		virtual QString IndPs (int P);
-		virtual QString SubjPres (int P);
-		virtual QString PP() ;
+   public:
+    TVchoir(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadPs();
+    virtual QString IndPres(int P);
+    virtual QString IndPs(int P);
+    virtual QString SubjPres(int P);
+    virtual QString PP();
 };
 
-class TVclore: public TVsst
+class TVclore : public TVsst
 {
-	public:
-		TVclore (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
-		virtual QString IndPres (int P);
-		virtual QString IndPs (int P);
-		virtual QString PP();
+   public:
+    TVclore(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString IndPres(int P);
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
-class TVclure: public TVsst
+class TVclure : public TVsst
 {
-	public:
-		TVclure (QString i): TVsst(i) {}
-		virtual QString RadPs();
-		virtual QString IndPs (int P);
-		virtual QString PP();
+   public:
+    TVclure(QString i) : TVsst(i) {}
+    virtual QString RadPs();
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
-class TVconfire: public TVsst
+class TVconfire : public TVsst
 {
-	public:
-		TVconfire (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadPs();
-		virtual QString PP();
+   public:
+    TVconfire(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadPs();
+    virtual QString PP();
 };
 
-class TVcourir: public TVsst
+class TVcourir : public TVsst
 {
-	public:
-		TVcourir (QString i): TVsst(i) {modele="TVsst";}
-		virtual QString RadFut();
-		virtual QString IndPs (int P);
-		virtual QString PP();
+   public:
+    TVcourir(QString i) : TVsst(i) { modele = "TVsst"; }
+    virtual QString RadFut();
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
-class TVcroire: public TVsst
+class TVcroire : public TVsst
 {
-	public:
-		TVcroire (QString i): TVsst(i) {modele="TVcroire";}
-		virtual QString RadPres (int P);
-		virtual QString RadPs();
-		virtual QString IndPs (int P);
-		virtual QString PP();
+   public:
+    TVcroire(QString i) : TVsst(i) { modele = "TVcroire"; }
+    virtual QString RadPres(int P);
+    virtual QString RadPs();
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
-class TVcroitre: public TVsst
+class TVcroitre : public TVsst
 {
-	public:
-		TVcroitre (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadPs();
-		virtual QString IndPs (int P);
-		virtual QString PP();
+   public:
+    TVcroitre(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadPs();
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
-class TVdevoir: public TVsst
+class TVdevoir : public TVsst
 {
-	public:
-		TVdevoir (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadFut();
-		virtual QString RadPs();
-		virtual QString IndPs (int P);
-		virtual QString PP();
+   public:
+    TVdevoir(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadFut();
+    virtual QString RadPs();
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
-class TVdire: public TVsst
+class TVdire : public TVsst
 {
-	public:
-		TVdire (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadPs();
-		virtual QString IndPres (int P);
-		virtual QString PP();
+   public:
+    TVdire(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadPs();
+    virtual QString IndPres(int P);
+    virtual QString PP();
 };
 
-class TVdormir: public TVsst
+class TVdormir : public TVsst
 {
-	public:
-		TVdormir (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
+   public:
+    TVdormir(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
 };
 
-class TVecrire: public TVsst
+class TVecrire : public TVsst
 {
-	public:
-		TVecrire (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadPs();
-		virtual QString PP();
+   public:
+    TVecrire(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadPs();
+    virtual QString PP();
 };
 
-class TVfaillir: public TVsst
+class TVfaillir : public TVsst
 {
-	public:
-		TVfaillir (QString i): TVsst(i) {}
-		virtual QString IndPres (int P);
+   public:
+    TVfaillir(QString i) : TVsst(i) {}
+    virtual QString IndPres(int P);
 };
 
-class TVfaire: public TVsst
+class TVfaire : public TVsst
 {
-	public:
-		TVfaire (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadFut();
-		QString RadPs();
-		virtual QString IndPres (int P);
-		QString SubjPres (int P);
-		QString PP();
+   public:
+    TVfaire(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadFut();
+    QString RadPs();
+    virtual QString IndPres(int P);
+    QString SubjPres(int P);
+    QString PP();
 };
 
-class TVfuir: public TVsst
+class TVfuir : public TVsst
 {
-	public:
-		TVfuir (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
+   public:
+    TVfuir(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
 };
 
-class TVgesir: public TVsst
+class TVgesir : public TVsst
 {
-	public:
-		TVgesir (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
-		virtual QString IndFut (int P);
-		virtual QString IndPs (int P);
-		virtual QString PP();
+   public:
+    TVgesir(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString IndFut(int P);
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
-class TVindre: public TVsst
+class TVindre : public TVsst
 {
-	public:
-		TVindre (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadPs();
-		virtual QString PP();
+   public:
+    TVindre(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadPs();
+    virtual QString PP();
 };
 
-class TVir: public TVsst
+class TVir : public TVsst
 {
-	public:
-		TVir (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
-		virtual QString IndPs (int P);
-		virtual QString PP();
+   public:
+    TVir(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
-class TVlire: public TVsst
+class TVlire : public TVsst
 {
-	public:
-		TVlire (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadPs();
-		virtual QString IndPs (int P);
-		virtual QString PP();
+   public:
+    TVlire(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadPs();
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
-class TVtaire: public TVlire
+class TVtaire : public TVlire
 {
-	public:
-		TVtaire (QString i): TVlire (i) {}
-		QString RadPs();
-		virtual QString IndPs (int P);
+   public:
+    TVtaire(QString i) : TVlire(i) {}
+    QString RadPs();
+    virtual QString IndPs(int P);
 };
 
-class TVmettre: public TVsst
+class TVmettre : public TVsst
 {
-	public:
-		TVmettre (QString i): TVsst (i) {}
-		virtual QString RadPres (int P);
-		QString RadPs();
-		QString PP();
+   public:
+    TVmettre(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    QString RadPs();
+    QString PP();
 };
 
-class TVmourir: public TVsst
+class TVmourir : public TVsst
 {
-	public:
-		TVmourir (QString i): TVsst (i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadFut();
-		virtual QString IndPs (int P);
-		QString PP();
+   public:
+    TVmourir(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadFut();
+    virtual QString IndPs(int P);
+    QString PP();
 };
 
-class TVmouvoir: public TVsst
+class TVmouvoir : public TVsst
 {
-	public:
-		TVmouvoir (QString i): TVsst (i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadFut();
-		QString RadPs();
-		virtual QString IndPs (int P);
-		QString PP();
+   public:
+    TVmouvoir(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadFut();
+    QString RadPs();
+    virtual QString IndPs(int P);
+    QString PP();
 };
 
-class TVouir: public TVsst
+class TVouir : public TVsst
 {
-	public:
-		TVouir (QString i): TVsst (i) {}
-		virtual QString RadPres (int P);
-		virtual QString IndPs (int P);
-		virtual QString PP();
+   public:
+    TVouir(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
-class TVplaire: public TVsst
+class TVplaire : public TVsst
 {
-	public:
-		TVplaire (QString i): TVsst (i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadPs();
-		virtual QString IndPs (int P);
-		virtual QString PP();
+   public:
+    TVplaire(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadPs();
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
-class TVpleuvoir: public TVsst
+class TVpleuvoir : public TVsst
 {
-	public:
-		TVpleuvoir (QString i): TVsst (i) {}
-		virtual QString IndPres (int P);
-		virtual QString RadFut();
-		virtual QString RadPs();
-		virtual QString IndPs (int P);
-		virtual QString IndImpf  (int P);
-		virtual QString SubjPres (int P);
-		virtual QString PP();
-		virtual QString conjugue(int P, int T, int M, int V, bool Pr);
+   public:
+    TVpleuvoir(QString i) : TVsst(i) {}
+    virtual QString IndPres(int P);
+    virtual QString RadFut();
+    virtual QString RadPs();
+    virtual QString IndPs(int P);
+    virtual QString IndImpf(int P);
+    virtual QString SubjPres(int P);
+    virtual QString PP();
+    virtual QString conjugue(int P, int T, int M, int V, bool Pr);
 };
 
-class TVpouvoir: public TVsst
+class TVpouvoir : public TVsst
 {
-	public:
-		TVpouvoir (QString i): TVsst (i) {}
-		virtual QString RadFut();
-		virtual QString RadPs();
-		virtual QString IndPres (int P);
-		virtual QString IndPs (int P);
-		virtual QString SubjPres (int P);
-		virtual QString PP();
+   public:
+    TVpouvoir(QString i) : TVsst(i) {}
+    virtual QString RadFut();
+    virtual QString RadPs();
+    virtual QString IndPres(int P);
+    virtual QString IndPs(int P);
+    virtual QString SubjPres(int P);
+    virtual QString PP();
 };
 
-class TVpourvoir: public TVsst
+class TVpourvoir : public TVsst
 {
-	public:
-		TVpourvoir (QString i): TVsst (i) {}
-		virtual QString RadPres (int P);
-		QString RadPs();
-		virtual QString IndPs (int P);
-		virtual QString PP();
+   public:
+    TVpourvoir(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    QString RadPs();
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
-class TVvoir: public TVsst
+class TVvoir : public TVsst
 {
-	public:
-		TVvoir (QString i): TVsst (i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadFut();
-		virtual QString RadPs();
-		QString PP();
+   public:
+    TVvoir(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadFut();
+    virtual QString RadPs();
+    QString PP();
 };
 
-class TVrire: public TVsst
+class TVrire : public TVsst
 {
-	public:
-		TVrire (QString i): TVsst (i) {}
-		virtual QString RadPs();
+   public:
+    TVrire(QString i) : TVsst(i) {}
+    virtual QString RadPs();
 };
 
-class TVsavoir: public TVsst
+class TVsavoir : public TVsst
 {
-	public:
-		TVsavoir (QString i): TVsst (i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadFut();
-		QString RadPs();
-		virtual QString IndPs (int P);
-		QString SubjPres (int P);
-		QString ImperPres (int P);
-		QString PartPres();
-		QString PP();
+   public:
+    TVsavoir(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadFut();
+    QString RadPs();
+    virtual QString IndPs(int P);
+    QString SubjPres(int P);
+    QString ImperPres(int P);
+    QString PartPres();
+    QString PP();
 };
 
-class TVservir: public TVsst
+class TVservir : public TVsst
 {
-	public:
-		TVservir (QString i): TVsst (i) {}
-		virtual QString RadPres (int P);
+   public:
+    TVservir(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
 };
 
-class TVquerir: public TVservir
+class TVquerir : public TVservir
 {
-    public:
-        TVquerir (QString i): TVservir (i) {}
-		virtual QString RadPres (int P);
-		virtual QString PP();
-		virtual QString RadPs();
-		virtual QString IndPs (int P);
+   public:
+    TVquerir(QString i) : TVservir(i) {}
+    virtual QString RadPres(int P);
+    virtual QString PP();
+    virtual QString RadPs();
+    virtual QString IndPs(int P);
 };
 
-class TVsoudre: public TVsst
+class TVsoudre : public TVsst
 {
-	public:
-		TVsoudre (QString i): TVsst (i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadPs();
-		virtual QString IndPs (int P);
-		virtual QString PP();
+   public:
+    TVsoudre(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadPs();
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
-class TVsuivre: public TVsst
+class TVsuivre : public TVsst
 {
-	public:
-		TVsuivre (QString i): TVsst (i) {}
-		virtual QString RadPres (int P);
+   public:
+    TVsuivre(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
 };
 
-class TVvivre: public TVsuivre
+class TVvivre : public TVsuivre
 {
-	public:
-		TVvivre (QString i): TVsuivre (i) {}
-		virtual QString RadPs();
-		virtual QString IndPs (int P);
-		virtual QString PP();
+   public:
+    TVvivre(QString i) : TVsuivre(i) {}
+    virtual QString RadPs();
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
-class TVsurseoir: public TVsst
+class TVsurseoir : public TVsst
 {
-	public:
-		TVsurseoir (QString i): TVsst (i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadPs();
-		virtual QString IndPs (int P);
-		virtual QString PP();
+   public:
+    TVsurseoir(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadPs();
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
-class TVvenir: public TVsst
+class TVvenir : public TVsst
 {
-	public:
-		TVvenir (QString i): TVsst (i) {}
-		virtual QString RadFut();
-		virtual QString circonflexe();
-		virtual QString RadPres (int P);
-		virtual QString IndPs (int P);
-		virtual QString PP();
+   public:
+    TVvenir(QString i) : TVsst(i) {}
+    virtual QString RadFut();
+    virtual QString circonflexe();
+    virtual QString RadPres(int P);
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
 // ne pas permuter les 2 suivants
-class TVvetir: public TVsst
+class TVvetir : public TVsst
 {
-	public:
-		TVvetir (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
-		virtual QString PP();
+   public:
+    TVvetir(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString PP();
 };
 
-class TVtir: public TVsst
+class TVtir : public TVsst
 {
-	public:
-		TVtir (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
-		virtual QString IndPs (int P);
+   public:
+    TVtir(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString IndPs(int P);
 };
 // ne pas permuter les 2 prcdents
 
-class TVuire: public TVsst
+class TVuire : public TVsst
 {
-	public:
-		TVuire (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadPs();
-		virtual QString PP();
+   public:
+    TVuire(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadPs();
+    virtual QString PP();
 };
 
-class TVtraire: public TVsst
+class TVtraire : public TVsst
 {
-	public:
-		TVtraire (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadPs ();
-		virtual QString PP();
+   public:
+    TVtraire(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadPs();
+    virtual QString PP();
 };
 
-class TVvaincre: public TVsst
+class TVvaincre : public TVsst
 {
-	public:
-		TVvaincre (QString i): TVsst(i) {}
-		virtual QString RadPres (int P);
-		virtual QString IndPres (int P);
-		virtual QString RadPs();
-		virtual QString PP();
+   public:
+    TVvaincre(QString i) : TVsst(i) {}
+    virtual QString RadPres(int P);
+    virtual QString IndPres(int P);
+    virtual QString RadPs();
+    virtual QString PP();
 };
 
 // fin des hritiers de TVsst
 
-class TVxxt: public TVsst
+class TVxxt : public TVsst
 {
-	public:
-		TVxxt (QString i): TVsst(i) {}
-		virtual QString RadPs();
-		virtual QString IndPres (int P);
-		virtual QString IndPs (int P);
+   public:
+    TVxxt(QString i) : TVsst(i) {}
+    virtual QString RadPs();
+    virtual QString IndPres(int P);
+    virtual QString IndPs(int P);
 };
 
 //  hritiers de TVxxt
 
-class TVvaloir: public TVxxt
+class TVvaloir : public TVxxt
 {
-	public:
-		TVvaloir (QString i): TVxxt(i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadFut();
-		virtual QString SubjPres(int P);
-		virtual QString PP();
+   public:
+    TVvaloir(QString i) : TVxxt(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadFut();
+    virtual QString SubjPres(int P);
+    virtual QString PP();
 };
 
-class TVfalloir: public TVvaloir
+class TVfalloir : public TVvaloir
 {
-	public:
-		TVfalloir (QString i): TVvaloir(i) {modele="TVfalloir";}
-		virtual QString IndPres (int P);
-		virtual QString IndFut(int P);
-		virtual QString IndPs(int P);
-		virtual QString SubjPres(int P);
-		QString conjugue (int P, int T, int M, int V, bool pr);
+   public:
+    TVfalloir(QString i) : TVvaloir(i) { modele = "TVfalloir"; }
+    virtual QString IndPres(int P);
+    virtual QString IndFut(int P);
+    virtual QString IndPs(int P);
+    virtual QString SubjPres(int P);
+    QString conjugue(int P, int T, int M, int V, bool pr);
 };
 
-class TVvouloir: public TVxxt
+class TVvouloir : public TVxxt
 {
-	public:
-		TVvouloir (QString i): TVxxt(i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadFut();
-		virtual QString SubjPres (int P);
-		virtual QString PP();
+   public:
+    TVvouloir(QString i) : TVxxt(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadFut();
+    virtual QString SubjPres(int P);
+    virtual QString PP();
 };
 
-class TVdre: public Verbe
+class TVdre : public Verbe
 {
-	public:
-		TVdre (QString i): Verbe(i) {}
-		virtual QString IndPres (int P);
-		virtual QString IndPs (int P);
-		virtual QString PP();
+   public:
+    TVdre(QString i) : Verbe(i) {}
+    virtual QString IndPres(int P);
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
-class TVasseoir: public TVdre
+class TVasseoir : public TVdre
 {
-	public:
-		TVasseoir (QString i): TVdre (i) {}
-		virtual QString RadPres (int P);
-		QString RadPs();
-		virtual QString IndPres (int P);
-		virtual QString IndImpf (int P);
-		QString PP();
+   public:
+    TVasseoir(QString i) : TVdre(i) {}
+    virtual QString RadPres(int P);
+    QString RadPs();
+    virtual QString IndPres(int P);
+    virtual QString IndImpf(int P);
+    QString PP();
 };
 
-class TVcoudre: public TVdre
+class TVcoudre : public TVdre
 {
-	public:
-		TVcoudre (QString i): TVdre (i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadPs();
+   public:
+    TVcoudre(QString i) : TVdre(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadPs();
 };
 
-class TVmoudre: public TVdre
+class TVmoudre : public TVdre
 {
-	public:
-		TVmoudre (QString i): TVdre (i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadPs();
-		virtual QString IndPs (int P);
+   public:
+    TVmoudre(QString i) : TVdre(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadPs();
+    virtual QString IndPs(int P);
 };
 
-class TVprendre: public TVdre
+class TVprendre : public TVdre
 {
-	public:
-		TVprendre (QString i): TVdre (i) {}
-		virtual QString RadPres (int P);
-		virtual QString RadPs();
-		virtual QString SubjPres (int P);
-		virtual QString PP();
+   public:
+    TVprendre(QString i) : TVdre(i) {}
+    virtual QString RadPres(int P);
+    virtual QString RadPs();
+    virtual QString SubjPres(int P);
+    virtual QString PP();
 };
 
-class TVouvrir: public Verbe
+class TVouvrir : public Verbe
 {
-	public:
-		TVouvrir (QString i): Verbe (i) {}
-		virtual QString ImperPres (int P);
-		virtual QString IndPs (int P);
-		virtual QString PP();
+   public:
+    TVouvrir(QString i) : Verbe(i) {}
+    virtual QString ImperPres(int P);
+    virtual QString IndPs(int P);
+    virtual QString PP();
 };
 
-class TVbattre: public TVtir
+class TVbattre : public TVtir
 {
-	public:
-		TVbattre (QString i): TVtir (i) {}
-		virtual QString RadPres (int P);
-		QString PP();
+   public:
+    TVbattre(QString i) : TVtir(i) {}
+    virtual QString RadPres(int P);
+    QString PP();
 };
 
 bool IsLast(QString chaine, QString mot);
 
-Verbe * verbe_m (QString inf);
-QString conjugue(QString inf, int P=1, int T=1, int M=1, int V=1, bool Pr=false, int g=0, int n=0);
+Verbe* verbe_m(QString inf);
+QString conjugue(QString inf, int P = 1, int T = 1, int M = 1, int V = 1,
+                 bool Pr = false, int g = 0, int n = 0);
 QString conjnat(QString inf, QString morpho);
 
 // ------------------------------------------------------------
 //  Flexion des noms
 // ------------------------------------------------------------
 
-class  Nom
+class Nom
 {
-	protected:
-		QString sing;
-		QString modele;
-	public:
-		Nom (QString s);
-		virtual ~Nom ();
-		virtual QString getModele ();
-		virtual QString pluriel();
+   protected:
+    QString sing;
+    QString modele;
+
+   public:
+    Nom(QString s);
+    virtual ~Nom();
+    virtual QString getModele();
+    virtual QString pluriel();
 };
 
-class NomSXZ: public Nom
+class NomSXZ : public Nom
 {
-	public:
-		NomSXZ (QString s): Nom (s) {modele="NomSXZ";}
-		QString pluriel();
+   public:
+    NomSXZ(QString s) : Nom(s) { modele = "NomSXZ"; }
+    QString pluriel();
 };
 
-class NomAL: public Nom
+class NomAL : public Nom
 {
-	public:
-		NomAL (QString s): Nom (s) {}
-		virtual QString pluriel();
+   public:
+    NomAL(QString s) : Nom(s) {}
+    virtual QString pluriel();
 };
 
-class NomAIL: public Nom
+class NomAIL : public Nom
 {
-	public:
-		NomAIL (QString s): Nom (s) {modele="NomAI";}
-		virtual QString pluriel();
+   public:
+    NomAIL(QString s) : Nom(s) { modele = "NomAI"; }
+    virtual QString pluriel();
 };
 
-class NomAUEU: public Nom
+class NomAUEU : public Nom
 {
-	public:
-		NomAUEU (QString s): Nom (s) {}
-		virtual QString pluriel();
+   public:
+    NomAUEU(QString s) : Nom(s) {}
+    virtual QString pluriel();
 };
 
-Nom * nom_m (QString n);
+Nom* nom_m(QString n);
 
 // ------------------------------------------------------------
 //  Flexion des adjectifs
@@ -791,132 +796,134 @@ Nom * nom_m (QString n);
 
 class Adjectif
 {
-	protected:
-		QString graphie;
-		QString modele;
-	public:
-		Adjectif (QString a);
-		virtual ~Adjectif ();
-		virtual QString getModele ();
-		virtual QString feminin();
-		virtual QString pluriel (bool fem);
-		virtual QString accorde(int g, int n);
+   protected:
+    QString graphie;
+    QString modele;
+
+   public:
+    Adjectif(QString a);
+    virtual ~Adjectif();
+    virtual QString getModele();
+    virtual QString feminin();
+    virtual QString pluriel(bool fem);
+    virtual QString accorde(int g, int n);
 };
 
 // irrgularits :
 // gu - gu
 
-class Aigu: public Adjectif
+class Aigu : public Adjectif
 {
-	public:
-		Aigu (QString a): Adjectif (a) {modele="Aigu";}
-		virtual QString feminin();
+   public:
+    Aigu(QString a) : Adjectif(a) { modele = "Aigu"; }
+    virtual QString feminin();
 };
 
-class ElEil: public Adjectif
+class ElEil : public Adjectif
 {
-	public:
-		ElEil (QString a): Adjectif (a) {modele="ElEi";}
-		virtual QString feminin();
+   public:
+    ElEil(QString a) : Adjectif(a) { modele = "ElEi"; }
+    virtual QString feminin();
 };
 
-class Al: public Adjectif
+class Al : public Adjectif
 {
-	public:
-		Al (QString a): Adjectif (a) {modele="A";}
-		virtual QString pluriel (bool fem);
-		virtual QString accorde(int g, int n);
+   public:
+    Al(QString a) : Adjectif(a) { modele = "A"; }
+    virtual QString pluriel(bool fem);
+    virtual QString accorde(int g, int n);
 };
 
-class Gras: public Adjectif
+class Gras : public Adjectif
 {
-	public:
-		Gras (QString a): Adjectif (a) {modele="Gras";}
-		virtual QString feminin ();
+   public:
+    Gras(QString a) : Adjectif(a) { modele = "Gras"; }
+    virtual QString feminin();
 };
 
-class Eux: public Adjectif
+class Eux : public Adjectif
 {
-	public:
-		Eux (QString a): Adjectif (a) {}
-		virtual QString feminin();
+   public:
+    Eux(QString a) : Adjectif(a) {}
+    virtual QString feminin();
 };
 
-class El: public Adjectif
+class El : public Adjectif
 {
-	public:
-		El (QString a): Adjectif (a) {}
-		virtual QString feminin();
+   public:
+    El(QString a) : Adjectif(a) {}
+    virtual QString feminin();
 };
 
-class Er: public Adjectif
+class Er : public Adjectif
 {
-	public:
-		Er (QString a): Adjectif (a) {}
-		virtual QString feminin();
+   public:
+    Er(QString a) : Adjectif(a) {}
+    virtual QString feminin();
 };
 
-class AdjF: public Adjectif
+class AdjF : public Adjectif
 {
-	public:
-		AdjF (QString a): Adjectif (a) {}
-		virtual QString feminin();
+   public:
+    AdjF(QString a) : Adjectif(a) {}
+    virtual QString feminin();
 };
 
-class AdjC: public Adjectif
+class AdjC : public Adjectif
 {
-	public:
-		AdjC (QString a): Adjectif (a) {}
-		virtual QString feminin();
+   public:
+    AdjC(QString a) : Adjectif(a) {}
+    virtual QString feminin();
 };
 
-class Eau: public Adjectif
+class Eau : public Adjectif
 {
-	public:
-		Eau (QString a): Adjectif (a) {}
-		virtual QString feminin();
+   public:
+    Eau(QString a) : Adjectif(a) {}
+    virtual QString feminin();
 };
 
-class Et: public Adjectif
+class Et : public Adjectif
 {
-	public:
-		Et (QString a): Adjectif (a) {modele="Et";}
-		virtual QString feminin();
+   public:
+    Et(QString a) : Adjectif(a) { modele = "Et"; }
+    virtual QString feminin();
 };
 
-class Mon: public Adjectif
+class Mon : public Adjectif
 {
-	public:
-		Mon (QString a): Adjectif (a) {}
-		virtual QString feminin();
-		virtual QString pluriel(bool fem);
+   public:
+    Mon(QString a) : Adjectif(a) {}
+    virtual QString feminin();
+    virtual QString pluriel(bool fem);
 };
 
-class Bon: public Adjectif
+class Bon : public Adjectif
 {
-	public:
-		Bon (QString a): Adjectif (a) {}
-		virtual QString feminin();
+   public:
+    Bon(QString a) : Adjectif(a) {}
+    virtual QString feminin();
 };
 
-class Tout: public Adjectif
+class Tout : public Adjectif
 {
-	public:
-		Tout (QString a): Adjectif (a) {}
-		virtual QString pluriel (bool fem);
+   public:
+    Tout(QString a) : Adjectif(a) {}
+    virtual QString pluriel(bool fem);
 };
 
 class Pronom
 {
-    private:
-        QMap<QString,QString> map;
-    public:
-        Pronom();
-        QString accorde(QString p, QString m); 
+   private:
+    QMap<QString, QString> map;
+
+   public:
+    Pronom();
+    QString accorde(QString p, QString m);
 };
 
-bool pas_de_passif (QString inf);
-QString tableau (QString verbe, int voix);
+bool pas_de_passif(QString inf);
+QString tableau(QString verbe, int voix);
 QString pluriel(QString l, QString n);
 QString accorde(QString adj, QString m);
 #endif

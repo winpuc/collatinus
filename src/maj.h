@@ -7,20 +7,20 @@
 #include <QLabel>
 #include <QStringList>
 
-class Maj: public QDialog
+class Maj : public QDialog
 {
+    Q_OBJECT
 
-	Q_OBJECT
-
-	private:
-		void         installe (QString nfcol);  // décompresse nfcol et l'installe dans data/dicos/
-		QLabel      *label;
-		QStringList  listeF;                 // liste des fichiers téléchargés
-	private slots:
-		void         selectionne();          // lance un dialogue de sélection de fichier
-	public:
-		Maj (QDialog *parent=0);
-		void setFont (QFont font);
+   private:
+    void installe(
+        QString nfcol);  // décompresse nfcol et l'installe dans data/dicos/
+    QLabel *label;
+    QStringList listeF;  // liste des fichiers téléchargés
+   private slots:
+    void selectionne();  // lance un dialogue de sélection de fichier
+   public:
+    Maj(QDialog *parent = 0);
+    void setFont(QFont font);
 };
 
 #endif
