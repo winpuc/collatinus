@@ -589,6 +589,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     settings.setValue("breve", breveAct->isChecked());
     settings.setValue("ambigue", ambigueAct->isChecked());
     settings.setValue("hyphenation", hyphenAct->isChecked());
+    settings.setValue("repHyphen", repHyphen);
     settings.endGroup();
     settings.beginGroup("dictionnaires");
     settings.setValue("courant", comboGlossaria->currentIndex());
@@ -714,6 +715,7 @@ void MainWindow::createActions()
     optionsAccent->addAction(breveAct);
     optionsAccent->addAction(ambigueAct);
     optionsAccent->setEnabled(false);
+    lireHyphenAct = new QAction(tr("Lire les césures"),this);
     // actions pour les dictionnaires
     dicAct = new QAction(QIcon(":/res/dicolem.svg"),
                          tr("Lemmatiser et chercher"), this);
@@ -793,13 +795,8 @@ void MainWindow::createConnections()
 
     // actions et options de l'accentuation
     connect(accentAct, SIGNAL(toggled(bool)), this, SLOT(setAccent(bool)));
-    /*    connect(longueAct, SIGNAL(toggled(bool)), this,
-       SLOT(setLongue(bool)));
-        connect(breveAct, SIGNAL(toggled(bool)), this, SLOT(setBreve(bool)));
-        connect(ambigueAct, SIGNAL(toggled(bool)), this,
-       SLOT(setAmbigue(bool)));
-        connect(hyphenAct, SIGNAL(toggled(bool)), this, SLOT(setHyphen(bool)));
-    */
+    connect(lireHyphenAct, SIGNAL(triggered()), this, SLOT(lireFichierHyphen()));
+
     // actions des dictionnaires
     connect(anteButton, SIGNAL(clicked()), this, SLOT(clicAnte()));
     connect(comboGlossaria, SIGNAL(currentIndexChanged(QString)), this,
@@ -888,6 +885,8 @@ void MainWindow::createMenus()
     fileMenu->addAction(copieAct);
     fileMenu->addAction(exportAct);
     fileMenu->addAction(printAct);
+    fileMenu->addSeparator();
+    fileMenu->addAction(lireHyphenAct);
     fileMenu->addSeparator();
     fileMenu->addAction(quitAct);
 
@@ -1554,6 +1553,8 @@ void MainWindow::readSettings()
     breveAct->setChecked(settings.value("breve").toBool());
     ambigueAct->setChecked(settings.value("ambigue").toBool());
     hyphenAct->setChecked(settings.value("hyphenation").toBool());
+    repHyphen = settings.value("repHyphen").toString();
+    if (repHyphen.isEmpty()) repHyphen = qApp->applicationDirPath() + "/data";
 
     QString l = settings.value("cible").toString();
     lemmatiseur->setCible(l);
@@ -1748,4 +1749,11 @@ int MainWindow::lireOptionsAccent()
         retour += 3;
     }
     return retour;
+}
+
+void MainWindow::lireFichierHyphen()
+{
+    QString ficIn = QFileDialog::getOpenFileName(this, "Capsam legere", repHyphen+"/hyphen.la");
+    if (!ficIn.isEmpty()) repHyphen = QFileInfo (ficIn).absolutePath ();
+    lemmatiseur->lireHyphen(ficIn);
 }

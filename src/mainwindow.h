@@ -144,6 +144,7 @@ class MainWindow : public QMainWindow
     void syncWD();
     // Slots d'accentuation
     void setAccent(bool b);
+    void lireFichierHyphen ();
 
    public slots:
     void afficheLemsDic(QStringList ll, int no = 0);
@@ -188,6 +189,9 @@ class MainWindow : public QMainWindow
     QAction *breveAct;
     QAction *ambigueAct;
     QAction *hyphenAct;
+    QAction *lireHyphenAct;
+    // Nom du répertoire du fichier hyphen.la
+    QString repHyphen;
 
     // actions et groupes d'actions
     QAction *aproposAct;

@@ -353,7 +353,7 @@ MapLem Lemmat::lemmatise(QString f)
                     if (des->morphoNum() < _morphos.count() - 1)
                     {
                         SLem sl = {rad->grq() + des->grq(),
-                                   morpho(des->morphoNum())};
+                                   morpho(des->morphoNum()), ""};
                         result[l].prepend(sl);
                     }
                     else
@@ -923,3 +923,44 @@ void Lemmat::setNonRec(bool n) { _nonRec = n; }
  *        premier caractère $.
  */
 QString Lemmat::variable(QString v) { return _variables[v]; }
+
+/**
+ * @brief Lemmat::lireHyphen
+ * @param fichierHyphen : nom du fichier (avec le chemin absolu)
+ * \brief stocke pour tous les lemmes contenus dans le fichier
+ * l'information sur la césure étymologique (non-phonétique).
+ */
+void Lemmat::lireHyphen(QString fichierHyphen)
+{
+    foreach (Lemme *l, _lemmes.values()) l->setHyphen("");
+    if (!fichierHyphen.isEmpty())
+    {
+        QFile Capsa(fichierHyphen);
+        Capsa.open(QIODevice::ReadOnly|QIODevice::Text);
+
+        QTextStream flux(&Capsa);
+        flux.setCodec("UTF-8");
+        QString linea;
+        while (!flux.atEnd())
+        {
+            linea = flux.readLine ();
+            if (linea.isEmpty() || linea[0] == '!') continue;
+            QStringList ecl = linea.split('|');
+#ifdef DEBOG
+            if (ecl.count() != 2)
+            {
+                qDebug () << "ligne mal formée" << linea;
+                continue;
+            }
+#endif
+            Lemme *l = lemme(Ch::deramise(ecl[0]));
+            if (l!=NULL)
+                l->setHyphen(ecl[1]);
+#ifdef DEBOG
+            else qDebug () << linea << "erreur lireHyphen";
+#endif
+        }
+        Capsa.close();
+
+    }
+}
