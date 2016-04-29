@@ -19,7 +19,7 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
-#include "lewis.h"
+#include "dicos.h"
 
 #include <QDebug>
 

@@ -26,7 +26,7 @@
 
 #include "flexion.h"
 #include "lemmatiseur.h"
-#include "lewis.h"
+#include "dicos.h"
 #include "syntaxe.h"
 
 QT_BEGIN_NAMESPACE

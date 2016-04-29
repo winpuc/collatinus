@@ -29,23 +29,23 @@ HEADERS += src/ch.h \
            src/irregs.h \
            src/lemmatiseur.h \
            src/lemme.h \
-           src/lewis.h \
-		   src/modele.h \
+           src/dicos.h \
+		       src/modele.h \
            src/flexfr.h \
            src/mainwindow.h \
-		   src/maj.h \
+		       src/maj.h \
            src/syntaxe.h
 
 SOURCES += src/ch.cpp \
            src/flexion.cpp \
-		   src/frequences.cpp \
+		       src/frequences.cpp \
            src/irregs.cpp \
            src/lemmatiseur.cpp \
            src/lemme.cpp \
-           src/lewis.cpp \
+           src/dicos.cpp \
            src/flexfr.cpp \
            src/main.cpp \
-		   src/maj.cpp \
+		       src/maj.cpp \
            src/mainwindow.cpp \
            src/modele.cpp \
            src/scandeur.cpp \
