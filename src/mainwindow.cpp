@@ -194,13 +194,8 @@ void MainWindow::afficheLemsDic (bool litt, bool prim)
 	if (prim) lineEdit = lineEditDic;
 	else lineEdit = lineEditDicW;
     if (lineEdit->text ().isEmpty ())
-<<<<<<< HEAD
-		return;
-	lemsDic.clear();    
-=======
         return;
     lemsDic.clear();    
->>>>>>> master
     QStringList requete;
     if (!litt)
     {
@@ -371,17 +366,6 @@ void MainWindow::apropos ()
          "COLLATINVS\nLinguae latinae lemmatizatio \n"
          "Licentia GPL, © Yves Ouvrard, 2009 - 2016 \n"
          "Nonnullas partes operis scripsit Philippe Verkerk\n"
-<<<<<<< HEAD
-		 "Versio "VERSION"\n"
-		 "Gratias illis habeo :\n"
-		 "William Whitaker †\n"
-		 "Jose Luis Redrejo,\n"
-		 "Georges Khaznadar,\n"
-		 "Matthias Bussonier,\n"
-		 "Gérard Jeanneau,\n"
-		 "Jean-Paul Woitrain,\n"
-		 "Perseus Digital Library <http://www.perseus.tufts.edu>"));
-=======
          "Versio " VERSION "\n"
          "Gratias illis habeo :\n"
          "William Whitaker †\n"
@@ -391,7 +375,6 @@ void MainWindow::apropos ()
          "Gérard Jeanneau,\n"
          "Jean-Paul Woitrain,\n"
          "Perseus Digital Library <http://www.perseus.tufts.edu>"));
->>>>>>> master
 }
 
 /**

@@ -30,6 +30,7 @@ HEADERS += src/ch.h \
            src/lemmatiseur.h \
            src/lemme.h \
            src/lewis.h \
+		   src/modele.h \
            src/flexfr.h \
            src/mainwindow.h \
 		   src/maj.h \
