@@ -176,31 +176,31 @@ class Mot : public QObject
 
    public:
     Mot(QString g);
-    void addLien(QString l);
-    void addRSub(RegleS *r);
-    void addSuper(RegleS *r, Lemme *l, QString m);
-    QString gr();
-    void grCalc();  // met à jour _grPrim et _grUlt;
-    int grPrim();
-    int grUlt();
-    QString humain();
-    QString liens();  // renvoie _affliens
-    MapLem morphos();
-    bool orphelin();
-    QString ponctD();
-    QString ponctG();
-    int rang();
-    void setMorphos(MapLem m);
-    void setPonctD(QString c);
-    void setPonctG(QString c);
-    void setRang(int r);
-    void setRSub(QList<RegleS *>);
-    void setRSuper(QList<RegleS *>);
-    QList<Super *>
-    super();  // liste des règles qui peuvent faire du mot un super
-    bool superDe(Mot *m);
-    bool terminal();  // pas de sub
-    bool vu();
+    void           addLien(QString l);
+    void           addRSub(RegleS *r);
+    void           addSuper(RegleS *r, Lemme *l, QString m);
+    QString        gr();
+    void           grCalc();  // met à jour _grPrim et _grUlt;
+    int            grPrim(); // rang du premier mot du groupe du mot
+    int            grUlt();  //  "      dernier  "
+    QString        humain();
+    QString        liens();  // renvoie _affliens
+    MapLem         morphos();
+    bool           orphelin();
+    QString        ponctD();
+    QString        ponctG();
+    int            rang();
+    void           setMorphos(MapLem m);
+    void           setPonctD(QString c);
+    void           setPonctG(QString c);
+    void           setRang(int r);
+    void           setRSub(QList<RegleS *>);
+    void           setRSuper(QList<RegleS *>);
+    void           setVu();
+    QList<Super *> super();  // liste des règles qui peuvent faire du mot un super
+    bool           superDe(Mot *m);
+    bool           terminal();  // pas de sub
+    bool           vu();
 };
 
 class Syntaxe : public QObject

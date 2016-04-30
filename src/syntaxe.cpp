@@ -32,10 +32,6 @@
  */
 
 
-// TODO
-// - potantibus apud lien prep non accepté
-//
-
 #include "syntaxe.h"
 #include <QFile>
 #include <QRegExp>
@@ -193,18 +189,14 @@ void Super::addSub(Mot *m) { _motSub = m; }
 
 bool Super::estSub(Lemme *l, QString morpho, bool ante)
 {
-    //bool debog = _mot->gr()=="accenso" && l->gr()=="certamen" && _regle->id()=="ablAbs";
-    //if (debog) qDebug()<<"estSub"<<_mot->gr()<<l->gr()<<morpho;
     if (!_regle->estSub(l, morpho, ante))
     {
         return false;
     }
-    //if (debog) qDebug()<<"    _motSub==NULL"<<(_motSub != NULL)<<"_regle->synt()"<<_regle->synt();
     if (_motSub != NULL && _regle->synt().contains('u'))
     {
         return false;
     }
-    //if (debog) qDebug()<<"    OK";
     return true;
 }
 
@@ -430,7 +422,6 @@ QString Syntaxe::analyse(QString t, int p)
     while (fph < tl && !pp.contains(t.at(fph))) ++fph;
     // construction des mots
     QString phr = t.mid(dph, fph - dph);
-    qDebug()<<"analyse"<<phr;
     QStringList lm = phr.split(QRegExp("\\b"));
     for (int i = 1; i < lm.count() - 1; i += 2)
     {
@@ -468,10 +459,7 @@ QString Syntaxe::analyse(QString t, int p)
     int nbmots = _mots.count();
     r = 0;
     while (r < nbmots && r > -1)
-    {
         r = groupe(r);
-        mots.at(r)->setVu();
-    }
     if (_mots.count() > pmc)
         return _mots.at(pmc)->liens();
     else return "";
@@ -730,34 +718,25 @@ bool Syntaxe::estSuper(Mot *sup, Mot *sub)
 int Syntaxe::groupe(int r)
 {
     Mot *cour = _mots.at(r);
-    bool debog = cour->gr()=="potantibus" || cour->gr()=="his";
-    if (debog) qDebug()<<"groupe(r), r="<<r;
+    // éviter les passages inutiles
+    if (cour->vu()) return ++r;
     int x = 1;
     while (r + x < _mots.count())
     {
         Mot *mTest = _mots.at(r + x);
-        if (debog) qDebug()<<"    r"<<r<<"x"<<x<<"cour"<<cour->gr()<<"mTest"<<mTest->gr();
-        // si mot[r] orphelin, tester mot[r+x] comme super de mot[r]
-        if (cour->orphelin())
-        {
-            // si positif, retourner r+x.
-            if (super(mTest, cour)) return r + x;
-        }
+        // si cour orphelin, tester mTest comme super de cour
+        if (cour->orphelin() && (super(mTest, cour)))
+            return r + x;
+        //    if (super(mTest, cour)) return r + x;
         if (super(cour, mTest))
         {
-            if (debog) qDebug()<<"    appel récursif de groupe("<<r<<"+"<<x<<"="<<r+x<<")";
-            groupe(r + x);  // TODO PROVISOIRE, attention à la redondance.
+            groupe(r + x);
             x = _mots.at(r + x)->grUlt() - r;
-            if (debog) qDebug()<<"    x devient"<<x;
+            //   ^^^^^^^^^^^^^ = mTest() ?
         }
-        else
-        {
-            if (debog) qDebug()<<"    échec";
-            //++r;
-            break;
-        }
+        else break;
     }
-    if (debog) qDebug()<<"    retour r"<<r+1;
+    cour->setVu();
     return ++r;
 }
 
