@@ -31,6 +31,11 @@
  * \brief module d'analyse syntaxique
  */
 
+
+// TODO
+// - potantibus apud lien prep non accepté
+//
+
 #include "syntaxe.h"
 #include <QFile>
 #include <QRegExp>
@@ -227,6 +232,7 @@ Mot::Mot(QString g)
     _affLiens.clear();
     _ponctD = '\0';
     _ponctG = '\0';
+    _vu = false;
 }
 
 void Mot::addLien(QString l)
@@ -315,11 +321,21 @@ bool Mot::superDe(Mot *m)
     return false;
 }
 
+void Mot::setVu()
+{
+    _vu = true;
+}
+
 bool Mot::terminal()
 {
     foreach (Super *s, _super)
         if (s->motSub() != NULL) return false;
     return true;
+}
+
+bool Mot::vu()
+{
+    return _vu;
 }
 
 Syntaxe::Syntaxe(QString t, Lemmat *parent)
@@ -414,6 +430,7 @@ QString Syntaxe::analyse(QString t, int p)
     while (fph < tl && !pp.contains(t.at(fph))) ++fph;
     // construction des mots
     QString phr = t.mid(dph, fph - dph);
+    qDebug()<<"analyse"<<phr;
     QStringList lm = phr.split(QRegExp("\\b"));
     for (int i = 1; i < lm.count() - 1; i += 2)
     {
@@ -450,11 +467,14 @@ QString Syntaxe::analyse(QString t, int p)
     }
     int nbmots = _mots.count();
     r = 0;
-    while (r < nbmots && r > -1) r = groupe(r);
+    while (r < nbmots && r > -1)
+    {
+        r = groupe(r);
+        mots.at(r)->setVu();
+    }
     if (_mots.count() > pmc)
         return _mots.at(pmc)->liens();
-    else
-        return "";
+    else return "";
 }
 
 /*
@@ -710,10 +730,13 @@ bool Syntaxe::estSuper(Mot *sup, Mot *sub)
 int Syntaxe::groupe(int r)
 {
     Mot *cour = _mots.at(r);
+    bool debog = cour->gr()=="potantibus" || cour->gr()=="his";
+    if (debog) qDebug()<<"groupe(r), r="<<r;
     int x = 1;
     while (r + x < _mots.count())
     {
         Mot *mTest = _mots.at(r + x);
+        if (debog) qDebug()<<"    r"<<r<<"x"<<x<<"cour"<<cour->gr()<<"mTest"<<mTest->gr();
         // si mot[r] orphelin, tester mot[r+x] comme super de mot[r]
         if (cour->orphelin())
         {
@@ -722,12 +745,19 @@ int Syntaxe::groupe(int r)
         }
         if (super(cour, mTest))
         {
+            if (debog) qDebug()<<"    appel récursif de groupe("<<r<<"+"<<x<<"="<<r+x<<")";
             groupe(r + x);  // TODO PROVISOIRE, attention à la redondance.
-            x = _mots.at(r + x)->grUlt() - r + 1;
+            x = _mots.at(r + x)->grUlt() - r;
+            if (debog) qDebug()<<"    x devient"<<x;
         }
         else
+        {
+            if (debog) qDebug()<<"    échec";
+            //++r;
             break;
+        }
     }
+    if (debog) qDebug()<<"    retour r"<<r+1;
     return ++r;
 }
 

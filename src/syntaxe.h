@@ -162,16 +162,17 @@ class Mot : public QObject
     Q_OBJECT
 
    private:
-    QStringList _affLiens;
-    QString _gr;
-    int _grPrim;  // rang du premier mot du groupe
-    int _grUlt;   // rang du dernier mot du groupe
-    MapLem _morphos;
-    QString _ponctD;
-    QString _ponctG;
-    int _rang;
+    QStringList     _affLiens;
+    QString         _gr;
+    int             _grPrim;  // rang du premier mot du groupe
+    int             _grUlt;   // rang du dernier mot du groupe
+    MapLem          _morphos;
+    QString         _ponctD;
+    QString         _ponctG;
+    int             _rang;
     QList<RegleS *> _rSub;
-    QList<Super *> _super;
+    QList<Super *>  _super;
+    bool            _vu;
 
    public:
     Mot(QString g);
@@ -199,6 +200,7 @@ class Mot : public QObject
     super();  // liste des règles qui peuvent faire du mot un super
     bool superDe(Mot *m);
     bool terminal();  // pas de sub
+    bool vu();
 };
 
 class Syntaxe : public QObject
