@@ -75,21 +75,21 @@ bool ElS::okMorpho(QString m)
 }
 
 bool ElS::okPos(QString p) { return _pos.isEmpty() || _pos.contains(p); }
+
 QStringList ElS::pos() { return _pos; }
+
 RegleS::RegleS(QStringList lignes)
 {
-    QStringList cles = QStringList() << "id"
-                                     << "doc"
-                                     << "pere"
-                                     << "super"
-                                     << "sub"
-                                     //     0     1       2       3       4
-                                     << "sens"
-                                     << "accord"
-                                     << "tr"
-                                     << "f"
-                                     << "synt";
-    //      5        6        7    8     9
+    QStringList cles = QStringList() << "id"      // 0
+                                     << "doc"     // 1  
+                                     << "pere"    // 2
+                                     << "super"   // 3
+                                     << "sub"     // 4
+                                     << "sens"    // 5
+                                     << "accord"  // 6
+                                     << "tr"      // 7
+                                     << "f"       // 8
+                                     << "synt";   // 9
     foreach (QString lin, lignes)
     {
         QStringList ecl = lin.split(':');
@@ -133,9 +133,13 @@ RegleS::RegleS(QStringList lignes)
 }
 
 QString RegleS::accord() { return _accord; }
+
 bool RegleS::bloquant() { return _synt.contains('b'); }
+
 QString RegleS::doc() { return _doc; }
+
 QString RegleS::id() { return _id; }
+
 bool RegleS::estSub(Lemme *l, QString morpho, bool ante)
 {
     // sens
@@ -181,26 +185,38 @@ Super::Super(RegleS *r, Lemme *l, QString m, Mot *parent)
 }
 
 void Super::addSub(Mot *m) { _motSub = m; }
+
 bool Super::estSub(Lemme *l, QString morpho, bool ante)
 {
+    //bool debog = _mot->gr()=="accenso" && l->gr()=="certamen" && _regle->id()=="ablAbs";
+    //if (debog) qDebug()<<"estSub"<<_mot->gr()<<l->gr()<<morpho;
     if (!_regle->estSub(l, morpho, ante))
     {
         return false;
     }
+    //if (debog) qDebug()<<"    _motSub==NULL"<<(_motSub != NULL)<<"_regle->synt()"<<_regle->synt();
     if (_motSub != NULL && _regle->synt().contains('u'))
     {
         return false;
     }
+    //if (debog) qDebug()<<"    OK";
     return true;
 }
 
 Lemme *Super::lemme() { return _lemme; }
+
 QString Super::morpho() { return _morpho; }
+
 Mot *Super::mot() { return _mot; }
+
 Mot *Super::motSub() { return _motSub; }
+
 RegleS *Super::regle() { return _regle; }
+
 void Super::setTraduction(QString t) { _traduction = t; }
+
 QString Super::traduction() { return _traduction; }
+
 /**
  * \fn Mot::Mot(QString g)
  * \brief Créateur de la classe Mot.
@@ -219,12 +235,14 @@ void Mot::addLien(QString l)
 }
 
 void Mot::addRSub(RegleS *r) { _rSub.append(r); }
+
 void Mot::addSuper(RegleS *r, Lemme *l, QString m)
 {
     _super.append(new Super(r, l, m, this));
 }
 
 QString Mot::gr() { return _gr; }
+
 void Mot::grCalc()
 {
     foreach (Super *s, _super)
@@ -247,7 +265,9 @@ void Mot::grCalc()
 }
 
 int Mot::grPrim() { return _grPrim; }
+
 int Mot::grUlt() { return _grUlt; }
+
 QString Mot::humain()
 {
     QString ret;
@@ -259,7 +279,9 @@ QString Mot::humain()
 }
 
 QString Mot::liens() { return _affLiens.join("<br/>"); }
+
 MapLem Mot::morphos() { return _morphos; }
+
 bool Mot::orphelin()
 {
     foreach (Super *s, _super)
@@ -268,10 +290,15 @@ bool Mot::orphelin()
 }
 
 QString Mot::ponctD() { return _ponctD; }
+
 int Mot::rang() { return _rang; }
+
 QString Mot::ponctG() { return _ponctG; }
+
 void Mot::setMorphos(MapLem m) { _morphos = m; }
+
 void Mot::setPonctD(QString p) { _ponctD = p; }
+
 void Mot::setRang(int r)
 {
     _rang = r;
@@ -338,6 +365,16 @@ bool Syntaxe::accord(QString ma, QString mb, QString cgn)
     }
     if (cgn.contains('g'))
     {
+        // si ma ou mb n'a pas de genre, renvoyer true
+        bool nonG = true;
+        foreach (QString g, Flexion::genres)
+            nonG = nonG || ma.contains(g);
+        if (nonG) return true;
+        nonG = true;
+        foreach (QString g, Flexion::genres)
+            nonG = nonG || mb.contains(g);
+        if (nonG) return true;
+        // sinon, vérifier l'accord
         foreach (QString g, Flexion::genres)
             if (ma.contains(g) && !mb.contains(g)) return false;
     }
@@ -420,6 +457,7 @@ QString Syntaxe::analyse(QString t, int p)
         return "";
 }
 
+/*
 QString Syntaxe::analyseM(QString t, int p)
 {
     const QList<QChar> chl;
@@ -656,6 +694,7 @@ QString Syntaxe::analyseM(QString t, int p)
     ret.removeDuplicates();
     return ret.join("<hr/>");
 }
+*/
 
 bool Syntaxe::estSuper(Mot *sup, Mot *sub)
 {
@@ -715,13 +754,13 @@ bool Syntaxe::orphelin(Mot *m)
 }
 
 void Syntaxe::setText(QString t) { _texte = t; }
+
 bool Syntaxe::super(Mot *sup, Mot *sub)
 {
-    // bool debog = sup->gr()=="laudare" && sub->gr()=="suam";
-    // if (debog)
     foreach (Super *s, sup->super())
     {
-        // tester toutes les possibilités du mot sub
+        // tester toutes les possibilités du mot sub :
+        // pour chaque lemme du mot sub
         foreach (Lemme *l, sub->morphos().keys())
         {
             // pour chaque morpho du lemme
@@ -730,7 +769,7 @@ bool Syntaxe::super(Mot *sup, Mot *sub)
             {
                 if (s->estSub(l, sl.morpho, false) &&
                     (accord(s->morpho(), sl.morpho, s->regle()->accord())) &&
-                    !(s->regle()->synt().contains('c') && virgule(sup, sub)))
+                    (!(s->regle()->synt().contains('c') && virgule(sup, sub))))
                 {
                     s->addSub(sub);
                     // ajouter les chaînes d'affichage (règle, lien, traduction)

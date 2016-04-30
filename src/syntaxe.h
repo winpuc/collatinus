@@ -224,7 +224,7 @@ class Syntaxe : public QObject
    public:
     Syntaxe(QString t, Lemmat *parent);
     QString analyse(QString t, int p);
-    QString analyseM(QString t, int p);
+    //QString analyseM(QString t, int p);
     bool estSuper(Mot *sup, Mot *sub);
     QString motSous(int p);
     bool orphelin(Mot *m);
