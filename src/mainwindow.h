@@ -146,7 +146,7 @@ class MainWindow : public QMainWindow
     // Slots d'accentuation
     void setAccent(bool b);
     void lireFichierHyphen();
-    void oteAccent();
+    void oteDiacritiques();
 
    public slots:
     void afficheLemsDic(QStringList ll, int no = 0);

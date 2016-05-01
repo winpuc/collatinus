@@ -804,7 +804,7 @@ void MainWindow::createConnections()
     // actions et options de l'accentuation
     connect(accentAct, SIGNAL(toggled(bool)), this, SLOT(setAccent(bool)));
     connect(lireHyphenAct, SIGNAL(triggered()), this, SLOT(lireFichierHyphen()));
-    connect(oteAAct, SIGNAL(triggered()), this, SLOT(oteAccent()));
+    connect(oteAAct, SIGNAL(triggered()), this, SLOT(oteDiacritiques()));
 
     // actions des dictionnaires
     connect(anteButton, SIGNAL(clicked()), this, SLOT(clicAnte()));
@@ -1768,8 +1768,17 @@ void MainWindow::lireFichierHyphen()
     lemmatiseur->lireHyphen(ficIn);
 }
 
-void MainWindow::oteAccent()
+void MainWindow::oteDiacritiques()
 {
-    QString texte = Ch::deAccent(editLatin->toPlainText());
+    QString texte = editLatin->toPlainText();
+    texte.replace("ç","s");
+    texte.replace("Ç","S");
+    texte = texte.normalized(QString::NormalizationForm_D, QChar::currentUnicodeVersion());
+    texte.remove("\u0300");
+    texte.remove("\u0301");
+    texte.remove("\u0302");
+    texte.remove("\u0304");
+    texte.remove("\u0306");
+    texte.remove("\u0308");
     editLatin->setText(texte);
 }
