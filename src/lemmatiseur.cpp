@@ -239,7 +239,10 @@ QString Lemmat::decontracte(QString d)
         if (d.endsWith(cle))
         {
             d.chop(cle.length());
-            d.append(_contractions.value(cle));
+            if ((d.contains("v") || d.contains("V")))
+                d.append(_contractions.value(cle));
+            else
+                d.append(Ch::deramise(_contractions.value(cle)));
             return d;
         }
     }
@@ -428,11 +431,19 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr)
             // TODO : aequeque est la seule occurrence
             // de -queque dans le corpus classique
             mm = lemmatiseM(sf, debPhr);
+            bool sst = false;
+            if (mm.isEmpty() && (suf == "st"))
+            {
+                sf += "s";
+                mm = lemmatiseM(sf, debPhr);
+                sst = true;
+            }
             foreach (Lemme *l, mm.keys())
             {
                 QList<SLem> ls = mm.value(l);
                 for (int i = 0; i < ls.count(); ++i)
-                    mm[l][i].sufq = suffixes.value(suf);
+                    if (sst) mm[l][i].sufq = "t";
+                    else mm[l][i].sufq += suffixes.value(suf); // Pour modoquest
             }
         }
     if (debPhr && f.at(0).isUpper())
@@ -473,13 +484,36 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr)
         }
     }
     // contractions
-    QString fd = decontracte(f);
-    if (fd != f)
-    {
-        MapLem nmm = lemmatise(fd);
-        foreach (Lemme *nl, nmm.keys())
-            mm.insert(nl, nmm.value(nl));
-    }
+//    QString fd = decontracte(f);
+    QString fd = f;
+    foreach (QString cle, _contractions.keys())
+        if (fd.endsWith(cle))
+        {
+            fd.chop(cle.length());
+            if ((fd.contains("v") || fd.contains("V")))
+                fd.append(_contractions.value(cle));
+            else
+                fd.append(Ch::deramise(_contractions.value(cle)));
+            MapLem nmm = lemmatise(fd);
+            foreach (Lemme *nl, nmm.keys())
+            {
+                int diff = _contractions.value(cle).size() - cle.size();
+                // nombre de lettres que je dois supprimer
+                for (int i = 0; i < nmm[nl].count(); ++i)
+                {
+                    int position = f.size() - cle.size() + 1;
+                    // position de la 1ère lettre à supprimer
+                    if (fd.size() != nmm[nl][i].grq.size())
+                    {
+                        // il y a une (ou des) voyelle(s) commune(s)
+                        QString debut = nmm[nl][i].grq.left(position + 2);
+                        position += debut.count("\u0306"); // Faut-il vérifier que je suis sur le "v".
+                    }
+                    nmm[nl][i].grq = nmm[nl][i].grq.remove(position, diff);
+                }
+                mm.insert(nl, nmm.value(nl));
+            }
+        }
     // majuscule initiale
     if (mm.empty())
     {

@@ -94,14 +94,9 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
             if (mainwindow->html())
             {
                 QString texteHtml = mainwindow->textEditLem->toHtml();
-                texteHtml.chop(14);
-                texteHtml.append("<p>"+mainwindow->lemmatiseur->lemmatiseT(st)+"</p>");
-                texteHtml.append("</body></html>");
-//                qDebug() << texteHtml;
+                texteHtml.insert(texteHtml.indexOf("</body>"),mainwindow->lemmatiseur->lemmatiseT(st));
                 mainwindow->textEditLem->setText(texteHtml);
-//                mainwindow->textEditLem->append("<div>" +
-//                    mainwindow->lemmatiseur->lemmatiseT(st) + "</div>");
-//                qDebug() << mainwindow->textEditLem->toHtml();
+                mainwindow->textEditLem->moveCursor(QTextCursor::End);
             }
             else
                 mainwindow->textEditLem->insertPlainText(
@@ -1399,7 +1394,12 @@ void MainWindow::lancer()
  */
 void MainWindow::lemmatiseLigne()
 {
-    textEditLem->append(lemmatiseur->lemmatiseT(lineEditLem->text()));
+    QString texteHtml = textEditLem->toHtml();
+    texteHtml.insert(texteHtml.indexOf("</body>"),
+                     lemmatiseur->lemmatiseT(lineEditLem->text()));
+    textEditLem->setText(texteHtml);
+    textEditLem->moveCursor(QTextCursor::End);
+//    textEditLem->append(lemmatiseur->lemmatiseT(lineEditLem->text()));
 }
 
 /**
