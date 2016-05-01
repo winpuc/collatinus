@@ -560,7 +560,7 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
                 lin = "<h4>" + f + "</h4><ul>";
                 foreach (Lemme *l, map.keys())
                 {
-                    lin.append("<li>" + l->humain(true, _cible) + "</li>");
+                    lin.append("<li>" + l->humain(true, _cible));
                     if (cumMorpho && !inv(l, map))
                     {
                         lin.append("<ul>");
@@ -573,6 +573,7 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
                                            " " + m.morpho + "</li>");
                         lin.append("</ul>");
                     }
+                    lin.append("</li>");
                 }
                 lin.append("</ul>");
             }
