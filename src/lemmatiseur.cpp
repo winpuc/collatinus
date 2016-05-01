@@ -300,6 +300,7 @@ MapLem Lemmat::lemmatise(QString f)
     if (f.isEmpty()) return result;
     QString f_lower = f.toLower();
     int cnt_v = f_lower.count("v");
+    bool V_maj = f[0] == 'V';
     int cnt_ae = f_lower.count("æ");
     int cnt_oe = f_lower.count("œ");
     if (f_lower.endsWith("æ")) cnt_ae -= 1;
@@ -320,15 +321,18 @@ MapLem Lemmat::lemmatise(QString f)
     {
         QString r = f.left(i);
         QString d = f.mid(i);
+        QList<Desinence *> ldes = _desinences.values(d);
+        if (ldes.empty()) continue;
+        // Je regarde d'abord si d est une désinence possible,
+        // car il y a moins de désinences que de radicaux.
+        // Je fais la recherche sur les radicaux seulement si la désinence existe.
         QList<Radical *> lrad = _radicaux.values(r);
-        if (lrad.empty()) continue;
         // ii noté ī
         // 1. Patauium, gén. Pataui : Patau.i -> Patau+i.i
         // 2. conubium, ablP conubis : conubi.s -> conubi.i+s
-        if ((d.isEmpty() && r.endsWith('i')) ||
-            (d.startsWith('i') && !d.startsWith("ii") && !r.endsWith('i')) ||
-            (r.endsWith('i') && !r.endsWith("ii") && !d.startsWith('i')))
-        {
+        if (d.startsWith('i') && !d.startsWith("ii") && !r.endsWith('i'))
+            lrad << _radicaux.values(r + "i");
+/*        {
             QString nf = r + 'i' + d;
             MapLem nm = lemmatise(nf);
             foreach (Lemme *nl, nm.keys())
@@ -338,9 +342,9 @@ MapLem Lemmat::lemmatise(QString f)
                     lsl[i].grq.remove(r.length() - 1, 1);
                 result.insert(nl, lsl);
             }
-        }
-        QList<Desinence *> ldes = _desinences.values(d);
-        if (ldes.empty()) continue;
+        }*/
+        if (lrad.empty()) continue;
+        // Il n'y a rien à faire si le radical n'existe pas.
         foreach (Radical *rad, lrad)
         {
             Lemme *l = rad->lemme();
@@ -348,21 +352,43 @@ MapLem Lemmat::lemmatise(QString f)
             {
                 if (des->modele() == l->modele() &&
                     des->numRad() == rad->numRad() &&
-                    !l->estIrregExcl(des->numRad()))
+                    !l->estIrregExcl(des->morphoNum()))
                 {
-                    if (des->morphoNum() < _morphos.count() - 1)
+                    bool c = ((cnt_v==0)||(cnt_v == rad->grq().toLower().count("v")));
+                    if (!c) c = (V_maj && (rad->gr()[0] == 'U')
+                            && (cnt_v - 1 == rad->grq().toLower().count("v")));
+                    c = c && ((cnt_oe==0)||(cnt_oe == rad->grq().toLower().count("ōe")));
+                    c = c && ((cnt_ae==0)||(cnt_ae == rad->grq().toLower().count("āe")));
+                    if (c)
                     {
-                        SLem sl = {rad->grq() + des->grq(),
+                        QString fq = rad->grq() + des->grq();
+                        if (!r.endsWith("i") && rad->gr().endsWith("i"))
+                            fq = rad->grq().left(rad->grq().size()-1) + "ī"
+                                    + des->grq().right(des->grq().size()-1);
+                        SLem sl = {fq,
                                    morpho(des->morphoNum()), ""};
                         result[l].prepend(sl);
                     }
-                    else
-                    {
-                        SLem sl = {l->grq(), "-", ""};
-                        //						SLem sl = {"-",""};
-                        result[l].prepend(sl);
-                    }
                 }
+                    /*                {
+                    if (des->modele() == l->modele() &&
+                        des->numRad() == rad->numRad() &&
+                            !l->estIrregExcl(des->morphoNum()))
+                    {
+                        if (des->morphoNum() < _morphos.count() - 1)
+                        {
+                            SLem sl = {rad->grq() + des->grq(),
+                                       morpho(des->morphoNum()), ""};
+                            result[l].prepend(sl);
+                        }
+                        else
+                        {
+                            SLem sl = {l->grq(), "-", ""};
+                            //						SLem sl = {"-",""};
+                            result[l].prepend(sl);
+                        }
+                    }
+                } */
             }
         }
     }
@@ -833,6 +859,7 @@ Modele *Lemmat::modele(QString m) { return _modeles[m]; }
 QString Lemmat::morpho(int m)
 {
     if (m < 0 || m >= _morphos.count()) return "morpho, erreur d'indice";
+    if (m == _morphos.count() - 1) return "-";
     return _morphos.at(m - 1);
 }
 
