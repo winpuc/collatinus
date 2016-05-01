@@ -28,6 +28,7 @@
 #include "lemmatiseur.h"
 #include "dicos.h"
 #include "syntaxe.h"
+#include "ch.h"
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -144,7 +145,8 @@ class MainWindow : public QMainWindow
     void syncWD();
     // Slots d'accentuation
     void setAccent(bool b);
-    void lireFichierHyphen ();
+    void lireFichierHyphen();
+    void oteAccent();
 
    public slots:
     void afficheLemsDic(QStringList ll, int no = 0);
@@ -211,6 +213,7 @@ class MainWindow : public QMainWindow
     QAction *lancAct;
     QAction *majAct;
     QAction *nouvAct;
+    QAction *oteAAct;
     QAction *ouvrirAct;
     QAction *printAct;
     QAction *quitAct;

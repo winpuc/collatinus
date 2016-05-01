@@ -139,7 +139,7 @@ void Ch::deQuant(QString *c)
  */
 QString Ch::deAccent(QString c)
 {
-    c.normalized(QString::NormalizationForm_D, QChar::currentUnicodeVersion());
+    c = c.normalized(QString::NormalizationForm_D, QChar::currentUnicodeVersion());
     c.remove("\u0301");
     c.remove("\u0306");
     c.remove("\u0304");
@@ -163,7 +163,7 @@ QString Ch::deramise(QString r)
     r.replace("œ", "oe");
     r.replace("Œ", "Oe");
     r.replace(0x1ee5, 'u');  // ụ le u muet de suavis, suadeo, etc...
-    // r.replace ('V', 'U');
+    r.replace ('V', 'U');
     return r;
 }
 

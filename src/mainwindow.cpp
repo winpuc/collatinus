@@ -654,6 +654,7 @@ void MainWindow::createActions()
     printAct = new QAction(QIcon(":res/print.svg"), tr("Im&primer"), this);
     quitAct = new QAction(QIcon(":/res/power.svg"), tr("&Quitter"), this);
     quitAct->setStatusTip(tr("Quitter l'application"));
+    oteAAct = new QAction(tr("Ôter les accents"), this);
     reFindAct = new QAction(tr("Chercher &encore"), this);
     statAct = new QAction(QIcon(":res/abacus.svg"), tr("S&tatistiques"), this);
     zoomAct = new QAction(QIcon(":res/zoom.svg"), tr("Plus gros"), this);
@@ -796,6 +797,7 @@ void MainWindow::createConnections()
     // actions et options de l'accentuation
     connect(accentAct, SIGNAL(toggled(bool)), this, SLOT(setAccent(bool)));
     connect(lireHyphenAct, SIGNAL(triggered()), this, SLOT(lireFichierHyphen()));
+    connect(oteAAct, SIGNAL(triggered()), this, SLOT(oteAccent()));
 
     // actions des dictionnaires
     connect(anteButton, SIGNAL(clicked()), this, SLOT(clicAnte()));
@@ -886,6 +888,7 @@ void MainWindow::createMenus()
     fileMenu->addAction(exportAct);
     fileMenu->addAction(printAct);
     fileMenu->addSeparator();
+    fileMenu->addAction(oteAAct);
     fileMenu->addAction(lireHyphenAct);
     fileMenu->addSeparator();
     fileMenu->addAction(quitAct);
@@ -1756,4 +1759,10 @@ void MainWindow::lireFichierHyphen()
     QString ficIn = QFileDialog::getOpenFileName(this, "Capsam legere", repHyphen+"/hyphen.la");
     if (!ficIn.isEmpty()) repHyphen = QFileInfo (ficIn).absolutePath ();
     lemmatiseur->lireHyphen(ficIn);
+}
+
+void MainWindow::oteAccent()
+{
+    QString texte = Ch::deAccent(editLatin->toPlainText());
+    editLatin->setText(texte);
 }
