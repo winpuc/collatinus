@@ -207,8 +207,10 @@ QString Lemme::cle() { return _cle; }
 QList<int> Lemme::clesR() { return _radicaux.keys(); }
 /**
  * \fn bool Lemme::estIrregExcl (int nm)
- * \brief Renvoie vrai si le radical remplace
- *        la forme irrégulière, faux si la
+ * \param nm : numéro de morpho
+ * \brief Renvoie vrai si la forme irrégulière
+ *        avec le n° nm remplace celle construite
+ *        sur le radical , faux si la
  *        forme régulière existe aussi.
  */
 bool Lemme::estIrregExcl(int nm) { return _morphosIrrExcl.contains(nm); }
