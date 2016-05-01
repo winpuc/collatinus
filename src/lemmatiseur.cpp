@@ -359,7 +359,6 @@ MapLem Lemmat::lemmatise(QString f)
                     else
                     {
                         SLem sl = {l->grq(), "-", ""};
-                        //						SLem sl = {"-",""};
                         result[l].prepend(sl);
                     }
                 }
