@@ -93,8 +93,15 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
         {
             if (mainwindow->html())
             {
-                mainwindow->textEditLem->append(
-                    mainwindow->lemmatiseur->lemmatiseT(st));
+                QString texteHtml = mainwindow->textEditLem->toHtml();
+                texteHtml.chop(14);
+                texteHtml.append("<p>"+mainwindow->lemmatiseur->lemmatiseT(st)+"</p>");
+                texteHtml.append("</body></html>");
+//                qDebug() << texteHtml;
+                mainwindow->textEditLem->setText(texteHtml);
+//                mainwindow->textEditLem->append("<div>" +
+//                    mainwindow->lemmatiseur->lemmatiseT(st) + "</div>");
+//                qDebug() << mainwindow->textEditLem->toHtml();
             }
             else
                 mainwindow->textEditLem->insertPlainText(

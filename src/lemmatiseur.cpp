@@ -571,11 +571,11 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
                             else
                                 lin.append("<li>" + m.grq + " + " + m.sufq +
                                            " " + m.morpho + "</li>");
-                        lin.append("</ul>");
+                        lin.append("</ul>\n");
                     }
                     lin.append("</li>");
                 }
-                lin.append("</ul>");
+                lin.append("</ul>\n");
             }
             else
             {
@@ -610,7 +610,7 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
                         fl << "<ul>";
                         foreach (SLem m, map.value(l))
                             fl << "<li>" << m.grq << " " << m.morpho << "</li>";
-                        fl << "</ul>";
+                        fl << "</ul>\n";
                     }
                     else
                         foreach (SLem m, map.value(l))
@@ -636,7 +636,7 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
         else
             lRet.append("* " + item + "\n");
     }
-    if (_html) lRet.append("</ul>");
+    if (_html) lRet.append("</ul>\n");
     // non-reconnus en fin de liste si l'option nreconnu
     // est armée
     if (nreconnu && !nonReconnus.empty())
@@ -654,6 +654,7 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
         foreach (QString nr, nonReconnus)
             lRet.append(nr + nl);
     }
+//    qDebug() << lRet.join("");
     // fin de la mesure :
     // qDebug()<<"Eneide"<<timer.nsecsElapsed()<<"ns";
     return lRet.join("");
