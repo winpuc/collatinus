@@ -727,13 +727,8 @@ int Syntaxe::groupe(int r)
         // si cour orphelin, tester mTest comme super de cour
         if (cour->orphelin() && (super(mTest, cour)))
             return r + x;
-        //    if (super(mTest, cour)) return r + x;
         if (super(cour, mTest))
-        {
-            groupe(r + x);
-            x = _mots.at(r + x)->grUlt() - r;
-            //   ^^^^^^^^^^^^^ = mTest() ?
-        }
+            x = groupe(r+x)-r+1;
         else break;
     }
     cour->setVu();
