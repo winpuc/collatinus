@@ -358,6 +358,7 @@ QString Syntaxe::analyse(QString t, int p)
 {
     // effacer l'analyse précédentre
     _mots.clear();
+    if (t.length() == 0) return "";
     // initialisations
     const QList<QChar> chl;
     const int tl = t.length() - 1;
@@ -365,10 +366,10 @@ QString Syntaxe::analyse(QString t, int p)
     // supprimer les non-alpha de tête
     // régression au début de la phrase
     int dph = p;
-    while (dph > 0 && !pp.contains(t.at(dph))) --dph;
+    while (dph > 0 && t.count() > dph && !pp.contains(t.at(dph))) --dph;
     // calcul de la position du mot courant
     QString ante = t.mid(dph, p - dph);
-    while (!ante.at(0).isLetter()) ante.remove(0, 1);
+    while (ante.count() > 0 && !ante.at(0).isLetter()) ante.remove(0, 1);
     QStringList lante = ante.split(QRegExp("\\W+"));
     int pmc = lante.count() - 1;  // pmc = position du mot courant.
     // progression jusqu'en fin de phrase
@@ -413,7 +414,10 @@ QString Syntaxe::analyse(QString t, int p)
     int nbmots = _mots.count();
     r = 0;
     while (r < nbmots && r > -1) r = groupe(r);
-    return _mots.at(pmc)->liens();
+    if (_mots.count() > pmc)
+        return _mots.at(pmc)->liens();
+    else
+        return "";
 }
 
 QString Syntaxe::analyseM(QString t, int p)
