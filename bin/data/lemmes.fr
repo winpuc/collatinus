@@ -5596,6 +5596,7 @@ loquor:parler
 lorica:la cuirasse; la haie, la clôture
 lorum:la courroie, la lanière, le fouet, le martinet
 lotus:lavé (participe de lavo)
+lotus2:le lotus
 lubens:qui accepte volontiers
 lubricus:glissant, incertain, dangereux, hasardeux
 lucar:l'impôt pour les bois sacrés; le salaire des acteurs
