@@ -40,7 +40,6 @@
  */
 Desinence::Desinence(QString d, int morph, int nr, Modele *parent)
 {
-    if (d.isEmpty()) qDebug()<<d<<"morph"<<morph<<"nr"<<nr<<"désinence nulle non admise";
     // der, le dernier caractère de d, s'il est un nombre, donne le degré de
     // rareté de la désinence, qui est 10 par défaut.
     int der = -1;
