@@ -34,8 +34,8 @@
 #include "lemmatiseur.h"
 
 #include <QDebug>
-//#include <QElapsedTimer>
-#define DEBOG
+// #include <QElapsedTimer>
+// #define DEBOG
 
 /**
  * \fn Lemmat::Lemmat (QObject *parent)
