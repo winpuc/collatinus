@@ -61,6 +61,11 @@ const QStringList Flexion::temps = QStringList() << "présent"
                                                  << "plus-que-parfait"
                                                  << "futur antérieur";
 
+QString Flexion::entreParenth(QString e)
+{
+    return QString("(%1)").arg(e);
+}
+
 /**
  * \fn QString Flexion::forme (int n, bool label)
  * \brief Renvoie entre virgules les formes dont
@@ -84,12 +89,16 @@ QString Flexion::forme(int n, bool label)
         foreach (Desinence *d, ld)
         {
             QString grqd = d->grq();
+            // désinence trop rare, non affichée :
+            if (d->rarete() <= omis) continue;
             int nr = d->numRad();
             QList<Radical *> lr = _lemme->radical(nr);
             foreach (Radical *r, lr)
             {
                 QString grqr = r->grq();
-                lres.append(grqr + grqd);
+                if (d->rarete() <= parenth)
+                    lres.append(entreParenth(grqr + grqd));
+                else lres.append(grqr + grqd);
             }
         }
     }
