@@ -798,6 +798,7 @@ void MainWindow::createConnections()
             SLOT(setMorpho(bool)));
     connect(nonRecAct, SIGNAL(toggled(bool)), lemmatiseur,
             SLOT(setNonRec(bool)));
+    connect(extensionWAct, SIGNAL(toggled(bool)), lemmatiseur, SLOT(setExtension(bool)));
 
     // actions et options de l'accentuation
     connect(accentAct, SIGNAL(toggled(bool)), this, SLOT(setAccent(bool)));

@@ -82,7 +82,7 @@ class Lemmat : public QObject
     QMap<QString, QString> _variables;
     // options
     bool _alpha;
-    bool _extension;
+    bool _extension = false;
     bool _formeT;
     bool _html;
     bool _majPert;
