@@ -31332,9 +31332,8 @@ Lotophagi:Lotophages
 Lotophagitis:l'île des Lotophages, près de la côte d'Afrique
 lotor:celui qui lave / blanchisseur
 Lotos:nymphe aimée de Priape et changée en lotus
-lotos2:micocoulier [arbre] / flûte de micocoulier / lotus aquatique / mélilot [plante] / fruit du micocoulier / sorte de jujubier
 lotura:lavage, nettoiement / lavure [en t. de métallurgie]
-lotus2:micocoulier [arbre] / flûte de micocoulier / lotus aquatique / mélilot [plante] / fruit du micocoulier / sorte de jujubier
+lotus:micocoulier [arbre] / flûte de micocoulier / lotus aquatique / mélilot [plante] / fruit du micocoulier / sorte de jujubier
 Lovia:ville de la Basse-Pannonie
 Loxias:surnom d'Apollon
 Lua:déesse qui présidait aux expiations
