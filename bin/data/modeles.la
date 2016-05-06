@@ -28,12 +28,12 @@
 !    n2 : nombre de caractères à ôter de la forme canonique 
 !    ch : chaîne à ajouter à la chaîne obtenue pour avoir le radical
 !
-! des:<intervalle>:<num>:<listeDes>
+! des:<intervalle>:<numMorph>:<listeDes>
 !  <num> est le n° de radical
 !
 ! Si une désinence de même morpho s'ajoute à celle du modèle parent au lieu
 ! de l'écraser, on écrit
-! des+:<intervalle>:<num>:<listeDes>
+! des+:<intervalle>:<numRad>:<listeDes>
 ! <intervalle> = liste de n° de morphologies séparées par des virgules,
 !               ou intervalle de numéros <premier>-<dernier>. Les deux
 !               définitions sont compatibles.
@@ -101,7 +101,7 @@ des+:7,8,11,12:2:ĭī,ī;ĭī,ī;īis,īs;īis,īs
 modele:filius
 pere:lupus
 R:2:3,0
-des:2:2:ī
+des:2:1:ī
 
 modele:perseus
 R:1:3,0
@@ -303,7 +303,7 @@ des:14:0:ŭs
 abs:49-120
 
 modele:meus
-pere:aureus
+pere:nonus
 suf:17,18,25,29,30,41,42:ptĕ
 
 modele:dubius
@@ -694,6 +694,14 @@ des:163-168:6:lĕm;lēs;lĕt;lēmŭs;lētĭs;lēnt
 des:187:6:lĕ
 abs:267-374
 
+modele:nolo
+pere:lego
+abs:122,125
+des:157-162:0:$im
+des:163-168:0:lĕm;lēs;lĕt;lēmŭs;lētĭs;lēnt
+des:187:0:lĕ
+abs:225-260,265-374
+
 modele:capio
 pere:lego
 R:3:2,0
@@ -868,6 +876,13 @@ des:213-224:0:ēns;ēns;ēns;ēntīs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ē
 ! gérondif et supin
 des:261-264:0:ēndŭm;ēndī;ēndō;ēndō
 
+modele:morior
+pere:patior
+! participe futur actif
+des:225-236:0:tūr+$lupus
+des:237-248:0:tūr+$uita
+des:249-260:0:tūr+$templum
+
 modele:potior
 pere:patior
 des:122-125:3:īrĭs,īrĕ;ītur;īmur;īmini
@@ -895,6 +910,8 @@ des:189,190,201,202,213-215:3:ĭēns
 des:191-200:5:ntĕm;ntīs;ntī;ntĕ;ntēs;ntēs;ntēs;ntĭŭm;ntĭbŭs
 des:203-212:5:ntĕm;ntīs;ntī;ntĕ;ntēs;ntēs;ntēs;ntĭŭm,nt;ntĭbŭs
 des:216-224:5:ntīs;ntī;ntĕ;ntĭă;ntĭă;ntĭă;ntĭŭm;ntĭbŭs
+! adj. verbal
+des:261-264:5:ndŭm;ndī;ndō
 ! pas de passif
 abs:267-410
 
