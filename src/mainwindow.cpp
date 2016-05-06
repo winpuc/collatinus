@@ -581,6 +581,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     settings.setValue("alpha", alphaOptAct->isChecked());
     settings.setValue("html", htmlAct->isChecked());
     settings.setValue("formetxt", formeTAct->isChecked());
+    settings.setValue("extensionlexique", extensionWAct->isChecked());
     settings.setValue("majpert", majPertAct->isChecked());
     settings.setValue("morpho", morphoAct->isChecked());
     settings.setValue("nonrec", nonRecAct->isChecked());
@@ -734,6 +735,8 @@ void MainWindow::createActions()
     syncWDAct = new QAction(tr("<-sync"), this);
     visibleWAct = new QAction(tr("Dictionnaire +"), this);
     visibleWAct->setCheckable(true);
+    extensionWAct = new QAction(tr("Extension du lexique"), this);
+    extensionWAct->setCheckable(true);
 }
 
 /**
@@ -920,6 +923,7 @@ void MainWindow::createMenus()
     lexMenu->addAction(lancAct);
     lexMenu->addAction(alphaAct);
     lexMenu->addAction(statAct);
+    lexMenu->addAction(extensionWAct);
 
     optMenu = menuBar()->addMenu(tr("&Options"));
     optMenu->addAction(alphaOptAct);
@@ -1552,6 +1556,7 @@ void MainWindow::readSettings()
     // options de lemmatisation
     alphaOptAct->setChecked(settings.value("alpha").toBool());
     formeTAct->setChecked(settings.value("formetxt").toBool());
+    extensionWAct->setChecked(settings.value("extensionlexique").toBool());
     htmlAct->setChecked(settings.value("html").toBool());
     majPertAct->setChecked(settings.value("majpert").toBool());
     morphoAct->setChecked(settings.value("morpho").toBool());
@@ -1575,6 +1580,7 @@ void MainWindow::readSettings()
     // options appliquées au lemmatiseur
     lemmatiseur->setAlpha(alphaOptAct->isChecked());
     lemmatiseur->setFormeT(formeTAct->isChecked());
+    lemmatiseur->setExtension(extensionWAct->isChecked());
     lemmatiseur->setHtml(htmlAct->isChecked());
     lemmatiseur->setMajPert(majPertAct->isChecked());
     lemmatiseur->setMorpho(morphoAct->isChecked());
