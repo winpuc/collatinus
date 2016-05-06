@@ -119,6 +119,8 @@ class Lemmat : public QObject
     // QStringList           suffixes;
     QMap<QString, QString> suffixes;
     QString variable(QString v);
+    // Lire un fichier de césures étymologiques (non-phonétiques)
+    void lireHyphen (QString fichierHyphen);
 
     // accesseurs d'options
     bool optAlpha();

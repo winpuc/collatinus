@@ -130,7 +130,7 @@ Modele::Modele(QStringList ll, Lemmat *parent)
     _lemmatiseur = qobject_cast<Lemmat *>(parent);
     _pere = 0;
     QMultiMap<QString, int> msuff;
-    QRegExp re("[:;](\\w*)\\+{0,1}(\\$\\w+)");
+    QRegExp re("[:;]([\\w]*)\\+{0,1}(\\$\\w+)");
     foreach (QString l, ll)
     {
         // remplacement des variables par leur valeur
@@ -144,8 +144,8 @@ Modele::Modele(QStringList ll, Lemmat *parent)
         }
         //l.remove('+');
         QStringList eclats = l.simplified().split(":");
-        // modele pere des des+ R   abs
-        //  0    1    2   3    4   5
+        // modele pere des desْ+ R   abs
+        //  0      1    2   3   4   5
         int p = cles.indexOf(eclats.first());
         switch (p)
         {
@@ -155,8 +155,8 @@ Modele::Modele(QStringList ll, Lemmat *parent)
             case 1:  // père
                 _pere = parent->modele(eclats.at(1));
                 break;
-            case 2:  // des: désinences écrasant celles du père
-            case 3:  // des+: désinences s'ajoutant à celles du père
+            case 2:  // des+: désinences s'ajoutant à celles du père
+            case 3:  // des: désinences écrasant celles du père
             {
                 QList<int> li = listeI(eclats.at(1));
                 int r = eclats.at(2).toInt();
@@ -315,7 +315,7 @@ QList<int> Modele::clesR() { return _genRadicaux.keys(); }
  * \brief Crée une Désinence copiée sur la désinence d.
  */
 Desinence *Modele::clone(Desinence *d)
-{      
+{
     return new Desinence(d->grq(), d->morphoNum(), d->numRad(), this);
 }
 
@@ -357,13 +357,13 @@ bool Modele::estUn(QString m)
  */
 QString Modele::gr() { return _gr; }
 QStringList const Modele::cles = QStringList() << "modele"  // 0
-                                               << "pere"
+                                               << "pere"    // 1
                                                << "des"     // 2
-                                               << "des+"
+                                               << "des+"    // 3
                                                << "R"       // 4
-                                               << "abs"
+                                               << "abs"     // 5
                                                << "suf"     // 6
-                                               << "sufd";  
+                                               << "sufd";   // 7
 
 /**
  * \fn QString Modele::genRadical (int r)
