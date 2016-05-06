@@ -35,7 +35,7 @@
 
 #include <QDebug>
 //#include <QElapsedTimer>
-//#define DEBOG
+#define DEBOG
 
 /**
  * \fn Lemmat::Lemmat (QObject *parent)
