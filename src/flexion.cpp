@@ -390,7 +390,7 @@ QString Flexion::tabV()
     fl << queue;
 
     fl << entete << lina << "g&eacute;rondif accusatif" << linb << forme(261)
-       << linc << lina << "g&eacute;rondif gé&eacute;nitif " << linb
+       << linc << lina << "g&eacute;rondif g&eacute;nitif " << linb
        << forme(262) << linc << lina << "g&eacute;rondif datif" << linb
        << forme(263) << linc << lina << "g&eacute;rondif ablatif" << linb
        << forme(264) << linc << lina << "supin en -um" << linb << forme(265)
