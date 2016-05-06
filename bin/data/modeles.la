@@ -347,7 +347,7 @@ des:13,14,25,26:4:-;-;-;-
 des:15-24:1:ĕm;ĭs;ī;ī;ēs;ēs;ēs;ĭŭm;ĭbŭs
 des:27-36:1:ĕm;ĭs;ī;ī;ēs;ēs;ēs;ĭŭm;ĭbŭs
 des:37-48:1:ĕ;ĕ;ĕ;ĭs;ī;ī;ĭă;ĭă;ĭă;ĭŭm;ĭbŭs
-des:49-84:1:ĭ+$compar;ĭ+$compar;ĭŭs;ĭŭs;ĭŭs;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōră;ĭōră;ĭōră;ĭōrŭm;ĭōrĭbŭs
+des:49-84:1:ĭ$compar;ĭ$compar;ĭŭs;ĭŭs;ĭŭs;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōră;ĭōră;ĭōră;ĭōrŭm;ĭōrĭbŭs
 
 modele:infans
 pere:fortis
@@ -566,9 +566,9 @@ des:189-200:0:āns;āns;āntĕm;āntīs;āntī;āntĕ;āntēs;āntēs;āntēs;ā
 des:201-212:0:āns;āns;āntĕm;āntīs;āntī;āntĕ;āntēs;āntēs;āntēs;āntĭŭm,āntŭm;āntĭbŭs;āntĭbŭs
 des:213-224:0:āns;āns;āns;āntīs;āntī;āntĕ;āntĭă;āntĭă;āntĭă;āntĭŭm,āntŭm;āntĭbŭs;āntĭbŭs
 ! participe futur
-des:225-236:2:ūr+$lupus
-des:237-248:2:ūr+$uita
-des:249-260:2:ūr+$templum
+des:225-236:2:ūr$lupus
+des:237-248:2:ūr$uita
+des:249-260:2:ūr$templum
 ! gérondif et supin
 des:261-264:0:āndŭm;āndī;āndō;āndō
 des:265,266:2:ŭm;ū
@@ -588,9 +588,9 @@ des:303-314:2:$lupus
 des:315-326:2:$uita
 des:327-338:2:$templum
 ! adjectif verbal
-des:339-350:0:ānd+$lupus
-des:351-362:0:ānd+$uita
-des:363-374:0:ānd+$templum
+des:339-350:0:ānd$lupus
+des:351-362:0:ānd$uita
+des:363-374:0:ānd$templum
 
 modele:do
 pere:amo
@@ -879,9 +879,9 @@ des:261-264:0:ēndŭm;ēndī;ēndō;ēndō
 modele:morior
 pere:patior
 ! participe futur actif
-des:225-236:0:tūr+$lupus
-des:237-248:0:tūr+$uita
-des:249-260:0:tūr+$templum
+des:225-236:0:tūr$lupus
+des:237-248:0:tūr$uita
+des:249-260:0:tūr$templum
 
 modele:potior
 pere:patior
