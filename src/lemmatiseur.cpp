@@ -73,7 +73,7 @@ Lemmat::Lemmat(QObject *parent) : QObject(parent)
 
     lisModeles();
     lisLexique();
-    lisTraductions();
+    lisTraductions(true, false);
     lisIrreguliers();
     lisParPos();
 }
@@ -764,13 +764,13 @@ void Lemmat::lisIrreguliers()
 }
 
 /**
- * \fn void Lemmat::lisLexique()
+ * \fn void Lemmat::lisFichierLexique(filepath)
  * \brief Lecture des lemmes, synthèse et enregistrement
  *        de leurs radicaux
  */
-void Lemmat::lisLexique()
+void Lemmat::lisFichierLexique(QString filepath)
 {
-    QFile flem(qApp->applicationDirPath() + "/data/lemmes.la");
+    QFile flem(filepath);
     flem.open(QFile::ReadOnly);
     QTextStream fll(&flem);
     while (!fll.atEnd())
@@ -781,6 +781,24 @@ void Lemmat::lisLexique()
         _lemmes.insert(l->cle(), l);
     }
     flem.close();
+}
+
+/**
+ * \fn void Lemmat::lisLexique()
+ * \brief Lecture du fichier de lemmes de base
+ */
+void Lemmat::lisLexique()
+{
+    Lemmat::lisFichierLexique(qApp->applicationDirPath() + "/data/lemmes.la");
+}
+
+/**
+ * \fn void Lemmat::lisExtension()
+ * \brief Lecture du fichier d'extension
+ */
+void Lemmat::lisExtension()
+{
+    Lemmat::lisFichierLexique(qApp->applicationDirPath() + "/data/lem_ext.la");
 }
 
 /**
@@ -847,12 +865,25 @@ void Lemmat::lisParPos()
  *        un suffixe corresponant à la langue cible
  *        qu'ils fournissent.
  */
-void Lemmat::lisTraductions()
+void Lemmat::lisTraductions(bool base, bool extension)
 {
     QString nrep = qApp->applicationDirPath() + "/data/";
-    QDir rep = QDir(nrep, "lemmes.*");
+    QDir rep;
+    if (!base && !extension) return;
+    if (base && extension) {
+        rep = QDir(nrep, "lem*.*");
+    } else if (base) {
+        rep = QDir(nrep, "lemmes.*");
+    } else {
+        rep = QDir(nrep, "lem_ext.*");
+    }
     QStringList ltr = rep.entryList();
-    ltr.removeOne("lemmes.la");  // n'est pas un fichier de traductions
+    if (base) {
+        ltr.removeOne("lemmes.la");  // n'est pas un fichier de traductions
+    }
+    if (extension) {
+        ltr.removeOne("lem_ext.la");  // n'est pas un fichier de traductions
+    }
     foreach (QString nfl, ltr)
     {
         // suffixe
@@ -927,6 +958,12 @@ bool Lemmat::optFormeT() { return _formeT; }
  */
 bool Lemmat::optMajPert() { return _majPert; }
 /**
+ * \fn bool Lemmat::optExtension()
+ * \brief Accesseur de l'option extension,
+ *        qui permet de charger l'extension.
+ */
+bool Lemmat::optExtension() { return _extension; }
+/**
  * \fn bool Lemmat::optMorpho()
  * \brief Accesseur de l'option morpho,
  *        qui donne l'analyse morphologique
@@ -986,6 +1023,16 @@ void Lemmat::setNonRec(bool n) { _nonRec = n; }
  *        premier caractère $.
  */
 QString Lemmat::variable(QString v) { return _variables[v]; }
+
+void Lemmat::setExtension(bool e)
+{
+    if (_extension || !e) {
+        return;// can't unload lemmes!
+    }
+    _extension = true;
+    lisExtension();
+    lisTraductions(false,true);
+}
 
 /**
  * @brief Lemmat::lireHyphen
