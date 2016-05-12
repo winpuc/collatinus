@@ -157,7 +157,7 @@ modele:aer
 pere:miles
 des+:3,4,7,8,9:1:ă;ŏs;ĕs;ĕs;ăs
 
-modele:thetys
+modele:tethys
 pere:miles
 des+:3,4,9:1:n,ă;ŏs;ăs
 
@@ -363,7 +363,7 @@ modele:diues
 pere:fortis
 des:18,30,42:1:ĕ;ĕ;ĕ
 des:37-39:4:-
-des:22,34,46:0:ŭm;ŭm;ŭm
+des:22,34,46:1:ŭm;ŭm;ŭm
 des:85-120:1:īssĭmŭs;īssĭmĕ;īssĭmŭm;īssĭmī;īssĭmō;īssĭmō;īssĭmī;īssĭmī;īssĭmōs;īssĭmōrŭm;īssĭmīs;īssĭmīs;īssĭmă;īssĭmă;īssĭmăm;īssĭmāe;īssĭmāe;īssĭmā;īssĭmāe;īssĭmāe;īssĭmās;īssĭmārŭm;īssĭmīs;īssĭmīs;īssĭmŭm;īssĭmŭm;īssĭmŭm;īssĭmī;īssĭmō;īssĭmō;īssĭmă;īssĭmă;īssĭmă;īssĭmōrŭm;īssĭmīs
 
 ! plus: pas de degrés de signification

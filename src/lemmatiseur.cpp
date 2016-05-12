@@ -943,6 +943,7 @@ bool Lemmat::optAlpha() { return _alpha; }
  *        permet de renvoyer les résultats au format html.
  */
 bool Lemmat::optHtml() { return _html; }
+
 /**
  * \fn bool Lemmat::optFormeT()
  * \brief Accesseur de l'option formeT,
@@ -950,6 +951,7 @@ bool Lemmat::optHtml() { return _html; }
  *        la forme qui a été analysée.
  */
 bool Lemmat::optFormeT() { return _formeT; }
+
 /**
  * \fn bool Lemmat::optMajPert()
  * \brief Accesseur de l'option majPert,
@@ -957,6 +959,7 @@ bool Lemmat::optFormeT() { return _formeT; }
  *        dans la lemmatisation.
  */
 bool Lemmat::optMajPert() { return _majPert; }
+
 /**
  * \fn bool Lemmat::optExtension()
  * \brief Accesseur de l'option extension,
