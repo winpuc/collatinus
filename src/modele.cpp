@@ -142,7 +142,6 @@ Modele::Modele(QStringList ll, Lemmat *parent)
             if (!pre.isEmpty()) var.replace(";", ";" + pre);
             l.replace(v, var);
         }
-        //l.remove('+');
         QStringList eclats = l.simplified().split(":");
         // modele pere des desْ+ R   abs
         //  0      1    2   3   4   5
