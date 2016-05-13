@@ -280,6 +280,15 @@ pere:doctus
 R:0:1,0
 abs:13-18,25-30,37-43,49-120
 
+modele:multus
+pere:doctus
+R:1:6,plūr
+R:2:6,plūrĭm
+des:51-60:1:ĕm;ĭs;ī;ī;ēs;ēs;ēs;ĭŭm;ĭbŭs;ĭbŭs
+des:63-72:1:ĕm;ĭs;ī;ī;ēs;ēs;ēs;ĭŭm;ĭbŭs;ĭbŭs
+des:76-84:1:ĭs;ī;ī;ă;ă;ă;ĭŭm;ĭbŭs;ĭbŭs
+des:85-120:2:$lupus;$uita;$templum
+
 modele:nonus
 pere:doctus
 abs:49-120
@@ -368,7 +377,7 @@ des:85-120:1:īssĭmŭs;īssĭmĕ;īssĭmŭm;īssĭmī;īssĭmō;īssĭmō;īss�
 
 ! plus: pas de degrés de signification
 modele:plus
-pere:diues
+pere:fortis
 abs:49-120
 
 modele:uetus
