@@ -2443,8 +2443,8 @@ allegorice:allégoriquement
 allegoricus:allégorique, symbolique
 allegorista:interprète des allégories
 allegorizo:employer l'allégorie
-alleluia:du mot hébreu הַלְּלוּיָהּ signifiant / louez Dieu
-alleluiaticus:qui loue Dieu
+alleluja:du mot hébreu הַלְּלוּיָהּ signifiant / louez Dieu
+allelujaticus:qui loue Dieu
 allenimentum:adoucissement, manière de calmer
 allex:préparation culinaire à base de poisson / poisson
 allex2:gros orteil
@@ -24030,8 +24030,6 @@ Halius:nom d'homme
 Halizones:Halizons [peuple de la Bithynie ou du Pont]
 hallec:préparation culinaire à base de poisson / poisson
 hallecatus:assaisonné de allec
-halleluia:du mot hébreu הַלְּלוּיָהּ signifiant : louez Dieu
-hallelujah:alleluia (mot hébreu signifiant : louez Dieu).
 hallex:préparation culinaire à base de poisson / poisson
 hallex2:gros orteil
 hallucinatio:méprise, hallucination
