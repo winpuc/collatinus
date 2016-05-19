@@ -20,12 +20,12 @@
 !
 ! modele:<nom du modèle>
 !    nom du modèle, comme donné dans lemmes.la.
-!    ligne suivie des autres clés qui décrivent 
+!    ligne suivie des autres clés qui décrivent
 !    le modèle.
 ! R:<n1>:<n2>,<ch>
 !    Description d'un radical.
 !    n1 : numéro du radical
-!    n2 : nombre de caractères à ôter de la forme canonique 
+!    n2 : nombre de caractères à ôter de la forme canonique
 !    ch : chaîne à ajouter à la chaîne obtenue pour avoir le radical
 !
 ! des:<intervalle>:<numMorph>:<listeDes>
@@ -44,7 +44,7 @@
 !
 $compar=ŏr;ŏr;ōrĕm;ōrĭs;ōrī;ōrĕ;ōrēs;ōrēs;ōrēs;ōrŭm;ōrĭbŭs;ōrĭbŭs
 $em=ĕm;ēs;ĕt;ēmŭs;ētĭs;ēnt
-$ens=ēns;ēns;ēntĕm;ēntīs;ēntī;ēntĕ;ēntēs;ēntēs;ēntēs;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
+$ens=ēns;ēns;ēntĕm;ēntĭs;ēntī;ēntĕ;ēntēs;ēntēs;ēntēs;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
 $im=ĭm;īs;ĭt;īmŭs;ītĭs;īnt
 $lupus=ŭs;ĕ;ŭm;ī;ō;ō;ī;ī;ōs;ōrŭm;īs;īs
 $templum=ŭm;ŭm;ŭm;ī;ō;ō;ă;ă;ă;ōrŭm;īs;īs
@@ -73,7 +73,7 @@ des+:1-3:1:ās;ā;ān
 modele:cometes
 pere:uita
 R:1:2,0
-des+:1-4,6:1:ĕs;ĕ;ĕn;ī;ē
+des+:1-4,6:1:ēs;ē;ēn;ī;ē
 
 modele:cybele
 pere:uita
@@ -177,6 +177,7 @@ des:7-9:1:ă;ă;ă
 modele:ciuis
 pere:miles
 des:10:1:ĭŭm
+des+:9:1:īs
 
 modele:thales
 pere:ciuis
@@ -354,8 +355,8 @@ R:0:2,0
 R:4:K
 R:5:2,ĭ
 des:13,14,25,26:4:-;-;-;-
-des:15-24:1:ĕm;ĭs;ī;ī;ēs;ēs;ēs;ĭŭm;ĭbŭs
-des:27-36:1:ĕm;ĭs;ī;ī;ēs;ēs;ēs;ĭŭm;ĭbŭs
+des:15-24:1:ĕm;ĭs;ī;ī;ēs;ēs;ēs,īs;ĭŭm;ĭbŭs
+des:27-36:1:ĕm;ĭs;ī;ī;ēs;ēs;ēs,īs;ĭŭm;ĭbŭs
 des:37-48:1:ĕ;ĕ;ĕ;ĭs;ī;ī;ĭă;ĭă;ĭă;ĭŭm;ĭbŭs
 des:49-84:1:ĭ$compar;ĭ$compar;ĭŭs;ĭŭs;ĭŭs;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōră;ĭōră;ĭōră;ĭōrŭm;ĭōrĭbŭs
 
@@ -373,6 +374,7 @@ modele:diues
 pere:fortis
 des:18,30,42:1:ĕ;ĕ;ĕ
 des:37-39:4:-
+des:43-45:1:ă
 des:22,34,46:1:ŭm;ŭm;ŭm
 des:85-120:1:īssĭmŭs;īssĭmĕ;īssĭmŭm;īssĭmī;īssĭmō;īssĭmō;īssĭmī;īssĭmī;īssĭmōs;īssĭmōrŭm;īssĭmīs;īssĭmīs;īssĭmă;īssĭmă;īssĭmăm;īssĭmāe;īssĭmāe;īssĭmā;īssĭmāe;īssĭmāe;īssĭmās;īssĭmārŭm;īssĭmīs;īssĭmīs;īssĭmŭm;īssĭmŭm;īssĭmŭm;īssĭmī;īssĭmō;īssĭmō;īssĭmă;īssĭmă;īssĭmă;īssĭmōrŭm;īssĭmīs
 
@@ -556,7 +558,7 @@ R:2:1,āt
 des:121-126:0:ō̆;ās;ăt;āmŭs;ātĭs;ānt
 des:127-132:0:ābăm;ābās;ābăt;ābāmŭs;ābātĭs;ābānt
 des:133-138:0:ābō̆;ābĭs;ābĭt;ābĭmŭs;ābĭtĭs;ābūnt
-des:139-144:1:ī;īstī;ĭt;ĭmŭs;īstĭs;ĕrūnt,ērĕ
+des:139-144:1:ī;īstī;ĭt;ĭmŭs;īstĭs;ērūnt,ērĕ
 des:145-150:1:ĕrăm;ĕrās;ĕrăt;ĕrāmŭs;ĕrātĭs;ĕrānt
 des:151-156:1:ĕrō̆;ĕrī̆s;ĕrĭt;ĕrī̆mŭs;ĕrī̆tĭs;ĕrīnt
 ! subjonctif
@@ -571,9 +573,9 @@ des:187:0:ārĕ
 des:188:1:īssĕ
 des:188:0:āssĕ
 ! participe présent
-des:189-200:0:āns;āns;āntĕm;āntīs;āntī;āntĕ;āntēs;āntēs;āntēs;āntĭŭm,āntŭm;āntĭbŭs;āntĭbŭs
-des:201-212:0:āns;āns;āntĕm;āntīs;āntī;āntĕ;āntēs;āntēs;āntēs;āntĭŭm,āntŭm;āntĭbŭs;āntĭbŭs
-des:213-224:0:āns;āns;āns;āntīs;āntī;āntĕ;āntĭă;āntĭă;āntĭă;āntĭŭm,āntŭm;āntĭbŭs;āntĭbŭs
+des:189-200:0:āns;āns;āntĕm;āntĭs;āntī;āntĕ;āntēs;āntēs;āntēs;āntĭŭm,āntŭm;āntĭbŭs;āntĭbŭs
+des:201-212:0:āns;āns;āntĕm;āntĭs;āntī;āntĕ;āntēs;āntēs;āntēs;āntĭŭm,āntŭm;āntĭbŭs;āntĭbŭs
+des:213-224:0:āns;āns;āns;āntĭs;āntī;āntĕ;āntĭă;āntĭă;āntĭă;āntĭŭm,āntŭm;āntĭbŭs;āntĭbŭs
 ! participe futur
 des:225-236:2:ūr$lupus
 des:237-248:2:ūr$uita
@@ -586,8 +588,8 @@ des:267-272:0:ŏr;ārĭs;ātŭr;āmŭr;āmĭnī;āntŭr
 des:273-278:0:ābăr;ābārĭs,ābārĕ;ābātŭr;ābāmŭr;ābāmĭnī;ābāntŭr
 des:279-284:0:ābŏr;ābĕrĭs,ābĕrĕ;ābĭtŭr;ābĭmŭr;ābĭmĭnī;ābūntŭr
 ! subjonctif
-des:285-290:0:ĕr;ērĭs;ētŭr;ēmŭr;ēmĭnī;ēntŭr
-des:291-296:0:ārĕr;ārērĭs;ārētŭr;ārēmŭr;ārēmĭnī;ārēntŭr
+des:285-290:0:ĕr;ērĭs,ērĕ;ētŭr;ēmŭr;ēmĭnī;ēntŭr
+des:291-296:0:ārĕr;ārērĭs,ārērĕ;ārētŭr;ārēmŭr;ārēmĭnī;ārēntŭr
 ! impératif et infinitif
 des:297,298:0:ārĕ;āmĭnī
 des:299-301:0:ātŏr;ātŏr;āntŏr
@@ -640,7 +642,7 @@ des:187:0:ērĕ
 ! participe présent
 des:189-200:0:$ens
 des:201-212:0:$ens
-des:213-224:0:ēns;ēns;ēns;ēntīs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
+des:213-224:0:ēns;ēns;ēns;ēntĭs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
 ! gérondif, supin hérité de amo
 des:261-264:0:ēndŭm;ēndī;ēndō;ēndō
 ! indicatif passif
@@ -677,8 +679,8 @@ des:187:0:ĕrĕ
 des:267-272:0:ŏr;ĕrĭs,ĕrĕ;ĭtŭr;ĭmŭr;ĭmĭnī;ūntŭr
 des:279-284:0:ăr;ērĭs,ērĕ;ētŭr;ēmŭr;ēmĭnī;ēntŭr
 ! subjonctif
-des:285-290:0:ăr;ārĭs;ātŭr;āmŭr;āmĭnī;āntŭr
-des:291-296:0:ĕrĕr;ĕrērĭs;ĕrētŭr;ĕrēmŭr;ĕrēmĭnī;ĕrēntŭr
+des:285-290:0:ăr;ārĭs,ārĕ;ātŭr;āmŭr;āmĭnī;āntŭr
+des:291-296:0:ĕrĕr;ĕrērĭs,ĕrērĕ;ĕrētŭr;ĕrēmŭr;ĕrēmĭnī;ĕrēntŭr
 ! impératif et infinitif
 des:297,298:0:ĕrĕ;ĭmĭnī
 des:299-301:0:ĭtŏr;ĭtŏr;ūntŏr
@@ -744,7 +746,7 @@ des:187:3:ĕrĕ
 ! indicatif passif
 des:268-271:3:ĕrĭs,ĕrĕ;ĭtŭr;ĭmŭr;ĭmĭnī
 ! subjonctif
-des:291-296:3:ĕrĕr;ĕrērĭs;ĕrētŭr;ĕrēmŭr;ĕrēmĭnī;ĕrēntŭr
+des:291-296:3:ĕrĕr;ĕrērĭs,ĕrērĕ;ĕrētŭr;ĕrēmŭr;ĕrēmĭnī;ĕrēntŭr
 ! impératif et infinitif passifs
 des:297,298:3:ĕrĕ;ĭmĭnī
 des:299,300:3:ĭtŏr;ĭtŏr
@@ -757,6 +759,8 @@ abs:267-410
 
 modele:audio
 pere:capio
+! indicatif pr.
+des:122,124,125:3:īs;īmŭs;ītĭs
 ! subjonctif
 des:163-168:3:īrĕm;īrēs;īrĕt;īrēmŭs;īrētĭs;īrēnt
 ! impératif
@@ -766,7 +770,7 @@ des:187:3:īrĕ
 ! indicatif passif
 des:268-271:3:īrĭs,īrĕ;ītŭr;īmŭr;īmĭnī
 ! subjonctif
-des:291-296:3:īrĕr;īrērĭs;īrētŭr;īrēmŭr;īrēmĭnī;īrēntŭr
+des:291-296:3:īrĕr;ĭrērĭs,ĭrērĕ;īrētŭr;īrēmŭr;īrēmĭnī;īrēntŭr
 ! impératif et infinitif
 des:297,298:3:īrĕ;īmĭnī
 des:299,300:3:ītŏr;ītŏr;ĭūntŏr
@@ -829,9 +833,9 @@ des:299-301:0:ātŏr;ātŏr;āntŏr
 ! infinitif
 des:187:0:ārī
 ! participe présent
-des:189-200:0:āns;āns;āntĕm;āntīs;āntī;āntĕ;āntēs;āntēs;āntēs;āntĭŭm,āntŭm;āntĭbŭs;āntĭbŭs
-des:201-212:0:āns;āns;āntĕm;āntīs;āntī;āntĕ;āntēs;āntēs;āntēs;āntĭŭm,āntŭm;āntĭbŭs;āntĭbŭs
-des:213-224:0:āns;āns;āns;āntīs;āntī;āntĕ;āntĭă;āntĭă;āntĭă;āntĭŭm,āntŭm;āntĭbŭs;āntĭbŭs
+des:189-200:0:āns;āns;āntĕm;āntĭs;āntī;āntĕ;āntēs;āntēs;āntēs;āntĭŭm,āntŭm;āntĭbŭs;āntĭbŭs
+des:201-212:0:āns;āns;āntĕm;āntĭs;āntī;āntĕ;āntēs;āntēs;āntēs;āntĭŭm,āntŭm;āntĭbŭs;āntĭbŭs
+des:213-224:0:āns;āns;āns;āntĭs;āntī;āntĕ;āntĭă;āntĭă;āntĭă;āntĭŭm,āntŭm;āntĭbŭs;āntĭbŭs
 ! participe futur
 des:225-236:2:ūrŭs;ūrĕ;ūrŭm;ūrī;ūrō;ūrō;ūrī;ūrī;ūrōs;ūrōrŭm;ūrīs;ūrīs
 des:237-248:2:ūră;ūră;ūrăm;ūrāe;ūrāe;ūrā;ūrāe;ūrāe;ūrās;ūrārŭm;ūrīs;ūrīs
@@ -861,7 +865,7 @@ des:187:0:ērī
 ! participe présent
 des:189-200:0:$ens
 des:201-212:0:$ens
-des:213-224:0:ēns;ēns;ēns;ēntīs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
+des:213-224:0:ēns;ēns;ēns;ēntĭs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
 ! gérondif et supin
 des:261-264:0:ēndŭm;ēndī;ēndō;ēndō
 
@@ -881,7 +885,7 @@ des:187:0:ī
 ! participe présent
 des:189-200:0:$ens
 des:201-212:0:$ens
-des:213-224:0:ēns;ēns;ēns;ēntīs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ēntĭŭm;ēntĭbŭs;ēntĭbŭs
+des:213-224:0:ēns;ēns;ēns;ēntĭs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ēntĭŭm;ēntĭbŭs;ēntĭbŭs
 ! gérondif et supin
 des:261-264:0:ēndŭm;ēndī;ēndō;ēndō
 
@@ -900,7 +904,7 @@ des:187:3:ī
 ! participe présent
 des:189-200:0:$ens
 des:201-212:0:$ens
-des:213-224:0:ēns;ēns;ēns;ēntīs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
+des:213-224:0:ēns;ēns;ēns;ēntĭs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
 ! gérondif et supin
 des:261-264:0:ēndŭm;ēndī;ēndō;ēndō
 
@@ -954,3 +958,16 @@ des:411,412,414:0:ĭŭs;īssĭmē;ē
 modele:advr
 R:0:2,0
 des:411,412,414:0:ĭŭs;īssĭmē;ĕr
+
+modele:acriter
+R:0:5,0
+des:411,412,414:0:rĭŭs;ĕrrĭmē;ĭtĕr
+
+modele:humiliter
+R:0:5,0
+des:411,412,414:0:ĭlĭŭs;īllĭmē;ĭlĭtĕr
+
+modele:facile
+R:0:3,0
+des:411,412,414:0:ĭlĭŭs;īllĭmē;ĭlĕ
+
