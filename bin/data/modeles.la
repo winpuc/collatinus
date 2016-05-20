@@ -688,15 +688,18 @@ modele:fero
 pere:lego
 R:3:3,ērr
 R:4:1,0
-des:122,123:0:s;t
+R:5:3,ēr
+des:122,123:5:ērs;ērt
 ! impératif
-des:181,269:4:-;tŭr
+des:181,182:5:-;tĕ
 ! infinitif
 des:187:3:ĕ
 des:302:3:ī
 ! subj impf et pqp
 des:163-168:3:$em
-des:291-296:3:ĕr;ērĭs;ētŭr;ēmŭr;ēmĭnī;ēntŭr
+des:291-296:3:ĕr;ērĭs,ērĕ;ētŭr;ēmŭr;ēmĭnī;ēntŭr
+! ind. passif
+des:269:5:tŭr
 
 modele:aio
 pere:lego
@@ -775,6 +778,10 @@ des:302:3:īrī
 
 modele:fio
 pere:audio
+R:4:2,ī
+R:5:2,0
+des:121,122,124-126:4:ō̆;s;mŭs;tĭs;ūnt
+des:123:5:ĭt
 des:297:3:ĭĕrī
 des:163-168:3:ĭĕrĕm;ĭĕrēs;ĭĕrĕt;ĭĕrēmŭs;ĭĕrētĭs;ĭĕrēnt
 
@@ -956,6 +963,10 @@ des:411,412,414:0:ĭŭs;īssĭmē;ē
 modele:advr
 R:0:2,0
 des:411,412,414:0:ĭŭs;īssĭmē;ĕr
+
+modele:fortiter
+pere:advr
+R:0:3,0
 
 modele:acriter
 R:0:5,0
