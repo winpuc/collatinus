@@ -246,7 +246,7 @@ modele:domus
 pere:manus
 des:6:1:ō
 des:413:1:ī
-des+:9,10:1:ōs;ōrŭm
+des:6,9,10:1:ō,ū2;ōs;ōrŭm
 
 modele:cornu
 pere:manus
@@ -317,10 +317,6 @@ modele:meus
 pere:nonus
 suf:17,18,25,29,30,41,42:ptĕ
 
-modele:dubius
-pere:doctus
-abs:49-120
-
 modele:artios
 pere:doctus
 des+:13,15-48:0:ŏs;ŏn;
@@ -331,7 +327,8 @@ modele:duo
 pere:doctus
 R:0:1,0
 des:19,43,45:0:ŏ
-des:23,24,35,36,47,48:0:ōbŭs
+des:23,24,47,48:0:ōbŭs
+des:35,36:0:ābŭs
 abs:22,32,42,13-18,25-30,37-42
 
 modele:miser
@@ -620,7 +617,7 @@ des:268-271:0:ărĭs;ătŭr;ămŭr;ămĭnī
 des:273-278:0:ăbăr;ăbārĭs,ăbārĕ;ăbātŭr;ăbāmŭr;ăbāmĭnī;ăbāntŭr
 des:279-284:0:ăbŏr;ăbĕrĭs,ăbĕrĕ;ăbĭtŭr;ăbĭmŭr;ăbĭmĭnī;ăbūntŭr
 ! subjonctif
-des:291-296:0:ărĕr;ărērĭs;ărētŭr;ărēmŭr;ărēmĭnī;ărēntŭr
+des:291-296:0:ărĕr;ărērĭs,ărērĕ;ărētŭr;ărēmŭr;ărēmĭnī;ărēntŭr
 ! impératif et infinitif
 des:297,298:0:ărĕ;ămĭnī
 des:299-300:0:ătŏr;ătŏr
@@ -677,7 +674,7 @@ des:187:0:ĕrĕ
 ! gérondif et supin hérités
 ! indicatif passif
 des:267-272:0:ŏr;ĕrĭs,ĕrĕ;ĭtŭr;ĭmŭr;ĭmĭnī;ūntŭr
-des:279-284:0:ăr;ērĭs,ērĕ;ētŭr;ēmŭr;ēmĭnī;ēntŭr
+des:279-284:0:ăr;ĕrĭs,ērĕ;ētŭr;ēmŭr;ēmĭnī;ēntŭr
 ! subjonctif
 des:285-290:0:ăr;ārĭs,ārĕ;ātŭr;āmŭr;āmĭnī;āntŭr
 des:291-296:0:ĕrĕr;ĕrērĭs,ĕrērĕ;ĕrētŭr;ĕrēmŭr;ĕrēmĭnī;ĕrēntŭr
@@ -932,20 +929,21 @@ modele:eo
 pere:audio
 R:4:2,ī
 R:5:2,ĕū
-des:121,126:3:ēō̆;ĕūnt
+des:121,126:3:ĕō̆;ĕūnt
 des:127-132:4:băm;bās;băt;bāmŭs;bātĭs;bānt
 des:133-138:4:bō̆;bĭs;bĭt;bĭmŭs;bĭtĭs;būnt
 ! impératif
 des:186:3:ĕūntō
 ! part. prés.
 des:189,190,201,202,213-215:3:ĭēns
-des:191-200:5:ntĕm;ntīs;ntī;ntĕ;ntēs;ntēs;ntēs;ntĭŭm;ntĭbŭs
-des:203-212:5:ntĕm;ntīs;ntī;ntĕ;ntēs;ntēs;ntēs;ntĭŭm,nt;ntĭbŭs
-des:216-224:5:ntīs;ntī;ntĕ;ntĭă;ntĭă;ntĭă;ntĭŭm;ntĭbŭs
+des:191-200:5:ntĕm;ntĭs;ntī;ntĕ;ntēs;ntēs;ntēs;ntĭŭm;ntĭbŭs
+des:203-212:5:ntĕm;ntĭs;ntī;ntĕ;ntēs;ntēs;ntēs;ntĭŭm,nt;ntĭbŭs
+des:216-224:5:ntĭs;ntī;ntĕ;ntĭă;ntĭă;ntĭă;ntĭŭm;ntĭbŭs
 ! adj. verbal
 des:261-264:5:ndŭm;ndī;ndō
-! pas de passif
-abs:267-410
+! pas de passif, sauf 3ème sing
+des:268,275:4:tŭr;bātŭr
+abs:267,269-274,276-410
 
 modele:adv
 R:0:K
