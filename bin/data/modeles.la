@@ -40,7 +40,9 @@
 !
 ! On peut ne donner qu'une fois une désinence qui se répète en fin de liste.
 !
-! définition des variables: $<variable>:<valeurs>
+! Définition des constante: $<constante>=<valeurs>
+! Utilisation : ce qui précède une constante est répété devant chaque ';' de
+!   la constante
 !
 $compar=ŏr;ŏr;ōrĕm;ōrĭs;ōrī;ōrĕ;ōrēs;ōrēs;ōrēs;ōrŭm;ōrĭbŭs;ōrĭbŭs
 $em=ĕm;ēs;ĕt;ēmŭs;ētĭs;ēnt
@@ -189,7 +191,7 @@ des+:8,9:1:ĭn,ĭm;ĕŏs
 
 modele:manes
 pere:ciuis
-abs:7-12
+abs:1-6
 
 modele:turris
 pere:ciuis
@@ -212,8 +214,8 @@ des+:10:1:ŭm
 
 modele:mare
 pere:ciuis
-des:3:1:-
-des:6,7-9:1:ī;ĭă;ĭă;ĭă
+des:1-3:1:ĕ
+des:6-9:1:ī;ĭă;ĭă;ĭă
 
 modele:moenia
 pere:mare
@@ -228,7 +230,9 @@ des+:6:1:ĕ
 modele:mille
 pere:mare
 R:4:2,0
+R:5:1,0
 des:7-12:4:ĭă;ĭă;ĭă;ĭŭm;ĭbŭs
+des+:7-12:5:ĭă;ĭă;ĭă;ĭŭm;ĭbŭs
 
 modele:manus
 R:1:2,0
@@ -648,7 +652,7 @@ des:267-272:0:ĕŏr;ērĭs;ētŭr;ēmŭr;ēmĭnī;ēntŭr
 des:273-278:0:ēbăr;ēbārĭs,ēbārĕ;ēbātŭr;ēbāmŭr;ēbāmĭnī;ēbāntŭr
 des:279-284:0:ēbŏr;ēbĕrĭs,ēbĕrĕ;ēbĭtŭr;ēbĭmŭr;ēbĭmĭnī;ēbūntŭr
 ! subjonctif
-des:285-290:0:ĕăr;ĕārĭs;ĕātŭr;ĕāmŭr;ĕāmĭnī;ĕāntŭr
+des:285-290:0:ĕăr;ĕārĭs,ĕārĕ;ĕātŭr;ĕāmŭr;ĕāmĭnī;ĕāntŭr
 des:291-296:0:ērĕr;ērērĭs;ērētŭr;ērēmŭr;ērēmĭnī;ērēntŭr
 ! impératif et infinitif
 des:297,298:0:ērĕ;ēmĭnī
@@ -900,7 +904,7 @@ R:3:3,0
 des:122-125:3:ĕrĭs,ĕrĕ;ĭtŭr;ĭmŭr;ĭmĭnī
 des:133-138:3:ĭăr;ĭērĭs,ĭērĕ;ĭētŭr;ĭēmŭr;ĭēmĭnī;ĭēntŭr
 ! subjonctif
-des:163-168:3:ĕrĕr;ĕrērĭs;ĕrētŭr;ĕrēmŭr;ĕrēmĭnī;ĕrēntŭr
+des:163-168:3:ĕrĕr;ĕrērĭs,ĕrērĕ;ĕrētŭr;ĕrēmŭr;ĕrēmĭnī;ĕrēntŭr
 ! impératif
 des:181-186:3:ĕrĕ;ĭmĭnī
 des:299-301:3:ĭtŏr;ĭtŏr;ūntŏr
@@ -972,6 +976,10 @@ R:0:3,0
 modele:acriter
 R:0:5,0
 des:411,412,414:0:rĭŭs;ĕrrĭmē;ĭtĕr
+
+modele:misere
+R:0:3,0
+des:411,412,414:0:ĕrĭŭs;ērrĭmē;ĕrē
 
 modele:humiliter
 R:0:5,0
