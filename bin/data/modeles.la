@@ -360,6 +360,7 @@ des:49-84:1:ĭ$compar;ĭ$compar;ĭŭs;ĭŭs;ĭŭs;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōr
 modele:infans
 pere:fortis
 des+:22,34,46:1:ŭm3
+des:85-120:1:īssĭm$lupus;īssĭm$uita;īssĭm$templum
 
 modele:acer
 pere:fortis
@@ -399,9 +400,9 @@ des:37,39-43,45-48:0:ĭd;ĭd;ējŭs;ĕī;ĕō;ĕă;ĕă;ĕōrŭm;ĕīs,ĭīs
 
 modele:idem
 R:0:4,0
-des:13,15-19,21-24:0:ĭdĕm;ĕŭmdĕm,ĕūndĕm;ējŭsdĕm;ĕīdĕm;ĕōdĕm;ĕīdĕm,ĭīdĕm;ĕōsdĕm;ĕōrŭmdĕm;ĕīsdĕm,ĭīsdĕm
-des:25,27-31,33-36:0:ĕădĕm;ĕămdĕm,ĕāndĕm;ējŭsdĕm;ĕīdĕm;ĕādĕm;ĕāedĕm;ĕāsdĕm;ĕārŭmdĕm;ĕīsdĕm,ĭīsdĕm
-des:37,39-43,45-48:0:ĭdĕm;ĭdĕm;ējŭsdĕm;ĕīdĕm;ĕōdĕm;ĕădĕm;ĕădĕm;ĕōrŭmdĕm;ĕīsdĕm,ĭīsdĕm
+des:13,15-19,21-24:0:īdĕm;ĕūmdĕm,ĕūndĕm;ējūsdĕm;ĕīdĕm;ĕōdĕm;ĕīdĕm,ĭīdĕm;ĕōsdĕm;ĕōrūmdĕm;ĕīsdĕm,ĭīsdĕm,īsdĕm
+des:25,27-31,33-36:0:ĕădĕm;ĕāmdĕm,ĕāndĕm;ējūsdĕm;ĕīdĕm;ĕādĕm;ĕāedĕm;ĕāsdĕm;ĕārūmdĕm;ĕīsdĕm,ĭīsdĕm,īsdĕm
+des:37,39-43,45-48:0:ĭdĕm;ĭdĕm;ējūsdĕm;ĕīdĕm;ĕōdĕm;ĕădĕm;ĕădĕm;ĕōrūmdĕm;ĕīsdĕm,ĭīsdĕm,īsdĕm
 
 modele:hic
 pere:doctus
@@ -674,7 +675,7 @@ des:187:0:ĕrĕ
 ! gérondif et supin hérités
 ! indicatif passif
 des:267-272:0:ŏr;ĕrĭs,ĕrĕ;ĭtŭr;ĭmŭr;ĭmĭnī;ūntŭr
-des:279-284:0:ăr;ĕrĭs,ērĕ;ētŭr;ēmŭr;ēmĭnī;ēntŭr
+des:279-284:0:ăr;ērĭs,ērĕ;ētŭr;ēmŭr;ēmĭnī;ēntŭr
 ! subjonctif
 des:285-290:0:ăr;ārĭs,ārĕ;ātŭr;āmŭr;āmĭnī;āntŭr
 des:291-296:0:ĕrĕr;ĕrērĭs,ĕrērĕ;ĕrētŭr;ĕrēmŭr;ĕrēmĭnī;ĕrēntŭr
