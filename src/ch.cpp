@@ -50,6 +50,7 @@ QStringList Ch::ajoute(QString mot, QStringList liste)
  */
 void Ch::allonge(QString *f)
 {
+    if (f->isEmpty()) return;
     int taille = f->size();
     // Je sais que le morceau à attacher commence par une consonne.
     if (consonnes.contains(f->at(taille - 1)) &&

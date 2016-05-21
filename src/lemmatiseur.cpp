@@ -335,17 +335,17 @@ MapLem Lemmat::lemmatise(QString f)
         // 2. conubium, ablP conubis : conubi.s -> conubi.i+s
         if (d.startsWith('i') && !d.startsWith("ii") && !r.endsWith('i'))
             lrad << _radicaux.values(r + "i");
-/*        {
-            QString nf = r + 'i' + d;
-            MapLem nm = lemmatise(nf);
-            foreach (Lemme *nl, nm.keys())
-            {
-                QList<SLem> lsl = nm.value(nl);
-                for (int i = 0; i < lsl.count(); ++i)
-                    lsl[i].grq.remove(r.length() - 1, 1);
-                result.insert(nl, lsl);
-            }
-        }*/
+        /* {
+           QString nf = r + 'i' + d;
+           MapLem nm = lemmatise(nf);
+           foreach (Lemme *nl, nm.keys())
+           {
+           QList<SLem> lsl = nm.value(nl);
+           for (int i = 0; i < lsl.count(); ++i)
+           lsl[i].grq.remove(r.length() - 1, 1);
+           result.insert(nl, lsl);
+           }
+           }*/
         if (lrad.empty()) continue;
         // Il n'y a rien à faire si le radical n'existe pas.
         foreach (Radical *rad, lrad)
@@ -484,7 +484,7 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr)
         }
     }
     // contractions
-//    QString fd = decontracte(f);
+    // QString fd = decontracte(f);
     QString fd = f;
     foreach (QString cle, _contractions.keys())
         if (fd.endsWith(cle))
@@ -972,7 +972,12 @@ bool Lemmat::optExtension() { return _extension; }
  *        qui donne l'analyse morphologique
  *        des formes lemmatisées.
  */
-bool Lemmat::optMorpho() { return _morpho; }
+
+bool Lemmat::optMorpho()
+{
+    return _morpho;
+}
+
 QString Lemmat::parPos(QString f)
 {
     bool maj = f.at(0).isUpper();

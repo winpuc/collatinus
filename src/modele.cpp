@@ -219,8 +219,10 @@ Modele::Modele(QStringList ll, Lemmat *parent)
                         if (_absents.contains(d->morphoNum()))
                             // morpho absente chez le descendant
                             continue;
-                        Desinence *dsuf = new Desinence(
-                            d->grq() + suf, d->morphoNum(), d->numRad(), this);
+                        QString nd = d->grq();
+                        Ch::allonge (&nd);
+                        Desinence *dsuf = new Desinence
+                            (nd+suf, d->morphoNum(), d->numRad(), this);
                         _desinences.insert(dsuf->morphoNum(), dsuf);
                         _lemmatiseur->ajDesinence(dsuf);
                     }

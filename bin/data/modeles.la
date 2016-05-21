@@ -346,7 +346,7 @@ modele:pulcher
 pere:doctus
 R:0:2,r
 R:1:2,rĭ
-R:2:0,rĭm
+R:2:2,ērrĭm
 R:4:K
 des:1,2:4:-;-
 
@@ -430,20 +430,21 @@ abs:14,20,26,32,38,44
 modele:qui
 R:1:3,0
 abs:14,20,26,32,38,44
-des:13,15-19,21-24:1:quī;quĕm;cūjŭs,quōjŭs;cūī,quŏī;quō;quī;quōs;quōrŭm;quĭbŭs
-des:25,27-31,33-36:1:quāe;quăm;cūjŭs,quōjŭs;cūī,quŏī;quā;quāe;quās;quārŭm;quĭbŭs
-des:37,39-43,45-48:1:quŏd;quŏd;cūjŭs,quōjŭs;cūī,quŏī;quō;quāe;quāe;quōrŭm;quĭbŭs
+des:13,15-19,21-24:1:quī;quĕm;cūjŭs,quōjŭs;cuī,quŏī;quō;quī;quōs;quōrŭm;quĭbŭs
+des:25,27-31,33-36:1:quāe;quăm;cūjŭs,quōjŭs;cuī,quŏī;quā;quāe;quās;quārŭm;quĭbŭs
+des:37,39-43,45-48:1:quŏd;quŏd;cūjŭs,quōjŭs;cuī,quŏī;quō;quāe;quāe;quōrŭm;quĭbŭs
 
 modele:quicumque
 pere:qui
 R:1:9,0
-sufd:cūmquĕ
 sufd:cūnquĕ
+sufd:cūmquĕ
 
 modele:quidam
 pere:qui
 R:1:6,0
 sufd:dăm
+des:37,39:1:quīddăm
 
 modele:quilibet
 pere:qui
@@ -458,7 +459,7 @@ sufd:năm
 modele:quiuis
 pere:qui
 R:1:6,0
-sufd:vīs
+sufd:uīs
 
 modele:quis
 pere:qui
@@ -479,11 +480,13 @@ modele:quispiam
 pere:quis
 R:1:8,0
 sufd:pĭăm
+des:37,39:1:quōdpĭăm
 
 modele:quisquam
 pere:quis
 R:1:8,0
 sufd:quăm
+des:37,39:1:quōdquăm
 
 modele:quisque
 pere:quis
@@ -492,9 +495,8 @@ sufd:quĕ
 
 modele:quisquis
 R:1:6,0
-abs:14,20,26,32,38,44
-des:13,15,18:1:īsquĭs,īcquĭs;ĕmquĕm;ōquō
-des:25,30:1:āequāe;āquā
+abs:14-17,19-36,38,40,41,42-48
+des:13,18:1:īsquĭs,īcquĭs;ōquō
 des:37,39,42:1:īdquĭd,īcquĭd;īdquĭd,īcquĭd;ōquō
 
 modele:ego
@@ -803,7 +805,7 @@ abs:189-374
 des:121,124,126:0:ŭm;ŭmŭs;ūnt
 des:122,123,125:2:ĕs;ēst;ēstĭs
 des:127-132:2:ĕrăm;ĕrās;ĕrăt;ĕrāmŭs;ĕrātĭs;ĕrānt
-des:133-138:2:ĕro;ĕrĭs;ĕrĭt;ĕrĭmŭs;ĕrĭtĭs;ĕrūnt
+des:133-138:2:ĕrō̆;ĕrĭs;ĕrĭt;ĕrĭmŭs;ĕrĭtĭs;ĕrūnt
 ! subjonctif
 des:157-162:6:$im
 des:163-168:7:$em
@@ -928,7 +930,7 @@ modele:potior
 pere:patior
 des:122-125:3:īrĭs,īrĕ;ītŭr;īmŭr;īmĭnī
 ! subjonctif
-des:163-168:3:īrĕr;īrērĭs;īrētŭr;īrēmŭr;īrēmĭnī;īrēntŭr
+des:163-168:3:īrĕr;īrērĭs,īrērĕ;īrētŭr;īrēmŭr;īrēmĭnī;īrēntŭr
 ! impératif
 des:181-186:3:īrĕ;īmĭnī
 des:299-301:3:ītŏr;ītŏr;ĭūntŏr
