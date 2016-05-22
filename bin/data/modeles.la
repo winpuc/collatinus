@@ -459,7 +459,7 @@ sufd:năm
 modele:quiuis
 pere:qui
 R:1:6,0
-sufd:uīs
+sufd:vīs
 
 modele:quis
 pere:qui
@@ -738,6 +738,12 @@ des:157-162:0:$im
 des:163-168:0:lĕm;lēs;lĕt;lēmŭs;lētĭs;lēnt
 des:187:0:lĕ
 abs:225-260,265-374
+
+modele:edo
+pere:lego
+R:3:3,0
+des+:122,123:3:ēs;ēst
+des+:163-168:3:ēss$em
 
 modele:capio
 pere:lego
