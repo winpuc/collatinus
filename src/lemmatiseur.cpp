@@ -335,17 +335,6 @@ MapLem Lemmat::lemmatise(QString f)
         // 2. conubium, ablP conubis : conubi.s -> conubi.i+s
         if (d.startsWith('i') && !d.startsWith("ii") && !r.endsWith('i'))
             lrad << _radicaux.values(r + "i");
-        /* {
-           QString nf = r + 'i' + d;
-           MapLem nm = lemmatise(nf);
-           foreach (Lemme *nl, nm.keys())
-           {
-           QList<SLem> lsl = nm.value(nl);
-           for (int i = 0; i < lsl.count(); ++i)
-           lsl[i].grq.remove(r.length() - 1, 1);
-           result.insert(nl, lsl);
-           }
-           }*/
         if (lrad.empty()) continue;
         // Il n'y a rien à faire si le radical n'existe pas.
         foreach (Radical *rad, lrad)
@@ -357,7 +346,9 @@ MapLem Lemmat::lemmatise(QString f)
                     des->numRad() == rad->numRad() &&
                     !l->estIrregExcl(des->morphoNum()))
                 {
-                    bool c = ((cnt_v==0)||(cnt_v == rad->grq().toLower().count("v")));
+                    bool c = ((cnt_v==0)
+                              ||(cnt_v == rad->grq().toLower().count("v")
+                                 +des->grq().count("v")));
                     if (!c) c = (V_maj && (rad->gr()[0] == 'U')
                             && (cnt_v - 1 == rad->grq().toLower().count("v")));
                     c = c && ((cnt_oe==0)||(cnt_oe == rad->grq().toLower().count("ōe")));
@@ -373,25 +364,6 @@ MapLem Lemmat::lemmatise(QString f)
                         result[l].prepend(sl);
                     }
                 }
-                    /*                {
-                    if (des->modele() == l->modele() &&
-                        des->numRad() == rad->numRad() &&
-                            !l->estIrregExcl(des->morphoNum()))
-                    {
-                        if (des->morphoNum() < _morphos.count() - 1)
-                        {
-                            SLem sl = {rad->grq() + des->grq(),
-                                       morpho(des->morphoNum()), ""};
-                            result[l].prepend(sl);
-                        }
-                        else
-                        {
-                            SLem sl = {l->grq(), "-", ""};
-                            //						SLem sl = {"-",""};
-                            result[l].prepend(sl);
-                        }
-                    }
-                } */
             }
         }
     }
