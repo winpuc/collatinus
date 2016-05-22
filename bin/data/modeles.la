@@ -347,8 +347,8 @@ pere:doctus
 R:0:2,r
 R:1:2,rĭ
 R:2:2,ērrĭm
-R:4:K
-des:1,2:4:-;-
+R:3:K
+des:13,14:3:-;-
 
 modele:fortis
 pere:doctus
@@ -535,7 +535,8 @@ suf:17,29:mĕt
 
 modele:uter
 pere:pulcher
-des:16,17,28,29,40,41:1:ī̆ŭs;ī;ī̆ŭs;ī;ī̆ŭs;ī
+R:0:4,ūtr
+des:16,17,28,29,40,41:0:ī̆ŭs;ī;ī̆ŭs;ī;ī̆ŭs;ī
 abs:49-120
 
 modele:uterque
@@ -724,8 +725,8 @@ des+:181:0:-
 modele:uolo
 pere:lego
 R:5:3,0
-R:6:3,ĕl
-des:122-125:5:īs;ūlt,ōlt;ŏlŭmŭs;ūltĭs
+R:6:3,ēl
+des:122-125:5:īs;ūlt,ōlt;ŏlŭmŭs;ūltĭs,ōltĭs
 des:157-162:6:$im
 des:163-168:6:lĕm;lēs;lĕt;lēmŭs;lētĭs;lēnt
 des:187:6:lĕ
