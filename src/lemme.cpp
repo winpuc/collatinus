@@ -79,7 +79,7 @@ int Radical::numRad() { return _numero; }
  * \brief Constructeur de la classe Lemme à partire de la
  *        ligne linea. *parent est le lemmatiseur (classe Lemmat).
  */
-Lemme::Lemme(QString linea, QObject *parent)
+Lemme::Lemme(QString linea, int origin, QObject *parent)
 {
     // cădo|lego|cĕcĭd|cās|is, ere, cecidi, casum
     //   0   1    2     3          4
@@ -96,6 +96,7 @@ Lemme::Lemme(QString linea, QObject *parent)
     _grModele = eclats.at(1);
     _modele = _lemmatiseur->modele(_grModele);
     _hyphen = "";
+    _origin = origin;
     // lecture des radicaux, champs 2 et 3
     for (int i = 2; i < 4; ++i)
         if (!eclats.at(i).isEmpty())
@@ -112,23 +113,23 @@ Lemme::Lemme(QString linea, QObject *parent)
     _pos.clear();
     if (_indMorph.contains("adj."))
         _pos.append('a');
-    else if (_indMorph.contains("conj"))
+    if (_indMorph.contains("conj"))
         _pos.append('c');
-    else if (_indMorph.contains("excl"))
+    if (_indMorph.contains("excl"))
         _pos.append('e');
-    else if (_indMorph.contains("interj"))
+    if (_indMorph.contains("interj"))
         _pos.append('i');
-    else if (_indMorph.contains("num"))
+    if (_indMorph.contains("num."))
         _pos.append('m');
-    else if (_indMorph.contains("pron."))
+    if (_indMorph.contains("pron."))
         _pos.append('p');
-    else if (_indMorph.contains("prép"))
+    if (_indMorph.contains("prép"))
         _pos.append('r');
-    else if (_indMorph.contains("adv"))
+    if (_indMorph.contains("adv"))
         _pos.append('d');
-    else if (_indMorph.contains("n. "))
+    if (_indMorph.contains(" n.") || _indMorph.contains("npr."))
         _pos.append('n');
-    else
+    if (_pos.isEmpty())
         _pos.append(_modele->pos());
 
     QRegExp c("cf\\.\\s(\\w+)$");
@@ -162,7 +163,11 @@ void Lemme::ajIrreg(Irreg *irr)
  * \brief Ajoute le radical r de numéro i à la map des
  *        radicaux du lemme.
  */
-void Lemme::ajRadical(int i, Radical *r) { _radicaux.insert(i, r); }
+void Lemme::ajRadical(int i, Radical *r)
+{
+    _radicaux.insert(i, r);
+}
+
 /**
  * \fn void Lemme::ajTrad (QString t, QString l)
  * \brief ajoute la traduction t de langue l à
@@ -198,13 +203,21 @@ QString Lemme::ambrogio()
  * \brief Renvoie la clé sous laquel le
  *        lemme est enregistré dans le lemmatiseur parent.
  */
-QString Lemme::cle() { return _cle; }
+QString Lemme::cle()
+{
+    return _cle;
+}
+
 /**
  * \fn QList<int> Lemme::clesR ()
  * \brief Retourne toutes les clés (formes non-ramistes
  *        sans diacritiques) de la map des radicaux du lemme.
  */
-QList<int> Lemme::clesR() { return _radicaux.keys(); }
+QList<int> Lemme::clesR()
+{
+    return _radicaux.keys();
+}
+
 /**
  * \fn bool Lemme::estIrregExcl (int nm)
  * \param nm : numéro de morpho
@@ -213,22 +226,38 @@ QList<int> Lemme::clesR() { return _radicaux.keys(); }
  *        sur le radical , faux si la
  *        forme régulière existe aussi.
  */
-bool Lemme::estIrregExcl(int nm) { return _morphosIrrExcl.contains(nm); }
+bool Lemme::estIrregExcl(int nm)
+{
+    return _morphosIrrExcl.contains(nm);
+}
+
 /**
  * \fn return _gr;
  * \brief Retourne la graphie ramiste du lemme sans diacritiques.
  */
-QString Lemme::gr() { return _gr; }
+QString Lemme::gr()
+{
+    return _gr;
+}
+
 /**
  * \fn QString Lemme::grq ()
  * \brief Retourne la graphie ramiste du lemme sans diacritiques.
  */
-QString Lemme::grq() { return _grq; }
+QString Lemme::grq()
+{
+    return _grq;
+}
+
 /**
  * \fn QString Lemme::grModele ()
  * \brief Retourne la graphie du modèle du lemme.
  */
-QString Lemme::grModele() { return _grModele; }
+QString Lemme::grModele()
+{
+    return _grModele;
+}
+
 /**
  * \fn QString Lemme::humain (bool html, QString l)
  * \brief Retourne une chaîne donnant le lemme ramiste avec diacritiques,
@@ -279,12 +308,25 @@ QString Lemme::irreg(int i, bool *excl)
  * \fn Modele* Lemme::modele ()
  * \brief Renvoie l'objet modèle du lemme.
  */
-Modele *Lemme::modele() { return _modele; }
+Modele *Lemme::modele()
+{
+    return _modele;
+}
+
 /**
  * \fn int Lemme::nh()
  * \brief Renvoie le numéro d'homonymie du lemme.
  */
-int Lemme::nh() { return _nh; }
+int Lemme::nh()
+{
+    return _nh;
+}
+
+int Lemme::origin()
+{
+    return _origin;
+}
+
 /**
  * \fn QString Lemme::oteNh (QString g, int &nh)
  * \brief Supprime le dernier caractère de g si c'est
@@ -310,12 +352,20 @@ QString Lemme::oteNh(QString g, int &nh)
  *        catégorie (part of speech, pars orationis)
  *        du lemme.
  */
-QString Lemme::pos() { return _pos; }
+QString Lemme::pos()
+{
+    return _pos;
+}
+
 /**
  * \fn QList<Radical*> Lemme::radical (int r)
  * \brief Renvoie le radical numéro r du lemme.
  */
-QList<Radical *> Lemme::radical(int r) { return _radicaux.values(r); }
+QList<Radical *> Lemme::radical(int r)
+{
+    return _radicaux.values(r);
+}
+
 /**
  * \fn bool Lemme::renvoi()
  * \brief Renvoie true si le lemme est une forme
