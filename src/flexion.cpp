@@ -122,7 +122,11 @@ QString Flexion::gras(QString g)
  *        Aucun tableau ne peut être calculé
  *        avant que cette fonction ait été appelée.
  */
-void Flexion::setLemme(Lemme *l) { _lemme = l; }
+void Flexion::setLemme(Lemme *l)
+{
+    _lemme = l;
+}
+
 /**
  * \fn QString Flexion::tableau (Lemme *l)
  * \brief Renvoie le tableau de flexion de l.
@@ -144,17 +148,6 @@ QString Flexion::tableau(Lemme *l)
     if (ret.empty()) return l->humain();
     ret.removeDuplicates();
     return ret.join("");
-    /*
-    switch (l->pos().unicode())
-    {
-        case 'n': return tabNom ();
-        case 'p': return tabPron();
-        case 'a': return tabAdj();
-        case 'd': return tabAdv();
-        case 'v': return tabV();
-        default: return l->humain();
-    }
-    */
 }
 
 /**
@@ -195,8 +188,8 @@ QString Flexion::tabNom()
     fl << entete;
     fl << lina << "cas" << linb << "singulier" << linb << "pluriel" << linc;
     for (int i = 1; i < 7; ++i)
-        fl << lina << cas[i - 1] << linb << forme(i) << linb << forme(i + 6)
-           << linc;
+        fl << lina << cas[i - 1] << linb << forme(i)
+            << linb << forme(i + 6) << linc;
     fl << queue;
     return ret;
 }
@@ -212,19 +205,27 @@ QString Flexion::tabPron()
     fl << "<hr/><a name=\"" << _lemme->cle() << "\"></a>";
     fl << "singulier<p>";
     fl << entete;
-    fl << lina << "cas" << linb << genres[0] << linb << genres[1] << linb
-       << genres[2] << linc;
+    fl << lina << "cas" << linb
+        << genres[0] << linb
+        << genres[1] << linb
+        << genres[2] << linc;
     for (int i = 13; i < 19; ++i)
-        fl << lina << cas[(i - 13) % 6] << linb << forme(i) << linb
-           << forme(i + 12) << linb << forme(i + 18) << linc;
+        fl << lina << cas[(i - 13) % 6] << linb
+            << forme(i) << linb
+            << forme(i + 12) << linb
+            << forme(i + 24) << linc;
     fl << queue;
     fl << "</p>pluriel<p>";
     fl << entete;
-    fl << lina << "cas" << linb << genres[0] << linb << genres[1] << linb
-       << genres[2] << linc;
+    fl << lina << "cas" << linb
+        << genres[0] << linb
+        << genres[1] << linb
+        << genres[2] << linc;
     for (int i = 19; i < 25; ++i)
-        fl << lina << cas[(i - 19) % 6] << linb << forme(i) << linb
-           << forme(i + 12) << linb << forme(i + 18) << linc;
+        fl << lina << cas[(i - 19) % 6] << linb
+            << forme(i) << linb
+            << forme(i + 12) << linb
+            << forme(i + 24) << linc;
     fl << queue << "</p>";
     return ret;
 }
