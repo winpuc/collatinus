@@ -94,7 +94,7 @@ class Lemmat : public QObject
     // Lorsque j'ai chargé l'extension, je dois pouvoir ignorer les analyses qui en viennent.
 
    public:
-    Lemmat(QObject *parent = 0);
+    Lemmat(QObject *parent = 0, QString resDir="");
     void ajDesinence(Desinence *d);
     void ajModele(Modele *m);
     void ajRadicaux(Lemme *l);
