@@ -367,6 +367,18 @@ MapLem Lemmat::lemmatise(QString f)
             }
         }
     }
+    if (_extLoaded && !_extension && !result.isEmpty())
+    {
+        // L'extension est chargée mais je ne veux voir les solutions qui en viennent que si toutes en viennent.
+        MapLem res;
+        foreach (Lemme *l, result.keys())
+        {
+            if (l->origin() == 0)
+                res[l] = result[l];
+        }
+
+        if (!res.isEmpty()) result = res;
+    }
     return result;
 }
 
@@ -742,6 +754,8 @@ void Lemmat::lisIrreguliers()
  */
 void Lemmat::lisFichierLexique(QString filepath)
 {
+    int orig = 0;
+    if (filepath.endsWith("ext.la")) orig = 1;
     QFile flem(filepath);
     flem.open(QFile::ReadOnly);
     QTextStream fll(&flem);
@@ -749,7 +763,7 @@ void Lemmat::lisFichierLexique(QString filepath)
     {
         QString lin = fll.readLine().simplified();
         if (lin.isEmpty() || lin.startsWith("!")) continue;
-        Lemme *l = new Lemme(lin, this);
+        Lemme *l = new Lemme(lin, orig, this);
         _lemmes.insert(l->cle(), l);
     }
     flem.close();
@@ -1006,12 +1020,12 @@ QString Lemmat::variable(QString v) { return _variables[v]; }
 
 void Lemmat::setExtension(bool e)
 {
-    if (_extension || !e) {
-        return;// can't unload lemmes!
+    _extension = e;
+    if (!_extLoaded && e) {
+        lisExtension();
+        lisTraductions(false,true);
+        _extLoaded = true;
     }
-    _extension = true;
-    lisExtension();
-    lisTraductions(false,true);
 }
 
 /**
