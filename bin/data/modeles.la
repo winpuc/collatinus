@@ -692,6 +692,10 @@ des:339-350:0:ēndŭs;ēndĕ;ēndŭm;ēndī;ēndō;ēndō;ēndī;ēndī;ēndōs;
 des:351-362:0:ēndă;ēndă;ēndăm;ēndāe;ēndāe;ēndā;ēndāe;ēndāe;ēndās;ēndārŭm;ēndīs;ēndīs
 des:363-374:0:ēndŭm;ēndŭm;ēndŭm;ēndī;ēndō;ēndō;ēndă;ēndă;ēndă;ēndōrŭm;ēndīs;ēndīs
 
+modele:licet
+pere:moneo
+abs:121,122,124-128,130-134,136-140,142-146,148-152,154-158,160-164,166-170,172-176,178-183,185-326,328,330-410
+
 modele:lego
 pere:moneo
 R:0:1,0
