@@ -74,7 +74,16 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
     QFile f(_resDir + "morphos.la");
     f.open(QFile::ReadOnly);
     QTextStream fl(&f);
-    while (!fl.atEnd()) _morphos.append(fl.readLine());
+    int i = 0;
+    while (!fl.atEnd())
+    {
+        QString l = fl.readLine();
+        if (l.startsWith('!')) continue;
+        if (i+1 != l.section(':',0,0).toInt())
+            qDebug() <<i<<"Fichier morphos.la, erreur dans la ligne"<<l;
+        else _morphos.append(l.section(':',1,1));
+        ++i;
+    }
     f.close();
 
     lisModeles();
