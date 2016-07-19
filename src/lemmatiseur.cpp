@@ -779,6 +779,7 @@ void Lemmat::lisFichierLexique(QString filepath)
         QString lin = fll.readLine().simplified();
         if (lin.isEmpty() || lin.startsWith("!")) continue;
         Lemme *l = new Lemme(lin, orig, this);
+        if (_lemmes.contains(l->cle())) qDebug() << orig << lin << l->cle();
         _lemmes.insert(l->cle(), l);
     }
     flem.close();

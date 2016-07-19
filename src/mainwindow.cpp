@@ -591,6 +591,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     settings.setValue("longue", longueAct->isChecked());
     settings.setValue("breve", breveAct->isChecked());
     settings.setValue("ambigue", ambigueAct->isChecked());
+    settings.setValue("illius", illiusAct->isChecked());
     settings.setValue("hyphenation", hyphenAct->isChecked());
     settings.setValue("repHyphen", repHyphen);
     settings.endGroup();
@@ -712,6 +713,9 @@ void MainWindow::createActions()
     ambigueAct = new QAction(tr("   -̆ => pas d'accent"), this);
     ambigueAct->setCheckable(true);
     ambigueAct->setChecked(true);
+    illiusAct = new QAction(tr("except illíus"), this);
+    illiusAct->setCheckable(true);
+    illiusAct->setChecked(true);
     hyphenAct = new QAction(tr("marquer les syllabes"), this);
     hyphenAct->setCheckable(true);
     hyphenAct->setEnabled(false);
@@ -939,6 +943,7 @@ void MainWindow::createMenus()
     optMenu->addAction(longueAct);
     optMenu->addAction(breveAct);
     optMenu->addAction(ambigueAct);
+    optMenu->addAction(illiusAct);
     optMenu->addAction(hyphenAct);
     optMenu->addSeparator();
     optMenu->addAction(fontAct);
@@ -1102,12 +1107,15 @@ void MainWindow::createDockWindows()
     tbBreve->setDefaultAction(breveAct);
     QToolButton *tbAmbigue = new QToolButton(this);
     tbAmbigue->setDefaultAction(ambigueAct);
+    QToolButton *tbIllius = new QToolButton(this);
+    tbIllius->setDefaultAction(illiusAct);
     QToolButton *tbHyphen = new QToolButton(this);
     tbHyphen->setDefaultAction(hyphenAct);
     hLayoutScand->addWidget(tbAccent);
     hLayoutScand->addWidget(tbLongue);
     hLayoutScand->addWidget(tbBreve);
     hLayoutScand->addWidget(tbAmbigue);
+    hLayoutScand->addWidget(tbIllius);
     hLayoutScand->addWidget(tbHyphen);
     //    hLayoutScand->addItem (hSpacerScand);
     textEditScand = new QTextEdit(dockWidgetScand);
@@ -1568,6 +1576,7 @@ void MainWindow::readSettings()
     longueAct->setChecked(settings.value("longue").toBool());
     breveAct->setChecked(settings.value("breve").toBool());
     ambigueAct->setChecked(settings.value("ambigue").toBool());
+    illiusAct->setChecked(settings.value("illius").toBool());
     hyphenAct->setChecked(settings.value("hyphenation").toBool());
     repHyphen = settings.value("repHyphen").toString();
     if (repHyphen.isEmpty()) repHyphen = qApp->applicationDirPath() + "/data";
@@ -1752,6 +1761,7 @@ void MainWindow::syncWD()
 void MainWindow::setAccent(bool b)
 {
     optionsAccent->setEnabled(b);
+    illiusAct->setEnabled(b);
     hyphenAct->setEnabled(b);
 }
 
@@ -1760,7 +1770,8 @@ int MainWindow::lireOptionsAccent()
     int retour = 0;
     if (accentAct->isChecked())
     {
-        if (hyphenAct->isChecked()) retour = 4;
+        if (illiusAct->isChecked()) retour += 8;
+        if (hyphenAct->isChecked()) retour += 4;
         if (longueAct->isChecked()) return retour + 1;
         if (breveAct->isChecked()) return retour + 2;
         retour += 3;
