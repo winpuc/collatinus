@@ -60,7 +60,7 @@ Abares:peuple scythe
 Abaris:nom de pers. divers
 Abaritanus:Abaritain [d'Abaris en Afrique]
 abarticulamentum:Placit. articulation.
-Abas:roi d'Argos / autres personnages
+!Abas:roi d'Argos / autres personnages
 Abatos:rocher dans le Nil
 abavia:trisaïeule
 abavunculus:grand-oncle, frère de la trisaïeule
@@ -3179,7 +3179,7 @@ anatus:malheureux
 anaudia:extinction de voix, aphonie.
 Anaurus:fleuve de Thessalie
 Anaxagoras:célèbre philosophe de Clazomène
-Anaxarchus:philosophe d'Abdère
+!Anaxarchus:philosophe d'Abdère
 Anaxarete:jeune fille changée en rocher
 Anaxilaus:tyran de Rhégium / philosophe et médecin de Larissa
 Anaximander:philosophe de Milet
@@ -5067,7 +5067,7 @@ Asiani:habitants de l'Asie / [en part.] orateurs asiatiques
 Asiarcha:Asiarque, grand prêtre et surveillant des jeux et du théâtre dans la province romaine d'Asie
 Asiaticianus:d'Asie, asiatique
 asilus:taon
-Asina2:surnom dans la gens Cornélia
+!Asina2:surnom dans la gens Cornélia
 Asinaeus:d'Asiné
 Asinaria:Asinaire [le Prix des ânes], pièce de Plaute
 asinaricius:d'âne. subst. m., ânier
@@ -12270,7 +12270,7 @@ conchylilegulus:C.-Th. pêcheur de pourpres.
 conchyliolegulus:pêcheur de pourpres
 concibo:contubernalis
 concidentia:accord ou analogie de la forme
-concido2:tomber, s'écrouler, s'effondrer / tomber, succomber / [en parl. des victimes immolées] / [moralement] être renversé, être démonté, démoralisé / [fig.] tomber, s'écrouler (= perdre sa force, son autorité, sa considération, etc.)
+!concido2:tomber, s'écrouler, s'effondrer / tomber, succomber / [en parl. des victimes immolées] / [moralement] être renversé, être démonté, démoralisé / [fig.] tomber, s'écrouler (= perdre sa force, son autorité, sa considération, etc.)
 conciens:inciens, enceinte, grosse
 concieo:et, plus ordint,
 conciliabolum:lieu d'assemblée, de réunion, place, marché / mauvais lieu / [en part. lieu de réunion pour les habitants de divers cantons, d'un même populus]
@@ -14506,7 +14506,7 @@ culcitra:c. culcita
 culcitula:petit matelas
 culearis:de la grandeur d'une outre
 culeum:mesure pour les liquides
-culeus:mesure pour les liquides
+!culeus:mesure pour les liquides
 culicare:moustiquaire
 culicellus:dim. de culex, celui qui papillonne autour [fig.]
 Culici:peuple de la Vénétie
@@ -14549,7 +14549,7 @@ cultura:[en gén.] culture / [en part. et abst] l'agriculture / culture [de l'es
 cululla:c. culullus.
 culullus:vase de terre dont les Vestales se servaient dans les sacrifices / [en gén.] vase à boire, coupe
 culus:cul, derrière
-cum2:depuis que / quand, lorsque, au moment où / quand cependant / du moment que, vu que, étant donné que, puisque / quoique, quand pourtant / alors que, tandis que / quoique cependant, tandis que cependant, alors que cependant
+!cum2:depuis que / quand, lorsque, au moment où / quand cependant / du moment que, vu que, étant donné que, puisque / quoique, quand pourtant / alors que, tandis que / quoique cependant, tandis que cependant, alors que cependant
 Cumaeus:de Cumes
 Cumana:vase de Cumes
 Cumanum:villa de Cumes / pays de Cumes
@@ -15317,7 +15317,7 @@ decisus:part. de decido 2
 decitans:part. prés. de decito, inusité, Apul. rendant la marche rapide, faisant glisser.
 Decius2:de P. Décius Mus
 declamatiuncula:petite déclamation
-declamator:déclamateur, celui qui s'exerce à la parole
+!declamator:déclamateur, celui qui s'exerce à la parole
 declamatorie:en déclamateur
 declamatorius:qui a rapport à la déclamation, à l'exercice de la parole
 declamatrix:celle qui déclame
@@ -18514,7 +18514,7 @@ elegeia:élégie [genre de poème] / espèce de roseau
 elegeion:inscription elégiaque
 elegeon:inscription elégiaque
 elegeus:d'élégie, élégiaque / distiques élégiaques, élégie
-elegia:élégie [genre de poème] / espèce de roseau
+!elegia:élégie [genre de poème] / espèce de roseau
 elegiacus:élégiaque [pentamètre]
 elegidarion:Petr. petite élégie.
 elegidion:Pers. petite élégie.
@@ -19166,7 +19166,7 @@ epimelas:perle dont la partie supérieure est noire
 epimenia:provisions de bouche (ration) pour un mois
 Epimenides:Épiménide [philosophe et poète Crétois]
 epimerismos:rappel que fait un orateur de la division de son discours
-Epimetheus:Épiméthée [frère de Prométhée]
+!Epimetheus:Épiméthée [frère de Prométhée]
 Epimethis:Pyrrha, fille d'Épiméthée
 epimetrum:ce qu'on donne par-dessus la juste mesure
 epinicion:chant de victoire / pl., réjouissances au sujet d'une victoire
@@ -19370,7 +19370,7 @@ Erichthonius2:Érichthon [roi d'Athènes, inventeur du quadrige et des courses d
 Ericinium:ville de Thessalie
 ericinus:de hérisson
 ericius:hérisson / [milit.] chevaux de frise
-Eridanus:l'Éridan ou le Pô [fleuve de l'Italie supérieure] / l'Éridan [constellation]
+!Eridanus:l'Éridan ou le Pô [fleuve de l'Italie supérieure] / l'Éridan [constellation]
 erifuga:v. herifuga.
 erigeron:séneçon [plante]
 Erigone:Érigone [fille d'Icare, changée en constellation (la Vierge)] / fille d'Égisthe et de Clytemnestre
@@ -24833,7 +24833,7 @@ Hippodamas:père de Périmèle
 Hippodame:Hippodamé ou Hippodamie [fille d'oenomaüs, femme de Pélops] / fille d'Atrax, femme de Pirithoüs
 Hippodamia:c. Hippodame
 Hippodamus:dompteur de chevaux, cavalier
-hippodromos:hippodrome, emplacement pour les courses
+!hippodromos:hippodrome, emplacement pour les courses
 hippolapathon:patience [plante]
 hippolapathum:patience [plante]
 Hippolochus:général thessalien
@@ -25467,7 +25467,7 @@ ianthinus:violet
 ianthis:violette
 Ianthis2:nom de femme
 Iapetionides:fils de Japet
-Iapetus:Japet [père d'Atlas et de Prométhée]
+!Iapetus:Japet [père d'Atlas et de Prométhée]
 Iapis:médecin d'Énée
 Iapydes:hab. de l'Iapydie
 Iapydia:l'Iapydie, contrée de la Liburnie
@@ -25739,7 +25739,7 @@ illaudandus:indigne de louange
 illaudatus:obscur, sans gloire / indigne de louange
 illautus:sale, non lavé / non essuyé
 illecebro:charmer, captiver
-illecebrose:[inus.], d'une manière séduisante
+!illecebrose:[inus.], d'une manière séduisante
 illecebrosus:séduisant
 illectamentum:séduction, charme
 illectatio:séduction, charme
@@ -25976,7 +25976,7 @@ immoranter:sans tarder
 immordeo:v. immorsus.
 immorior:int., mourir dans, sur, auprès
 immorsus:mordu / [fig.] excité [en parl. de l'estomac]
-immortales:les dieux / [fig.] immortel = égal à un dieu, bienheureux comme un dieu
+!immortales:les dieux / [fig.] immortel = égal à un dieu, bienheureux comme un dieu
 immortalitas:immortalité / état semblable à celui des immortels, béatitude
 immortaliter:éternellement
 immortalitus:adv., venant des dieux immortels
@@ -27003,7 +27003,7 @@ indiscusse:sans discussion
 indiscussibilis:qu'on ne peut discuter
 indiscussus:qui n'a pas été examiné à fond
 indiserte:sans éloquence
-indisertus:sans talent de parole
+!indisertus:sans talent de parole
 indisjunctim:sans désemparer
 indispensatus:sans mesure
 indispertibilis:qui ne peut être partagé
@@ -27621,7 +27621,7 @@ injurio:dép. [décadence] faire du tort à, outrager
 injurior:dép. [décadence] faire du tort à, outrager
 injuriose:injustement
 injurus:parjure
-injussus2:sans l'ordre de
+!injussus2:sans l'ordre de
 injuste:injustement
 injustitia:injustice / rigueur injuste
 injusto:adv., injustement
@@ -29256,7 +29256,7 @@ joculatorius:plaisant
 joculor:tr., dire des plaisanteries
 joculus:petite plaisanterie / jouets
 jocundus:v. juc-
-jocur:foie / siège des passions
+!jocur:foie / siège des passions
 jocusculum:petit foie
 Johannes:saint Jean-Baptiste / saint Jean, apôtre et évangéliste / Jean de Giscale, fut vaincu par Titus / Jean qui usurpa l'empire d'Occident à la mort d'Honorius
 Jonas2:un des prophètes
@@ -29422,8 +29422,8 @@ jusso:v. jubeo
 jussor:celui qui donne des ordres
 jussorius:qui ordonne
 jussulentus:c. jurulentus
-jussus:part. de jubeo
-jussus2:c. jussum
+jussus2:part. de jubeo
+!jussus:c. jussum
 justa:le dû / usages requis, formalités requises / [en part.] honneurs (devoirs) funèbres
 juste:avec justice, justement, équitablement
 justificatio:justification
@@ -30647,7 +30647,7 @@ levis2:lisse, uni / [poét.] sans poil, sans barbe / [d'où] blanc, tendre, dél
 levisomnus:qui a le sommeil léger
 Levisticum:v. Ligusticum
 Levita:lévite, ministre du temple de Jérusalem / diacre
-levitas2:le poli / [fig.] poli du style
+!levitas2:le poli / [fig.] poli du style
 Levites:lévite, ministre du temple de Jérusalem / diacre
 Leviticus:des lévites; Subst. m. le Lévitique, troisième livre de Moïse
 Levitis:les lévites
@@ -30952,7 +30952,7 @@ lineatio:ligne / traits [du visage]
 lineatus:rayé, marqué de lignes
 lineo:tr., aligner
 lineus:de lin
-Lingones:Lingons [peuple de la Gaule Celtique, habitant le pays de Langres] / peuple de la Gaule Cispadane
+!Lingones:Lingons [peuple de la Gaule Celtique, habitant le pays de Langres] / peuple de la Gaule Cispadane
 Lingonicus:des Lingons
 Lingonus:un Lingon
 Lingos:montagne d'Épire
@@ -31331,7 +31331,7 @@ Lotophagitis:l'île des Lotophages, près de la côte d'Afrique
 lotor:celui qui lave / blanchisseur
 Lotos:nymphe aimée de Priape et changée en lotus
 lotura:lavage, nettoiement / lavure [en t. de métallurgie]
-lotus:micocoulier [arbre] / flûte de micocoulier / lotus aquatique / mélilot [plante] / fruit du micocoulier / sorte de jujubier
+!lotus:micocoulier [arbre] / flûte de micocoulier / lotus aquatique / mélilot [plante] / fruit du micocoulier / sorte de jujubier
 Lovia:ville de la Basse-Pannonie
 Loxias:surnom d'Apollon
 Lua:déesse qui présidait aux expiations
@@ -31500,7 +31500,7 @@ ludivagus:qui se joue
 luela:châtiment, punition
 luella:v. luela.
 Lugdunensis:de Lugdunum / [autres villes]
-Lugdunum:ville de la Gaule lyonnaise [Lyon]
+!Lugdunum:ville de la Gaule lyonnaise [Lyon]
 lugens:adjt, où l'on pleure
 lugium:c. luctus
 lugubre:n. pris advt, d'une manière sinistre
@@ -34123,7 +34123,7 @@ morsum:morceau enlevé en mordant
 morsus2:part. p. de mordeo
 Morta:nom donné à l'une des trois Parques
 mortalia:les affaires humaines
-mortalis2:mortel, être humain
+!mortalis2:mortel, être humain
 mortalitas:mortalité, condition d'un être mortel, nature mortelle / les mortels, les humains, les hommes, l'homme
 mortaliter:dans la condition mortelle
 mortariolum:dim. de mortarium
@@ -38126,7 +38126,7 @@ pandiculor:s'étendre [en bâillant], s'allonger
 Pandion:nom de divers personnages, nott / Pandion [fils d'Érechthée, père de Procné et de Philomèle] / fils de Jupiter et de la Lune / roi de l'Inde au temps d'Auguste / le rossignol
 Pandionius:de Pandion / d'Athènes
 pando2:tr., courber, ployer / pass., se ployer, se courber / int., se courber
-Pandora:Pandore [nom de la première femme, que Vulcain forma du limon de la terre, et qui fut dotée de toutes les qualités par les autres dieux]
+!Pandora:Pandore [nom de la première femme, que Vulcain forma du limon de la terre, et qui fut dotée de toutes les qualités par les autres dieux]
 pandorium:c. pandura.
 pandorius:c. pandura.
 Pandosia:Pandosie [ville d'Épire] / lac en Épire
@@ -41564,7 +41564,7 @@ pluteum:c. pluteus.
 pluteus:panneau, abri [monté sur roues] / panneau [fixe, ajouté comme revêtement au parapet] / tablette, étagère / pupitre / panneaux à la tête des lits / dos ou dossier [d'un lit de table] / [par ext.] un lit [de table] / balustrade [entre deux colonnes]
 plutiarius:fabricant de mantelets [de guerre]
 Pluto:Pluton [fils de Saturne et d'Ops, frère de Jupiter et de Neptune, dieu des enfers]
-Pluton:Pluton [fils de Saturne et d'Ops, frère de Jupiter et de Neptune, dieu des enfers]
+!Pluton:Pluton [fils de Saturne et d'Ops, frère de Jupiter et de Neptune, dieu des enfers]
 Plutonia:région empestée de l'Asie
 plutor:celui qui fait pleuvoir
 Plutus:Plutus [dieu de la richesse]
@@ -41809,7 +41809,7 @@ pompaticus:qui forme un cortège / [fig.] pompeux, d'apparat, fastueux
 pompatus:tior
 Pompeia:Pompéia [fille du Grand Pompée, femme de Sylla Faustus] / femme divorcée de Jules César / femme de Vatinius / Pompéia Macrina, mise à mort par Tibère / Pompéia Paulina, femme de Sénèque le philosophe
 Pompeii:Pompéi [ville maritime de Campanie, ensevelie par le Vésuve en l'an 79 après J.-C]
-Pompeius2:de Pompée
+Pompeius3:de Pompée
 Pompejanum:maison de Pompéi [appartenant à Cicéron]
 Pompejanus:de Pompéi // de Pompée, du parti de Pompée
 Pompeum:bâtiment à Athènes, où l'on gardait les objets servant à la célébration des fêtes
@@ -44494,7 +44494,7 @@ Pyroeis:un des chevaux du soleil / Mars [planète]
 Pyrois:un des chevaux du soleil / Mars [planète]
 pyromantia:pyromancie, divination au moyen du feu
 pyropus:pyrope, alliage de cuivre et d'or
-Pyrrha:femme de Deucalion / nom d'Achille à Scyros, sous des vêtements de femme // nom de plus. villes ; nott dans l'île de Lesbos
+!Pyrrha:femme de Deucalion / nom d'Achille à Scyros, sous des vêtements de femme // nom de plus. villes ; nott dans l'île de Lesbos
 Pyrrhaeus:de Pyrrha (et Deucalion) // de la ville de Pyrrha
 Pyrrhe:c. Pyrrha 1 ;
 Pyrrheum:quartier de la ville d'Ambracie
@@ -48203,7 +48203,7 @@ Scythopolis:ville de Palestine
 Scythopolitae:habitants de Scythopolis
 Scythotauri:les Scythes du mont Taurus
 scyzinum:c. itaeomelis
-se:sans / à part
+se2:sans / à part
 sebaceus:chandelle
 sebaceus2:de suif
 sebaciaria:rondes de nuit que faisaient à Rome, torches à la main, des escouades de vigiles
@@ -49736,7 +49736,7 @@ Sodomi:Sodome ou habitants de Sodome
 Sodomitae:habitants de Sodome
 Sodomiticus:de Sodome
 Sodomum:Sodome [ville de Palestine détruite par le feu du ciel]
-Sol2:le Soleil [divinité]
+!Sol2:le Soleil [divinité]
 solacius:consolant
 solago:tournesol [plante]
 solamentum:soulagement
@@ -51598,8 +51598,8 @@ Succi:peuple et ville de Mésie
 succidaneus:substitué, qui remplace
 succidaneus2:remplaçant, suppléant
 succidia:quartier de porc salé / [fig.] ressource, réserve
-succido:tomber sous [fig.] / s'affaisser
-succido2:tr., couper au bas, tailler par-dessous
+!succido:tomber sous [fig.] / s'affaisser
+!succido2:tr., couper au bas, tailler par-dessous
 succidus:v. sucidus.
 succiduus:qui s'affaisse, qui fléchit / [fig.] qui fait défaut
 succilus:extravasation ou suffusion du sang dans les paupières
@@ -53280,7 +53280,7 @@ tenebratio:obscurcissement
 tenebresco:int., se couvrir de ténèbres, s'obscurcir
 tenebrico:int., c. tenebresco / tr., (pass.) s'obscurcir
 tenebricositas:obscurcissement de la vue
-tenebricosus:ténébreux, enveloppé d'obscurité, de ténèbres
+!tenebricosus:ténébreux, enveloppé d'obscurité, de ténèbres
 tenebricus:ténébreux, sombre / de couleur foncée
 tenebrio:un ami des ténèbres
 tenebro:tr., obscurcir, rendre obscur
@@ -55603,7 +55603,7 @@ tussicularis:qui convient à la toux, béchique
 tussiculosus:affecté de toux, qui tousse
 tussicus:sujet à la toux
 tussilago:tussilage [ou] pas-d'âne [plante]
-tussis:toux / pl., quintes de toux
+!tussis:toux / pl., quintes de toux
 tussitus:expectoré [en toussant]
 tusus:part. de tundo
 tutaculum:asile, abri, refuge
@@ -57353,7 +57353,7 @@ virtuosus:vertueux
 virulentia:mauvaise odeur, infection
 virulentus:venimeux
 virunum:ville de la Norique, sur la Drave
-virus:suc, jus, humeur / semence des animaux / venin, poison / mauvaise odeur, puanteur, infection / âcreté, amertume
+!virus:suc, jus, humeur / semence des animaux / venin, poison / mauvaise odeur, puanteur, infection / âcreté, amertume
 viscarium:piège [fig.]
 viscatorium:glu
 viscatus:frotté de glu, englué / [fig.] qui est comme un gluau, un piège tendu
@@ -61112,7 +61112,7 @@ Emesa:ville de la Coelé-Syrie [auj. Homs]
 Emesus:ville de la Coelé-Syrie [auj. Homs]
 emicans:part. prés. de emico. - 1 - qui s'élance hors de, qui sort. - 2 - qui brille, brillant.
 Emisa:ville de la Coelé-Syrie [auj. Homs]
-Emmaus:une des toparchies de la Judée
+!Emmaus:une des toparchies de la Judée
 Emodus:partie de l'Himalaya
 emollitus:part. passé de emollio. - 1 - rendu mou, devenu mou. - 2 - amolli, efféminé. - 3 - adouci, fléchi.
 Emona:ville de Pannonie

@@ -650,7 +650,7 @@ amputo:couper, enlever en coupant
 Amulius:Amulius
 anagnostes:lecteur
 anas:canard
-Anaxarchus:Anaxarchus
+Anaxarchus:Anaxarchus, philosophe d'Abdère
 anceps:1. à deux têtes 2. double 3. douteux, ambigu, incertain
 Anchisa:Anchise
 Anchisiades:le fils d'Anchise (Enée)
@@ -957,10 +957,10 @@ Asianus:d'Asie
 Asiaticus:asiatique
 Asia:Asie
 asina:ânesse
-Asina2:Asina (cognomen)
+Asina2:Asina (surnom dans la gens Cornélia)
 asinalis:d'âne
 asinarius:d'âne (asinarius, i, m. : l'ânier)
-asina:Asina
+!asina:Asina
 asininus:d'âne
 Asinius:Asinius
 asinus:âne
@@ -2494,7 +2494,7 @@ cudo:battre, frapper ; forger
 cujas:de quel pays
 culcita:matelas
 culex:moustique
-culleus:le sac de cuir
+culleus:le sac de cuir ; mesure pour les liquides
 culmen:le sommet, le toit
 culmus:la tige (de blé), le chaume
 culpa:la faute
@@ -3313,7 +3313,7 @@ elefantus:l'éléphant
 elegans:élégant
 elegantia:le goût, la délicatesse, la distinction
 elegantius:distingué, délicat
-elegia:élégie
+elegia:élégie [genre de poème] / espèce de roseau
 elegi:vers élégiaques
 elementum:l'élément ; pl.les lettres de l'alphabet, les principes
 elephans:éléphant
@@ -5533,7 +5533,7 @@ licitumst:= licitum est, licuit
 lictor:le licteur
 ligneus:en bois, de bois
 lignum:le bois
-Lingones:les Lingons
+Lingones:Lingons [peuple de la Gaule Celtique, habitant le pays de Langres] / peuple de la Gaule Cispadane
 ligo:lier
 ligurrio:lécher
 Lilybaeum:Lilybée (promontoire de Sicile)
@@ -5595,7 +5595,7 @@ loquax:bavard, verbeux
 loquor:parler
 lorica:la cuirasse; la haie, la clôture
 lorum:la courroie, la lanière, le fouet, le martinet
-lotus:lotus (plante)
+lotus:micocoulier [arbre] / flûte de micocoulier / lotus aquatique / mélilot [plante] / fruit du micocoulier / sorte de jujubier
 lubens:qui accepte volontiers
 lubricus:glissant, incertain, dangereux, hasardeux
 lucar:l'impôt pour les bois sacrés; le salaire des acteurs
@@ -7271,7 +7271,7 @@ plus:plus, plus cher
 plus2:plus, davantage
 Plutarchus:Plutarque
 Plutonius:de Pluton
-Pluton:Pluton
+Pluton:Pluton [fils de Saturne et d'Ops, frère de Jupiter et de Neptune, dieu des enfers]
 pluvia:la pluie
 pluvius:pluvieux, qui fait pleuvoir
 poculum:coupe
@@ -7898,7 +7898,7 @@ pyramis:la pyramide
 Pyramus:le Pyrame (fleuve de Cilicie)
 Pyrenaeus:Les Pyrénnées (souvent au pluriel)
 Pyrgopolinices:Pyrgopolinice
-Pyrrha:Pyrrha (fille de Pandore et d'Épiméthée)
+Pyrrha:Pyrrha (fille de Pandore et d'Épiméthée) femme de Deucalion / nom d'Achille à Scyros, sous des vêtements de femme // nom de plus. villes ; nott dans l'île de Lesbos
 Pyrrhus:Pyrrhus (roi d'Epire)
 Pythicus:de la Pythie
 pyxis:boîte, petite boîte
@@ -9374,7 +9374,7 @@ temulentus:ivre
 tenax:tenace, solide
 tendo:tendre
 tenebrae:ténèbres
-tenebricosus:ténébreux
+tenebricosus:ténébreux, enveloppé d'obscurité, de ténèbres
 tenebrosus:ténébreux
 Tenedos:Ténédos (petite île en face de Troie)
 tenellus:rendre, délicat
@@ -9699,7 +9699,7 @@ Tuscia:l'Etrurie
 Tusculanum:noms de plusieurs villas situées près de Tusculum
 Tuscus:étrusque
 tussio:tousser
-tussis:toux
+tussis:toux / pl., quintes de toux
 tutamentum:la protection
 tutela:la protection
 Tutidanus:Tutidanus
