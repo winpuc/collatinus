@@ -22308,7 +22308,7 @@ fructuosus:qui rapporte, fécond, fertile
 fructus2:part. de fruor
 frudo:- tr. - 1 - faire du tort par fraude (à qqn, aliquem), frauder. 2 - détourner par fraude.
 fruendus:v. fruor.
-frugalior:qui rapporte davantage / plus sage, plus rangé, plus frugal / est de la décadence
+!frugalior:qui rapporte davantage / plus sage, plus rangé, plus frugal / est de la décadence
 frugesco:int., produire, rapporter [en parl. de la terre]
 Frugi2:l'Honnête homme [surnom de plusieurs Romains, p. ex. L. Pison]
 frugifer:qui produit des fruits, fertile, fécond / [fig.] fructueux, utile
@@ -25442,7 +25442,7 @@ hystriculus:couvert de poils
 hystrix:porc-épic
 Hytanis:v. Hyctanis. I
 Ia:fille de Midas et femme d'Atys
-ia2:pl. de ion
+!ia2:pl. de ion
 Iacetani2:les Jacétains (peuple du nord de l'Espagne).
 Iacob2:Jacob [troisième patriarche]
 Iader:ville d'Illyrie
