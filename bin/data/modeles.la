@@ -561,13 +561,14 @@ suf:17,29:mĕt
 
 modele:uter
 pere:pulcher
-R:0:4,ūtr
+R:0:4,ū̆tr
 des:16,17,28,29,40,41:0:ī̆ŭs;ī;ī̆ŭs;ī;ī̆ŭs;ī
 abs:49-120
 
 modele:uterque
 pere:uter
-R:1:5,r
+R:3:3,0
+R:0:7,ū̆tr
 sufd:quĕ
 
 modele:nemo
@@ -727,7 +728,7 @@ pere:lego
 R:3:3,ērr
 R:4:1,0
 R:5:3,ēr
-des:122,123:5:ērs;ērt
+des:122,123:5:s;t
 ! impératif
 des:181,182:5:-;tĕ
 ! infinitif
@@ -1022,7 +1023,7 @@ R:0:3,0
 des:411,412,414:0:ĕrĭŭs;ērrĭmē;ĕrē
 
 modele:humiliter
-R:0:5,0
+R:0:6,0
 des:411,412,414:0:ĭlĭŭs;īllĭmē;ĭlĭtĕr
 
 modele:facile
