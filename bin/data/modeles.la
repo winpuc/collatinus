@@ -320,6 +320,11 @@ modele:nonus
 pere:doctus
 abs:49-120
 
+modele:deterior
+pere:doctus
+R:1:2,0
+abs:13-48,85-120
+
 modele:unus
 pere:doctus
 des:16,28,40:0:ī̆ŭs;ī̆ŭs;ī̆ŭs
