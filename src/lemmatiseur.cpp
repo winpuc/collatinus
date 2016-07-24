@@ -199,7 +199,7 @@ void Lemmat::ajRadicaux(Lemme *l)
  * \brief Cherche si la chaîne a peut subir
  *        une assimilation, et renvoie
  *        cette chaîne éventuellement assimilée.
- *        *version avec quantités*
+ *        *version sans quantités*
  */
 QString Lemmat::assim(QString a)
 {
@@ -235,13 +235,21 @@ QString Lemmat::assimq(QString a)
  * \brief Renvoie la langue cible dans sa forme
  *        abrégée (fr, uk, de, it, etc.).
  */
-QString Lemmat::cible() { return _cible; }
+QString Lemmat::cible()
+{
+    return _cible;
+}
+
 /**
  * \fn QMap<QString,QString> Lemmat::cibles()
  * \brief Renvoie la map des langues cibles.
  *
  */
-QMap<QString, QString> Lemmat::cibles() { return _cibles; }
+QMap<QString, QString> Lemmat::cibles()
+{
+    return _cibles;
+}
+
 /**
  * \fn QString Lemmat::decontracte (QString d)
  * \brief Essaie de remplacer la contractions de d
@@ -468,18 +476,15 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr)
             }
         }
     }
-    if (mm.empty())
+    QString fa = desassim(f);
+    if (fa != f)
     {
-        QString fa = desassim(f);
-        if (fa != f)
+        MapLem nmm = lemmatise(fa);
+        foreach (Lemme *nl, nmm.keys())
         {
-            MapLem nmm = lemmatise(fa);
-            foreach (Lemme *nl, nmm.keys())
-            {
-                for (int i = 0; i < nmm[nl].count(); ++i)
-                    nmm[nl][i].grq = assimq(nmm[nl][i].grq);
-                mm.insert(nl, nmm.value(nl));
-            }
+            for (int i = 0; i < nmm[nl].count(); ++i)
+                nmm[nl][i].grq = assimq(nmm[nl][i].grq);
+            mm.insert(nl, nmm.value(nl));
         }
     }
     // contractions
