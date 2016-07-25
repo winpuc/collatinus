@@ -423,6 +423,7 @@ bool Lemmat::inv(Lemme *l, const MapLem ml)
  *        peut tenir compte des majuscules pour savoir
  *        s'il s'agit d'un nom propre.
  */
+/*
 MapLem Lemmat::lemmatiseM(QString f, bool debPhr)
 {
     QString res;
@@ -431,6 +432,7 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr)
     if (f.isEmpty()) return mm;
     // suffixes
     foreach (QString suf, suffixes.keys())
+    {
         if (mm.empty() && f.endsWith(suf))
         {
             QString sf = f;
@@ -453,6 +455,7 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr)
                     else mm[l][i].sufq += suffixes.value(suf); // Pour modoquest
             }
         }
+    }
     if (debPhr && f.at(0).isUpper())
     {
         QString nf = f.toLower();
@@ -461,34 +464,33 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr)
             mm.insert(nl, nmm.value(nl));
     }
     // assimilations
-    if (mm.empty())
+    QString fa = assim(f);
+    if (fa != f)
     {
-        QString fa = assim(f);
+        MapLem nmm = lemmatiseM(fa);
+        // désassimiler les résultats
+        foreach (Lemme *nl, nmm.keys())
+        {
+            for (int i = 0; i < nmm[nl].count(); ++i)
+                nmm[nl][i].grq = desassimq(nmm[nl][i].grq);
+            mm.insert(nl, nmm.value(nl));
+        }
+    }
+    else
+    {
+        QString fa = desassim(f);
         if (fa != f)
         {
-            MapLem nmm = lemmatiseM(fa);
-            // désassimiler les résultats
+            MapLem nmm = lemmatise(fa);
             foreach (Lemme *nl, nmm.keys())
             {
                 for (int i = 0; i < nmm[nl].count(); ++i)
-                    nmm[nl][i].grq = desassimq(nmm[nl][i].grq);
+                    nmm[nl][i].grq = assimq(nmm[nl][i].grq);
                 mm.insert(nl, nmm.value(nl));
             }
         }
     }
-    QString fa = desassim(f);
-    if (fa != f)
-    {
-        MapLem nmm = lemmatise(fa);
-        foreach (Lemme *nl, nmm.keys())
-        {
-            for (int i = 0; i < nmm[nl].count(); ++i)
-                nmm[nl][i].grq = assimq(nmm[nl][i].grq);
-            mm.insert(nl, nmm.value(nl));
-        }
-    }
     // contractions
-    // QString fd = decontracte(f);
     QString fd = f;
     foreach (QString cle, _contractions.keys())
         if (fd.endsWith(cle))
@@ -528,6 +530,119 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr)
     }
     return mm;
 }
+*/
+
+MapLem Lemmat::lemmatiseM(QString f, bool debPhr, bool desas)
+{
+    QString res;
+    QTextStream fl(&res);
+    MapLem mm = lemmatise(f);
+    if (f.isEmpty()) return mm;
+    // suffixes
+    foreach (QString suf, suffixes.keys())
+    {
+        if (mm.empty() && f.endsWith(suf))
+        {
+            QString sf = f;
+            sf.chop(suf.length());
+            // TODO : aequeque est la seule occurrence
+            // de -queque dans le corpus classique
+            mm = lemmatiseM(sf, debPhr);
+            bool sst = false;
+            if (mm.isEmpty() && (suf == "st"))
+            {
+                sf += "s";
+                mm = lemmatiseM(sf, debPhr);
+                sst = true;
+            }
+            foreach (Lemme *l, mm.keys())
+            {
+                QList<SLem> ls = mm.value(l);
+                for (int i = 0; i < ls.count(); ++i)
+                    if (sst) mm[l][i].sufq = "t";
+                    else mm[l][i].sufq += suffixes.value(suf); // Pour modoquest
+            }
+        }
+    }
+    if (debPhr && f.at(0).isUpper())
+    {
+        QString nf = f.toLower();
+        MapLem nmm = lemmatiseM(nf);
+        foreach (Lemme *nl, nmm.keys())
+            mm.insert(nl, nmm.value(nl));
+    }
+    // assimilations
+    if (!desas)
+    {
+    QString fa = assim(f);
+    if (fa != f)
+    {
+        MapLem nmm = lemmatiseM(fa);
+        // désassimiler les résultats
+        foreach (Lemme *nl, nmm.keys())
+        {
+            for (int i = 0; i < nmm[nl].count(); ++i)
+                nmm[nl][i].grq = desassimq(nmm[nl][i].grq);
+            mm.insert(nl, nmm.value(nl));
+        }
+    }
+    else
+    {
+        QString fa = desassim(f);
+        if (fa != f)
+        {
+            MapLem nmm = lemmatiseM(fa, debPhr, true);
+            foreach (Lemme *nl, nmm.keys())
+            {
+                for (int i = 0; i < nmm[nl].count(); ++i)
+                    nmm[nl][i].grq = assimq(nmm[nl][i].grq);
+                mm.insert(nl, nmm.value(nl));
+            }
+        }
+    }
+    }
+    // contractions
+    QString fd = f;
+    foreach (QString cle, _contractions.keys())
+        if (fd.endsWith(cle))
+        {
+            fd.chop(cle.length());
+            if ((fd.contains("v") || fd.contains("V")))
+                fd.append(_contractions.value(cle));
+            else
+                fd.append(Ch::deramise(_contractions.value(cle)));
+            MapLem nmm = lemmatise(fd);
+            foreach (Lemme *nl, nmm.keys())
+            {
+                int diff = _contractions.value(cle).size() - cle.size();
+                // nombre de lettres que je dois supprimer
+                for (int i = 0; i < nmm[nl].count(); ++i)
+                {
+                    int position = f.size() - cle.size() + 1;
+                    // position de la 1ère lettre à supprimer
+                    if (fd.size() != nmm[nl][i].grq.size())
+                    {
+                        // il y a une (ou des) voyelle(s) commune(s)
+                        QString debut = nmm[nl][i].grq.left(position + 2);
+                        position += debut.count("\u0306"); // Faut-il vérifier que je suis sur le "v".
+                    }
+                    nmm[nl][i].grq = nmm[nl][i].grq.remove(position, diff);
+                }
+                mm.insert(nl, nmm.value(nl));
+            }
+        }
+    // majuscule initiale
+    if (mm.empty())
+    {
+        f[0] = f.at(0).toUpper();
+        MapLem nmm = lemmatise(f);
+        foreach (Lemme *nl, nmm.keys())
+            mm.insert(nl, nmm.value(nl));
+    }
+    return mm;
+}
+
+
 
 /**
  * \fn QString Lemmat::lemmatiseT (QString t,

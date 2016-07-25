@@ -34,7 +34,14 @@ Requis :
   ou après avoir installé un raccourci.
 
 ## BOGUES ET PROBLÈMES
-- Plantage après Fichier/Nouveau
+- assimilation + contraction :
+  * adservasti/asservasti
+  * adsignasti
+  * assimulasti
+  * immolarit/inmolarit 
+  * inperarit/imperarit
+  Solution provisoire avec un blocage de boucle infinie.
+
 - Syntaxe : sujet, verbe : la virgule ne bloque pas le lien.
 - Flexion de multus et ses degrés allogènes (plus, plurimus)
 

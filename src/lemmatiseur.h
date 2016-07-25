@@ -112,7 +112,8 @@ class Lemmat : public QObject
                              bool nreconnu = true);
     QStringList lemmatiseF(QString f, bool deb);
     // lemmatiseM lemmatise une forme en contexte
-    MapLem lemmatiseM(QString f, bool debPhr = true);
+    //MapLem lemmatiseM(QString f, bool debPhr = true);
+    MapLem lemmatiseM(QString f, bool debPhr = true, bool desas=false);
     // lemmatiseT lemmatise un texte
     QString lemmatiseT(QString t, bool alpha = false, bool cumVocibus = false,
                        bool cumMorpho = false, bool nreconnu = false);
