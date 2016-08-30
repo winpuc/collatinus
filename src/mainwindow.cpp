@@ -1726,7 +1726,7 @@ void MainWindow::stat()
     }
     if (dockVisible(dockScand))
         textEditScand->setHtml(
-            lemmatiseur->scandeTxt(editLatin->toPlainText(), true));
+            lemmatiseur->scandeTxt(editLatin->toPlainText(), 0, true));
 }
 
 /**
