@@ -117,6 +117,30 @@ QString Ch::atone(QString a, bool bdc)
 }
 
 /**
+ * \fn Ch:communes(QString g)
+ * \brief note comme communes toutes les voyelles qui ne portent pas de quantité.
+ */
+QString Ch::communes(QString g)
+{
+    bool maj = g[0].isUpper();
+    g = g.toLower();
+    if (g.contains("a") || g.contains("e") || g.contains("i") || g.contains("o") || g.contains("u") || g.contains("y"))
+    {
+        g.replace("a","ā̆");
+        g.replace(QRegExp("[^āăō]e"),"ē̆");
+        g.replace(QRegExp("^e"),"ē̆");
+        g.replace("i","ī̆");
+        g.replace("o","ō̆");
+        g.replace(QRegExp("[^āēq]u"),"ū̆");
+        g.replace(QRegExp("^u"),"ū̆");
+        g.replace(QRegExp("^y"),"ȳ̆");
+        g.replace(QRegExp("[^ā]y"),"ȳ̆");
+    }
+    if (maj) g[0] = g[0].toUpper();
+    return g;
+}
+
+/**
  * \fn Ch::deQuant(QString *c)
  * \brief utilisée en cas d'élision.
  * supprime la quantité de la voyelle finale de la chaine c
