@@ -393,7 +393,7 @@ Acanthus2:ville de Macédoine / île dans la Propontide
 acanthyllis:[oiseau] / [plante] asperge sauvage
 acapnos:sans fumée.
 acapnus:sans fumée
-Acarnan:nom du héros éponyme de l'Acarnanie
+Acarnan: Acarnanien, d'Acarnanie
 Acarnan2:nom du héros éponyme de l'Acarnanie
 Acarnania:Acarnanie [partie de l'Épire]
 Acarnanicus:acarnanien
