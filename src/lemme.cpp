@@ -132,6 +132,15 @@ Lemme::Lemme(QString linea, int origin, QObject *parent)
     if (_pos.isEmpty())
         _pos.append(_modele->pos());
 
+    _genre.clear();
+    if (_indMorph.contains(" m."))
+        _genre.append(" masculin"); // Peut-être mieux d'utiliser Flexion::genres[0] ?
+    if (_indMorph.contains(" f."))
+        _genre.append(" féminin");
+    if (_indMorph.contains(" n."))
+        _genre.append(" neutre");
+    _genre = _genre.trimmed();
+
     QRegExp c("cf\\.\\s(\\w+)$");
     int pos = c.indexIn(_indMorph);
     if (pos > -1)
@@ -229,6 +238,16 @@ QList<int> Lemme::clesR()
 bool Lemme::estIrregExcl(int nm)
 {
     return _morphosIrrExcl.contains(nm);
+}
+
+QString Lemme::genre()
+{
+    if (!_renvoi.isEmpty() && _genre.isEmpty())
+    {
+        Lemme *lr = _lemmatiseur->lemme(_renvoi);
+        if (lr != NULL) return lr->genre();
+    }
+    return _genre;
 }
 
 /**
@@ -354,6 +373,11 @@ QString Lemme::oteNh(QString g, int &nh)
  */
 QString Lemme::pos()
 {
+    if (!_renvoi.isEmpty())
+    {
+        Lemme *lr = _lemmatiseur->lemme(_renvoi);
+        if (lr != NULL) return lr->pos();
+    }
     return _pos;
 }
 
