@@ -45,14 +45,14 @@ Desinence::Desinence(QString d, int morph, int nr, Modele *parent)
     int der = -1;
     if (!d.isEmpty())
         der = d.at(d.length()-1).digitValue();
-    // '-' est la désinence zéro
-    if (d == "-") d = "";
-    else if (der > 0)
+    if (der > 0)
     {
         _rarete = der;
         d.chop(1);
     }
     else _rarete = 10;
+    // '-' est la désinence zéro
+    if (d == "-") d = "";
     _grq = d;
     _gr = Ch::atone(_grq);
     _morpho = morph;
