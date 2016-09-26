@@ -7280,6 +7280,7 @@ poena:le châtiment (dare poenas : subir un châtiment)
 poeniceus:rouge vif, pourpre
 poenio:punir, châtier; venger
 Poenus:Carthaginois
+poesis:poème, poésie
 poeta:poète
 Polemo:Polémon
 polio:polir, orner
