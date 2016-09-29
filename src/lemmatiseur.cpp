@@ -1047,7 +1047,7 @@ Modele *Lemmat::modele(QString m) { return _modeles[m]; }
  */
 QString Lemmat::morpho(int m)
 {
-    if (m < 0 || m >= _morphos.count()) 
+    if (m < 0 || m > _morphos.count()) 
         return "morpho, "+QString::number(m)+" : erreur d'indice";
     if (m == _morphos.count() - 1) return "-";
     return _morphos.at(m - 1);
