@@ -23,6 +23,7 @@
 #define MAINWINDOW_H
 #include <QMainWindow>
 #include <QtWidgets>
+#include <QtNetwork>
 
 #include "flexion.h"
 #include "lemmatiseur.h"
@@ -100,6 +101,9 @@ class MainWindow : public QMainWindow
     // gr() de la dernière lemmatisation
     QStringList lemsDic;
     int lireOptionsAccent();
+    // Pour le serveur
+    QString startServer ();
+    QString stopServer ();
 
    private slots:
     void afficheLemsDic(bool litt = false,
@@ -147,6 +151,10 @@ class MainWindow : public QMainWindow
     void setAccent(bool b);
     void lireFichierHyphen();
     void oteDiacritiques();
+    // Slots du serveur
+    void lancerServeur(bool run=false);
+    void connexion ();
+    void exec ();
 
    public slots:
     void afficheLemsDic(QStringList ll, int no = 0);
@@ -171,6 +179,7 @@ class MainWindow : public QMainWindow
     QMenu *lFrEngMenu;
     QMenu *lexMenu;
     QMenu *optMenu;
+    QMenu *extraMenu;
     QMenu *helpMenu;
 
     QToolBar *toolBar;
@@ -195,6 +204,12 @@ class MainWindow : public QMainWindow
     QAction *lireHyphenAct;
     // Nom du répertoire du fichier hyphen.la
     QString repHyphen;
+    // Bascule du serveur
+    QAction *serverAct;
+
+    // Pour le serveur
+    QTcpServer * serveur;
+    QTcpSocket * soquette;
 
     // actions et groupes d'actions
     QAction *aproposAct;

@@ -724,6 +724,12 @@ void MainWindow::createActions()
     optionsAccent->addAction(ambigueAct);
     optionsAccent->setEnabled(false);
     lireHyphenAct = new QAction(tr("Lire les césures"),this);
+
+    // actions pour le serveur
+    serverAct = new QAction(tr("serveur"), this);
+    serverAct->setCheckable(true);
+    serverAct->setChecked(false);
+
     // actions pour les dictionnaires
     dicAct = new QAction(QIcon(":/res/dicolem.svg"),
                          tr("Lemmatiser et chercher"), this);
@@ -808,6 +814,9 @@ void MainWindow::createConnections()
     connect(accentAct, SIGNAL(toggled(bool)), this, SLOT(setAccent(bool)));
     connect(lireHyphenAct, SIGNAL(triggered()), this, SLOT(lireFichierHyphen()));
     connect(oteAAct, SIGNAL(triggered()), this, SLOT(oteDiacritiques()));
+
+    // lancer ou arrêter le serveur
+    connect(serverAct, SIGNAL(toggled(bool)), this, SLOT(lancerServeur(bool)));
 
     // actions des dictionnaires
     connect(anteButton, SIGNAL(clicked()), this, SLOT(clicAnte()));
@@ -928,7 +937,9 @@ void MainWindow::createMenus()
     lexMenu->addAction(lancAct);
     lexMenu->addAction(alphaAct);
     lexMenu->addAction(statAct);
+    lexMenu->addSeparator();
     lexMenu->addAction(extensionWAct);
+    lexMenu->addSeparator();
 
     optMenu = menuBar()->addMenu(tr("&Options"));
     optMenu->addAction(alphaOptAct);
@@ -948,6 +959,9 @@ void MainWindow::createMenus()
     optMenu->addSeparator();
     optMenu->addAction(fontAct);
     optMenu->addAction(majAct);
+
+    extraMenu = menuBar()->addMenu(tr("Extra"));
+    extraMenu->addAction(serverAct);
 
     helpMenu = menuBar()->addMenu(tr("&Aide"));
     helpMenu->addAction(aproposAct);
@@ -1800,3 +1814,144 @@ void MainWindow::oteDiacritiques()
     texte.remove("\u0308");
     editLatin->setText(texte);
 }
+
+void MainWindow::lancerServeur(bool run)
+{
+    if (run)
+    {
+        QMessageBox::about(this,
+             tr("Serveur de Collatinus"), startServer());
+
+    }
+    else
+    {
+        QMessageBox::about(this,
+             tr("Serveur de Collatinus"), stopServer());
+
+    }
+}
+
+void MainWindow::connexion ()
+{
+    soquette = serveur->nextPendingConnection ();
+    connect (soquette, SIGNAL (readyRead ()), this, SLOT (exec ()));
+}
+
+void MainWindow::exec ()
+{
+    QByteArray octets = soquette->readAll ();
+    QString requete = QString (octets).trimmed();
+    if (requete.isEmpty()) requete = "-?";
+    QString texte = "";
+    if (requete.contains("-f "))
+    {
+        // La requête contient un nom de fichier
+        QString nom = requete.section("-f ",1,1);
+        requete = requete.section("-f ",0,0).trimmed();
+        QFile fichier(nom);
+        if (fichier.open(QFile::ReadOnly))
+        {
+            texte = fichier.readAll();
+            fichier.close();
+        }
+        else return "fichier non trouvé !\n";
+    }
+    QString rep = "";
+    if ((requete[0] == '-') && (requete.size() > 1))
+    {
+        char a = requete[1].toLatin1();
+        QString options = requete.mid(0,requete.indexOf(" "));
+        QString lang = "fr";
+        int optAcc = 0;
+        if (texte == "")
+            texte = requete.mid(requete.indexOf(" ")+1);
+        switch (a)
+        {
+        case 's':
+            if ((options.size() > 2) && (options[2].isDigit()))
+                optAcc = options[2].digitValue() & 7;
+            rep = lemmatiseur->scandeTxt(texte,0,optAcc==1);
+            break;
+        case 'a':
+            optAcc = 7; // Par défaut.
+            if ((options.size() > 2) && (options[2].isDigit()))
+                optAcc = options[2].digitValue() & 7;
+            rep = lemmatiseur->scandeTxt(texte,optAcc,false);
+            break;
+        case 'l':
+            if ((options.size() > 2) && (options[2].isDigit()))
+            {
+                optAcc = options[2].digitValue();
+                options = options.mid(3);
+            }
+            if ((options.size() > 0) && (options[0].isDigit()))
+            {
+                optAcc = 10*optAcc+options[0].digitValue();
+                options = options.mid(1);
+            }
+            if ((options.size() == 2) && lemmatiseur->cible().contains(options))
+                lang = options;
+            if (optAcc > 15) rep = lemmatiseur->frequences(texte).join("");
+            else
+            rep = lemmatiseur->lemmatiseT(texte,optAcc&4,optAcc&2,optAcc&1);
+            break;
+        case 'x':
+//            rep = lemmatiseur->txt2XML(requete);
+            rep = "Pas encore disponible";
+            break;
+        case 'c':
+            if (options.size() > 2)
+                lemmatiseur->setMajPert(options[2] == '1');
+            else lemmatiseur->setMajPert(false);
+            break;
+        case 'C':
+            lemmatiseur->setMajPert(true);
+            break;
+        case 't':
+            if (options.size() > 3)
+                lemmatiseur->setCible(options.mid(2,2));
+            break;
+        case '?':
+            rep = "La syntaxe est '[commande] [texte]' ou '[commande] -f nom_de_fichier'.\n";
+            rep = "Par défaut (sans commande), on obtient la scansion du texte.\n";
+            rep += "Les commandes possibles sont : \n";
+            rep += "\t-s : Scansion du texte (-s1 : avec recherche des mètres).\n";
+            rep += "\t-a : Accentuation du texte (avec options -a1..-a3 et -a5..-a7).\n";
+            rep += "\t-l : Lemmatisation du texte (avec options -l0..-l8).\n";
+            rep += "\t-t : Langue cible pour les traductions (par exemple -tfr, -tuk).\n";
+            rep += "\t-C : Majuscules pertinentes.\n";
+            rep += "\t-c : Majuscules non-pertinentes.\n";
+            rep += "\t-? : Affichage de l'aide.\n";
+ //           rep += "\t-x : Mise en XML du texte.\n";
+            break;
+        default:
+            break;
+        }
+    }
+    if (texte != "") rep= lemmatiseur->scandeTxt(texte);
+    else rep= lemmatiseur->scandeTxt(requete);
+    rep.replace("<br />","\n");
+    QClipboard *clipboard = QApplication::clipboard();
+    clipboard->setText(rep);
+    QByteArray ba = rep.toUtf8();
+    soquette->write(ba);
+}
+
+QString MainWindow::startServer()
+{
+    serveur = new QTcpServer (this);
+    connect (serveur, SIGNAL(newConnection()), this, SLOT (connexion ()));
+    if (!serveur->listen (QHostAddress::LocalHost, 5555))
+    {
+        return "Ne peux écouter.";
+    }
+    return "Le serveur est lancé.";
+}
+
+QString MainWindow::stopServer()
+{
+    serveur->close();
+    delete serveur;
+    return "Le serveur est éteint.";
+}
+
