@@ -1843,6 +1843,7 @@ void MainWindow::exec ()
     QString requete = QString (octets).trimmed();
     if (requete.isEmpty()) requete = "-?";
     QString texte = "";
+    QString rep = "";
     if (requete.contains("-f "))
     {
         // La requête contient un nom de fichier
@@ -1854,9 +1855,10 @@ void MainWindow::exec ()
             texte = fichier.readAll();
             fichier.close();
         }
-        else return "fichier non trouvé !\n";
+        else rep = "fichier non trouvé !\n";
     }
-    QString rep = "";
+    if (rep == "")
+    {
     if ((requete[0] == '-') && (requete.size() > 1))
     {
         char a = requete[1].toLatin1();
@@ -1917,7 +1919,7 @@ void MainWindow::exec ()
             rep += "Les commandes possibles sont : \n";
             rep += "\t-s : Scansion du texte (-s1 : avec recherche des mètres).\n";
             rep += "\t-a : Accentuation du texte (avec options -a1..-a3 et -a5..-a7).\n";
-            rep += "\t-l : Lemmatisation du texte (avec options -l0..-l8).\n";
+            rep += "\t-l : Lemmatisation du texte (avec options -l0..-l8, -l16 pour les fréquences).\n";
             rep += "\t-t : Langue cible pour les traductions (par exemple -tfr, -tuk).\n";
             rep += "\t-C : Majuscules pertinentes.\n";
             rep += "\t-c : Majuscules non-pertinentes.\n";
@@ -1928,9 +1930,11 @@ void MainWindow::exec ()
             break;
         }
     }
-    if (texte != "") rep= lemmatiseur->scandeTxt(texte);
+    else if (texte != "") rep= lemmatiseur->scandeTxt(texte);
     else rep= lemmatiseur->scandeTxt(requete);
-    rep.replace("<br />","\n");
+    }
+    rep.remove("<br />");
+//    rep.replace("<br />","\n");
     QClipboard *clipboard = QApplication::clipboard();
     clipboard->setText(rep);
     QByteArray ba = rep.toUtf8();
