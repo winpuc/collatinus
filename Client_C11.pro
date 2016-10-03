@@ -12,6 +12,7 @@ TEMPLATE = app
 SOURCES += src/client_main.cpp
 OBJECTS_DIR= obj/
 MOC_DIR = moc/
+unix:!macx:DESTDIR = bin
 
 macx:{
 # Commandes spéciales pour déployer l'application sur Mac.
