@@ -690,7 +690,7 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
         QString sep = lm.at(i - 1);
         bool debPhr = (i == 1 || sep.contains(Ch::rePonct));
         // lemmatisation de la forme
-        MapLem map = lemmatiseM(f, _majPert || debPhr);
+        MapLem map = lemmatiseM(f, !_majPert || debPhr);
         // échecs
         if (map.empty())
         {
