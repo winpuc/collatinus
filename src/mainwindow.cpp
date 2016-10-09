@@ -1844,6 +1844,7 @@ void MainWindow::exec ()
     if (requete.isEmpty()) requete = "-?";
     QString texte = "";
     QString rep = "";
+    bool nonHTML = true;
     if (requete.contains("-f "))
     {
         // La requête contient un nom de fichier
@@ -1863,40 +1864,59 @@ void MainWindow::exec ()
     {
         char a = requete[1].toLatin1();
         QString options = requete.mid(0,requete.indexOf(" "));
-        QString lang = "fr";
+        QString lang = lemmatiseur->cible(); // La langue actuelle;
+        bool html = lemmatiseur->optHtml(); // L'option HTML actuelle
+        bool MP = lemmatiseur->optMajPert();
+        lemmatiseur->setHtml(false); // Sans HTML, a priori
         int optAcc = 0;
         if (texte == "")
             texte = requete.mid(requete.indexOf(" ")+1);
+        lemmatiseur->setMajPert(requete[1].isUpper());
         switch (a)
         {
+        case 'S':
         case 's':
             if ((options.size() > 2) && (options[2].isDigit()))
                 optAcc = options[2].digitValue() & 7;
             rep = lemmatiseur->scandeTxt(texte,0,optAcc==1);
+            if (optAcc==1) nonHTML = false;
             break;
+        case 'A':
         case 'a':
-            optAcc = 7; // Par défaut.
+            optAcc = 3; // Par défaut : un mot dont la pénultième est commune n'est pas accentué.
             if ((options.size() > 2) && (options[2].isDigit()))
-                optAcc = options[2].digitValue() & 7;
+            {
+                optAcc = options[2].digitValue();
+                if ((options.size() > 3) && (options[3].isDigit()))
+                    optAcc = 10 * optAcc + options[3].digitValue();
+            }
             rep = lemmatiseur->scandeTxt(texte,optAcc,false);
             break;
+        case 'H':
+        case 'h':
+            lemmatiseur->setHtml(true);
+            nonHTML = false;
+        case 'L':
         case 'l':
             if ((options.size() > 2) && (options[2].isDigit()))
             {
                 optAcc = options[2].digitValue();
                 options = options.mid(3);
+                if ((options.size() > 0) && (options[0].isDigit()))
+                {
+                    optAcc = 10*optAcc+options[0].digitValue();
+                    options = options.mid(1);
+                }
             }
-            if ((options.size() > 0) && (options[0].isDigit()))
-            {
-                optAcc = 10*optAcc+options[0].digitValue();
-                options = options.mid(1);
-            }
-            if ((options.size() == 2) && lemmatiseur->cible().contains(options))
-                lang = options;
+            else options = options.mid(2); // Je coupe le "-l".
+            if ((options.size() == 2) && lemmatiseur->cibles().keys().contains(options))
+                lemmatiseur->setCible(options);
             if (optAcc > 15) rep = lemmatiseur->frequences(texte).join("");
-            else
-            rep = lemmatiseur->lemmatiseT(texte,optAcc&4,optAcc&2,optAcc&1);
+            else rep = lemmatiseur->lemmatiseT(texte,optAcc&1,optAcc&2,optAcc&4,optAcc&8);
+            lemmatiseur->setHtml(html);
+            lemmatiseur->setCible(lang); // Je rétablis les langue et option HTML.
             break;
+        case 'X':
         case 'x':
 //            rep = lemmatiseur->txt2XML(requete);
             rep = "Pas encore disponible";
@@ -1904,36 +1924,46 @@ void MainWindow::exec ()
         case 'c':
             if (options.size() > 2)
                 lemmatiseur->setMajPert(options[2] == '1');
-            else lemmatiseur->setMajPert(false);
-            break;
-        case 'C':
-            lemmatiseur->setMajPert(true);
             break;
         case 't':
-            if (options.size() > 3)
+            if (options.size() == 4)
+            {
                 lemmatiseur->setCible(options.mid(2,2));
+            }
+            else
+            {
+                QStringList clefs = lemmatiseur->cibles().keys();
+                rep = "Les langues connues sont : " + clefs.join(" ") + "\n";
+            }
             break;
-        case '?':
+//        case '?':
+        default: // Tout caractère non-affecté affiche l'aide.
             rep = "La syntaxe est '[commande] [texte]' ou '[commande] -f nom_de_fichier'.\n";
             rep = "Par défaut (sans commande), on obtient la scansion du texte.\n";
             rep += "Les commandes possibles sont : \n";
             rep += "\t-s : Scansion du texte (-s1 : avec recherche des mètres).\n";
-            rep += "\t-a : Accentuation du texte (avec options -a1..-a3 et -a5..-a7).\n";
-            rep += "\t-l : Lemmatisation du texte (avec options -l0..-l8, -l16 pour les fréquences).\n";
+            rep += "\t-a : Accentuation du texte (avec options -a1..-a15).\n";
+            rep += "\t-l : Lemmatisation du texte (avec options -l0..-l15, -l16 pour les fréquences).\n";
+            rep += "\t-h : Lemmatisation du texte en HTML (mêmes options que -l).\n";
+            rep += "\t-S, -A, -L, -H : Les mêmes avec Majuscules pertinentes.\n";
             rep += "\t-t : Langue cible pour les traductions (par exemple -tfr, -tuk).\n";
             rep += "\t-C : Majuscules pertinentes.\n";
             rep += "\t-c : Majuscules non-pertinentes.\n";
             rep += "\t-? : Affichage de l'aide.\n";
  //           rep += "\t-x : Mise en XML du texte.\n";
             break;
-        default:
-            break;
         }
+        if ((a != 'C') && (a != 'c'))
+            lemmatiseur->setMajPert(MP);
     }
     else if (texte != "") rep= lemmatiseur->scandeTxt(texte);
     else rep= lemmatiseur->scandeTxt(requete);
     }
-    rep.remove("<br />");
+    if (nonHTML)
+    {
+        rep.remove("<br />"); // Avec -H/h, j'ai la lemmatisation en HTML
+        rep.remove("<br/>"); // Avec -H/h, j'ai la lemmatisation en HTML
+    }
 //    rep.replace("<br />","\n");
     QClipboard *clipboard = QApplication::clipboard();
     clipboard->setText(rep);
