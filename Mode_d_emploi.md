@@ -78,7 +78,7 @@ comme pertinente.
  * -c : les majuscules sont ignorées.
 
 Les commandes avec texte modifient temporairement les paramètres de l'application,
-mais les rétablit à la fin du traitement.
+mais les rétablissent à la fin du traitement.
 Les commandes -s, -a, -l et -h ont leur contrepartie en majuscule (-S, -A, -L et -H) 
 qui considèreront que les majuscules sont pertinentes.
 - Scansion du texte : avec les commandes -s et -S, le texte est seulement scandé ; 
