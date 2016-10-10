@@ -31,7 +31,7 @@ fonctionne en console. Il se contente de transmettre ses arguments
 au serveur, de récupérer la réponse et de l'afficher.
 La syntaxe ressemble à celle d'Unix. Par exemple :
 
-./client_c11 -lfr arma
+./Client_C11 -lfr arma
 
 ## Syntaxe de la requête
 
@@ -45,11 +45,11 @@ Par défaut (sans cmd), on obtient la scansion du texte.
 
 Les commandes possibles sont : 
 - -s : Scansion du texte (-s1 : avec recherche des mètres).
-- -a : Accentuation du texte (avec options -a1..-a3 et -a5..-a7).
-- -l : Lemmatisation du texte (avec options -l0..-l8).
+- -a : Accentuation du texte (avec options -a0..-a15).
+- -l : Lemmatisation du texte (avec options -l0..-l16).
 - -h : Lemmatisation du texte en HTML (mêmes options que -l)
 - -S, -A, -L, -H : Les mêmes avec Majuscules pertinentes.
-- -t : Langue cible pour les traductions (par exemple -tfr, -tuk).
+- -t : Langue cible pour les traductions (par exemple -tfr, -tde).
 - -C : Majuscules pertinentes.
 - -c : Majuscules non-pertinentes.
 - -? : Affichage de l'aide.
