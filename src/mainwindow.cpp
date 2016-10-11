@@ -1845,10 +1845,26 @@ void MainWindow::exec ()
     QString texte = "";
     QString rep = "";
     bool nonHTML = true;
+    QString fichierSortie = "";
+    if (requete.contains("-o "))
+    {
+        // La requête contient un nom de fichier de sortie
+        QString nom = requete.section("-o ",1,1).trimmed();
+        requete = requete.section("-o ",0,0).trimmed();
+        // En principe, le -o vient à la fin. Mais...
+        if (nom.contains(" "))
+        {
+            fichierSortie = nom.section(" ",0,0);
+            // Le nom de fichier ne peut pas contenir d'espace !
+            if (requete.isEmpty()) requete = nom.section(" ",1);
+            else requete.append(" " + nom.section(" ",1));
+        }
+        else fichierSortie = nom;
+    }
     if (requete.contains("-f "))
     {
         // La requête contient un nom de fichier
-        QString nom = requete.section("-f ",1,1);
+        QString nom = requete.section("-f ",1,1).trimmed();
         requete = requete.section("-f ",0,0).trimmed();
         QFile fichier(nom);
         if (fichier.open(QFile::ReadOnly))
@@ -1939,7 +1955,8 @@ void MainWindow::exec ()
 //        case '?':
         default: // Tout caractère non-affecté affiche l'aide.
             rep = "La syntaxe est '[commande] [texte]' ou '[commande] -f nom_de_fichier'.\n";
-            rep = "Par défaut (sans commande), on obtient la scansion du texte.\n";
+            rep += "Éventuellement complétée par '-o nom_de_fichier_de_sortie'.\n";
+            rep += "Par défaut (sans commande), on obtient la scansion du texte.\n";
             rep += "Les commandes possibles sont : \n";
             rep += "\t-s : Scansion du texte (-s1 : avec recherche des mètres).\n";
             rep += "\t-a : Accentuation du texte (avec options -a1..-a15).\n";
@@ -1965,8 +1982,22 @@ void MainWindow::exec ()
         rep.remove("<br/>"); // Avec -H/h, j'ai la lemmatisation en HTML
     }
 //    rep.replace("<br />","\n");
-    QClipboard *clipboard = QApplication::clipboard();
-    clipboard->setText(rep);
+    if (fichierSortie == "")
+    {
+        QClipboard *clipboard = QApplication::clipboard();
+        clipboard->setText(rep);
+    }
+    else
+    {
+        QFile ficOut(fichierSortie);
+        if (ficOut.open(QFile::WriteOnly))
+        {
+            ficOut.write(rep.toUtf8());
+            ficOut.close();
+            rep = "Done !\n";
+        }
+        else rep = "Unable to write !\n";
+    }
     QByteArray ba = rep.toUtf8();
     soquette->write(ba);
 }
