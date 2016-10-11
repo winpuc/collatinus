@@ -36,6 +36,7 @@ La syntaxe ressemble à celle d'Unix. Par exemple :
 ## Syntaxe de la requête
 
 La syntaxe est '[cmd] [texte]' ou '[cmd] -f nom_de_fichier'. 
+Éventuellement complétée par '-o nom_de_fichier_de_sortie'.
 
 Contrairement à l'usage Unix, on ne peut pas combiner plusieurs commandes.
 Si on veut obtenir, par exemple, la scansion et la lemmatisation d'un texte,
@@ -59,6 +60,9 @@ Comme le fichier est ouvert dans Collatinus, il vaut probablement mieux
 donner le chemin complet du fichier. Par exemple :
 
 /Users/Philippe/Documents/Virgile/Eneide1.txt
+
+Avec l'option '-o nom_de_fichier_de_sortie', le résultat de l'opération est stocké
+dans le fichier. Comme pour -f, il vaut mieux donner le chemin complet.
 
 ## Détails des commandes
 
