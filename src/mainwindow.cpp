@@ -724,6 +724,15 @@ void MainWindow::createActions()
     optionsAccent->addAction(ambigueAct);
     optionsAccent->setEnabled(false);
     lireHyphenAct = new QAction(tr("Lire les césures"),this);
+
+    // actions pour le serveur
+    serverAct = new QAction(tr("Serveur"), this);
+    serverAct->setCheckable(true);
+    serverAct->setChecked(false);
+
+    // Restauration des docks
+    dockRestoreAct = new QAction(tr("Restaurer les docks"),this);
+
     // actions pour les dictionnaires
     dicAct = new QAction(QIcon(":/res/dicolem.svg"),
                          tr("Lemmatiser et chercher"), this);
@@ -808,6 +817,11 @@ void MainWindow::createConnections()
     connect(accentAct, SIGNAL(toggled(bool)), this, SLOT(setAccent(bool)));
     connect(lireHyphenAct, SIGNAL(triggered()), this, SLOT(lireFichierHyphen()));
     connect(oteAAct, SIGNAL(triggered()), this, SLOT(oteDiacritiques()));
+
+    // lancer ou arrêter le serveur
+    connect(serverAct, SIGNAL(toggled(bool)), this, SLOT(lancerServeur(bool)));
+    // restaurer les docks
+    connect(dockRestoreAct, SIGNAL(triggered()), this, SLOT(dockRestore()));
 
     // actions des dictionnaires
     connect(anteButton, SIGNAL(clicked()), this, SLOT(clicAnte()));
@@ -912,7 +926,10 @@ void MainWindow::createMenus()
     viewMenu->addAction(balaiAct);
     viewMenu->addAction(zoomAct);
     viewMenu->addAction(deZoomAct);
+    viewMenu->addAction(fontAct);
+    viewMenu->addSeparator();
     viewMenu->addAction(visibleWAct);
+    viewMenu->addAction(dockRestoreAct);
     viewMenu->addSeparator();
     QActionGroup *frEngAg = new QActionGroup(this);
     frAct->setActionGroup(frEngAg);
@@ -928,7 +945,9 @@ void MainWindow::createMenus()
     lexMenu->addAction(lancAct);
     lexMenu->addAction(alphaAct);
     lexMenu->addAction(statAct);
+    lexMenu->addSeparator();
     lexMenu->addAction(extensionWAct);
+    lexMenu->addSeparator();
 
     optMenu = menuBar()->addMenu(tr("&Options"));
     optMenu->addAction(alphaOptAct);
@@ -945,9 +964,13 @@ void MainWindow::createMenus()
     optMenu->addAction(ambigueAct);
     optMenu->addAction(illiusAct);
     optMenu->addAction(hyphenAct);
-    optMenu->addSeparator();
-    optMenu->addAction(fontAct);
-    optMenu->addAction(majAct);
+//    optMenu->addSeparator();
+//    optMenu->addAction(fontAct);
+//    optMenu->addAction(majAct);
+
+    extraMenu = menuBar()->addMenu(tr("Extra"));
+    extraMenu->addAction(serverAct);
+    extraMenu->addAction(majAct);
 
     helpMenu = menuBar()->addMenu(tr("&Aide"));
     helpMenu->addAction(aproposAct);
@@ -1036,6 +1059,7 @@ void MainWindow::createDockWindows()
     vLayoutLem->addLayout(hLayoutLem);
     vLayoutLem->addWidget(textEditLem);
     dockLem->setWidget(dockWidgetLem);
+//    qDebug() << dockLem->testAttribute(Qt::WA_DeleteOnClose) << dockWidgetLem->testAttribute(Qt::WA_DeleteOnClose);
 
     dockDic = new QDockWidget(tr("Dictionnaires"), this);
     dockDic->setObjectName("dockdic");
@@ -1799,4 +1823,223 @@ void MainWindow::oteDiacritiques()
     texte.remove("\u0306");
     texte.remove("\u0308");
     editLatin->setText(texte);
+}
+
+void MainWindow::lancerServeur(bool run)
+{
+    if (run)
+    {
+        QMessageBox::about(this,
+             tr("Serveur de Collatinus"), startServer());
+
+    }
+    else
+    {
+        QMessageBox::about(this,
+             tr("Serveur de Collatinus"), stopServer());
+
+    }
+}
+
+void MainWindow::connexion ()
+{
+    soquette = serveur->nextPendingConnection ();
+    connect (soquette, SIGNAL (readyRead ()), this, SLOT (exec ()));
+}
+
+void MainWindow::exec ()
+{
+    QByteArray octets = soquette->readAll ();
+    QString requete = QString (octets).trimmed();
+    if (requete.isEmpty()) requete = "-?";
+    QString texte = "";
+    QString rep = "";
+    bool nonHTML = true;
+    QString fichierSortie = "";
+    if (requete.contains("-o "))
+    {
+        // La requête contient un nom de fichier de sortie
+        QString nom = requete.section("-o ",1,1).trimmed();
+        requete = requete.section("-o ",0,0).trimmed();
+        // En principe, le -o vient à la fin. Mais...
+        if (nom.contains(" "))
+        {
+            fichierSortie = nom.section(" ",0,0);
+            // Le nom de fichier ne peut pas contenir d'espace !
+            if (requete.isEmpty()) requete = nom.section(" ",1);
+            else requete.append(" " + nom.section(" ",1));
+        }
+        else fichierSortie = nom;
+    }
+    if (requete.contains("-f "))
+    {
+        // La requête contient un nom de fichier
+        QString nom = requete.section("-f ",1,1).trimmed();
+        requete = requete.section("-f ",0,0).trimmed();
+        QFile fichier(nom);
+        if (fichier.open(QFile::ReadOnly))
+        {
+            texte = fichier.readAll();
+            fichier.close();
+        }
+        else rep = "fichier non trouvé !\n";
+    }
+    if (rep == "")
+    {
+    if ((requete[0] == '-') && (requete.size() > 1))
+    {
+        char a = requete[1].toLatin1();
+        QString options = requete.mid(0,requete.indexOf(" "));
+        QString lang = lemmatiseur->cible(); // La langue actuelle;
+        bool html = lemmatiseur->optHtml(); // L'option HTML actuelle
+        bool MP = lemmatiseur->optMajPert();
+        lemmatiseur->setHtml(false); // Sans HTML, a priori
+        int optAcc = 0;
+        if (texte == "")
+            texte = requete.mid(requete.indexOf(" ")+1);
+        lemmatiseur->setMajPert(requete[1].isUpper());
+        switch (a)
+        {
+        case 'S':
+        case 's':
+            if ((options.size() > 2) && (options[2].isDigit()))
+                optAcc = options[2].digitValue() & 7;
+            rep = lemmatiseur->scandeTxt(texte,0,optAcc==1);
+            if (optAcc==1) nonHTML = false;
+            break;
+        case 'A':
+        case 'a':
+            optAcc = 3; // Par défaut : un mot dont la pénultième est commune n'est pas accentué.
+            if ((options.size() > 2) && (options[2].isDigit()))
+            {
+                optAcc = options[2].digitValue();
+                if ((options.size() > 3) && (options[3].isDigit()))
+                    optAcc = 10 * optAcc + options[3].digitValue();
+            }
+            rep = lemmatiseur->scandeTxt(texte,optAcc,false);
+            break;
+        case 'H':
+        case 'h':
+            lemmatiseur->setHtml(true);
+            nonHTML = false;
+        case 'L':
+        case 'l':
+            if ((options.size() > 2) && (options[2].isDigit()))
+            {
+                optAcc = options[2].digitValue();
+                options = options.mid(3);
+                if ((options.size() > 0) && (options[0].isDigit()))
+                {
+                    optAcc = 10*optAcc+options[0].digitValue();
+                    options = options.mid(1);
+                }
+            }
+            else options = options.mid(2); // Je coupe le "-l".
+            if ((options.size() == 2) && lemmatiseur->cibles().keys().contains(options))
+                lemmatiseur->setCible(options);
+            if (optAcc > 15) rep = lemmatiseur->frequences(texte).join("");
+            else rep = lemmatiseur->lemmatiseT(texte,optAcc&1,optAcc&2,optAcc&4,optAcc&8);
+            lemmatiseur->setCible(lang); // Je rétablis les langue et option HTML.
+            break;
+        case 'X':
+        case 'x':
+//            rep = lemmatiseur->txt2XML(requete);
+            rep = "Pas encore disponible";
+            break;
+        case 'c':
+            if (options.size() > 2)
+                lemmatiseur->setMajPert(options[2] == '1');
+            break;
+        case 't':
+            if (options.size() == 4)
+            {
+                lemmatiseur->setCible(options.mid(2,2));
+            }
+            else
+            {
+                QStringList clefs = lemmatiseur->cibles().keys();
+                rep = "Les langues connues sont : " + clefs.join(" ") + "\n";
+            }
+            break;
+//        case '?':
+        default: // Tout caractère non-affecté affiche l'aide.
+            rep = "La syntaxe est '[commande] [texte]' ou '[commande] -f nom_de_fichier'.\n";
+            rep += "Éventuellement complétée par '-o nom_de_fichier_de_sortie'.\n";
+            rep += "Par défaut (sans commande), on obtient la scansion du texte.\n";
+            rep += "Les commandes possibles sont : \n";
+            rep += "\t-s : Scansion du texte (-s1 : avec recherche des mètres).\n";
+            rep += "\t-a : Accentuation du texte (avec options -a1..-a15).\n";
+            rep += "\t-l : Lemmatisation du texte (avec options -l0..-l15, -l16 pour les fréquences).\n";
+            rep += "\t-h : Lemmatisation du texte en HTML (mêmes options que -l).\n";
+            rep += "\t-S, -A, -L, -H : Les mêmes avec Majuscules pertinentes.\n";
+            rep += "\t-t : Langue cible pour les traductions (par exemple -tfr, -tuk).\n";
+            rep += "\t-C : Majuscules pertinentes.\n";
+            rep += "\t-c : Majuscules non-pertinentes.\n";
+            rep += "\t-? : Affichage de l'aide.\n";
+ //           rep += "\t-x : Mise en XML du texte.\n";
+            break;
+        }
+        lemmatiseur->setHtml(html);
+        if ((a != 'C') && (a != 'c'))
+            lemmatiseur->setMajPert(MP);
+    }
+    else if (texte != "") rep= lemmatiseur->scandeTxt(texte);
+    else rep= lemmatiseur->scandeTxt(requete);
+    }
+    if (nonHTML)
+    {
+        rep.remove("<br />"); // Avec -H/h, j'ai la lemmatisation en HTML
+        rep.remove("<br/>"); // Avec -H/h, j'ai la lemmatisation en HTML
+    }
+//    rep.replace("<br />","\n");
+    if (fichierSortie == "")
+    {
+        QClipboard *clipboard = QApplication::clipboard();
+        clipboard->setText(rep);
+    }
+    else
+    {
+        QFile ficOut(fichierSortie);
+        if (ficOut.open(QFile::WriteOnly))
+        {
+            ficOut.write(rep.toUtf8());
+            ficOut.close();
+            rep = "Done !\n";
+        }
+        else rep = "Unable to write !\n";
+    }
+    QByteArray ba = rep.toUtf8();
+    soquette->write(ba);
+}
+
+QString MainWindow::startServer()
+{
+    serveur = new QTcpServer (this);
+    connect (serveur, SIGNAL(newConnection()), this, SLOT (connexion ()));
+    if (!serveur->listen (QHostAddress::LocalHost, 5555))
+    {
+        return "Ne peux écouter.";
+    }
+    return "Le serveur est lancé.";
+}
+
+QString MainWindow::stopServer()
+{
+    serveur->close();
+    delete serveur;
+    return "Le serveur est éteint.";
+}
+
+void MainWindow::dockRestore()
+{
+    dockLem->setFloating(false);
+    dockLem->show();
+    dockScand->setFloating(false);
+    dockScand->show();
+    dockDic->setFloating(false);
+    dockDic->show();
+    dockFlex->setFloating(false);
+    dockFlex->show();
+    dockSynt->setFloating(false);
+    dockSynt->show();
 }
