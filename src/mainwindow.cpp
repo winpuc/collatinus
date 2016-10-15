@@ -726,9 +726,12 @@ void MainWindow::createActions()
     lireHyphenAct = new QAction(tr("Lire les césures"),this);
 
     // actions pour le serveur
-    serverAct = new QAction(tr("serveur"), this);
+    serverAct = new QAction(tr("Serveur"), this);
     serverAct->setCheckable(true);
     serverAct->setChecked(false);
+
+    // Restauration des docks
+    dockRestoreAct = new QAction(tr("Restaurer les docks"),this);
 
     // actions pour les dictionnaires
     dicAct = new QAction(QIcon(":/res/dicolem.svg"),
@@ -817,6 +820,8 @@ void MainWindow::createConnections()
 
     // lancer ou arrêter le serveur
     connect(serverAct, SIGNAL(toggled(bool)), this, SLOT(lancerServeur(bool)));
+    // restaurer les docks
+    connect(dockRestoreAct, SIGNAL(triggered()), this, SLOT(dockRestore()));
 
     // actions des dictionnaires
     connect(anteButton, SIGNAL(clicked()), this, SLOT(clicAnte()));
@@ -921,7 +926,10 @@ void MainWindow::createMenus()
     viewMenu->addAction(balaiAct);
     viewMenu->addAction(zoomAct);
     viewMenu->addAction(deZoomAct);
+    viewMenu->addAction(fontAct);
+    viewMenu->addSeparator();
     viewMenu->addAction(visibleWAct);
+    viewMenu->addAction(dockRestoreAct);
     viewMenu->addSeparator();
     QActionGroup *frEngAg = new QActionGroup(this);
     frAct->setActionGroup(frEngAg);
@@ -956,12 +964,13 @@ void MainWindow::createMenus()
     optMenu->addAction(ambigueAct);
     optMenu->addAction(illiusAct);
     optMenu->addAction(hyphenAct);
-    optMenu->addSeparator();
-    optMenu->addAction(fontAct);
-    optMenu->addAction(majAct);
+//    optMenu->addSeparator();
+//    optMenu->addAction(fontAct);
+//    optMenu->addAction(majAct);
 
     extraMenu = menuBar()->addMenu(tr("Extra"));
     extraMenu->addAction(serverAct);
+    extraMenu->addAction(majAct);
 
     helpMenu = menuBar()->addMenu(tr("&Aide"));
     helpMenu->addAction(aproposAct);
@@ -1050,6 +1059,7 @@ void MainWindow::createDockWindows()
     vLayoutLem->addLayout(hLayoutLem);
     vLayoutLem->addWidget(textEditLem);
     dockLem->setWidget(dockWidgetLem);
+//    qDebug() << dockLem->testAttribute(Qt::WA_DeleteOnClose) << dockWidgetLem->testAttribute(Qt::WA_DeleteOnClose);
 
     dockDic = new QDockWidget(tr("Dictionnaires"), this);
     dockDic->setObjectName("dockdic");
@@ -1929,7 +1939,6 @@ void MainWindow::exec ()
                 lemmatiseur->setCible(options);
             if (optAcc > 15) rep = lemmatiseur->frequences(texte).join("");
             else rep = lemmatiseur->lemmatiseT(texte,optAcc&1,optAcc&2,optAcc&4,optAcc&8);
-            lemmatiseur->setHtml(html);
             lemmatiseur->setCible(lang); // Je rétablis les langue et option HTML.
             break;
         case 'X':
@@ -1970,6 +1979,7 @@ void MainWindow::exec ()
  //           rep += "\t-x : Mise en XML du texte.\n";
             break;
         }
+        lemmatiseur->setHtml(html);
         if ((a != 'C') && (a != 'c'))
             lemmatiseur->setMajPert(MP);
     }
@@ -2020,3 +2030,16 @@ QString MainWindow::stopServer()
     return "Le serveur est éteint.";
 }
 
+void MainWindow::dockRestore()
+{
+    dockLem->setFloating(false);
+    dockLem->show();
+    dockScand->setFloating(false);
+    dockScand->show();
+    dockDic->setFloating(false);
+    dockDic->show();
+    dockFlex->setFloating(false);
+    dockFlex->show();
+    dockSynt->setFloating(false);
+    dockSynt->show();
+}
