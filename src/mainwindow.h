@@ -155,6 +155,8 @@ class MainWindow : public QMainWindow
     void lancerServeur(bool run=false);
     void connexion ();
     void exec ();
+    // Restauration des docks
+    void dockRestore ();
 
    public slots:
     void afficheLemsDic(QStringList ll, int no = 0);
@@ -206,6 +208,8 @@ class MainWindow : public QMainWindow
     QString repHyphen;
     // Bascule du serveur
     QAction *serverAct;
+    // Restauration des docks
+    QAction *dockRestoreAct;
 
     // Pour le serveur
     QTcpServer * serveur;
