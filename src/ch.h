@@ -22,7 +22,7 @@ void elide(QString *mp);
 const QRegExp reAlphas("(\\w+)");
 const QRegExp reEspace("\\s+");
 const QRegExp reLettres("\\w");
-const QRegExp rePonct("([\\.?!;:]|\\n{2,})");
+const QRegExp rePonct("([\\.?!;:])");
 //const QRegExp rePonct("([\\.?!;:]|$$)");
 bool sort_i(const QString &a, const QString &b);
 QString versPC(QString k);
