@@ -695,7 +695,7 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
         if (f.toInt() != 0) continue;
         // nettoyage et identification des débuts de phrase
         QString sep = lm.at(i - 1);
-        bool debPhr = (i == 1 || sep.contains(Ch::rePonct));
+        bool debPhr = ((i == 1 && lm.count() !=3) || sep.contains(Ch::rePonct));
 //        qDebug() << f << sep << debPhr << _majPert;
         // lemmatisation de la forme
         MapLem map = lemmatiseM(f, !_majPert || debPhr);
