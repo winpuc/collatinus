@@ -1088,7 +1088,7 @@ void MainWindow::createDockWindows()
     tbDicW->setDefaultAction(visibleWAct);
     tbDicW->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Fixed);
     tbDicW->setMinimumWidth(40);
-    tbDicW->setMaximumSize(90);
+//    tbDicW->setMaximumSize(90);
     QToolButton *tbSyncDW = new QToolButton(this);
     tbSyncDW->setDefaultAction(syncDWAct);
     tbSyncDW->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Fixed);
