@@ -28,7 +28,6 @@
 #include "flexion.h"
 #include "lemmatiseur.h"
 #include "dicos.h"
-#include "syntaxe.h"
 #include "ch.h"
 
 QT_BEGIN_NAMESPACE
@@ -72,7 +71,6 @@ class MainWindow : public QMainWindow
     // cœur
     Lemmat *lemmatiseur;
     Flexion *flechisseur;
-    Syntaxe *syntaxe;
     // widgets d'édition et d'affichage
     EditLatin *editLatin;
     QTextEdit *textEditLem;

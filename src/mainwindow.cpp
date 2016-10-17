@@ -129,16 +129,6 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
             mainwindow->afficheLemsDic(lemmes);
         if (mainwindow->wDic->isVisible() && mainwindow->syncAct->isChecked())
             mainwindow->afficheLemsDicW(lemmes);
-        // 5. dock Syntaxe
-        if (!mainwindow->dockSynt->visibleRegion().isEmpty())
-        {
-            // passer le texte au module syntaxe pour calcul
-            mainwindow->textBrowserSynt->setText(mainwindow->syntaxe->analyse(
-                toPlainText(), textCursor().position()));
-            // appondre le résultat
-            // = liens du mot cliqué.
-            mainwindow->textBrowserSynt->moveCursor(QTextCursor::Start);
-        }
     }
     QTextEdit::mouseReleaseEvent(e);
 }
@@ -161,16 +151,18 @@ MainWindow::MainWindow()
 
     lemmatiseur = new Lemmat(this);
     flechisseur = new Flexion(lemmatiseur);
-    syntaxe = new Syntaxe(editLatin->toPlainText(), lemmatiseur);
 
     setLangue();
+    qDebug()<<"deboga";
 
     createStatusBar();
     createActions();
     createDockWindows();
+    qDebug()<<"debog b"; 
     createDicWindow();
     createMenus();
     createToolBars();
+    qDebug()<<"debog c"; 
     createConnections();
     createDicos();
     createDicos(false);
@@ -782,7 +774,6 @@ void MainWindow::createConnections()
     connect(zoomAct, SIGNAL(triggered()), textBrowserDic, SLOT(zoomIn()));
     connect(zoomAct, SIGNAL(triggered()), textBrowserW, SLOT(zoomIn()));
     connect(zoomAct, SIGNAL(triggered()), textBrowserFlex, SLOT(zoomIn()));
-    connect(zoomAct, SIGNAL(triggered()), textBrowserSynt, SLOT(zoomIn()));
     connect(zoomAct, SIGNAL(triggered()), textEditLem, SLOT(zoomIn()));
     connect(zoomAct, SIGNAL(triggered()), textEditScand, SLOT(zoomIn()));
 
@@ -790,7 +781,6 @@ void MainWindow::createConnections()
     connect(deZoomAct, SIGNAL(triggered()), textBrowserDic, SLOT(zoomOut()));
     connect(deZoomAct, SIGNAL(triggered()), textBrowserW, SLOT(zoomOut()));
     connect(deZoomAct, SIGNAL(triggered()), textBrowserFlex, SLOT(zoomOut()));
-    connect(deZoomAct, SIGNAL(triggered()), textBrowserSynt, SLOT(zoomOut()));
     connect(deZoomAct, SIGNAL(triggered()), textEditLem, SLOT(zoomOut()));
     connect(deZoomAct, SIGNAL(triggered()), textEditScand, SLOT(zoomOut()));
 
@@ -1168,32 +1158,14 @@ void MainWindow::createDockWindows()
     vLayoutFlex->addWidget(textBrowserFlex);
     dockFlex->setWidget(dockWidgetFlex);
 
-    dockSynt = new QDockWidget(tr("Syntaxe"), this);
-    dockSynt->setObjectName("docksynt");
-    dockSynt->setFloating(false);
-    dockSynt->setFeatures(QDockWidget::DockWidgetFloatable |
-                          QDockWidget::DockWidgetMovable);
-    dockSynt->setAllowedAreas(Qt::BottomDockWidgetArea);
-    dockWidgetSynt = new QWidget(dockSynt);
-    QVBoxLayout *vLayoutSynt = new QVBoxLayout(dockWidgetSynt);
-    QHBoxLayout *hLayoutSynt = new QHBoxLayout();
-    textBrowserSynt = new QTextBrowser(dockWidgetSynt);
-    textBrowserSynt->setSizePolicy(QSizePolicy::Expanding,
-                                   QSizePolicy::Expanding);
-    vLayoutSynt->addLayout(hLayoutSynt);
-    vLayoutSynt->addWidget(textBrowserSynt);
-    dockSynt->setWidget(dockWidgetSynt);
-
     addDockWidget(Qt::BottomDockWidgetArea, dockLem);
     addDockWidget(Qt::BottomDockWidgetArea, dockDic);
     addDockWidget(Qt::BottomDockWidgetArea, dockScand);
     addDockWidget(Qt::BottomDockWidgetArea, dockFlex);
-    addDockWidget(Qt::BottomDockWidgetArea, dockSynt);
 
     tabifyDockWidget(dockLem, dockDic);
     tabifyDockWidget(dockDic, dockScand);
     tabifyDockWidget(dockScand, dockFlex);
-    tabifyDockWidget(dockFlex, dockSynt);
 
     setTabPosition(Qt::BottomDockWidgetArea, QTabWidget::North);
     dockLem->raise();
@@ -1314,7 +1286,6 @@ void MainWindow::effaceRes()
     if (dockVisible(dockLem)) textEditLem->clear();
     if (dockVisible(dockFlex)) textBrowserFlex->clear();
     if (dockVisible(dockScand)) textEditScand->clear();
-    if (dockVisible(dockSynt)) textBrowserSynt->clear();
 }
 
 /**
@@ -1525,7 +1496,6 @@ void MainWindow::police()
         textBrowserW->setFont(font);
         textEditScand->setFont(font);
         textBrowserFlex->setFont(font);
-        textBrowserSynt->setFont(font);
     }
 }
 
@@ -1585,7 +1555,6 @@ void MainWindow::readSettings()
     textBrowserW->setFont(font);
     textEditScand->setFont(font);
     textBrowserFlex->setFont(font);
-    textBrowserSynt->setFont(font);
     // options de lemmatisation
     alphaOptAct->setChecked(settings.value("alpha").toBool());
     formeTAct->setChecked(settings.value("formetxt").toBool());
@@ -2040,6 +2009,4 @@ void MainWindow::dockRestore()
     dockDic->show();
     dockFlex->setFloating(false);
     dockFlex->show();
-    dockSynt->setFloating(false);
-    dockSynt->show();
 }
