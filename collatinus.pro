@@ -30,11 +30,10 @@ HEADERS += src/ch.h \
            src/lemmatiseur.h \
            src/lemme.h \
            src/dicos.h \
-		       src/modele.h \
+		   src/modele.h \
            src/flexfr.h \
            src/mainwindow.h \
-		       src/maj.h \
-           src/syntaxe.h
+		   src/maj.h \
 
 SOURCES += src/ch.cpp \
            src/flexion.cpp \
@@ -49,7 +48,6 @@ SOURCES += src/ch.cpp \
            src/mainwindow.cpp \
            src/modele.cpp \
            src/scandeur.cpp \
-           src/syntaxe.cpp
 
 RESOURCES += collatinus.qrc
 
