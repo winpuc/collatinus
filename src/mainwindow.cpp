@@ -153,16 +153,13 @@ MainWindow::MainWindow()
     flechisseur = new Flexion(lemmatiseur);
 
     setLangue();
-    qDebug()<<"deboga";
 
     createStatusBar();
     createActions();
     createDockWindows();
-    qDebug()<<"debog b"; 
     createDicWindow();
     createMenus();
     createToolBars();
-    qDebug()<<"debog c"; 
     createConnections();
     createDicos();
     createDicos(false);
