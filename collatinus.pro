@@ -9,6 +9,7 @@ DEPENDPATH += .
 qtHaveModule(printsupport): QT += printsupport
 QT += widgets
 QT += network
+QT += svg
 
 #QMAKE_CXXFLAGS += -Wall -Wextra -pedantic -fstack-protector-strong
 #QMAKE_CPPFLAGS += -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2
