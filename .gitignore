@@ -1,4 +1,6 @@
 bin/collatinus
+C*.app
+.*
 
 # C++ objects and libs
 

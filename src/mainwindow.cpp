@@ -1074,6 +1074,7 @@ void MainWindow::createDockWindows()
     tbSync->setDefaultAction(syncAct);
     tbSync->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Fixed);
     tbSync->setMinimumWidth(40);
+    tbSync->setMaximumSize(60, 24);
     QToolButton *tbDicW = new QToolButton(this);
     tbDicW->setDefaultAction(visibleWAct);
     tbDicW->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Fixed);
@@ -1083,6 +1084,7 @@ void MainWindow::createDockWindows()
     tbSyncDW->setDefaultAction(syncDWAct);
     tbSyncDW->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Fixed);
     tbSyncDW->setMinimumWidth(40);
+    tbSyncDW->setMaximumSize(60, 24);
     // choix des dictionnaires
     comboGlossaria = new QComboBox(this);
     anteButton = new QPushButton(this);

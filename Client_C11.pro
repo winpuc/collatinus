@@ -4,8 +4,9 @@ QT -= gui
 
 TARGET = Client_C11
 VERSION = "1.0"
-CONFIG += console
-CONFIG -= app_bundle
+#CONFIG += console
+#CONFIG -= app_bundle
+CONFIG += release_binary
 
 TEMPLATE = app
 
@@ -20,7 +21,7 @@ macx:{
 # Philippe. Octobre 2016
 
 QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.8
-#ICON = collatinus_bw.icns
+ICON = collatinus_bw.icns
 
 deploy.commands = macdeployqt Client_C11.app
 QMAKE_EXTRA_TARGETS += deploy
