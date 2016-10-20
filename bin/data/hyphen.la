@@ -31,7 +31,7 @@
 !
 ! Philippe,	avril 2016.
 !
-posthac|post-
+!posthac|post-
 abscindo|ab-
 abscido|abs-
 ! Une même forme (le parfait abscidi, commun aux 2 lemmes) a des césures différentes.
@@ -316,15 +316,15 @@ inusitatus|in-
 inutilis|in-
 insum|in-e
 !
-Interamnates|inter-
-interea|inter-
-intereo|inter-
-intericio|inter-
-interimo|inter-
-interim|inter-
-interior|inter-
-interitus|inter-
-intersum|inter-e
+Interamnates|in-ter-
+interea|in-ter-
+intereo|in-ter-
+intericio|in-ter-
+interimo|in-ter-
+interim|in-ter-
+interior|in-ter-
+interitus|in-ter-
+intersum|in-ter-e
 !
 obambulo|ob-
 obeo|ob-
@@ -368,15 +368,15 @@ posthabeo|post-
 posthac|post-
 postilla|post-
 !
-praeterago|præter-
-praeterea|præter-
-praetereo|præter-
-praeteritus|præter-
-praetersum|præter-e
+praeterago|præ-ter-
+praeterea|præ-ter-
+praetereo|præ-ter-
+praeteritus|præ-ter-
+praetersum|præ-ter-e
 !
 prodeo|prod-
 prodigo|prod-
-proditio|prod-
+!proditio|prod-
 ! TODO : césure de proditio différente selon que <prodo ou <prodeo
 !
 subaudio|sub-
