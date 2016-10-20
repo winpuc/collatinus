@@ -204,6 +204,7 @@ class MainWindow : public QMainWindow
     QAction *lireHyphenAct;
     // Nom du répertoire du fichier hyphen.la
     QString repHyphen;
+    QString ficHyphen;
     // Bascule du serveur
     QAction *serverAct;
     // Restauration des docks
