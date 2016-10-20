@@ -583,6 +583,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     settings.setValue("illius", illiusAct->isChecked());
     settings.setValue("hyphenation", hyphenAct->isChecked());
     settings.setValue("repHyphen", repHyphen);
+    settings.setValue("ficHyphen", ficHyphen);
     settings.endGroup();
     settings.beginGroup("dictionnaires");
     settings.setValue("courant", comboGlossaria->currentIndex());
@@ -1582,6 +1583,8 @@ void MainWindow::readSettings()
     hyphenAct->setChecked(settings.value("hyphenation").toBool());
     repHyphen = settings.value("repHyphen").toString();
     if (repHyphen.isEmpty()) repHyphen = qApp->applicationDirPath() + "/data";
+    ficHyphen = settings.value("ficHyphen").toString();
+    if (!ficHyphen.isEmpty()) lemmatiseur->lireHyphen(ficHyphen);
 
     QString l = settings.value("cible").toString();
     lemmatiseur->setCible(l);
@@ -1783,9 +1786,10 @@ int MainWindow::lireOptionsAccent()
 
 void MainWindow::lireFichierHyphen()
 {
-    QString ficIn = QFileDialog::getOpenFileName(this, "Capsam legere", repHyphen+"/hyphen.la");
-    if (!ficIn.isEmpty()) repHyphen = QFileInfo (ficIn).absolutePath ();
-    lemmatiseur->lireHyphen(ficIn);
+    ficHyphen = QFileDialog::getOpenFileName(this, "Capsam legere", repHyphen+"/hyphen.la");
+    if (!ficHyphen.isEmpty()) repHyphen = QFileInfo (ficHyphen).absolutePath ();
+    lemmatiseur->lireHyphen(ficHyphen);
+    // Si le nom de fichier est vide, ça efface les données précédentes.
 }
 
 void MainWindow::oteDiacritiques()

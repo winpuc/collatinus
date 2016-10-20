@@ -559,7 +559,7 @@ QString Ch::ajoutSuff(QString fq, QString suffixe, QString l_etym, int accent)
                             // la césure est mal placée.
                             if (etym[i] == '-')
                             {
-                                fq.insert(j, "ˌ");
+                                fq.insert(j, separSyll);
                                 changement += 1;
                                 j += 1;
                                 i += 1;
