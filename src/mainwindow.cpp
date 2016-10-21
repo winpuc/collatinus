@@ -1582,8 +1582,9 @@ void MainWindow::readSettings()
     illiusAct->setChecked(settings.value("illius").toBool());
     hyphenAct->setChecked(settings.value("hyphenation").toBool());
     repHyphen = settings.value("repHyphen").toString();
-    if (repHyphen.isEmpty()) repHyphen = qApp->applicationDirPath() + "/data";
     ficHyphen = settings.value("ficHyphen").toString();
+    if (repHyphen.isEmpty() || ficHyphen.isEmpty())
+        repHyphen = qApp->applicationDirPath() + "/data";
     if (!ficHyphen.isEmpty()) lemmatiseur->lireHyphen(ficHyphen);
 
     QString l = settings.value("cible").toString();
