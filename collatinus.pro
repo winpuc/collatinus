@@ -56,7 +56,7 @@ macx:{
     TARGET = Collatinus_11
     #note mac os x, fair un $ qmake -spec macx-g++
     #CONFIG += x86 ppc
-    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.8
+    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.11
     ICON = collatinus.icns
     #QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
 
