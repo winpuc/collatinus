@@ -233,7 +233,7 @@ QString Lemmat::assimq(QString a)
 /**
  * \fn QString Lemmat::cible()
  * \brief Renvoie la langue cible dans sa forme
- *        abrégée (fr, uk, de, it, etc.).
+ *        abrégée (fr, en, de, it, etc.).
  */
 QString Lemmat::cible()
 {
