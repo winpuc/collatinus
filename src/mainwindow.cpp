@@ -1956,7 +1956,7 @@ void MainWindow::exec ()
             rep += "\t-l : Lemmatisation du texte (avec options -l0..-l15, -l16 pour les fréquences).\n";
             rep += "\t-h : Lemmatisation du texte en HTML (mêmes options que -l).\n";
             rep += "\t-S, -A, -L, -H : Les mêmes avec Majuscules pertinentes.\n";
-            rep += "\t-t : Langue cible pour les traductions (par exemple -tfr, -tuk).\n";
+            rep += "\t-t : Langue cible pour les traductions (par exemple -tfr, -ten).\n";
             rep += "\t-C : Majuscules pertinentes.\n";
             rep += "\t-c : Majuscules non-pertinentes.\n";
             rep += "\t-? : Affichage de l'aide.\n";
