@@ -1585,7 +1585,6 @@ void MainWindow::readSettings()
     ficHyphen = settings.value("ficHyphen").toString();
     if (repHyphen.isEmpty() || ficHyphen.isEmpty())
         repHyphen = qApp->applicationDirPath() + "/data";
-    if (!ficHyphen.isEmpty()) lemmatiseur->lireHyphen(ficHyphen);
 
     QString l = settings.value("cible").toString();
     lemmatiseur->setCible(l);
@@ -1597,6 +1596,8 @@ void MainWindow::readSettings()
     lemmatiseur->setAlpha(alphaOptAct->isChecked());
     lemmatiseur->setFormeT(formeTAct->isChecked());
     lemmatiseur->setExtension(extensionWAct->isChecked());
+    if (!ficHyphen.isEmpty()) lemmatiseur->lireHyphen(ficHyphen);
+    // Le fichier hyphen.la doit être lu après l'extension.
     lemmatiseur->setHtml(htmlAct->isChecked());
     lemmatiseur->setMajPert(majPertAct->isChecked());
     lemmatiseur->setMorpho(morphoAct->isChecked());
