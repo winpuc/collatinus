@@ -39,7 +39,7 @@ Radical::Radical(QString g, int n, QObject *parent)
 {
     _lemme = qobject_cast<Lemme *>(parent);
     _grq = Ch::communes(g);
-    _gr = Ch::atone(_grq);
+    _gr = Ch::atone(g);
     _numero = n;
 }
 

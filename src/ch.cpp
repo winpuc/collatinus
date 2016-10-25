@@ -127,14 +127,14 @@ QString Ch::communes(QString g)
     if (g.contains("a") || g.contains("e") || g.contains("i") || g.contains("o") || g.contains("u") || g.contains("y"))
     {
         g.replace("a","ā̆");
-        g.replace(QRegExp("[^āăō]e"),"ē̆");
+        g.replace(QRegExp("([^āăō])e"),"\\1ē̆");
         g.replace(QRegExp("^e"),"ē̆");
         g.replace("i","ī̆");
         g.replace("o","ō̆");
-        g.replace(QRegExp("[^āēq]u"),"ū̆");
+        g.replace(QRegExp("([^āēq])u"),"\\1ū̆");
         g.replace(QRegExp("^u"),"ū̆");
         g.replace(QRegExp("^y"),"ȳ̆");
-        g.replace(QRegExp("[^ā]y"),"ȳ̆");
+        g.replace(QRegExp("([^ā])y"),"\\1ȳ̆");
     }
     if (maj) g[0] = g[0].toUpper();
     return g;
