@@ -152,7 +152,7 @@ QStringList Lemmat::formeq(QString forme, bool *nonTrouve, bool debPhr,
 {
     *nonTrouve = true;
     if (forme.isEmpty()) return QStringList();
-    MapLem mp = lemmatiseM(forme, debPhr);
+    MapLem mp = lemmatiseM(forme, !_majPert || debPhr);
     if (mp.empty())
     {
         if (accent == 0)
