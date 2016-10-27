@@ -71,6 +71,19 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
     // contractions
     ajContractions();
     // lecture des morphos
+    QDir rep;
+    rep = QDir(_resDir, "morphos.*");
+    QStringList ltr = rep.entryList();
+    ltr.removeOne("morphos.la");  // n'est pas un fichier de traductions
+    foreach (QString nfl, ltr)
+    {
+        // suffixe
+        qDebug() << nfl;
+        lisMorphos(QFileInfo(nfl).suffix());
+    }
+    //    lisMorphos("fr");
+//    lisMorphos("en");
+    /*
     QFile f(_resDir + "morphos.la");
     f.open(QFile::ReadOnly);
     QTextStream fl(&f);
@@ -85,12 +98,70 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
         ++i;
     }
     f.close();
-
+*/
     lisModeles();
     lisLexique();
     lisTraductions(true, false);
     lisIrreguliers();
     lisParPos();
+}
+
+void Lemmat::lisMorphos(QString lang)
+{
+    QFile f(_resDir + "morphos." + lang);
+    f.open(QFile::ReadOnly);
+    QTextStream fl(&f);
+    int i = 0;
+    QString l = "";
+    QStringList morphos;
+    while (!fl.atEnd() && !l.startsWith("! --- "))
+    {
+        l = fl.readLine();
+        if (l.startsWith('!')) continue;
+        if (i+1 != l.section(':',0,0).toInt())
+            qDebug() <<i<<"Fichier morphos." << lang << ", erreur dans la ligne "<<l;
+        else morphos.append(l.section(':',1,1));
+        ++i;
+    }
+    _morphos.insert(lang,morphos);
+    QStringList cas;
+    l = "";
+    while (!fl.atEnd() && !l.startsWith("! --- "))
+    {
+        l = fl.readLine();
+        if (l.startsWith('!')) continue;
+        cas << l;
+    }
+    _cas.insert(lang,cas);
+    QStringList genres;
+    l = "";
+    while (!fl.atEnd() && !l.startsWith("! --- "))
+    {
+        l = fl.readLine();
+        if (l.startsWith('!')) continue;
+        genres << l;
+    }
+    _genres.insert(lang,genres);
+    QStringList nombres;
+    l = "";
+    while (!fl.atEnd() && !l.startsWith("! --- "))
+    {
+        l = fl.readLine();
+        if (l.startsWith('!')) continue;
+        nombres << l;
+    }
+    _nombres.insert(lang,nombres);
+    QStringList temps;
+    l = "";
+    while (!fl.atEnd() && !l.startsWith("! --- "))
+    {
+        l = fl.readLine();
+        if (l.startsWith('!')) continue;
+        temps << l;
+    }
+    _temps.insert(lang,temps);
+    f.close();
+
 }
 
 /**
@@ -1056,10 +1127,14 @@ Modele *Lemmat::modele(QString m) { return _modeles[m]; }
  */
 QString Lemmat::morpho(int m)
 {
-    if (m < 0 || m > _morphos.count()) 
+    QString l = "fr"; // La langue sélectionnée
+    if (_morphos.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
+    else if ((_cible.size() > 4) && (_morphos.keys().contains(_cible.mid(3,2))))
+        l = _cible.mid(3,2);
+    if (m < 0 || m > _morphos[l].count())
         return "morpho, "+QString::number(m)+" : erreur d'indice";
-    if (m == _morphos.count() - 1) return "-";
-    return _morphos.at(m - 1);
+    if (m == _morphos[l].count() - 1) return "-";
+    return _morphos[l].at(m - 1);
 }
 
 /**

@@ -59,6 +59,7 @@ class Lemmat : public QObject
     void lisLexique();
     void lisExtension();
     void lisModeles();
+    void lisMorphos(QString lang);
     void lisParPos();
     void lisTraductions(bool base, bool extension);
     // variables et utils
@@ -76,7 +77,13 @@ class Lemmat : public QObject
     QMap<QString, QString> _cibles;
     QMap<QString, Lemme *> _lemmes;
     QMap<QString, Modele *> _modeles;
-    QStringList _morphos;
+//    QStringList _morphos;
+    QMap<QString,QStringList> _morphos;
+    QMap<QString,QStringList> _cas;
+    QMap<QString,QStringList> _genres;
+    QMap<QString,QStringList> _nombres;
+    QMap<QString,QStringList> _temps;
+    // Les morphos doivent pouvoir être données en anglais !
     QMultiMap<QString, Radical *> _radicaux;
     QList<Reglep> _reglesp;
     QMap<QString, QString> _variables;
