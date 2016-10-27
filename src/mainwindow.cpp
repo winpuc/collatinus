@@ -1587,9 +1587,10 @@ void MainWindow::readSettings()
         repHyphen = qApp->applicationDirPath() + "/data";
 
     QString l = settings.value("cible").toString();
+    if (l.size() < 2) l = "fr";
     lemmatiseur->setCible(l);
     foreach (QAction *action, grCibles->actions())
-        if (action->text() == lemmatiseur->cibles()[l])
+        if (action->text() == lemmatiseur->cibles()[l.mid(0,2)])
             action->setChecked(true);
     settings.endGroup();
     // options appliquées au lemmatiseur
@@ -1692,7 +1693,24 @@ void MainWindow::setCible()
     {
         if (lemmatiseur->cibles()[cle] == action->text())
         {
-            lemmatiseur->setCible(cle);
+            if (cle == "fr")
+                lemmatiseur->setCible(cle + ".en.de");
+            else if (cle == "en")
+                lemmatiseur->setCible(cle + ".fr.de");
+            else
+            {
+                // Les deux langues principales sont le français et l'anglais.
+                // Pour les autres langues, je donne le choix de la 2e langue.
+                QMessageBox msg;
+                msg.setIcon(QMessageBox::Question);
+                msg.setText("Choisir une 2nde langue  \nChoose a 2nd language");
+                QAbstractButton *frButton = msg.addButton("Français",QMessageBox::AcceptRole);
+                QAbstractButton *enButton = msg.addButton("English",QMessageBox::AcceptRole);
+                msg.exec();
+                if (msg.clickedButton() == frButton)
+                    lemmatiseur->setCible(cle + ".fr.en");
+                else lemmatiseur->setCible(cle + ".en.fr");
+            }
             break;
         }
     }
@@ -1921,6 +1939,8 @@ void MainWindow::exec ()
             else options = options.mid(2); // Je coupe le "-l".
             if ((options.size() == 2) && lemmatiseur->cibles().keys().contains(options))
                 lemmatiseur->setCible(options);
+            else if (((options.size() == 5) || (options.size() == 8)) && lemmatiseur->cibles().keys().contains(options.mid(0,2)))
+                lemmatiseur->setCible(options);
             if (optAcc > 15) rep = lemmatiseur->frequences(texte).join("");
             else rep = lemmatiseur->lemmatiseT(texte,optAcc&1,optAcc&2,optAcc&4,optAcc&8);
             lemmatiseur->setCible(lang); // Je rétablis les langue et option HTML.
@@ -1935,9 +1955,11 @@ void MainWindow::exec ()
                 lemmatiseur->setMajPert(options[2] == '1');
             break;
         case 't':
-            if (options.size() == 4)
+            options = options.mid(2); // Je coupe le "-t".
+            if (((options.size() == 2) || (options.size() == 5) || (options.size() == 8)) &&
+                    lemmatiseur->cibles().keys().contains(options.mid(0,2)))
             {
-                lemmatiseur->setCible(options.mid(2,2));
+                lemmatiseur->setCible(options);
             }
             else
             {

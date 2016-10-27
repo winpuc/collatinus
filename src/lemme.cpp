@@ -400,15 +400,29 @@ bool Lemme::renvoi() { return _indMorph.contains("cf. "); }
 /**
  * \fn QString Lemme::traduction(QString l)
  * \brief Renvoie la traduction du lemme dans la langue
- *        cible l (2 caractères).
+ *        cible l (2 caractères, éventuellement plus
+ *        pour donner l'ordre des langues de secours).
+ *        J'ai opté pour un format "l1.l2.l3" où
+ *        les trois langues sont en 2 caractères.
  */
 QString Lemme::traduction(QString l)
 {
+    if (l.size() == 2)
+    {
     if (_traduction.keys().contains(l))
         return _traduction[l];
     else if (_traduction.keys().contains("fr"))
         return _traduction["fr"];
     else return _traduction["en"];
+    }
+    else if (_traduction.keys().contains(l.mid(0,2)))
+        return _traduction[l.mid(0,2)];
+    else if (_traduction.keys().contains(l.mid(3,2)))
+        return _traduction[l.mid(3,2)];
+    else if ((l.size() == 8) && _traduction.keys().contains(l.mid(6,2)))
+        return _traduction[l.mid(6,2)];
+    return "Non traduit / Translation not available.";
+
 }
 
 /**

@@ -74,15 +74,10 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
     QDir rep;
     rep = QDir(_resDir, "morphos.*");
     QStringList ltr = rep.entryList();
-    ltr.removeOne("morphos.la");  // n'est pas un fichier de traductions
+    ltr.removeOne("morphos.la");  // S'il traine encore...
     foreach (QString nfl, ltr)
-    {
-        // suffixe
-        qDebug() << nfl;
         lisMorphos(QFileInfo(nfl).suffix());
-    }
-    //    lisMorphos("fr");
-//    lisMorphos("en");
+
     /*
     QFile f(_resDir + "morphos.la");
     f.open(QFile::ReadOnly);
