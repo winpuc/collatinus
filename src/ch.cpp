@@ -111,6 +111,8 @@ QString Ch::atone(QString a, bool bdc)
         a.replace(0x0232, 'Y');
         a.replace(0x040e, 'Y');  // Ȳ Ў
     }
+    a.replace(0x0131, 'i');
+    a.replace(0x1ee5, 'u');
     // combining breve
     a.remove(0x0306);  //ō̆ etc.
     return a;
