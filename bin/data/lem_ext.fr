@@ -58028,7 +58028,8 @@ adaeratus:part. de adaero.
 adaggeratus:part. de adaggero.
 adalligatus:part. de adalligo.
 Adamitae:- 1 - les Adamites (hérétiques qui imitaient la nudité d'Adam). - 2 - les hommes (issus d'Adam)
-adareseo:int., sécher, devenir sec
+!adareseo:int., sécher, devenir sec
+!C'est une erreur pour adaresco, qu'on a plus haut.
 adarto:resserrer
 adavia:aïeule au quatrième degré.
 adavus:aïeul au quatrième degré.
