@@ -36,7 +36,7 @@ abscindo|ab-
 abscido|abs-
 ! Une même forme (le parfait abscidi, commun aux 2 lemmes) a des césures différentes.
 prosum|prod-
-!adfero|ad-
+adfero|ad-
 !redeo|red-e,red-i
 prodeo|prod-
 consterno|con-
@@ -53,7 +53,7 @@ abigo|ab-
 abitus|ab-
 aboleo|ab-
 abolitio|ab-
-Aborigines|Ab-
+Aborigines|ab-
 aborior|ab-
 abscedo|abs-
 abscondo|abs-
@@ -222,8 +222,8 @@ ambitiose|amb-
 ambitiosus|amb-
 ambitio|amb-
 ambitus|amb-
-!ambulator|amb-
-!ambulo|amb-
+ambulator|amb-
+ambulo|amb-
 amburo|amb-
 !
 circumago|cir-cum-
@@ -233,8 +233,8 @@ circumfero|cir-cum-l
 !
 comedo|com-
 !
-!ignavus|i-
-!ignosco|i-
+ignavus|i-
+ignosco|i-
 necopinato|nec-
 negotior|neg-
 negotiosus|neg-
@@ -243,8 +243,8 @@ respicio|re-
 !recludo|re-
 aspicio|a-
 suspicio|su-
-!agnosco|a-
-!egredior|e-
+agnosco|a-
+egredior|e-
 abomino|ab-
 abominor|ab-
 abominatio|ab-
@@ -318,8 +318,7 @@ inutilis|in-
 insum|in-e
 infero|in-l
 !
-Interamnas|In-ter-
-Interamnates|In-ter-
+Interamnates|in-ter-
 interea|in-ter-
 intereo|in-ter-
 intericio|in-ter-
@@ -360,7 +359,7 @@ perhaurio|per-
 perhibeo|per-
 perimo|per-
 perinde|per-
-periniquus|per-in-
+periniquus|per-
 perinsignis|per-
 perofficiose|per-
 peropportunus|per-
@@ -384,7 +383,7 @@ prodeo|prod-
 prodigo|prod-
 !proditio|prod-
 ! TODO : césure de proditio différente selon que <prodo ou <prodeo
-! rmq : le sens donné vient de prodo.
+!
 subaudio|sub-
 subeo|sub-
 subicio|sub-
@@ -419,7 +418,7 @@ superabilis|su-per-
 superincido|su-per-
 !superior|su-per-
 !superius|su-per-
-!supero|su-per-
+supero|su-per-
 supersum|su-per-e
 superurgens|su-per-
 !superus|su-per-
@@ -444,15 +443,13 @@ destituo|de-
 destringo|de-
 destruo|de-
 !
-! Le groupe -gn- est réputé insécable
-!
-!cognatio|co-
-!cognatus|co-
-!cognitio|co-
-!cognomentum|co-
-!cognomen|co-
-!cognomino|co-
-!cognosco|co-
+cognatio|co-
+cognatus|co-
+cognitio|co-
+cognomentum|co-
+cognomen|co-
+cognomino|co-
+cognosco|co-
 !
 !!!!!!!!!!!!!
 Extension du lexique :
