@@ -1132,6 +1132,42 @@ QString Lemmat::morpho(int m)
     return _morphos[l].at(m - 1);
 }
 
+QString Lemmat::cas(int m)
+{
+    QString l = "fr"; // La langue sélectionnée
+    if (_cas.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
+    else if ((_cible.size() > 4) && (_cas.keys().contains(_cible.mid(3,2))))
+        l = _cible.mid(3,2);
+    return _cas[l].at(m);
+}
+
+QString Lemmat::genre(int m)
+{
+    QString l = "fr"; // La langue sélectionnée
+    if (_genres.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
+    else if ((_cible.size() > 4) && (_genres.keys().contains(_cible.mid(3,2))))
+        l = _cible.mid(3,2);
+    return _genres[l].at(m);
+}
+
+QString Lemmat::nombre(int m)
+{
+    QString l = "fr"; // La langue sélectionnée
+    if (_nombres.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
+    else if ((_cible.size() > 4) && (_nombres.keys().contains(_cible.mid(3,2))))
+        l = _cible.mid(3,2);
+    return _nombres[l].at(m);
+}
+
+QString Lemmat::temps(int m)
+{
+    QString l = "fr"; // La langue sélectionnée
+    if (_temps.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
+    else if ((_cible.size() > 4) && (_temps.keys().contains(_cible.mid(3,2))))
+        l = _cible.mid(3,2);
+    return _temps[l].at(m);
+}
+
 /**
  * \fn bool Lemmat::optAlpha()
  * \brief Accesseur de l'option alpha, qui
@@ -1273,6 +1309,7 @@ void Lemmat::lireHyphen(QString fichierHyphen)
                 continue;
             }
 #endif
+            ecl[1].replace('-',Ch::separSyll);
             Lemme *l = lemme(Ch::deramise(ecl[0]));
             if (l!=NULL)
                 l->setHyphen(ecl[1]);
