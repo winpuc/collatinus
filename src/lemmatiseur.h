@@ -146,6 +146,13 @@ class Lemmat : public QObject
     bool optMorpho();
     bool optExtension();
 
+    // Pour l'internationalisation
+    QString cas(int i);
+    QString genre(int i);
+    QString nombre(int i);
+    QString temps(int i);
+
+
    public slots:
     // modificateur       s d'options
     void setAlpha(bool a);

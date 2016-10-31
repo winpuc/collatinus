@@ -545,8 +545,8 @@ QString Ch::ajoutSuff(QString fq, QString suffixe, QString l_etym, int accent)
                     while ((i < etym.size()) && (j < fq.size()) && OK)
                     {
                         if ((etym[i] == fq[j]) ||
-                            (fq.mid(j, 1) == accentue(etym.mid(i, 1))) ||
-                            ((etym[i] == '-') && (fq[j] == separSyll)))
+                            (fq.mid(j, 1) == accentue(etym.mid(i, 1))))
+//                            ((etym[i] == '-') && (fq[j] == separSyll)))
                         {
                             // Les lettres ou les césures correspondent
                             i += 1;
@@ -554,12 +554,12 @@ QString Ch::ajoutSuff(QString fq, QString suffixe, QString l_etym, int accent)
                         }
                         else if (signes.contains(fq[j]) || (fq[j] == 0x0301))
                             j += 1;  // C'est une quantité
-                        else if ((etym[i] != '-') && (fq[j] != separSyll))
+                        else if ((etym[i] != separSyll) && (fq[j] != separSyll))
                             OK = false;  // Les lettres ne correspondent pas.
                         else
                         {
                             // la césure est mal placée.
-                            if (etym[i] == '-')
+                            if (etym[i] == separSyll)
                             {
                                 fq.insert(j, separSyll);
                                 changement += 1;
