@@ -83,6 +83,9 @@ class Lemmat : public QObject
     QMap<QString,QStringList> _genres;
     QMap<QString,QStringList> _nombres;
     QMap<QString,QStringList> _temps;
+    QMap<QString,QStringList> _modes;
+    QMap<QString,QStringList> _voix;
+    QMap<QString,QStringList> _motsClefs;
     // Les morphos doivent pouvoir être données en anglais !
     QMultiMap<QString, Radical *> _radicaux;
     QList<Reglep> _reglesp;
@@ -151,6 +154,9 @@ class Lemmat : public QObject
     QString genre(int i);
     QString nombre(int i);
     QString temps(int i);
+    QString modes(int i);
+    QString voix(int i);
+    QString motsClefs(int i);
 
 
    public slots:

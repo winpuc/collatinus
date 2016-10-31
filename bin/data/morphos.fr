@@ -461,5 +461,20 @@ futur
 parfait
 plus-que-parfait
 futur antérieur
-
+! --- Modes
+Indicatif
+Subjonctif
+Impératif
+Infinitif
+Participe
+Adjectif verbal
+! --- Voix
+ACTIF
+PASSIF
+! --- Mots clefs
+cas
+personne
+2ème pr.
+2ème fut.
+3ème fut.
 
