@@ -155,6 +155,33 @@ void Lemmat::lisMorphos(QString lang)
         temps << l;
     }
     _temps.insert(lang,temps);
+    QStringList modes;
+    l = "";
+    while (!fl.atEnd() && !l.startsWith("! --- "))
+    {
+        l = fl.readLine();
+        if (l.startsWith('!')) continue;
+        modes << l;
+    }
+    _modes.insert(lang,modes);
+    QStringList voix;
+    l = "";
+    while (!fl.atEnd() && !l.startsWith("! --- "))
+    {
+        l = fl.readLine();
+        if (l.startsWith('!')) continue;
+        voix << l;
+    }
+    _voix.insert(lang,voix);
+    QStringList mc;
+    l = "";
+    while (!fl.atEnd() && !l.startsWith("! --- "))
+    {
+        l = fl.readLine();
+        if (l.startsWith('!')) continue;
+        mc << l;
+    }
+    _motsClefs.insert(lang,mc);
     f.close();
 
 }
@@ -1166,6 +1193,33 @@ QString Lemmat::temps(int m)
     else if ((_cible.size() > 4) && (_temps.keys().contains(_cible.mid(3,2))))
         l = _cible.mid(3,2);
     return _temps[l].at(m);
+}
+
+QString Lemmat::modes(int m)
+{
+    QString l = "fr"; // La langue sélectionnée
+    if (_modes.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
+    else if ((_cible.size() > 4) && (_modes.keys().contains(_cible.mid(3,2))))
+        l = _cible.mid(3,2);
+    return _modes[l].at(m);
+}
+
+QString Lemmat::voix(int m)
+{
+    QString l = "fr"; // La langue sélectionnée
+    if (_voix.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
+    else if ((_cible.size() > 4) && (_voix.keys().contains(_cible.mid(3,2))))
+        l = _cible.mid(3,2);
+    return _voix[l].at(m);
+}
+
+QString Lemmat::motsClefs(int m)
+{
+    QString l = "fr"; // La langue sélectionnée
+    if (_motsClefs.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
+    else if ((_cible.size() > 4) && (_motsClefs.keys().contains(_cible.mid(3,2))))
+        l = _cible.mid(3,2);
+    return _motsClefs[l].at(m);
 }
 
 /**
