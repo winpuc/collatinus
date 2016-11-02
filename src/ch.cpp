@@ -506,9 +506,9 @@ QString Ch::ajoutSuff(QString fq, QString suffixe, QString l_etym, int accent)
                             // c'est plus compliqué car j'ai au moins deux
                             // consonnes...
                             bool remonte =
-                                ((fq[k] == 'l') && (fq[k - 1] != 'l'));
+                                ((fq[k] == 'l') && (fq[k - 1] != 'l') && (fq[k - 1] != 'r'));
                             remonte = remonte ||
-                                      ((fq[k] == 'r') && (fq[k - 1] != 'r'));
+                                      ((fq[k] == 'r') && (fq[k - 1] != 'r') && (fq[k - 1] != 'l'));
                             remonte = remonte || (fq[k] == 'h');
                             if (remonte) k -= 1;
                             remonte =
