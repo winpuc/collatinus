@@ -12977,7 +12977,7 @@ foro,foro  ,4
 !forpex,forceps  -,1
 fors,fors 2,8
 !fors2,Fors N,11
-!fors2,fors 1,59
+fors2,fors 1,59
 forsan,forsan  ,22
 forsit,forsit  ,1
 forsitan,forsitan  ,144
@@ -12986,7 +12986,7 @@ fortassis,fortasse  ,6
 fortax,fortax  ,1
 forte,forte  ,565
 !fortis,Fortis A,2
-!fortis,fortis  ,883
+fortis,fortis  ,883
 fortiter,fortiter  ,175
 fortitudo,fortitudo  ,87
 fortuito,fortuito  ,12
@@ -26359,8 +26359,8 @@ plecto,plecto 1,14,plecto
 poetica,poetica  ,3,-poeticus;poetica
 !-pone,pone 1,5,-pone;-pono
 !!popa;popa2,popa  ,5,popa;popa2
-!!populus;populus2,populus 1,2557,-populo-;populus;populus-;populus2;populus2-
-!!populus;populus2,populus 2,22,-populo-;populus;populus2
+populus,populus 1,2557,-populo-;populus;populus-;populus2;populus2-
+populus2,populus 2,22,-populo-;populus;populus2
 porcinarius,porcinarius  ,1,porcinarium;porcinarius
 porrum,porrum  ,5,porri-;porrum;porrus
 porrus,porrus  ,3,porri;porri-;porrum;porrum-;porrus

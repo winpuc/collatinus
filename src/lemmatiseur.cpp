@@ -84,6 +84,21 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
     lisParPos();
 }
 
+void Lemmat::lisNombres()
+{
+    QStringList lignes = lignesFichier(_resDir + "nombres.la");
+    foreach (QString lin, lignes)
+    {
+        QStringList liste = lin.split(',');
+        QString clef = liste[0];
+        clef.remove('-');
+        if (_lemmes.contains(clef))
+            _lemmes[clef]->ajNombre(liste[2].toInt());
+        else
+            qDebug() << lin;
+    }
+}
+
 QStringList Lemmat::lignesFichier(QString nf)
 {
     QFile f(nf);
@@ -990,7 +1005,7 @@ void Lemmat::lisFichierLexique(QString filepath)
  */
 void Lemmat::lisLexique()
 {
-    Lemmat::lisFichierLexique(_resDir + "lemmes.la");
+    lisFichierLexique(_resDir + "lemmes.la");
 }
 
 /**
@@ -999,7 +1014,8 @@ void Lemmat::lisLexique()
  */
 void Lemmat::lisExtension()
 {
-    Lemmat::lisFichierLexique(_resDir + "lem_ext.la");
+    lisFichierLexique(_resDir + "lem_ext.la");
+    lisNombres();
 }
 
 /**
