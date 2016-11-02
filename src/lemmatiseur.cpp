@@ -119,6 +119,7 @@ void Lemmat::lisMorphos(QString lang)
     _morphos.insert(lang,morphos);
     QStringList cas;
     l.clear();
+    ++i;
     while (i <= max && !l.startsWith("! --- "))
     {
         l = lignes.at(i);
