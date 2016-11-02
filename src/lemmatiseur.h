@@ -60,6 +60,7 @@ class Lemmat : public QObject
     void lisExtension();
     void lisModeles();
     void lisMorphos(QString lang);
+    void lisNombres();
     void lisParPos();
     void lisTraductions(bool base, bool extension);
     // variables et utils

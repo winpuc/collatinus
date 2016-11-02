@@ -97,6 +97,7 @@ Lemme::Lemme(QString linea, int origin, QObject *parent)
     _modele = _lemmatiseur->modele(_grModele);
     _hyphen = "";
     _origin = origin;
+    _nbOcc = 1; // Tous les lemmes doivent avoir été rencontrés une fois
     // lecture des radicaux, champs 2 et 3
     for (int i = 2; i < 4; ++i)
         if (!eclats.at(i).isEmpty())
@@ -165,6 +166,19 @@ void Lemme::ajIrreg(Irreg *irr)
     // ajouter les numéros de morpho à la liste
     // des morphos irrégulières du lemme :
     if (irr->exclusif()) _morphosIrrExcl.append(irr->morphos());
+}
+
+/**
+ * \fn void Lemme::ajNombre(int n)
+ * \brief Ajoute l'entier n au nombre d'occurrences du lemme.
+ *      Un lemme de Collatinus peut être associé à plusieurs lemmes du LASLA.
+ *      D'où la somme.
+ */
+void Lemme::ajNombre(int n)
+{
+    _nbOcc += n;
+    // Un lemme de Collatinus peut être associé à plusieurs lemmes du LASLA.
+    // D'où la somme.
 }
 
 /**
@@ -299,9 +313,11 @@ QString Lemme::humain(bool html, QString l)
         tr = traduction(l);
     if (html)
         QTextStream(&res) << "<strong>" << _grq << "</strong> "
-                          << "<em>" << _indMorph << "</em> : " << tr;
+                          << "<em>" << _indMorph << "</em> <small> (" <<
+                          _nbOcc << ")</small> : " << tr;
     else
-        QTextStream(&res) << _grq << ", " << _indMorph << " : " << tr;
+        QTextStream(&res) << _grq << ", " << _indMorph <<
+                             "( " << _nbOcc << ") : " << tr;
     return res;
 }
 
@@ -330,6 +346,15 @@ QString Lemme::irreg(int i, bool *excl)
 Modele *Lemme::modele()
 {
     return _modele;
+}
+
+/**
+ * \fn int Lemme::nbOcc()
+ * \brief Renvoie le nombre d'occurrences du lemme dans les textes du LASLA.
+ */
+int Lemme::nbOcc()
+{
+    return _nbOcc;
 }
 
 /**
