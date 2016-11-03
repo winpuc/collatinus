@@ -811,26 +811,32 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
         else if (cumVocibus)
         {
             QString lin;
+            QMultiMap<int,QString> listeLem;
             if (_html)
             {
                 lin = "<h4>" + f + "</h4><ul>";
                 foreach (Lemme *l, map.keys())
                 {
-                    lin.append("<li>" + l->humain(true, _cible));
+                    QString lem = "<li>" + l->humain(true, _cible, true);
                     if (cumMorpho && !inv(l, map))
                     {
-                        lin.append("<ul>");
+                        lem.append("<ul>");
                         foreach (SLem m, map.value(l))
                             if (m.sufq.isEmpty())
-                                lin.append("<li>" + m.grq + " " + m.morpho +
+                                lem.append("<li>" + m.grq + " " + m.morpho +
                                            "</li>");
                             else
-                                lin.append("<li>" + m.grq + " + " + m.sufq +
+                                lem.append("<li>" + m.grq + " + " + m.sufq +
                                            " " + m.morpho + "</li>");
-                        lin.append("</ul>\n");
+                        lem.append("</ul>\n");
                     }
-                    lin.append("</li>");
+                    lem.append("</li>");
+                    listeLem.insert(l->nbOcc(),lem);
                 }
+                QStringList lLem = listeLem.values();
+                // Les valeurs sont en ordre croissant
+                for (int i = lLem.size()-1; i>-1; i--)
+                    lin.append(lLem.at(i));
                 lin.append("</ul>\n");
             }
             else
@@ -838,7 +844,7 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
                 lin = " " + f + "\n";
                 foreach (Lemme *l, map.keys())
                 {
-                    lin.append("  - " + l->humain(false, _cible) + "\n");
+                    lin.append("  - " + l->humain(false, _cible, true) + "\n");
                     if (cumMorpho && !inv(l, map))
                     {
                         foreach (SLem m, map.value(l))

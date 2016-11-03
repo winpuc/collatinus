@@ -90,7 +90,7 @@ class Lemme : public QObject
     QString             gr();
     QString             grq();
     QString             grModele();
-    QString             humain(bool html = false, QString l = "fr");
+    QString             humain(bool html = false, QString l = "fr", bool nbr = false);
     QString             irreg(int i, bool* excl);
     Modele*             modele();
     int                 nbOcc();
