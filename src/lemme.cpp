@@ -297,7 +297,7 @@ QString Lemme::grModele()
  *        ses indications morphologiques et sa traduction dans la langue l.
  *        Si html est true, le retour est au format html.
  */
-QString Lemme::humain(bool html, QString l)
+QString Lemme::humain(bool html, QString l, bool nbr)
 {
     QString res;
     QString tr;
@@ -311,13 +311,19 @@ QString Lemme::humain(bool html, QString l)
     }
     else
         tr = traduction(l);
+    QTextStream flux(&res);
     if (html)
-        QTextStream(&res) << "<strong>" << _grq << "</strong> "
-                          << "<em>" << _indMorph << "</em> <small> (" <<
-                          _nbOcc << ")</small> : " << tr;
+        flux << "<strong>" << _grq << "</strong>, "
+                          << "<em>" << _indMorph << "</em>";
     else
-        QTextStream(&res) << _grq << ", " << _indMorph <<
-                             "( " << _nbOcc << ") : " << tr;
+        flux << _grq << ", " << _indMorph;
+    if ((_nbOcc != 1) && nbr)
+    {
+        if (html)
+            flux << " <small>(" << _nbOcc << ")</small>";
+        else flux << " (" << _nbOcc << ")";
+    }
+    flux << " : " << tr;
     return res;
 }
 
