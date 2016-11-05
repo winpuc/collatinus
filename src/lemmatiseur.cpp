@@ -108,7 +108,7 @@ void Lemmat::lisTags(bool tout)
     _tagOcc.clear();
     _tagTot.clear();
     _trigram.clear();
-    QString lignes = lignesFichier(_resDir + "tags.la");
+    QStringList lignes = lignesFichier(_resDir + "tags.la");
     int max = lignes.count() - 1;
     int i = 0;
     QString l = "";
