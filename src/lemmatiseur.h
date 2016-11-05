@@ -100,6 +100,10 @@ class Lemmat : public QObject
     bool _morpho;
     bool _nonRec;
 
+    QMap<QString, int> _tagOcc; // Nombre d'occurrences du tag.
+    QMap<QString, int> _tagTot; // Nombre total en fonction du premier caractère du tag.
+    QMap<QString, int> _trigram; // Nombre d'occurrences des séquences de 3 tags.
+
     QString _resDir; // Le chemin du répertoire de ressources
     bool _extLoaded; // = true après chargement de l'extension
     // Lorsque j'ai chargé l'extension, je dois pouvoir ignorer les analyses qui en viennent.

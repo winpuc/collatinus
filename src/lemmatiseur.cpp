@@ -97,6 +97,66 @@ void Lemmat::lisNombres()
         else
             qDebug() << lin;
     }
+    lignes = lignesFichier(_resDir + "tags.la");
+    int max = lignes.count() - 1;
+    int i = 0;
+    QString l = "";
+    QStringList eclats;
+    QStringList tagsLasla;
+    QStringList tagsCollatinus;
+    while (i <= max) // && !l.startsWith("! --- "))
+    {
+        l = lignes.at(i);
+        if (l.startsWith("! --- ")) break;
+        eclats = l.split(',');
+        if (eclats.size() == 3)
+        {
+            QString tag = eclats[2];
+            switch (tag.size()) {
+            case 0:
+                tag = eclats[0]; // S'il n'est pas indiqué, je reprends celui du LASLA
+                break;
+            case 1:
+                tag.append("  ");
+                break;
+            case 2:
+                tag.append(" ");
+                break;
+            default:
+                break;
+            }
+            if (tag != eclats[0])
+            {
+                tagsCollatinus.append(tag);
+                tagsLasla.append(eclats[0]);
+            }
+            _tagOcc[tag] += eclats[1].toInt();
+            _tagTot[tag.mid(0,1)] += eclats[1].toInt();
+        }
+        else qDebug() << "Erreur dans tags.la : " << l;
+        ++i;
+    }
+    qDebug() << _tagOcc.size() << _tagTot.size() << tagsCollatinus.size() << tagsLasla.size();
+    l.clear();
+    ++i;
+    while (i <= max && !l.startsWith("! --- "))
+    {
+        l = lignes.at(i);
+        for (int j=0; j<tagsCollatinus.size();j++)
+            l.replace(tagsLasla[j],tagsCollatinus[j]);
+        QString trigr = l.section(',',0,2);
+        int occ = l.section(',',3,3).toInt();
+        trigr.replace(',',' ');
+        _trigram[trigr] += occ;
+        if (trigr.contains(" snt "))
+        {
+            _trigram[trigr.mid(0,7)] += occ;
+            _trigram[trigr.mid(4,7)] += occ;
+            // J'ai aussi besoin des bigrammes en début et en fin de phrase.
+        }
+        ++i;
+    }
+    qDebug() << _trigram.size();
 }
 
 QStringList Lemmat::lignesFichier(QString nf)
@@ -831,12 +891,11 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
                         lem.append("</ul>\n");
                     }
                     lem.append("</li>");
-                    listeLem.insert(l->nbOcc(),lem);
+                    listeLem.insert(-l->nbOcc(),lem);
                 }
                 QStringList lLem = listeLem.values();
                 // Les valeurs sont en ordre croissant
-                for (int i = lLem.size()-1; i>-1; i--)
-                    lin.append(lLem.at(i));
+                lin.append(lLem.join("\n"));
                 lin.append("</ul>\n");
             }
             else
@@ -1136,7 +1195,7 @@ QString Lemmat::morpho(int m)
         l = _cible.mid(3,2);
     if (m < 0 || m > _morphos[l].count())
         return "morpho, "+QString::number(m)+" : erreur d'indice";
-    if (m == _morphos[l].count() - 1) return "-";
+    if (m == _morphos[l].count()) return "-";
     return _morphos[l].at(m - 1);
 }
 
