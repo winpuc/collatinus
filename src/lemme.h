@@ -56,7 +56,7 @@ class Lemme : public QObject
     Q_OBJECT
    private:
     QString                 _cle;
-    QString                 _genre;
+//    QString                 _genre; // Le genre dépend maintenant de la langue choisie !
     QString                 _gr;
     QString                 _grd;
     QString                 _grq;

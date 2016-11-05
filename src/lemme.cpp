@@ -132,16 +132,20 @@ Lemme::Lemme(QString linea, int origin, QObject *parent)
         _pos.append('n');
     if (_pos.isEmpty())
         _pos.append(_modele->pos());
-
+/* Avec l'internationalisation des morphos, le genre dépend de la langue choisie.
+ * Il faut donc le définir à la demande.
     _genre.clear();
     if (_indMorph.contains(" m."))
-        _genre.append(" masculin"); // Peut-être mieux d'utiliser Flexion::genres[0] ?
+        _genre.append(" " + _lemmatiseur->genre(0));
+//        _genre.append(" masculin"); // Peut-être mieux d'utiliser Flexion::genres[0] ?
     if (_indMorph.contains(" f."))
-        _genre.append(" féminin");
+        _genre.append(" " + _lemmatiseur->genre(1));
+//        _genre.append(" féminin");
     if (_indMorph.contains(" n."))
-        _genre.append(" neutre");
+        _genre.append(" " + _lemmatiseur->genre(2));
+//        _genre.append(" neutre");
     _genre = _genre.trimmed();
-
+*/
     QRegExp c("cf\\.\\s(\\w+)$");
     int pos = c.indexIn(_indMorph);
     if (pos > -1)
@@ -256,6 +260,17 @@ bool Lemme::estIrregExcl(int nm)
 
 QString Lemme::genre()
 {
+    QString _genre;
+    if (_indMorph.contains(" m."))
+        _genre.append(" " + _lemmatiseur->genre(0));
+// J'ai ainsi le genre dans la langue choisie.
+    if (_indMorph.contains(" f."))
+        _genre.append(" " + _lemmatiseur->genre(1));
+//        _genre.append(" féminin");
+    if (_indMorph.contains(" n."))
+        _genre.append(" " + _lemmatiseur->genre(2));
+//        _genre.append(" neutre");
+    _genre = _genre.trimmed();
     if (!_renvoi.isEmpty() && _genre.isEmpty())
     {
         Lemme *lr = _lemmatiseur->lemme(_renvoi);
