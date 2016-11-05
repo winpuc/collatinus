@@ -67,16 +67,21 @@ A62,32196,n62
 A71,1107,n71
 A8 ,1102,n8 
 B0 ,6,v0 
+! Indicatif
 B1 ,92852,v1 
 B11,100829,v11
-B2 ,1807,v2 
-B21,9124,v21
-B3 ,33297,v3 
-B31,31392,v31
-B7 ,12531,v7 
-B71,50359,v71
-B8 ,203,v2 
-B9 ,180,v2 
+! Impératif
+B2 ,1807,v3 
+B21,9124,v31
+! Subjonctif
+B3 ,33297,v2 
+B31,31392,v21
+! Infinitif
+B7 ,12531,v4 
+B71,50359,v41
+! Supin, groupé avec les impératifs non-présents
+B8 ,203,v3 
+B9 ,180,v3 
 C  ,25,a  
 C11,40568,a11
 C12,13466,a12
