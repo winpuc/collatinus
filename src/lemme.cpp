@@ -175,6 +175,7 @@ void Lemme::ajIrreg(Irreg *irr)
 /**
  * \fn void Lemme::ajNombre(int n)
  * \brief Ajoute l'entier n au nombre d'occurrences du lemme.
+ *
  *      Un lemme de Collatinus peut être associé à plusieurs lemmes du LASLA.
  *      D'où la somme.
  */
@@ -258,6 +259,17 @@ bool Lemme::estIrregExcl(int nm)
     return _morphosIrrExcl.contains(nm);
 }
 
+/**
+ * @brief Lemme::genre
+ * @return : le (ou les) genre(s) du mot.
+ *
+ * Cette routine convertit les indications morphologiques,
+ * données dans le fichier lemmes.la,
+ * pour exprimer le genre du mot dans la langue courante.
+ *
+ * Introduite pour assurer l'accord entre un nom et son adjectif.
+ *
+ */
 QString Lemme::genre()
 {
     QString _genre;
@@ -387,6 +399,10 @@ int Lemme::nh()
     return _nh;
 }
 
+/**
+ * \fn int Lemme::origin()
+ * \brief Renvoie l'origine du lemme : 0 pour le lexique de base, 1 pour l'extension.
+ */
 int Lemme::origin()
 {
     return _origin;

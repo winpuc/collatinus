@@ -84,6 +84,22 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
     lisParPos();
 }
 
+/**
+ * \fn Lemmat::lisNombres
+ * \brief Lecture du fichier nombres.la
+ * et peuplement de la variable _nbOcc de chaque lemme.
+ *
+ * Cette routine lit le fichier nombres.la.
+ * Ce fichier a été tiré de la lemmatisation de la liste
+ * des formes tirées des textes du LASLA.
+ * C'est un csv, avec la virgule comme séparateur.
+ *
+ * Un programme a essayé d'établir la correspondance
+ * entre les lemmes de Collatinus (1er champ)
+ * avec ceux du LASLA (2e champ) et
+ * le nombre d'occurrences associé.
+ *
+ */
 void Lemmat::lisNombres()
 {
     QStringList lignes = lignesFichier(_resDir + "nombres.la");
@@ -103,6 +119,28 @@ void Lemmat::lisNombres()
     // Je commencerai avec un if (_trigram.isEmpty()) lisTags(true);
 }
 
+/**
+ * @brief Lemmat::lisTags
+ * @param tout : bool
+ *
+ * Lorsque le booléen tout est false, on ne lit que les nombres d'occurrences des tags.
+ *
+ * Lorsque le booléen tout est true, on lit tout le fichier,
+ * donc aussi les dénombrements des séquences de trois tags.
+ *
+ * Cette routine lit le fichier tags.la.
+ * Ce fichier a été tiré du traitement
+ * des textes lemmatisés du LASLA.
+ * C'est un csv, avec la virgule comme séparateur.
+ *
+ * La première partie du fichier donne le nombre d'occurrences de chaque tag
+ * que j'ai introduit pour traiter les textes du LASLA.
+ * Elle établit aussi la correspondance avec les tags de Collatinus.
+ *
+ * La deuxième partie donne les séquences de trois tags (LASLA) et
+ * le nombre d'occurrences mesuré.
+ *
+ */
 void Lemmat::lisTags(bool tout)
 {
     _tagOcc.clear();
@@ -173,6 +211,25 @@ void Lemmat::lisTags(bool tout)
     }
 }
 
+/**
+ * @brief Lemmat::tag
+ * @param l : le pointeur vers le lemme
+ * @param morph : l'analyse morphologique
+ * @return : le tag pour Collatinus
+ *
+ * Cette routine calcule le tag correspondant
+ * à l'analyse morphologique donnée, morph,
+ * pour le lemme, l.
+ * Ce tag est toujours sur trois caractères.
+ *
+ * Ce tag est obtenu avec le POS du lemme,
+ * suivi des cas (1-6 ou 7) et nombre (1, 2) pour les formes déclinées.
+ * Pour les verbes conjugués, on donne le mode (1-4)
+ * et un 1 si c'est un présent ou un espace sinon.
+ * Les supins ont été joints aux impératifs autres que le présent (groupes trop peu nombreux).
+ * Pour les invariables, le POS est complété avec deux espaces.
+ *
+ */
 QString Lemmat::tag(Lemme *l, QString morph)
 {
     QString p = l->pos();
@@ -199,6 +256,20 @@ QString Lemmat::tag(Lemme *l, QString morph)
     return p.arg(" ").arg(" ");
 }
 
+/**
+ * @brief Lemmat::fraction
+ * @param l : le lemme
+ * @param morph : l'analyse morphologique
+ * @return : la fraction moyenne du nombre d'occurrences du lemme
+ * qui ont cette analyse morphologique.
+ *
+ * Ce résultat est un entier, exprimé en 1/1024e
+ *
+ * On calcule d'abord le tag
+ * puis on va chercher le nombre d'occurrences associé à ce tag.
+ * On le divise par le nombre d'occurrences associé au même POS.
+ *
+ */
 int Lemmat::fraction(Lemme *l, QString morph)
 {
     QString t = tag(l, morph);
@@ -206,13 +277,24 @@ int Lemmat::fraction(Lemme *l, QString morph)
     if (_tagOcc.contains(t))
     {
         fr = _tagOcc[t] * 1024 / _tagTot[t.mid(0,1)];
-        if (t[0] == 'a') return fr / 3;
+        if ((t[0] == 'a') || (t[0] == 'p')) return fr / 3; // Adj. ou pron. sans genre !
         return fr;
     }
     qDebug() << l->grq() << morph << t << "Non trouvé !";
     return fr;
 }
 
+/**
+ * @brief Lemmat::lignesFichier
+ * @param nf : nom du fichier
+ * @return : l'ensemble de lignes du fichier qui ne sont
+ * ni vides ni commentées.
+ *
+ * Les fichiers de Collatinus ont adopté le point d'exclamation
+ * en début de ligne pour introduire un commentaire.
+ * Ces lignes doivent être ignorées par le programme.
+ *
+ */
 QStringList Lemmat::lignesFichier(QString nf)
 {
     QFile f(nf);
@@ -229,6 +311,19 @@ QStringList Lemmat::lignesFichier(QString nf)
     return retour;
 }
 
+/**
+ * @brief Lemmat::lisMorphos
+ * @param lang : langue pour les morphologies.
+ * Cette langue est donnée par deux caractères "fr" ou "en",
+ * pour l'instant.
+ *
+ * Cette routine lit le fichier morphos.* qui donne
+ * les analyses morphologiques en français ou en anglais.
+ * Les utilisateurs peuvent ajouter toutes les langues qu'ils maîtrisent.
+ *
+ * Des mots clefs essentiels sont aussi ajoutés après les 416 morphos possibles.
+ *
+ */
 void Lemmat::lisMorphos(QString lang)
 {
     QStringList lignes = lignesFichier(_resDir + "morphos." + lang);
