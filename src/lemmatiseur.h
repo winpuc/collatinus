@@ -103,6 +103,9 @@ class Lemmat : public QObject
     QMap<QString, int> _tagOcc; // Nombre d'occurrences du tag.
     QMap<QString, int> _tagTot; // Nombre total en fonction du premier caractère du tag.
     QMap<QString, int> _trigram; // Nombre d'occurrences des séquences de 3 tags.
+    QString tag(Lemme *l, QString morph);
+    int fraction(Lemme *l, QString morph);
+    void lisTags(bool tout = false);
 
     QString _resDir; // Le chemin du répertoire de ressources
     bool _extLoaded; // = true après chargement de l'extension

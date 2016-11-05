@@ -97,7 +97,18 @@ void Lemmat::lisNombres()
         else
             qDebug() << lin;
     }
-    lignes = lignesFichier(_resDir + "tags.la");
+    // Je lis aussi le début du fichier tags.la
+    lisTags(false);
+    // Lorsque j'aurai besoin des trigammes pour le tagger, je rappellerai lisTags(true).
+    // Je commencerai avec un if (_trigram.isEmpty()) lisTags(true);
+}
+
+void Lemmat::lisTags(bool tout)
+{
+    _tagOcc.clear();
+    _tagTot.clear();
+    _trigram.clear();
+    QString lignes = lignesFichier(_resDir + "tags.la");
     int max = lignes.count() - 1;
     int i = 0;
     QString l = "";
@@ -136,27 +147,70 @@ void Lemmat::lisNombres()
         else qDebug() << "Erreur dans tags.la : " << l;
         ++i;
     }
-    qDebug() << _tagOcc.size() << _tagTot.size() << tagsCollatinus.size() << tagsLasla.size();
-    l.clear();
-    ++i;
-    while (i <= max && !l.startsWith("! --- "))
+    //    qDebug() << _tagOcc.size() << _tagTot.size() << tagsCollatinus.size() << tagsLasla.size();
+    if (tout)
     {
-        l = lignes.at(i);
-        for (int j=0; j<tagsCollatinus.size();j++)
-            l.replace(tagsLasla[j],tagsCollatinus[j]);
-        QString trigr = l.section(',',0,2);
-        int occ = l.section(',',3,3).toInt();
-        trigr.replace(',',' ');
-        _trigram[trigr] += occ;
-        if (trigr.contains(" snt "))
-        {
-            _trigram[trigr.mid(0,7)] += occ;
-            _trigram[trigr.mid(4,7)] += occ;
-            // J'ai aussi besoin des bigrammes en début et en fin de phrase.
-        }
+        l.clear();
         ++i;
+        while (i <= max && !l.startsWith("! --- "))
+        {
+            l = lignes.at(i);
+            for (int j=0; j<tagsCollatinus.size();j++)
+                l.replace(tagsLasla[j],tagsCollatinus[j]);
+            QString trigr = l.section(',',0,2);
+            int occ = l.section(',',3,3).toInt();
+            trigr.replace(',',' ');
+            _trigram[trigr] += occ;
+            if (trigr.contains(" snt "))
+            {
+                _trigram[trigr.mid(0,7)] += occ;
+                _trigram[trigr.mid(4,7)] += occ;
+                // J'ai aussi besoin des bigrammes en début et en fin de phrase.
+            }
+            ++i;
+        }
+        //    qDebug() << _trigram.size();
     }
-    qDebug() << _trigram.size();
+}
+
+QString Lemmat::tag(Lemme *l, QString morph)
+{
+    QString p = l->pos();
+    if (p.size() > 1) p = p.mid(0,1);
+    if ((p == "n") && (morph == morpho(413))) return "n71"; // Locatif !
+    p.append("%1%2");
+    for (int i=0; i<6; i++) if (morph.contains(cas(i)))
+    {
+        if (morph.contains(nombre(0))) p = p.arg(i+1).arg(1);
+        else  p = p.arg(i+1).arg(2);
+        if (p.startsWith("v")) p[0] = 'w'; // Forme verbale déclinée.
+        return p;
+    }
+    if (p.startsWith("v"))
+    {
+        for (int i=0; i<4; i++) if (morph.contains(modes(i).toLower()))
+        {
+            if (morph.contains(temps(0))) p = p.arg(i+1).arg(1); // présent
+            else  p = p.arg(i+1).arg(" ");
+            return p;
+        }
+//        if (p.size() == 3) return p;
+    }
+    return p.arg(" ").arg(" ");
+}
+
+int Lemmat::fraction(Lemme *l, QString morph)
+{
+    QString t = tag(l, morph);
+    int fr = 0;
+    if (_tagOcc.contains(t))
+    {
+        fr = _tagOcc[t] * 1024 / _tagTot[t.mid(0,1)];
+        if (t[0] == 'a') return fr / 3;
+        return fr;
+    }
+    qDebug() << l->grq() << morph << t << "Non trouvé !";
+    return fr;
 }
 
 QStringList Lemmat::lignesFichier(QString nf)
@@ -878,20 +932,33 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
                 foreach (Lemme *l, map.keys())
                 {
                     QString lem = "<li>" + l->humain(true, _cible, true);
+                    int frMax = 0;
                     if (cumMorpho && !inv(l, map))
                     {
-                        lem.append("<ul>");
+                        QMultiMap<int,QString> listeMorph;
                         foreach (SLem m, map.value(l))
+                        {
+                            int fr = fraction(l,m.morpho);
+                            if (fr > frMax) frMax = fr;
                             if (m.sufq.isEmpty())
-                                lem.append("<li>" + m.grq + " " + m.morpho +
-                                           "</li>");
+                                listeMorph.insert(-fr,m.grq + " " + m.morpho);
                             else
-                                lem.append("<li>" + m.grq + " + " + m.sufq +
-                                           " " + m.morpho + "</li>");
-                        lem.append("</ul>\n");
+                                listeMorph.insert(-fr,m.grq + " + " + m.sufq +
+                                           " " + m.morpho);
+                        }
+                        lem.append("<ul><li>");
+                        QStringList lMorph = listeMorph.values();
+                        lem.append(lMorph.join("</li><li>"));
+                        lem.append("</li></ul>\n");
                     }
+                    else foreach (SLem m, map.value(l))
+                    {
+                        int fr = fraction(l,m.morpho);
+                        if (fr > frMax) frMax = fr;
+                    }
+                    if (frMax == 0) frMax = 1024;
                     lem.append("</li>");
-                    listeLem.insert(-l->nbOcc(),lem);
+                    listeLem.insert(-frMax * l->nbOcc(),lem);
                 }
                 QStringList lLem = listeLem.values();
                 // Les valeurs sont en ordre croissant
