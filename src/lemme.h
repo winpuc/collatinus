@@ -93,7 +93,8 @@ class Lemme : public QObject
     QString             humain(bool html = false, QString l = "fr", bool nbr = false);
     QString             irreg(int i, bool* excl);
     Modele*             modele();
-    int                 nbOcc();
+    int                 nbOcc(); // Retourne le nombre d'occurrences du lemme
+    void                clearOcc(); // Efface "
     int                 nh();
     int                 origin();
     QString static      oteNh(QString g, int& nh);

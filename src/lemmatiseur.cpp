@@ -60,6 +60,7 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
     _morpho = false;
     _extension = false;
     _extLoaded = false;
+    _nbrLoaded = false;
     // suffixes
     suffixes.insert("ne", "nĕ");
     suffixes.insert("que", "quĕ");
@@ -110,9 +111,9 @@ void Lemmat::lisNombres()
         clef.remove('-');
         if (_lemmes.contains(clef))
             _lemmes[clef]->ajNombre(liste[2].toInt());
-        else
-            qDebug() << lin;
+//        else qDebug() << lin;
     }
+    _nbrLoaded = true;
     // Je lis aussi le début du fichier tags.la
     lisTags(false);
     // Lorsque j'aurai besoin des trigammes pour le tagger, je rappellerai lisTags(true).
@@ -1241,6 +1242,9 @@ void Lemmat::lisLexique()
  */
 void Lemmat::lisExtension()
 {
+    if (_nbrLoaded) foreach(Lemme *l, _lemmes.values())
+        l->clearOcc();
+    // Si les nombres d'occurrences ont été chargés, je dois les ré-initialiser.
     lisFichierLexique(_resDir + "lem_ext.la");
     lisNombres();
 }
@@ -1526,6 +1530,21 @@ void Lemmat::setNonRec(bool n) { _nonRec = n; }
  */
 QString Lemmat::variable(QString v) { return _variables[v]; }
 
+/**
+ * @brief Lemmat::setExtension
+ * @param e : bool
+ *
+ * Cette routine gère l'extension du lexique.
+ * Si le paramètre e est true, l'extension du lexique est active.
+ * S'il n'a pas encore été chargé, il l'est.
+ *
+ * Lors de la lecture des préférences (à l'initialisation),
+ * cette routine est appelée.
+ * Si on ne charge pas l'extension du lexique,
+ * je charge quand même les nombres d'occurrences.
+ * Ces nombres seront ré-initialisés si on charge l'extension par la suite.
+ *
+ */
 void Lemmat::setExtension(bool e)
 {
     _extension = e;
@@ -1534,6 +1553,7 @@ void Lemmat::setExtension(bool e)
         lisTraductions(false,true);
         _extLoaded = true;
     }
+    else if (!_nbrLoaded) lisNombres();
 }
 
 /**

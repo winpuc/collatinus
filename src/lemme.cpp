@@ -391,6 +391,15 @@ int Lemme::nbOcc()
 }
 
 /**
+ * @brief Lemme::clearOcc
+ * Initialise le nombre d'occurrences.
+ */
+void Lemme::clearOcc()
+{
+    _nbOcc = 1;
+}
+
+/**
  * \fn int Lemme::nh()
  * \brief Renvoie le numéro d'homonymie du lemme.
  */
