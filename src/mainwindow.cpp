@@ -129,6 +129,11 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
             mainwindow->afficheLemsDic(lemmes);
         if (mainwindow->wDic->isVisible() && mainwindow->syncAct->isChecked())
             mainwindow->afficheLemsDicW(lemmes);
+        // 5. dock Syntaxe
+        if (!mainwindow->dockTag->visibleRegion().isEmpty())
+        {
+            mainwindow->tagger(toPlainText(),textCursor().position());
+        }
     }
     QTextEdit::mouseReleaseEvent(e);
 }
@@ -1168,14 +1173,32 @@ void MainWindow::createDockWindows()
     vLayoutFlex->addWidget(textBrowserFlex);
     dockFlex->setWidget(dockWidgetFlex);
 
+    dockTag = new QDockWidget(tr("Tagger"), this);
+    dockTag->setObjectName("dockTag");
+    dockTag->setFloating(false);
+    dockTag->setFeatures(QDockWidget::DockWidgetFloatable |
+                          QDockWidget::DockWidgetMovable);
+    dockTag->setAllowedAreas(Qt::BottomDockWidgetArea);
+    dockWidgetTag = new QWidget(dockTag);
+    QVBoxLayout *vLayoutTag = new QVBoxLayout(dockWidgetTag);
+    QHBoxLayout *hLayoutTag = new QHBoxLayout();
+    textBrowserTag = new QTextBrowser(dockWidgetTag);
+    textBrowserTag->setSizePolicy(QSizePolicy::Expanding,
+                                   QSizePolicy::Expanding);
+    vLayoutTag->addLayout(hLayoutTag);
+    vLayoutTag->addWidget(textBrowserTag);
+    dockTag->setWidget(dockWidgetTag);
+
     addDockWidget(Qt::BottomDockWidgetArea, dockLem);
     addDockWidget(Qt::BottomDockWidgetArea, dockDic);
     addDockWidget(Qt::BottomDockWidgetArea, dockScand);
     addDockWidget(Qt::BottomDockWidgetArea, dockFlex);
+    addDockWidget(Qt::BottomDockWidgetArea, dockTag);
 
     tabifyDockWidget(dockLem, dockDic);
     tabifyDockWidget(dockDic, dockScand);
     tabifyDockWidget(dockScand, dockFlex);
+    tabifyDockWidget(dockScand, dockTag);
 
     setTabPosition(Qt::BottomDockWidgetArea, QTabWidget::North);
     dockLem->raise();
@@ -1296,6 +1319,7 @@ void MainWindow::effaceRes()
     if (dockVisible(dockLem)) textEditLem->clear();
     if (dockVisible(dockFlex)) textBrowserFlex->clear();
     if (dockVisible(dockScand)) textEditScand->clear();
+    if (dockVisible(dockTag)) textBrowserTag->clear();
 }
 
 /**
@@ -2046,4 +2070,27 @@ void MainWindow::dockRestore()
     dockDic->show();
     dockFlex->setFloating(false);
     dockFlex->show();
+    dockTag->setFloating(false);
+    dockTag->show();
+}
+
+void MainWindow::tagger(QString t, int p)
+{
+    if (t.length() > 2)
+    {
+        // Sans texte, je ne fais rien.
+        int tl = t.length() - 1;
+        if (p > tl) p = tl;
+        if (p < 0) p = 0;
+        const QString pp = ".;!?";
+        // régression au début de la phrase
+        int dph = p;
+        while (dph > 0 && !pp.contains(t.at(dph))) --dph;
+        if (dph != 0) dph += 1; // J'élimine la ponctuation de la phrase précédente.
+        // progression jusqu'en fin de phrase
+        int fph = p;
+        while (fph < tl && !pp.contains(t.at(fph))) ++fph;
+        QString phr = t.mid(dph, fph - dph).trimmed();
+        textBrowserTag->setText(phr);
+    }
 }
