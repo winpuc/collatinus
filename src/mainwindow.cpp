@@ -2091,6 +2091,6 @@ void MainWindow::tagger(QString t, int p)
         int fph = p;
         while (fph < tl && !pp.contains(t.at(fph))) ++fph;
         QString phr = t.mid(dph, fph - dph).trimmed();
-        textBrowserTag->setText(phr);
+        textBrowserTag->setHtml(lemmatiseur->tagPhrase(phr));
     }
 }

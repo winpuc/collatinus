@@ -259,29 +259,26 @@ QString Lemmat::tag(Lemme *l, QString morph)
 
 /**
  * @brief Lemmat::fraction
- * @param l : le lemme
- * @param morph : l'analyse morphologique
- * @return : la fraction moyenne du nombre d'occurrences du lemme
- * qui ont cette analyse morphologique.
+ * @param t : le tag
+ * @return : la fraction moyenne du tag.
  *
  * Ce résultat est un entier, exprimé en 1/1024e
  *
- * On calcule d'abord le tag
- * puis on va chercher le nombre d'occurrences associé à ce tag.
+ * On va chercher le nombre d'occurrences associé à ce tag.
  * On le divise par le nombre d'occurrences associé au même POS.
  *
  */
-int Lemmat::fraction(Lemme *l, QString morph)
+int Lemmat::fraction(QString t)
 {
-    QString t = tag(l, morph);
     int fr = 0;
     if (_tagOcc.contains(t))
     {
         fr = _tagOcc[t] * 1024 / _tagTot[t.mid(0,1)];
         if ((t[0] == 'a') || (t[0] == 'p')) return fr / 3; // Adj. ou pron. sans genre !
+        if (fr == 0) return 1;
         return fr;
     }
-    qDebug() << l->grq() << morph << t << "Non trouvé !";
+    qDebug() << t << " : Tag non trouvé !";
     return fr;
 }
 
@@ -1034,7 +1031,7 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
                         QMultiMap<int,QString> listeMorph;
                         foreach (SLem m, map.value(l))
                         {
-                            int fr = fraction(l,m.morpho);
+                            int fr = fraction(tag(l,m.morpho));
                             if (fr > frMax) frMax = fr;
                             if (m.sufq.isEmpty())
                                 listeMorph.insert(-fr,m.grq + " " + m.morpho);
@@ -1049,7 +1046,7 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
                     }
                     else foreach (SLem m, map.value(l))
                     {
-                        int fr = fraction(l,m.morpho);
+                        int fr = fraction(tag(l,m.morpho));
                         if (fr > frMax) frMax = fr;
                     }
                     if (frMax == 0) frMax = 1024;
@@ -1587,4 +1584,119 @@ void Lemmat::lireHyphen(QString fichierHyphen)
 #endif
         }
     }
+}
+
+QString Lemmat::tagPhrase(QString phr)
+{
+    // éliminer les chiffres et les espaces surnuméraires
+    phr.remove(QRegExp("\\d"));
+    phr = phr.simplified(); // Rmq : perd les retours de ligne !
+    // découpage en mots
+    QStringList lm = phr.split(QRegExp("\\b"));
+
+    // conteneur pour les résultats
+    QStringList lsv;
+    lsv.append(phr);
+    lsv.append("<ul>");
+    QList<Mot*> mots;
+    // lemmatisation pour chaque mot
+    for (int i = 1; i < lm.length(); i += 2)
+    {
+        Mot * mot = new Mot(lm[i],(i-1)/2,this);
+        mots.append(mot);
+    }  // fin de boucle de lemmatisation pour chaque mot
+    Mot * mot = new Mot("",mots.size(),this);
+    mots.append(mot);
+
+    if (_trigram.isEmpty()) lisTags(true);
+    // Si je n'ai pas encore chargé les trigrammes, je dois le faire maintenant.
+
+    QStringList sequences;
+    QList<double> probabilites;
+    sequences.append("snt");
+    probabilites.append(1.0);
+    // Je suis en début de phrase : je n'ai que le tag "snt" et une proba de 1.
+    for (int i = 0; i < mots.size(); i++)
+    {
+        Mot *mot = mots[i];
+        QStringList lTags = mot->tags();
+        QStringList nvlSeq;
+        QList<double> nvlProba;
+        // Je dois ajouter tous les tags possibles à toutes les sequences et calculer les nouvelles probas.
+        int sSeq = sequences.size();
+        int sTag = lTags.size();
+        if (sTag == 0) continue; // J'ignore pour l'instant les mots inconnus.
+        for (int j = 0; j < sSeq; j++)
+        {
+            QString bigr = sequences[j].right(7); // Le bigramme terminal
+            int prTot = 0;
+            QList<int> pr;
+            for (int k = 0; k < sTag; k++)
+            {
+                QString seq = bigr + " " + lTags[k];
+                int p = mot->proba(lTags[k]) * _trigram[seq];
+                pr << p;
+                prTot += p;
+            }
+            // J'ai tout ce qui dépend de k et la somme pour normaliser.
+            if (prTot == 0)
+            {
+                prTot = 1;
+                qDebug() << sequences[j];
+            }
+            for (int k = 0; k < sTag; k++)
+            {
+                nvlSeq.append(sequences[j] + " " + lTags[k]);
+                nvlProba.append(probabilites[j] * pr[k] / prTot);
+                // Si j'avais gardé toutes les séquences, ce serait une vraie probabilité (normalisée à 1)
+            }
+        }
+        // J'ai toutes les sequences et leur proba.
+        // Pour chaque bigramme terminal, je ne dois garder que la séquence la plus probable.
+        sequences.clear();
+        probabilites.clear();
+        qDebug() << nvlProba << nvlSeq;
+        for (int j = 0; j < nvlSeq.size(); j++) if (nvlProba[j] > 0)
+        {
+            QString seq = "";
+            QString bigr = nvlSeq[j].right(7);
+            double val = -1;
+            for (int k = j; k < nvlSeq.size(); k += sTag) // Pour retrouver le bigramme terminal, il faut au moins le même dernier tag.
+                if (bigr == nvlSeq[k].right(7))
+                {
+                    if (val < nvlProba[k])
+                    {
+                        val = nvlProba[k];
+                        seq = nvlSeq[k];
+                    }
+                    nvlProba[k] = -1; // Pour ne pas considérer deux fois les mêmes séquences.
+                }
+            // val et seq correspondent aux proba et séquence avec le bigramme considéré qui ont la plus grande proba.
+            sequences << seq;
+            probabilites << val;
+        }
+        qDebug() << mot->forme() << sSeq << sTag << nvlSeq.size() << sequences.size();
+        if (sequences.size() == 0) break;
+    }
+
+    QString seq = "";
+    double val = -1;
+    for (int i = 0; i < sequences.size(); i++)
+        if (val < probabilites[i])
+        {
+            val = probabilites[i];
+            seq = sequences[i];
+        }
+
+    lsv.append(seq + "<br/>");
+
+    seq = seq.mid(4);
+    for (int i = 0; i < mots.size()-1; i++)
+    {
+        lsv.append(mots[i]->choisir(seq.left(3)));
+        seq = seq.mid(4); // Si enclitique mid(8)
+    }
+
+    lsv.append("</ul>");
+    return lsv.join("\n");
 }
