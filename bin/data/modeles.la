@@ -621,7 +621,7 @@ des:249-260:2:ūr$templum
 des:261-264:0:āndŭm;āndī;āndō;āndō
 des:265,266:2:ŭm;ū
 ! indicatif passif
-des:267-272:0:ŏr;ārĭs;ātŭr;āmŭr;āmĭnī;āntŭr
+des:267-272:0:ŏr;ārĭs,ārĕ;ātŭr;āmŭr;āmĭnī;āntŭr
 des:273-278:0:ābăr;ābārĭs,ābārĕ;ābātŭr;ābāmŭr;ābāmĭnī;ābāntŭr
 des:279-284:0:ābŏr;ābĕrĭs,ābĕrĕ;ābĭtŭr;ābĭmŭr;ābĭmĭnī;ābūntŭr
 ! subjonctif
@@ -683,7 +683,7 @@ des:213-224:0:ēns;ēns;ēns;ēntĭs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ē
 ! gérondif, supin hérité de amo
 des:261-264:0:ēndŭm;ēndī;ēndō;ēndō
 ! indicatif passif
-des:267-272:0:ĕŏr;ērĭs;ētŭr;ēmŭr;ēmĭnī;ēntŭr
+des:267-272:0:ĕŏr;ērĭs,ērĕ;ētŭr;ēmŭr;ēmĭnī;ēntŭr
 des:273-278:0:ēbăr;ēbārĭs,ēbārĕ;ēbātŭr;ēbāmŭr;ēbāmĭnī;ēbāntŭr
 des:279-284:0:ēbŏr;ēbĕrĭs,ēbĕrĕ;ēbĭtŭr;ēbĭmŭr;ēbĭmĭnī;ēbūntŭr
 ! subjonctif
