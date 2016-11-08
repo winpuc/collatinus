@@ -16459,8 +16459,9 @@ mensura,mensura  ,50
 mensus,mensis  ,3
 menta,menta  ,1
 mentio,mentio 1,104
-mentio2,mentior  ,101
-mentior,mentior  ,13
+!mentio2,mentior  ,101
+!mentior,mentior  ,13
+mentior,mentior  ,114
 !mentula,Mentula N,5
 !mentula,mentula  ,3
 mentum,mentum  ,23
