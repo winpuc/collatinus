@@ -144,6 +144,7 @@ void Lemmat::lisNombres()
  */
 void Lemmat::lisTags(bool tout)
 {
+    // Nouveau format des données. Le 8 novembre 2016.
     _tagOcc.clear();
     _tagTot.clear();
     _trigram.clear();
@@ -152,8 +153,44 @@ void Lemmat::lisTags(bool tout)
     int i = 0;
     QString l = "";
     QStringList eclats;
-    QStringList tagsLasla;
-    QStringList tagsCollatinus;
+    while (i <= max) // && !l.startsWith("! --- "))
+    {
+        l = lignes.at(i);
+        if (l.startsWith("! --- ")) break;
+        eclats = l.split(',');
+        _tagOcc[eclats[0]] += eclats[1].toInt();
+        _tagTot[eclats[0].mid(0,1)] += eclats[1].toInt();
+        ++i;
+    }
+        qDebug() << _tagOcc.size() << _tagTot.size();
+    if (tout)
+    {
+        l.clear();
+        ++i;
+        while (i <= max && !l.startsWith("! --- "))
+        {
+            l = lignes.at(i);
+            eclats = l.split(",");
+            _trigram.insert(eclats[0],eclats[1].toInt());
+            ++i;
+        }
+            qDebug() << _trigram.size();
+    }
+}
+/* Ancien format du fichier !
+void Lemmat::lisTags(bool tout)
+{
+    _tagOcc.clear();
+    _tagTot.clear();
+    _trigram.clear();
+    QStringList lignes = lignesFichier(_resDir + "tags.la");
+    int max = lignes.count() - 1;
+    int i = 0;
+    QString l = "";
+    QStringList eclats;
+//    QStringList tagsLasla;
+//    QStringList tagsCollatinus;
+    QMap<QString,QString> corresp;
     while (i <= max) // && !l.startsWith("! --- "))
     {
         l = lignes.at(i);
@@ -175,18 +212,20 @@ void Lemmat::lisTags(bool tout)
             default:
                 break;
             }
-            if (tag != eclats[0])
+/*            if (tag != eclats[0])
             {
                 tagsCollatinus.append(tag);
                 tagsLasla.append(eclats[0]);
             }
+            */
+/*            corresp.insert(eclats[0],tag);
             _tagOcc[tag] += eclats[1].toInt();
             _tagTot[tag.mid(0,1)] += eclats[1].toInt();
         }
         else qDebug() << "Erreur dans tags.la : " << l;
         ++i;
     }
-    //    qDebug() << _tagOcc.size() << _tagTot.size() << tagsCollatinus.size() << tagsLasla.size();
+        qDebug() << _tagOcc.size() << _tagTot.size() << corresp.size();
     if (tout)
     {
         l.clear();
@@ -194,12 +233,18 @@ void Lemmat::lisTags(bool tout)
         while (i <= max && !l.startsWith("! --- "))
         {
             l = lignes.at(i);
-            for (int j=0; j<tagsCollatinus.size();j++)
+/*            for (int j=0; j<tagsCollatinus.size();j++)
                 l.replace(tagsLasla[j],tagsCollatinus[j]);
             QString trigr = l.section(',',0,2);
             int occ = l.section(',',3,3).toInt();
             trigr.replace(',',' ');
+            */
+/*            QStringList eclats = l.split(",");
+            int occ = eclats[3].toInt();
+            QString trigr = corresp[eclats[0]] + " " + corresp[eclats[1]] + " " + corresp[eclats[2]];
             _trigram[trigr] += occ;
+            if (trigr.size() != 11)
+                qDebug() << l << eclats[0] << eclats[1] << eclats[2] << eclats[3] << trigr;
             if (trigr.contains(" snt "))
             {
                 _trigram[trigr.mid(0,7)] += occ;
@@ -208,9 +253,22 @@ void Lemmat::lisTags(bool tout)
             }
             ++i;
         }
-        //    qDebug() << _trigram.size();
+        // Sauvegarde au nouveau format
+        QFile f(_resDir + "tags.la");
+        f.open(QFile::WriteOnly);
+        QTextStream flux(&f);
+        QString ligne = "%1,%2\n";
+        foreach (QString tag, _tagOcc.keys())
+            flux << ligne.arg(tag).arg(_tagOcc[tag]);
+        flux << "! --- Trigrammes\n";
+        foreach (QString tag, _trigram.keys())
+            flux << ligne.arg(tag).arg(_trigram[tag]);
+        f.close();
+
+            qDebug() << _trigram.size();
     }
 }
+*/
 
 /**
  * @brief Lemmat::tag
@@ -239,8 +297,8 @@ QString Lemmat::tag(Lemme *l, QString morph)
     p.append("%1%2");
     for (int i=0; i<6; i++) if (morph.contains(cas(i)))
     {
-        if (morph.contains(nombre(0))) p = p.arg(i+1).arg(1);
-        else  p = p.arg(i+1).arg(2);
+        if (morph.contains(nombre(1))) p = p.arg(i+1).arg(2);
+        else  p = p.arg(i+1).arg(1);
         if (p.startsWith("v")) p[0] = 'w'; // Forme verbale déclinée.
         return p;
     }
@@ -274,7 +332,8 @@ int Lemmat::fraction(QString t)
     if (_tagOcc.contains(t))
     {
         fr = _tagOcc[t] * 1024 / _tagTot[t.mid(0,1)];
-        if ((t[0] == 'a') || (t[0] == 'p')) return fr / 3; // Adj. ou pron. sans genre !
+        if ((t[0] == 'a') || (t[0] == 'p') || (t[0] == 'w')) return fr / 3; // Adj. ou pron. sans genre !
+//        if ((t[0] == 'v') && (t[2] == '1')) return fr / 2;
         if (fr == 0) return 1;
         return fr;
     }
@@ -1688,7 +1747,8 @@ QString Lemmat::tagPhrase(QString phr)
             seq = sequences[i];
         }
 
-    lsv.append(seq + "<br/>");
+    QString prob = "<br/> avec la proba : %1<br/>";
+    lsv.append(seq + prob.arg(val));
 
     seq = seq.mid(4);
     for (int i = 0; i < mots.size()-1; i++)
