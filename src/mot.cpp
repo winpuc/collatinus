@@ -28,7 +28,7 @@ Mot::Mot(QString forme, int rang, QObject *parent)
             foreach (SLem m, _mapLem.value(l))
             {
                 QString t = _lemmatiseur->tag(l, m.morpho);
-                int fr = nb * _lemmatiseur->fraction(t);
+                long fr = nb * _lemmatiseur->fraction(t);
                 _lemmes.append(lem);
                 _tags.append(t);
                 _nbOcc.append(fr);
@@ -45,11 +45,11 @@ Mot::Mot(QString forme, int rang, QObject *parent)
         }
         // J'ai construit les listes de lemmes, morphos, tags et nombres d'occurrences.
         // J'ai aussi une QMap qui associe les tags aux probas, que je dois normaliser.
-        int total = 0;
+        long total = 0;
         foreach (QString t, _probas.keys()) total += _probas[t];
         foreach (QString t, _probas.keys())
         {
-            int pr = _probas[t] * 1024 /total;
+            long pr = _probas[t] * 1024 /total;
             if (pr == 0) pr++;
             _probas[t] = pr;
         }
@@ -57,6 +57,12 @@ Mot::Mot(QString forme, int rang, QObject *parent)
         if ((enclitique == "quĕ") || (enclitique == "vĕ")) _tagEncl = "ce ";
         else if (enclitique == "nĕ") _tagEncl = "de ";
         else if (enclitique == "st") _tagEncl = "v11";
+        if (forme.endsWith("cum"))
+        {
+            bool encl = (forme == "mecum") || (forme == "tecum") || (forme == "secum") || (forme == "quicum");
+            encl = encl || (forme == "mecum") || (forme == "nobiscum") || (forme == "vobiscum") || (forme == "quibuscum");
+            if (encl) _tagEncl = "re ";
+        }
     }
 }
 
@@ -87,13 +93,23 @@ QString Mot::choisir(QString t, bool tout)
     return choix;
 }
 
+QString Mot::tagEncl()
+{
+    return _tagEncl;
+}
+
+bool Mot::inconnu()
+{
+    return _tags.isEmpty();
+}
+
 QStringList Mot::tags()
 {
     QStringList ret = _probas.keys();
     return ret;
 }
 
-int Mot::proba(QString t)
+long Mot::proba(QString t)
 {
     if (_probas.contains(t))
         return _probas[t];

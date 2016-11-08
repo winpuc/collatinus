@@ -15,9 +15,11 @@ class Mot : public QObject
 public:
     Mot(QString forme, int rang, QObject *parent = 0);
     QString choisir(QString t = "", bool tout = true);
-    int proba(QString t);
+    long proba(QString t);
     QStringList tags();
     QString forme();
+    QString tagEncl();
+    bool inconnu();
 
 private:
     Lemmat* _lemmatiseur;
@@ -29,7 +31,7 @@ private:
     QStringList _morphos;
     QStringList _tags;
     QList<int> _nbOcc;
-    QMap<QString,int> _probas;
+    QMap<QString,long> _probas;
 };
 
 #endif // MOT_H
