@@ -162,7 +162,7 @@ void Lemmat::lisTags(bool tout)
         _tagTot[eclats[0].mid(0,1)] += eclats[1].toInt();
         ++i;
     }
-        qDebug() << _tagOcc.size() << _tagTot.size();
+//        qDebug() << _tagOcc.size() << _tagTot.size();
     if (tout)
     {
         l.clear();
@@ -174,7 +174,7 @@ void Lemmat::lisTags(bool tout)
             _trigram.insert(eclats[0],eclats[1].toInt());
             ++i;
         }
-            qDebug() << _trigram.size();
+//            qDebug() << _trigram.size();
     }
 }
 /* Ancien format du fichier !
@@ -286,6 +286,7 @@ void Lemmat::lisTags(bool tout)
  * Pour les verbes conjugués, on donne le mode (1-4)
  * et un 1 si c'est un présent ou un espace sinon.
  * Les supins ont été joints aux impératifs autres que le présent (groupes trop peu nombreux).
+ * Les formes verbales déclinées ont un "w" en tête (à la place du "v" pour verbe).
  * Pour les invariables, le POS est complété avec deux espaces.
  *
  */
@@ -1674,26 +1675,28 @@ QString Lemmat::tagPhrase(QString phr)
     QList<double> probabilites;
     sequences.append("snt");
     probabilites.append(1.0);
+    double branches = 1.0;
     // Je suis en début de phrase : je n'ai que le tag "snt" et une proba de 1.
     for (int i = 0; i < mots.size(); i++)
     {
         Mot *mot = mots[i];
-        QStringList lTags = mot->tags();
-        QStringList nvlSeq;
-        QList<double> nvlProba;
+        QStringList lTags = mot->tags(); // La liste des tags possibles pour le mot
+        QStringList nvlSeq; // Nouvelle liste des séquences possibles
+        QList<double> nvlProba; // Nouvelle liste des probas.
         // Je dois ajouter tous les tags possibles à toutes les sequences et calculer les nouvelles probas.
         int sSeq = sequences.size();
         int sTag = lTags.size();
-        if (sTag == 0) continue; // J'ignore pour l'instant les mots inconnus.
+        if (sTag == 0) continue; // J'ignore pour l'instant les mots inconnus, cf. plus bas.
+        branches *= sTag;
         for (int j = 0; j < sSeq; j++)
         {
             QString bigr = sequences[j].right(7); // Le bigramme terminal
-            int prTot = 0;
-            QList<int> pr;
+            long prTot = 0;
+            QList<long> pr;
             for (int k = 0; k < sTag; k++)
             {
                 QString seq = bigr + " " + lTags[k];
-                int p = mot->proba(lTags[k]) * _trigram[seq];
+                long p = mot->proba(lTags[k]) * _trigram[seq];
                 pr << p;
                 prTot += p;
             }
@@ -1701,7 +1704,7 @@ QString Lemmat::tagPhrase(QString phr)
             if (prTot == 0)
             {
                 prTot = 1;
-                qDebug() << sequences[j];
+                qDebug() << mot->forme() << "proba nulle ! " << sequences[j];
             }
             for (int k = 0; k < sTag; k++)
             {
@@ -1710,11 +1713,18 @@ QString Lemmat::tagPhrase(QString phr)
                 // Si j'avais gardé toutes les séquences, ce serait une vraie probabilité (normalisée à 1)
             }
         }
+        // Ajouter les enclitiques.
+        if (!mot->tagEncl().isEmpty())
+        {
+            QString ajout = " " + mot->tagEncl();
+            for (int j = 0; j < nvlSeq.size(); j++) nvlSeq[j].append(ajout);
+            // Comme toutes les formes à tag unique, l'enclitique ne change pas les probabilités.
+        }
         // J'ai toutes les sequences et leur proba.
         // Pour chaque bigramme terminal, je ne dois garder que la séquence la plus probable.
         sequences.clear();
         probabilites.clear();
-        qDebug() << nvlProba << nvlSeq;
+        qDebug() << mot->forme() << nvlProba << nvlSeq;
         for (int j = 0; j < nvlSeq.size(); j++) if (nvlProba[j] > 0)
         {
             QString seq = "";
@@ -1734,10 +1744,11 @@ QString Lemmat::tagPhrase(QString phr)
             sequences << seq;
             probabilites << val;
         }
-        qDebug() << mot->forme() << sSeq << sTag << nvlSeq.size() << sequences.size();
+//        qDebug() << mot->forme() << sSeq << sTag << nvlSeq.size() << sequences.size();
         if (sequences.size() == 0) break;
-    }
+    } // fin de la phrase.
 
+    // Le tri final !
     QString seq = "";
     double val = -1;
     for (int i = 0; i < sequences.size(); i++)
@@ -1747,15 +1758,18 @@ QString Lemmat::tagPhrase(QString phr)
             seq = sequences[i];
         }
 
-    QString prob = "<br/> avec la proba : %1<br/>";
-    lsv.append(seq + prob.arg(val));
+    QString prob = "<br/> avec la proba : %1 pour %2 branches.<br/>";
+    lsv.append(seq + prob.arg(val).arg(branches));
 
     seq = seq.mid(4);
     for (int i = 0; i < mots.size()-1; i++)
-    {
-        lsv.append(mots[i]->choisir(seq.left(3)));
-        seq = seq.mid(4); // Si enclitique mid(8)
-    }
+        if (!mots[i]->inconnu()) // Les mots inconnus ne figurent pas dans la séquence (cf. plus haut)
+        {
+            lsv.append(mots[i]->choisir(seq.left(3)));
+             // Si enclitique mid(8)
+            if (mots[i]->tagEncl().isEmpty()) seq = seq.mid(4);
+            else seq = seq.mid(5 + mots[i]->tagEncl().size());
+        }
 
     lsv.append("</ul>");
     return lsv.join("\n");
