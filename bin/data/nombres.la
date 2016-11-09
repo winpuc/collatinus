@@ -6446,7 +6446,7 @@ aboleo,aboleo  ,33
 abolesco,abolesco  ,1
 abolitio,abolitio  ,3
 abolla,abolla  ,2
-abomino,abominor  ,15
+abominor,abominor  ,15
 aborior,aborior  ,1
 aboriscor,aboriscor  ,1
 abortio2,abortio 1,2
@@ -6942,7 +6942,7 @@ aduentor,aduentor  ,1
 aduersaria2,aduersaria  ,13
 aduersarius,aduersarius 1,212
 aduersarius2,aduersarius 2,10
-aduerso,aduersor  ,33
+aduersor,aduersor  ,33
 aduersum,aduersus 2,3
 aduersus,aduersus 1,325
 aduersus2,aduersus 3,377
@@ -6977,7 +6977,7 @@ aduocatus,aduocatus  ,63
 aduoco,aduoco  ,109
 aduolo,aduolo 2,34
 aduoluo,aduoluo  ,14
-aduorso,aduersor  ,7
+aduorsor,aduersor  ,7
 aduorsum,aduersus 2,7
 aduorsus,aduersus 1,25
 aduorto,aduerto  ,28
@@ -7030,9 +7030,9 @@ aelurus,aelurus  ,1
 aemulatio,aemulatio  ,46
 aemulator,aemulator  ,2
 aemulatus2,aemulatus  ,1
-aemulo,aemulor  ,36
+aemulor,aemulor  ,36
 !aemulus,-aemulus 1,36
-!aemulus,aemulus 2,12
+aemulus,aemulus 2,12
 aenatores,aeneator  ,2
 aeneolus,aeneolus  ,1
 aeneus,aeneus  ,23
@@ -7125,13 +7125,13 @@ agellus,agellus  ,23
 agema,agema  ,2
 agens2,agens 1,1
 !ager,Ager N,4
-!ager,ager  ,971
+ager,ager  ,971
 agger,agger  ,135
-!aggero2,aggero 1,6
-!aggero2,aggero 2,2
+aggero2,aggero 1,6
+adgero,aggero 2,2
 aggestus2,-aggero 2,1
 agglomero,agglomero  ,2
-aggredio,aggredior  ,37
+adgredior,aggredior  ,37
 agilis,agilis  ,25
 agilitas,agilitas  ,4
 agino,agino  ,1
@@ -7141,7 +7141,7 @@ agitatus,agitatus 2,2
 agite,agite  ,8
 agito,agito  ,298
 agmen,agmen  ,520
-!agna,agna  ,27
+agna,agna  ,27
 !agna,agna  -,1
 agnatus2,agnatus  ,2
 agnellus,agnellus  ,1
@@ -7274,7 +7274,7 @@ alte,alte  ,164
 alter,-alter  ,330
 alteras,alteras  ,3
 altercatio,altercatio  ,4
-alterco,altercor  ,4
+altercor,altercor  ,4
 alternis,alternis  ,25
 alterno,alterno  ,6
 alternus,alternus  ,85
@@ -7663,7 +7663,7 @@ arbitra,arbitra  ,2
 arbitrarius,arbitrarius  ,1
 arbitratus,arbitratus  ,38
 arbitrium,arbitrium  ,163
-arbitro,arbitror  ,632
+arbitror,arbitror  ,632
 arbitum,arbutum  ,2
 arbor,arbor  ,344
 arborarius,arborarius  ,2
@@ -8080,7 +8080,7 @@ auxiliaris,auxiliaris  ,14
 auxiliarius,auxiliarius  ,13
 auxiliator,auxiliator  ,2
 auxiliatus2,auxiliatus  ,1
-auxilio,auxilior  ,4
+auxilior,auxilior  ,4
 auxilium,auxilium  ,611
 axis,axis  ,55
 axula,assula  ,1
@@ -9234,7 +9234,7 @@ cohibeo,cohibeo  ,79
 cohonesto,cohonesto  ,5
 cohors,cohors  ,595
 cohortatio,cohortatio  ,11
-cohorto,cohortor  ,68
+cohortor,cohortor  ,68
 coicio,conicio  ,24
 coiro,coeo 1,1
 coitio,coitio  ,5
@@ -9362,7 +9362,7 @@ commendatus,commendatus  ,3
 commendo,commendo  ,144
 commentarius,commentarius 1,41
 commenticius,commenticius  ,6
-commento,commentor 2,4
+commentor,commentor 2,4
 commentor2,commentor 1,1
 commentum,commentum  ,1
 commeo,commeo  ,24
@@ -9399,7 +9399,7 @@ commoneo,commoneo  ,12
 commonstro,commonstro  ,3
 commordeo,commordeo  ,1
 commorior,commorior  ,2
-commoro,commoror 1,39
+commoror,commoror 1,39
 commotus,commotus  ,10
 commoueo,commoueo  ,235
 commune,commune  ,51
@@ -9460,8 +9460,9 @@ compitalicius,compitalicius  ,1
 compitalis,-compitalia  ,1
 compitum,compitum  ,20
 complano,complano  ,4
-complecto,complector  ,103
-complector,complector  ,62
+!complecto,complector  ,103
+!complector,complector  ,62
+complector,complector  ,165
 complementum,complementum  ,1
 !compleo,compleo  ,166
 !compleo,compleo  -,1
@@ -9807,7 +9808,7 @@ consecratus,consecratus  ,2
 consecro,consecro  ,65
 consectatio,consectatio  ,1
 consectatrix,consectatrix  ,1
-consecto,consector 2,33
+consector,consector 2,33
 consecue,consecue  ,1
 consedo,consedo  ,1
 consenesco,consenesco  ,19
@@ -9859,7 +9860,7 @@ consociatio,consociatio  ,3
 consocio,consocio  ,7
 consolatio,consolatio  ,23
 consolator,consolator  ,3
-consolo,consolor  ,58
+consolor,consolor  ,58
 consono,consono 1,11
 consonus,consonus  ,1
 consopio,consopio  ,1
@@ -10750,8 +10751,8 @@ demens,demens  ,117
 dementer,dementer  ,2
 dementia,dementia  ,59
 dementio,dementio  ,1
-!demereo,demereo  ,5
-!demereo,demereor  ,6
+demereo,demereo  ,5
+demereor,demereor  ,6
 demergo,demergo  ,30
 demeto,demeto 2,6
 demigro,demigro  ,11
@@ -10764,19 +10765,17 @@ demissio,demissio  ,1
 demissus,demissus  ,46
 demitto,demitto  ,168
 demo,demo  ,116
-demolio,demolior  ,15
-demolior,demolior  ,1
+demolior,demolior  ,16
 demolitio,demolitio  ,3
 demonstratio,demonstratio  ,2
 demonstro,demonstro  ,163
 demordeo,demordeo  ,1
 demorior,demorior  ,3
-!demoror,demoror 1,9
-!demoror,demoror 1-,1
+demoror,demoror 1,10
 demoueo,demoueo  ,30
 demum,demum  ,152
 demuto,demuto 2,2
-!denarius,denarius 1,61
+denarius,denarius 1,61
 !denarius,denarius 1-,5
 denarro,denarro  ,1
 denaso,denaso  ,1
@@ -10959,7 +10958,7 @@ desurgo,desurgo  ,1
 detectus,detectus  ,3
 detego,detego  ,34
 detendo,detendo  ,1
-!detergeo,detergeo  ,13
+detergeo,detergeo  ,13
 !detergeo,detergo  ,3
 deterior,deterior  ,104
 determino,determino  ,5
@@ -10967,7 +10966,7 @@ detero,detero  ,18
 deterreo,deterreo  ,86
 deterrimus,deterior  ,29
 detestabilis,detestabilis  ,24
-detesto,detestor  ,26
+detestor,detestor  ,26
 detineo,detineo  ,107
 detondeo,detondeo  ,8
 detono,detono  ,2
@@ -11439,7 +11438,7 @@ dominatrix,dominatrix  ,1
 dominatus,dominatus  ,22
 dominicus,dominicus  ,3
 dominium,dominium  ,12
-domino,dominor  ,72
+dominor,dominor  ,72
 dominus,dominus  ,674
 domito,domito  ,5
 domitor,domitor  ,23
@@ -11759,7 +11758,7 @@ elisio,elisio  ,1
 elixus,elixus  ,5
 elleborum,helleborum  ,4
 elleborus,helleborus  ,6
-eloco,eloquor  ,1
+!eloco,eloquor  ,1
 elocutio,elocutio  -,1
 elogium,elogium  ,6
 elops,helops  ,1
@@ -11767,8 +11766,7 @@ eloquens,eloquens  ,19
 eloquenter,eloquenter  ,3
 eloquentia,eloquentia  ,192
 eloquium,eloquium  ,11
-!eloquor,eloquor  ,66
-!eloquor,eloquor  -,4
+eloquor,eloquor  ,70
 eluacrus,-eluacrum  ,2
 eluceo,eluceo  ,18
 eluctor,eluctor  ,5
@@ -12227,7 +12225,7 @@ exorsa,exorsa  ,3
 exorsus2,exorsus  ,1
 exortus,exortus  ,3
 exos,exos  ,1
-!exosculor,exosculor  ,5
+exosculor,exosculor  ,5
 !exosculor,exosculor  -,1
 exosso,exosso  ,4
 exostra,exostra  ,1
@@ -13173,14 +13171,13 @@ funereus,funereus  ,8
 funero,funero  ,2
 funesto,funesto  ,6
 funestus,funestus  ,69
-fungo,fungor  ,68
-fungor,fungor  ,35
+fungor,fungor  ,103
 fungus,fungus  ,7
 funiculus,funiculus  ,4
-!funis,funis  ,76
+funis,funis  ,76
 !funis,funis  -,1
 !funus,Funus N,1
-!funus,funus  ,295
+funus,funus  ,295
 fur,fur  ,81
 furacissime,furaciter  ,1
 furax,furax  ,1
@@ -13447,7 +13444,7 @@ grate,grate  ,21
 !grates,grates  -,2
 gratia,gratia  ,980
 gratificatio,gratificatio  ,2
-gratifico,gratificor  ,12
+gratificor,gratificor  ,12
 gratiis,gratis  ,23
 gratilla,Gratilla N,3
 gratiosus,gratiosus  ,49
@@ -13758,7 +13755,7 @@ hortamentum,hortamentum  ,2
 hortatio,hortatio  ,4
 hortator,hortator  ,8
 hortatus,hortatus  ,6
-horto,hortor  ,225
+hortor,hortor  ,225
 hortulus,hortulus  ,9
 hortus,hortus  ,141
 hospes,hospes  ,284
@@ -13813,7 +13810,7 @@ hyperbaton,hyperbaton  ,1
 hyperbole,hyperbole  ,2
 hypocauston,hypocauston  ,3
 hypogaeum,hypogeum  ,1
-!iaceo,iaceo  ,615
+iaceo,iaceo  ,615
 !iaceo,iaceo  -,10
 iacio,iacio  ,218
 iactans,iactans  ,4
@@ -13826,7 +13823,7 @@ iactus,iactus  ,43
 iaculatio,iaculatio  ,1
 iaculator,iaculator  ,4
 iaculatrix,iaculatrix  ,2
-iaculo,iaculor  ,37
+iaculor,iaculor  ,37
 iaculum,iaculum  ,57
 iaculus,iaculus 2,1
 iaiunitas,ieiunitas  ,1
@@ -14861,7 +14858,7 @@ inserto,inserto  ,3
 inseruio,inseruio  ,14
 insideo,insideo  ,46
 insidiator,insidiator  ,15
-insidio,insidior  ,39
+insidior,insidior  ,39
 insidiose,insidiose  ,5
 insidiosus,insidiosus  ,27
 insido,insido  ,25
@@ -15108,7 +15105,7 @@ interpono,interpono  ,104
 interpres,interpres  ,72
 interpretamentum,interpretamentum  ,1
 interpretatio,interpretatio  ,28
-interpreto,interpretor  ,66
+interpretor,interpretor  ,66
 interpunctio,interpunctio  ,1
 interpungo,interpungo  ,1
 interputo,interputo  ,1
@@ -15297,13 +15294,12 @@ ioniacus,Ioniacus A,2
 ipsima,-ipse  ,1
 ipsimus,-ipse  ,3
 !ira,Ira N,1
-!ira,ira  ,778
+ira,ira  ,778
 !ira,ira  -,1
 iracunde,iracunde  ,8
 iracundia,iracundia  ,96
 iracundus,iracundus  ,46
-irasco,irascor  ,235
-irascor,irascor  ,10
+irascor,irascor  ,245
 iratus,iratus  ,288
 irnea,hirnea  ,2
 irpex,irpex  ,1
@@ -15557,7 +15553,7 @@ lamellula,lamellula  ,1
 lamentabilis,lamentabilis  ,2
 lamentarius,lamentarius  ,1
 lamentatio,lamentatio  ,15
-lamento,lamentor  ,13
+lamentor,lamentor  ,13
 lamina,lamina  ,4
 lammina,lamina  ,11
 lamna,lamina  ,10
@@ -16003,7 +15999,7 @@ lucidus,lucidus  ,52
 lucifuga,lucifuga  ,1
 lucifugus,lucifugus  ,1
 lucrifico,lucrifico  ,2
-lucro,lucror  ,8
+lucror,lucror  ,8
 lucrosus,lucrosus  ,3
 lucrum,lucrum  ,145
 luctamen,luctamen  ,1
@@ -16374,7 +16370,7 @@ maxume,magis 2,78
 meatus,meatus  ,17
 mecastor,mecastor  ,5
 medens,medens  ,14
-medeo,medeor  ,47
+medeor,medeor  ,47
 mediastinus,mediastinus  ,1
 !medica,medica 1,1
 !medica,medica 2,1
@@ -16479,7 +16475,7 @@ mercenarius,mercenarius 2,1
 !mercennarius,mercenarius 2,16
 merces,merces  ,186
 mercimonium,mercimonium  ,3
-merco,mercor  ,34
+mercor,mercor  ,34
 merda,merda  ,1
 merens,merens  ,22
 !mereo,mereo  ,233
@@ -16521,7 +16517,7 @@ methodium,methodium  ,1
 !metior,metior  ,65
 !metior,metior  -,1
 meto,meto 2,25
-meto2,metor  ,12
+metor,metor  ,12
 metreta,metreta  ,4
 metron,Metron N,3
 metuculosus,meticulosus  ,1
@@ -16609,7 +16605,7 @@ miratrix,miratrix  ,2
 mire,mire  ,19
 mirifice,mirifice  ,10
 mirificus,mirificus  ,14
-miro,miror  ,463
+miror,miror  ,463
 !miro,miror  -,1
 !mirus,-mirum  ,5
 mirus,mirus  ,269
@@ -16633,7 +16629,7 @@ miseria,miseria  ,106
 misericordia,misericordia  ,170
 misericors,misericors  ,38
 miseriter,miseriter  ,1
-misero,miseror  ,52
+miseror,miseror  ,52
 missiculo,missiculo  ,1
 missilis,missilis  ,13
 missio,missio  ,32
@@ -16684,7 +16680,7 @@ modulatio,modulatio  ,6
 modulator,modulator  ,1
 modulatus,modulatus 2,1
 modulatus2,modulatus 1,1
-modulo,modulor  ,10
+modulor,modulor  ,10
 modulus,modulus  ,3
 modus,modus  ,1392
 moecha,moecha  ,10
@@ -16947,7 +16943,7 @@ muttitio,mutitio  ,1
 !mutto,Mutto N,2
 !mutto,muto 1,1
 mutuatio,mutuatio  ,1
-mutuo,mutuor  ,18
+mutuor,mutuor  ,18
 mutuo2,mutuo 2,8
 mutus,mutus  ,113
 mutus2,Mutus N,1
@@ -17293,10 +17289,10 @@ nouiens,-nouiens  -,3
 nouies,-nouiens  -,8
 nouitas,nouitas  ,70
 nouo,nouo  ,32
-!nouus,nouus  ,1360
+nouus,nouus  ,1360
 !nouus,nouus  -,18
 !nox,Nox N,18
-!nox,nox  ,1103
+nox,nox  ,1103
 !nox,nox  -,1
 noxa,noxa  ,29
 noxia,noxia  ,3
@@ -17304,7 +17300,7 @@ noxia,noxia  ,3
 !noxiosus,noxius  ,1
 noxius,noxius  ,54
 nubecula,nubecula  ,1
-!nubes,nubes  ,229
+nubes,nubes  ,229
 !nubes,nubes  -,1
 nubifer,nubifer  ,1
 nubigena,nubigena  ,2
@@ -17561,8 +17557,7 @@ obtempero,obtempero  ,40
 obtendo,obtendo  ,19
 obtero,obtero  ,22
 obtestatio,obtestatio  ,5
-!obtestor,obtestor  ,55
-!obtestor,obtestor  -,2
+obtestor,obtestor  ,57
 obtexo,obtexo  ,1
 obtineo,obtineo  ,261
 !obtingo,obtingo  ,13
@@ -17673,7 +17668,7 @@ odiosus,odiosus  ,37
 odor,odor  ,131
 odoratus,odoratus 2,28
 odorifer,odorifer  ,2
-odoro,odoror  ,9
+odoror,odoror  ,9
 odorus,odorus  ,3
 odos,odor  ,2
 oenopolium,oenopolium  ,1
@@ -17929,10 +17924,10 @@ oscillatio,oscillatio  ,1
 oscillum,oscillum 1,1
 oscitans,oscitans  ,3
 oscitatio,oscitatio  ,4
-!oscito,oscito  ,5
+oscito,oscito  ,5
 !oscito,oscito  -,1
 osculatio,osculatio  ,2
-osculo,osculor  ,26
+osculor,osculor  ,26
 osculum,osculum  ,160
 osor,osor  ,1
 osseus,osseus  ,3
@@ -17941,7 +17936,7 @@ ossuculum,ossiculum  ,1
 ostendo,ostendo  ,630
 ostentatio,ostentatio  ,34
 ostentator,ostentator  ,3
-!ostento,ostento  ,130
+ostento,ostento  ,130
 !ostento,ostento  -,1
 ostentum,ostentum  ,11
 ostentus,ostentus  ,7
@@ -18201,7 +18196,7 @@ patienter,patienter  ,35
 patientia,patientia  ,140
 patina,patina  ,15
 patinarius,patinarius  ,1
-patio,patior  ,851
+patior,patior  ,851
 patrator,patrator  ,1
 !patria,Patria N,2
 !patria,patria  ,707
@@ -18416,7 +18411,7 @@ percolopo,percolopo  ,1
 percommode,percommode  ,3
 percontatio,percontatio  ,4
 percontator,percontator  ,1
-perconto,percontor  ,16
+percontor,percontor  ,16
 percopiosus,percopiosus  ,1
 percoquo,percoquo  ,12
 percrebesco,percrebresco  ,17
@@ -19320,7 +19315,7 @@ praeditus,praeditus  ,124
 praediues,praediues  ,4
 praedium,praedium  ,119
 praedo,praedo  ,134
-praedo2,praedor  ,41
+praedor,praedor  ,41
 praedoceo,praedoceo  ,1
 praedomo,praedomo  ,1
 praedonulus,praedonulus  ,1
@@ -19548,7 +19543,7 @@ praeualidus,praeualidus  ,12
 praeuallo,praeuallo  ,1
 praeuaricatio,praeuaricatio  ,10
 praeuaricator,praeuaricator  ,5
-praeuarico,praeuaricor  ,5
+praeuaricor,praeuaricor  ,5
 praeuehor,praeuehor  ,8
 praeuenio,praeuenio  ,29
 praeuerto,praeuerto  ,13
@@ -19713,7 +19708,7 @@ producta,producta  ,1
 productus,productus  ,3
 proeliaris,proeliaris  ,1
 proeliator,proeliator  ,2
-proelio,proelior  ,41
+proelior,proelior  ,41
 proelium,proelium  ,772
 profanus,profanus  ,35
 profatus2,profatus  ,1
@@ -19727,7 +19722,7 @@ professorius,professorius  ,1
 professus,professus  ,5
 profestus,profestus  ,4
 proficio,proficio  ,169
-proficisco,proficiscor  ,269
+proficiscor,proficiscor  ,269
 profiteor,profiteor  ,126
 profligator,profligator  ,1
 profligatus,profligatus  ,9
@@ -20609,7 +20604,7 @@ recondo,recondo  ,46
 reconflo,reconflo  ,1
 recoquo,recoquo  ,5
 recordatio,recordatio  ,33
-recordo,recordor  ,97
+recordor,recordor  ,97
 recorrigo,recorrigo  ,2
 recreo,recreo  ,54
 recrepo,recrepo  ,1
@@ -20730,8 +20725,7 @@ regnatrix,-regnatrix  ,1
 regno,regno  ,151
 regnum,regnum  ,906
 rego,rego  ,295
-regredio,regredior  ,27
-regredior,regredior  ,18
+regredior,regredior  ,45
 regressus,regressus  ,12
 regula,regula  ,28
 regulus,regulus  ,11
@@ -21011,8 +21005,7 @@ reuerens,reuerens  ,8
 reuerenter,reuerenter  ,4
 !reuerentia,Reuerentia N,1
 !reuerentia,reuerentia  ,65
-reuereo,reuereor  ,18
-reuereor,reuereor  ,2
+reuereor,reuereor  ,20
 reuersio,reuersio  ,4
 !reuerto,reuerto  ,50
 !reuerto,reuertor  ,260
@@ -21067,7 +21060,7 @@ rigo,rigo  ,40
 rigor,rigor  ,33
 riguus,riguus  ,2
 rima,rima  ,20
-rimo,rimor  ,18
+rimor,rimor  ,18
 rimosus,rimosus  ,6
 ringor,ringor  ,1
 ripa,ripa  ,268
@@ -21080,7 +21073,7 @@ ritus,ritus  ,71
 !riuus,riuus  ,81
 !riuus,riuus  -,2
 rixa,rixa  ,51
-rixo,rixor  ,14
+rixor,rixor  ,14
 robigo,robigo  ,10
 roboreus,roboreus  ,2
 roboro,roboro  ,4
@@ -21486,7 +21479,7 @@ scipio,scipio  ,5
 scirpea,scirpea  ,1
 scirpeus,scirpeus  ,3
 sciscitatio,sciscitatio  ,1
-sciscito,sciscitor  ,15
+sciscitor,sciscitor  ,15
 scisco,scisco  ,13
 scissor,scissor  ,1
 scissura,scissura  ,1
@@ -21534,7 +21527,7 @@ scrupulus,scrupulus  ,7
 scrupus,scrupus  ,1
 scruta,scruta  ,2
 scrutatio,scrutatio  ,1
-scruto,scrutor  ,73
+scrutor,scrutor  ,73
 sculpo,sculpo  ,2
 sculponeae,sculponeae  ,2
 scurra,scurra  ,30
@@ -22115,7 +22108,7 @@ sollicite,sollicite  ,15
 sollicito,sollicito  ,128
 sollicitudo,sollicitudo  ,132
 sollicitus,sollicitus  ,170
-solo,solor  ,33
+solor,solor  ,33
 soloecismus,soloecismus  ,3
 solstitialis,solstitialis  ,2
 solstitium,solstitium  ,10
@@ -22199,7 +22192,7 @@ sparulus,sparulus  ,1
 sparus,sparus  ,2
 spatalocinaedus,spatalocinaedus  ,1
 spatiator,spatiator  ,1
-spatio,spatior  ,28
+spatior,spatior  ,28
 spatiose,spatiose  ,3
 spatiosus,spatiosus  ,30
 !spatium,spatium  ,461
@@ -23213,7 +23206,7 @@ testificatio,testificatio  ,6
 !testificor,testificor  ,19
 !testificor,testificor  -,2
 testimonium,testimonium  ,334
-testo,testor  ,124
+testor,testor  ,124
 testu,testu  -,2
 testudineus,testudineus  ,4
 testudo,testudo  ,42
@@ -23731,12 +23724,12 @@ tutamen,tutamen  ,2
 !tutela,Tutela N,4
 !tutela,tutela  ,92
 tuto,tuto 2,67
-tuto2,tutor 2,31
+tutor2,tutor 2,31
 tutor,tutor 1,55
 tutum,tutum  ,35
 tutus,tutus  ,462
 !tuus,-tuum  ,38
-!tuus,-tuus  ,3629
+tuus,-tuus  ,3629
 !tuus,-tuus  -,8
 tympanum,tympanum  ,28
 typanum,tympanum  ,2
@@ -23839,7 +23832,7 @@ uasum,uas 2,5
 uasus,uasus  ,1
 uates,uates  ,214
 uaticinatio,uaticinatio  ,3
-uaticino,uaticinor  ,3
+uaticinor,uaticinor  ,3
 uatillum,uatillum  ,1
 uauato,uauato  ,1
 uber,uber 1,57
@@ -23883,7 +23876,7 @@ uehementer,uehementer  ,227
 uehes,uehes  ,1
 uehiculum,uehiculum  ,62
 ueho,ueho  ,237
-!uel,-uel 2,1266
+uel,-uel 2,1266
 !uel,uel 1,300
 uelamen,uelamen  ,20
 uelamentum,uelamentum  ,13
@@ -23949,7 +23942,7 @@ uenerabundus,uenerabundus  ,2
 uenerandus,uenerandus  ,18
 uenerarius,uenerarius 2,1
 ueneratio,ueneratio  ,35
-uenero,ueneror  ,84
+ueneror,ueneror  ,84
 uenia,uenia  ,198
 !uenio,-uenio  ,1
 !uenio,ueneo  ,1
@@ -24363,8 +24356,7 @@ uixdum,uixdum  ,10
 ulceratio,ulceratio  ,1
 ulcero,ulcero  ,2
 ulcerosus,ulcerosus  ,2
-ulcisco,ulciscor  ,101
-ulciscor,ulciscor  ,27
+ulciscor,ulciscor  ,128
 ulcus,ulcus  ,33
 ulcusculum,ulcusculum  ,1
 uligo,uligo  ,4
@@ -24635,8 +24627,7 @@ utilitas,utilitas  ,296
 utiliter,utiliter  ,11
 utinam,-utinam  ,204
 utique,utique  ,135
-uto,utor  ,811
-utor,utor  ,90
+utor,utor  ,901
 utpote,utpote  ,17
 utqui,utqui  ,4
 utraque,utraque  ,3
@@ -26257,7 +26248,7 @@ obuersor,obuersor  ,23,-obuersatus;obuerso;obuersor
 octauae,octauae  ,1,-octauus;octaua;octauae
 octonus,octonus  ,6,octoni;octonus
 !!odium;odium2,odium  ,522,-odi-;-odio-;odium;odium2
-!!-odoratus;odoror,odoro  ,6,-odorarius;-odorarius2;-odoratus;-odoratus2;odoror
+odoro,odoro  ,6,-odorarius;-odorarius2;-odoratus;-odoratus2;odoror
 oenophorum,oenophorum  ,4,oenophorum;oenophorus
 !!-Olympius;Olympia-;Olympia2;Olympium,olympia O,1,-Olympius;Olympia-;Olympia2;Olympium
 ominor,ominor  ,6,omino;ominor
@@ -26543,7 +26534,7 @@ sepes,sepes  ,1,sepes;seps
 septemuiri,septemuiri  ,1,septemuiri
 !!-sequester;-sequester3,sequester 1,1,-sequester;-sequester3
 !!-sequester2;-sequestra;-sequestro-;sequester;sequester3,sequester 2,2,-sequester2;-sequestra;-sequestro-;sequester;sequester3
-!!-serus;sera;sera2,sera 1,21,-sera4-;-sero-;-sero2-;-sero4-;-serus;sera;sera2;serum-;serum2-
+sera,sera 1,21,-sera4-;-sero-;-sero2-;-sero4-;-serus;sera;sera2;serum-;serum2-
 !!-serius;-serus;serie;serius2;sero3,sere  ,1,-serius;-serus;serie;serius2;sero3
 !!-serius;seria;seria2,seria  ,9,-serius;seria;seria2;seria4;seria4-;serium-
 serica,serica  ,2,serica;sericum
@@ -26565,7 +26556,7 @@ singula-,singula 2,9,-singuli;-singuli-;-singulus;singula-
 sipho,sipho  ,1,-sipo-;-sipo2-;sipho;siphon
 siticen-,siticen  ,1,siticen-;siticines-
 !!-solaris-;-solarius;-solarius2;solarium;solarium2,solarium 2,1,-solaris-;-solarius;-solarius2;solarium;solarium2
-!!-solatus;solor,solo 1,1,-solatus;solor
+solo,solo 1,1,-solatus;solor
 !!-solus,solus  ,925,-sol;-sol-;-solium;-solium-;-solo-;-solum;-solum-;-solum2-;-solus;-solus-;-solus3;-solus3-
 somnior,somnior  ,1,somnior
 sophistes,sophistes  ,1,sophista;sophistes
@@ -26651,7 +26642,7 @@ terrena,terrena  ,6,-terrenus;terrena
 !-tertium-,tertium  ,6,-tertium-;tertius-
 !!testis;testis2,testis 1,611,-testo-;testa-;testis;testis2;testum-
 !!testa-;testis;testis2;testum-,testis 2,1,testa-;testis;testis2;testum-
-!!testor,testo  ,1,testor
+testo,testo  ,1,testor
 tetrastylon,tetrastylon  ,1,-tetrastylos;-tetrastylus;tetrastylon;tetrastylum
 !!thoraca-;thorace-,thorax  ,5,thoraca;thoraca-;thorace;thorace-
 tiara,tiara  ,3,tiara
@@ -26699,7 +26690,7 @@ uasa,uasa  ,1,uasa
 uelificor,uelificor  ,2,-uelificatus;uelificor
 !-uenans,uenans  ,6,-uenans;-ueno;-uenor
 !!-Uenerius;Ueneria;Ueneriae,ueneriae  ,1,-Uenerius;Ueneria;Ueneriae
-!!ueneror,uenero  ,2,ueneror
+uenero,uenero  ,2,ueneror
 uentriculus,uentriculus  ,1,uentriculum;uentriculus
 !!-uenio;-uenturus,uenturum  ,6,-uenio;-uenturus
 uenum,uenum  ,4,-ueno-;uenum;uenus3
