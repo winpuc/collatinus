@@ -1727,22 +1727,44 @@ QString Lemmat::tagPhrase(QString phr)
         qDebug() << mot->forme() << nvlProba << nvlSeq;
         for (int j = 0; j < nvlSeq.size(); j++) if (nvlProba[j] > 0)
         {
+            QString bigr = nvlSeq[j].right(7); // Les deux derniers tags
             QString seq = "";
-            QString bigr = nvlSeq[j].right(7);
             double val = -1;
+            QString seq2 = "";
+            double val2 = -1;
             for (int k = j; k < nvlSeq.size(); k += sTag) // Pour retrouver le bigramme terminal, il faut au moins le même dernier tag.
                 if (bigr == nvlSeq[k].right(7))
                 {
-                    if (val < nvlProba[k])
+                    if ((val < nvlProba[k]) || (val2 < nvlProba[k]))
                     {
-                        val = nvlProba[k];
-                        seq = nvlSeq[k];
+                        // J'y passe au moins une fois au début.
+                        // La séquence mérite la 1ère ou la 2e place.
+                        if (val < nvlProba[k])
+                        {
+                            // 1ère place !
+                            val2 = val;
+                            seq2 = seq;
+                            val = nvlProba[k];
+                            seq = nvlSeq[k];
+                        }
+                        else
+                        {
+                            // Seulement la 2e place
+                            val2 = nvlProba[k];
+                            seq2 = nvlSeq[k];
+                        }
                     }
                     nvlProba[k] = -1; // Pour ne pas considérer deux fois les mêmes séquences.
                 }
             // val et seq correspondent aux proba et séquence avec le bigramme considéré qui ont la plus grande proba.
             sequences << seq;
             probabilites << val;
+            if (val2 > 0)
+            {
+                // J'ai une deuxième séquence assez probable.
+                sequences << seq2;
+                probabilites << val2;
+            }
         }
 //        qDebug() << mot->forme() << sSeq << sTag << nvlSeq.size() << sequences.size();
         if (sequences.size() == 0) break;
@@ -1751,15 +1773,32 @@ QString Lemmat::tagPhrase(QString phr)
     // Le tri final !
     QString seq = "";
     double val = -1;
+    QString seq2 = "";
+    double val2 = -1;
     for (int i = 0; i < sequences.size(); i++)
-        if (val < probabilites[i])
+        if ((val < probabilites[i]) || (val2 < probabilites[i]))
         {
-            val = probabilites[i];
-            seq = sequences[i];
+            if (val < probabilites[i])
+            {
+                val2 = val;
+                seq2 = seq;
+                val = probabilites[i];
+                seq = sequences[i];
+            }
+            else
+            {
+                val2 = probabilites[i];
+                seq2 = sequences[i];
+            }
         }
 
     QString prob = "<br/> avec la proba : %1 pour %2 branches.<br/>";
     lsv.append(seq + prob.arg(val).arg(branches));
+    if (val2 > 0)
+    {
+        prob = "Deuxième choix avec la proba : %1 <br/> %2<br/>";
+        lsv.append(prob.arg(val2).arg(seq2));
+    }
 
     seq = seq.mid(4);
     for (int i = 0; i < mots.size()-1; i++)
