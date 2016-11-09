@@ -53,9 +53,16 @@ Mot::Mot(QString forme, int rang, QObject *parent)
             total = 1;
             qDebug() << forme << " : toutes les probas sont nulles !";
         }
+        _maxProb = "";
+        long prMax = -1;
         foreach (QString t, _probas.keys())
         {
             long pr = _probas[t] * 1024 /total;
+            if (prMax < pr)
+            {
+                prMax = pr;
+                _maxProb = t;
+            }
             if (pr == 0) pr++;
             _probas[t] = pr;
         }
@@ -118,7 +125,10 @@ QString Mot::choisir(QString t, bool tout)
             choix.append("<li>" + _lemmes[i] + " — " + _morphos[i] + "</li>\n");
         choix.append("</ul></span>\n");
     }
-    choix.prepend("<li><strong>" + _forme + "</strong> " + t);
+    QString ajout;
+    if (t == _maxProb) ajout = t;
+    else ajout = t + " (" + _maxProb + ")";
+    choix.prepend("<li><strong>" + _forme + "</strong> " + ajout);
     choix.append("</li>");
     return choix;
 }
