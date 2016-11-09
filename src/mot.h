@@ -32,6 +32,7 @@ private:
     QStringList _tags;
     QList<int> _nbOcc;
     QMap<QString,long> _probas;
+    QString _maxProb;
 };
 
 #endif // MOT_H
