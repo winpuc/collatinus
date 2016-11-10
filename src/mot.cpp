@@ -28,19 +28,25 @@ Mot::Mot(QString forme, int rang, QObject *parent)
             int nb = l->nbOcc();
             foreach (SLem m, _mapLem.value(l))
             {
-                QString t = _lemmatiseur->tag(l, m.morpho);
-                long fr = nb * _lemmatiseur->fraction(t);
-                _lemmes.append(lem);
-                _tags.append(t);
-                _nbOcc.append(fr);
-                _probas[t] += fr;
-//                qDebug() << forme << lem << nb << t << fr;
-                if (m.sufq.isEmpty())
-                    _morphos.append(m.grq + " " + m.morpho);
-                else
+                QString lt = _lemmatiseur->tag(l, m.morpho); // Maintenant, c'est une liste de tags.
+//                qDebug() << forme << lt;
+                while (lt.size() > 2)
                 {
-                    _morphos.append(m.grq + " + " + m.sufq + " " + m.morpho);
-                    enclitique = m.sufq;
+                    QString t = lt.mid(0,3);
+                    lt = lt.mid(4);
+                    long fr = nb * _lemmatiseur->fraction(t);
+                    _lemmes.append(lem);
+                    _tags.append(t);
+                    _nbOcc.append(fr);
+                    _probas[t] += fr;
+//                    qDebug() << forme << lem << nb << lt << t << fr;
+                    if (m.sufq.isEmpty())
+                        _morphos.append(m.grq + " " + m.morpho);
+                    else
+                    {
+                        _morphos.append(m.grq + " + " + m.sufq + " " + m.morpho);
+                        enclitique = m.sufq;
+                    }
                 }
             }
         }

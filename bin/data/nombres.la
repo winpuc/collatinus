@@ -11986,7 +11986,7 @@ essito,esito  ,2
 essurio,esurio 2,9
 esurio,esurio 2,39
 esuritio,esuritio  ,3
-!et,et 1,1388
+et2,et 1,1388
 et,et 2,42725
 etenim,etenim  ,337
 etesius,etesius  ,3
@@ -20333,7 +20333,7 @@ quernus,quernus  ,8
 querquetum,querquetum  ,1
 querulus,querulus  ,27
 questus,questus  ,50
-!qui2,qui 1,41600
+qui2,qui 1,41600
 !qui2,qui 1-,78
 !qui2,quis 1,3840
 !qui2,quis 1-,6
@@ -26435,9 +26435,9 @@ quamlibet,quamlibet 2,19,quamlibet
 !!-quartum-;-quartum2-;quartus-,quartum 2,2,-quartum-;-quartum2-;quartus-
 quasillus,quasillus  ,5,quasillus
 quauis,quauis  ,1,quauis
-!!-queo;-qui;-qui2;-quis,qui 2,13,-queo;-qui;-qui2;-quis
-!!-queo;-qui;-qui2;-quis,qui 3,159,-queo;-qui;-qui2;-quis
-!!-queo;-qui;-qui2;-quis,qui 4,20,-queo;-qui;-qui2;-quis
+qui,qui 2,13,-queo;-qui;-qui2;-quis
+qui,qui 3,159,-queo;-qui;-qui2;-quis
+qui,qui 4,20,-queo;-qui;-qui2;-quis
 !-quicumque,quicumque 1,48,-quacumque-;-quacunque-;-quicumque;-quocumque-
 !-quicumque,quicumque 2,25,-quacumque-;-quicumque;-quocumque-
 !-quidam,quidam  ,98,-quadam-;-quidam
