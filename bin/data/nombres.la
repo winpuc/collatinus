@@ -20335,9 +20335,9 @@ querulus,querulus  ,27
 questus,questus  ,50
 qui2,qui 1,41600
 !qui2,qui 1-,78
-!qui2,quis 1,3840
+quis,quis 1,3840
 !qui2,quis 1-,6
-!qui2,quis 2,573
+quis,quis 2,573
 !qui2,quis 2-,266
 quia,quia  ,1849
 quianam,quianam  ,2
@@ -20396,9 +20396,9 @@ quippini,quippini  ,2
 quiritatus,quiritatus  ,1
 !quis,qui 1,3
 !quis,qui 1-,185
-!quis,quis 1,7802
+quis,quis 1,7802
 !quis,quis 1-,5
-!quis,quis 2,1426
+quis,quis 2,1426
 !quis,quis 2-,1
 quisnam,-quisnam  ,77
 quispiam,-quispiam  ,57
@@ -20418,10 +20418,10 @@ quisquiliae,quisquiliae  ,1
 !quiuis,-quiuis  -,1
 !quiuis,quamuis 1,147
 !quo,qui 1,1
-!quo,quo 1,232
-!quo,quo 2,416
-!quo,quo 3,305
-!quo,quo 4,16
+quo,quo 1,232
+quo,quo 2,416
+quo,quo 3,305
+quo,quo 4,16
 !quoad,-quoad 1,79
 !quoad,-quoad 2,2
 quocirca,quocirca  ,21
@@ -26454,7 +26454,7 @@ quintani,quintani  ,7,quintana;quintani;quintanus
 !-quisquis,quisquis 1,357,-quidquid-;-quisquis;-quoquo-;-quoquo2-
 !-quisquis,quisquis 2,27,-quidquid-;-quisquis;-quoquo-;-quoquo2-
 !-quiuis,quiuis  ,51,-quamuis-;-quauis-;-quiuis;-quouis-
-!-quo,quo 5,349,-qui;-qui2;-quis;-quo
+quo2,quo 5,349,-qui;-qui2;-quis;-quo
 quocumque,quocumque 1,75,quocumque
 quocumque,quocumque 2,4,quocumque
 quolibet,quolibet  ,5,quolibet
