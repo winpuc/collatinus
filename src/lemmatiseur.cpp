@@ -292,28 +292,51 @@ void Lemmat::lisTags(bool tout)
  */
 QString Lemmat::tag(Lemme *l, QString morph)
 {
-    QString p = l->pos();
-    if (p.size() > 1) p = p.mid(0,1);
-    if ((p == "n") && (morph == morpho(413))) return "n71"; // Locatif !
-    p.append("%1%2");
-    for (int i=0; i<6; i++) if (morph.contains(cas(i)))
+    // Il faut encore traiter le cas des pos multiples
+    QString lp = l->pos();
+    QString lTags = "";
+    while (lp.size() > 0)
     {
-        if (morph.contains(nombre(1))) p = p.arg(i+1).arg(2);
-        else  p = p.arg(i+1).arg(1);
-        if (p.startsWith("v")) p[0] = 'w'; // Forme verbale déclinée.
-        return p;
-    }
-    if (p.startsWith("v"))
-    {
-        for (int i=0; i<4; i++) if (morph.contains(modes(i).toLower()))
+        QString p = lp.mid(0,1);
+        lp = lp.mid(1);
+        if ((p == "n") && (morph == morpho(413))) // Locatif !
+            lTags.append("n71,");
+        else if ((p == "v") && (morph.contains(" -u"))) // C'est un supin
+            lTags.append("v3 ,");
+        else
         {
-            if (morph.contains(temps(0))) p = p.arg(i+1).arg(1); // présent
-            else  p = p.arg(i+1).arg(" ");
-            return p;
+            p.append("%1%2,");
+            if (p.startsWith("v"))
+            {
+                for (int i=0; i<4; i++) if (morph.contains(modes(i).toLower()))
+                {
+                    if (morph.contains(temps(0))) p = p.arg(i+1).arg(1); // présent
+                    else  p = p.arg(i+1).arg(" ");
+                    lTags.append(p);
+                    break;
+                }
+            }
+            if (p.size() > 4) // Si p == 4, c'est que c'était un verbe conjugué.
+            {
+                for (int i=0; i<6; i++) if (morph.contains(cas(i)))
+                {
+                    if (morph.contains(nombre(1))) p = p.arg(i+1).arg(2);
+                    else  p = p.arg(i+1).arg(1);
+                    if (p.startsWith("v")) p[0] = 'w'; // Forme verbale déclinée.
+                    lTags.append(p);
+                    break;
+                }
+            }
+            if (p.size() > 4)
+            {
+                p = p.arg(" ").arg(" ");
+                lTags.append(p);
+            }
+            if (!_tagOcc.contains(p.mid(0,3)))
+                qDebug() << l->cle() << morph << p << " : Tag non trouvé !";
         }
-//        if (p.size() == 3) return p;
     }
-    return p.arg(" ").arg(" ");
+    return lTags;
 }
 
 /**
@@ -326,20 +349,35 @@ QString Lemmat::tag(Lemme *l, QString morph)
  * On va chercher le nombre d'occurrences associé à ce tag.
  * On le divise par le nombre d'occurrences associé au même POS.
  *
+ * Si la fonction reçoit une liste de tags,
+ * elle retourne la plus grande fraction.
+ *
  */
-int Lemmat::fraction(QString t)
+int Lemmat::fraction(QString listTags)
 {
-    int fr = 0;
-    if (_tagOcc.contains(t))
+    int frFin = 0;
+    while (listTags.size() > 2)
     {
-        fr = _tagOcc[t] * 1024 / _tagTot[t.mid(0,1)];
-        if ((t[0] == 'a') || (t[0] == 'p') || (t[0] == 'w')) return fr / 3; // Adj. ou pron. sans genre !
-//        if ((t[0] == 'v') && (t[2] == '1')) return fr / 2;
-        if (fr == 0) return 1;
-        return fr;
+        QString t = listTags.mid(0,3);
+        listTags = listTags.mid(4);
+        int fr = 0;
+        if (_tagOcc.contains(t))
+        {
+            if ((t[0] == 'a') || (t[0] == 'p') || (t[0] == 'w')) // Adj. ou pron. sans genre !
+                fr = _tagOcc[t] * 341 / _tagTot[t.mid(0,1)];
+            else if ((t[0] == 'v') && (t[2] == '1')) // verbe au présent
+                fr = _tagOcc[t] * 512 / _tagTot[t.mid(0,1)];
+            else if ((t[0] == 'v') && (t[2] == ' ')) // verbe à un autre temps
+                fr = _tagOcc[t] * 256 / _tagTot[t.mid(0,1)];
+            else if (t[0] == 'n') // Nom
+                fr = _tagOcc[t] * 1024 / _tagTot[t.mid(0,1)];
+            else fr = 1024;
+        }
+        else qDebug() << t << " : Tag non trouvé !";
+        if (frFin < fr) frFin = fr; // Si j'ai reçu une liste de tags, je garde la fraction la plus grande.
     }
-    qDebug() << t << " : Tag non trouvé !";
-    return fr;
+    if (frFin == 0) return 1024;
+    return frFin;
 }
 
 /**

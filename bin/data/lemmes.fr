@@ -8025,8 +8025,8 @@ quisque:chaque, chacun, chaque chose
 quisquis:quiconque, quoi que ce soit
 quis:qui ? quoi ? après si, nisi, ne, num, quis est l'équivalent de aliquis (quelqu'un, quelque chose).
 quivis:n'importe quel, quiconque
-qui:qui ; interr. quel ? lequel ?
-qui2:qui, que, quoi, dont, lequel...
+qui:interr., en quoi, par quoi, comment
+qui2:qui, que, quoi, dont, lequel. adj. interr. quel ? lequel ?
 quoad:tant que, aussi longtemps que
 quocumque:en quelque lieu que, partout
 quodammodo:en quelque sorte, en quelque façon
