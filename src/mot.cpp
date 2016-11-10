@@ -29,24 +29,25 @@ Mot::Mot(QString forme, int rang, QObject *parent)
             foreach (SLem m, _mapLem.value(l))
             {
                 QString lt = _lemmatiseur->tag(l, m.morpho); // Maintenant, c'est une liste de tags.
-//                qDebug() << forme << lt;
+                // Pour les analyses, je garde la liste de tags.
+                long fr = nb * _lemmatiseur->fraction(lt);
+                _lemmes.append(lem);
+                _tags.append(lt);
+                _nbOcc.append(fr);
+                //                    qDebug() << forme << lem << nb << lt << t << fr;
+                if (m.sufq.isEmpty())
+                    _morphos.append(m.grq + " " + m.morpho);
+                else
+                {
+                    _morphos.append(m.grq + " + " + m.sufq + " " + m.morpho);
+                    enclitique = m.sufq;
+                }
                 while (lt.size() > 2)
                 {
                     QString t = lt.mid(0,3);
                     lt = lt.mid(4);
-                    long fr = nb * _lemmatiseur->fraction(t);
-                    _lemmes.append(lem);
-                    _tags.append(t);
-                    _nbOcc.append(fr);
+                    fr = nb * _lemmatiseur->fraction(t);
                     _probas[t] += fr;
-//                    qDebug() << forme << lem << nb << lt << t << fr;
-                    if (m.sufq.isEmpty())
-                        _morphos.append(m.grq + " " + m.morpho);
-                    else
-                    {
-                        _morphos.append(m.grq + " + " + m.sufq + " " + m.morpho);
-                        enclitique = m.sufq;
-                    }
                 }
             }
         }
@@ -114,8 +115,9 @@ QString Mot::choisir(QString t, bool tout)
     QString choix = "";
     int valeur = -1;
     for (int i=0; i < _tags.size(); i++)
-        if ((_tags[i] == t) && (valeur < _nbOcc[i]))
+        if ((_tags[i].contains(t)) && (valeur < _nbOcc[i]))
         {
+            // _tags peut être une liste de tags, alors que t est un tag.
             choix = _lemmes[i] + " — " + _morphos[i];
             valeur = _nbOcc[i];
         }
