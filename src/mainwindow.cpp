@@ -56,19 +56,48 @@ bool EditLatin::event(QEvent *event)
             QTextCursor tc = cursorForPosition(P);
             tc.select(QTextCursor::WordUnderCursor);
             QString mot = tc.selectedText();
+            if (mot.isEmpty ())
+                return QWidget::event (event);
             QString txtBulle = mainwindow->lemmatiseur->lemmatiseT(
                 mot, true, true, true, false);
             txtBulle.prepend("<p style='white-space:pre'>");
             txtBulle.append("</p>");
+            QRect rect(P.x()-20,P.y()-10,40,40); // Je définis un rectangle autour de la position actuelle.
             QToolTip::setFont(font());
             QToolTip::showText(helpEvent->globalPos(), txtBulle.trimmed(),
-                               this);
+                               this, rect);
             return true;
         }
         default:
             return QTextEdit::event(event);
     }
 }
+/*
+ * La même chose dans C10.3 : la bulle d'aide disparaît quand on bouge la souris.
+bool fenestra::event (QEvent *event)
+{
+    if ((event->type () == QEvent::ToolTip) && (EditLatin->underMouse ()))
+    {
+        QHelpEvent *helpEvent = static_cast<QHelpEvent *>(event);
+        QPoint P = EditLatin->parentWidget()->mapFromGlobal(helpEvent->globalPos());
+        QTextCursor muspos = EditLatin->cursorForPosition (P);
+        QString mot = EditLatin->motCourant (muspos);
+        if (P.x() >= 0 && P.x () < EditLatin->width ()
+            && P.y () >= 0 && P.y () < EditLatin->height ())
+        {
+            bool deb_phr = EditLatin->debPhr (muspos);
+            if (mot.isEmpty ())
+                return QWidget::event (event);
+            QString bulla = lexicum->lemmatiseM (mot, morphologia, deb_phr).join ("<br/>");
+            QRect rect(P.x()-20,P.y()-10,40,40);
+            QToolTip::setFont (EditLatin->font ());
+            QToolTip::showText (helpEvent->globalPos(), bulla.trimmed (), EditLatin, rect);
+        }
+    }
+    return QWidget::event (event);
+}
+
+ */
 
 /**
  * \fn void EditLatin::mouseReleaseEvent (QMouseEvent *e)
