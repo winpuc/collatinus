@@ -116,7 +116,7 @@ Lemme::Lemme(QString linea, int origin, QObject *parent)
         _pos.append('a');
     if (_indMorph.contains("conj"))
         _pos.append('c');
-    if (_indMorph.contains("excl"))
+    if (_indMorph.contains("excl."))
         _pos.append('e');
     if (_indMorph.contains("interj"))
         _pos.append('i');
