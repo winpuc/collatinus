@@ -381,6 +381,16 @@ int Lemmat::fraction(QString listTags)
 }
 
 /**
+ * @brief Lemmat::tagOcc
+ * @param t : tag
+ * @return Le nombre d'occurrences du tag t
+ */
+int Lemmat::tagOcc(QString t)
+{
+    return _tagOcc[t];
+}
+
+/**
  * @brief Lemmat::lignesFichier
  * @param nf : nom du fichier
  * @return : l'ensemble de lignes du fichier qui ne sont
@@ -1684,13 +1694,43 @@ void Lemmat::lireHyphen(QString fichierHyphen)
     }
 }
 
-QString Lemmat::tagPhrase(QString phr)
+QString Lemmat::tagPhrase(QString t, int p)
 {
     // éliminer les chiffres et les espaces surnuméraires
-    phr.remove(QRegExp("\\d"));
-    phr = phr.simplified(); // Rmq : perd les retours de ligne !
+    t.remove(QRegExp("\\d"));
+//    t = t.simplified(); // Rmq : perd les retours de ligne !
+    int tl = t.length() - 1;
+    const QString pp = ".;!?";
+    int dph = p;
+    bool tout = false;
+    if (p < 0)
+    {
+        p = 0;
+        dph = 0;
+        tout = true; // Pour faire tout le texte, phrase par phrase.
+        // À faire !!!
+    }
+    else
+    {
+        // régression au début de la phrase
+        while (dph > 0 && !pp.contains(t.at(dph)) && (t.mid(dph,2) != "\n\n")) --dph;
+        if (dph != 0) dph += 1; // J'élimine la ponctuation de la phrase précédente.
+    }
+    // progression jusqu'en fin de phrase
+    int fph = p;
+    while (fph < tl && !pp.contains(t.at(fph)) && (t.mid(fph,2) != "\n\n")) ++fph;
+    QString phr = t.mid(dph, fph - dph).trimmed();
     // découpage en mots
     QStringList lm = phr.split(QRegExp("\\b"));
+
+    while (Ch::abrev.contains(lm[lm.size()-2]))
+    {
+        // Ma phrase se terminait par une abréviation : je continue.
+        fph++;
+        while (fph < tl && !pp.contains(t.at(fph))) ++fph;
+        phr = t.mid(dph, fph - dph).trimmed();
+        lm = phr.split(QRegExp("\\b"));
+    }
 
     // conteneur pour les résultats
     QStringList lsv;

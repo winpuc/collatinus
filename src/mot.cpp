@@ -51,6 +51,13 @@ Mot::Mot(QString forme, int rang, QObject *parent)
                 }
             }
         }
+        if (Ch::abrev.contains(forme))
+        {
+            // C'est un nom à n'importe quel cas !
+            _probas.clear();
+            QString pseudo = "n%1";
+            for (int i = 1; i < 7; i++) _probas[pseudo.arg(i)+"1"] = _lemmatiseur->tagOcc(pseudo.arg(i)+"1");
+        }
         // J'ai construit les listes de lemmes, morphos, tags et nombres d'occurrences.
         // J'ai aussi une QMap qui associe les tags aux probas, que je dois normaliser.
         long total = 0;

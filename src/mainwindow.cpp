@@ -65,7 +65,7 @@ bool EditLatin::event(QEvent *event)
             QRect rect(P.x()-20,P.y()-10,40,40); // Je définis un rectangle autour de la position actuelle.
             QToolTip::setFont(font());
             QToolTip::showText(helpEvent->globalPos(), txtBulle.trimmed(),
-                               this, rect);
+                               this, rect); // La bulle disparaît si le curseur sort du rectangle.
             return true;
         }
         default:
@@ -2111,15 +2111,6 @@ void MainWindow::tagger(QString t, int p)
         int tl = t.length() - 1;
         if (p > tl) p = tl;
         if (p < 0) p = 0;
-        const QString pp = ".;!?";
-        // régression au début de la phrase
-        int dph = p;
-        while (dph > 0 && !pp.contains(t.at(dph))) --dph;
-        if (dph != 0) dph += 1; // J'élimine la ponctuation de la phrase précédente.
-        // progression jusqu'en fin de phrase
-        int fph = p;
-        while (fph < tl && !pp.contains(t.at(fph))) ++fph;
-        QString phr = t.mid(dph, fph - dph).trimmed();
-        textBrowserTag->setHtml(lemmatiseur->tagPhrase(phr));
+        textBrowserTag->setHtml(lemmatiseur->tagPhrase(t, p));
     }
 }
