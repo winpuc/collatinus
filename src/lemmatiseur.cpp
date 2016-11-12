@@ -1694,7 +1694,7 @@ void Lemmat::lireHyphen(QString fichierHyphen)
     }
 }
 
-QString Lemmat::tagPhrase(QString t, int p)
+QString Lemmat::tagTexte(QString t, int p)
 {
     // éliminer les chiffres et les espaces surnuméraires
     t.remove(QRegExp("\\d"));
@@ -1708,7 +1708,6 @@ QString Lemmat::tagPhrase(QString t, int p)
         p = 0;
         dph = 0;
         tout = true; // Pour faire tout le texte, phrase par phrase.
-        // À faire !!!
     }
     else
     {
@@ -1716,22 +1715,39 @@ QString Lemmat::tagPhrase(QString t, int p)
         while (dph > 0 && !pp.contains(t.at(dph)) && (t.mid(dph,2) != "\n\n")) --dph;
         if (dph != 0) dph += 1; // J'élimine la ponctuation de la phrase précédente.
     }
+    // conteneur pour les résultats
+    QStringList lsv;
     // progression jusqu'en fin de phrase
     int fph = p;
-    while (fph < tl && !pp.contains(t.at(fph)) && (t.mid(fph,2) != "\n\n")) ++fph;
-    QString phr = t.mid(dph, fph - dph).trimmed();
-    // découpage en mots
-    QStringList lm = phr.split(QRegExp("\\b"));
-
-    while (Ch::abrev.contains(lm[lm.size()-2]))
+    while (fph < tl)
     {
-        // Ma phrase se terminait par une abréviation : je continue.
-        fph++;
-        while (fph < tl && !pp.contains(t.at(fph))) ++fph;
-        phr = t.mid(dph, fph - dph).trimmed();
-        lm = phr.split(QRegExp("\\b"));
-    }
+        while (fph < tl && !pp.contains(t.at(fph)) && (t.mid(fph,2) != "\n\n")) ++fph;
+        QString phr = t.mid(dph, fph - dph).trimmed();
+        // découpage en mots
+        QStringList lm = phr.split(QRegExp("\\b"));
 
+        if (lm.size() > 1)
+        {
+            while (Ch::abrev.contains(lm[lm.size()-2]))
+            {
+                // Ma phrase se terminait par une abréviation : je continue.
+                fph++;
+                while (fph < tl && !pp.contains(t.at(fph))) ++fph;
+                phr = t.mid(dph, fph - dph).trimmed();
+                lm = phr.split(QRegExp("\\b"));
+            }
+            if (tout) lsv << tagPhrase(phr);
+            else return tagPhrase(phr);
+        }
+        dph = fph + 1;
+        fph++;
+    }
+    return lsv.join("<br/>\n");
+}
+
+QString Lemmat::tagPhrase(QString phr)
+{
+    QStringList lm = phr.split(QRegExp("\\b"));
     // conteneur pour les résultats
     QStringList lsv;
     lsv.append(phr);

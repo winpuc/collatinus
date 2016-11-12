@@ -11,7 +11,7 @@ namespace Ch
 {
 QStringList const abrev  = QStringList()
     <<"Agr"<<"Ap"<<"A"<<"K"<<"D"<<"F"<<"C"
-    <<"Cn"<<"L"<<"Mam"<<"M\""<<"M"<<"N"<<"Oct"
+    <<"Cn"<<"Kal"<<"L"<<"Mam"<<"M\""<<"M"<<"N"<<"Oct"
     <<"Opet"<<"Post"<<"Pro"<<"P"<<"Q"<<"Sert"
     <<"Ser"<<"Sex"<<"S"<<"St"<<"Ti"<<"T"<<"V"
     <<"Vol"<<"Vop"<<"Pl";

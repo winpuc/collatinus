@@ -1455,6 +1455,7 @@ void MainWindow::lancer()
 {
     if (dockVisible(dockLem)) lemmatiseTxt();
     if (dockVisible(dockScand)) scandeTxt();
+    if (dockVisible(dockTag)) tagger(editLatin->toPlainText(),-1);
 }
 
 /**
@@ -2110,7 +2111,6 @@ void MainWindow::tagger(QString t, int p)
         // Sans texte, je ne fais rien.
         int tl = t.length() - 1;
         if (p > tl) p = tl;
-        if (p < 0) p = 0;
-        textBrowserTag->setHtml(lemmatiseur->tagPhrase(t, p));
+        textBrowserTag->setHtml(lemmatiseur->tagTexte(t, p));
     }
 }
