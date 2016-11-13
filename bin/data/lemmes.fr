@@ -1474,6 +1474,7 @@ careo:manquer de, être débarrassé de
 carina:la carène, la coque, le navire
 caritas:amour
 carmen:poème, incantation
+carmen2:carde, peigne à carder
 carnarium:le boucher, le charnier (pièce où l'on gardait la viande)
 carnifex:le bourreau
 carnificina:le lieu de torture, l'office de bourreau
@@ -2694,7 +2695,7 @@ defluo:couler, descendre
 defodio:creuser, enterrer, enfouir
 deformis:défiguré, difforme, laid, honteux, sans forme, sans consistance
 deformitas:la laideur; la honte, l'infamie
-deformo:enlaidir, défigurer
+deformo:enlaidir, défigurer; dessiner
 defringo:briser
 defritum:vin cuit
 defungor:s'acquitter de, mourir (defunctus,a, um : délivré de, mort)
@@ -4053,7 +4054,7 @@ frustum:morceau, bouchée, bout
 frutex:l'arbrisseau, le branchage
 fucatus:teint; faux, simulé
 Fucinus:Fucinus lacus (le lac Fucin)
-fucus:le fard
+fucus:le fard - le frelon
 fufae:pouah!
 fugax:fugace, fugitif
 fuga:la fuite
