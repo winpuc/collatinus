@@ -7211,7 +7211,8 @@ placide:calmement, paisiblement
 placidus:doux, calme, paisible
 placito:plaire beaucoup
 placo:apaiser. - placare aliquem alicui : rendre qqn bienveillant à l'égard de qqn
-plaga:1. coup, blessure ; région 2. piège, filet
+plaga:coup, blessure
+plaga2:1. région 2. piège, filet
 plagiarius:le plagiaire (celui qui vend comme esclave un homme libre)
 plagigerulus:roué de coups
 plagipatida:le souffre-douleur
@@ -7648,6 +7649,7 @@ prodico:prédire; diem - : fixer plus loin une date, ajourner
 prodigium:prodige.
 prodigus:qui prodigue, qui gaspille; qui produit en abondance, abondant, prodigue
 proditio:révélation, indiscrétion, trahison
+proditio2:approche, apparition
 proditor:le traître
 prodo:publier, trahir, transmettre
 produco:faire avancer, faire sortir
@@ -8447,7 +8449,7 @@ salse:avec sel, avec esprit
 salsus:salé, spirituel
 saltem:au moins, du moins
 salto:danser
-saltus:les pâturages boisés
+saltus:les pâturages boisés - le saut, le bond.
 saluber:sain, bienfaisant à la santé
 salubris:utile à la santé, saint, salubre
 salubritas:la salubrité, le bon état du corps
