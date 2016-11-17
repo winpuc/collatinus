@@ -168,7 +168,7 @@ class Lemmat : public QObject
 
     // Pour le tagger
     QString tagTexte(QString t, int p);
-    QString tagPhrase(QString phr);
+//    QString tagPhrase(QString phr);
     QString tag(Lemme *l, QString morph);
     int fraction(QString listTags);
     int tagOcc(QString t);
