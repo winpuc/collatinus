@@ -372,6 +372,8 @@ int Lemmat::fraction(QString listTags)
             else if (t[0] == 'n') // Nom
                 fr = _tagOcc[t] * 1024 / _tagTot[t.mid(0,1)];
             else fr = 1024;
+            if (fr == 0) fr = 1;
+//            qDebug() << _tagOcc[t] << _tagTot[t.mid(0,1)] << fr;
         }
         else qDebug() << t << " : Tag non trouvé !";
         if (frFin < fr) frFin = fr; // Si j'ai reçu une liste de tags, je garde la fraction la plus grande.
@@ -1777,7 +1779,7 @@ QString Lemmat::tagTexte(QString t, int p)
                     for (int k = 0; k < sTag; k++)
                     {
                         QString seq = bigr + " " + lTags[k];
-                        long p = mot->proba(lTags[k]) * _trigram[seq];
+                        long p = mot->proba(lTags[k]) * (4 * _trigram[seq] + 1);
                         pr << p;
                         prTot += p;
                     }

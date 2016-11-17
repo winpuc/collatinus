@@ -42719,7 +42719,7 @@ praesectus:part. p. de praeseco.
 praesegmen:rognure, parcelle
 praeseminatio:embryon
 praesemino:tr., semer auparavant / [fig.] poser les fondements de, préparer
-praesens2:surnom romain
+Praesens3:surnom romain
 praesensio:pressentiment, divination
 praesensus:part. p. de praesentio.
 praesentalis:présent [en personne]
