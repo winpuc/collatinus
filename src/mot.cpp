@@ -71,6 +71,8 @@ Mot::Mot(QString forme, int rang, QObject *parent)
         long prMax = -1;
         foreach (QString t, _probas.keys())
         {
+            _bestOf[t] = 0.; // Je prépare une liste des tags
+//            qDebug() << t << _probas[t];
             long pr = _probas[t] * 1024 /total;
             if (prMax < pr)
             {
@@ -137,7 +139,21 @@ QString Mot::choisir(QString t, bool tout)
     {
         choix.append("<span style='color:#777777'><ul>");
         for (int i=0; i < _tags.size(); i++)
-            choix.append("<li>" + _lemmes[i] + " — " + _morphos[i] + "</li>\n");
+        {
+            QString format = "%1 : %2 ; ";
+            QString lg = "<li>" + _lemmes[i] + " — " + _morphos[i] + " (";
+            QString lt = _tags[i];
+//            qDebug() << lg << lt;
+            while (lt.size() > 2)
+            {
+                QString t = lt.mid(0,3);
+                lt = lt.mid(4);
+                lg.append(format.arg(t).arg(_bestOf[t]));
+            }
+            lg.chop(3);
+            lg.append(")</li>\n");
+            choix.append(lg);
+        }
         choix.append("</ul></span>\n");
     }
     QString ajout;
@@ -174,4 +190,15 @@ long Mot::proba(QString t)
 QString Mot::forme()
 {
     return _forme;
+}
+
+void Mot::setBestOf(QString t, double pr)
+{
+//    qDebug() << t << pr;
+    if (_bestOf.keys().contains(t))
+    {
+        if (pr > _bestOf[t]) _bestOf[t] = pr;
+    }
+    else qDebug() << t << pr;
+        // _bestOf[t] = pr;
 }
