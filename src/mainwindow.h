@@ -213,6 +213,9 @@ class MainWindow : public QMainWindow
     // Restauration des docks
     QAction *dockRestoreAct;
 
+    // bascules du tagger
+    QAction *affToutAct;
+
     // Pour le serveur
     QTcpServer * serveur;
     QTcpSocket * soquette;
