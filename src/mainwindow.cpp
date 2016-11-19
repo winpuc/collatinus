@@ -383,18 +383,20 @@ void MainWindow::apropos()
 {
     QMessageBox::about(
         this, tr("Collatinus 11"),
-        tr("COLLATINVS\nLinguae latinae lemmatizatio \n"
-           "Licentia GPL, © Yves Ouvrard, 2009 - 2016 \n"
-           "Nonnullas partes operis scripsit Philippe Verkerk\n"
-           "Versio " VERSION "\n"
-           "Gratias illis habeo :\n"
-           "William Whitaker †\n"
-           "Jose Luis Redrejo,\n"
-           "Georges Khaznadar,\n"
-           "Matthias Bussonier,\n"
-           "Gérard Jeanneau,\n"
-           "Jean-Paul Woitrain,\n"
-           "Perseus Digital Library <http://www.perseus.tufts.edu>"));
+        tr("<b>COLLATINVS</b><br/>\n"
+           "<i>Linguae latinae lemmatizatio </i><br/>\n"
+           "Licentia GPL, © Yves Ouvrard, 2009 - 2016 <br/>\n"
+           "Nonnullas partes operis scripsit Philippe Verkerk<br/>\n"
+           "Versio " VERSION "<br/><br/>\n"
+           "Gratias illis habeo :<br/><ul>\n"
+           "<li>William Whitaker †</li>\n"
+           "<li>Jose Luis Redrejo</li>\n"
+           "<li>Georges Khaznadar</li>\n"
+           "<li>Matthias Bussonier</li>\n"
+           "<li>Gérard Jeanneau</li>\n"
+           "<li>Jean-Paul Woitrain</li>\n"
+           "<li><a href='http://www.perseus.tufts.edu'>Perseus Digital Library </a></li>\n"
+           "<li>Dominique Longrée et le <a href='http://web.philo.ulg.ac.be/lasla/'>LASLA</a>\n</li></ul>"));
 }
 
 /**
@@ -618,6 +620,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     settings.setValue("hyphenation", hyphenAct->isChecked());
     settings.setValue("repHyphen", repHyphen);
     settings.setValue("ficHyphen", ficHyphen);
+    settings.setValue("tagAffTout", affToutAct->isChecked());
     settings.endGroup();
     settings.beginGroup("dictionnaires");
     settings.setValue("courant", comboGlossaria->currentIndex());
@@ -753,6 +756,11 @@ void MainWindow::createActions()
     serverAct = new QAction(tr("Serveur"), this);
     serverAct->setCheckable(true);
     serverAct->setChecked(false);
+
+    // actions pour le tagger
+    affToutAct = new QAction(tr("tout afficher"),this);
+    affToutAct->setCheckable(true);
+    affToutAct->setChecked(true);
 
     // Restauration des docks
     dockRestoreAct = new QAction(tr("Restaurer les docks"),this);
@@ -986,7 +994,8 @@ void MainWindow::createMenus()
     optMenu->addAction(ambigueAct);
     optMenu->addAction(illiusAct);
     optMenu->addAction(hyphenAct);
-//    optMenu->addSeparator();
+    optMenu->addSeparator();
+    optMenu->addAction(affToutAct);
 //    optMenu->addAction(fontAct);
 //    optMenu->addAction(majAct);
 
@@ -1214,6 +1223,16 @@ void MainWindow::createDockWindows()
     textBrowserTag = new QTextBrowser(dockWidgetTag);
     textBrowserTag->setSizePolicy(QSizePolicy::Expanding,
                                    QSizePolicy::Expanding);
+    QLabel *lasla = new QLabel(tr("Tagger probabiliste dérivé des <a href='http://web.philo.ulg.ac.be/lasla/textes-latins-traites/'>textes du LASLA</a>"),this);
+    lasla->setOpenExternalLinks(true);
+    QToolButton *tbMajPertTag = new QToolButton(this);
+    tbMajPertTag->setDefaultAction(majPertAct);
+    QToolButton *tbAffTout = new QToolButton(this);
+    tbAffTout->setDefaultAction(affToutAct);
+    hLayoutTag->addWidget(lasla);
+    hLayoutTag->addStretch();
+    hLayoutTag->addWidget(tbMajPertTag);
+    hLayoutTag->addWidget(tbAffTout);
     vLayoutTag->addLayout(hLayoutTag);
     vLayoutTag->addWidget(textBrowserTag);
     dockTag->setWidget(dockWidgetTag);
@@ -1637,6 +1656,7 @@ void MainWindow::readSettings()
     hyphenAct->setChecked(settings.value("hyphenation").toBool());
     repHyphen = settings.value("repHyphen").toString();
     ficHyphen = settings.value("ficHyphen").toString();
+    affToutAct->setChecked(settings.value("tagAffTout").toBool());
     if (repHyphen.isEmpty() || ficHyphen.isEmpty())
         repHyphen = qApp->applicationDirPath() + "/data";
 
@@ -2111,6 +2131,6 @@ void MainWindow::tagger(QString t, int p)
         // Sans texte, je ne fais rien.
         int tl = t.length() - 1;
         if (p > tl) p = tl;
-        textBrowserTag->setHtml(lemmatiseur->tagTexte(t, p));
+        textBrowserTag->setHtml(lemmatiseur->tagTexte(t, p, affToutAct->isChecked()));
     }
 }

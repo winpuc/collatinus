@@ -36,10 +36,14 @@ Mot::Mot(QString forme, int rang, QObject *parent)
                 _nbOcc.append(fr);
                 //                    qDebug() << forme << lem << nb << lt << t << fr;
                 if (m.sufq.isEmpty())
-                    _morphos.append(m.grq + " " + m.morpho);
+                {
+                    if (m.morpho == "-") _morphos.append(m.grq);
+                    else _morphos.append(m.grq + " " + m.morpho);
+                }
                 else
                 {
-                    _morphos.append(m.grq + " + " + m.sufq + " " + m.morpho);
+                    if (m.morpho == "-") _morphos.append(m.grq + " + " + m.sufq);
+                    else _morphos.append(m.grq + " + " + m.sufq + " " + m.morpho);
                     enclitique = m.sufq;
                 }
                 while (lt.size() > 2)

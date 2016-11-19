@@ -167,7 +167,7 @@ class Lemmat : public QObject
     QString motsClefs(int i);
 
     // Pour le tagger
-    QString tagTexte(QString t, int p);
+    QString tagTexte(QString t, int p, bool affTout = true);
 //    QString tagPhrase(QString phr);
     QString tag(Lemme *l, QString morph);
     int fraction(QString listTags);

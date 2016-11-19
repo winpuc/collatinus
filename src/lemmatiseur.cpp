@@ -1696,7 +1696,7 @@ void Lemmat::lireHyphen(QString fichierHyphen)
     }
 }
 
-QString Lemmat::tagTexte(QString t, int p)
+QString Lemmat::tagTexte(QString t, int p, bool affTout)
 {
     // éliminer les chiffres et les espaces surnuméraires
     t.remove(QRegExp("\\d"));
@@ -1911,7 +1911,7 @@ QString Lemmat::tagTexte(QString t, int p)
             for (int i = 0; i < mots.size()-1; i++)
                 if (!mots[i]->inconnu()) // Les mots inconnus ne figurent pas dans la séquence (cf. plus haut)
                 {
-                    lsv.append(mots[i]->choisir(seq.left(3)));
+                    lsv.append(mots[i]->choisir(seq.left(3), affTout));
                      // Si enclitique mid(8)
                     if (mots[i]->tagEncl().isEmpty()) seq = seq.mid(4);
                     else seq = seq.mid(5 + mots[i]->tagEncl().size());
