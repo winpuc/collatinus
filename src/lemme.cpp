@@ -111,6 +111,15 @@ Lemme::Lemme(QString linea, int origin, QObject *parent)
     // écrire un contrôle d'erreur
 
     _indMorph = eclats.at(4);
+    QRegExp c("cf\\.\\s(\\w+)$");
+    int pos = c.indexIn(_indMorph);
+    if (pos > -1)
+    {
+        _renvoi = c.cap(1);
+    }
+    else
+        _renvoi = "";
+
     _pos.clear();
     if (_indMorph.contains("adj."))
         _pos.append('a');
@@ -130,7 +139,7 @@ Lemme::Lemme(QString linea, int origin, QObject *parent)
         _pos.append('d');
     if (_indMorph.contains(" nom ") || _indMorph.contains("npr."))
         _pos.append('n');
-    if (_pos.isEmpty())
+    if (_pos.isEmpty() && _renvoi.isEmpty()) // S'il y a un renvoi (cf.), je prendrai le pos de ce dernier. Je ne peux pas le faire maintenant !
         _pos.append(_modele->pos());
 /* Avec l'internationalisation des morphos, le genre dépend de la langue choisie.
  * Il faut donc le définir à la demande.
@@ -146,14 +155,6 @@ Lemme::Lemme(QString linea, int origin, QObject *parent)
 //        _genre.append(" neutre");
     _genre = _genre.trimmed();
 */
-    QRegExp c("cf\\.\\s(\\w+)$");
-    int pos = c.indexIn(_indMorph);
-    if (pos > -1)
-    {
-        _renvoi = c.cap(1);
-    }
-    else
-        _renvoi = "";
 }
 
 /**
@@ -444,7 +445,7 @@ QString Lemme::oteNh(QString g, int &nh)
  */
 QString Lemme::pos()
 {
-    if (!_renvoi.isEmpty())
+    if (_pos.isEmpty() && !_renvoi.isEmpty())
     {
         Lemme *lr = _lemmatiseur->lemme(_renvoi);
         if (lr != NULL) return lr->pos();

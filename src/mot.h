@@ -21,6 +21,8 @@ public:
     QString forme();
     QString tagEncl();
     bool inconnu();
+    void setBestOf(QString t, double pr);
+    double bestOf(QString t);
 
 private:
     Lemmat* _lemmatiseur;
@@ -34,6 +36,7 @@ private:
     QList<int> _nbOcc;
     QMap<QString,long> _probas;
     QString _maxProb;
+    QMap<QString,double> _bestOf;
 };
 
 #endif // MOT_H

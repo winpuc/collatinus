@@ -1748,8 +1748,8 @@ QString Lemmat::tagTexte(QString t, int p)
                 Mot * mot = new Mot(lm[i],(i-1)/2,this);
                 mots.append(mot);
             }  // fin de boucle de lemmatisation pour chaque mot
-            Mot * mot = new Mot("",mots.size(),this);
-            mots.append(mot);
+            Mot * mot = new Mot("",mots.size(),this); // Fin de phrase
+            mots.append(mot); // J'ajoute un mot virtuel en fin de phrase avec le tag "snt".
 
             if (_trigram.isEmpty()) lisTags(true);
             // Si je n'ai pas encore chargé les trigrammes, je dois le faire maintenant.
@@ -1758,7 +1758,7 @@ QString Lemmat::tagTexte(QString t, int p)
             QList<double> probabilites;
             sequences.append("snt");
             probabilites.append(1.0);
-            double branches = 1.0;
+            double branches = 1.0; // Pour savoir combien de branches a l'arbre.
             // Je suis en début de phrase : je n'ai que le tag "snt" et une proba de 1.
             for (int i = 0; i < mots.size(); i++)
             {
@@ -1805,6 +1805,18 @@ QString Lemmat::tagTexte(QString t, int p)
                 }
                 // J'ai toutes les sequences et leur proba.
                 // Pour chaque bigramme terminal, je ne dois garder que la séquence la plus probable.
+                // En faisant ce tri, je fais une sélection sur le tag i-2 (attention aux mots avec enclitique).
+                // Si je veux garder une info sur l'ordre des tags du mot i-2, c'est maintenant !
+                if (i > 1)
+                {
+                    // Le mot i-2 existe !
+                    int debut = nvlSeq[0].size() - 11;
+                    if (!mot->tagEncl().isEmpty()) debut -= 4; // Je dois reculer d'un tag de plus.
+                    if (!mots[i-1]->tagEncl().isEmpty()) debut -= 4; // Je dois reculer d'un tag de plus.
+                    if (!mots[i-2]->tagEncl().isEmpty()) debut -= 4; // Je dois reculer d'un tag de plus.
+                    // Le tag du mot i-2 est nvlSeq[j].mid(debut, 3);
+                    for (int j = 0; j < nvlSeq.size(); j++) mots[i-2]->setBestOf(nvlSeq[j].mid(debut, 3), nvlProba[j]);
+                }
                 sequences.clear();
                 probabilites.clear();
                 qDebug() << mot->forme() << nvlProba << nvlSeq;
@@ -1853,6 +1865,16 @@ QString Lemmat::tagTexte(QString t, int p)
                 if (sequences.size() == 0) break;
             } // fin de la phrase.
 
+            // Les probas associées aux tags du dernier vrai mot.
+            if (mots.length() > 1)
+            {
+                // Le mot mots.length()-2 existe !
+                int debut = sequences[0].size() - 7;
+                if (!mots[mots.length()-2]->tagEncl().isEmpty()) debut -= 4; // Je dois reculer d'un tag de plus.
+                // Le tag du mot mots.length()-2 est sequences[j].mid(debut, 3);
+                for (int j = 0; j < sequences.size(); j++)
+                    mots[mots.length()-2]->setBestOf(sequences[j].mid(debut, 3), probabilites[j]);
+            }
             // Le tri final !
             QString seq = "";
             double val = -1;
