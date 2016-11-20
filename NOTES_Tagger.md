@@ -61,6 +61,7 @@ est le mode.
 * 2 : subjonctif
 * 3 : impératif
 * 4 : infinitif
+
 Le troisième caractère sert à distinguer le présent des autres temps.
 Il vaut 1 si c'est un présent. Sinon, c'est un espace.
 
@@ -92,7 +93,10 @@ par une virgule (format CSV).
 
 Jusqu'à présent, l'ordre dans lequel Collatinus présentait
 ses résultats de lemmatisation n'était lié qu'à l'ordre dans
-lequel il les avait trouvés. Maintenant que je connais le
+lequel il les avait trouvés. Ainsi, la forme *suis* était
+lemmatisée en premier lieu comme le génitif de *sus, suis*
+alors que le possessif est plus fréquent.
+Maintenant que je connais le
 nombre d'occurrences de chaque lemme dans les textes du LASLA,
 je peux trier ces solutions pour que la plus fréquente soit
 proposée en premier. Toutefois, Collatinus n'est pas un
@@ -159,6 +163,11 @@ par le tag choisi pour le énième mot. Pour chaque bigramme
 terminal, on va construire une probabilité conditionnelle
 à partir de ces produits de nombres d'occurrences. Il s'agit 
 donc de ces produits divisés par leur somme.
+C'est une probabilité associée au tag du énième mot :
+* conditionnelle, puisqu'elle dépend du bigramme terminal
+des séquences sur les n-1 premiers mots
+* normalisée, puisque pour chaque bigramme terminal la somme
+sur tous les tags possibles du énième mot donne 1.
 
 La probabilité d'une séquence obtenue en complétant une de 
 celles de n-1 mots par un tag du énième mot est simplement
@@ -186,6 +195,14 @@ Pour *chaque bigramme terminal*, il faut conserver la séquence
 qui est associée à la plus grande probabilité. C'est la seule
 qui puisse conduire à la séquence finale 
 (avec tous les mots de la phrase) la plus probable.
+Comme je suis *prudent*, je n'aime pas n'avoir aucun choix.
+Je souhaite avoir donc un second choix qui serait la
+séquence finale avec la deuxième plus grande probabilité.
+Pour être sûr de ne pas la perdre en route, je dois donc,
+à chaque étape d'élagage, garder deux fois plus de séquences.
+Pour *chaque bigramme terminal*, je garde les deux séquences
+avec les plus fortes probabilités. Le temps de calcul est alors
+doublé, mais reste très raisonnable.
 
 ### Information sur les autres tags
 
@@ -203,3 +220,94 @@ mot n-2 lorsque j'ai ajouté le énième mot.
 Je dois faire cette sélection avant l'élagage, car c'est
 le dernier moment où je suis sûr que tous les tags possibles
 du mot n-2 sont encore présents dans la liste des séquences.
+Attention, ces probabilités sont à manipuler avec précaution.
+Il ne faut pas comparer les probabilités de mots différents.
+En effet, toutes ces probabilités ne peuvent que décroître 
+quand on avance dans la phrase. Il faut se contenter de
+regarder ce qui se passe pour un mot donné. En général,
+un des tags possibles est associé à une probabilité
+nettement plus grande que toutes les autres. Toutefois,
+il peut arriver qu'un deuxième choix se dessine avec une
+probabilité proche. Je laisse à chacun le soin de se choisir
+le sens à donner à *proche*.
+
+### Détails mathématiques
+
+Attention, il faudra bien distinguer :
+* les probabilités conjointes de deux (ou plus) variables,
+notées P(x,y)
+* les probabilités conditionnelles de deux (ou plus) variables,
+notées P(x|y)
+
+Dans le premier cas, il s'agit d'une seule distribution de probabilités.
+Elle est normalisée à 1 lorsque l'on fait la somme double
+sur toutes les valeurs de x et de y. En introduisant
+l'événement E=(x,y), on pourrait écrire une probabilité P(E).
+
+Dans le second cas, il s'agit d'une collection de distributions
+de probabilités. Chacune d'elles donne la distribution de probabilités
+de la variable x. La distribution étant modifiée en fonction de y.
+Pour chaque valeur possible de la condition y, la distribution
+est normalisée. C'est à dire que la somme (simple) sur x de
+P(x|y) donne 1 quelle que soit la valeur choisie pour y.
+
+On va considérer ce qui se passe quand on ajoute le énième
+mot aux séquences obtenues avec les n-1 premiers. Les mots
+de rang n-1 et n-2 jouent un rôle particulier puisque leurs
+tags interviennent dans les trigrammes. On va nommer I, J et
+K le nombre de tags possibles pour les mots n-2, n-1 et n.
+Et H, le nombre de séquences des n-3 premiers mots.
+Le choix d'un tag pour les divers mots sera repéré par un
+indice i, j ou k. Le travail déjà effectué avec les n-1
+premiers mots a consisté à associer à toutes les séquences
+(h, i, j) une probabilité P(h, i, j). L'ajout du énième mot
+avec le tag k introduit une probabilité conditionnelle Q(k|i,j).
+On a d'une part le nombre d'occurrences estimé du énième mot
+avec le tag k que l'on note E(k). D'autre part, on a le
+nombre d'occurrences du trigramme (i, j, k) dans cet ordre
+que l'on note O(i, j, k). La probabilité conditionnelle est
+simplement proportionnelle au produit E(k).O(i, j, k).
+On peut donc écrire 
+
+Q(k|i,j) = E(k).O(i, j, k)/S(i,j)
+
+où S(i,j) est la somme sur k des produits E(k).O(i, j, k).
+Somme qui dépend des valeurs choisies i et j. Sa présence
+au dénominateur assure que Q(k|i,j) est une distribution
+de probabilités normalisée à 1.
+
+L'ajout du énième mot conduit à des séquences plus longues 
+et plus nombreuses. La séquence construite sur (h, i, j) 
+avec le tag k pour le énième mot sera notée (h, i, j, k).
+Elle est associée à la probabilité 
+
+P'(h, i, j, k) = P(h, i, j).Q(k|i,j)
+
+En renommant les indices h'=(h,i), i'=j et j'=k, on a donc,
+comme à l'ordre n-1, associé une probabilité P'(h', i', j')
+à chaque séquence de n mots repérée par les indices h', i', j'.
+On peut "oublier" les ' et recommencer avec le mot suivant.
+
+On voit bien sur l'expression de P'(h, i, j, k) que deux séquences
+différentes des n-3 premiers mots (des h différents, mais mêmes
+i et j) vont garder des probabilités dans le même ordre. Pour
+chaque i et j, seule la séquence h(i,j) qui maximise la 
+probabilité P(h, i, j) a une chance de mener à la séquence
+la plus probable. D'où la recette de l'élagage.
+
+On voit également que i, c'est à dire le tag du mot de rang n-2 
+apparaît encore explicitement dans l'expression de P'(h, i, j, k).
+Pour chaque valeur de i, je retiens la probabilité p(i) qui est
+la plus grande parmi toutes les valeurs P'(h, i, j, k).
+
+## Le futur
+
+Il serait maintenant intéressant de coupler le tagger à
+l'analyse syntaxique de la phrase. J'avais renoncé à une
+analyse automatique avec construction de l'arbre syntaxique
+car, sur une phrase longue et complexe, le nombre de liens
+possibles et de combinaisons à examiner explosait. Les temps
+de calcul aussi. Avec un tagger probabiliste qui m'indique
+quels sont les tags les plus probables, cette complexité
+peut se trouver réduite. J'ai un ordre pour établir des liens
+et pour essayer de les combiner. Ça peut aider… 
