@@ -1745,10 +1745,11 @@ QString Lemmat::tagTexte(QString t, int p, bool affTout)
             // lemmatisation pour chaque mot
             for (int i = 1; i < lm.length(); i += 2)
             {
-                Mot * mot = new Mot(lm[i],(i-1)/2,this);
+                bool debVers = !_majPert || lm[i-1].contains("\n");
+                Mot * mot = new Mot(lm[i],(i-1)/2, debVers,this); // TODO : Vérifier si on a des vers avec majuscule...
                 mots.append(mot);
             }  // fin de boucle de lemmatisation pour chaque mot
-            Mot * mot = new Mot("",mots.size(),this); // Fin de phrase
+            Mot * mot = new Mot("",mots.size(),true,this); // Fin de phrase
             mots.append(mot); // J'ajoute un mot virtuel en fin de phrase avec le tag "snt".
 
             if (_trigram.isEmpty()) lisTags(true);
@@ -1916,6 +1917,7 @@ QString Lemmat::tagTexte(QString t, int p, bool affTout)
                     if (mots[i]->tagEncl().isEmpty()) seq = seq.mid(4);
                     else seq = seq.mid(5 + mots[i]->tagEncl().size());
                 }
+                else lsv.append("<li>" + mots[i]->forme() + " : non trouvé</li>");
 
             lsv.append("</ul>");
             if (tout) lsv << "<br/>";

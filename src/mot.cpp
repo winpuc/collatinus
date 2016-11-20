@@ -1,6 +1,6 @@
 #include "mot.h"
 
-Mot::Mot(QString forme, int rang, QObject *parent)
+Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
 {
 //    qDebug() << forme;
     _forme = forme;
@@ -15,7 +15,7 @@ Mot::Mot(QString forme, int rang, QObject *parent)
     }
     else
     {
-        _mapLem = _lemmatiseur->lemmatiseM(forme, rang == 0);
+        _mapLem = _lemmatiseur->lemmatiseM(forme, (rang == 0) || debVers);
         QString enclitique = "";
         // échecs
         if (_mapLem.empty())
