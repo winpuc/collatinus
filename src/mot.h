@@ -14,7 +14,7 @@ class Mot : public QObject
 {
     Q_OBJECT
 public:
-    Mot(QString forme, int rang, QObject *parent = 0);
+    Mot(QString forme, int rang, bool debVers, QObject *parent = 0);
     QString choisir(QString t = "", bool tout = true);
     long proba(QString t);
     QStringList tags();
