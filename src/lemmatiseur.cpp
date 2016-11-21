@@ -177,6 +177,7 @@ void Lemmat::lisTags(bool tout)
 //            qDebug() << _trigram.size();
     }
 }
+
 /* Ancien format du fichier !
 void Lemmat::lisTags(bool tout)
 {
@@ -212,7 +213,7 @@ void Lemmat::lisTags(bool tout)
             default:
                 break;
             }
-/*            if (tag != eclats[0])
+              if (tag != eclats[0])
             {
                 tagsCollatinus.append(tag);
                 tagsLasla.append(eclats[0]);
@@ -233,7 +234,7 @@ void Lemmat::lisTags(bool tout)
         while (i <= max && !l.startsWith("! --- "))
         {
             l = lignes.at(i);
-/*            for (int j=0; j<tagsCollatinus.size();j++)
+              for (int j=0; j<tagsCollatinus.size();j++)
                 l.replace(tagsLasla[j],tagsCollatinus[j]);
             QString trigr = l.section(',',0,2);
             int occ = l.section(',',3,3).toInt();
@@ -550,6 +551,34 @@ void Lemmat::ajContractions()
     }
 }
 
+int Lemmat::aRomano(QString f)
+{
+    if (f.size () == 0) return 0;
+    // création de la table de conversion : pourrait être créée ailleurs.
+    QMap<QChar,int> conversion;
+    conversion['I']=1;
+    conversion['V']=5;
+    conversion['X']=10;
+    conversion['L']=50;
+    conversion['C']=100;
+    conversion['D']=500;
+    conversion['M']=1000;
+    // calcul du résultat : ajout d'un terme si l'ordre est normal, soustraction sinon.
+    int res=0;
+    int conv_c;
+    int conv_s = conversion[f[0]];
+    for (int i = 0; i < f.count()-1; i++)
+    {
+        conv_c = conv_s;
+        conv_s = conversion[f[i+1]];
+        if (conv_c < conv_s)
+            res -= conv_c;
+        else res += conv_c;
+    }
+    res += conv_s;
+    return res;
+}
+
 /**
  * \fn void Lemmat::ajDesinence (Desinence *d)
  * \brief ajoute la désinence d dans la map des
@@ -558,6 +587,13 @@ void Lemmat::ajContractions()
 void Lemmat::ajDesinence(Desinence *d)
 {
     _desinences.insert(Ch::deramise(d->gr()), d);
+}
+
+bool Lemmat::estRomain(QString f)
+{
+    return !(f.contains(QRegExp ("[^IVXLCDM]"))
+             || f.contains("IL")
+             || f.contains("IVI"));
 }
 
 /**
@@ -813,6 +849,19 @@ MapLem Lemmat::lemmatise(QString f)
         }
 
         if (!res.isEmpty()) result = res;
+    }
+    // romains
+    if (estRomain(f) && !_lemmes.contains(f))
+    {
+        QString lin = QString("%1|inv|||adj. num.").arg(f);
+        Lemme *romain = new Lemme(lin, 0, this);
+        int nr = aRomano(f);
+        romain->ajTrad(QString("%1").arg(nr), "fr");
+        _lemmes.insert(f, romain);
+        SLem sl = {f,"inv",""};
+        QList<SLem> lsl;
+        lsl.append(sl);
+        result.insert(romain, lsl);
     }
     return result;
 }
