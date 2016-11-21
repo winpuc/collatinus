@@ -50,7 +50,7 @@ abnŭo=ābnŭo|lego|ābnŭ||is, ere, abnui
 ăbŏlĭtĭo=ăbŏlĭtĭō̆|miles|ăbŏlĭtĭōn||ionis, f.
 Ăbŏrīgĭnes=Ăbŏrīgĭnĕs|opes|Ăbŏrīgĭn||um, m. pl.
 ăbŏrĭor=ăbŏrĭŏr|potior||ăbōrt|iris, iri, abortus sum
-Ābrăham=Ābrăhăm|abraham|||am ou ae, n. m.
+Ābrăham=Ābrăhăm|abraham|||am ou ae, npr. m.
 abrĭpĭo=ābrĭpĭo|capio|ābrĭpŭ|ābrēpt|is, ere, ripui, reptum
 abrŏgo=ābrŏgo|amo|||as, are
 abrumpo=ābrūmpo|lego|ābrūp|ābrūpt|is, ere, rupi, ruptum
@@ -1329,6 +1329,7 @@ bustum=būstŭm|templum|||i, n.
 būthўsĭa|uita|||ae, f.
 buxum=būxŭm|templum|||i, n.
 buxus=būxus|manus|||us, f.
+buxus2=būxus|lupus|||i, f. cf. buxus
 Byrsa=Bȳrsa|roma|||ae, f.
 Bȳzantĭum=Bȳzāntĭŭm|templum|||i, n.
 Bȳzantĭus=Bȳzāntĭus|doctus|||a, um
@@ -1496,6 +1497,7 @@ căreo=cărĕo|moneo|cărŭ||es, ere, ui, iturus
 cărīna|uita|||ae, f.
 cārĭtās|miles|cārĭtāt||atis, f.
 carmĕn=cārmĕn|corpus|cārmĭn||minis, n.
+carmĕn2=cārmĕn|corpus|cārmĭn||minis, n.
 carnārĭum=cārnārĭŭm|templum|||i
 carnĭfex=cārnĭfēx|miles|cārnĭfĭc||icis, m.
 carnĭfĭcīna=cārnĭfĭcīna|uita|||ae, f.
@@ -3200,7 +3202,7 @@ Dŏmĭtĭus|filius|||i, m.
 dŏmĭtor=dŏmĭtŏr|miles|dŏmĭtōr||oris, m.
 dŏmo|amo|dŏmŭ|dŏmĭt|as, are, ui, itum
 dŏmŭĭtĭo=dŏmŭĭtĭō̆|miles|dŏmŭĭtĭōn||ionis, f.
-dŏmus|domus|||us ou i, n. f.
+dŏmus|domus|||us ou i, nom f.
 dōnĕc|inv|||conj. sub.
 dōno|amo|||as, are
 dōnum=dōnŭm|templum|||i, n.
@@ -3522,7 +3524,8 @@ essĭto=ēssĭto|amo|||as, are
 Essŭvii=Ēssŭvĭi|liberi|||orum, m. pl.
 ēsŭrĭo|audio|ēsŭrĭ,ēsŭrīv|ēsŭrĭt|is, ire, i(u)i
 ēsus|manus|||us, m.
-ĕt|inv|||conj. coord. ou adv.
+ĕt|inv|||conj. coord.
+ĕt2|inv|||adv. cf. et
 ĕtĕnim=ĕtĕnĭm|inv|||conj.
 ĕtĭam=ĕtĭăm|inv|||adv.
 ĕtĭamnunc=ĕtĭāmnūnc|inv|||adv.
@@ -4559,7 +4562,7 @@ ictus=īctus|manus|||us, m.
 Īdaeus=Īdāeus|doctus|||a, um
 Īda|roma|||ae, f.
 idcirco=īdcīrcō|inv|||adv.
-īdem=īdĕm|idem|||eadem, idem
+īdem=īdĕm|idem|||eadem, idem, adj. pron.
 ĭdentĭdem=ĭdēntĭdĕm|inv|||adv.
 ĭdĕō|inv|||adv.
 Idistavisus=Idīstavisus|lupus|||i, m.
@@ -5946,7 +5949,7 @@ Mazippa=Māzīppa|roma|||ae, m.
 mĕābĭlis=mĕābĭlĭs|fortis|mĕābĭl||e
 mĕātus|manus|||us, m.
 mēcastor=mēcāstŏr|inv|||interj.
-mēcum=mēcŭm|inv|||prép. pron.
+mēcum=mēcŭm|inv|||pron. contr.
 Mēdēa|roma|||ae, f.
 mĕdēla|uita|||ae, f.
 mĕdella=mĕdēlla|uita|||ae, f.
@@ -6439,7 +6442,7 @@ nĭvĕus|aureus|||a, um
 nix=nīx|ciuis|nĭv||niuis, f.
 nōbĭlis=nōbĭlĭs|fortis|nōbĭl||e
 nōbĭlĭtās|miles|nōbĭlĭtāt||atis, f.
-nōbiscum=nōbīscŭm|inv|||contr.
+nōbiscum=nōbīscŭm|inv|||pron. contr.
 nŏcens=nŏcēns|infans|nŏcēnt||entis
 nŏcĕo|moneo|nŏcŭ|nŏcĭt|es, ere, nocui, nocitum
 noctŭa=nōctŭa|uita|||ae, f.
@@ -6470,7 +6473,7 @@ nōs|nos|||nostrum pl.
 noscĭtābundus=nōscĭtābūndus|doctus|||a, um
 noscĭto=nōscĭto|amo|||as, are
 nosco=nōsco|lego|nōv|nōt|is, ere, noui, notum
-noster=nōstĕr|pulcher||-|tra, trum
+noster=nōstĕr|pulcher||-|tra, trum, adj. pron.
 nostin=nōstin|inv|||nostin = nostine
 nostras=nōstras|diues|nōstrāt||atis
 nŏtābĭlis=nŏtābĭlĭs|fortis|nŏtābĭl||e
@@ -7337,6 +7340,7 @@ plăcĭdus|doctus|||a, um
 plăcĭto|amo|||as, are
 plāco|amo|||as, are
 plāga|uita|||ae, f.
+plăga2|uita|||ae, f.
 plăgĭārĭus|filius|||i, m.
 plāgĭgĕrŭlus|doctus|||a, um
 plāgĭpătĭda|uita|||ae, m.
@@ -7724,7 +7728,7 @@ prīmōris=prīmōrĭs|fortis|prīmōr||e
 prīmumdum=prīmūmdŭm|inv|||adv.
 prīmum=prīmŭm|inv|||adv.
 prīmus|nonus|||a, um
-princeps=prīncēps|diues|prīncĭp||ipis, n. m. et adj.
+princeps=prīncēps|diues|prīncĭp||ipis, nom m. et adj.
 princĭpālis=prīncĭpālĭs|fortis|prīncĭpāl||e
 princĭpālĭter=prīncĭpālĭtĕr|advr|||adv.
 princĭpātus=prīncĭpātus|manus|||us, m.
@@ -7778,6 +7782,7 @@ prōdīco|lego|prōdīx|prōdīct|is, ere, dixi, dictum
 prōdĭgĭum=prōdĭgĭŭm|templum|||ii, n.
 prōdĭgus|doctus|||a, um
 prōdĭtĭo=prōdĭtĭō̆|miles|prōdĭtĭōn||onis, f.
+prōdĭtĭo2=prōdĭtĭō̆|miles|prōdĭtĭōn||onis, f.
 prōdĭtor=prōdĭtŏr|miles|prōdĭtōr||oris, m.
 prōdo|lego|prōdĭd|prōdĭt|is, ere, didi, ditum
 prōdūco|lego|prōdūx|prōdūct|is, ere, duxi, ductum
@@ -8112,12 +8117,12 @@ quĕrĭmōnĭa|uita|||ae, f.
 quĕror=quĕrŏr|sequor||quēst|eris, i, questus sum
 quĕrŭlus|doctus|||a, um
 questus=quēstus|manus|||us, m.
-quī|qui|||quae, quod, adj. interr.
+quī|inv|||adv.
 quī2|qui|||quae, quod, pron. rel.
 quĭă|inv|||conj. sub.
-quĭbūscŭm|inv|||prép. + pron.
+quĭbūscŭm|inv|||pron. contr.
 quīcumquĕ=quīcūmquĕ|quicumque|||quae-, quod- (-cun-)
-quīcum=quīcŭm|prcum|||contr.
+quīcum=quīcŭm|prcum|||pron. contr.
 quĭd|inv|||adv. interr.
 quīdam=quīdăm|quidam|||quaedam, quoddam/quiddam
 quĭdem=quĭdĕm|inv|||adv.
@@ -8167,7 +8172,8 @@ quisque=quīsquĕ|quisque|||quaeque, quidque, pron.
 quisquis=quīsquĭs|quisquis|||quidquid ou quicquid
 quīvīs|quiuis|||quaeuis, quoduis/quiduis
 quŏăd|inv|||conj. sub. + subj.
-quō|inv|||quō
+quō|inv|||adv.
+quō2|inv|||conj. sub. cf. quo
 quōcumquĕ=quōcūmquĕ|inv|||adv.
 quŏd|inv|||conj. sub.
 quōdammŏdo=quōdāmmŏdŏ|inv|||adv.
@@ -8568,6 +8574,7 @@ saevĭo=sāevĭo|audio|sāevĭ|sāevīt|is, ire, ii, itum
 saevĭtĭa=sāevĭtĭa|uita|||ae, f.
 saevus=sāevus|doctus|||a, um
 sāga|uita|||ae, f.
+săga2|uita|||ae, f. cf. sagum
 săgīno|amo|||as, are
 săgittārĭus=săgīttārĭus|filius|||i, m.
 săgitta=săgītta|uita|||ae, f.
@@ -8740,7 +8747,7 @@ sectĭo=sēctĭō̆|miles|sēctĭōn||ionis, f.
 sector2=sēctŏr|imitor|||aris, atus sum
 sectōrĭus=sēctōrĭus|doctus|||a, um
 sector=sēctŏr|miles|sēctōr||oris, m.
-sēcum=sēcŭm|prcum|||sēcum = cum se
+sēcum=sēcŭm|prcum|||pron. contr. sēcum = cum se
 sĕcundo=sĕcūndo|amo|||as, are
 sĕcundum=sĕcūndŭm|inv|||+ acc
 sĕcundus=sĕcūndus|doctus|||a, um
@@ -8842,7 +8849,7 @@ sĕpultūra=sĕpūltūra|uita|||ae, f.
 Sēquăna|roma|||ae, f.
 Sēquăni|liberi|||orum, m. pl.
 sĕquor=sĕquŏr|sequor||sĕcūt|eris, i, secutus sum
-sēra|uita|||ae, f.
+sĕra|uita|||ae, f.
 sĕrēnus|doctus|||a, um
 Sergĭus=Sērgĭus|filius|||i, m.
 sērĭa|uita|||ae, f.
@@ -9496,7 +9503,7 @@ taurus=tāurus|lupus|||i, m.
 taxus=tāxus|lupus|||i, f.
 Tāўgĕtus|lupus|||i, m.
 tectum=tēctŭm|templum|||i, n.
-tēcum=tēcŭm|prcum|||tēcum = cum te
+tēcum=tēcŭm|prcum|||pron. contr. tēcum = cum te
 tĕgĭmĕn|corpus|tĕgĭmĭn||inis, n.
 tĕgĭmentum=tĕgĭmēntŭm|templum|||i, n.
 tegmĕn=tēgmĕn|corpus|tēgmĭn||inis, n.
@@ -10322,7 +10329,7 @@ vīvo|lego|vīx|vīct|is, ere, uixi, uictum
 vīvus|doctus|||a, um
 vixdum=vīxdŭm|inv|||adv.
 vix=vīx|inv|||adv.
-vōbiscŭm=vōbīscŭm|prcum|||pron.
+vōbiscŭm=vōbīscŭm|prcum|||pron. contr. = cum vobis
 vŏcābŭlum=vŏcābŭlŭm|templum|||i, n.
 vōcālis=vōcālĭs|fortis|vōcāl||e
 vōcĭfĕror=vōcĭfĕrŏr|imitor|||aris, ari
@@ -10338,7 +10345,7 @@ volnĕro=vōlnĕro|amo|||as, are
 volnus=vōlnŭs|corpus|vōlnĕr||ĕris, n.
 vŏlo|uolo|vŏlŭ||uis, uelle, uolui
 vŏlo2|amo|||as, are
-Volscus=Vōlscus|doctus|||a, um, adj. et nom
+Volscus=Vōlscus|doctus|||a, um, nom et adj.
 Volturcĭus=Vōltūrcĭus|filius|||i, m.
 Volturcus=Vōltūrcus|lupus|||i, m.
 voltur=vōltŭr|miles|vōltŭr||uris, m.
