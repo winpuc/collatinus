@@ -97,6 +97,7 @@ Lemme::Lemme(QString linea, int origin, QObject *parent)
     _modele = _lemmatiseur->modele(_grModele);
     _hyphen = "";
     _origin = origin;
+    _nbOcc = 1; // Tous les lemmes doivent avoir été rencontrés une fois
     // lecture des radicaux, champs 2 et 3
     for (int i = 2; i < 4; ++i)
         if (!eclats.at(i).isEmpty())
@@ -110,12 +111,21 @@ Lemme::Lemme(QString linea, int origin, QObject *parent)
     // écrire un contrôle d'erreur
 
     _indMorph = eclats.at(4);
+    QRegExp c("cf\\.\\s(\\w+)$");
+    int pos = c.indexIn(_indMorph);
+    if (pos > -1)
+    {
+        _renvoi = c.cap(1);
+    }
+    else
+        _renvoi = "";
+
     _pos.clear();
     if (_indMorph.contains("adj."))
         _pos.append('a');
     if (_indMorph.contains("conj"))
         _pos.append('c');
-    if (_indMorph.contains("excl"))
+    if (_indMorph.contains("excl."))
         _pos.append('e');
     if (_indMorph.contains("interj"))
         _pos.append('i');
@@ -127,28 +137,24 @@ Lemme::Lemme(QString linea, int origin, QObject *parent)
         _pos.append('r');
     if (_indMorph.contains("adv"))
         _pos.append('d');
-    if (_indMorph.contains(" n.") || _indMorph.contains("npr."))
+    if (_indMorph.contains(" nom ") || _indMorph.contains("npr."))
         _pos.append('n');
-    if (_pos.isEmpty())
+    if (_pos.isEmpty() && _renvoi.isEmpty()) // S'il y a un renvoi (cf.), je prendrai le pos de ce dernier. Je ne peux pas le faire maintenant !
         _pos.append(_modele->pos());
-
+/* Avec l'internationalisation des morphos, le genre dépend de la langue choisie.
+ * Il faut donc le définir à la demande.
     _genre.clear();
     if (_indMorph.contains(" m."))
-        _genre.append(" masculin"); // Peut-être mieux d'utiliser Flexion::genres[0] ?
+        _genre.append(" " + _lemmatiseur->genre(0));
+//        _genre.append(" masculin"); // Peut-être mieux d'utiliser Flexion::genres[0] ?
     if (_indMorph.contains(" f."))
-        _genre.append(" féminin");
+        _genre.append(" " + _lemmatiseur->genre(1));
+//        _genre.append(" féminin");
     if (_indMorph.contains(" n."))
-        _genre.append(" neutre");
+        _genre.append(" " + _lemmatiseur->genre(2));
+//        _genre.append(" neutre");
     _genre = _genre.trimmed();
-
-    QRegExp c("cf\\.\\s(\\w+)$");
-    int pos = c.indexIn(_indMorph);
-    if (pos > -1)
-    {
-        _renvoi = c.cap(1);
-    }
-    else
-        _renvoi = "";
+*/
 }
 
 /**
@@ -165,6 +171,20 @@ void Lemme::ajIrreg(Irreg *irr)
     // ajouter les numéros de morpho à la liste
     // des morphos irrégulières du lemme :
     if (irr->exclusif()) _morphosIrrExcl.append(irr->morphos());
+}
+
+/**
+ * \fn void Lemme::ajNombre(int n)
+ * \brief Ajoute l'entier n au nombre d'occurrences du lemme.
+ *
+ *      Un lemme de Collatinus peut être associé à plusieurs lemmes du LASLA.
+ *      D'où la somme.
+ */
+void Lemme::ajNombre(int n)
+{
+    _nbOcc += n;
+    // Un lemme de Collatinus peut être associé à plusieurs lemmes du LASLA.
+    // D'où la somme.
 }
 
 /**
@@ -240,8 +260,30 @@ bool Lemme::estIrregExcl(int nm)
     return _morphosIrrExcl.contains(nm);
 }
 
+/**
+ * @brief Lemme::genre
+ * @return : le (ou les) genre(s) du mot.
+ *
+ * Cette routine convertit les indications morphologiques,
+ * données dans le fichier lemmes.la,
+ * pour exprimer le genre du mot dans la langue courante.
+ *
+ * Introduite pour assurer l'accord entre un nom et son adjectif.
+ *
+ */
 QString Lemme::genre()
 {
+    QString _genre;
+    if (_indMorph.contains(" m."))
+        _genre.append(" " + _lemmatiseur->genre(0));
+// J'ai ainsi le genre dans la langue choisie.
+    if (_indMorph.contains(" f."))
+        _genre.append(" " + _lemmatiseur->genre(1));
+//        _genre.append(" féminin");
+    if (_indMorph.contains(" n."))
+        _genre.append(" " + _lemmatiseur->genre(2));
+//        _genre.append(" neutre");
+    _genre = _genre.trimmed();
     if (!_renvoi.isEmpty() && _genre.isEmpty())
     {
         Lemme *lr = _lemmatiseur->lemme(_renvoi);
@@ -283,7 +325,7 @@ QString Lemme::grModele()
  *        ses indications morphologiques et sa traduction dans la langue l.
  *        Si html est true, le retour est au format html.
  */
-QString Lemme::humain(bool html, QString l)
+QString Lemme::humain(bool html, QString l, bool nbr)
 {
     QString res;
     QString tr;
@@ -297,11 +339,19 @@ QString Lemme::humain(bool html, QString l)
     }
     else
         tr = traduction(l);
+    QTextStream flux(&res);
     if (html)
-        QTextStream(&res) << "<strong>" << _grq << "</strong> "
-                          << "<em>" << _indMorph << "</em> : " << tr;
+        flux << "<strong>" << _grq << "</strong>, "
+                          << "<em>" << _indMorph << "</em>";
     else
-        QTextStream(&res) << _grq << ", " << _indMorph << " : " << tr;
+        flux << _grq << ", " << _indMorph;
+    if ((_nbOcc != 1) && nbr)
+    {
+        if (html)
+            flux << " <small>(" << _nbOcc << ")</small>";
+        else flux << " (" << _nbOcc << ")";
+    }
+    flux << " : " << tr;
     return res;
 }
 
@@ -333,6 +383,24 @@ Modele *Lemme::modele()
 }
 
 /**
+ * \fn int Lemme::nbOcc()
+ * \brief Renvoie le nombre d'occurrences du lemme dans les textes du LASLA.
+ */
+int Lemme::nbOcc()
+{
+    return _nbOcc;
+}
+
+/**
+ * @brief Lemme::clearOcc
+ * Initialise le nombre d'occurrences.
+ */
+void Lemme::clearOcc()
+{
+    _nbOcc = 1;
+}
+
+/**
  * \fn int Lemme::nh()
  * \brief Renvoie le numéro d'homonymie du lemme.
  */
@@ -341,6 +409,10 @@ int Lemme::nh()
     return _nh;
 }
 
+/**
+ * \fn int Lemme::origin()
+ * \brief Renvoie l'origine du lemme : 0 pour le lexique de base, 1 pour l'extension.
+ */
 int Lemme::origin()
 {
     return _origin;
@@ -366,14 +438,14 @@ QString Lemme::oteNh(QString g, int &nh)
 }
 
 /**
- * \fn QChar Lemme::pos ()
+ * \fn QString Lemme::pos ()
  * \brief Renvoie un caractère représentant la
  *        catégorie (part of speech, pars orationis)
  *        du lemme.
  */
 QString Lemme::pos()
 {
-    if (!_renvoi.isEmpty())
+    if (_pos.isEmpty() && !_renvoi.isEmpty())
     {
         Lemme *lr = _lemmatiseur->lemme(_renvoi);
         if (lr != NULL) return lr->pos();

@@ -11967,6 +11967,7 @@ compar2:compagnon, camarade / amant, amante / époux, épouse
 comparabilis:comparable, qui peut être mis en parallèle
 comparate:par comparaison
 comparaticius:comparable / qui est fourni par contribution
+comparatio2:préparation / action de se procurer, acquisition
 comparativa:ablatif
 comparative:avec le sens du comparatif / au comparatif
 comparativus:comparo 1),
@@ -17470,7 +17471,7 @@ diurne:chaque jour
 diurno:int., vivre longtemps
 diurnum:ration journalière d'un esclave / journal, relation des faits journaliers / c. diurna acta / dies / besoins journaliers
 dius:arch. et poét., c. divus / [fig.] divin, semblable aux dieux / divinement beau (grand, etc.)
-dius2:nom d'homme
+Dius2:nom d'homme
 dius3:v. nudiustertius
 diuscule:qq peu de temps
 diutine:longtemps
@@ -42718,7 +42719,7 @@ praesectus:part. p. de praeseco.
 praesegmen:rognure, parcelle
 praeseminatio:embryon
 praesemino:tr., semer auparavant / [fig.] poser les fondements de, préparer
-praesens2:surnom romain
+Praesens3:surnom romain
 praesensio:pressentiment, divination
 praesensus:part. p. de praesentio.
 praesentalis:présent [en personne]

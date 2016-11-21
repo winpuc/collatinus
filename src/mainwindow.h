@@ -65,7 +65,7 @@ class MainWindow : public QMainWindow
     QDockWidget *dockDic;
     QDockWidget *dockScand;
     QDockWidget *dockFlex;
-    QDockWidget *dockSynt;
+    QDockWidget *dockTag;
     // et second dictionnaire
     QWidget *wDic;
     // cœur
@@ -78,7 +78,7 @@ class MainWindow : public QMainWindow
     QTextBrowser *textBrowserDic;
     QTextBrowser *textBrowserW;
     QTextBrowser *textBrowserFlex;
-    QTextBrowser *textBrowserSynt;
+    QTextBrowser *textBrowserTag;
     QLineEdit *lineEditLem;
     QLineEdit *lineEditDic;
     QLineEdit *lineEditDicW;
@@ -102,6 +102,9 @@ class MainWindow : public QMainWindow
     // Pour le serveur
     QString startServer ();
     QString stopServer ();
+
+    void tagger(QString t, int p); // Je voudrais créer dans MainWindow l'interface du tagger.
+
 
    private slots:
     void afficheLemsDic(bool litt = false,
@@ -210,6 +213,9 @@ class MainWindow : public QMainWindow
     // Restauration des docks
     QAction *dockRestoreAct;
 
+    // bascules du tagger
+    QAction *affToutAct;
+
     // Pour le serveur
     QTcpServer * serveur;
     QTcpSocket * soquette;
@@ -261,7 +267,7 @@ class MainWindow : public QMainWindow
     QWidget *dockWidgetDic;
     QWidget *dockWidgetScand;
     QWidget *dockWidgetFlex;
-    QWidget *dockWidgetSynt;
+    QWidget *dockWidgetTag;
     bool dockVisible(QDockWidget *d);
     // fonctions et variables diverses
     void charger(QString f);

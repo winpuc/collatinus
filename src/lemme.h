@@ -56,7 +56,7 @@ class Lemme : public QObject
     Q_OBJECT
    private:
     QString                 _cle;
-    QString                 _genre;
+//    QString                 _genre; // Le genre dépend maintenant de la langue choisie !
     QString                 _gr;
     QString                 _grd;
     QString                 _grq;
@@ -73,10 +73,12 @@ class Lemme : public QObject
     QMultiMap<int,Radical*> _radicaux;
     QString                 _renvoi;
     QMap<QString,QString>   _traduction;
+    int                     _nbOcc; // Nombre d'occurrences du lemme dans les textes du LASLA
 
    public:
     Lemme(QString linea, int origin, QObject* parent);
     void                ajIrreg(Irreg* irr);
+    void                ajNombre(int n);
     void                ajRadical(int i, Radical* r);
     void                ajTrad(QString t, QString l);
     QString             ambrogio();
@@ -88,9 +90,11 @@ class Lemme : public QObject
     QString             gr();
     QString             grq();
     QString             grModele();
-    QString             humain(bool html = false, QString l = "fr");
+    QString             humain(bool html = false, QString l = "fr", bool nbr = false);
     QString             irreg(int i, bool* excl);
     Modele*             modele();
+    int                 nbOcc(); // Retourne le nombre d'occurrences du lemme
+    void                clearOcc(); // Efface "
     int                 nh();
     int                 origin();
     QString static      oteNh(QString g, int& nh);

@@ -1474,6 +1474,7 @@ careo:manquer de, être débarrassé de
 carina:la carène, la coque, le navire
 caritas:amour
 carmen:poème, incantation
+carmen2:carde, peigne à carder
 carnarium:le boucher, le charnier (pièce où l'on gardait la viande)
 carnifex:le bourreau
 carnificina:le lieu de torture, l'office de bourreau
@@ -2694,7 +2695,7 @@ defluo:couler, descendre
 defodio:creuser, enterrer, enfouir
 deformis:défiguré, difforme, laid, honteux, sans forme, sans consistance
 deformitas:la laideur; la honte, l'infamie
-deformo:enlaidir, défigurer
+deformo:enlaidir, défigurer; dessiner
 defringo:briser
 defritum:vin cuit
 defungor:s'acquitter de, mourir (defunctus,a, um : délivré de, mort)
@@ -4053,7 +4054,7 @@ frustum:morceau, bouchée, bout
 frutex:l'arbrisseau, le branchage
 fucatus:teint; faux, simulé
 Fucinus:Fucinus lacus (le lac Fucin)
-fucus:le fard
+fucus:le fard - le frelon
 fufae:pouah!
 fugax:fugace, fugitif
 fuga:la fuite
@@ -7210,7 +7211,8 @@ placide:calmement, paisiblement
 placidus:doux, calme, paisible
 placito:plaire beaucoup
 placo:apaiser. - placare aliquem alicui : rendre qqn bienveillant à l'égard de qqn
-plaga:1. coup, blessure ; région 2. piège, filet
+plaga:coup, blessure
+plaga2:1. région 2. piège, filet
 plagiarius:le plagiaire (celui qui vend comme esclave un homme libre)
 plagigerulus:roué de coups
 plagipatida:le souffre-douleur
@@ -7647,6 +7649,7 @@ prodico:prédire; diem - : fixer plus loin une date, ajourner
 prodigium:prodige.
 prodigus:qui prodigue, qui gaspille; qui produit en abondance, abondant, prodigue
 proditio:révélation, indiscrétion, trahison
+proditio2:approche, apparition
 proditor:le traître
 prodo:publier, trahir, transmettre
 produco:faire avancer, faire sortir
@@ -8025,8 +8028,8 @@ quisque:chaque, chacun, chaque chose
 quisquis:quiconque, quoi que ce soit
 quis:qui ? quoi ? après si, nisi, ne, num, quis est l'équivalent de aliquis (quelqu'un, quelque chose).
 quivis:n'importe quel, quiconque
-qui:qui ; interr. quel ? lequel ?
-qui2:qui, que, quoi, dont, lequel...
+qui:interr., en quoi, par quoi, comment
+qui2:qui, que, quoi, dont, lequel. adj. interr. quel ? lequel ?
 quoad:tant que, aussi longtemps que
 quocumque:en quelque lieu que, partout
 quodammodo:en quelque sorte, en quelque façon
@@ -8446,7 +8449,7 @@ salse:avec sel, avec esprit
 salsus:salé, spirituel
 saltem:au moins, du moins
 salto:danser
-saltus:les pâturages boisés
+saltus:les pâturages boisés - le saut, le bond.
 saluber:sain, bienfaisant à la santé
 salubris:utile à la santé, saint, salubre
 salubritas:la salubrité, le bon état du corps
