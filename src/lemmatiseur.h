@@ -55,6 +55,7 @@ class Lemmat : public QObject
     // fonction d'initialisation
     void ajAssims();
     void ajContractions();
+    int  aRomano(QString f);
     void lisIrreguliers();
     void lisFichierLexique(QString filepath);
     void lisLexique();
@@ -123,6 +124,7 @@ class Lemmat : public QObject
     QString desassim(QString a);
     QString desassimq(QString a);
     static QString deramise(QString r);
+    static bool estRomain(QString f);
     QStringList frequences(QString txt);
     MapLem lemmatise(QString f);  // lemmatise une forme
     QString lemmatiseFichier(QString f, bool alpha = false,
