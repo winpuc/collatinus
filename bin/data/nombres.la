@@ -25874,7 +25874,7 @@ epulae,epulae  ,135,-epulo3-;epula;epulae
 !!-ergo;-ergo2;-ergo3,ergo 1,14,-ergo;-ergo2;-ergo3
 !!-erudio;-eruditus,eruditi  ,2,-erudio;-eruditus
 etesiae,etesiae  ,5,-etesius;etesiae;etesias
-!!etiam;etiam2;etiam3,etiam  ,4435,etiam;etiam2;etiam3
+etiam,etiam  ,4435,etiam;etiam2;etiam3
 euagor,euagor 2,5,euago;euagor
 !!euax;euax2,euax  ,4,euax;euax2
 !!euito;euito2,euito  ,26,-euitatus;euito;euito2
@@ -25979,7 +25979,7 @@ hymenaeus2,hymenaeus  ,29,hymenaeos;hymenaeus2
 iactanter,iactanter  ,2,-iactans;iactanter;iactantius
 !!-iaculus;iaculus2,iaculus 1,1,-iaculus;iaculus2
 !!iatralipta,iatraliptes  ,1,iatralipta
-!!-idem,idem  ,1540,-eadem-;-eodem-;-idem;-idem-
+idem,idem  ,1540,-eadem-;-eodem-;-idem;-idem-
 idiota,idiota  ,4,idiota;idiotes
 !-ignauus,ignauus 1,3,-ignauio-;-ignauus
 !!Ignipotens;Ignipotens2,ignipotens  ,6,Ignipotens;Ignipotens2
@@ -26142,8 +26142,8 @@ meridio,meridio  ,1,meridio;meridior
 meritorium,meritorium  ,1,-meritorius;meritoria;meritorium
 !!-metatus;metor,meto 1,2,-metatus;metor
 metrum,metrum  ,5,metrum
-!!-meo-;-meus;meum;meum2,meum  ,12,-meo-;-meus;mei;meum;meum2
-!!-meus,meus  ,3446,-mei;-meio2-;-meo-;-meum;-meum-;-meum2;-meum2-;-meus;-meus-
+meum,meum  ,12,-meo-;-meus;mei;meum;meum2
+meus,meus  ,3446,-mei;-meio2-;-meo-;-meum;-meum-;-meum2;-meum2-;-meus;-meus-
 !!-miliarius;-miliarius2;miliarium;miliarium2,miliarium  ,1,-miliarius;-miliarius2;miliarium;miliarium2
 !!miliarius;miliarius2,miliarius  ,1,miliarius;miliarius2
 !!-milium;-mille,mille  ,856,-milium;-milium-;-mille;-mille-;-millus-
@@ -26245,7 +26245,7 @@ odoro,odoro  ,6,-odorarius;-odorarius2;-odoratus;-odoratus2;odoror
 oenophorum,oenophorum  ,4,oenophorum;oenophorus
 !!-Olympius;Olympia-;Olympia2;Olympium,olympia O,1,-Olympius;Olympia-;Olympia2;Olympium
 ominor,ominor  ,6,omino;ominor
-!!-omne;-omnis,omnis  ,8263,-omne;-omne-;-omnia;-omnia-;-omnia2-;-omnis;-omnis-
+omnis,omnis  ,8263,-omne;-omne-;-omnia;-omnia-;-omnia2-;-omnis;-omnis-
 onager,onager  ,2,onager;onagrus
 !!-opaco-;-opacus,opacum  ,4,-opaco-;-opacus
 operor,operor  ,19,-operans;-operatus;-operatus2;-operatus2-;opero;operor
