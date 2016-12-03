@@ -7949,7 +7949,7 @@ quantitas:quantité
 quanto:combien ?, avec tanto = autant que
 quantulumcumque:si petit que
 quantulum:combien peu
-quantuluscumque:si petit
+!quantuluscumque:si petit
 quantumvis:autant qu'on voudra
 quantum:combien ?
 quantum2:autant... autant
@@ -10228,3 +10228,7 @@ Zeuxis:Zeuxis (peintre grec)
 Zoilus:Zoilus
 zona:ceinture
 zygia:(tibia) : la flûte dont on jouait aux noces, nuptiale
+qualiscumque:relat., quel (quelle) ... que, de quelque nature que / indéf., n'importe quel, quel qu'il soit, quelconque
+quantuscumque:relat., quel... que en grandeur, qq grand que, si grand que / quantuluscumque [formule de modestie] / n. quantumcumque pris advt, dans toute la mesure où / indéf., de n'importe quelle grandeur (quel qu'il soit en grandeur, qq grand ou qq peu grand qu'il soit)
+quantuluscumque:relat., qq petit que, si petit que [avec ind.] / n. pris advt, si peu que / indéf., n. pris advt, en quantité si faible que ce soit
+quotuscumque:en qq nombre que, en si petit nombre que ce soit que
