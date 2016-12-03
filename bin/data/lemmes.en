@@ -7739,7 +7739,7 @@ quantitas:magnitude/multitude, quantity, degree, size; (specified) amount/quanti
 quanto:(by) how much;
 quantulumcumque:however small
 quantulum:how small/trifling an amount/matter; what a small/trifling thing/amount/matter;
-quantuluscumque:however small, how little soever
+!quantuluscumque:however small, how little soever
 quantum2:how much; how far;
 quantumvis:to as great a degree as you like, as much/long as you like; however; although;
 quantum:so much as
@@ -9953,3 +9953,7 @@ Zeuxis:a famous Greek painter of Heraclea
 Zoilus:a severe critic in the time of, a censurer of Homer, a censorious person
 zona:- zone; woman's girdle; (tunic) belt; money belt; climatic region;
 zygia:a nuptial or marriage flute
+qualiscumque:Rel., of what quality soever, of whatever kind / indef., any without exception, any whatever
+quantuscumque:how great soever, of whatever size, how many soever
+quantuluscumque:however small, how little soever
+quotuscumque:whatsoever in number, order, how great, small soever

@@ -471,6 +471,20 @@ R:1:9,0
 sufd:cūnquĕ
 sufd:cūmquĕ
 
+modele:qualiscumque
+pere:plus
+R:1:8,0
+R:4:6,0
+!des:13,14,25,26:1:ĭs
+sufd:cūnquĕ
+sufd:cūmquĕ
+
+modele:quantuscumque
+pere:nonus
+R:0:8,0
+sufd:cūnquĕ
+sufd:cūmquĕ
+
 modele:quidam
 pere:qui
 R:1:6,0

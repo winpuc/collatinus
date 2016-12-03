@@ -19578,7 +19578,7 @@ ethologus:qui imite les moeurs, mime, comédien
 Ethopia:Éthopie [ville d'Athamanie]
 ethopoeia:éthopée [fig. de rhét.], portrait, caractère
 ethopoeiacus:servant à peindre le caractère
-etiam2:adv, encore alors, jusque-là [dans le passé]
+!etiam2:adv, encore alors, jusque-là [dans le passé]
 etiamdum:adv., encore alors
 etiamnum:encore maintenant, encore / [avec nég.] / encore, en outre / [avec compar.]
 etiamtum:alors encore, alors même, encore.
@@ -61277,7 +61277,7 @@ Esula:v. aesula.
 Esuris:ville de la Bétique
 Etaxalos:île voisine de l'Éolie
 Etene:v. de Crète
-etiam3:adv, encore alors, jusque-là [dans le passé]
+!etiam3:adv, encore alors, jusque-là [dans le passé]
 Euaei:peuple madianite que Moïse eut à combattre
 Euagon:écrivain grec de Thasos
 Euanthius:nom d'un grammairien latin

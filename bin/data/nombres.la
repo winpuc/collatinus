@@ -20231,6 +20231,7 @@ quaestura,quaestura  ,50
 quaestus,quaestus  ,143
 qualis,-qualis 1,149
 !qualis,-qualis 2,65
+qualiscumque,qualiscumque  ,46
 qualitas,qualitas  ,6
 qualiter,qualiter 1,4
 !qualiter,qualiter 2,1
@@ -20263,13 +20264,13 @@ quanto,quanto 2,173
 quantopere,quantopere 1,1
 !quantopere,quantopere 2,2
 quantulum,quantulum 4,7
-!quantulumcumque,-quantuluscumque 1-,6
+quantuluscumque,-quantuluscumque 1-,6
 !quantulumcumque,-quantuluscumque 2-,1
 !quantulus,-quantulum 2,3
 quantulus,-quantulus 1,1
 quantulus,-quantulus 2,6
-!quantumcumque,-quantuscumque 1-,10
-!quantumcumque,quantumcumque  ,1
+quantuscumque,-quantuscumque 1-,10
+quantumcumque,quantumcumque  ,1
 quantumlibet,-quantuslibet  -,1
 !quantumuis,-quantumuis 2,1
 quantumuis,quantumuis 1,4
@@ -20452,6 +20453,7 @@ quoties,quotiens 1,2
 quotiescumque,quotienscumque  ,1
 quotquot,-quotquot 1-,3
 quotus,-quotus  ,41
+quotuscumque,quotuscumque  ,1
 quousque,-quousque  ,16
 !quousque,-quousque 2,6
 quum,-cum 3,1
