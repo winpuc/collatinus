@@ -701,7 +701,8 @@ void MainWindow::createActions()
     nouvAct->setShortcuts(QKeySequence::New);
     ouvrirAct->setShortcuts(QKeySequence::Open);
     printAct->setShortcuts(QKeySequence::Print);
-    reFindAct->setShortcut(QKeySequence(tr("Ctrl+J")));
+    reFindAct->setShortcut(QKeySequence::FindNext);
+//    reFindAct->setShortcut(QKeySequence(tr("Ctrl+J")));
     quitAct->setShortcut(
         QKeySequence(tr("Ctrl+Q")));  // QKeySequence::Quit inopérant
     lancAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_L));
