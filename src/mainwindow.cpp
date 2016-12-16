@@ -491,6 +491,7 @@ void MainWindow::charger(QString f)
         return;
     }
     QTextStream in(&file);
+    in.setCodec("UTF-8"); // Pour windôze !
     QApplication::setOverrideCursor(Qt::WaitCursor);
     QString contenu = in.readAll();
     file.close();
