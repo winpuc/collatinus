@@ -408,6 +408,7 @@ QStringList Lemmat::lignesFichier(QString nf)
     QFile f(nf);
     f.open(QFile::ReadOnly);
     QTextStream flux(&f);
+    flux.setCodec("UTF-8"); // Pour windôze !
     QStringList retour;
     while (!flux.atEnd())
     {
@@ -1269,6 +1270,7 @@ QString Lemmat::lemmatiseFichier(QString f, bool alpha, bool cumVocibus,
     QFile fichier(f);
     fichier.open(QFile::ReadOnly);
     QTextStream flf(&fichier);
+    flf.setCodec("UTF-8"); // Pour windôze !
     QString texte = flf.readAll();
     fichier.close();
     return lemmatiseT(texte, alpha, cumVocibus, cumMorpho, nreconnu);
