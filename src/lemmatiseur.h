@@ -100,6 +100,8 @@ class Lemmat : public QObject
     bool _majPert;
     bool _morpho;
     bool _nonRec;
+    QMap<QString,QString> _catLasla;
+    void lisCat();
 
     QMap<QString, int> _tagOcc; // Nombre d'occurrences du tag.
     QMap<QString, int> _tagTot; // Nombre total en fonction du premier caractère du tag.
@@ -172,6 +174,9 @@ class Lemmat : public QObject
     QString tag(Lemme *l, QString morph);
     int fraction(QString listTags);
     int tagOcc(QString t);
+
+    // Code en 9 pour le LASLA
+    QString k9(QString m);
 
 
    public slots:
