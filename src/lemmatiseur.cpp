@@ -83,6 +83,16 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
     lisTraductions(true, false);
     lisIrreguliers();
     lisParPos();
+    lisCat();
+}
+
+void Lemmat::lisCat()
+{
+    QStringList lignes = lignesFichier(_resDir + "CatLASLA.txt");
+    foreach (QString lin, lignes)
+    {
+        if (lin.contains(",")) _catLasla.insert(lin.section(",",0,0),lin.section(",",1,1));
+    }
 }
 
 /**
@@ -826,6 +836,32 @@ MapLem Lemmat::lemmatise(QString f)
 bool Lemmat::inv(Lemme *l, const MapLem ml)
 {
     return ml.value(l).at(0).morpho == "-";
+}
+
+QString Lemmat::k9(QString m)
+{
+//    qDebug() << m;
+    QStringList res;
+    QString cibAct = _cible;
+    _cible = "k9,fr";
+    MapLem mm = lemmatiseM(m);
+    foreach (Lemme *l, mm.keys())
+    {
+        QString clef = l->cle() + ", ,";
+        foreach (SLem s, mm.value(l))
+        {
+            QString code9 = s.morpho;
+            QString forme = Ch::atone(s.grq);
+            if (!s.sufq.isEmpty()) forme += "<" + Ch::atone(s.sufq) +">,";
+            else forme += ",";
+            if (_catLasla.contains(l->modele()->gr())) code9.replace("k9",_catLasla[l->modele()->gr()]);
+//            qDebug() << clef << s.morpho << code9 << _catLasla[l->modele()->gr()];
+            res << forme + clef + code9;
+        }
+    }
+
+    _cible = cibAct;
+    return res.join("\n");
 }
 
 /**

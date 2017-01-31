@@ -2028,6 +2028,10 @@ void MainWindow::exec ()
 //            rep = lemmatiseur->txt2XML(requete);
             rep = "Pas encore disponible";
             break;
+        case 'K':
+        case 'k':
+            rep = lemmatiseur->k9(texte);
+            break;
         case 'c':
             if (options.size() > 2)
                 lemmatiseur->setMajPert(options[2] == '1');
