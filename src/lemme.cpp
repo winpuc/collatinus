@@ -333,7 +333,7 @@ QString Lemme::humain(bool html, QString l, bool nbr)
     {
         Lemme *lr = _lemmatiseur->lemme(_renvoi);
         if (lr != 0)
-            tr = _lemmatiseur->lemme(_renvoi)->traduction(l);
+            tr = lr->traduction(l);
         else
             tr = "renvoi non trouvé";
     }
