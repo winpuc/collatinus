@@ -81,8 +81,8 @@ int Radical::numRad() { return _numero; }
  */
 Lemme::Lemme(QString linea, int origin, QObject *parent)
 {
-    // cădo|lego|cĕcĭd|cās|is, ere, cecidi, casum
-    //   0   1    2     3          4
+    // cădo|lego|cĕcĭd|cās|is, ere, cecidi, casum|687
+    //   0 | 1  | 2   | 3 |     4                | 5
     _lemmatiseur = qobject_cast<Lemmat *>(parent);
     QStringList eclats = linea.split('|');
     QStringList lg = eclats.at(0).split('=');
@@ -98,6 +98,12 @@ Lemme::Lemme(QString linea, int origin, QObject *parent)
     _hyphen = "";
     _origin = origin;
     _nbOcc = 1; // Tous les lemmes doivent avoir été rencontrés une fois
+    // contrôle de format. la liste doit avoir 6 items
+    if (eclats.count() < 6)
+    {
+        qDebug() << "Ligne mal formée : "<<_gr<<"dernier champ"<<eclats.last();
+        return;
+    }
     // lecture des radicaux, champs 2 et 3
     for (int i = 2; i < 4; ++i)
         if (!eclats.at(i).isEmpty())
@@ -107,8 +113,6 @@ Lemme::Lemme(QString linea, int origin, QObject *parent)
                 _radicaux.insert(i - 1, new Radical(rad, i - 1, this));
         }
     _lemmatiseur->ajRadicaux(this);
-
-    // écrire un contrôle d'erreur
 
     _indMorph = eclats.at(4);
     QRegExp c("cf\\.\\s(\\w+)$");
@@ -141,6 +145,10 @@ Lemme::Lemme(QString linea, int origin, QObject *parent)
         _pos.append('n');
     if (_pos.isEmpty() && _renvoi.isEmpty()) // S'il y a un renvoi (cf.), je prendrai le pos de ce dernier. Je ne peux pas le faire maintenant !
         _pos.append(_modele->pos());
+    // nombre d'occurrences
+    _nbOcc = eclats.at(5).toInt();
+
+
 /* Avec l'internationalisation des morphos, le genre dépend de la langue choisie.
  * Il faut donc le définir à la demande.
     _genre.clear();

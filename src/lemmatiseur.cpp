@@ -619,26 +619,29 @@ void Lemmat::ajRadicaux(Lemme *l)
     foreach (int i, m->clesR())
     {
         if (l->clesR().contains(i)) continue;
-        QString g = l->grq();
-        Radical *r = NULL;
+        QStringList gs = l->grq().split(',');
+        foreach (QString g, gs)
         {
-            QString gen = m->genRadical(i);
-            // si gen == 'K', le radical est la forme canonique
-            if (gen == "K")
-                r = new Radical(g, i, l);
-            else
+            Radical *r = NULL;
             {
-                // sinon, appliquer la règle de formation du modèle
-                int oter = gen.section(',', 0, 0).toInt();
-                QString ajouter = gen.section(',', 1, 1);
-                if (g.endsWith(0x0306)) g.chop(1);
-                g.chop(oter);
-                if (ajouter != "0") g.append(ajouter);
-                r = new Radical(g, i, l);
+                QString gen = m->genRadical(i);
+                // si gen == 'K', le radical est la forme canonique
+                if (gen == "K")
+                    r = new Radical(g, i, l);
+                else
+                {
+                    // sinon, appliquer la règle de formation du modèle
+                    int oter = gen.section(',', 0, 0).toInt();
+                    QString ajouter = gen.section(',', 1, 1);
+                    if (g.endsWith(0x0306)) g.chop(1);
+                    g.chop(oter);
+                    if (ajouter != "0") g.append(ajouter);
+                    r = new Radical(g, i, l);
+                }
             }
+            l->ajRadical(i, r);
+            _radicaux.insert(Ch::deramise(r->gr()), r);
         }
-        l->ajRadical(i, r);
-        _radicaux.insert(Ch::deramise(r->gr()), r);
     }
 }
 
@@ -1378,7 +1381,6 @@ void Lemmat::lisFichierLexique(QString filepath)
     foreach (QString lin, lignes)
     {
         Lemme *l = new Lemme(lin, orig, this);
-        if (_lemmes.contains(l->cle())) qDebug() << orig << lin << l->cle();
         _lemmes.insert(l->cle(), l);
     }
 }
@@ -1389,6 +1391,7 @@ void Lemmat::lisFichierLexique(QString filepath)
  */
 void Lemmat::lisLexique()
 {
+    qDebug()<<"_resDir"<<_resDir;
     lisFichierLexique(_resDir + "lemmes.la");
 }
 
