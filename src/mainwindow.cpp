@@ -250,7 +250,11 @@ void MainWindow::afficheLemsDic(bool litt, bool prim)
  *        la connexion entre une action et la fonction
  *        afficheLemsDic().
  */
-void MainWindow::afficheLemsDicLitt() { afficheLemsDic(true); }
+void MainWindow::afficheLemsDicLitt()
+{
+    afficheLemsDic(true);
+}
+
 /**
  * \fn void MainWindow::afficheLemsDicW () * \brief Fonction de relais
  * permettant d'utiliser
@@ -258,7 +262,11 @@ void MainWindow::afficheLemsDicLitt() { afficheLemsDic(true); }
  *        afficheLemsDicW().
  *
  */
-void MainWindow::afficheLemsDicW() { afficheLemsDic(false, false); }
+void MainWindow::afficheLemsDicW()
+{
+    afficheLemsDic(false, false);
+}
+
 /**
  * \fn afficheLemsDic(true,false);
  * \brief
@@ -266,7 +274,11 @@ void MainWindow::afficheLemsDicW() { afficheLemsDic(false, false); }
  *        la connexion entre une action et la fonction
  *        afficheLemsDicW(), sans lemmatisation.
  */
-void MainWindow::afficheLemsDicLittW() { afficheLemsDic(true, false); }
+void MainWindow::afficheLemsDicLittW()
+{
+    afficheLemsDic(true, false);
+}
+
 /**
  * \fn void MainWindow::afficheLemsDic(QStringList ll, int no)
  * \brief Affiche la page ou les entrées de

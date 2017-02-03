@@ -92,7 +92,8 @@ Lemme::Lemme(QString linea, int origin, QObject *parent)
         _grq = _grd;
     else
         _grq = lg.at(1);
-    _gr = Ch::atone(_grq);
+    // pour l'affichage des dictionnaires, on élimine les doubles de la forme canonique
+    _gr = Ch::atone(_grq.section(',',0,0));
     _grModele = eclats.at(1);
     _modele = _lemmatiseur->modele(_grModele);
     _hyphen = "";
