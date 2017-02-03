@@ -620,7 +620,6 @@ void Lemmat::ajRadicaux(Lemme *l)
     {
         if (l->clesR().contains(i)) continue;
         QStringList gs = l->grq().split(',');
-        bool debog = gs.count() > 1;
         foreach (QString g, gs)
         {
             Radical *r = NULL;
@@ -640,7 +639,6 @@ void Lemmat::ajRadicaux(Lemme *l)
                     r = new Radical(g, i, l);
                 }
             }
-            if (debog) qDebug()<<g<<i<<r->grq()<<r->gr();
             l->ajRadical(i, r);
             _radicaux.insert(Ch::deramise(r->gr()), r);
         }
