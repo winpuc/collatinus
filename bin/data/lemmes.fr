@@ -7200,7 +7200,6 @@ duumvir:duumvir
 duumviratus:duumvirat, charge de duumvir
 dux:chef, guide
 Dymas:Dymas [roi de Thrace, père d'Hécube, fleuve de Sogdiane]
-dynasta:prince, seigneur, petit souverain
 dynastes:dynaste, prince [oriental]
 Dyrrachini:habitants de Dyrrachium
 Dyrrachinus:de Dyrrachium
