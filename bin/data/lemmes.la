@@ -7254,7 +7254,7 @@ Dyrrăchĭum=Dȳrrăchĭŭm|arpinum|||i, n.|35
 dyspār=dȳspār|diues|dȳspăr||paris|2
 dyspepsĭa=dȳspēpsĭa|uita|||ae, f.|2
 Dўmās|ciuis|Dўmānt||antis, m.|4
-dўnastēs=dўnāstēs|cometes|||es, a, m.
+dўnastēs=dўnāstēs|cometes|||es, a, m.|4
 ĕādem=ĕādĕm|inv|||adv.|13
 ĕā|inv|||adv.|11
 ĕātĕnus|inv|||adv.|2
@@ -7369,7 +7369,7 @@ efflo=ēfflo|amo|||as, are|14
 efflōresco=ēfflōrēsco|lego|ēfflōrŭ||is, ere, florui|2
 efflŭo=ēfflŭo|lego|ēfflŭ||is, ere, flui, fluxi|26
 efflŭvĭum=ēfflŭvĭum|templum|||ii, n.|2
-effŏdĭo=ēffŏdĭo|capio|ēffōd|ēffōss|is, ere, fodi, fossum|38
+effŏdĭo=ēffŏdĭo,ēxfŏdĭo|capio|ēffōd,ēxfōd|ēffōss,ēxfōss|is, ere, fodi, fossum|38
 effor=ēffŏr|imitor|||atur, ari, atus sum|44
 effractārĭus=ēffrāctārĭus|filius|||ii, m.|2
 effrēnātē=ēffrēnātē|adve|||adv.|3
@@ -7413,7 +7413,6 @@ Egus|lupus|||i, m.|1
 ēheu=ēhēu|inv|||interj.|23
 ĕhŏ|inv|||interj.|10
 ēiă=ējă|inv|||interj.|3
-ēĭcĭo|capio|ējēc|ējēct|cf. eiicio|163
 ei=ēi|inv|||interj.|65
 ē|inv|||prép. + abl.|1096
 ējăcŭlo|amo|||as, are|1
@@ -7422,12 +7421,12 @@ ei=ēi|inv|||interj.|65
 ējecto=ējēcto|amo|||as, are|3
 ējectŭs2=ējēctŭs|manus|||us, m.|2
 ējĕro|amo|||as, are|4
-ējĭcio=ējĭcĭo|capio|ējēc|ējēct|is, ere, eieci, eiectum|1
+ējĭcio=ējĭcĭo,ēĭcĭo|capio|ējēc|ējēct|is, ere, eieci, eiectum|1
 ējŭlātĭo=ējŭlātĭō̆|miles|ējŭlātĭōn||ionis, f.|2
 ējŭlātus|manus|||us, m.|7
 ējŭlo|amo|||as, are|4
 ējūrātĭo|miles|ējūrātĭōn||ōnis, f.|2
-ējūro|amo|||as, are|13
+ējūro=ējūro,ēxjūro|amo|||as, are|13
 ējusdemmŏdi=ējūsdēmmŏdī|inv|||adv.|1
 ējusmŏdi=ējūsmŏdī|inv|||adv.|63
 ēlābor=ēlābŏr|sequor||ēlāps|eris, i, lapsus sum|51
@@ -7457,8 +7456,7 @@ Elĕāzărus|lupus|||i, m.|4
 ēlĕgantĕr=ēlĕgāntĕr|advr|||adv.|10
 ēlĕgantia=ēlĕgāntĭa|uita|||ae, f.|24
 ēlĕgantiŭs=ēlĕgāntĭŭs|inv|||comparatif neutre ou averbial de elegans, antis|1
-ĕlĕgēa|uita|||cf. elegia|1
-ĕlĕgīa|uita|||ae, f.|1
+ĕlĕgīa=ĕlĕgīa,ĕlĕgēa|uita|||ae, f.|1
 ĕlĕgīdārĭŏn|ilion|||ii, n.|2
 ĕlĕgīdĭŏn|ilion|||ii, n.|2
 ĕlĕgi|liberi|||orum, m. pl.|20
@@ -7694,9 +7692,8 @@ Epĭmētheus=Ĕpĭmēthēus|perseus|||ei (eos), m.|1
 Ēpīros|delos|||i, f.|16
 Ēpīrus|lupus|||i, m.|1
 ĕpistătēs=ĕpīstătēs|cometes|||ae, m.|2
-ĕpistŏla=ĕpīstŏla|uita|||cf. epistula|3
 ĕpīstŏlĭum|templum|||ii, n.|2
-ĕpistŭla=ĕpīstŭla|uita|||ae, f.|316
+ĕpistŭla=ĕpīstŭla,ĕpīstŏla|uita|||ae, f.|316
 ĕpĭtȳrum=ĕpĭtȳrŭm|templum|||i, n.|2
 Ĕpŏna|roma|||ae, f.|2
 Ĕpŏrĕdĭa|roma|||ae, f.|2
@@ -7855,11 +7852,10 @@ Eudoxus=Ēudōxus|lupus|||i, m.|2
 Euergĕtae=Ēuērgĕtāe|epulae|||arum, m.|3
 eugae=ēugāe|inv|||interj.|11
 Eugănĕus=Ēugănĕus|aureus|||a, um|2
-eugĕ=ēugĕ|inv|||interj.|5
+eugĕ=ēugĕ,ēugĕpāe|inv|||interj.|5
 eugĕnēus=ēugĕnēus|doctus|||a, um|2
-eugĕpae=ēugĕpāe|inv|||cf. euge|4
 Euhadne=Ēuhādne|cybele|||es, f. gr.|1
-euhans=ēuhāns|infans|ēuhānt||antis|3
+euhans=ēuhāns,ēvāns|infans|ēuhānt,ēvānt||antis|3
 Euhĭăs=Ēuhĭăs|miles|Ēuhĭăd||ădis, f.|2
 Euhĭus2=Ēuhĭus|filius|||ii, m.|5
 euhoe=ēuhōe|inv|||interj.|1
@@ -7910,7 +7906,6 @@ Euxīnus2=Ēuxīnus|lupus|||i, m.|2
 ēvălesco=ēvălēsco|lego|ēvălŭ||is, ere, ualui, -|9
 ēvānesco=ēvānēsco|lego|ēvānŭ||is, ere, euanui, -|16
 ēvānĭdus|doctus|||a, um|4
-ēvans2=ēvāns|infans|ēvānt||cf. euhans|2
 ēvax=ēvāx|inv|||interj.|1
 ēvectĭo=ēvēctĭō̆|miles|ēvēctĭōn||ionis, f.|2
 ēvĕho|lego|ēvēx|ēvēct|is, ere, uexi, uectum|30
@@ -7948,8 +7943,7 @@ exactĭo=ēxāctĭo|miles|ēxāctĭōn||ōnis, f.|9
 exactor=ēxāctŏr|miles|ēxāctōr||oris, m.|14
 exactus=ēxāctus|doctus|||a, um|17
 exăcŭo=ēxăcŭo|lego|ēxăcŭ|ēxăcūt|is, ere, ŭi, ūtum|6
-exadversum=ēxādvērsŭm|inv|||adv. prép.|2
-exadvorsum=ēxādvōrsŭm|inv|||cf. exaduersum|2
+exadversum=ēxādvērsŭm,ēxādvōrsŭm|inv|||adv. prép.|2
 exaedĭfĭco=ēxāedĭfĭco|amo|||as, are|6
 exaequo=ēxāequo|amo|||as are|34
 exaestŭo=ēxāestŭo|amo|||as, are|20
@@ -8063,7 +8057,6 @@ exertus=ēxērtus|doctus|||a, um|1
 exēsŏr=ēxēsŏr|miles|ēxēsōr||ōris, m.|3
 exēsus=ēxēsus|doctus|||a, um|1
 ex=ēx|inv|||prép. + abl.|6934
-exfŏdĭo=ēxfŏdĭo|capio|ēxfōd|ēxfōss|cf. effodio|2
 exhālo=ēxhālo|amo|||as, are|18
 exhaurĭo=ēxhāurĭo|audio|ēxhāus|ēxhāust|is, ire, hausi, haustum|93
 exhērēdo=ēxhērēdo|amo|||as, are|18
@@ -8090,20 +8083,16 @@ exĭmĭē=ēxĭmĭē|adve|||adv.|4
 exĭmĭus=ēxĭmĭus|doctus|||a, um|110
 exĭmo=ēxĭmo|lego|ēxēm|ēxēmpt|is, ere, emi, emptum|142
 exĭnānĭo=ēxĭnānĭo|audio|ēxĭnānĭ|ēxĭnānīt|is, ire, iui, itum|13
-exindĕ=ēxīndĕ|inv|||adv.|4
-exin=ēxin|inv|||cf. exinde|14
+exindĕ=ēxīndĕ,ēxin|inv|||adv.|4
 exintĕro=ēxīntĕro|amo|||as, are|5
-existĭmātĭo=ēxīstĭmātĭō̆|miles|ēxīstĭmātĭōn||ionis, f.|130
+existĭmātĭo=ēxīstĭmātĭō̆,ēxīstumātĭo|miles|ēxīstĭmātĭōn,ēxīstumātĭōn||ionis, f.|130
 existĭmātŏr=ēxīstĭmātŏr|miles|ēxīstĭmātōr||ōris, m.|2
-existĭmo=ēxīstĭmo|amo|||as, are|728
-existumātĭo=ēxīstumātĭo|miles|ēxīstumātĭōn||cf. existimatio|2
-existŭmo=ēxīstŭmo|amo|||cf. existimo|46
+existĭmo=ēxīstĭmo,ēxīstŭmo|amo|||as, are|728
 exĭtĭābĭlis=ēxĭtĭābĭlĭs|fortis|ēxĭtĭābĭl||is, e|9
 exĭtĭālis=ēxĭtĭālĭs|fortis|ēxĭtĭāl||e|8
 exĭtĭōsus=ēxĭtĭōsus|doctus|||a, um|25
 exĭtĭum=ēxĭtĭŭm|templum|||ii, n.|222
 exĭtus=ēxĭtus|manus|||us, m.|258
-exjūro=ēxjūro|amo|||cf. eiuro|2
 exlĕcē̆bra=ēxlĕcē̆bra|uita|||ae, f.|2
 exlex=ēxlēx|diues|ēxlēg||ēgis|3
 exŏdĭum=ēxŏdĭŭm|templum|||i, n.|3
@@ -8214,12 +8203,11 @@ expugnātŏr=ēxpūgnātŏr|miles|ēxpūgnātōr||ōris, m.|3
 expugno=ēxpūgno|amo|||as, are|90
 expulsĭo=ēxpūlsĭo|miles|ēxpūlsĭōn||ōnis, f.|3
 expulsŏr=ēxpūlsŏr|miles|ēxpūlsōr||ōris, m.|3
+expūrgātĭō,expūrĭgātĭo|miles|expūrgātĭōn,ēxpūrĭgātĭōn||onis, f.|2
 expungo=ēxpūngo|lego|ēxpūnx|ēxpūnct|is, ere, punxi, pluctum|5
 expurgo=ēxpūrgo|amo|||as, are|5
-expūrĭgātĭo=ēxpūrĭgātĭo|miles|ēxpūrĭgātĭōn||cf. expurgatio|2
 expūtesco=ēxpūtēsco|lego|||is, ĕre, intr.|2
-exquaero=ēxquāero|lego|||cf. exquiro|3
-exquīro=ēxquīro|lego|ēxquīsīv|ēxquīsīt|is, ere, iui, itum|74
+exquīro=ēxquīro,ēxquāero|lego|ēxquīsīv|ēxquīsīt|is, ere, iui, itum|74
 exquīsītē=ēxquīsītē|adve|||adv.|2
 exquīsītus=ēxquīsītus|doctus|||a, um|12
 exsanguis=ēxsāngụĭs|fortis|ēxsāngụ||e|41
@@ -8288,9 +8276,8 @@ exsurgo=ēxsūrgo|lego|ēxsūrrēx|ēxsūrrēct|is, ere, surrexi, surrectum|44
 exsuscĭto=ēxsūscĭto|amo|||as, are|5
 extābesco=ēxtābēsco|lego|ēxtābŭ||is, ere, extabui, -|1
 exta=ēxta|castra|||orum, n. pl.|59
-extemplō=ēxtēmplō|inv|||adv.|70
+extemplō=ēxtēmplō,ēxtēmpŭlō|inv|||adv.|70
 extempŏrālis=ēxtēmpŏrālĭs|fortis|ēxtēmpŏrāl||e|4
-extempŭlō=ēxtēmpŭlō|inv|||cf. extemplo|3
 extendo=ēxtēndo|lego|ēxtēnd|ēxtēns,ēxtēnt|is, ere, tendi, tensum (tum)|110
 extento=ēxtēnto|amo|||as, are|3
 extentus=ēxtēntus|doctus|||a, um|6
