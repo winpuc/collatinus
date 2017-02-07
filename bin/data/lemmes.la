@@ -8386,8 +8386,8 @@ Fadĭa|roma|||ae, f.|2
 Fadĭus|filius|||ii, m.|4
 faecārĭus=fāecārĭus|aureus|||a, um|2
 faecātus=fāecātus|doctus|||a, um|2
-faecōsus=fāecōsus|doctus|||a, um|1
-faecŭla=fāecŭla|uita|||ae, f.|2
+faecōsus=fāecōsus,fēcōsus|doctus|||a, um|1
+faecŭla=fāecŭla,fēcŭla|uita|||ae, f.|2
 faenē̆bris=fāenē̆brĭs|fortis|fāenē̆br||e|2
 faenĕrātĭo=fāenĕrātĭo|miles|fāenĕrātĭōn||ōnis, f.|7
 faenĕrātō=fāenĕrātō|inv|||adv.|2
@@ -8462,19 +8462,17 @@ fărīnārĭus|aureus|||a, um|2
 fărīna|uita|||ae, f.|21
 fārĭor=fārĭŏr|imitor|||aris, āri|2
 farrāgo=fārrāgo|miles|fārrāgĭn||ĭnis, f.|4
-farrārĭus=fārrārĭus|aureus|||cf. farrearius|2
 farrātus=fārrātus|doctus|||a, um|3
-farrĕārĭus=fārrĕārĭus|aureus|||(farrarius) a, um|2
+farrĕārĭus=fārrĕārĭus,fārrārĭus|aureus|||(farrarius) a, um|2
 farrĕum=fārrĕŭm|templum|||i, n.|1
 farrĕus=fārrĕus|aureus|||a, um|1
 fartŏr=fārtŏr|miles|fārtōr||ōris, m.|3
-fascĕŏla=fāscĕŏla|uita|||cf. fasciola|2
 fascĭa=fāscĭa|uita|||ae, f.|18
 fascĭcŭlus=fāscĭcŭlus|lupus|||i, m.|4
 fascīna=fāscīna|uita|||ae, f.|2
 fascĭno=fāscĭno|amo|||as, are|3
 fascĭnum=fāscĭnum|templum|||i, n.|4
-fascĭŏla=fāscĭŏla|uita|||(fasciola) ae, f.|2
+fascĭŏla=fāscĭŏla,fāscĕŏla|uita|||(fasciola) ae, f.|2
 fascis=fāscĭs|ciuis|fāsc||is, m.|86
 fās|inv||| n. indécl.|195
 fastīdĭenter=fāstīdĭēntĕr|advr|||adv.|1
@@ -8514,13 +8512,12 @@ Faustĭtas=Fāustĭtas|miles|Fāustĭtāt||ātis, f.|2
 Faustŭlus=Fāustŭlus|lupus|||i, m.|4
 Faustus2=Fāustus|lupus|||i, m.|21
 faustus=fāustus|doctus|||a, um|23
-fautor=fāutŏr|miles|fāutōr||oris, m.|34
+fautor=fāutŏr,făvĭtŏr|miles|fāutōr,făvĭtōr||oris, m.|34
 fautrix=fāutrīx|miles|fāutrīc||icis, f.|2
 faux=fāux|ciuis|fāuc||cf. fauces|113
 Făventīnus=Făvēntīnus|doctus|||a, um|2
 făvĕo|moneo|fāv|fāut|es, ere, faui, fautum|181
 făvilla=făvīllă|uita|||ae, f.|22
-făvĭtŏr|miles|făvĭtōr||cf. fautor|4
 făvōnĭus3|doctus|||a, um|8
 Făvōnĭus|filius|||i, m.|1
 Făvōnus|lupus|||i, m.|1
@@ -8538,8 +8535,6 @@ fēbrŭa|castra|||orum, n.|3
 Fĕbrŭārĭus2|lupus|||ii, m.|2
 Fĕbrŭārĭus|doctus|||a, um|11
 fĕbrŭum|templum|||i, n.|5
-fēcōsus|doctus|||cf. faecosus|1
-fēcŭla|uita|||cf. faecula|2
 fēcundĭtās=fēcūndĭtās|miles|fēcūndĭtāt||atis, f.|22
 fēcundo=fēcūndo|amo|||as, are|2
 fēcundus=fēcūndus|doctus|||a, um|75
@@ -8564,7 +8559,7 @@ fēnĕrātō|inv|||adv.|1
 fēnĕrātor=fēnĕrātŏr|miles|fēnĕrātōr||oris, m.|12
 fēnĕro|amo|||as, are|7
 fēnĕror=fēnĕrŏr|imitor|||ātus sum, 1|3
-fĕnestra=fĕnēstra|uita|||ae, f.|53
+fĕnestra=fĕnēstra,fēstra|uita|||ae, f.|53
 fēnĭcŭlum|templum|||i, n.|4
 Fenni=Fēnni|liberi|||orum, m.|4
 fēnum=fēnŭm|templum|||i, n.|23
@@ -8638,7 +8633,6 @@ festīnus=fēstīnus|doctus|||a, um|2
 festīvē=fēstīvē|adve|||adv.|3
 festīvĭtās=fēstīvĭtās|miles|fēstīvĭtāt||atis, f.|4
 festīvus=fēstīvus|doctus|||a, um|15
-festra=fēstra|uita|||cf. fenestra|2
 festūca=fēstūca|uita|||ae, f.|3
 fēstūco|amo|||as, are|2
 festūcŭla=fēstūcŭla|uita|||ae, f.|2
@@ -8646,10 +8640,8 @@ festum=fēstum|templum|||i, n.|31
 Festus2=Fēstus|lupus|||i, m.|7
 festus=fēstus|doctus|||a, um|118
 fēta|uita|||ae, adj.|1
-fētĕo|moneo|||cf. foeteo|2
 fētĭālis2|fortis|fētĭāl||e|3
 fētĭālis=fētĭālĭs|ciuis|fētĭāl||is, m.|1
-fētĭdus|doctus|||cf. foetidus|2
 fētūra|uita|||ae, f.|3
 fētus2|doctus|||a, um|24
 fētus|manus|||us|79
@@ -8690,7 +8682,7 @@ fīdo|lego||fīs|is ere, fisus sum|53
 fīdūcĭārĭus|aureus|||a, um|4
 fīdūcĭa|uita|||ae, f.|167
 fīdus|doctus|||a, um|177
-fīgo|lego|fīx|fīx|(fīvo) is, ere, fixi, fixum|196
+fīgo=fīgo,fīvo|lego|fīx|fīx|(fīvo) is, ere, fixi, fixum|196
 fĭgŭlārĭs|fortis|fĭgŭlār||e|2
 Fĭgŭlus2|lupus|||i, m.|4
 fĭgŭlus|lupus|||i, m.|5
@@ -8741,7 +8733,6 @@ fissum=fīssum|templum|||i, n.|2
 fistŭla=fīstŭla|uita|||ae, f.|27
 fistŭlōsus=fīstŭlōsus|doctus|||a, um|2
 fītilla=fītīlla|uita|||ae, f.|2
-fīvo|lego|||cf. figo|2
 fixus=fīxus|doctus|||a, um|24
 flābellum=flābēllum|templum|||i, n.|3
 flābrum|templum|||i, n.|11
@@ -8835,7 +8826,7 @@ flŭens=flŭēns|infans|flŭēnt||entis|8
 flŭentĕr=flŭēntĕr|advr|||adv.|3
 flŭentĭsŏnus=flŭēntĭsŏnus|doctus|||a, um|2
 flŭentum=flŭēntum|templum|||i, n.|6
-flŭĭdus|doctus|||(flūvĭdus) a, um|10
+flŭĭdus=flŭĭdus,flūvĭdus|doctus|||(flūvĭdus) a, um|10
 flŭĭto|amo|||as, are|31
 flūmĕn|corpus|flūmĭn||inis, n.|658
 flūmĭnĕus|aureus|||a, um|6
@@ -8843,7 +8834,6 @@ flŭo|lego|flūx|flūx|is, ere, fluxi, fluxum|193
 flūto|amo|||as, are, intr.|3
 flŭvĭālĭs|fortis|flŭvĭāl||e|5
 flŭvĭātĭlis=flŭvĭātĭlĭs|fortis|flŭvĭātĭl||e|2
-flūvĭdus|doctus|||cf. fluidus|8
 flŭvĭus|filius|||i, m.|79
 fluxus=flūxus|doctus|||a, um|24
 fōcālĕ|mare|fōcāl||is, n.|2
@@ -8861,8 +8851,8 @@ foedĭtās=fōedĭtās|miles|fōedĭtāt||atis, f.|13
 foedo=fōedo|amo|||as, are|43
 foedus2=fōedŭs|corpus|fōedĕr||deris, n.|289
 foedus=fōedus|doctus|||a, um|186
-foetĕo=fōetĕo|moneo|||es, ere|4
-foetĭdus=fōetĭdus|doctus|||a, um|4
+foetĕo=fōetĕo,fētĕo|moneo|||es, ere|4
+foetĭdus=fōetĭdus,fētĭdus|doctus|||a, um|4
 foetŏr=fōetŏr|miles|fōetōr||ōris, m.|2
 Fōlĭa2|uita|||ae, f.|2
 fŏlĭātum|templum|||i, n.|2
@@ -8911,10 +8901,9 @@ formīdŭlōsē=fōrmīdŭlōsē|adve|||adv.|2
 formīdŭlōsus=fōrmīdŭlōsus|doctus|||a, um|6
 formo=fōrmo|amo|||as, are|73
 formonsĭtās=fōrmōnsĭtās|miles|fōrmōnsĭtāt||atis, f.|1
-formonsus=fōrmōnsus|doctus|||cf. formosus|56
 formōsē=fōrmōsē|adve|||adv.|3
 formōsĭtās=fōrmōsĭtās|miles|fōrmōsĭtāt||atis, f.|2
-formōsus=fōrmōsus|doctus|||(formonsus) a, um|127
+formōsus=fōrmōsus,fōrmōnsus|doctus|||(formonsus) a, um|127
 formŭla=fōrmŭla|uita|||ae, f.|44
 Fornācālĭa=Fōrnācālĭa|moenia|Fōrnācāl||ium, n.|2
 Fornācālis=Fōrnācālĭs|fortis|Fōrnācāl||e|2
@@ -8988,7 +8977,7 @@ fraudātŏr=frāudātŏr|miles|frāudātōr||ōris, m.|5
 fraudo=frāudo|amo|||as, are|53
 fraudŭlentĕr=frāudŭlēntĕr|advr|||adv.|2
 fraudŭlentus=frāudŭlēntus|doctus|||a, um|9
-fraus=frāus|dos|frāud||fraudis, f.|243
+fraus=frāus,frūs|dos|frāud,frūd||fraudis, f.|243
 fraxĭnĕus=frāxĭnĕus|aureus|||a, um|3
 fraxĭnus2=frāxĭnus|lupus|||i, f.|8
 Frĕgellae=Frĕgēllāe|epulae|||arum, f. pl.|1
@@ -8999,7 +8988,6 @@ frĕmŏr|miles|frĕmōr||ōris, m.|2
 frēnātŏr|miles|frēnātōr||ōris, m.|2
 frendeo=frēndĕo|moneo|frēndŭ|frēs,frēss|es, ere, frendui, frēsum (fressum)|2
 frendo=frēndo|lego|frēndŭ|frēs,frēss|is, ere, frendui, frēsum (fressum)|8
-frĕnētĭcus|doctus|||cf. phreneticus|2
 frēni|liberi|||orum, m.|3
 frēno|amo|||as, are|26
 frēnum=frēnŭm|templum|||i, m.|1
@@ -9037,7 +9025,7 @@ frondĕus=frōndĕus|aureus|||a, um|4
 frondĭfĕr=frōndĭfĕr|miser|frōndĭfĕr||era, erum|5
 frondōsus=frōndōsus|doctus|||a, um|11
 frons2=frōns|ciuis|frōnt||ontis, f.|301
-frons=frōns|ciuis|frōnd||frondis, f.|144
+frons=frōns,frūs|ciuis|frōnd,frūd||frondis, f.|144
 Frontīnus=Frōntīnus|lupus|||i, m.|8
 Frontō=Frōntō|miles|Frōntōn||onis, m.|11
 fructĭfĕr=frūctĭfĕr|miser|frūctĭfĕr||era, erum|2
@@ -9046,7 +9034,7 @@ fructus=frūctus|manus|||us, m.|274
 frūgālis=frūgālĭs|fortis|frūgāl||e|14
 frūgālĭtās|miles|frūgālĭtāt||atis, f.|57
 frūgālĭter=frūgālĭtĕr|advr|||adv.|7
-frūges=frūgēs|miles|frūg||um, f. pl.|1
+frūges=frūgēs|opes|frūg||um, f. pl.|1
 Frūgi2|inv|||npr. indecl.|7
 frūgĭfĕrens=frūgĭfĕrēns|infans|frūgĭfĕrēnt||entis|2
 frūgĭfĕr|miser|frūgĭfĕr||era, erum|10
@@ -9061,8 +9049,6 @@ frūmentum=frūmēntŭm|templum|||i, n.|437
 frūniscor=frūnīscŏr|sequor||frūnīt|eris, i, frūnītus sum, intr.|5
 frŭor=frŭŏr|sequor||frŭĭt|eris, i, fruitus sum|206
 Frŭsĭno|miles|Frŭsĭnōn||ōnis, m.|2
-frūs|miles|frūd||cf. fraus|2
-frūs2|miles|frūd||cf. frons|2
 frustillātim=frūstīllātĭm|inv|||adv.|2
 frustrā=frūstrā|inv|||adv.|253
 frustrāmĕn=frūstrāmĕn|corpus|frūstrāmĭn||ĭnĭs, n.|2
@@ -16968,7 +16954,7 @@ Phōsphoros|delos|||i, m.|3
 Phōtis=Phōtĭs|miles|Phōtĭd||is, f.|1
 Phrăātes=Phrăātēs|miles|Phrăāt||is, m.|12
 phrĕnēsĭs|ciuis|phrĕnēs||is, f.|2
-phrĕnētĭcus|doctus|||(frenet-) a, um|5
+phrĕnētĭcus=phrĕnētĭcus,frĕnētĭcus|doctus|||(frenet-) a, um|5
 Phrixēus=Phrīxēus|doctus|||a, um|8
 Phrixos=Phrīxos|delos|||i, m.|12
 Phrȳnē|cybele|||es, f.|4
