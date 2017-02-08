@@ -11728,8 +11728,8 @@ Istaevones:Istaevones (peuple des bords du Rhin)
 iste:ce
 Isthmia:les jeux isthmiques
 Isthmius:isthmique, des jeux isthmiques
-Isthmos:isthme (de Corinthe)
-Isthmus:Isthme
+Isthmos:isthme de Corinthe
+isthmus:Isthme
 istic:là
 istinc:d'ici
 isto:là [où tu es] (mouvt)
