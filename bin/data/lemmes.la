@@ -13053,7 +13053,7 @@ Maelĭus=Māelĭus|aureus|||a, um|11
 Maenăla=Māenăla|castra|||orum, n.|3
 Maenălĭus=Māenălĭus|aureus|||a, um|18
 Maenălŏs=Māenălŏs|delos|||i, m.|6
-maena=māena|uita|||ae, f.|4
+maena=māena,mēna|uita|||ae, f.|4
 Maenas=Māenās|miles|Māenăd||adis, f.|11
 Maenĭānum=Māenĭānŭm|templum|||i, n.|1
 Maenĭus2=Māenĭus|aureus|||a, um|3
@@ -13068,7 +13068,7 @@ Maeōtĭs=Māeōtĭs|miles|Māeōtĭd||ĭdis, f.|5
 Maeōtĭus=Māeōtĭus|aureus|||a, um|4
 maerens=māerēns|infans|māerēnt||entis|8
 maerĕo=māerĕo|moneo|||es, ere|89
-maeror=māerŏr|miles|māerōr||(moeror) oris, m.|99
+maeror=māerŏr,mōerŏr|miles|māerōr,mōerōr||oris, m.|99
 maestĭtĭa=māestĭtĭa|uita|||ae, f.|32
 maestĭtūdo=māestĭtūdo|miles|māestĭtūdĭn||ĭnis, f.|2
 maestus=māestus|doctus|||a, um|224
@@ -13076,11 +13076,10 @@ Maevĭus=Māevĭus|filius|||ii, m.|4
 Magalesiacus=Magalesĭacus|doctus|||a, um|1
 māgālĭa|moenia|māgāl||ium, n.|3
 măga|uita|||ae, f.|3
-măgĕ|adv|||cf. magis|12
 Magetobriga=Magetō̆briga|uita|||ae, f.|2
 Magia2=Magĭa|roma|||ae, f.|3
 măgĭcus|doctus|||a, um|28
-măgĭs|inv|mā|māxĭm|(măgĕ) adv.|1682
+măgĭs=măgĭs,măgĕ|inv|mā|māxĭm|(măgĕ) adv.|1682
 măgistĕrĭum=măgīstĕrĭŭm|templum|||i, n.|8
 măgister=măgīstĕr|ager|||tri, m.|201
 măgistra=măgīstra|uita|||ae, f.|22
@@ -13160,13 +13159,12 @@ mallus2=māllus|lupus|||i, m.|2
 Mallus=Māllus|lupus|||i, f.|2
 mālŏbăthrŏn|ilion|||i, n.|2
 mālo|lego|mālŭ||mauis, malle, malui|303
-Maltīnus=Māltīnus|lupus|||cf. Malthinus|2
 Mălūgĭnensis=Mălūgĭnēnsĭs|fortis|Mălūgĭnēns||e|6
 mālum2=mālŭm|templum|||i, n.|1
 mălum3=mălŭm|inv|||adv. interj.|20
 mălum=mălŭm|templum|||i, n.|1
 mălus|doctus|pēj|pēssĭm|a, um|844
-Malthīnus=Māltīnus|lupus|||i, m.|1
+Malthīnus=Māltīnus,Māltīnus|lupus|||i, m.|1
 malva=mālva|uita|||ae, f.|4
 Māmercus=Māmērcus|lupus|||i, m.|15
 Māmertīni=Māmērtīni|liberi|||orum, m.|45
@@ -13177,9 +13175,8 @@ mămilla=mămīlla|uita|||ae, f.|6
 Mammaea=Māmmāea|roma|||ae, f.|2
 mamma=māmma|uita|||ae, f.|13
 mammōsus=māmmōsus|doctus|||a, um|2
-Māmū̆rĭus|filius|||iicf. Mamurrius|5
 Māmurra=Māmūrra|roma|||ae, m.|4
-Māmurrĭus=Māmūrrĭus|filius|||(Mamurius) ii, m.|2
+Māmurrĭus=Māmūrrĭus,Māmū̆rĭus|filius|||(Mamurius) ii, m.|2
 mānābĭlĭs|fortis|mānābĭl||e|2
 manceps=māncēps|miles|māncĭp||ipis, m.|17
 Mancĭa=Māncĭa|roma|||ae, m.|4
@@ -13426,11 +13423,9 @@ Māvortĭus2=Māvōrtĭus|filius|||i, m.|2
 Māvortĭus=Māvōrtĭus|aureus|||a, um|8
 maxilla=māxīlla|uita|||ae, f.|3
 Maxima=Māxima|roma|||ae, f.|4
-maxĭmē=māxĭmē|adve|||adv.|796
+maxĭmē=māxĭmē,māxŭmē|adve|||adv.|796
 maxĭmĭtās=māxĭmĭtās|miles|māxĭmĭtāt||ātis, f.|2
-Maxĭmus=Māxĭmus|lupus|||i, m.|66
-maxŭmē=māxŭmē|adve|||cf. maxime|79
-Maxŭmus=Māxŭmus|doctus|||cf. Maximus|2
+Maxĭmus=Māxĭmus,Māxŭmus|lupus|||i, m.|66
 Māzăca|roma|||ae, f.|2
 Māzăces|opes|Māzăc||um, m.|3
 Mazaei=Māzāei|liberi|||orum, m.|3
@@ -13574,7 +13569,6 @@ Mĕnandĕr=Mĕnāndĕr|ager|Mĕnāndr||dri, m.|8
 Mĕnandrēus=Mĕnāndrēus|doctus|||a, um|2
 Mĕnandrŏs=Mĕnāndrŏs|delos|||i, m.|3
 Mĕnăpĭi|liberi|||orum, m. pl.|20
-mēna|uita|||cf. maena|3
 mendācĭum=mēndācĭŭm|templum|||ii, n.|77
 menda=mēnda|uita|||ae, f.|6
 mendax=mēndāx|fortis|mēndāc||acis|49
@@ -13602,8 +13596,7 @@ Mēniscus=Mēnīscus|lupus|||i, m.|2
 Mĕnoecēus2=Mĕnōecēus|perseus|||ĕi (ĕōs), m.|2
 Mĕnoetēs=Mĕnōetēs|cometes|||ae, m.|7
 Mĕnoetĭădēs=Mĕnōetĭădēs|cometes|||ae, m.|4
-Mĕno|miles|Mĕnōn||cf. Menon|2
-Mĕnōn|miles|Mĕnōn||(Meno) ōnis, m.|3
+Mĕnōn=Mĕnōn,Mĕno|miles|Mĕnōn||ōnis, m.|3
 mensa=mēnsa|uita|||ae, f.|206
 mensis=mēnsĭs|apis|mēns||is, m.|240
 mens=mēns|ciuis|mēnt||entis, f.|1052
@@ -13631,8 +13624,7 @@ mercātor=mērcātŏr|miles|mērcātōr||oris, m.|65
 mercātūra=mērcātūra|uita|||ae, f.|10
 mercātus=mērcātus|manus|||us, m.|8
 mercēdŭla=mērcēdŭla|uita|||ae, f.|4
-mercēnārĭus=mērcēnārĭus|aureus|||(mercenn-) a, um|2
-mercēnnārĭus=mērcēnnārĭus|aureus|||cf. mercenarius|17
+mercēnārĭus=mērcēnārĭus,mērcēnnārĭus|aureus|||a, um|2
 merces=mērcēs|miles|mērcēd||edis, f.|187
 mercĭmōnĭum=mērcĭmōnĭum|templum|||ii, n.|4
 mercor=mērcŏr|imitor|||aris, ari|35
@@ -13708,9 +13700,8 @@ mētor=mētŏr|imitor||mētāt|aris, ari|13
 mĕtrēta|uita|||ae, f.|5
 Mētrŏdōrus|lupus|||i, m.|16
 Mētrōnax=Mētrōnāx|ciuis|Mētrōnāct||actis, m.|3
-mĕtrŏn|ilion|||cf. metrum|4
+mĕtrŏn|ilion|||i, n.
 Mētrŏpŏlītae=Mētrŏpŏlītāe|epulae|||arum, m.|2
-mē̆trum|templum|||i, n.|6
 Mettĭus=Mēttĭus|filius|||ii, m.|6
 Mettus=Mēttus|lupus|||i, m.|2
 mĕtūcŭlōsus|doctus|||a, um|2
@@ -13753,11 +13744,9 @@ mīlĭtĭa|uita|||ae, f.|190
 mīlĭto|amo|||as, are|52
 mĭlĭum=mĭlĭŭm|templum|||ii, n|11
 mille=mīlle|mille|mīll|| n. ia, ium|208
-millensimus=mīllēnsimus|doctus|||cf. millesimus|2
-millēsĭmus=mīllēsĭmus|doctus|||(millens-) a, um|4
+millēsĭmus=mīllēsĭmus,mīllēnsimus|doctus|||a, um|4
 millĭārĭus=mīllĭārĭus|aureus|||a, um|2
-milliens=mīllĭēns|inv|||cf. millies|4
-millĭēs=mīllĭēs|inv|||(milliens) adv.|2
+millĭēs=mīllĭēs,mīllĭēns|inv|||adv.|2
 Mĭlo=Mĭlō̆|miles|Mĭlōn||onis, m.|131
 Mīlōnĭus|filius|||ii, m.|2
 Miltĭădēs=Mīltĭădēs|thales|Mīltĭăd||is, m.|2
@@ -13811,10 +13800,9 @@ mĭnŭo|lego|mĭnŭ|mĭnūt|is, ere, ui, utum|134
 mĭnuscŭlus=mĭnūscŭlus|doctus|||a, um|6
 mĭnŭs|inv|||adv.|888
 mĭnūtăl|mare|mĭnūtāl||ālis, n.|2
-mĭnūtātim=mĭnūtātĭm|inv|||(minutim) adv.|17
+mĭnūtātim=mĭnūtātĭm,mĭnūtĭm|inv|||adv.|17
 mĭnūtē|adve|||adv.|9
 mĭnūtĭa|uita|||ae, f.|2
-mĭnūtim=mĭnūtĭm|inv|||cf. minutatim|2
 mĭnūtŭlus|doctus|||a, um|1
 mĭnūtum|templum|||i, n.|2
 mĭnūtus|doctus|||a, um|71
@@ -13930,7 +13918,6 @@ moenĭo=mōenĭo|audio|mōenīv,mōenĭ|mōenīt|is, īre, moenivi (moenii), moe
 Moenus2=Mōenus|lupus|||i, m.|2
 moenŭs=mōenŭs|corpus|mōenĕr||ĕris, n.|4
 Moeris3=Mōerĭs|ciuis|Mōer||is, m.|3
-moerŏr=mōerŏr|miles|mōerōr||cf. maeror|2
 Moesĭa=Mōesĭa|roma|||ae, f.|27
 Moesĭcus=Mōesĭcus|doctus|||a, um|13
 Moesi=Mōesi|liberi|||orum, m.|3
@@ -14076,7 +14063,6 @@ mūla|uita|||ae, f.|13
 mulcĕo=mūlcĕo|moneo|mūls|mūls|es, ere, mulsi, mulsum|44
 Mulcĭbĕr=Mūlcĭbĕr|miles|Mūlcĭbēr||ēris, m.|8
 mulco=mūlco|amo|||as, are|10
-mulcta=mūlcta|uita|||cf. multa|1
 mulcto=mūlcto|amo|||(multo), as, are|1
 mulctra=mūlctra|uita|||ae, f.|4
 mulctrārĭum=mūlctrārĭum|templum|||ii, n.|2
@@ -14096,7 +14082,7 @@ mullĕus=mūllĕus|aureus|||a, um|2
 mullus=mūllus|lupus|||i, m.|13
 mulsum=mūlsum|templum|||i, n.|13
 mulsus=mūlsus|doctus|||a, um|4
-multa=mūlta|uita|||ae, f.|37
+multa=mūlta,mūlcta|uita|||ae, f.|37
 multangŭlus=mūltāngŭlus|doctus|||a, um|2
 multātĭo=mūltātĭo|miles|mūltātĭōn||ōnis, f.|2
 multēsĭmus=mūltēsĭmus|doctus|||a, um|2
@@ -14162,11 +14148,10 @@ mūnītor=mūnītŏr|miles|mūnītōr||oris, m.|3
 mūnītus|doctus|||a, um|72
 mūnuscŭlum=mūnūscŭlŭm|templum|||i, n.|18
 mūnus=mūnŭs|corpus|mūnĕr||eris, n.|640
-mūraena=mūrāena|uita|||(mūrēna), ae, f.|8
+mūraena=mūrāena,mūrēna|uita|||ae, f.|8
 mūrālĭs|fortis|mūrāl||e|10
 Murcus2=Mūrcus|lupus|||i, m.|5
 Mūrēna2|uita|||ae, m.|62
-mūrēna|uita|||cf. muraena|4
 mūrex=mūrēx|miles|mūrĭc||icis, m.|21
 Murgentīni=Mūrgēntīni|liberi|||orum, m.|2
 Murgentīnus=Mūrgēntīnus|doctus|||a, um|4
