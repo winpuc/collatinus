@@ -13638,7 +13638,7 @@ metreta:vase, jarre
 Metrodorus:Métrodore (disciple d'Épicure]; philosophe de Scepsis; disciple de Carnéade, de Démocrite)
 Metronax:Metronax (philosophe dont Sénèque suivit les leçons)
 Metropolitae:Métropolites, habitants de Métropolis
-metrum:mètre, mesure d'un vers, vers
+metron:mètre, mesure d'un vers, vers
 Mettius:Mettius (- Curtius général des Sabins; - Fufétius général des Albains; nom d'homme)
 Mettus:Mettus
 metuculosus:craintif, timide, qui fait peur, effrayant
@@ -14396,7 +14396,7 @@ Nemeaeus:de Némée
 Nemesis:Nemesis (déesse vengeresse des crimes; femme chantée par Tibulle)
 Nemetes:Nemètes (peuple de Germanie)
 Nemetocenna:Nemetocenna (ville des Atrébates)
-nemo:personne, nul (... ne)
+nemo:personne, nul, nt. rien (... ne)
 nemoralis:de bois, de forêt
 Nemorensis2:du bois d'Aricie
 nemorivagus:qui erre dans les bois
@@ -14582,7 +14582,7 @@ nolo:ne pas vouloir, refuser
 Nomades:Nomades (peuple errant de Numidie), nomades
 Nomas:Nomas (f., femme numide, - terra, la Numidie)
 nomen:nom, dénomination ; le titre ; le renom, célébrité (nomine = par égard pour, à cause de, sous prétexte de)
-nomenclator:(-cula-)nomenclateur (esclave chargé de nommer les citoyens)
+nomenclator:nomenclateur (esclave chargé de nommer les citoyens)
 Nomentanus2:Nomentanus (surnom d'homme)
 Nomentanus:de Nomentum
 Nomentum:Nomentum (ville des Latins)
@@ -15171,7 +15171,6 @@ oleum:huile d'olive
 olfacio:sentir
 olidus:qui sent mauvais, infect, puant
 olim:autrefois
-olitor:maraîcher, marchand de légumes
 oliva:olivier, olive
 olivetum:oliveraie
 olivifer:qui produit des olives, fait de branches d'olivier
