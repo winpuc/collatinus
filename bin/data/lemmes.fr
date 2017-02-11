@@ -16323,7 +16323,7 @@ perlinio:enduire complètement
 perlitteratus:très instruit
 perlonginquus:de très longue durée
 perlongus:très long
-perlubet:il est très agréable (+ inf., de)
+perlibet:il est très agréable (+ inf., de)
 perluceo:être transparent, être à jour, paraître à travers, se montrer
 perlucidulus:de la plus délicate transparence
 perlucidus:limpide
