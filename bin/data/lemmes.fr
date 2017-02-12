@@ -18598,8 +18598,7 @@ quisquilia:déchet, rebut
 quisquiliae:déchet, rebut
 quisquis:quiconque, quoi que ce soit
 quivis:n'importe quel, quiconque
-quo2:quelque part
-quo:où ? (avec chgt de lieu), pour que
+quo:où ? (avec chgt de lieu), pour que; adv. quelque part
 quoad:tant que, aussi longtemps que
 quocirca:c'est pourquoi, en conséquence
 quocumque:en quelque lieu que, partout
@@ -21772,7 +21771,6 @@ Tascus:Tascus
 Tasgetius:Tasgetius
 Tatius2:de Tatius
 Tatius:Tatius
-!Taugete:cf. Taygete
 Taugetus:le Taygète (montagne de Laconie).
 Taunus:Taunus (montagne et ville forte de Germanie)
 Taurea2:Taurea (surnom d'un Campanien)

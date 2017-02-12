@@ -5787,7 +5787,7 @@ Cūmānus|doctus|||a, um|6
 cūmātĭlĭs|fortis|cūmātĭl||e|2
 cumba=cūmba|uita|||ae, f.|27
 cumbŭla=cūmbŭla|uita|||ae, f.|2
-cum=cŭm|inv|||prép. + abl.|5910
+cum=cŭm,quŏm,quŭm|inv|||prép. + abl.|5910
 cŭmĕra|uita|||ae, f.|3
 cŭmīnum=cŭmīnŭm|templum|||i, n.|10
 cumquĕ=cūmquĕ|inv|||adv.|7
@@ -18464,8 +18464,7 @@ quā̆drāgēnārĭus=quā̆drāgēnārĭus|aureus|||a, um|3
 quādrāgēnus|nonus|||a, um|8
 quā̆drāgēsĭma=quā̆drāgēsĭma|uita|||ae, f.|2
 quadrāgēsĭmus=quā̆drāgēsĭmus|nonus|||a, um|6
-quădrāgĭēns=quădrāgĭēns|inv|||(-gies) adv.|3
-quā̆drāgĭēs=quā̆drāgĭēs|inv|||cf. quadragiens|4
+quădrāgĭēns=quădrāgĭēns,quā̆drāgĭēs|inv|||(-gies) adv.|3
 quadrāgintā=quā̆drāgīntā|inv|||num.|44
 quadrans=quā̆drāns|ciuis|quā̆drānt||antis, m.|9
 quā̆drantăl=quā̆drāntăl|mare|quā̆drāntāl||ālis, n.|4
@@ -18493,19 +18492,16 @@ quadringentĭēs=quā̆drīngēntĭēs|inv|||adv.|2
 quādringenti=quādrīngēnti|deni|||orum num.|1
 quādringentus=quādrīngēntus|nonus|||cf. quadringenti|30
 quā̆drīni=quā̆drīni|deni|-|-|ae, a|3
-quā̆drĭpĕdus=quā̆drĭpĕdus|doctus|||cf. quadrupedus|2
 quā̆drĭpertītus=quā̆drĭpērtītus|doctus|||a, um|3
-quā̆drĭpēs=quā̆drĭpēs|diues|quā̆drĭpĕd||cf. quadrupes|3
-quā̆drī̆plātor=quā̆drī̆plātŏr|miles|quā̆drī̆plātōr||cf. quadruplator|2
 quadrĭrēmis=quā̆drĭrēmĭs|ciuis|quā̆drĭrēm||is, f.|17
 quadrĭvĭum=quā̆drĭvĭŭm|templum|||i, n.|3
 quā̆dro=quā̆dro|amo|||as, are|6
 quadrum=quā̆drŭm|templum|||i, n.|1
 quā̆drŭpĕdans=quā̆drŭpĕdāns|infans|quā̆drŭpĕdānt||antis|2
 quadrŭpĕdō=quā̆drŭpĕdō|inv|||(- gradu) adv.|1
-quădrŭpĕdus=quădrŭpĕdus|doctus|||(quadri-) a, um|2
-quā̆drŭpēs=quā̆drŭpēs|miles|quā̆drŭpĕd||(quadri-) ĕdis, m.|15
-quā̆drū̆plātŏr=quā̆drū̆plātŏr|miles|quā̆drū̆plātōr||(quadri-) ōris, m.|6
+quădrŭpĕdus=quădrŭpĕdus,quā̆drĭpĕdus|doctus|||(quadri-) a, um|2
+quā̆drŭpēs=quā̆drŭpēs,quā̆drĭpēs|miles|quā̆drŭpĕd||(quadri-) ĕdis, m.|15
+quā̆drū̆plātŏr=quā̆drū̆plātŏr,quā̆drī̆plātŏr|miles|quā̆drū̆plātōr||(quadri-) ōris, m.|6
 quā̆drŭplĭco=quā̆drŭplĭco|amo|||as, are|2
 quā̆drŭplum=quā̆drŭplum|templum|||i, n.|8
 quaerĭto=quāerĭto|amo|||as, are|12
@@ -18534,21 +18530,17 @@ quālĭtās|miles|quālĭtāt||atis, f.|7
 quālĭter=quālĭtĕr|inv|||interr.|5
 quālum=quālum|templum|||i, n.|5
 quālus=quālus|lupus|||i, m.|10
-quāmdĕ=quāmdĕ|inv|||cf. quam|2
 quamdĭū=quāmdĭū|inv|||adv. interr.|47
-quamlĭbet=quāmlĭbĕt|inv|||(-lubet) adv.|21
-quamlŭbĕt=quāmlŭbĕt|inv|||cf. quamlibet|3
+quamlĭbet=quāmlĭbĕt,quāmlŭbĕt|inv|||(-lubet) adv.|21
 quămobrem=quămō̆brĕm|inv|||conj. sub.|4
 quamprīmum=quāmprīmŭm|inv|||adv.|7
-quam=quăm|inv|||(quamde, quande) adv.|5587
-quamquam=quāmquăm|inv|||conj. sub. + ind.|485
+quam=quăm,quāmdĕ,quāndĕ|inv|||(quamde, quande) adv.|5587
+quamquam=quāmquăm,quānquăm|inv|||conj. sub. + ind.|485
 quamvīs=quāmvīs|inv|||conj. sub.|419
-quāndĕ=quāndĕ|inv|||cf. quam|2
 quandōcumquĕ=quāndōcūmquĕ|inv|||adv. conj.|7
 quando=quāndō̆|inv|||conj. sub.|139
 quandōquĕ=quāndōquĕ|inv|||adv. conj.|48
 quandōquĭdem=quāndōquĭdĕm|inv|||conj. sub.|37
-quanquam=quānquăm|inv|||cf. quamquam|3
 quantillus=quāntīllus|doctus|||a, um|5
 quantĭtās=quāntĭtās|miles|quāntĭtāt||atis, f.|3
 quantŏpĕrē=quāntŏpĕrē|adve|||adv.|2
@@ -18587,9 +18579,8 @@ quăternus=quătērnus|doctus|||a, um|17
 quăter=quătĕr|inv|||adv.|34
 quătĭo|capio||quāss|is, ere, -, quassum|137
 quattŭordĕcim=quāttŭōrdĕcĭm|inv|||num.|16
-quattŭor=quāttŭŏr|inv|||num.|178
+quattŭor=quāttŭŏr,quātŭŏr|inv|||num.|178
 quattŭorvĭri=quāttŭōrvĭri|liberi|||orum, m.|3
-quātŭor=quātŭŏr|inv|||cf. quattuor|1
 quāvīs=quāvīs|inv|||adv.|2
 quĕmadmŏdum=quĕmādmŏdŭm|inv|||conj. et adv. interr.|190
 quĕo|eo|quĭ,quīv|quĭt|is, ire, ii ou iui, itum|191
@@ -18629,7 +18620,7 @@ quīlĭbĕt|quilibet|||quaelibet, quodlibet|61
 quīnam=quīnăm|quinam|||pron.|92
 Quinctĭānus=Quīnctĭānus|doctus|||a, um|3
 Quinctĭlĭus=Quīnctĭlĭus|filius|||ii, m.|3
-Quinctĭus=Quīnctĭus|filius|||i, m.|135
+Quinctĭus=Quīnctĭus,Quīntĭus|filius|||i, m.|135
 quincunx=quīncūnx|ciuis|quīncūnc||ūncis, m.|6
 quindĕcĭens=quīndĕcĭēns|inv|||adv.|2
 quindĕcĭēs=quīndĕcĭēs|inv|||adv.|2
@@ -18674,7 +18665,6 @@ Quintĭlĭa=Quīntĭlĭa|roma|||ae, f.|3
 Quintĭlĭus=Quīntĭlĭus|filius|||ii, m.|16
 Quintilla=Quīntīlla|roma|||ae, f.|2
 Quintĭus2=Quīntĭus|filius|||ii, m.|11
-Quintĭus=Quīntĭus|aureus|||cf. Quinctius|2
 Quintus2=Quīntus|lupus|||i, m.|17
 quintus=quīntus|nonus|||a, um|101
 quīnus|nonus|||cf. quini|25
@@ -18697,18 +18687,16 @@ quisquĭlĭa=quīsquĭlĭa|castra|||orum, n.|2
 quĭs|quis|||quae, quid, pron. interr.|13642
 quisquis=quīsquĭs|quisquis|||quidquid ou quicquid|641
 quīvīs|quiuis|||quaeuis, quoduis/quiduis|101
-quō2|inv|||conj. sub. cf. quo|350
 quŏăd|inv|||conj. sub. + subj.|80
 quōcircā=quōcīrcā|inv|||adv. conj.|22
 quōcumquĕ=quōcūmquĕ|inv|||adv.|80
 quōdammŏdo=quōdāmmŏdŏ|inv|||adv.|9
 quŏd|inv|||conj. sub.|3725
 quodsi=quōdsī|inv|||conj. et pron.|1
-quō|inv|||adv.|970
+quō|inv|||adv., conj. sub.|970
 quōĭquam=quōĭquăm|inv|||arc.|1
 quōlĭbĕt=quōlĭbĕt|inv|||adv.|6
 quōmĭnŭs|inv|||conj. sub.|47
-quŏm|inv|||conj. sub. cf. cum|218
 quōmŏdŏcumquĕ=quōmŏdŏcūmquĕ|inv|||adv.|3
 quōmŏdŏ|inv|||conj. sub.|199
 quōnam=quōnăm|inv|||adv.|13
@@ -18717,24 +18705,19 @@ quŏnĭam=quŏnĭăm|inv|||conj. sub.|762
 quōquăm=quōquăm|inv|||adv.|15
 quŏquĕ|inv|||adv.|2291
 quōquō|inv|||adv.|1
-quōquōversŭm=quōquōvērsŭm|inv|||(-versus, -vorsum) adv.|4
-quōquōversŭs=quōquōvērsŭs|inv|||cf. quoquouersum|5
-quōquōvorsŭm=quōquōvōrsŭm|inv|||cf. quoquouersum|3
+quōquōversŭm=quōquōvērsŭm,quōquōvōrsŭm,quōquōvērsŭs,quōquōvōrsŭs|inv|||(-versus, -vorsum) adv.|6
 quorsum=quōrsŭm|inv|||adv.|13
 quorsŭs=quōrsŭs|inv|||adv. conj.|13
 quŏtannīs=quŏtānnīs|inv|||adv.|35
 quŏtīdĭānus|doctus|||a, um|1
 quŏtīdĭē|inv|||adv.|8
-quŏtĭenscumquĕ=quŏtĭēnscūmquĕ|inv|||conj. sub.|16
-quŏtĭens=quŏtĭēns|inv||| (quotiēs) adv.|218
-quotiēscumque=quotĭēscūmque|inv|||cf. quotienscumque|2
-quŏtĭēs|inv|||cf. quotiens|3
+quŏtĭenscumquĕ=quŏtĭēnscūmquĕ,quotĭēscūmque|inv|||conj. sub.|16
+quŏtĭens=quŏtĭēns,quŏtĭēs|inv||| (quotiēs) adv.|218
 quŏt|inv|||pron.|123
 quotquot=quōtquot|inv|||adv.|4
 quŏtus|nonus|||a, um|42
 quŏusquē=quŏūsquē|inv|||conj. sub.|17
 quōvīs=quōvīs|inv|||adv.|2
-quum=quŭm|inv|||cf. cum|2
 răbĭdus|doctus|||a, um|45
 răbĭes|res|||em, e, f.|66
 răbĭōsus|doctus|||a, um|9
