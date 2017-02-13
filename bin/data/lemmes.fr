@@ -19605,7 +19605,7 @@ salve:Bonjour ! ; Salut !
 salveo:être en bonne santé
 Salvianus:Salvien (de Marseille, écrivain chrétien du Ve siècle)
 Salvius:Salvius (nom d'homme, famille d'Othon)
-salvus:en bonne santé
+salvos:en bonne santé
 Samaritae:Samaritains (sing. un Samaritain)
 Samarobriva:Samarobrive (ville de la Gaule Belgique, auj. Amiens)
 Sambis:Sambis (île de Bretagne)
