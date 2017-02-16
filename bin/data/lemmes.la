@@ -20386,7 +20386,7 @@ Servĭus=Sērvĭus|filius|||i, m.|46
 servo=sērvo|amo|||as, are|708
 servŏs=sērvŏs|delos|||cf. seruus|846
 servŭla=sērvŭla|uita|||ae, f.|1
-servŭlus=sērvŭlus,sērvŏlus|lupus|||(-volus) i, m.|16
+servŭlus=sērvŭlus,sērvŏlus|lupus|||i, m.|16
 servus2=sērvus|doctus|||a, um|17
 servus=sērvus|lupus|||i, m.|1
 sēsămum2|templum|||i, n.|2
@@ -23238,7 +23238,7 @@ văcēfīo|fio||văcēfāct|fis, fĭĕri, factus sum (passif de vacefacio)|3
 văcillātĭo=văcīllātĭō̆|miles|văcīllātĭōn||ionis, f.|1
 văcillo=văcīllo,vāccīllo|amo|||as, are|14
 văcīvĭtās|miles|văcīvĭtāt||ātis, f.|2
-văcīvus|doctus|||a, um|2
+văcīvus=văcīvus,vŏcīvus|doctus|||a, um|2
 văco|amo|||as, are|234
 văcŭēfăcĭo|facio|văcŭēfēc|văcŭēfāct|is, ere, feci, factum|2
 văcŭĭtās|miles|văcŭĭtāt||ātis, f.|2
@@ -23254,7 +23254,6 @@ vădor=vădŏr|imitor|||aris, ari|8
 vădōsus|doctus|||a, um|7
 vădum=vădŭm|templum|||i, n.|138
 vaecordĭa=vāecōrdĭa|uita|||ae, f.|2
-vaesānus=vāesānus|doctus|||cf. uesanus|8
 vae=vāe|inv|||interj.|30
 văfer=văfĕr|pulcher|||fra, frum|20
 vā̆frē|adve|||adv.|2
@@ -23272,7 +23271,7 @@ văgor=văgŏr|imitor|||aris, ari|100
 văgus|doctus|||a, um|177
 Văhălis=Văhălĭs|ciuis|Văhăl||is, m.|2
 vāh|inv|||interj.|12
-valdē=vāldē|adve|||adv.|76
+valdē=vāldē,vălĭdē|adve|||adv.|76
 vălē|adve|||adv.|1
 vălĕdīco|lego|vălĕdīx||is, ĕre, dixi, intr.|2
 vălens2=vălēns|infans|vălēnt||entis|54
@@ -23292,7 +23291,6 @@ vălētūdĭnārĭum|templum|||ii, n.|2
 vălētūdĭnārĭus|aureus|||a, um|2
 vălētūdō|miles|vălētūdĭn||dinis, f.|125
 Valgĭus=Vālgĭus|filius|||ii, m.|7
-vălĭdē|adve|||cf. ualde|9
 vălĭdus|doctus|||a, um|282
 vălītūdō|miles|vălītūdĭn||inis, f.|66
 vallāris=vāllārĭs|fortis|vāllār||e|1
@@ -23387,8 +23385,8 @@ vĕgĕo|moneo|||es, ēre|2
 vĕgĕto|amo|||as, are|2
 vĕgĕtus|doctus|||a, um|7
 vēgrandis=vēgrāndĭs|fortis|vēgrānd||e|4
-vĕhĕmens=vĕhĕmēns|infans|vĕhĕmēnt||entis|97
-vĕhĕmenter=vĕhĕmēntĕr|advr|||adv.|228
+vĕhĕmens=vĕhĕmēns,vēmēns|infans|vĕhĕmēnt,vēmēnt||entis|97
+vĕhĕmenter=vĕhĕmēntĕr,vēmēntĕr|advr|||adv.|228
 vĕhes|ciuis|vĕh||is, f.|2
 vĕhĭcŭlum=vĕhĭcŭlŭm|templum|||i, n.|63
 Vĕhilius=Vĕhilĭus|filius|||ii, m.|2
@@ -23431,8 +23429,6 @@ vēlox=vēlōx|fortis|vēlōc||ocis|70
 vēlum=vēlŭm|templum|||i, n.|203
 vĕlŭtī|inv|||adv.|77
 vĕlŭt|inv|||adv.|377
-vēmens=vēmēns|infans|vēmēnt||cf. uehemens|6
-vēmentĕr=vēmēntĕr|advr|||cf. uehementer|4
 vēnābŭlum=vēnābŭlŭm|templum|||i, n.|13
 Vĕnāfĕr|pulcher|Vĕnāfr||fra, frum|3
 Vĕnāfrānus|doctus|||a, um|6
@@ -23495,9 +23491,8 @@ ventŭlus=vēntŭlus|lupus|||i, m.|2
 ventus=vēntus|lupus|||i, m.|586
 Vĕnŭlēius=Vĕnŭlēĭus|filius|||i, m.|4
 Vĕnŭlus|lupus|||i, m.|4
-vēnumdo=vēnūmdo|amo|vēnūmdĕd|vēnūmdăt|(venun-) as, are, dĕdi, dătum|3
+vēnumdo=vēnūmdo,vēnūndo,vāenūndo|amo|vēnūmdĕd,vēnūndĕd|vēnūmdăt,vēnūndăt| as, are, dĕdi, dătum|3
 vēnum=vēnŭm|templum|||i, n.|5
-vēnundo=vēnūndo|amo|||cf. uenumdo|5
 Vĕnŭs2|miles|Vĕnĕr||neris, f.|421
 Vĕnŭsīnus|doctus|||a, um|4
 vĕnŭs|miles|vĕnĕr||ĕris, f.|44
@@ -23524,7 +23519,6 @@ verbĕrĭto=vērbĕrĭto|amo|||as, are|2
 verbĕro2=vērbĕrō̆|miles|vērbĕrōn||onis, m.|14
 verbĕro=vērbĕro|amo|||as, are|97
 verbĕr=vērbĕr|corpus|vērbĕr||ĕris, n.|139
-!verbex=vērbēx|miles|vērbĭc||cf. ueruex|1
 Verbigenus=Vērbigenus|manus|||us, m.|2
 verbĭvēlĭtātĭo=vērbĭvēlĭtātĭo|miles|vērbĭvēlĭtātĭōn||ōnis, f.|2
 verbōsē=vērbōsē|adve|||adv.|2
@@ -23543,7 +23537,7 @@ vĕrendus=vĕrēndus|doctus|||a, um|6
 vĕrĕor=vĕrĕŏr|uereor||vĕrĭt|eris, eri, ueritus sum|356
 Vergĭlĭae=Vērgĭlĭāe|epulae|||arum, f. pl.|4
 Vergĭlĭānus=Vērgĭlĭānus|doctus|||a, um|2
-Vergĭlĭus=Vērgĭlĭus|filius|||i, m.|72
+Vergĭlĭus=Vērgĭlĭus,Vīrgĭlĭus|filius|||i, m.|72
 Vergīnĭa=Vērgīnĭa|roma|||ae, f.|2
 Vergīnĭus=Vērgīnĭus|filius|||i, m.|35
 vergo=vērgo|lego|||is, ere|47
@@ -23602,8 +23596,8 @@ versūtus=vērsūtus|doctus|||a, um|15
 vertē̆bra=vērtē̆bra|uita|||ae, f.|3
 vertex=vērtēx|miles|vērtĭc||icis, f.|171
 vertīgo=vērtīgo|miles|vērtīgĭn||ĭnis, f.|7
-verto=vērto|lego|vērt|vērs|is, ere, uerti, uersum|561
-Vertumnus2=Vērtūmnus|lupus|||i, m.|6
+verto=vērto,vōrto|lego|vērt,vōrt|vērs,vōrs|is, ere, uerti, uersum|561
+Vertumnus2=Vērtūmnus,Vōrtūmnus|lupus|||i, m.|6
 Verulamĭum|templum|||ii, n.|2
 Vĕrŭlāna|roma|||ae, f.|2
 Vĕrŭlānus2|lupus|||i, m.|3
@@ -23618,7 +23612,7 @@ vervactum=vērvāctum|templum|||i, n.|2
 vervex=vērvēx,vērbēx,bērbēx|miles|vērvēc,vērbēc,bērbēc||ecis, f.|6
 vēsānĭa|uita|||ae, f.|2
 vēsānĭo|audio|||īre, 4, intr.|2
-vēsānus|doctus|||a, um|22
+vēsānus=vēsānus,vāesānus|doctus|||a, um|22
 Vescīnus=Vēscīnus|doctus|||a, um|2
 vescor=vēscŏr|sequor|||eris, i|31
 Vesculārius=Vēsculārĭus|filius|||i, m.|4
@@ -23628,12 +23622,12 @@ vēsīcŭla|uita|||ae, f.|2
 Vĕsontĭo=Vĕsōntĭo|miles|Vĕsōntĭōn||ōnis, m.|3
 Vespăsĭānus=Vēspăsĭānus|lupus|||i, m.|166
 vespa=vēspa|uita|||ae, f.|1
-vesper2=vēspĕr|miles|vēspĕr||cf. vesper|4
 vespĕrasco=vēspĕrāsco|lego|vēspĕrāv||is, ere, aui, -|4
 vespĕra=vēspĕra|uita|||ae, f.|13
 vespertīnus=vēspērtīnus|doctus|||a, um|8
 vespĕrūgo=vēspĕrūgo|miles|vēspĕrūgĭn||ĭnis, f.|2
 vesper=vēspĕr|puer|||eri et eris, m.|25
+vesper2=vēspĕr|miles|vēspĕr||cf. vesper|4
 Vespillo2=Vēspīllo|miles|Vēspīllōn||ōnis, m.|2
 Vestālis2=Vēstālĭs|ciuis|Vēstāl||is, f.|17
 Vestālis=Vēstālĭs|fortis|Vēstāl||e|5
@@ -23668,7 +23662,7 @@ vĕternōsus=vĕtērnōsus|doctus|||a, um|5
 vĕternus2=vĕtērnus|lupus|||i, m.|7
 Vetīlĭus|filius|||ii, m.|2
 vĕtĭtum|templum|||i, n.|4
-vĕto|amo|vĕtŭ|vĕtĭt|as, are, ui, itum|277
+vĕto=vĕto,vŏto|amo|vĕtŭ|vĕtĭt|as, are, ui, itum|277
 Vettĭānus=Vēttĭānus|lupus|||i, m.|2
 Vettius=Vēttĭus|filius|||ii, m.|34
 Vettōnes=Vēttōnes|opes|Vēttōn||um, m.|4
@@ -23713,18 +23707,16 @@ vĭcārĭus|doctus|||a, um|3
 Vīca|roma|||ae, f.|2
 vĭcē|inv|||prép. + Gén|1
 vīcēni|deni|||ae, a|1
-vīcēnsĭma|uita|||cf. uicesima|2
 vīcensĭmus=vīcēnsĭmus|doctus|||a, um|8
 vicensumus=vicēnsumus|doctus|||a, um|2
 vīcēnus|nonus|||ae, a|7
 vīcēsĭmānus|lupus|||i, m.|4
-vīcēsĭma|uita|||ae, f.|14
+vīcēsĭma=vīcēsĭma,vīcēnsĭma|uita|||ae, f.|14
 vīcēsĭmus|nonus|||a, um|24
 Vīcētĭa|roma|||ae, f.|2
 Vīcētīni|liberi|||orum, m.|6
 vĭcĭa|uita|||ae, f.|11
-vīcĭens=vīcĭēns|inv|||cf. uicies|11
-vīcĭēs|inv|||adv.|6
+vīcĭēs=vīcĭēs,vīcĭēns|inv|||adv.|6
 vīcīnālĭs|fortis|vīcīnāl||e|2
 vīcīna|uita|||ae, f.|8
 vīcīnĭa|uita|||ae, f.|26
@@ -23799,9 +23791,8 @@ vinco=vīnco|lego|vīc|vīct|is, ere, uici, uictum|1102
 vinctŭs2=vīnctŭs|manus|||us, m.|2
 vincŭlum=vīncŭlŭm|templum|||i, n.|173
 Vindĕlĭci=Vīndĕlĭci|liberi|||orum, m. pl.|4
-vindēmĭātor=vīndēmĭātŏr|miles|vīndēmĭātōr||ōris, m.|2
+vindēmĭātor=vīndēmĭātŏr,vīndēmĭtŏr|miles|vīndēmĭātōr,vīndēmĭtōr||ōris, m.|2
 vindēmĭa=vīndēmĭa|uita|||ae, f.|26
-vindēmĭtŏr=vīndēmĭtŏr|miles|vīndēmĭtōr||cf. uindemiator|2
 Vindex2=Vīndēx|miles|Vīndĭc||ĭcis, m.|20
 vindex=vīndēx|miles|vīndĭc||icis, m.|67
 vindĭcātĭo=vīndĭcātĭo|miles|vīndĭcātĭōn||ōnis, f.|2
@@ -23855,7 +23846,6 @@ virgātŏr=vīrgātŏr|miles|vīrgātōr||ōris, m.|2
 virgātus=vīrgātus|doctus|||a, um|6
 virga=vīrga|uita|||ae, f.|94
 virgĕus=vīrgĕus|aureus|||a, um|6
-Virgĭlĭus=Vīrgĭlĭus|filius|||cf. Uergilius|1
 virgĭnālis=vīrgĭnālĭs|fortis|vīrgĭnāl||e|5
 virgĭnĕus=vīrgĭnĕus|aureus|||a, um|36
 virgĭnĭtās=vīrgĭnĭtās|miles|vīrgĭnĭtāt||atis, f.|19
@@ -23961,7 +23951,6 @@ Vocĕtĭus|filius|||ii, m.|2
 vōcĭfĕrātĭo|miles|vōcĭfĕrātĭōn||ōnis, f.|11
 vōcĭfĕror=vōcĭfĕrŏr|imitor|||aris, ari|28
 vŏcĭto|amo|||as, are|6
-vŏcīvus|doctus|||cf. uaciuus|3
 vŏco|amo|||as, are|1121
 Vŏcōnĭus2|lupus|||ii, m.|6
 Vŏcōnĭus|aureus|||a, um|9
@@ -23984,20 +23973,10 @@ Volcānus=Vōlcānus|lupus|||i, m.|32
 vŏlēma|castra|||orum, n.|2
 Volesius=Volesĭus|filius|||i, m.|1
 Vŏlĕsus|lupus|||i, m.|4
-volgāris=vōlgārĭs|fortis|vōlgār||cf. uulgaris|29
-volgātus=vōlgātus|doctus|||cf. uulgatus|2
 volgĭvăgus=vōlgĭvăgus|doctus|||a, um|3
-volgo2=vōlgō|inv|||cf. uulgo2|14
-volgo=vōlgo|amo|||cf. uulgo|50
-volgus=vōlgus|virus|||cf. uolgus|87
 vŏlĭto|amo|||as, are|70
-volnĕrātĭo=vōlnĕrātĭo|miles|vōlnĕrātĭōn||cf. uulneration|3
-volnĕro=vōlnĕro|amo|||cf. uulnero|15
-volnĭfĭcus=vōlnĭfĭcus|doctus|||cf. uulnificus|2
-volnus=vōlnŭs|corpus|vōlnĕr||cf. uulnus|192
 vŏlo2|amo|||as, are|135
 vŏlo|uolo|vŏlŭ||uis, uelle, uolui|3862
-volpes=vōlpes|ciuis|vōlp||icf. uulpes|11
 Volsci=Vōlsci|liberi|||orum, m.|15
 Volscus=Vōlscus|doctus|||a, um, nom et adj.|2
 volsella=vōlsēlla|uita|||ae, f.|2
@@ -24012,8 +23991,6 @@ Volturcĭus=Vōltūrcĭus|filius|||i, m.|17
 Volturcus=Vōltūrcus|lupus|||i, m.|1
 voltŭrĭus=vōltŭrĭus|filius|||ii, m.|6
 Volturnus2=Vōltūrnus|lupus|||i, m.|3
-voltur=vōltŭr|miles|vōltŭr||uris, m.|6
-voltus=vōltus|manus|||cf. uultus|226
 vŏlūbĭlis=vŏlūbĭlĭs|fortis|vŏlūbĭl||e|15
 vŏlūbĭlĭtās|miles|vŏlūbĭlĭtāt||ātis, f.|6
 vŏlŭcĕr|acer|||cris, cre|50
@@ -24034,7 +24011,6 @@ Vŏlŭsus|lupus|||i, m.|2
 vŏlūtābrum|templum|||i, n.|2
 vŏlūtātĭo=vŏlūtātĭō̆|miles|vŏlūtātĭōn||ionis, f.|10
 vŏlūto|amo|||as, are|39
-volva=vōlva|uita|||ae, f.|4
 volvo=vōlvo|lego|vōlv|vŏlūt|is, ere, uolui, uolutum|147
 vōmer=vōmĕr|miles|vōmĕr||eris, m.|44
 vŏmĭca|uita|||ae, f.|3
@@ -24058,14 +24034,11 @@ vorsŭs2=vōrsŭs|inv|||adv.|3
 vorsus=vōrsus|manus|||us, m.|4
 vorsūtus=vōrsūtus|doctus|||a, um|5
 vortex=vōrtēx|miles|vōrtĭc||ĭcis, m.|2
-vorto=vōrto|lego|vōrt|vōrs|cf. uerto|36
-Vortumnus=Vōrtūmnus|lupus|||cf. Uertumnus|4
 Vŏsĕgus|lupus|||i, m.|2
 voster=vōstĕr|pulcher|vōstr||tra, trum|86
 vos=vōs|uos|||uestrum, pl. pron.|2402
 Vōtĭēnus|lupus|||i, m.|4
 vōtīvus|doctus|||a, um|23
-vŏto|amo|vĕtŭ|vĕtĭt|cf. ueto|9
 vōtum=vōtŭm|templum|||i, n.|474
 vŏvĕo|moneo|vōv|vōt|es, ere, uoui, uotum|40
 vox=vōx|miles|vōc||uocis, f.|1171
@@ -24073,27 +24046,27 @@ Vulcācĭus=Vūlcācĭus|aureus|||a, um|4
 Vulcānālis=Vūlcānālĭs|fortis|Vūlcānāl||e|2
 Vulcānus=Vūlcānus|lupus|||i, m.|9
 Vulchalo=Vūlchalo|miles|Vūlchalōn||ōnis, m. ou f.|2
-vulgāris=vūlgārĭs|fortis|vūlgār||e|30
+vulgāris=vūlgārĭs,vōlgārĭs|fortis|vūlgār,vōlgār||e|30
 vulgātŏr=vūlgātŏr|miles|vūlgātōr||ōris, m.|2
-vulgātus=vūlgātus|doctus|||a, um|8
-vulgō2=vūlgō|inv|||(vol-) adv.|31
-vulgo=vūlgo|amo|||(vol-) as, are|68
-vulgus=vūlgus|virus|||(vol-) i, n.|198
-vulnĕrābĭlis=vūlnĕrābĭlĭs|fortis|vūlnĕrābĭl||(vol-) e|2
-vulnĕrātĭo=vūlnĕrātĭo|miles|vūlnĕrātĭōn||(vol-) ōnis, f.|2
-vulnĕro=vūlnĕro|amo|||(vol-) as, are|91
-vulnĭfĭcus=vūlnĭfĭcus|doctus|||(vol-) a, um|2
-vulnus=vūlnŭs|corpus|vūlnĕr||(vol-) ĕris, n.|400
+vulgātus=vūlgātus,vōlgātus|doctus|||a, um|8
+vulgō2=vūlgō,vōlgō|inv|||adv.|31
+vulgo=vūlgo,vōlgo|amo|||as, are|68
+vulgus=vūlgus,vōlgus|virus|||i, n.|198
+vulnĕrābĭlis=vūlnĕrābĭlĭs|fortis|vūlnĕrābĭl||e|2
+vulnĕrātĭo=vūlnĕrātĭo,vōlnĕrātĭo|miles|vūlnĕrātĭōn||ōnis, f.|2
+vulnĕro=vūlnĕro,vōlnĕro|amo|||as, are|91
+vulnĭfĭcus=vūlnĭfĭcus,vōlnĭfĭcus|doctus|||a, um|2
+vulnus=vūlnŭs,vūlnŭs|corpus|vūlnĕr,vōlnĕr||ĕris, n.|400
 vulpēcŭla=vūlpēcŭla|uita|||ae, f.|3
-vulpes=vūlpēs|ciuis|vūlp||is, f.|4
+vulpes=vūlpēs,vōlpes|ciuis|vūlp,vōlp||is, f.|4
 vulpīnus=vūlpīnus|doctus|||a, um|1
 Vulsĭnĭensis=Vūlsĭnĭēnsĭs|fortis|Vūlsĭnĭēns||e|2
 Vulsĭnĭī=Vūlsĭnĭī|liberi|||orum, m.|2
 vultum=vūltum|templum|||i, n. cf. uultus|2
 vultŭrĭus=vūltŭrĭus|filius|||ii, m.|3
-vultur=vūltŭr|miles|vūltŭr||(voltur), uris, m|9
-vultus=vūltus|manus|||(volt-) us, m.|448
-vulva=vūlva|uita|||ae, f.|6
+vultur=vūltŭr,vōltŭr|miles|vūltŭr,vōltŭr||uris, m|9
+vultus=vūltus,vōltus|manus|||us, m.|448
+vulva=vūlva,vōlva|uita|||ae, f.|6
 Xanthippē=Xānthīppē|cybele|Xānthīpp||es, f.|2
 Xanthippus=Xānthīppus|lupus|||i, m.|2
 xanthĭum=xānthĭum|templum|||ii, n.|2
@@ -24106,8 +24079,7 @@ Xĕnŏphantus=Xĕnŏphāntus|lupus|||i, m.|2
 Xĕnŏphĭlus|lupus|||i, m.|2
 Xĕnŏphōn|ciuis|Xĕnŏphōnt||ontis, m.|12
 xērampĕlĭnus=xērāmpĕlĭnus|doctus|||a, um|2
-Xersēs=Xērsēs|thales|Xērs||is ou i, m. cf. Xerxes|3
-Xerxēs=Xērxēs|thales|Xērx||is (i), m.|14
+Xerxēs=Xērxēs,Xērsēs|thales|Xērx,Xērs||is (i), m.|14
 xĭphĭās|aeneas|||ae, m.|2
 Xūthus|lupus|||i, m.|2
 xystus=xȳstus|lupus|||i, m.|12

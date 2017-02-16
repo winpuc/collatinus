@@ -23870,7 +23870,6 @@ Volta:Volta (nom étrusque d'un monstre)
 Voltinienses:citoyens de la tribu Voltinia
 Voltinius:Voltinius (tribu romaine)
 Voltur2:Voltur (montagne en Apulie)
-voltur:vautour
 Volturcius:Volturcius
 Volturcus:Volturcus (nom d'homme)
 volturius:vautour, homme rapace, spoliateur, le vautour (coup malheureux aux dés)
@@ -23895,7 +23894,6 @@ Volusus:Volusus (nom d'un chef Volsque)
 volutabrum:bourbier, bauge [de sanglier]
 volutatio:roulement, culbute
 voluto:rouler, faire rouler
-volva:vulve, matrice, ventre de truie [mets], enveloppe
 volvo:faire rouler, rouler, remuer
 vomer:soc [de charrue]
 vomica:abcès, plaie
