@@ -111,7 +111,7 @@ Lemme::Lemme(QString linea, int origin, QObject *parent)
         {
             QStringList lrad = eclats.at(i).split(',');
             foreach (QString rad, lrad)
-                _radicaux.insert(i - 1, new Radical(rad, i - 1, this));
+                _radicaux[i-1].append(new Radical(rad, i-1, this));
         }
     _lemmatiseur->ajRadicaux(this);
 
@@ -203,7 +203,7 @@ void Lemme::ajNombre(int n)
  */
 void Lemme::ajRadical(int i, Radical *r)
 {
-    _radicaux.insert(i, r);
+    _radicaux[i].append(r);
 }
 
 /**
@@ -468,7 +468,7 @@ QString Lemme::pos()
  */
 QList<Radical *> Lemme::radical(int r)
 {
-    return _radicaux.values(r);
+    return _radicaux.value(r);
 }
 
 /**
