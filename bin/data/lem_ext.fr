@@ -34858,7 +34858,6 @@ idiotismos:expression propre à une langue, idiotisme
 idiotismus:expression propre à une langue, idiotisme
 idoleum:temple d'idole
 idolicus:d'idole
-idolium:temple d'idole
 idololatra:idolâtre
 idololatres:idolâtre
 idololatria:idolâtrie
