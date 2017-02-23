@@ -508,11 +508,17 @@ QString Lemme::traduction(QString l)
 
 /**
  * \fn bool Lemme::operator<(Lemme &l)
- * \brief vrai si la graphie du lemme de gauche
+ * \brief vrai si la fréquence du lemme de gauche est
+ *        inférieure à celle de celui de droite.
+ *        commenté : vrai si la graphie du lemme de gauche
  *        précède celle de celui de droite dans
  *        l'ordre alphabétique.
  */
-bool Lemme::operator<(Lemme &l) { return _gr < l.gr(); }
+bool Lemme::operator<(Lemme &l)
+{
+    return _nbOcc < l.nbOcc();
+    //return _gr < l.gr();
+}
 
 /**
  * @brief Lemme::setHyphen
