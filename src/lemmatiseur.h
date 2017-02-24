@@ -42,7 +42,7 @@ typedef struct
     QString sufq;
 } SLem;
 
-typedef QMap<Lemme *, QList<SLem> > MapLem;
+typedef QMap<Lemme*, QList<SLem> > MapLem;
 #include "mot.h"
 
 typedef QPair<QRegExp, QString> Reglep;

@@ -48,13 +48,22 @@ Radical::Radical(QString g, int n, QObject *parent)
  * \brief Renvoie la graphie du radical
  *        dépourvue de diacritiques.
  */
-QString Radical::gr() { return _gr; }
+QString Radical::gr()
+{
+    return _gr;
+}
+
+
 /**
  * \fn QString Radical::grq ()
  * \brief Renvoie la graphie du radical
  *        pourvue de ѕes diacritiques.
  */
-QString Radical::grq() { return _grq; }
+QString Radical::grq() const
+{
+    return _grq;
+}
+
 /**
  * \fn Lemme* Radical::lemme ()
  * \brief Le lemme auquel appartient le radical.
@@ -79,7 +88,7 @@ int Radical::numRad() { return _numero; }
  * \brief Constructeur de la classe Lemme à partire de la
  *        ligne linea. *parent est le lemmatiseur (classe Lemmat).
  */
-Lemme::Lemme(QString linea, int origin, QObject *parent)
+Lemme::Lemme(const QString linea, const int origin, QObject *parent)
 {
     // cădo|lego|cĕcĭd|cās|is, ere, cecidi, casum|687
     //   0 | 1  | 2   | 3 |     4                | 5
@@ -395,7 +404,7 @@ Modele *Lemme::modele()
  * \fn int Lemme::nbOcc()
  * \brief Renvoie le nombre d'occurrences du lemme dans les textes du LASLA.
  */
-int Lemme::nbOcc()
+int Lemme::nbOcc() const
 {
     return _nbOcc;
 }
@@ -514,8 +523,9 @@ QString Lemme::traduction(QString l)
  *        précède celle de celui de droite dans
  *        l'ordre alphabétique.
  */
-bool Lemme::operator<(Lemme &l)
+bool Lemme::operator<(const Lemme &l) const
 {
+    qDebug()<<"operator<"<<_gr;
     return _nbOcc < l.nbOcc();
     //return _gr < l.gr();
 }

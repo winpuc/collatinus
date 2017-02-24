@@ -111,7 +111,6 @@ void Lemmat::lisNombres()
         clef.remove('-');
         if (_lemmes.contains(clef))
             _lemmes[clef]->ajNombre(liste[2].toInt());
-//        else qDebug() << lin;
     }
     _nbrLoaded = true;
     // Je lis aussi le début du fichier tags.la
@@ -162,7 +161,7 @@ void Lemmat::lisTags(bool tout)
         _tagTot[eclats[0].mid(0,1)] += eclats[1].toInt();
         ++i;
     }
-//        qDebug() << _tagOcc.size() << _tagTot.size();
+    //  qDebug() << _tagOcc.size() << _tagTot.size();
     if (tout)
     {
         l.clear();
@@ -174,102 +173,9 @@ void Lemmat::lisTags(bool tout)
             _trigram.insert(eclats[0],eclats[1].toInt());
             ++i;
         }
-//            qDebug() << _trigram.size();
+        //  qDebug() << _trigram.size();
     }
 }
-
-/* Ancien format du fichier !
-void Lemmat::lisTags(bool tout)
-{
-    _tagOcc.clear();
-    _tagTot.clear();
-    _trigram.clear();
-    QStringList lignes = lignesFichier(_resDir + "tags.la");
-    int max = lignes.count() - 1;
-    int i = 0;
-    QString l = "";
-    QStringList eclats;
-//    QStringList tagsLasla;
-//    QStringList tagsCollatinus;
-    QMap<QString,QString> corresp;
-    while (i <= max) // && !l.startsWith("! --- "))
-    {
-        l = lignes.at(i);
-        if (l.startsWith("! --- ")) break;
-        eclats = l.split(',');
-        if (eclats.size() == 3)
-        {
-            QString tag = eclats[2];
-            switch (tag.size()) {
-            case 0:
-                tag = eclats[0]; // S'il n'est pas indiqué, je reprends celui du LASLA
-                break;
-            case 1:
-                tag.append("  ");
-                break;
-            case 2:
-                tag.append(" ");
-                break;
-            default:
-                break;
-            }
-              if (tag != eclats[0])
-            {
-                tagsCollatinus.append(tag);
-                tagsLasla.append(eclats[0]);
-            }
-            */
-/*            corresp.insert(eclats[0],tag);
-            _tagOcc[tag] += eclats[1].toInt();
-            _tagTot[tag.mid(0,1)] += eclats[1].toInt();
-        }
-        else qDebug() << "Erreur dans tags.la : " << l;
-        ++i;
-    }
-        qDebug() << _tagOcc.size() << _tagTot.size() << corresp.size();
-    if (tout)
-    {
-        l.clear();
-        ++i;
-        while (i <= max && !l.startsWith("! --- "))
-        {
-            l = lignes.at(i);
-              for (int j=0; j<tagsCollatinus.size();j++)
-                l.replace(tagsLasla[j],tagsCollatinus[j]);
-            QString trigr = l.section(',',0,2);
-            int occ = l.section(',',3,3).toInt();
-            trigr.replace(',',' ');
-            */
-/*            QStringList eclats = l.split(",");
-            int occ = eclats[3].toInt();
-            QString trigr = corresp[eclats[0]] + " " + corresp[eclats[1]] + " " + corresp[eclats[2]];
-            _trigram[trigr] += occ;
-            if (trigr.size() != 11)
-                qDebug() << l << eclats[0] << eclats[1] << eclats[2] << eclats[3] << trigr;
-            if (trigr.contains(" snt "))
-            {
-                _trigram[trigr.mid(0,7)] += occ;
-                _trigram[trigr.mid(4,7)] += occ;
-                // J'ai aussi besoin des bigrammes en début et en fin de phrase.
-            }
-            ++i;
-        }
-        // Sauvegarde au nouveau format
-        QFile f(_resDir + "tags.la");
-        f.open(QFile::WriteOnly);
-        QTextStream flux(&f);
-        QString ligne = "%1,%2\n";
-        foreach (QString tag, _tagOcc.keys())
-            flux << ligne.arg(tag).arg(_tagOcc[tag]);
-        flux << "! --- Trigrammes\n";
-        foreach (QString tag, _trigram.keys())
-            flux << ligne.arg(tag).arg(_trigram[tag]);
-        f.close();
-
-            qDebug() << _trigram.size();
-    }
-}
-*/
 
 /**
  * @brief Lemmat::tag
@@ -374,7 +280,7 @@ int Lemmat::fraction(QString listTags)
                 fr = _tagOcc[t] * 1024 / _tagTot[t.mid(0,1)];
             else fr = 1024;
             if (fr == 0) fr = 1;
-//            qDebug() << _tagOcc[t] << _tagTot[t.mid(0,1)] << fr;
+            //  qDebug() << _tagOcc[t] << _tagTot[t.mid(0,1)] << fr;
         }
         else qDebug() << t << " : Tag non trouvé !";
         if (frFin < fr) frFin = fr; // Si j'ai reçu une liste de tags, je garde la fraction la plus grande.
@@ -833,8 +739,7 @@ MapLem Lemmat::lemmatise(QString f)
                         if (!r.endsWith("i") && rad->gr().endsWith("i"))
                             fq = rad->grq().left(rad->grq().size()-1) + "ī"
                                     + des->grq().right(des->grq().size()-1);
-                        SLem sl = {fq,
-                                   morpho(des->morphoNum()), ""};
+                        SLem sl = {fq, morpho(des->morphoNum()), ""};
                         result[l].prepend(sl);
                     }
                 }
@@ -1028,7 +933,8 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
     // pour mesurer :
     // QElapsedTimer timer;
     // timer.start();
-/*    alpha = alpha || _alpha;
+/*    
+    alpha = alpha || _alpha;
     cumVocibus = cumVocibus || _formeT;
     cumMorpho = cumMorpho || _morpho;
     nreconnu = nreconnu || _nonRec;
@@ -1759,7 +1665,7 @@ QString Lemmat::tagTexte(QString t, int p, bool affTout)
                 }
                 sequences.clear();
                 probabilites.clear();
-                qDebug() << mot->forme() << nvlProba << nvlSeq;
+                //qDebug() << mot->forme() << nvlProba << nvlSeq;
                 for (int j = 0; j < nvlSeq.size(); j++) if (nvlProba[j] > 0)
                 {
                     QString bigr = nvlSeq[j].right(7); // Les deux derniers tags
