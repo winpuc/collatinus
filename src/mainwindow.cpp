@@ -72,32 +72,6 @@ bool EditLatin::event(QEvent *event)
             return QTextEdit::event(event);
     }
 }
-/*
- * La même chose dans C10.3 : la bulle d'aide disparaît quand on bouge la souris.
-bool fenestra::event (QEvent *event)
-{
-    if ((event->type () == QEvent::ToolTip) && (EditLatin->underMouse ()))
-    {
-        QHelpEvent *helpEvent = static_cast<QHelpEvent *>(event);
-        QPoint P = EditLatin->parentWidget()->mapFromGlobal(helpEvent->globalPos());
-        QTextCursor muspos = EditLatin->cursorForPosition (P);
-        QString mot = EditLatin->motCourant (muspos);
-        if (P.x() >= 0 && P.x () < EditLatin->width ()
-            && P.y () >= 0 && P.y () < EditLatin->height ())
-        {
-            bool deb_phr = EditLatin->debPhr (muspos);
-            if (mot.isEmpty ())
-                return QWidget::event (event);
-            QString bulla = lexicum->lemmatiseM (mot, morphologia, deb_phr).join ("<br/>");
-            QRect rect(P.x()-20,P.y()-10,40,40);
-            QToolTip::setFont (EditLatin->font ());
-            QToolTip::showText (helpEvent->globalPos(), bulla.trimmed (), EditLatin, rect);
-        }
-    }
-    return QWidget::event (event);
-}
-
- */
 
 /**
  * \fn void EditLatin::mouseReleaseEvent (QMouseEvent *e)
@@ -1791,7 +1765,7 @@ void MainWindow::setCible()
                 msg.setIcon(QMessageBox::Question);
                 msg.setText("Choisir une 2nde langue  \nChoose a 2nd language");
                 QAbstractButton *frButton = msg.addButton("Français",QMessageBox::AcceptRole);
-                QAbstractButton *enButton = msg.addButton("English",QMessageBox::AcceptRole);
+                //QAbstractButton *enButton = msg.addButton("English",QMessageBox::AcceptRole);
                 msg.exec();
                 if (msg.clickedButton() == frButton)
                     lemmatiseur->setCible(cle + ".fr.en");

@@ -2480,7 +2480,7 @@ avolo:s'envoler, partir précipitamment
 avorto:détourner, se détourner
 avos:aïeul, grand-père, (pl.) les aïeux, [en part.] vieillard
 avunculus:oncle maternel
-avus:ancêtre, aïeul, grand-père
+!avus:ancêtre, aïeul, grand-père
 Axia:Axia (place forte d'Étrurie, auj. Castel d'Asso)
 axiculus:petit axe
 axis:axe, essieu, char
