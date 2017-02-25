@@ -2478,7 +2478,7 @@ avocatio:détournement, distraction
 avoco:faire venir, détourner [de]
 avolo:s'envoler, partir précipitamment
 avorto:détourner, se détourner
-avos:aïeul, grand-père, (pl.) les aïeux, [en part.] vieillard
+avus:(avos) aïeul, grand-père, (pl.) les aïeux, [en part.] vieillard
 avunculus:oncle maternel
 !avus:ancêtre, aïeul, grand-père
 Axia:Axia (place forte d'Étrurie, auj. Castel d'Asso)
