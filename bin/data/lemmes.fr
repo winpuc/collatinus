@@ -1,5 +1,5 @@
 !               lemmes.fr
-!Français
+Français
 !This file is part of COLLATINUS and PRAELECTOR
 !COLLATINUS and PRAELECTOR are free software; you can
 !redistribute it and/or modify it under the terms of
@@ -19,7 +19,7 @@
 !
 a:de, à partir de ; (après un verbe passif) par
 a3:Ah (interjection, exprime la douleur, la joie, l'étonnement, la colère)
-ab:à partir de, de, par (après un verbe passif)
+!ab:à partir de, de, par (après un verbe passif)
 abactus2:détournement (des troupeaux), enlèvement (du butin)
 abacus:table de jeu
 abalieno:éloigner, détourner, dégager de, priver de
