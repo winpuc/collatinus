@@ -2,6 +2,7 @@ e="<meta charset=\"utf-8\"><link rel=\"stylesheet\" href=\"doc.css\"/>"
 dest=../bin/doc/
 
 but:
+	mkdir $(dest)
 	echo $e > $(dest)index.html;         markdown index.md >> $(dest)index.html
 	echo $e > $(dest)anatomie.html;      markdown anatomie.md >> $(dest)anatomie.html
 	echo $e > $(dest)debuter.html;       markdown debuter.md >> $(dest)debuter.html
@@ -14,6 +15,10 @@ but:
 	echo $e > $(dest)licence.html;       markdown licence.md >> $(dest)licence.html
 	cp doc.css ../bin/doc/
 	cp *.png ../bin/doc/
+
+clean:
+	echo suppression de la documentation
+	rm -r $(dest)
 
 test:
 	$(BROWSER) ../bin/doc/index.html

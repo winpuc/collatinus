@@ -45,7 +45,7 @@ class Radical : public QObject
    public:
     Radical(QString g, int n, QObject* parent);
     QString gr();
-    QString grq();
+    QString grq() const;
     Lemme* lemme();
     Modele* modele();
     int numRad();
@@ -55,28 +55,27 @@ class Lemme : public QObject
 {
     Q_OBJECT
    private:
-    QString                 _cle;
-//    QString                 _genre; // Le genre dépend maintenant de la langue choisie !
-    QString                 _gr;
-    QString                 _grd;
-    QString                 _grq;
-    QString                 _grModele;
-    QString                 _hyphen; // Pour les césures étymologies
-    QString                 _indMorph;
-    QList<Irreg*>           _irregs;
-    Modele*                 _modele;
-    int                     _nh;
-    Lemmat*                 _lemmatiseur;
-    QList<int>              _morphosIrrExcl;
-    int                     _origin; // lemmes ou lem_ext
-    QString                 _pos;
-    QMultiMap<int,Radical*> _radicaux;
-    QString                 _renvoi;
-    QMap<QString,QString>   _traduction;
-    int                     _nbOcc; // Nombre d'occurrences du lemme dans les textes du LASLA
+    QString                     _cle;
+    QString                     _gr;
+    QString                     _grd;
+    QString                     _grq;
+    QString                     _grModele;
+    QString                     _hyphen; // Pour les césures étymologies
+    QString                     _indMorph;
+    QList<Irreg*>               _irregs;
+    Modele*                     _modele;
+    int                         _nh;
+    Lemmat*                     _lemmatiseur;
+    QList<int>                  _morphosIrrExcl;
+    int                         _nbOcc; // Nombre d'occurrences du lemme dans les textes du LASLA
+    int                         _origin; // lemmes ou lem_ext
+    QString                     _pos;
+    QMap<int, QList<Radical*> > _radicaux;
+    QString                     _renvoi;
+    QMap<QString,QString>       _traduction;
 
    public:
-    Lemme(QString linea, int origin, QObject* parent);
+    Lemme(const QString linea, const int origin, QObject* parent);
     void                ajIrreg(Irreg* irr);
     void                ajNombre(int n);
     void                ajRadical(int i, Radical* r);
@@ -93,8 +92,8 @@ class Lemme : public QObject
     QString             humain(bool html = false, QString l = "fr", bool nbr = false);
     QString             irreg(int i, bool* excl);
     Modele*             modele();
-    int                 nbOcc(); // Retourne le nombre d'occurrences du lemme
-    void                clearOcc(); // Efface "
+    int                 nbOcc() const;    // Retourne le nombre d'occurrences du lemme
+    void                clearOcc(); // Efface       "           "            "
     int                 nh();
     int                 origin();
     QString static      oteNh(QString g, int& nh);
@@ -103,7 +102,7 @@ class Lemme : public QObject
     bool                renvoi();
     void                setHyphen (QString h);
     QString             traduction(QString l);
-    inline bool operator<(Lemme& l);
+    inline bool operator<(const Lemme &l) const;
 };
 
 #endif
