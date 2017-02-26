@@ -1194,11 +1194,11 @@ void Lemmat::lisLexique()
  */
 void Lemmat::lisExtension()
 {
-    if (_nbrLoaded) foreach(Lemme *l, _lemmes.values())
-        l->clearOcc();
+//    if (_nbrLoaded) foreach(Lemme *l, _lemmes.values())
+  //      l->clearOcc();
     // Si les nombres d'occurrences ont été chargés, je dois les ré-initialiser.
     lisFichierLexique(_resDir + "lem_ext.la");
-    lisNombres();
+//    lisNombres();
 }
 
 /**
@@ -1505,7 +1505,7 @@ void Lemmat::setExtension(bool e)
         lisTraductions(false,true);
         _extLoaded = true;
     }
-    else if (!_nbrLoaded) lisNombres();
+//    else if (!_nbrLoaded) lisNombres();
 }
 
 /**
