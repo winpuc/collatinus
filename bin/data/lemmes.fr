@@ -90,7 +90,7 @@ abrogo:enlever, supprimer
 abrumpo:briser, rompre, déchirer, mutiler
 abruptum:parties brisées (in abruptum : dans l'abîme)
 abruptus:escarpé, à pic, abrupt, [en parl. du style] brisé, coupé, haché, [en parl. du caract.] intraitable, roide
-abs:par, de
+!abs:par, de
 abscedo:s'éloigner, s'en aller, se tenir à l'écart, abandonner, renoncer
 abscessus:éloignement, départ, absence, retraite, [médec.] abcès
 abscido:séparer en coupant, trancher
