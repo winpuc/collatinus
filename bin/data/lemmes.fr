@@ -21999,7 +21999,7 @@ testificor:déposer, témoigner, certifier, attesterprouver, prendre à témoin
 testimonium:témoignage, preuve
 testis:témoin
 testor:témoigner, attester, démontrer
-testu:couvercle d'argile, vase d'argile
+testum:couvercle d'argile, vase d'argile
 testudineus:de tortue, d'écaille [de tortue]
 testudo:tortue
 Tethys:Tethys (femme de l'Océan, mère des fleuves)
