@@ -80,6 +80,7 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
         lisMorphos(QFileInfo(nfl).suffix());
     lisModeles();
     lisLexique();
+    lisTags(false);
     lisTraductions(true, false);
     lisIrreguliers();
     lisParPos();
@@ -121,7 +122,6 @@ void Lemmat::lisNombres()
         clef.remove('-');
         if (_lemmes.contains(clef))
             _lemmes[clef]->ajNombre(liste[2].toInt());
-//        else qDebug() << lin;
     }
     _nbrLoaded = true;
     // Je lis aussi le début du fichier tags.la
@@ -172,7 +172,7 @@ void Lemmat::lisTags(bool tout)
         _tagTot[eclats[0].mid(0,1)] += eclats[1].toInt();
         ++i;
     }
-//        qDebug() << _tagOcc.size() << _tagTot.size();
+    //  qDebug() << _tagOcc.size() << _tagTot.size();
     if (tout)
     {
         l.clear();
@@ -184,101 +184,9 @@ void Lemmat::lisTags(bool tout)
             _trigram.insert(eclats[0],eclats[1].toInt());
             ++i;
         }
-//            qDebug() << _trigram.size();
+        //  qDebug() << _trigram.size();
     }
 }
-/* Ancien format du fichier !
-void Lemmat::lisTags(bool tout)
-{
-    _tagOcc.clear();
-    _tagTot.clear();
-    _trigram.clear();
-    QStringList lignes = lignesFichier(_resDir + "tags.la");
-    int max = lignes.count() - 1;
-    int i = 0;
-    QString l = "";
-    QStringList eclats;
-//    QStringList tagsLasla;
-//    QStringList tagsCollatinus;
-    QMap<QString,QString> corresp;
-    while (i <= max) // && !l.startsWith("! --- "))
-    {
-        l = lignes.at(i);
-        if (l.startsWith("! --- ")) break;
-        eclats = l.split(',');
-        if (eclats.size() == 3)
-        {
-            QString tag = eclats[2];
-            switch (tag.size()) {
-            case 0:
-                tag = eclats[0]; // S'il n'est pas indiqué, je reprends celui du LASLA
-                break;
-            case 1:
-                tag.append("  ");
-                break;
-            case 2:
-                tag.append(" ");
-                break;
-            default:
-                break;
-            }
-/*            if (tag != eclats[0])
-            {
-                tagsCollatinus.append(tag);
-                tagsLasla.append(eclats[0]);
-            }
-            */
-/*            corresp.insert(eclats[0],tag);
-            _tagOcc[tag] += eclats[1].toInt();
-            _tagTot[tag.mid(0,1)] += eclats[1].toInt();
-        }
-        else qDebug() << "Erreur dans tags.la : " << l;
-        ++i;
-    }
-        qDebug() << _tagOcc.size() << _tagTot.size() << corresp.size();
-    if (tout)
-    {
-        l.clear();
-        ++i;
-        while (i <= max && !l.startsWith("! --- "))
-        {
-            l = lignes.at(i);
-/*            for (int j=0; j<tagsCollatinus.size();j++)
-                l.replace(tagsLasla[j],tagsCollatinus[j]);
-            QString trigr = l.section(',',0,2);
-            int occ = l.section(',',3,3).toInt();
-            trigr.replace(',',' ');
-            */
-/*            QStringList eclats = l.split(",");
-            int occ = eclats[3].toInt();
-            QString trigr = corresp[eclats[0]] + " " + corresp[eclats[1]] + " " + corresp[eclats[2]];
-            _trigram[trigr] += occ;
-            if (trigr.size() != 11)
-                qDebug() << l << eclats[0] << eclats[1] << eclats[2] << eclats[3] << trigr;
-            if (trigr.contains(" snt "))
-            {
-                _trigram[trigr.mid(0,7)] += occ;
-                _trigram[trigr.mid(4,7)] += occ;
-                // J'ai aussi besoin des bigrammes en début et en fin de phrase.
-            }
-            ++i;
-        }
-        // Sauvegarde au nouveau format
-        QFile f(_resDir + "tags.la");
-        f.open(QFile::WriteOnly);
-        QTextStream flux(&f);
-        QString ligne = "%1,%2\n";
-        foreach (QString tag, _tagOcc.keys())
-            flux << ligne.arg(tag).arg(_tagOcc[tag]);
-        flux << "! --- Trigrammes\n";
-        foreach (QString tag, _trigram.keys())
-            flux << ligne.arg(tag).arg(_trigram[tag]);
-        f.close();
-
-            qDebug() << _trigram.size();
-    }
-}
-*/
 
 /**
  * @brief Lemmat::tag
@@ -383,7 +291,7 @@ int Lemmat::fraction(QString listTags)
                 fr = _tagOcc[t] * 1024 / _tagTot[t.mid(0,1)];
             else fr = 1024;
             if (fr == 0) fr = 1;
-//            qDebug() << _tagOcc[t] << _tagTot[t.mid(0,1)] << fr;
+            //  qDebug() << _tagOcc[t] << _tagTot[t.mid(0,1)] << fr;
         }
         else qDebug() << t << " : Tag non trouvé !";
         if (frFin < fr) frFin = fr; // Si j'ai reçu une liste de tags, je garde la fraction la plus grande.
@@ -561,6 +469,34 @@ void Lemmat::ajContractions()
     }
 }
 
+int Lemmat::aRomano(QString f)
+{
+    if (f.size () == 0) return 0;
+    // création de la table de conversion : pourrait être créée ailleurs.
+    QMap<QChar,int> conversion;
+    conversion['I']=1;
+    conversion['V']=5;
+    conversion['X']=10;
+    conversion['L']=50;
+    conversion['C']=100;
+    conversion['D']=500;
+    conversion['M']=1000;
+    // calcul du résultat : ajout d'un terme si l'ordre est normal, soustraction sinon.
+    int res=0;
+    int conv_c;
+    int conv_s = conversion[f[0]];
+    for (int i = 0; i < f.count()-1; i++)
+    {
+        conv_c = conv_s;
+        conv_s = conversion[f[i+1]];
+        if (conv_c < conv_s)
+            res -= conv_c;
+        else res += conv_c;
+    }
+    res += conv_s;
+    return res;
+}
+
 /**
  * \fn void Lemmat::ajDesinence (Desinence *d)
  * \brief ajoute la désinence d dans la map des
@@ -569,6 +505,13 @@ void Lemmat::ajContractions()
 void Lemmat::ajDesinence(Desinence *d)
 {
     _desinences.insert(Ch::deramise(d->gr()), d);
+}
+
+bool Lemmat::estRomain(QString f)
+{
+    return !(f.contains(QRegExp ("[^IVXLCDM]"))
+             || f.contains("IL")
+             || f.contains("IVI"));
 }
 
 /**
@@ -594,26 +537,29 @@ void Lemmat::ajRadicaux(Lemme *l)
     foreach (int i, m->clesR())
     {
         if (l->clesR().contains(i)) continue;
-        QString g = l->grq();
-        Radical *r = NULL;
+        QStringList gs = l->grq().split(',');
+        foreach (QString g, gs)
         {
-            QString gen = m->genRadical(i);
-            // si gen == 'K', le radical est la forme canonique
-            if (gen == "K")
-                r = new Radical(g, i, l);
-            else
+            Radical *r = NULL;
             {
-                // sinon, appliquer la règle de formation du modèle
-                int oter = gen.section(',', 0, 0).toInt();
-                QString ajouter = gen.section(',', 1, 1);
-                if (g.endsWith(0x0306)) g.chop(1);
-                g.chop(oter);
-                if (ajouter != "0") g.append(ajouter);
-                r = new Radical(g, i, l);
+                QString gen = m->genRadical(i);
+                // si gen == 'K', le radical est la forme canonique
+                if (gen == "K")
+                    r = new Radical(g, i, l);
+                else
+                {
+                    // sinon, appliquer la règle de formation du modèle
+                    int oter = gen.section(',', 0, 0).toInt();
+                    QString ajouter = gen.section(',', 1, 1);
+                    if (g.endsWith(0x0306)) g.chop(1);
+                    g.chop(oter);
+                    if (ajouter != "0") g.append(ajouter);
+                    r = new Radical(g, i, l);
+                }
             }
+            l->ajRadical(i, r);
+            _radicaux.insert(Ch::deramise(r->gr()), r);
         }
-        l->ajRadical(i, r);
-        _radicaux.insert(Ch::deramise(r->gr()), r);
     }
 }
 
@@ -805,8 +751,7 @@ MapLem Lemmat::lemmatise(QString f)
                         if (!r.endsWith("i") && rad->gr().endsWith("i"))
                             fq = rad->grq().left(rad->grq().size()-1) + "ī"
                                     + des->grq().right(des->grq().size()-1);
-                        SLem sl = {fq,
-                                   morpho(des->morphoNum()), ""};
+                        SLem sl = {fq, morpho(des->morphoNum()), ""};
                         result[l].prepend(sl);
                     }
                 }
@@ -824,6 +769,19 @@ MapLem Lemmat::lemmatise(QString f)
         }
 
         if (!res.isEmpty()) result = res;
+    }
+    // romains
+    if (estRomain(f) && !_lemmes.contains(f))
+    {
+        QString lin = QString("%1|inv|||adj. num.").arg(f);
+        Lemme *romain = new Lemme(lin, 0, this);
+        int nr = aRomano(f);
+        romain->ajTrad(QString("%1").arg(nr), "fr");
+        _lemmes.insert(f, romain);
+        SLem sl = {f,"inv",""};
+        QList<SLem> lsl;
+        lsl.append(sl);
+        result.insert(romain, lsl);
     }
     return result;
 }
@@ -872,115 +830,6 @@ QString Lemmat::k9(QString m)
  *        peut tenir compte des majuscules pour savoir
  *        s'il s'agit d'un nom propre.
  */
-/*
-MapLem Lemmat::lemmatiseM(QString f, bool debPhr)
-{
-    QString res;
-    QTextStream fl(&res);
-    MapLem mm = lemmatise(f);
-    if (f.isEmpty()) return mm;
-    // suffixes
-    foreach (QString suf, suffixes.keys())
-    {
-        if (mm.empty() && f.endsWith(suf))
-        {
-            QString sf = f;
-            sf.chop(suf.length());
-            // TODO : aequeque est la seule occurrence
-            // de -queque dans le corpus classique
-            mm = lemmatiseM(sf, debPhr);
-            bool sst = false;
-            if (mm.isEmpty() && (suf == "st"))
-            {
-                sf += "s";
-                mm = lemmatiseM(sf, debPhr);
-                sst = true;
-            }
-            foreach (Lemme *l, mm.keys())
-            {
-                QList<SLem> ls = mm.value(l);
-                for (int i = 0; i < ls.count(); ++i)
-                    if (sst) mm[l][i].sufq = "t";
-                    else mm[l][i].sufq += suffixes.value(suf); // Pour modoquest
-            }
-        }
-    }
-    if (debPhr && f.at(0).isUpper())
-    {
-        QString nf = f.toLower();
-        MapLem nmm = lemmatiseM(nf);
-        foreach (Lemme *nl, nmm.keys())
-            mm.insert(nl, nmm.value(nl));
-    }
-    // assimilations
-    QString fa = assim(f);
-    if (fa != f)
-    {
-        MapLem nmm = lemmatiseM(fa);
-        // désassimiler les résultats
-        foreach (Lemme *nl, nmm.keys())
-        {
-            for (int i = 0; i < nmm[nl].count(); ++i)
-                nmm[nl][i].grq = desassimq(nmm[nl][i].grq);
-            mm.insert(nl, nmm.value(nl));
-        }
-    }
-    else
-    {
-        QString fa = desassim(f);
-        if (fa != f)
-        {
-            MapLem nmm = lemmatise(fa);
-            foreach (Lemme *nl, nmm.keys())
-            {
-                for (int i = 0; i < nmm[nl].count(); ++i)
-                    nmm[nl][i].grq = assimq(nmm[nl][i].grq);
-                mm.insert(nl, nmm.value(nl));
-            }
-        }
-    }
-    // contractions
-    QString fd = f;
-    foreach (QString cle, _contractions.keys())
-        if (fd.endsWith(cle))
-        {
-            fd.chop(cle.length());
-            if ((fd.contains("v") || fd.contains("V")))
-                fd.append(_contractions.value(cle));
-            else
-                fd.append(Ch::deramise(_contractions.value(cle)));
-            MapLem nmm = lemmatise(fd);
-            foreach (Lemme *nl, nmm.keys())
-            {
-                int diff = _contractions.value(cle).size() - cle.size();
-                // nombre de lettres que je dois supprimer
-                for (int i = 0; i < nmm[nl].count(); ++i)
-                {
-                    int position = f.size() - cle.size() + 1;
-                    // position de la 1ère lettre à supprimer
-                    if (fd.size() != nmm[nl][i].grq.size())
-                    {
-                        // il y a une (ou des) voyelle(s) commune(s)
-                        QString debut = nmm[nl][i].grq.left(position + 2);
-                        position += debut.count("\u0306"); // Faut-il vérifier que je suis sur le "v".
-                    }
-                    nmm[nl][i].grq = nmm[nl][i].grq.remove(position, diff);
-                }
-                mm.insert(nl, nmm.value(nl));
-            }
-        }
-    // majuscule initiale
-    if (mm.empty())
-    {
-        f[0] = f.at(0).toUpper();
-        MapLem nmm = lemmatise(f);
-        foreach (Lemme *nl, nmm.keys())
-            mm.insert(nl, nmm.value(nl));
-    }
-    return mm;
-}
-*/
-
 MapLem Lemmat::lemmatiseM(QString f, bool debPhr, bool desas)
 {
     QString res;
@@ -1122,7 +971,8 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
     // pour mesurer :
     // QElapsedTimer timer;
     // timer.start();
-/*    alpha = alpha || _alpha;
+/*    
+    alpha = alpha || _alpha;
     cumVocibus = cumVocibus || _formeT;
     cumMorpho = cumMorpho || _morpho;
     nreconnu = nreconnu || _nonRec;
@@ -1132,7 +982,6 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
     t = t.simplified();
     // découpage en mots
     QStringList lm = t.split(QRegExp("\\b"));
-//    qDebug() << lm[0] << lm[1] << lm[2] << lm[3] << lm[4] << lm[5];
     // conteneur pour les résultats
     QStringList lsv;
     // conteneur pour les échecs
@@ -1145,7 +994,6 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
         // nettoyage et identification des débuts de phrase
         QString sep = lm.at(i - 1);
         bool debPhr = ((i == 1 && lm.count() !=3) || sep.contains(Ch::rePonct));
-//        qDebug() << f << sep << debPhr << _majPert;
         // lemmatisation de la forme
         MapLem map = lemmatiseM(f, !_majPert || debPhr);
         // échecs
@@ -1283,7 +1131,6 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
         foreach (QString nr, nonReconnus)
             lRet.append(nr + nl);
     }
-//    qDebug() << lRet.join("");
     // fin de la mesure :
     // qDebug()<<"Eneide"<<timer.nsecsElapsed()<<"ns";
     return lRet.join("");
@@ -1367,7 +1214,6 @@ void Lemmat::lisFichierLexique(QString filepath)
     foreach (QString lin, lignes)
     {
         Lemme *l = new Lemme(lin, orig, this);
-        if (_lemmes.contains(l->cle())) qDebug() << orig << lin << l->cle();
         _lemmes.insert(l->cle(), l);
     }
 }
@@ -1387,11 +1233,11 @@ void Lemmat::lisLexique()
  */
 void Lemmat::lisExtension()
 {
-    if (_nbrLoaded) foreach(Lemme *l, _lemmes.values())
-        l->clearOcc();
+//    if (_nbrLoaded) foreach(Lemme *l, _lemmes.values())
+  //      l->clearOcc();
     // Si les nombres d'occurrences ont été chargés, je dois les ré-initialiser.
     lisFichierLexique(_resDir + "lem_ext.la");
-    lisNombres();
+//    lisNombres();
 }
 
 /**
@@ -1698,7 +1544,7 @@ void Lemmat::setExtension(bool e)
         lisTraductions(false,true);
         _extLoaded = true;
     }
-    else if (!_nbrLoaded) lisNombres();
+//    else if (!_nbrLoaded) lisNombres();
 }
 
 /**

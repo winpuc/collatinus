@@ -48,13 +48,22 @@ Radical::Radical(QString g, int n, QObject *parent)
  * \brief Renvoie la graphie du radical
  *        dépourvue de diacritiques.
  */
-QString Radical::gr() { return _gr; }
+QString Radical::gr()
+{
+    return _gr;
+}
+
+
 /**
  * \fn QString Radical::grq ()
  * \brief Renvoie la graphie du radical
  *        pourvue de ѕes diacritiques.
  */
-QString Radical::grq() { return _grq; }
+QString Radical::grq() const
+{
+    return _grq;
+}
+
 /**
  * \fn Lemme* Radical::lemme ()
  * \brief Le lemme auquel appartient le radical.
@@ -79,10 +88,10 @@ int Radical::numRad() { return _numero; }
  * \brief Constructeur de la classe Lemme à partire de la
  *        ligne linea. *parent est le lemmatiseur (classe Lemmat).
  */
-Lemme::Lemme(QString linea, int origin, QObject *parent)
+Lemme::Lemme(const QString linea, const int origin, QObject *parent)
 {
-    // cădo|lego|cĕcĭd|cās|is, ere, cecidi, casum
-    //   0   1    2     3          4
+    // cădo|lego|cĕcĭd|cās|is, ere, cecidi, casum|687
+    //   0 | 1  | 2   | 3 |     4                | 5
     _lemmatiseur = qobject_cast<Lemmat *>(parent);
     QStringList eclats = linea.split('|');
     QStringList lg = eclats.at(0).split('=');
@@ -92,23 +101,28 @@ Lemme::Lemme(QString linea, int origin, QObject *parent)
         _grq = _grd;
     else
         _grq = lg.at(1);
-    _gr = Ch::atone(_grq);
+    // pour l'affichage des dictionnaires, on élimine les doubles de la forme canonique
+    _gr = Ch::atone(_grq.section(',',0,0));
     _grModele = eclats.at(1);
     _modele = _lemmatiseur->modele(_grModele);
     _hyphen = "";
     _origin = origin;
     _nbOcc = 1; // Tous les lemmes doivent avoir été rencontrés une fois
+    // contrôle de format. la liste doit avoir 6 items
+    if (eclats.count() < 6)
+    {
+        qDebug() << "Ligne mal formée : "<<_gr<<"dernier champ"<<eclats.last();
+        return;
+    }
     // lecture des radicaux, champs 2 et 3
     for (int i = 2; i < 4; ++i)
         if (!eclats.at(i).isEmpty())
         {
             QStringList lrad = eclats.at(i).split(',');
             foreach (QString rad, lrad)
-                _radicaux.insert(i - 1, new Radical(rad, i - 1, this));
+                _radicaux[i-1].append(new Radical(rad, i-1, this));
         }
     _lemmatiseur->ajRadicaux(this);
-
-    // écrire un contrôle d'erreur
 
     _indMorph = eclats.at(4);
     QRegExp c("cf\\.\\s(\\w+)$");
@@ -141,6 +155,10 @@ Lemme::Lemme(QString linea, int origin, QObject *parent)
         _pos.append('n');
     if (_pos.isEmpty() && _renvoi.isEmpty()) // S'il y a un renvoi (cf.), je prendrai le pos de ce dernier. Je ne peux pas le faire maintenant !
         _pos.append(_modele->pos());
+    // nombre d'occurrences
+    _nbOcc = eclats.at(5).toInt();
+
+
 /* Avec l'internationalisation des morphos, le genre dépend de la langue choisie.
  * Il faut donc le définir à la demande.
     _genre.clear();
@@ -194,7 +212,7 @@ void Lemme::ajNombre(int n)
  */
 void Lemme::ajRadical(int i, Radical *r)
 {
-    _radicaux.insert(i, r);
+    _radicaux[i].append(r);
 }
 
 /**
@@ -333,18 +351,24 @@ QString Lemme::humain(bool html, QString l, bool nbr)
     {
         Lemme *lr = _lemmatiseur->lemme(_renvoi);
         if (lr != 0)
-            tr = _lemmatiseur->lemme(_renvoi)->traduction(l);
+            tr = lr->traduction(l);
         else
             tr = "renvoi non trouvé";
     }
     else
         tr = traduction(l);
     QTextStream flux(&res);
+    QString grq = _grq;
+    if (grq.contains(","))
+    {
+        grq.replace(",",", ");
+        grq.replace("  "," ");
+    }
     if (html)
-        flux << "<strong>" << _grq << "</strong>, "
+        flux << "<strong>" << grq << "</strong>, "
                           << "<em>" << _indMorph << "</em>";
     else
-        flux << _grq << ", " << _indMorph;
+        flux << grq << ", " << _indMorph;
     if ((_nbOcc != 1) && nbr)
     {
         if (html)
@@ -386,7 +410,7 @@ Modele *Lemme::modele()
  * \fn int Lemme::nbOcc()
  * \brief Renvoie le nombre d'occurrences du lemme dans les textes du LASLA.
  */
-int Lemme::nbOcc()
+int Lemme::nbOcc() const
 {
     return _nbOcc;
 }
@@ -459,7 +483,7 @@ QString Lemme::pos()
  */
 QList<Radical *> Lemme::radical(int r)
 {
-    return _radicaux.values(r);
+    return _radicaux.value(r);
 }
 
 /**
@@ -499,11 +523,18 @@ QString Lemme::traduction(QString l)
 
 /**
  * \fn bool Lemme::operator<(Lemme &l)
- * \brief vrai si la graphie du lemme de gauche
+ * \brief vrai si la fréquence du lemme de gauche est
+ *        inférieure à celle de celui de droite.
+ *        commenté : vrai si la graphie du lemme de gauche
  *        précède celle de celui de droite dans
  *        l'ordre alphabétique.
  */
-bool Lemme::operator<(Lemme &l) { return _gr < l.gr(); }
+bool Lemme::operator<(const Lemme &l) const
+{
+    qDebug()<<"operator<"<<_gr;
+    return _nbOcc < l.nbOcc();
+    //return _gr < l.gr();
+}
 
 /**
  * @brief Lemme::setHyphen
