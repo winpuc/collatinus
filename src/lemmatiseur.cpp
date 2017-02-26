@@ -80,6 +80,7 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
         lisMorphos(QFileInfo(nfl).suffix());
     lisModeles();
     lisLexique();
+    lisTags(false);
     lisTraductions(true, false);
     lisIrreguliers();
     lisParPos();
