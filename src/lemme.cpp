@@ -358,11 +358,17 @@ QString Lemme::humain(bool html, QString l, bool nbr)
     else
         tr = traduction(l);
     QTextStream flux(&res);
+    QString grq = _grq;
+    if (grq.contains(","))
+    {
+        grq.replace(",",", ");
+        grq.replace("  "," ");
+    }
     if (html)
-        flux << "<strong>" << _grq << "</strong>, "
+        flux << "<strong>" << grq << "</strong>, "
                           << "<em>" << _indMorph << "</em>";
     else
-        flux << _grq << ", " << _indMorph;
+        flux << grq << ", " << _indMorph;
     if ((_nbOcc != 1) && nbr)
     {
         if (html)
