@@ -1341,7 +1341,7 @@ Amycle:Amyclé (nom de femme)
 Amycus:Amycus (fils de Neptune, nom d'un Centaure, nom d'un Troyen)
 Amydon:Amydon (ville de Macédoine)
 amygdalum:amande, amandier
-amylon:amidon, empois
+amylum:amidon, empois
 Amymone:Amymone (une des Danaïdes, fontaine près d'Argos)
 Amyntas:Amyntas (roi de Macédoine, père de Philippe)
 Amyntiades:fils d'Amyntas, nom d'un berger
@@ -2536,7 +2536,7 @@ Baianus:de Baïes (ville de Campanie)
 Baius2:Baius (un des compagnons d'Ulysse)
 Baius:de Baïes ; de bains
 Balacrus:Balacrus (nom d'h.)
-ballaenaceus:de baleine
+balaenaceus:de baleine
 balanatus:parfumé d'huile de balanus
 balanus:gland du chêne, châtaigne, datte, arbrisseau odoriférant [le balanus], gland de mer, suppositoire [t. de méd.]
 Balatro2:Balatro2 (cognomen of Servilius)
