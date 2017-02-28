@@ -1,7 +1,8 @@
 bin/collatinus
 C*.app
 .*
-/bin/data/*.bak
+
+bin/data/*.bak
 
 # C++ objects and libs
 
