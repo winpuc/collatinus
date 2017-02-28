@@ -10670,6 +10670,7 @@ inepte:maladroitement, gauchement, à contretemps
 ineptiae:sottises, niaiseries, impertinences
 ineptio:être fou
 ineptus:maladroit, sot
+inequitabilis:impropre aux chevauchées
 inermis:désarmé
 inermus:non armé, inoffensif, sans défense, faible
 inerrabilis:qu'on ne peut raconter, indicible
