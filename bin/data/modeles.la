@@ -1010,6 +1010,10 @@ des:191-200:5:ntĕm;ntĭs;ntī;ntĕ;ntēs;ntēs;ntēs;ntĭŭm;ntĭbŭs
 des:203-212:5:ntĕm;ntĭs;ntī;ntĕ;ntēs;ntēs;ntēs;ntĭŭm,nt;ntĭbŭs
 des:216-224:5:ntĭs;ntī;ntĕ;ntĭă;ntĭă;ntĭă;ntĭŭm;ntĭbŭs
 ! adj. verbal
+des:339-350:5:nd$lupus
+des:351-362:0:nd$uita
+des:363-374:0:nd$templum
+! gérondif
 des:261-264:5:ndŭm;ndī;ndō
 ! pas de passif, sauf 3ème sing
 des:268,275:4:tŭr;bātŭr
