@@ -7198,6 +7198,7 @@ Egesta:Égeste [en Sicile, plus tard Ségeste]
 egestas:manque, défaut, privation, disette, pénurie ; l'indigence, misère, besoin, détresse, indigence
 egestio:action de rendre
 egigno:produire; [pass.] croître de, sortir de
+ego:moi, me
 Egnatia:Egnatia (ville d'Apulie, ville des Sallentins, nom de femme)
 Egnatius:Egnatius
 Egnatuleius:Egnatuleius (nom d'un questeur)
