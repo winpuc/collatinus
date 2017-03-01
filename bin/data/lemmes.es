@@ -6081,6 +6081,7 @@ negotiator:negociante, comerciante, banquero
 negotior:dedicarse al comercio, vivir del comercio
 negotiosus:ocupado en los negocios, activo
 negotium:ocupación, trabajo, negocio
+nemo:nadie
 nempe:naturalmente, ciertamente
 nemus:bosque; bosque sagrado
 nepos:nieto ; figurado : disipador, pródigo
