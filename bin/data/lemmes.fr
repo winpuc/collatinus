@@ -140,6 +140,7 @@ abutor:abuser de (abl.)
 Abydenus:d'Abydos [Mysie], [m. pris substt]Léandre (amant d'Hero)
 Abydos:[ville de la Haute-Égypte]
 acacia:mimosa
+Academia:Académie (gymnase d'Académus, près d'Athènes)
 Academica:les Académiques (livre de Cicéron)
 academicus2:philosophe académique
 academicus:académique, relatif à l'Académie
@@ -748,6 +749,7 @@ aenum:chaudron
 Aenus2:Énus (ville de Thrace, fleuve de Rhétie)
 aenus:de cuivre
 Aeolia:Eolie
+Aeolides:fils ou descendant d'Éole
 Aeolis:Éolienne, Thessalienne [contrée d'Asie Mineure]
 Aeolius:Éolien (d'Éolie, d'Éole, dieu des vents)
 Aeolus:Éole
@@ -763,6 +765,7 @@ aequatio:égalisation
 aeque:également
 Aequiculus:des Èques
 Aequi:les Èques [peuple voisin des Latins]
+Aequimaelium:Aequimaelium (quartier de Rome)
 aequinoctialis:équinoxial
 aequinoctium:équinoxe, égalité des jours et des nuits
 aequiparabilis:comparable
@@ -1600,6 +1603,7 @@ apis:abeille
 apiscor:atteindre, saisir
 apium:ache, persil
 aplustra:aplustre [ornement de la poupe d'un vaisseau]
+aplustre:aplustre [ornement de la poupe d'un vaisseau]
 apoculo:disparaître, s'éclipser
 apodyterium:apodyterium (vestiaire des bains)
 apolactizo:lancer des ruades (acc. contre)
@@ -2118,6 +2122,7 @@ Asturicus:d Asturie
 astus:ruse, fourberie
 astute:avec ruse, astucieusement, adroitement
 astutia:ruse, machination
+astutus:rusé, astucieux, fourbe
 Astyanax:Astyanax (fils d'Hector, nom d'un tragédien du temps de Cic.)
 Astypalaea:Astypalée, une des Cyclades
 Asuvius:Asuvius (nom d'h.)
@@ -2190,6 +2195,7 @@ Attalus:Attale (roi de Pergame)
 attat:ah! oh! eh! (interj. qui marque l'étonnement)
 attegia:hutte, cabane
 attempero:ajuster, diriger contre [sibi, contre soi]
+attempto:entreprendre, aborder, attaquer
 attente:avec attention, avec application
 attento:entreprendre, essayer, attaquer
 attentus:attentif
@@ -2569,7 +2575,7 @@ B:B (deuxième lettre de l'alphabet romain)
 beate:heureusement, à souhait
 beatitudo:bonheur, félicité
 beatulus:un peu heureux
-beatus:heureux
+beatus:heureux, [subst. m.] bienheureux
 Bedriacum:Bedriacum (ville près de Vérone, où Othon fut vaincu par Vitellius)
 Belga:Belge
 Belgae:Belges
@@ -2801,6 +2807,7 @@ Boreas:Borée (vent du Nord), aquilon (au nominatif Boreas)
 Borysthenes:Borysthenes (grand fleuve de la Sarmatie européenne, auj. Dniéper)
 Borysthenidae:Borysthenidae (peuples riverains du Borysthène)
 bos:boeuf
+Bosporanus:Un habitant des bord du Bosphore Cimmérien
 Bosphorani:Bosphoriens (habitants du Bosphore)
 Bosphorus:Bosphore
 Bostar:Bostar (nom carthaginois)
@@ -2991,6 +2998,7 @@ caementum:moellon, pierre brute
 Caeneus:Caeneus (fille du Lapithe Élatus, changée en homme)
 Caenina:Caenina (ville du Latium)
 Caeninus:de Caenina
+Caicus:Caicus (fleuve de Mysie, un compagnon d'Énée)
 caeno:dîner, souper
 caenosus:bourbeux, fangeux
 caenum:boue, fange, ordure
@@ -3605,6 +3613,7 @@ Cecropis:descendante de Cécrops, d'Athènes
 Cecropius:de Cécrops
 Cecrops:Cécrops, [premier roi d'Athènes]
 cedo:aller, marcher ; s'en aller, se retirer ; aller, arriver ; céder, concéder
+cedo2:[sing.] donne, montre, indique; [plur.] allons, voyons
 Celadus:Celadus (rivière de la Tarraconnaise)
 Celaenae:Celaenae (ville de Phrygie)
 Celaeno:Céléno (une des Harpies)
@@ -4675,6 +4684,7 @@ conciliabulum:mauvais lieu
 conciliatio:association, union, bienveillance, appel à la bienveillance [des juges]
 conciliator:celui qui procure
 conciliatricula:petite entremetteuse
+conciliatrix:entremetteuse (qui gagne les bonnes grâces) 
 conciliatura:métier d'entremetteur
 conciliatus2:union, liaison
 concilio:concilier, unir, ménager, procurer, assembler, rendre bienveillant
@@ -4905,6 +4915,7 @@ conlocatio:construction
 conloquens:interlocuteur
 conlustro:éclairer vivement, illuminer; parcourir du regard
 connecto:attacher ensemble
+connitor:faire des efforts ensemble, se raidir
 connubium:mariage, pouvoir de se marier
 Conon:Conon (général athénien, astronome grec)
 conopium:moustiquaire ; tenture, pavillon
@@ -5433,6 +5444,7 @@ crater:cratère (grand vase, où l'on mêlait le vin avec l'eau), vase [à huile
 Crateros:Cratère (un général d'Alexandre, médecin du temps de Cicéron, autres du même nom)
 Crates:Cratès [philosophe de l'Académie, Cratès de Mallos, grammairien]
 Crathis:Crathis (fleuve de l'Arcadie, fleuve d'Afrique)
+craticula:petit gril
 Cratinus:Cratinus (poète comique d'Athènes, peintre d'Athènes)
 Cratippus:Cratippe (philosophe grec)
 cratis:claie, treillis
@@ -5766,9 +5778,11 @@ Cymodocea:Cymodocée [nymphe de la mer]
 Cymodoce:Cymodocée [nymphe de la mer]
 Cymothoe:Cymothoé [une des Néréides, source en Achaïe]
 Cynicus:philosophe cynique
+Cynicus2:cynique, de chien
 Cynosura:Cynosure (ou petite Ourse ; ville d'Arcadie)
 Cynthia:Cynthie
-Cynthius:de Cynthius
+Cynthius:le Cynthien (Apollon, honoré sur le mont Cynthus)
+Cynthius2:de Cynthius
 Cynthus:Cynthus (montagne de l'île de Délos)
 cyparissus:cyprès
 Cypassis:Cypassis (nom de femme)
@@ -7498,6 +7512,7 @@ Eppius:Eppius (un partisan de Pompée)
 Epponina:Épponine [femme de Sabinus]
 epulae:aliments, nourriture, repas, festin, banquet
 epularis:de table, de festin, [pl.] convives
+epulatio:repas, festin, gala
 Epulo2:Epulo (nom d'h.)
 epulo:épulon, prêtre qui, lors des ludi publici présidait au repas sacré de Jupiter
 epulor:manger, faire un repas
@@ -10871,6 +10886,7 @@ iniquus2:ennemi
 iniquus:inégal; défavorable; excessif; injuste
 initialis:primitif, primordial
 initiamenta:initiation
+initio:initier [aux mystères], baptiser (en parl. de S. Jean Bapt.)
 initium:début
 initus2:arrivée, commencement, accouplement
 injectio:action de jeter sur, injection (médic.)
@@ -11355,6 +11371,7 @@ inusitatus:inusité, extraordinaire
 inutilis:inutile
 inutilitas:inutilité, danger
 inutiliter:inutilement
+Inuus:Inuus (divinité qui féconde, la même que le Pan des Grecs)
 invado:envahir, se jeter sur, assaillir, attaquer, saisir
 invalesco:se fortifier, prendre de la force
 invalidus:faible, débile, impuissant
@@ -11728,6 +11745,7 @@ labefio:glisser, s'affaiblir
 labellum:petite lèvre, lèvre délicate
 Labeo:Labéon (nom d'homme)
 labeosus:lippu
+Laberianus:de Labérius [le poète]
 Laberius:Laberius (famille rom.)
 labes:chute, éboulement; l'effondrement, ruine; la tache, souillure
 Labicanus:de Labicum (entre Tusculum et Préneste)
@@ -11783,6 +11801,7 @@ lactes:intestin grêle, intestins, laite (laitance des murènes)
 lacteus:de lait, laiteux, couleur de lait
 lacticulosus:sevré depuis peu
 lactuca:laitue
+lacuna:trou, fossé
 lacunar:plafond
 lacus:bassin, lac
 Ladas:Ladas (coureur du temps d'Alexandre)
@@ -12237,6 +12256,7 @@ libertina:affranchie
 libertinus2:fils d'affranchi
 libertinus:d'affranchi
 libertus:affranchi
+libet:il plaît
 Libethris:de Libethra
 libidinor:se livrer à la débauche
 libidinose:sans entrave, arbitrairement, tyranniquement, d'une manière licencieuse
@@ -12468,6 +12488,7 @@ loquaculus:qq peu bavard
 loquax:bavard, verbeux
 loquela:parole, langage, mots, langue
 loquella:parole, langage, mots, langue
+loquentia:faconde, facilité à parler
 loquor:parler
 lorea:piquette
 loreus:de courroie, fait de courroies
@@ -12737,6 +12758,7 @@ Maecenatianus:de Mécène
 Maecia:la tribu Mécia [une des tribus rustiques de Rome]
 Maecius2:Maecius (ville du Latium)
 Maedi:Mèdes [peuple de Thrace]
+Maelius:Maelius (famille)
 Maenala:le Ménale [mont d'Arcadie, consacré à Pan]
 Maenalius:du Ménale
 Maenalos:le Ménale [mont d'Arcadie, consacré à Pan]
@@ -13701,6 +13723,7 @@ mortalis2:mortel, mortelle
 mortalis:mortel
 mortalitas:mortalité, nature mortelle, les mortels
 mortarium:mortier
+morticinus:crevé, mort (en parl. d'animaux), charogne (injure)
 mortifere:mortellement
 mortifer:mortel, fatal
 mortualia:vêtements de deuil, chants funèbres
@@ -14162,6 +14185,7 @@ neque:(et ne ...) pas
 nequeo:ne pas pouvoir (- quin ne pouvoir s'empêcher de)
 nequior:(comp. de nequam) vaurien
 nequiquam:en vain, inutilement
+nequissimus:misérable (injure, superl. de nequam)
 nequiter:mal, sans valeur, indigne
 nequitia:mauvaise qualité de caractère, dérèglement, débauche
 nequities:mauvaise qualité de caractère, dérèglement, débauche
@@ -15119,6 +15143,7 @@ Orientius:Orientius (poète chrétien)
 origanitus:origanitus (vin à l'origan)
 Origo2:Origo (nom de femme)
 origo:origine
+Orion:Orion (constellation)
 orior:naître, tirer son origine, se lever (soleil)
 Orithyia:Orithye (enlevée par Borée, qui la transporta en Thrace; reine des Amazones)
 oriundus:né de, issu de, originaire de
@@ -15194,6 +15219,7 @@ ostrifer:abondant en huîtres
 ostrinus:de pourpre
 ostriosus:abondant en huîtres
 ostrum:pourpre
+osurus:qui sera haï (part. futur de odi)
 Otacilius:Otacilius (nom de famille)
 Othonianus:d'Othon, les soldats d'Othon
 Otho:Othon
@@ -15298,6 +15324,7 @@ Palfurius:Palfurius (nom d'homme)
 Palicanus2:Palicanus (surnom)
 Palicus:Palice (jumeaux fils de Jupiter)
 Palilia:Palilies, Parilies (fêtes en l'honneur de Palès)
+Palilis:de Palès
 palimpsestos:palimpseste (parchemin qu'on a gratté pour y écrire de nouveau)
 Palinurus:Palinure (pilote d'Énée)
 paliurus:paliure [arbuste]
@@ -15477,6 +15504,7 @@ Parius:de Paros
 Parma2:Parme [ville de la Gaule Transpadane, renommée pour ses laines]
 parma:bouclier
 Parmenides:Parménide [philosophe grec natif d'Élée]
+Parmenion:Parménion (un des généraux d'Alexandre; député du roi des Illyriens)
 Parmenses:habitants de Parme
 Parmensis:de Parme
 parmula:petit bouclier rond, petite parme
@@ -15713,6 +15741,7 @@ Pelethronius2:Pelethronius2 (roi des Lapithes)
 Peleus:Pélée (fils d'Éaque, époux de Thétis et père d'Achille)
 pelex:concubine, maîtresse, rivale (d'une f. mariée), homme prostitué, favori, mignon
 Peliacus:du mont Pélion
+pelicatus:concubinage
 Pelia:Pelias (roi de Thessalie)
 Pelides:fils de pélée, Achille
 Pelion:Pélion (montagne de Thessalie)
@@ -15734,7 +15763,7 @@ pelluceo:être transparent, être à jour, paraître à travers, se montrer
 Pelopea:Pélopée (fille de Thyeste et mère d'Égisthe, titre d'une tragédie)
 Pelopeias:de Pélops, de l'Argolide
 Pelopeius:de Pélops, de l'Argolide
-Pelopeus:de Pélops (garnd-père d'Agamemnon)
+Pelopeus:de Pélops (grand-père d'Agamemnon)
 Peloponnenses:Péloponnésiens, habitants du Péloponnèse
 Peloponnesiacus:du Péloponnèse
 Peloponnesii:Péloponnésiens, habitants du Péloponnèse
@@ -15749,7 +15778,7 @@ peltatus:armé de pelte
 Pelusiacus:de Péluse
 Pelusium:Péluse [ville maritime de la Basse Égypte]
 penarius:où l'on garde les vivres
-Penates:pénates
+Penates:pénates (sing. Penas)
 penator:celui qui porte la provision de bouche
 pendeo:être suspendu
 pendo:peser, apprécier
@@ -18423,6 +18452,7 @@ recula:petit avoir, faibles biens, faibles ressources
 recumbo:s'allonger, se coucher
 recuperatio:recouvrement, décision des recuperatores
 recuperator:celui qui recouvre, récupérateur, juge dans une affaire de restitution
+recuperatorius:des récupérateurs, relatif aux récupérateurs
 recupero:retrouver, récupérer
 recuro:faire avec soin, rétablir, remettre en bon état
 recurro:revenir en courant, revenir vite
@@ -18441,6 +18471,7 @@ redarguo:montrer la fausseté, réfuter
 redauspico:inaugurer de nouveau, recommencer
 reddo:rendre ; payer, s'acquitter de rapporter ; retourner, traduire ; accorder
 redemptio:rachat
+redemptito:acheter, racheter
 redempto:racheter
 redemptor:avoué, le Rédempteur
 redeo:revenir
@@ -18630,6 +18661,7 @@ repetentia:acte du ressouvenir
 repetitio:nouvelle demande, réclamation, répétition, redite
 repetitor:celui qui réclame
 repeto:chercher de nouveau, chercher à récupérer
+repetundae:réclamées (sommes d'argent)
 repleo:remplir, emplir (abl)
 repletus:plein de (+abl.)
 replico:replier, recourber, renvoyer, refléter [les rayons], répliquer, déplier, déployer, (dérouler le manuscrit d'un auteur =) lire
@@ -19637,6 +19669,7 @@ semermis:à moitié armé
 semermus:qui est à moitié armé, armé à demi
 semesus:à demi mangé, demi rongé
 semiadapertus:à demi ouvert
+semianimis:à demi mort
 semibos:à moitié boeuf
 semicaper:homme à moitié bouc
 semicinctium:ceinture étroite, cordon
@@ -19966,6 +19999,7 @@ sicubi:si quelque part
 sicula:petit poignard
 Siculi:Sicules (anciens peuples de la Gaule Cisalpine, puis du Latium), les Siciliens
 Siculus:Sicilien
+Siculus2:de Sicile, Sicilien
 sicut:comme
 sicuti:comme
 Sicyonia:chaussure de Sicyone
@@ -19980,6 +20014,7 @@ sido:s'asseoir, se poser; se fixer, s'arrêter; crouler
 sidus:étoile, astre
 siem:= sim
 siet:= sit (subjonctif présent de sum)
+Sigeius:de Sigée, Troyen, Romain
 Sigeum:promontoire de Sigée (en Troade)
 sigillaria3:sigillaires, statuettes [offertes pendant les Sigillaires]
 sigillatus:sigillé (orné de figurines, de reliefs), ciselé, façonné en statue (en parl. du sel)
@@ -20200,6 +20235,7 @@ soleo:avoir l'habitude de (solitus, a, um : habituel, ordinaire)
 solide:solidement, massivement, avec un corps compact
 solido:rendre solide, consolider, durcir
 solidum:solide, terrain solide, base solide
+solidus:solide, massif, compact; entier
 solifer:oriental (qui apporte le soleil)
 Solimus:Solyme (Troyen fondateur de Sulmone)
 Soli:Soli (ville de Cilicie)
@@ -20272,6 +20308,7 @@ soporatus:endormi, engourdi, soporatif
 soporifer:soporifique, somnifère
 soporo:assoupir, endormir, endormi
 sopor:sommeil, torpeur, narcotique, breuvage soporifique
+Sopor2:Sommeil (divinité)
 soporus:qui apporte le sommeil, assoupi
 Soracte:Soracte (mont à 50 km. au N. de Rome)
 Soranus2:Soranus (surnom de Pluton)
@@ -21643,6 +21680,7 @@ Thermodontiacus:du Thermodon, des Amazones
 Thermodontius:du Thermodon (fleuve de Cappadoce, près duquel habitaient les Amazones)
 thermopolium:cabaret [où l'on vend des boissons chaudes]
 Thermopylae:les Thermopyles (défilé du mont Oeta, lieu de deux batailles; surnom) 
+Thermus:Thermus (surnom)
 Therodamanteus:de Thérodamas, de Théromédon
 Theron:Theron (nom de guerrier, de chien)
 Thersilochus:Thersilochus (fils d'Anténor)
@@ -21755,6 +21793,7 @@ Tigellius:Tigellius (nom de deux musiciens)
 tigillum:petite poutre, chevron, poutre du toit, toit
 tignum:madrier, solive
 Tigranes:Tigrane (roi d'Arménie)
+Tigranocerta2:Tigranocerte (ville d'Arménie)
 tigris:tigre
 Tigurini:Tigurins
 Tigurinus:Tigurinus (canton helvète)
@@ -22403,6 +22442,7 @@ Tyrius:Tyrien, Carthaginois
 Tyros:Tyr (ville de Phénicie), pourpre, couleur pourpre
 Tyro:Tyro (fille de Salmonée, aimée du fleuve Énipée)
 Tyrrhenus2:de Tyrrhénie, Tyrrhénien, d'Étrurie, étrusque
+Tyrrheni:Tyrrhéniens, Étrusques, [poét. Romains]
 Tyrrhenus:Etrusque
 Tyrrhidae:les fils de Tyrrhus
 Tyrrhus:Tyrrhus (berger du roi Latinus)
