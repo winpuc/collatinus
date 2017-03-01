@@ -856,6 +856,7 @@ R:4:3,0
 R:5:3,ĕr
 R:6:2,0
 R:7:3,ēss
+R:8:3,fŭt
 abs:189-374
 ! indicatif
 des:121,124,126:0:ŭm;ŭmŭs;ūnt
@@ -872,6 +873,10 @@ des:186:0:ūntō
 ! infinitif
 des:187:7:ĕ
 des:416:4:fŏrĕ
+! participe futur
+des:225-236:8:ūrŭs;ūrĕ;ūrŭm;ūrī;ūrō;ūrō;ūrī;ūrī;ūrōs;ūrōrŭm;ūrīs;ūrīs
+des:237-248:8:ūră;ūră;ūrăm;ūrāe;ūrāe;ūrā;ūrāe;ūrāe;ūrās;ūrārŭm;ūrīs;ūrīs
+des:249-260:8:ūrŭm;ūrŭm;ūrŭm;ūrī;ūrō;ūrō;ūră;ūră;ūră;ūrōrŭm;ūrīs;ūrīs
 
 modele:possum
 pere:sum
