@@ -14259,6 +14259,7 @@ Niger2:Niger (surnom romain)
 niger:noir
 Nigidius:Nigidius Figulus [philosophe, ami de Cicéron]
 nigresco:noircir
+nihil:rien
 nihildum:rien encore, encore rien
 nihilominus:pas moins, néanmoins
 nihilo:pas du tout
