@@ -1260,9 +1260,11 @@ void MainWindow::createDicWindow()
     QVBoxLayout *vLayout = new QVBoxLayout(wDic);
     QHBoxLayout *hLayout = new QHBoxLayout();
     lineEditDicW = new QLineEdit(wDic);
+    lineEditDicW->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Fixed);
+    lineEditDicW->setMinimumWidth(40);
     // Lemmatisation + recherche
-    QToolButton *tbDic = new QToolButton(this);
-    tbDic->setDefaultAction(dicActW);
+    QToolButton *tbDicW = new QToolButton(this);
+    tbDicW->setDefaultAction(dicActW);
     // recherche sans lemmatisation
     QToolButton *tbDicLittW = new QToolButton(this);
     tbDicLittW->setDefaultAction(dicLittActW);
@@ -1270,18 +1272,22 @@ void MainWindow::createDicWindow()
     anteButtonW = new QPushButton(this);
     labelLewisW = new QLabel(this);
     postButtonW = new QPushButton(this);
-    QSpacerItem *hSpacerDic = new QSpacerItem(40, 20);
+//    QSpacerItem *hSpacerDic = new QSpacerItem(40, 20);
     //, QSizePolicy::Expanding, QSizePolicy::Minimum);
     QToolButton *tbSyncWD = new QToolButton(this);
     tbSyncWD->setDefaultAction(syncWDAct);
+    tbSyncWD->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Fixed);
+    tbSyncWD->setMinimumWidth(40);
+    tbSyncWD->setMaximumSize(60, 24);
     hLayout->addWidget(lineEditDicW);
-    hLayout->addWidget(tbDic);
+    hLayout->addWidget(tbDicW);
     hLayout->addWidget(tbDicLittW);
     hLayout->addWidget(comboGlossariaW);
     hLayout->addWidget(anteButtonW);
     hLayout->addWidget(labelLewisW);
     hLayout->addWidget(postButtonW);
-    hLayout->addItem(hSpacerDic);
+//    hLayout->addItem(hSpacerDic);
+    hLayout->addStretch();
     hLayout->addWidget(tbSyncWD);
     textBrowserW = new QTextBrowser(wDic);
     textBrowserW->setOpenExternalLinks(true);

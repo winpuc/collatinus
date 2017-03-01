@@ -85,6 +85,10 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
     lisIrreguliers();
     lisParPos();
     lisCat();
+    foreach (Lemme *l, _lemmes.values()) {
+        QString t = l->traduction("fr");
+        if (t == "") qDebug() << l->cle() << "non traduit.";
+    }
 }
 
 void Lemmat::lisCat()
@@ -1198,7 +1202,7 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
         if (!listeVide)
         {
             QString stats = "<strong>Formes connues : %1 sur %2 (%3%)<br/></strong>";
-            lRet.prepend(stats.arg(formesConnues).arg((lm.size()/2)).arg((200*formesConnues)/lm.size()));
+            lRet.prepend(stats.arg(formesConnues).arg((lm.size()/2)).arg((200*formesConnues)/(lm.size()-1)));
         }
     }
     // fin de la mesure :
@@ -1378,6 +1382,7 @@ void Lemmat::lisTraductions(bool base, bool extension)
         rep = QDir(_resDir, "lem_ext.*");
     }
     QStringList ltr = rep.entryList();
+    qDebug() << ltr;
     if (base) {
         ltr.removeOne("lemmes.la");  // n'est pas un fichier de traductions
     }
