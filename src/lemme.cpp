@@ -230,8 +230,8 @@ void Lemme::ajRadical(int i, Radical *r)
  */
 void Lemme::ajTrad(QString t, QString l)
 {
-    if (_traduction.contains(l) && _traduction[l] != "")
-        qDebug() << _grq << t << l << _traduction[l];
+//    if (_traduction.contains(l) && _traduction[l] != "")
+//        qDebug() << _grq << t << l << _traduction[l];
     _traduction[l] = t;
 }
 
