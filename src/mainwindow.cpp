@@ -608,6 +608,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     settings.setValue("repHyphen", repHyphen);
     settings.setValue("ficHyphen", ficHyphen);
     settings.setValue("tagAffTout", affToutAct->isChecked());
+    settings.setValue ("repVerba", repVerba);
     settings.endGroup();
     settings.beginGroup("dictionnaires");
     settings.setValue("courant", comboGlossaria->currentIndex());
@@ -741,6 +742,9 @@ void MainWindow::createActions()
     optionsAccent->addAction(ambigueAct);
     optionsAccent->setEnabled(false);
     lireHyphenAct = new QAction(tr("Lire les césures"),this);
+    actionVerba_cognita = new QAction(tr("Lire une liste de mots connus"),this);
+    actionVerba_cognita->setCheckable(true);
+    actionVerba_cognita->setChecked(false);
 
     // actions pour le serveur
     serverAct = new QAction(tr("Serveur"), this);
@@ -889,6 +893,7 @@ void MainWindow::createConnections()
     connect(quitAct, SIGNAL(triggered()), this, SLOT(close()));
     connect(reFindAct, SIGNAL(triggered()), this, SLOT(rechercheBis()));
     connect(statAct, SIGNAL(triggered()), this, SLOT(stat()));
+    connect(actionVerba_cognita, SIGNAL(toggled(bool)), this, SLOT(verbaCognita(bool)));
 }
 
 /**
@@ -934,6 +939,7 @@ void MainWindow::createMenus()
     fileMenu->addSeparator();
     fileMenu->addAction(oteAAct);
     fileMenu->addAction(lireHyphenAct);
+    fileMenu->addAction(actionVerba_cognita);
     fileMenu->addSeparator();
     fileMenu->addAction(quitAct);
 
@@ -1476,8 +1482,9 @@ void MainWindow::lancer()
 void MainWindow::lemmatiseLigne()
 {
     QString texteHtml = textEditLem->toHtml();
+    QString txt = lineEditLem->text();
     texteHtml.insert(texteHtml.indexOf("</body>"),
-                     lemmatiseur->lemmatiseT(lineEditLem->text()));
+                     lemmatiseur->lemmatiseT(txt));
     textEditLem->setText(texteHtml);
     textEditLem->moveCursor(QTextCursor::End);
 //    textEditLem->append(lemmatiseur->lemmatiseT(lineEditLem->text()));
@@ -1493,12 +1500,16 @@ void MainWindow::lemmatiseTxt()
 {
     // si la tâche dure trop longtemps :
     // setUpdatesEnabled(false);
+    QString txt = editLatin->toPlainText();
+    QString res = lemmatiseur->lemmatiseT(txt);
     if (html())
-        textEditLem->setHtml(lemmatiseur->lemmatiseT(editLatin->toPlainText()));
+        textEditLem->setHtml(res);
     else
-        textEditLem->setPlainText(
-            lemmatiseur->lemmatiseT(editLatin->toPlainText()));
+        textEditLem->setPlainText(res);
     // setUpdatesEnabled(true);
+    if (txt.contains("<span"))
+        editLatin->setHtml(txt);
+    // Le texte a été modifié, donc colorisé.
 }
 
 /**
@@ -1647,6 +1658,8 @@ void MainWindow::readSettings()
     repHyphen = settings.value("repHyphen").toString();
     ficHyphen = settings.value("ficHyphen").toString();
     affToutAct->setChecked(settings.value("tagAffTout").toBool());
+    repVerba = settings.value("repVerba").toString();
+    if (repVerba.isEmpty()) repVerba = "~";
     if (repHyphen.isEmpty() || ficHyphen.isEmpty())
         repHyphen = qApp->applicationDirPath() + "/data";
 
@@ -2128,3 +2141,12 @@ void MainWindow::tagger(QString t, int p)
         textBrowserTag->setHtml(lemmatiseur->tagTexte(t, p, affToutAct->isChecked()));
     }
 }
+
+void MainWindow::verbaCognita(bool vb)
+{
+    QString fichier;
+    if (vb) fichier = QFileDialog::getOpenFileName(this, "Verba cognita", repVerba);
+    if (!fichier.isEmpty()) repVerba = QFileInfo (fichier).absolutePath ();
+    lemmatiseur->verbaCognita(fichier,vb);
+}
+
