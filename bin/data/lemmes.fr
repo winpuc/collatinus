@@ -14133,6 +14133,7 @@ Nemea:Nemea (fleuve du Péloponnèse)
 ne:même pas (ne ... quidem)
 Nemesis:Nemesis (déesse vengeresse des crimes; femme chantée par Tibulle)
 Nemetocenna:Nemetocenna (ville des Atrébates)
+nemo:personne, [neutre nihil] rien
 nemoralis:de bois, de forêt
 Nemorensis2:du bois d'Aricie
 nemorivagus:qui erre dans les bois
