@@ -591,9 +591,13 @@ sufd:quĕ
 
 modele:nemo
 R:0:3,0
-des:13,15-18:0:ēmō̆;ēmĭnĕm;ūllī̆ŭs,ēmĭnĭs;ēmĭnī;ūllō,ēmĭnĕ2
-des:25,27-30:0:ēmō̆;ēmĭnĕm;ūllī̆ŭs,ēmĭnĭs;ēmĭnī;ūllō,ēmĭnĕ2
-des:37,39:0:ĭhĭl
+des:13,15-18:0:ēmō̆;ēmĭnĕm;ūllī̆ŭs,ēmĭnĭs;ēmĭnī;ūllō,ēmĭnĕ
+des:25,27-30:0:ēmō̆;ēmĭnĕm;ūllī̆ŭs,ēmĭnĭs;ēmĭnī;ūllō,ēmĭnĕ
+!des:37,39:0:ĭhĭl
+
+modele:nihil
+R:0:1,0
+des:37,39:0:l
 
 modele:plerique
 pere:doctus
