@@ -153,8 +153,16 @@ Lemme::Lemme(const QString linea, const int origin, QObject *parent)
         _pos.append('d');
     if (_indMorph.contains(" nom ") || _indMorph.contains("npr."))
         _pos.append('n');
-    if (_pos.isEmpty() && _renvoi.isEmpty()) // S'il y a un renvoi (cf.), je prendrai le pos de ce dernier. Je ne peux pas le faire maintenant !
+    if (_pos.isEmpty())
+    {
         _pos.append(_modele->pos());
+        // Je prends le POS du modèle
+        if (_pos == "d" && !_renvoi.isEmpty())
+            _pos = "";
+        // S'il y a un renvoi (cf.) et que le modèle a donné le POS "d" (adverbe),
+        // je prendrai le pos du renvoi (les indéclinables ont le POS par défaut "d").
+        // Je ne peux pas le faire maintenant !
+    }
     // nombre d'occurrences
     _nbOcc = eclats.at(5).toInt();
 
@@ -220,7 +228,13 @@ void Lemme::ajRadical(int i, Radical *r)
  * \brief ajoute la traduction t de langue l à
  *        la map des traductions du lemme.
  */
-void Lemme::ajTrad(QString t, QString l) { _traduction[l] = t; }
+void Lemme::ajTrad(QString t, QString l)
+{
+    if (_traduction.contains(l) && _traduction[l] != "")
+        qDebug() << _grq << t << l << _traduction[l];
+    _traduction[l] = t;
+}
+
 /**
  * \fn QString Lemme::ambrogio()
  * \brief Renvoie dans une chaîne un résumé

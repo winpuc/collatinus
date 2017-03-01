@@ -943,7 +943,7 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr, bool desas)
 
 
 /**
- * \fn QString Lemmat::lemmatiseT (QString t,
+ * \fn QString Lemmat::lemmatiseT (QString &t,
  *  						   bool alpha,
  *  						   bool cumVocibus,
  *  						   bool cumMorpho,
@@ -960,12 +960,12 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr, bool desas)
  *	      Les paramètres et options true outrepassent les false,
  *        _majPert et _html sont dans les options de la classe.
  */
-QString Lemmat::lemmatiseT(QString t)
+QString Lemmat::lemmatiseT(QString &t)
 {
     return lemmatiseT(t, _alpha, _formeT, _morpho, _nonRec);
 }
 
-QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
+QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                            bool cumMorpho, bool nreconnu)
 {
     // pour mesurer :
@@ -977,9 +977,14 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
     cumMorpho = cumMorpho || _morpho;
     nreconnu = nreconnu || _nonRec;
 */
+    // Pour coloriser le texte
+    bool cumColoribus = !_couleurs.isEmpty();
+    bool listeVide = _hLem.isEmpty();
+    int colPrec = 0;
+    int formesConnues = 0;
     // éliminer les chiffres et les espaces surnuméraires
     t.remove(QRegExp("\\d"));
-    t = t.simplified();
+//    t = t.simplified();
     // découpage en mots
     QStringList lm = t.split(QRegExp("\\b"));
     // conteneur pour les résultats
@@ -1008,91 +1013,144 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
                 else
                     lsv.append(f + " ÉCHEC");
             }
+            if (cumColoribus)
+            {
+                if (!listeVide)
+                {
+                    // La liste de mots connus n'est pas vide. Le mot en fait-il partie ?
+                    QString lem = f;
+                    lem.replace("j","i");
+                    lem.replace("v","u");
+                    lem.replace("J","I");
+                    lem.replace("V","U");
+                    // qDebug() << lem;
+                    if (_hLem.contains(lem))
+                    {
+                        if (colPrec != 0)
+                        {
+                            lm[i].prepend("</span><span style=\"color:"+_couleurs[0]+"\">");
+                            colPrec = 0;
+                        }
+                    }
+                    else if (colPrec != 2)
+                    {
+                        lm[i].prepend("</span><span style=\"color:"+_couleurs[2]+"\">");
+                        colPrec = 2;
+                    }
+                }
+            }
         }
         // avec affichage des formes du texte
-        else if (cumVocibus)
+        else
         {
-            QString lin;
-            QMultiMap<int,QString> listeLem;
-            if (_html)
+            bool connu = false;
+            if (cumColoribus)
             {
-                lin = "<h4>" + f + "</h4><ul>";
-                foreach (Lemme *l, map.keys())
+                if (!listeVide)
                 {
-                    QString lem = "<li>" + l->humain(true, _cible, true);
-                    int frMax = 0;
-                    if (cumMorpho && !inv(l, map))
+                    // La liste de mots connus n'est pas vide. Un des lemmes identifiés en fait-il partie ?
+                    foreach (Lemme *l, map.keys())
+                        connu = connu || _hLem.contains(l->cle());
+                }
+                if (connu)
+                {
+                    formesConnues += 1;
+                    if (colPrec != 0)
                     {
-                        QMultiMap<int,QString> listeMorph;
-                        foreach (SLem m, map.value(l))
+                        lm[i].prepend("</span><span style=\"color:"+_couleurs[0]+"\">");
+                        colPrec = 0;
+                    }
+                }
+                else if (colPrec != 1)
+                {
+                    lm[i].prepend("</span><span style=\"color:"+_couleurs[1]+"\">");
+                    colPrec = 1;
+                }
+            }
+            if (cumVocibus)
+            {
+                QString lin;
+                QMultiMap<int,QString> listeLem;
+                if (_html)
+                {
+                    lin = "<h4>" + f + "</h4><ul>";
+                    foreach (Lemme *l, map.keys())
+                    {
+                        QString lem = "<li>" + l->humain(true, _cible, true);
+                        int frMax = 0;
+                        if (cumMorpho && !inv(l, map))
+                        {
+                            QMultiMap<int,QString> listeMorph;
+                            foreach (SLem m, map.value(l))
+                            {
+                                int fr = fraction(tag(l,m.morpho));
+                                if (fr > frMax) frMax = fr;
+                                if (m.sufq.isEmpty())
+                                    listeMorph.insert(-fr,m.grq + " " + m.morpho);
+                                else
+                                    listeMorph.insert(-fr,m.grq + " + " + m.sufq +
+                                                      " " + m.morpho);
+                            }
+                            lem.append("<ul><li>");
+                            QStringList lMorph = listeMorph.values();
+                            lem.append(lMorph.join("</li><li>"));
+                            lem.append("</li></ul>\n");
+                        }
+                        else foreach (SLem m, map.value(l))
                         {
                             int fr = fraction(tag(l,m.morpho));
                             if (fr > frMax) frMax = fr;
-                            if (m.sufq.isEmpty())
-                                listeMorph.insert(-fr,m.grq + " " + m.morpho);
-                            else
-                                listeMorph.insert(-fr,m.grq + " + " + m.sufq +
-                                           " " + m.morpho);
                         }
-                        lem.append("<ul><li>");
-                        QStringList lMorph = listeMorph.values();
-                        lem.append(lMorph.join("</li><li>"));
-                        lem.append("</li></ul>\n");
+                        if (frMax == 0) frMax = 1024;
+                        lem.append("</li>");
+                        listeLem.insert(-frMax * l->nbOcc(),lem);
                     }
-                    else foreach (SLem m, map.value(l))
-                    {
-                        int fr = fraction(tag(l,m.morpho));
-                        if (fr > frMax) frMax = fr;
-                    }
-                    if (frMax == 0) frMax = 1024;
-                    lem.append("</li>");
-                    listeLem.insert(-frMax * l->nbOcc(),lem);
+                    QStringList lLem = listeLem.values();
+                    // Les valeurs sont en ordre croissant
+                    lin.append(lLem.join("\n"));
+                    lin.append("</ul>\n");
                 }
-                QStringList lLem = listeLem.values();
-                // Les valeurs sont en ordre croissant
-                lin.append(lLem.join("\n"));
-                lin.append("</ul>\n");
-            }
-            else
-            {
-                lin = " " + f + "\n";
-                foreach (Lemme *l, map.keys())
+                else
                 {
-                    lin.append("  - " + l->humain(false, _cible, true) + "\n");
-                    if (cumMorpho && !inv(l, map))
+                    lin = " " + f + "\n";
+                    foreach (Lemme *l, map.keys())
                     {
-                        foreach (SLem m, map.value(l))
-                            if (m.sufq.isEmpty())
-                                lin.append("    . " + m.grq + " " + m.morpho +
-                                           "\n");
-                            else
-                                lin.append("    . " + m.grq + " + " + m.sufq +
-                                           " " + m.morpho + "\n");
+                        lin.append("  - " + l->humain(false, _cible, true) + "\n");
+                        if (cumMorpho && !inv(l, map))
+                        {
+                            foreach (SLem m, map.value(l))
+                                if (m.sufq.isEmpty())
+                                    lin.append("    . " + m.grq + " " + m.morpho +
+                                               "\n");
+                                else
+                                    lin.append("    . " + m.grq + " + " + m.sufq +
+                                               " " + m.morpho + "\n");
+                        }
                     }
-                }
-            }
-            lsv.append(lin);
-        }
-        else  // sans les formes du texte
-        {
-            foreach (Lemme *l, map.keys())
-            {
-                QString lin = l->humain(_html, _cible);
-                if (cumMorpho && !inv(l, map))
-                {
-                    QTextStream fl(&lin);
-                    if (_html)
-                    {
-                        fl << "<ul>";
-                        foreach (SLem m, map.value(l))
-                            fl << "<li>" << m.grq << " " << m.morpho << "</li>";
-                        fl << "</ul>\n";
-                    }
-                    else
-                        foreach (SLem m, map.value(l))
-                            fl << "\n    . " << m.grq << " " << m.morpho;
                 }
                 lsv.append(lin);
+            }
+            else  // sans les formes du texte
+            {
+                foreach (Lemme *l, map.keys())
+                {
+                    QString lin = l->humain(_html, _cible);
+                    if (cumMorpho && !inv(l, map))
+                    {
+                        QTextStream fl(&lin);
+                        if (_html)
+                        {
+                            fl << "<ul>";
+                            foreach (SLem m, map.value(l))
+                                fl << "<li>" << m.grq << " " << m.morpho << "</li>";
+                            fl << "</ul>\n";
+                        }
+                        else
+                            foreach (SLem m, map.value(l))
+                                fl << "\n    . " << m.grq << " " << m.morpho;
+                    }
+                    lsv.append(lin);
+                }
             }
         }
     }  // fin de boucle de lemmatisation pour chaque mot
@@ -1130,6 +1188,18 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
         lRet.append(titreNR + nl);
         foreach (QString nr, nonReconnus)
             lRet.append(nr + nl);
+    }
+    if (cumColoribus)
+    {
+        lm[0].append("<span style=\"color:"+_couleurs[0]+"\">");
+        lm[lm.size()-1].append("</span>");
+        t = lm.join("");
+        t.replace("\n","<br/>\n");
+        if (!listeVide)
+        {
+            QString stats = "<strong>Formes connues : %1 sur %2 (%3%)<br/></strong>";
+            lRet.prepend(stats.arg(formesConnues).arg((lm.size()/2)).arg((200*formesConnues)/lm.size()));
+        }
     }
     // fin de la mesure :
     // qDebug()<<"Eneide"<<timer.nsecsElapsed()<<"ns";
@@ -1214,6 +1284,8 @@ void Lemmat::lisFichierLexique(QString filepath)
     foreach (QString lin, lignes)
     {
         Lemme *l = new Lemme(lin, orig, this);
+        if (_lemmes.contains(l->cle()))
+            qDebug() << lin << " existe déjà";
         _lemmes.insert(l->cle(), l);
     }
 }
@@ -1236,6 +1308,7 @@ void Lemmat::lisExtension()
 //    if (_nbrLoaded) foreach(Lemme *l, _lemmes.values())
   //      l->clearOcc();
     // Si les nombres d'occurrences ont été chargés, je dois les ré-initialiser.
+    qDebug() << "lecture extension";
     lisFichierLexique(_resDir + "lem_ext.la");
 //    lisNombres();
 }
@@ -1813,4 +1886,43 @@ QString Lemmat::tagTexte(QString t, int p, bool affTout)
     return lsv.join("\n");
 }
 
+void Lemmat::verbaCognita(QString fichier,bool vb)
+{
+    _hLem.clear();
+    _couleurs.clear();
+    if (vb && !fichier.isEmpty())
+    {
+        // Couleurs par défaut
+        _couleurs << "#00A000"; // vert
+        _couleurs << "#000000"; // noir
+        _couleurs << "#A00000"; // rouge
+        QFile file(fichier);
+        if (file.open(QFile::ReadOnly | QFile::Text))
+        {
+            QTextStream in(&file);
+            QString ligne = in.readLine();
+            while (ligne.startsWith("!") || ligne.isEmpty()) ligne = in.readLine();
+            // Je saute les commentaires et les lignes vides.
+            int i = 0;
+            while (ligne.startsWith("#") &&  !in.atEnd())
+            {
+                if ((i<3) && (ligne.size() == 7)) _couleurs[i] = ligne;
+                i+=1;
+                ligne = in.readLine();
+            }
+            // Je peux changer les couleurs dans le fichier
+            MapLem item;
+            while (!in.atEnd())
+            {
+                if (!ligne.startsWith("!") && !ligne.isEmpty()) // hLem.insert(ligne,1);
+                {
+                    item = lemmatiseM (ligne, false, false);
+                    foreach (Lemme *lem, item.keys())
+                        _hLem.insert(lem->cle(),1);
+                }
+                ligne = in.readLine();
+            }
+        }
+    }
+}
 
