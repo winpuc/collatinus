@@ -4008,6 +4008,7 @@ Gabii:Gabies (ciudad del Lacio)
 Gabinius:Gabinio (nombre de varón)
 Gades:Gades (ciudad de España : Cádiz)
 Gaetuli:los gétulos (N.O. de África)
+Gaetulus:de Getulia (N.O. de África) (Getuli, orum, m. : los gétulos)
 Gaius:Gaius, Caius
 Galba:Galba
 galea:casco
@@ -4074,7 +4075,6 @@ gesticulatio:gesticulación, pantomima
 gestio:regocijarse, saltar de alegría; desear ardientemente; gesticular
 gesto:llevar, transportar
 gestus:gesto, ademán
-Getulus:de Getulia (N.O. de África) (Getuli, orum, m. : los gétulos)
 gibbus:jiba, joroba
 gigno:engendrar, dar a luz; crear, producir, causardo
 glacies:hielo; dureza, rigidez
