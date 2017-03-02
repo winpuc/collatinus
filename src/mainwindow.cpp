@@ -2163,8 +2163,39 @@ void MainWindow::setHtml(bool h)
     else if (alerte())
     {
         // L'inverse (html --> non-html) mettrait les nouveaux résultats en items du dernier lemme.
+        QString blabla = textEditLem->toHtml();
+//        qDebug() << blabla;
+        textEditLem->clear();
+        int pCourante = 0;
+        while (blabla.indexOf("<li ", pCourante) != -1)
+        {
+            pCourante = blabla.indexOf("<li ", pCourante) + 4;
+            pCourante = blabla.indexOf(">",pCourante) + 1;
+            int toto = blabla.mid(0,pCourante).lastIndexOf("-qt-list-indent: ");
+            int niveau = blabla.mid(toto + 17,1).toInt();
+//            int niveau = blabla.mid(0,pCourante).count("<ul ") - blabla.mid(0,pCourante).count("</ul>");
+            switch (niveau)
+            {
+            case 1:
+                blabla.insert(pCourante,"* ");
+                break;
+            case 2:
+                blabla.insert(pCourante," - ");
+                break;
+            case 3:
+                blabla.insert(pCourante,"   . ");
+                break;
+            default:
+                break;
+            }
+        }
+        textEditLem->setHtml(blabla);
+        blabla = textEditLem->toPlainText();
+        blabla.append("\n\n");
         textEditLem->clear();
         // J'efface les résultats précédents
+        textEditLem->setText(blabla);
+        textEditLem->moveCursor(QTextCursor::End);
         lemmatiseur->setHtml(h);
     }
     else htmlAct->setChecked(true);
@@ -2173,11 +2204,11 @@ void MainWindow::setHtml(bool h)
 bool MainWindow::alerte()
 {
     QMessageBox attention(QMessageBox::Warning,tr("Alerte !"),
-                          tr("Quitter le mode HTML efface les résultats précédents !"));
+                          tr("Quitter le mode HTML perd la mise en forme des résultats précédents !"));
     QPushButton *annulerButton =
           attention.addButton(tr("Annuler"), QMessageBox::ActionRole);
     QPushButton *ecraserButton =
-          attention.addButton(tr("Effacer"), QMessageBox::ActionRole);
+          attention.addButton(tr("Continuer"), QMessageBox::ActionRole);
     attention.setDefaultButton(ecraserButton);
     attention.exec();
     if (attention.clickedButton() == annulerButton) return false;
