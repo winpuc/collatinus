@@ -145,6 +145,7 @@ class MainWindow : public QMainWindow
     void scandeLigne();
     void scandeTxt();
     void setCible();
+    void setHtml(bool h);
     void stat();
     void syncDW();
     void syncWD();
@@ -283,6 +284,7 @@ class MainWindow : public QMainWindow
     // traductions
     QString langueI;
     QTranslator *translator;
+    bool alerte();
 };
 
 #endif

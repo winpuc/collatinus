@@ -828,7 +828,7 @@ void MainWindow::createConnections()
             SLOT(setAlpha(bool)));
     connect(formeTAct, SIGNAL(toggled(bool)), lemmatiseur,
             SLOT(setFormeT(bool)));
-    connect(htmlAct, SIGNAL(toggled(bool)), lemmatiseur, SLOT(setHtml(bool)));
+    connect(htmlAct, SIGNAL(toggled(bool)), this, SLOT(setHtml(bool)));
     connect(majPertAct, SIGNAL(toggled(bool)), lemmatiseur,
             SLOT(setMajPert(bool)));
     connect(morphoAct, SIGNAL(toggled(bool)), lemmatiseur,
@@ -2155,4 +2155,33 @@ void MainWindow::verbaCognita(bool vb)
     if (!fichier.isEmpty()) repVerba = QFileInfo (fichier).absolutePath ();
     lemmatiseur->verbaCognita(fichier,vb);
 }
+
+void MainWindow::setHtml(bool h)
+{
+    // Passer en html ne pose pas de problème
+    if (h || textEditLem->toPlainText().isEmpty()) lemmatiseur->setHtml(h);
+    else if (alerte())
+    {
+        // L'inverse (html --> non-html) mettrait les nouveaux résultats en items du dernier lemme.
+        textEditLem->clear();
+        // J'efface les résultats précédents
+        lemmatiseur->setHtml(h);
+    }
+    else htmlAct->setChecked(true);
+}
+
+bool MainWindow::alerte()
+{
+    QMessageBox attention(QMessageBox::Warning,tr("Alerte !"),
+                          tr("Quitter le mode HTML efface les résultats précédents !"));
+    QPushButton *annulerButton =
+          attention.addButton(tr("Annuler"), QMessageBox::ActionRole);
+    QPushButton *ecraserButton =
+          attention.addButton(tr("Effacer"), QMessageBox::ActionRole);
+    attention.setDefaultButton(ecraserButton);
+    attention.exec();
+    if (attention.clickedButton() == annulerButton) return false;
+    return true;
+}
+
 
