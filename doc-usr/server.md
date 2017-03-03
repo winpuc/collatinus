@@ -22,7 +22,9 @@ d’intermédiaire. Sous Windows, Client_C11.exe est placé
 il est enfoui au cœur de Collatinus_11.app à côté de 
 l’exécutable (Collatinus_11.app/Contents/MacOS/Client_C11).
 La syntaxe ressemble à celle d'Unix. Par exemple :
+
          ./Client_C11 -lfr arma
+         
 donnera les lemmatisations possibles de “arma” avec les 
 traductions en français. Le résultat de l’interrogation
 est également placé dans le presse-papier pour en permettre
@@ -58,7 +60,7 @@ Avec l'option '-f nom_de_fichier', c'est le contenu du fichier qui est traité.
 Comme le fichier est ouvert dans Collatinus, il vaut probablement mieux
 donner le chemin complet du fichier. Par exemple :
 
-/Users/Philippe/Documents/Virgile/Eneide1.txt
+          /Users/Philippe/Documents/Virgile/Eneide1.txt
 
 Avec l'option '-o nom_de_fichier_de_sortie', le résultat de l'opération est stocké
 dans le fichier. Comme pour -f, il vaut mieux donner le chemin complet.
