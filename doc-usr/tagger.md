@@ -11,7 +11,7 @@ Tagger
 Le but d’un tagueur (ou tagger) probabiliste est de proposer
 la _meilleure_ analyse d’une phrase ou d’un texte,
 en tenant compte de façon simpliste du contexte.
-** Attention !** Comme son nom l’indique, c’est un processus _probabiliste_,
+**Attention !** Comme son nom l’indique, c’est un processus _probabiliste_,
 ce qui signifie qu’il peut se tromper.
 Ce qu’il considère comme la _meilleure_ analyse
 peut être **fausse**.
@@ -29,7 +29,7 @@ Le bouton _tout afficher_ en haut à droite de l’onglet tagger
 permet d’afficher toutes les lemmatisations possibles
 (comme dans l’onglet _Lexique et morphologie_, mais sous 
 une autre forme). Lorsqu’il est inactif, seule la lemmatisation
-choisie dans la _meilleure solution_ du le tagger est affichée.
+choisie dans la _meilleure solution_ du tagger est affichée.
 
 Le bouton représentant des _engrenages_ permet de traiter
 l’ensemble du texte, phrase par phrase. 
@@ -69,5 +69,8 @@ Pour l’utilisation dans Collatinus, on en a tiré :
  1.  La fréquence des différents cas (pour les formes 
      déclinées) et modes (pour les verbes).
  1.  Le nombre d’occurrences de chaque séquence de 3 tags.
+
+Ces résultats sont utilisés pour évaluer les probabilités 
+dont le tagueur a besoin.
 
 [index](index.html) précédent : [Fléchir](flechir.html) suivant : [Serveur](server.html) 
