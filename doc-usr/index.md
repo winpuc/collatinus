@@ -29,7 +29,7 @@ qui la présente avec des images annotées.
 1. **[Scander](scander.html)** Afficher le mot/texte muni
    de toutes ses quantités. Toutes les solutions
    possibles sont données. On peut aussi accentuer
-   et marquer la césure entre les syllabes.
+   les mots et/ou marquer la césure entre les syllabes.
 1. **[Fléchir](flechir.html)** Afficher la déclinaison
    d'un mot, la conjugaison d'un verbe.
 1. **[Tagger](tagger.html)** Utiliser un tagueur
