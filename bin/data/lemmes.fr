@@ -10335,7 +10335,7 @@ imputo:porter en compte
 imulus:complètement au fond, tout au bout
 imum:le bas
 imus:plus profond de, fond de
-in:dans, en
+in:dans, en, sur
 inaccessus:inaccessible
 inacesco:s'aigrir, devenir aigre, déplaire
 Inachia:Inachia (nom de f.)
