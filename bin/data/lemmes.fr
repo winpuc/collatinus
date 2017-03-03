@@ -10335,6 +10335,7 @@ imputo:porter en compte
 imulus:complètement au fond, tout au bout
 imum:le bas
 imus:plus profond de, fond de
+in:dans, en
 inaccessus:inaccessible
 inacesco:s'aigrir, devenir aigre, déplaire
 Inachia:Inachia (nom de f.)
@@ -23058,7 +23059,7 @@ Vestricius:Vestricius Spurinna (poète)
 Vesulus:le Vésule (montagne de Ligurie, auj. mont Viso)
 Vesuvius:le Vésuve
 vetera2:les choses d'autrefois, les faits anciens
-veteranus:vieux, ancien, subst. vétéran
+veteranus:adj. vieux, ancien, subst. vétéran
 veterarium:cave à vin (pour le vieillisement)
 veterator:au courant, rompu, vieux routier, vieux renard
 veteratorius:de vieux routier, qui sent le métier
