@@ -83,9 +83,19 @@ void Maj::installe(QString nfcol)
     qint64 aidx;
     qint64 acfg;
     qint64 tcfg;
-    // ouvertures
+    // ouverture
     QFile fcol(nfcol);
     fcol.open(QFile::ReadOnly);
+    // lecture des adresses en queue de fichier
+    fcol.seek(fcol.size() - 100);
+    QString lin;
+    while (!lin.startsWith("idx:") && !fcol.atEnd()) lin = fcol.readLine().trimmed();
+    if (!lin.startsWith("idx:")) return;
+    aidx = lin.section(':', 1, 1).toLongLong();
+    lin = fcol.readLine().trimmed();
+    acfg = lin.section(':', 1, 1).toLongLong();
+    tcfg = lin.section(':', 2, 2).toLongLong();
+    // Créations
     QFile fcz(nfcz);
     if (!fcz.open(QFile::WriteOnly))
     {
@@ -100,14 +110,6 @@ void Maj::installe(QString nfcol)
     fidx.open(QFile::WriteOnly);
     QFile fcfg(nfcfg);
     fcfg.open(QFile::WriteOnly);
-    // lecture des adresses en queue de fichier
-    fcol.seek(fcol.size() - 100);
-    QString lin;
-    while (!lin.startsWith("idx:")) lin = fcol.readLine().trimmed();
-    aidx = lin.section(':', 1, 1).toLongLong();
-    lin = fcol.readLine().trimmed();
-    acfg = lin.section(':', 1, 1).toLongLong();
-    tcfg = lin.section(':', 2, 2).toLongLong();
     // écriture cz
     fcol.reset();
     fcz.write(fcol.read(aidx));
