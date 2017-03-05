@@ -1385,7 +1385,9 @@ void Lemmat::lisTraductions(bool base, bool extension)
         rep = QDir(_resDir, "lem_ext.*");
     }
     QStringList ltr = rep.entryList();
+#ifdef VERIF_TRAD
     qDebug() << ltr;
+#endif
     if (base) {
         ltr.removeOne("lemmes.la");  // n'est pas un fichier de traductions
     }
