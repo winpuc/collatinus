@@ -36,6 +36,7 @@
 #include <QDebug>
 // #include <QElapsedTimer>
 // #define DEBOG
+// #define VERIF_TRAD
 
 /**
  * \fn Lemmat::Lemmat (QObject *parent)
@@ -85,10 +86,12 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
     lisIrreguliers();
     lisParPos();
     lisCat();
+#ifdef VERIF_TRAD
     foreach (Lemme *l, _lemmes.values()) {
         QString t = l->traduction("fr");
         if (t == "") qDebug() << l->cle() << "non traduit.";
     }
+#endif
 }
 
 void Lemmat::lisCat()
