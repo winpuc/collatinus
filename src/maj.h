@@ -12,7 +12,7 @@ class Maj : public QDialog
     Q_OBJECT
 
    private:
-    void installe(
+    bool installe(
         QString nfcol);  // décompresse nfcol et l'installe dans data/dicos/
     QLabel *label;
     QStringList listeF;  // liste des fichiers téléchargés

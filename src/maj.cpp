@@ -70,7 +70,7 @@ Maj::Maj(QDialog *parent) : QDialog(parent)
     connect(cloreButton, SIGNAL(clicked()), this, SLOT(close()));
 }
 
-void Maj::installe(QString nfcol)
+bool Maj::installe(QString nfcol)
 {
     // nom du paquet
     QString nom = QFileInfo(nfcol).baseName();
@@ -90,7 +90,14 @@ void Maj::installe(QString nfcol)
     fcol.seek(fcol.size() - 100);
     QString lin;
     while (!lin.startsWith("idx:") && !fcol.atEnd()) lin = fcol.readLine().trimmed();
-    if (!lin.startsWith("idx:")) return;
+    if (!lin.startsWith("idx:"))
+    {
+        QMessageBox::critical(
+            this, tr("Collatinus 11"),
+            tr("Impossible de comprendre le fichier" + nfcol.toUtf8() +
+               ". Le format semble être inadéquat."));
+        return false;
+    }
     aidx = lin.section(':', 1, 1).toLongLong();
     lin = fcol.readLine().trimmed();
     acfg = lin.section(':', 1, 1).toLongLong();
@@ -101,10 +108,10 @@ void Maj::installe(QString nfcol)
     {
         QMessageBox::critical(
             this, tr("Collatinus 11"),
-            tr("Impossible d'ouvrir le fichier" + nfcz.toUtf8() +
+            tr("Impossible de créer le fichier" + nfcz.toUtf8() +
                ". Vérifiez vos drois d'accès, et éventuellent "
                "connectez-vous en administrateur avant de lancer Collatinus."));
-        return;
+        return false;
     }
     QFile fidx(nfidx);
     fidx.open(QFile::WriteOnly);
@@ -122,6 +129,7 @@ void Maj::installe(QString nfcol)
     fcz.close();
     fidx.close();
     fcfg.close();
+    return true;
 }
 
 void Maj::selectionne()
@@ -131,13 +139,15 @@ void Maj::selectionne()
         "paquets dictionnaires (*.col)");
     listeF = nfichiers;
     if (listeF.empty()) return;
+    bool OK = true;
     foreach (QString nfcol, listeF)
     {
-        installe(nfcol);
-        qDebug() << "installé" << nfcol;
+        bool OK1 = installe(nfcol);
+        if (OK1) qDebug() << "installé" << nfcol;
+        else OK = false;
     }
     // info
-    QMessageBox::information(this, tr("Collatinus 11"),
+    if (OK) QMessageBox::information(this, tr("Collatinus 11"),
                              tr("L'installation s'est bien passée. "
                                 "Au prochain lancement, les nouveaux lexiques "
                                 "et dictionnaires seront disponibles."));
