@@ -23100,7 +23100,7 @@ Vibidia:Vibidia (nom de femme)
 Vibidius:Vibidius (Vibidius)
 Vibienus:Vibienus (nom d'homme)
 Vibilius:Vibilius (Vibilius)
-Vibius:Vibius (Vibius (nom d'homme))
+Vibius:Vibius (Vibius (nom d'homme)
 Vibo:Vibo Valentia (ville du Bruttium, auj. Bivona)
 vibro:agiter, secouer
 Vibulanus:Vibulanus (nom d'homme)
