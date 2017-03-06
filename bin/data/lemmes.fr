@@ -365,6 +365,7 @@ adeps:graisse
 adequito:aller à cheval
 adfabilis:affable, accueillant
 adfabilitas:affabilité
+adfabre:artistement, avec art
 adfatim:à suffisance, abondamment
 adfatus:paroles adressées à quelqu'un
 adfectator:à la recherche (à la poursuite) de
@@ -443,6 +444,7 @@ adjuvo:aider, seconder
 adlaboro:travailler à [avec ut], ajouter par le travail
 adlabor:se glisser vers
 adlapsus:arrivée en glissant, arrivée
+adlacrimo:pleurer [quelque chose}
 adlaudabilis:louable
 adlegatio:délégation (à, vers), allégation, excuse [qu'on fait valoir devant les juges], rescrit (des empereurs)
 adlego2:déléguer, envoyer; alléguer, produire comme preuve
@@ -916,6 +918,7 @@ Agonius:Agonius (dieu qui présidait aux entreprises humaines ; surnom de Janus)
 agon:lutte, concours (acc. s. agona)
 agoranomus:agoranome (magistrat chargé de surveiller les marchés à Athènes)
 agrarius:partisan du parti agraire
+agrestis2:paysan
 agrestis:relatif aux champs, agreste, rustique, peu évolué, grossier
 Agrianes:Agrianes (pl., peuple de Thrace ou de Pannonie)
 Agricola2:Agricola (général romain, beau-père de Tacite)
@@ -1153,6 +1156,7 @@ alveus:baquet, lit (de rivière)
 alvus:le ventre, les intestins
 amabilis:digne d'amour
 amabiliter:amoureusement, agréablement
+amabo:je t'en prie, s'il te plaît
 Amalthea:Amalthée, (chèvre ou nymphe qui nourrit Jupiter de son lait; son sanctuaire)
 amandatio:éloignement, exil
 amando:éloigner
@@ -1327,6 +1331,7 @@ Amycle:Amyclé (nom de femme)
 Amycus:Amycus (fils de Neptune, nom d'un Centaure, nom d'un Troyen)
 Amydon:Amydon (ville de Macédoine)
 amygdalum:amande, amandier
+amylum:amidon, empois
 Amymone:Amymone (une des Danaïdes, fontaine près d'Argos)
 Amyntas:Amyntas (roi de Macédoine, père de Philippe)
 Amyntiades:fils d'Amyntas, nom d'un berger
@@ -1435,6 +1440,7 @@ Anienus:de l'Anio
 anilis:de vieille femme
 anilitas:vieillesse (de la femme)
 anima:coeur, âme, vie
+animadversor:observateur
 animal:être vivant, animal
 animalis:relatif à la vie
 animans:être vivant, animal
@@ -1679,8 +1685,11 @@ appropinquo:approcher
 Appuleia:Appuleia
 Appuleius:Appuleius
 Apr:= Aprilis, is, e (d'Avril)
+apricatio:exposition au soleil
+apricum:place ensoleillée.
 apricus:ensoleillé, exposé au soleil
 Aprilis:avril
+apronia:bryone (plante)
 Apronianus:d'Apronius
 Apronius:Apronius
 Apsus:Apsus (rivière d'Illyrie)
@@ -1755,6 +1764,7 @@ Arausio:Orange (ville de la Narbonnaise)
 Aravisci:Aravisci (peuple de Pannonie)
 Araxes:Araxes (fleuve de l'Arménie)
 arbiter:témoin oculaire, arbitre
+arbitra:témoin, confident; arbitre
 arbitrarius:voulu, volontaire
 arbitratus:sentence, pouvoir, gré
 arbitrium:pouvoir, bon plaisir
@@ -2007,6 +2017,7 @@ artifex:artisan, artiste
 artificiose:avec art, artistement
 artificium:art, travail artistique
 arto:serrer fortement, étroitement, resserrer, raccourcir, amoindrir
+artocreas:artocreas (pâté de viande)
 Artotrogus:Artotrogus (le rongeur de pain), nom d'un parasite
 artum:espace étroit
 artus2:membres, articulations, corps
@@ -2059,6 +2070,7 @@ Asellus2:Asellus2 (surnom romain)
 asellus:âne
 Asia:Asie
 Asianus:d'Asie
+Asiaticus2:Asiaticus (surnom de Cornelius  Scipion)
 Asiaticus:asiatique
 Asis:asiatique
 asilus:taon
@@ -2175,6 +2187,7 @@ athletice:à la manière des athlètes
 athleticus:d'athlète
 athlon:lutte [dans les jeux], (pl.) épreuves de la vie, travaux d'Hercule
 Athos:Athos (mont de Macédoine)
+Atia:Atia (mère d'Auguste)
 Atilius:Atilius
 Atimetus:Atimetus (nom d'h.)
 Atina:Atina (ville des Volsques, ville de Vénétie)
@@ -2507,6 +2520,7 @@ Balacrus:Balacrus (nom d'h.)
 balanatus:parfumé d'huile de balanus
 balanus:gland du chêne, châtaigne, datte, arbrisseau odoriférant [le balanus], gland de mer, suppositoire [t. de méd.]
 balatro:hâbleur, charlatan, vaurien
+Balatro2:Balatro (surnom de Servilius)
 balatus:bêlement
 balbe:en balbutiant, en bégayant
 Balbillus:Balbillus (nom d'h.)
@@ -2537,6 +2551,7 @@ Bandusia:Bandusie [source chantée par Horace]
 Bantinus:de Bantia
 Baptae:les Baptes (prêtres de Cotytto)
 baptisterium:piscine [pour se baigner et nager], fonts baptismaux, baptistère
+barathrum:gouffre
 Barba2:Barba2 (surnom romain)
 barba:barbe
 barbare:de façon barbare
@@ -2607,7 +2622,9 @@ beate:heureusement, à souhait
 beatitudo:bonheur, félicité
 beatulus:un peu heureux
 beatus:heureux, [subst. m.] bienheureux
+Bebrycius:de Bébrycie; de la colonie bébrycienne établie dans la Narbonnaise
 Bedriacum:Bedriacum (ville près de Vérone, où Othon fut vaincu par Vitellius)
+Bedriacensis:de Bedriacum
 Belga:Belge
 Belgae:Belges
 Belgicus:des Belges, belge
@@ -3072,6 +3089,7 @@ Caetronius:Caetronius (nom d'homme)
 Caieta:Caiète [nourrice d'Enée ; ville et port du Latium]
 Caius:Caius
 Calaber:de Calabrie
+Calabria:la Calabrie (province méridionale de l'Italie)
 Calacte:Calacte (ville maritime de la Sicile septentrionale)
 Calactini:Calactins (habitants de Calacta)
 Calactinus:de Calacta.
@@ -3278,6 +3296,7 @@ canor:son, son mélodieux
 canorus:sonore, mélodieux
 Cantaber2:Cantabre
 Cantaber:des Cantabres
+Cantabricus:du pays des Cantabres
 cantabrum:son [de céréale], bannière, étendard
 cantabundus:chantonnant
 cantamen:incantation, charme
@@ -3316,6 +3335,7 @@ Capenus:de Capène
 caper:bouc
 caperro:rider, froncer [le sourcil], se rider, se renfrogner
 capesso:chercher à prendre (se - : se rendre vivement quelque part)
+Caphareus:de Capharée
 Caphereus:Capharée (promontoire de l'Eubée)
 capillamentum:chevelure, perruque
 capillatus:chevelu, aux cheveux longs
@@ -3558,7 +3578,9 @@ catenatus:enchaîné
 cateno:enchaîner
 caterva:masse, troupe, foule
 catervatim:par troupes, par bandes
+cathedra:chaise [à dossier], siège, chaire [de professeur, d'église, [siège épiscopal]
 cathedralitius:habitué aux fauteuils ; efféminé
+cathedrarius:de fauteuil, de chaise, de siège
 Catia:Catia (nom de femme)
 Catiena:Catiena (noms d'homme et de femme)
 Catienus:Catienus (noms d'homme et de femme)
@@ -3645,11 +3667,13 @@ Cecropius:de Cécrops
 Cecrops:Cécrops, [premier roi d'Athènes]
 cedo:aller, marcher ; s'en aller, se retirer ; aller, arriver ; céder, concéder
 cedo2:[sing.] donne, montre, indique; [plur.] allons, voyons
+cedrus:cèdre,  bois de cèdre, huile de cèdre
 Celadus:Celadus (rivière de la Tarraconnaise)
 Celaenae:Celaenae (ville de Phrygie)
 Celaeno:Céléno (une des Harpies)
 celeber:en grand nombre, très fréquenté, très peuplé, célébré par une foule nombreuse
 celebratio:célébration
+celebratus:fréquenté, célébré, fêté par une foule nombreuse, cité souvent
 celebritas:grande affluence, fréquentation nombreuse
 celebro:visiter en foule, pratiquer (arts), célébrer, fêter
 Celemna:Celemna (ville de Campanie)
@@ -3853,6 +3877,7 @@ Charaxus:Charaxus (frère de Sapho, un des centaures)
 Chares:Chares (statuaire grec, historien grec), le Cher (rivière)
 Charidemus:Charidemus (nom d'homme)
 Charinus:Charinus (nom d'homme)
+Chariovalda:Chariovalde (un Batave)
 Charis:les Grâces (en grec)
 Charites:les Charites, les Grâces
 chariton:chariton (herbe magique qui fait naître l'amour)
@@ -3867,13 +3892,18 @@ Chauci:les Chauques [peuple germain]
 Chaucus:Chauque (peuplade de Germanie)
 Chaus:chaos
 chelidon:hirondelle
+chelydrus:Chélydre (serpent venimeux)
 chelys:tortue, lyre, la Lyre [constell.]
+cheragra:chiragre, goutte des mains
+Cherusci:les Chérusques
 Chia:Chia (autre nom de l'île de Chio)
 Chii:Chiotes (habitants de Chios)
 chiliarches:chiliarque (officier qui commande mille hommes)
 Chilo2:Chilon [l'un des sept Sages de la Grèce]
 Chimaera:Chimère
 Chione:Chioné [fille de Dédalion], nom de femme
+Chios:Chios (île de la mer Égée)
+chiragricus: chiragre (qui a la goutte aux mains)
 chiramaxium:chiramaxium (voiture à bras)
 chirographum:écriture
 Chiron:le Sagittaire [constell.]
@@ -4040,6 +4070,7 @@ circumgredior:faire un mouvement tournant, investir
 circumitus2:marche circulaire, détour, retour périodique [d'une maladie], circuit, tour
 circumjaceo:être étendu autour, être placé autour
 circumjicio:placer autour, envelopper
+circumlatro:aboyer autour
 circumligo:lier autour
 circumlino:oindre, enduire autour
 circumlitio:onction, application de vernis [sur les statues]
@@ -4082,6 +4113,8 @@ circumtergeo:essuyer autour
 circumtero:frotter autour
 circumtono:tonner autour
 circumtonsus:tondu autour
+circumvado:attaquer de tous côtés
+circumuagus:qui erre autour
 circumvallo:faire des lignes de circonvallation, cerner, bloquer, entourer
 circumvector:se transporter autour
 circumvehor:se porter autour, faire le tour
@@ -4319,6 +4352,7 @@ Cocceius:Cocceius (ami d'Auguste et d'Horace)
 coccineus:d'écarlate
 coccinus:écarlate
 coccum:kermès, écarlate
+cochlea:escargot, coquille d'escargot, [tour avec] escalier tournant, [autres objets rappelant cette forme]
 cochleare:cuillerée, mesure pour les liquides
 cocio:courtier, colporteur
 coclea:escargot
@@ -4461,6 +4495,7 @@ coloratus:coloré, nuancé, au teint coloré, rouge, bruni, hâlé, [fig.] fard�
 color:couleur, teint du visage, éclat (du style)
 coloro:colorer
 coluber:couleuvre, serpent
+colubra:couleuvre femelle, [plur.] chevelure des Furies 
 columba:colombe
 columbinus:de pigeon, couleur de pigeon
 columbor:se becqueter [comme les pigeons]
@@ -4538,6 +4573,8 @@ commercor:acheter en masse
 commereo:commetre (une faute)
 commeritus:mérité
 commeto:aller
+commigratio:passage [d'un lieu à un autre]
+commigro:passer d'un lieu à un autre
 commilitium:fraternité d'armes, service miliraire fait en commun
 commilito:compagnon d'armes
 comminatio:menace, démonstration [en t. de guerre]
@@ -4819,6 +4856,7 @@ conducticius:loué, pris à gages
 conductio:récapitulation, contraction, convulsion, location, fermage, bail
 conductor:locataire, fermier, entrepreneur
 conductum:location, maison louée
+conduplico:doubler
 conduro:rendre très dur
 conecto:attacher, lier
 conexus2:liaison
@@ -4949,7 +4987,7 @@ connecto:attacher ensemble
 connitor:faire des efforts ensemble, se raidir
 connubium:mariage, pouvoir de se marier
 Conon:Conon (général athénien, astronome grec)
-conopium:moustiquaire ; tenture, pavillon
+conopeum:moustiquaire ; tenture, pavillon
 conor:s'efforcer, faire tous ses efforts, entreprendre, tenter, essayer
 conquasso:secouer fortement, briser, casser; ébranler, bouleverser
 conqueror:déplorer
@@ -4983,6 +5021,7 @@ conscribillo:griffonner
 conscribo:composer, rédiger conscriptus, a, um : inscrit ensemble, enrôlé ; décrit, écrit, composé; tracé, dessiné, marqué ; stipulé, convenu, signé
 conscriptio:rédaction, composition, ouvrage
 conseco:mettre en morceaux, hacher, couper [autour], détacher en coupant
+consecratio:consécration (action de consacrer, de dévouer aux dieux / action de dévouer aux dieux l'infracteur d'une loi / apothéose des empereurs romains / cérémonie magique / protection contre les charmes, amulette
 consecro:consacrer, reconnaître comme dieu
 consectatio:poursuite, recherche
 consectatrix:poursuivante
@@ -5383,56 +5422,57 @@ corrugo:froncer, rider
 corrumpo:détruire, ruiner ; corrompre; détériorer, altérer, gâter, nuire à, falsifier ; corrompre, pervertir, dépraver, séduire, suborner, gagner (qqn)
 corruo:s'écrouler, crouler
 corruptela:corruption
-corrupte:vicieusement
-corruptio:altération; la séduction, tentative de débauche
-corruptor:corrupteur
-Corsica:la Corse
-Corsicus:de Corse, corse
-Corsi:les Corses
-Corsus:de Corse, corse
-cortex:coquille, liège, écorce
-cortina:vaisseau rond, chaudière, cuve, oracle [d'Apollon], auditoire, rideau, voile
-Cortynia:Gortyna (ville de Crète)
-Coruncanius:[Ti.] Coruncanius [premier pontife plébéien]
-corusco:s'agiter, branler; agiter, brandir
-coruscus:brillant, étincelant
-Corvinus2:Corvinus2 (surnom dans la famille Valéria)
-Corvus2:Corvus (surnom de M. Valérius)
-corvus:corbeau
-Corybantes:Corybantes (prêtres de Cybèle)
-Corybantius:des Corybantes
-Corycius:corycien (grotte située sur le flanc du Parnasse ; de Corycus, en Cilicie)
-corycus:sac d'entraînement
-Corydon:Corydon (nom de berger)
-coryletum:coudraie (lieu planté de coudriers)
-corylus:coudrier, noisetier
-Corymbifer:couronné de grappes de lierre
-corymbion:perruque
-corymbus:grappe de lierre (à la proue des navires), mamelon [anatomie], stalactite
-Corynaeus2:Corynaeus (nom d'un guerrier)
-Coryphaeus:Coryphée (nom d'un cheval)
-Corythus:Corythus (père de Dardanus, fils de Pâris, montagne et ville d'Étrurie)
-corytus:carquois
-Cosa:Cosa (ville d'Etrurie)
-Cosanum:territoire de Cosa
-Cosconius:Cosconius (nom d'homme)
-cosmeta:celui qui orne
-Cosmus:Cosmus (parfumeur en renom à Rome)
-cos:pierre à polir, à aiguiser
-coss:consuls (abréviation)
-Cossinius:Cossinius (nom d'homme)
-Cossunatius:Cossunatius
-Cossus:Cossus
-Cossutianus:Cossutianus (délateur fameux sous Néron)
-Cossutius:Cossutius (nom d'homme)
-costa:flanc, côte, côté
-costum:costus [plante aromatique]
-Cosyra:Cosyra (île entre la Sicile et l'Afrique)
-cotes:roche, écueil
-cothon2:port [creusé de main d'homme]
-cothurnatus:acteurs tragiques, tragique, imposant
-cothurnus:cothurne, chaussure montante, [fig.] tragédie, style élevé
-cotidiano:tous les jours.
+orrupte:vicieusement
+orruptio:altération; la séduction, tentative de débauche
+orruptor:corrupteur
+orsica:la Corse
+orsicus:de Corse, corse
+orsi:les Corses
+orsus:de Corse, corse
+ortex:coquille, liège, écorce
+ortina:vaisseau rond, chaudière, cuve, oracle [d'Apollon], auditoire, rideau, voile
+ortynia:Gortyna (ville de Crète)
+oruncanius:[Ti.] Coruncanius [premier pontife plébéien]
+orusco:s'agiter, branler; agiter, brandir
+oruscus:brillant, étincelant
+orvinus2:Corvinus2 (surnom dans la famille Valéria)
+orvus2:Corvus (surnom de M. Valérius)
+orvus:corbeau
+orybantes:Corybantes (prêtres de Cybèle)
+orybantius:des Corybantes
+orycius:corycien (grotte située sur le flanc du Parnasse ; de Corycus, en Cilicie)
+orycus:sac d'entraînement
+orydon:Corydon (nom de berger)
+oryletum:coudraie (lieu planté de coudriers)
+orylus:coudrier, noisetier
+orymbifer:couronné de grappes de lierre
+orymbion:perruque
+orymbus:grappe de lierre (à la proue des navires), mamelon [anatomie], stalactite
+orynaeus2:Corynaeus (nom d'un guerrier)
+oryphaeus:Coryphée (nom d'un cheval)
+orythus:Corythus (père de Dardanus, fils de Pâris, montagne et ville d'Étrurie)
+orytus:carquois
+osa:Cosa (ville d'Etrurie)
+osanum:territoire de Cosa
+osconius:Cosconius (nom d'homme)
+osmeta:celui qui orne
+osmus:Cosmus (parfumeur en renom à Rome)
+os:pierre à polir, à aiguiser
+oss:consuls (abréviation)
+ossinius:Cossinius (nom d'homme)
+ossunatius:Cossunatius
+ossus:Cossus
+ossutianus:Cossutianus (délateur fameux sous Néron)
+ossutius:Cossutius (nom d'homme)
+osta:flanc, côte, côté
+ostum:costus [plante aromatique]
+osyra:Cosyra (île entre la Sicile et l'Afrique)
+otes:roche, écueil
+othon2:port [creusé de main d'homme]
+othurnatus:acteurs tragiques, tragique, imposant
+othurnus:cothurne, chaussure montante, [fig.] tragédie, style élevé
+otidiano:tous les jours.
+cotidianus:quotidien
 cotidie:(et quo-) chaque jour
 cotinus:fustet [arbrisseau]
 Cotiso:Cotison [roi des Gètes, appelé « le Dace »]
@@ -5447,8 +5487,10 @@ Cottius2:Cottius (qui donna son nom aux Alpes Cottiennes)
 Cottius:Cottien
 cotula:cotyle [servant d'une contenance d'1/2 setier]
 coturnium:vase de libation
+coturnix:caille
 Cotyla2:Cotyla (nom d'homme)
 Cotys:Cotys (roi de Thrace)
+covinnarius:covinnaire, conducteur d'un char armé de faux
 Cous2:de l'île de Cos
 Cous:Cos (île de la mer Egée)
 coxa:hanche, cuisse, râble, angle rentrant
@@ -5715,6 +5757,8 @@ cupio:désirer
 cupitor:celui qui désire
 cupitum:désir
 cuppedo:gourmandise, friandise
+cupressetum:lieu planté de cyprès
+cupressifer:planté de cyprès
 cupressus:cyprès
 cupula:tonnelet, petit tombeau, petite manivelle
 curabilis:qui peut être guéri, curable
@@ -5775,6 +5819,7 @@ Cusus:Cuse (affluent du Danube)
 cuticula:peau
 cutis:peau
 Cyane:Cyané [nymphe de Sicile, fontaine de Cyané]
+Cyaneae:îles Cyanées (dans le Pont-Euxin, Symplégades de la mythologie)
 cyathus:cyathe (coupe ou mesure), coupe
 cybaea:vaisseau de transport
 Cybebe:Cybele (mont de Phrygie)
@@ -5785,7 +5830,11 @@ Cyclades:les Cyclades
 Cyclas2:v. Cyclades.
 cyclas:robe de femme (traînante et arrondie par le bas)
 cyclicus:cyclique 
+Cyclopius:des Cyclopes
+Cyclops:Cyclope
 cycneus:du cygne
+Cycnus2:Cycnus (roi de Ligurie)
+cycnus:cygne
 Cydas:Cydas (nom de plusieurs Crétois)
 Cydippe:Cydippe (une des Néréides)
 Cydnus:le Cydnus [fleuve de Cilicie, auj. Tersustschai]
@@ -5818,7 +5867,10 @@ Cynthus:Cynthus (montagne de l'île de Délos)
 cyparissus:cyprès
 Cypassis:Cypassis (nom de femme)
 cyperon:souchet [sorte de jonc]
+Cypria:Vénus (honorée à Chypre], Cypris
+Cyprii:Cypriens, Cypriotes, habitants de Chypre
 Cyprius:de Chypre, chypriote
+Cypros:Chypre ou Cypre (grande île de la mer Égée)
 Cyrenae:Cyrène (ville près de la grande Syrte)
 Cyrenaeus:de Cyrène
 Cyrenaici:les Cyrénaïques (ou disciples d'Aristippe)
