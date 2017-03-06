@@ -531,6 +531,7 @@ adpugno:assaillir, attaquer
 adpulsus:abordage, accès, approche
 adrado:tondre, raser, rogner
 Adrana:Adrana (fleuve de Germanie)
+Adrastus:Adraste (roi d'Argos)
 adrepo:ramper vers
 adrideo:rire à, sourire, plaire
 adrigo:mettre droit, dresser; relever, exciter
@@ -839,7 +840,7 @@ Aethiops:Ethiopien
 Aethon:Aethon (un des chevaux du Soleil, du jeune Pallas, de l'Aurore, nom d'homme, aigle qui rongeait le coeur de Prométhée, un des Amours)
 Aethra2:Éthra [fille de l'Océan et de Téthys, femme d'Égée, mère de Thésée]
 aethra:région de l'ether où se trouvent les astres
-Aetna:Etna
+Aetne:Etna
 Aetnaeus:de l'Etna [par ext. de Sicile, habitants des environs de l'Etna]
 Aetnenses:les Etnens (habitants des environs de l'Etna)
 Aetnensis:Etnen (de la ville d'Etna, habitant de l'Etna)
@@ -870,6 +871,7 @@ Agamemnonius:d'Agamemnon
 Aganippe:Aganippe, [source de l'Hélicon]
 agaso:palefrenier, valet d'armée
 Agatho:Agathon (fils de Priam)
+Agathocles:Agatocle (roi de Sicile)
 Agathyrsi:Agathyrses (peuple de Scythie)
 Agave:Agavé [fille de Cadmus, l'une des Néréides, l'une des Amazones]
 age:allons!
@@ -1091,6 +1093,7 @@ Allifanus:d'Allifes
 alligati:(sc. servi) escaves entravés
 allium:ail
 Allobroges:les Allobroges
+Allobrox:Allobroge
 allocutio:allocution, discours
 alludo:plaisanter
 alluvies:débordement
@@ -1291,6 +1294,7 @@ amphistomus:à deux entrées
 amphitheatrum:amphithéâtre
 Amphitrite:Amphitrite [déesse de la mer]
 Amphitryon:Amphitryon [mari d'Alcmène, roi de Thèbes]
+Amphitryoniades:fils d'Amphitryon (Hercule)
 amphora:amphore
 Amphrysius:de l'Amphryse, d'Apollon
 Amphrysus:Amphryse [fleuve de Thessalie, où Apollon fut berger du roi Admète]
@@ -1333,6 +1337,7 @@ Amythaonius:d'Amithaon
 Ana:Ana (fleuve de Bétique)
 anabathrum:estrade (pour lecture publique)
 Anacharsis:Anacharsis (philosophe scythe)
+Anacreon:Anacréon (poète lyrique)
 Anactorie:Anactorie (jeune fille de Lesbie)
 anadema:anadème (ornement de tête)
 Anagnia:Anagnie [ville du Latium]
@@ -1675,6 +1680,8 @@ Appuleia:Appuleia
 Appuleius:Appuleius
 Apr:= Aprilis, is, e (d'Avril)
 apricus:ensoleillé, exposé au soleil
+Aprilis:avril
+Apronianus:d'Apronius
 Apronius:Apronius
 Apsus:Apsus (rivière d'Illyrie)
 apte:convenablement, proprement
@@ -1725,6 +1732,12 @@ aquosus:aqueux, humide
 ara:autel
 Araba:Araba (ville d'Éthiopie)
 arabarches:arabarque [percepteur des droits de douane]
+Arabia:l'Arabie
+Arabicus:d'Arabie
+Arabius:d'Arabie
+Arabs:Arabe
+Arabs2:arabe
+Arabus:arabe, arabique; [subst. m.] Arabe
 Arachne2:Arachné [jeune fille changée en araignée par Minerve]
 Arachosii:Arachosiens
 Aracynthus:Aracynthus (mont d'Étolie, de Béotie)
@@ -2045,6 +2058,9 @@ Asellius:Asellius (nom de différents personnages)
 Asellus2:Asellus2 (surnom romain)
 asellus:âne
 Asia:Asie
+Asianus:d'Asie
+Asiaticus:asiatique
+Asis:asiatique
 asilus:taon
 Asina2:Asina (surnom dans la gens Cornélia)
 asina:ânesse
@@ -2055,6 +2071,7 @@ asinarius:d'âne ; [subst. m.] ânier
 asininus:d'âne
 Asinius:Asinius
 asinus:âne
+Asius:d'Asie [région de la Lydie]
 Asius2:Asius (nom d'h.)
 Asopis:de l'Asopus, fille d'Asopus, Égine, ancien nom de l'île d'Eubée
 Asopos:Asopos (fils de l'Océan et de Téthys, changé en fleuve par Jupiter, fleuve près de Thèbes, fl. de Thessalie, fl. de Carie)
@@ -2157,7 +2174,7 @@ athleta:athlète
 athletice:à la manière des athlètes
 athleticus:d'athlète
 athlon:lutte [dans les jeux], (pl.) épreuves de la vie, travaux d'Hercule
-Atia:Atia (mère d'Auguste)
+Athos:Athos (mont de Macédoine)
 Atilius:Atilius
 Atimetus:Atimetus (nom d'h.)
 Atina:Atina (ville des Volsques, ville de Vénétie)
@@ -2165,13 +2182,19 @@ Atinas:d'Atina
 Atinates:habitants d'Atina
 atinia:atinia (espèce d'orme)
 Atinius:d'Atinius (lex Atinia)
-Atius:Atius (nom de famille rom.; en part., M. Atius Balbus, grand-père maternel d'Auguste)
-Atlans:Titan, qui portait le Ciel sur ses épaules, montagne de Mauritanie
+Atius:nom de famille rom.; en part., M. Atius Balbus, grand-père maternel d'Auguste
+Atlans:Titan, qui portait le Ciel sur ses épaules / montagne de Mauritanie
+Atlanteus:d'Atlas
+Atlanticus:Atlantique
 Atlantides:Atlantides, filles d'Atlas
+Atlantis:de l'Atlas; fille d'Atlas; l'Atlantide (île fabuleuse)
+Atlas:Atlas (Titan, montagne de Mauritanie)
 at:mais
 atque:et, et aussi
 atqui:et pourtant, eh bien
 atquin:eh bien, et pourtant, dans ces conditions
+Atracis:Thessalienne (Hippodamie)
+Atracius:Thessalien, magique
 atramentum:encre
 Atratinus:Atratinus (surnom romain)
 atratus:rendu noir, noirci, en habit de deuil
@@ -2179,9 +2202,12 @@ Atrebas:Atrébate
 Atrebates:les Atrébates (peuplade belge)
 Atria:Atria (ville de Vénétie)
 Atrida:fils d'Atrée (Agamemnon ou Ménélas)
+Atreus:d'Atrée
+Atrides:fils d'Atrée
 atriensis2:de l'atrium
 atriensis:concierge
 atrium:grande salle (à l'entrée de la maison romaine), salle d'entrée (des monuments publics)
+Atrius:Atrius (famille)
 atrocitas:atrocité, barbarie, cruauté
 atrociter:d'une manière atroce, cruelle, d'une manière dure, farouche
 atrotus:invulnérable
@@ -2376,6 +2402,7 @@ Auximum:Auximum (ville du Picénum)
 Auzea:Auzea (ville de Mauritanie)
 avare:avidement, cupidement
 Avaricensis:d'Avaricum
+Avaricum:Avaricum (capitale des Bituriges)
 avariter:avec avidité, avec avarice
 avaritia:cupidité, avarice
 avarus2:avare
@@ -2406,7 +2433,11 @@ avia:aïeule
 aviarium:poulailler, colombier, volière, bocages [où nichent les oiseaux]
 avide:avidement
 aviditas:désir ardent, avidité
+Avidius:Avidius Cassius (empereur romain)
 avidus:désireux, avide
+Avienus:Avienus (poète latin)
+Aviola:Aviola (surnom)
+Aviones:Avions (peuple germain)
 avis:oiseau
 Avitus2:Avitus (surnom)
 avitus:ancestral, paternel
