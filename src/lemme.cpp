@@ -517,8 +517,7 @@ QString Lemme::traduction(QString l)
         return _traduction[l.mid(3,2)];
     else if ((l.size() == 8) && _traduction.keys().contains(l.mid(6,2)))
         return _traduction[l.mid(6,2)];
-    return "Non traduit / Translation not available.";
-
+    return "non traduit / Translation not available.";
 }
 
 /**
