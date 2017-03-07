@@ -12905,6 +12905,9 @@ machinatrix:celle qui machine, machinatrice
 machinor:machiner, ourdir (un complot)
 macies:maigreur
 macilentus:maigre
+macresco:maigrir, sécher, dépérir
+Macrinus:Macrin (empereur romain, autres)
+macritudo:maigreur
 Macro:Macro (nom d'homme)
 mactabilis:mortel
 mactator:meurtrier
@@ -13333,6 +13336,7 @@ medicus3:propre à guérir, qui soigne, magique
 medicus:médecin
 Medi:les Mèdes
 medimnum:médimne, [mesure grecque de capacité]
+mediocriculus:un peu moyen
 mediocris:moyen, passable
 mediocritas:moyenne, infériorité
 mediocriter:modérément, faiblement
@@ -13510,6 +13514,7 @@ mereo:mériter, gagner (merere ou mereri stipendia : toucher la solde militaire)
 mereor:gagner, mériter
 Mererio:Mérérion
 meretricius:de courtisane
+meretricula:prostituée de bas étage
 meretrix:prostituée
 merga:plongeon [oiseau]
 merges:botte, gerbe
@@ -13598,6 +13603,7 @@ mico:s'agiter, briller
 micturio:avoir envie d'uriner
 mictus:miction, action d'uriner
 Midas:Midas
+migratio:migration, déplacement
 migro:émigrer
 Milanion:Milanion (mari d'Atalante)
 Milesii:les Milésiens, les habitants de Milet
@@ -13734,6 +13740,7 @@ mitigo:rendre doux, calmer, apaiser
 mitio:adoucir
 mitis:doux
 mitra:mitre, turban
+mitratus:coiffé d'une mitre
 mitto:envoyer, jeter, lancer ; laisser aller, congédier
 mitulus:moule [coquillage]
 mixtim:en se mélangeant
@@ -14208,6 +14215,7 @@ natio:nation, nationalité
 natis:fesses, croupion [de pigeon]
 nativus:naturel
 nato:nager, flotter
+natrix:hydre, serpent d'eau, natrix (plante)
 Natta:Natta (nom d'h.)
 natu:par la naissance ; [maior, minor natu] aîné, (la) plus jeune
 naturalis:naturel
@@ -14252,6 +14260,7 @@ navalia:chantier de naval, arsenaux
 navalis:naval
 Nava:Nava (fleuve de Germanie)
 nave:avec soin, avec zèle
+navicula:petit bateau, nacelle
 navicularia:métier d'armateur, commerce maritime
 navicularius2:armateur
 navifragus:qui brise les vaisseaux, qui fait faire naufrage, orageux
@@ -14276,6 +14285,7 @@ Neapolitani:les Napolitains
 Neapolitanum:propriété près de Naples
 Neapolitanus:de Naples
 Nearchus:Néarque (amiral d'Alexandre; autres)
+nebris2:nebride, peau de daim (portée dans les fêtes de Bacchus et de Cérès)
 nebula:vapeur
 nebulosus:embrouillardé, brumeux, obscur, nébuleux
 nebulo:vaurien, garnement
@@ -14325,6 +14335,7 @@ Nemeaeus:de Némée
 Nemea:Nemea (fleuve du Péloponnèse)
 ne:même pas (ne ... quidem)
 Nemesis:Nemesis (déesse vengeresse des crimes; femme chantée par Tibulle)
+Nemetes:Némètes (peuple de Germanie)
 Nemetocenna:Nemetocenna (ville des Atrébates)
 nemo:personne, [neutre nihil] rien
 nemoralis:de bois, de forêt
@@ -14362,6 +14373,7 @@ nequius:(comparatif de nequam) mauvais, de mauvaise qualité
 Neratius:Neratius Priscus (jurisconsulte)
 Nereida:Néréide
 Nereides:les Néréides
+Nereis:Néréide, Néréis (fille de Priam; fille de Pyrrhus)
 Nereius:de Nérée, de la mer, marin
 Nereus:Nérée (dieu de la mer)
 Neria:Néria (déesse des Sabins, épouse de Mars)
@@ -14427,7 +14439,11 @@ nidus:nid d'oiseau, nichée, rayon (de bibliothèque)
 Niger2:Niger (surnom romain)
 niger:noir
 Nigidius:Nigidius Figulus [philosophe, ami de Cicéron]
+nigrans:noir, sombre (part. de nigro)
 nigresco:noircir
+Nigrinus:Nigrinus (surnom)
+nigro:être noir, rendre noir
+nigror:le noir, noirceur
 nihil:rien
 nihildum:rien encore, encore rien
 nihilominus:pas moins, néanmoins
@@ -14615,6 +14631,7 @@ nubilus:nuageux, sombre, trouble (esprit), malheureux
 nubo:se marier
 Nuceria:Nuceria (ville de Campanie)
 Nucerini:les habitants de Nuceria
+Nucerinus:de Nucéria
 nucetum:lieu planté de noyers
 nuceus:en bois de noyer
 nucifrangibulum:casse-noix
@@ -14626,6 +14643,7 @@ nuga:(surtout pl. nugae) sottises, bagatelles
 nugatorius:futile, vain, léger, sans valeur, puéril
 nugator:plaisantin, radoteur, niais, débauché
 nugax:auteur de sornettes, niais, farceur
+nugigerulus:colporteur de colifichets
 nugor:dire des balivernes, plaisanter
 nullus:aucun
 Numantia:Numance
