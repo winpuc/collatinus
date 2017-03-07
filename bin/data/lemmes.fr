@@ -8242,13 +8242,17 @@ Fabianus2:Fabianus (nom d'un auteur latin)
 Fabianus:de Fabius
 Fabius2:de Fabius
 Fabius:Fabius
+Fabrateria:Fabrateria (ville du Latium, auj. Falvatera)
 Fabraterni:habitants de Fabrateria
 fabre:artistement
 fabrica:métier d'artisan, action de travailler, oeuvre d'art, atelier
+fabricator:constructeur, ouvrier, artisan
 Fabricianus:relatif à un Fabricius
 Fabricius2:relatif à un Fabricius
 Fabricius:Fabricius
 fabrico:fabriquer
+fabricor:façonner, confectionner, fabriquer
+fabrilis:d'ouvrier, d'artisan, de forge
 fabula:mythe, fable, pièce (de théâtre), histoire
 fabulator:conteur, narrateur, fabuliste
 Fabulla:Fabulla (nom de femme).
@@ -8289,6 +8293,7 @@ faecatus:de marc [de raisin]
 faecosus:bourbeux
 faecula:tartre
 faeneratio:usure (prêt à -)
+faenebris:usuraire
 faenerato:avec usure, à usure
 faenerator:usurier
 faenero:prêter à intérêt, faire l'usure, rendre avec intérêt
@@ -8362,6 +8367,7 @@ farinarius:de farine, à farine
 farior:dire
 farrago:dragée [nourriture des bestiaux], compilation, fatras, macédoine, bagatelle
 farratus:de blé, de farine; de bouillie.
+farrearius:qui concerne le blé
 farreum:gâteau de froment
 farreus:de blé, de froment
 fartor:engraisseur de volailles [surtout des oies]
@@ -8421,9 +8427,11 @@ Favonius:Favonius
 Favonus:Favonus
 favorabilis:aimé, populaire
 favor:faveur, sympathie
+favus:gâteau de miel, hexagone (parquet, pavement)
 faxim:j'aurais pris soin que
 faxo:je ferai en sorte que
 fax:torche
+febricito:être pris de fièvre
 febricula:petite fièvre
 febriculosus:fiévreux, qui donne la fièvre
 febris:fièvre
@@ -8540,9 +8548,12 @@ fetialis:fécial
 fetura:gestation, reproduction, petits [des animaux], produits, pousses [de la vigne] 
 fetus2:plein de, qui vient de mettre bas
 fetus:enfantement, couche, portée (des animaux), petits
+fibra:fibre, lobes du foie, entrailles, sensibilité
 fibula:fibule
 fibulo:agrafer, attacher, assembler, lier
 ficarius:de figues, qui recherche les figues, subst. marchand de figues
+ficedula:bec-figue
+Ficedulenses:les Bec-figuiers (nom plaisant donné à certains soldats)
 ficte:d'une manière artificieuse, en apparence
 fictile:vase en terre, vaisselle de terre
 fictilis:fait d'argile, de terre cuite (fictile, is, n. : le vase en terre, vaisselle de terre)
@@ -8820,6 +8831,8 @@ forte:par hasard
 fortis:fort, vigoureux, courageux,
 fortiter:courageusement
 fortitudo:courage
+fortuito:par hasard, fortuitement
+fortuitus:dû au hasard, fortuit
 Fortuna2:la Fortune [déesse]
 fortuna:fortune, chance
 fortunate:d'une manière heureuse
@@ -9099,6 +9112,7 @@ Gaius:Gaius, Caius
 Galaesus:Galaesus (fleuve près de Tarente, auj. Galaso)
 Galatae:Galates [habitants de la Galatie appelés aussi Gallograeci]
 Galatea:Galatée [une des Néréides, nom de bergère]
+Galatia:Galatie (province de l'Asie Mineure; ville de Campanie)
 Galba:Galba
 Galbaneus:de Galbanum
 galbeus:brassard
@@ -9248,6 +9262,8 @@ genu:genou
 genuinus:de naissance, naturel, inné
 genus:race, origine, espèce
 Genusus:Genusus (fleuve de Macédoine)
+geometres:géomètre
+geometria:arpentage, géométrie
 geometricus:géométrique
 Gergovia:Gergovie [ville principale des Arvernes]
 germana:soeur [germaine]
@@ -9384,6 +9400,7 @@ gradarius:qui va posément
 gradatim:par degrés
 gradatus:disposé en degrés
 gradior:marcher, s'avancer, parcourir (viam, une route)
+Gradivus:Gradivus (un nom de Mars)
 gradus:pas, degré
 Graecanicus:à la manière des Grecs
 graece:en grec
@@ -9515,6 +9532,7 @@ gutus:vase à col étroit, burette
 Gyara:Gyara (une des Cyclades)
 Gyaros:Gyaros (une des Cyclades)
 Gyas:Gyas [un des Géants, un compagnon d'Énée]
+Gygaeus:de Gygès
 Gyges:Gygès, roi de Lydie
 Gylippus:Gylippe (nom d'homme)
 gymnasiarchus:gymnasiarque, chef du gymnase
@@ -9547,6 +9565,9 @@ habitus:manière d'être, apparence
 habrotonus:aurone (plante médicinale).
 hac:par ici
 hactenus:seulement jusque là
+Hadria:Hadria (villes du Picénum, de Vénétie); la mer Adriatique
+Hadriacus:de l'Adriatique
+Hadrianus2:Adrien (empereur romain)
 Hadrianus2:Adrien, empereur romain
 Hadriaticus:de la mer Adriatique
 Hadrumetini:Adrumétins (habitants d'Adrumète)
@@ -10045,6 +10066,7 @@ Hylaeus:d'Hylée (un des chiens d'Actéon)
 Hylas:Hylas (compagnon d'Hercule)
 Hylax:Hylax (l'Aboyeur, nom pour un chien)
 Hyllus:Hyllus (fils d'Hercule, fleuve d'Ionie)
+Hymen2:Hymen (dieu du mariage), chant d'hyménée
 hymenaeus2:chant d'hyménée, épithalame, mariage, accouplement [des animaux]
 Hymenaeus:chant nuptial
 hymen:hymen (membrane)
