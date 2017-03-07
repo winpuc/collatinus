@@ -5901,7 +5901,7 @@ Dacicus:des Daces
 Daci:Dace, Daces [habitants de la Dacie]
 Dacus:des Daces
 Daedala:Daedala (partie de l'Inde, en deçà du Gange)
-Daedalius:de Dédale
+Daedaleus:de Dédale, (-eae insulae, îles dédaléennes, sur la côte de Carie)
 daedalus2:industrieux, ingénieux
 Daedalus:Dédale
 Dahae:les Dahes (peuple scythe)
@@ -6008,6 +6008,7 @@ Decetia:Décétie [ville de la Gaule, chez les Éduens, auj. Decize]
 decet:il convient, il est convenable que
 Decianus:Decianus (nom d'homme)
 Decibalus:Décibale [roi des Daces]
+Decidius:Décidius Saxa (Celtibérien, lieutenant de César)
 decido2:couper, trancher, régler
 decido:tomber
 deciduus:qui tombe
@@ -6121,6 +6122,7 @@ definite:d'une manière déterminée, précisément, distinctement
 definitio:délimitation, définition
 definitus:précis, défini, déterminé
 defio:s'affaiblir, manquer, faire défaut
+deflagratio:combustion, incendie
 deflagro:brûler, périr, être détruit, s'éteindre
 deflammo:éteindre
 deflecto:courber, fléchir, détourner
@@ -6194,6 +6196,7 @@ deliberator:celui qui se consulte
 deliberatus:tranché, décidé
 delibero:délibérer, discuter
 delibo:enlever
+delibro:écorcer
 delibuo:oindre
 delicate:délicatement, voluptueusement, doucement, délicatement, nonchalamment, mollement
 delicatus2:favori, mignon
@@ -6396,6 +6399,7 @@ derogo:abroger, déroger, ôter, retrancher
 deruo:précipiter, faire tomber; tomber, s'abattre
 derupta:precipices
 deruptus:détaché par rupture; escarpé, à pic
+desaevio:sévir violemment; cesser de sévir, s'apaiser
 descendo:descendre (- in certamen : en venir au combat)
 descensio:descente, enfoncement
 descensus2:descente
@@ -6547,6 +6551,8 @@ dexter:droit ; dextra = la main droite
 dextere:adroitement
 dextra:main droite
 dextrorsum:à droite [avec mouv.], du côté droit, vers la droite
+diabathrarius:cordonnier [pour les femmes, et les hommes coquets]
+Diablintes:Diablintes (Aulerques des bords de la Sarthe)
 diabolus:diable, esprit de mensonge
 diadema:diadème, bandeau royal
 Diadematus2:Diadematus (surnom)
@@ -6711,6 +6717,7 @@ dio:(sub dio, archaïsme) en plein air
 diota:amphore (à deux anses)
 Dioxippus:Dioxippe (athlète de la suite d'Alexandre)
 Diphilus:Diphile [poète comique d'Athènes, autres du même nom]
+diploma:pièce officielle (lettres de grâce, sauf-conduit, permis officiel)
 dipundius:somme de deux as
 dirae2:mauvais présages, exécrations, imprécations
 Dirae:les Furies
@@ -6747,6 +6754,7 @@ discido:séparer (en coupant)
 discindo:déchirer, fendre, couper
 discingo:ôter le ceinturon, désarmer, dépouiller
 disciplina:enseignement, discipline
+disciplinosus:discipliné, docile
 discipula:élève
 discipulus:élève
 discludo:enfermer à part, séparer
@@ -7031,6 +7039,7 @@ dormito:s'endormir, sommeiller, être inactif, se laisser aller
 Dorotheus:Dorothée [peintre célèbre]
 dorsum:dos
 Dorus2:Dorus2 (fils d'Hellen)
+Doryclus:Doryclus (nom d'homme)
 Dorylaus:Dorylaus (nom d'homme)
 Dorylenses:habitants de Dorylée
 Doryphoros:doryphore [soldat armé d'une lance]
@@ -7121,8 +7130,12 @@ duodeviginti:dix-huit
 duoetvicensimani: soldats de la 22e légion
 duoetvicesimus:vingt-deuxième
 duovicenus:chacun dix-huit
+dupla:le double du prix
 duplex:double
+dupliciter:doublement, de deux manières
 duplico:doubler
+duplum:le double, deux fois autant
+dupondius:somme de deux as, petite somme
 durabilis:durable
 duracinus:qui a la peau dure
 duramen:durcissement
@@ -7175,6 +7188,7 @@ Ecbatana:Ecbatane [capitale de la Médie]
 ecbibo:boire
 eccere:voilà, c'est cela
 ecce:voici, voici que
+ecclesia:assemblée [du peuple, des chrétiens];  l'Église, église (édifice)
 eccum:= ecce = voici
 ecdicus:avocat [d'une cité]
 ecfero:emporter, débarquer, emporter un mort, ensevelir, produire, donner
@@ -7321,6 +7335,7 @@ ejicio:jeter hors de
 ejulatio:lamentations, plaintes
 ejulatus:lamentations, plaintes
 ejulo:pousser des cris de douleur
+ejuratio:désistement, démission, renonciation
 ejuro:protester [par serment contre], refuser [en jurant], résigner [une charge], abdiquer, renoncer, abandonner
 ejusdemmodi:du même type
 ejusmodi:de cette manière
@@ -7538,6 +7553,8 @@ en:voici
 eo2:à ce point (souvent suivi de ut = que)
 eo:aller
 eodem:au même endroit, au même point
+Eous:d'Orient, oriental
+Eous2:l'étoile du matin, habitant de l'Orient, Eous (un des chevaux du Soleil)
 Eoi:pl. de Eous
 Epaminondas:Epaminondas (célèbre général thébain)
 epaphaeresis:action de tondre
@@ -7572,6 +7589,7 @@ Epidaurum:Épidaure [ville de l'Argolide, où Esculape était honoré, ville de 
 Epidaurus:Epidaure
 Epidicus:Epidicus (nom d'homme; pièce de Plaute)
 epidipnis:dessert
+epidromus:corde pour serrer un filet, corde de hamac, voile de la poupe
 Epigoni:Épigones [descendants des sept contre Thèbes; tragédie d'Eschylle)
 epigramma:épigramme
 epigrus:cheville
@@ -7645,6 +7663,7 @@ erifuga:esclave fugitif
 erigo:dresser, élever (erectus, a, um : élevé, dressé, droit, fier, attentif)
 Erigone:Érigone [fille d'Icare, fille d'Égisthe et de Clytemnestre]
 Erigoneius:d'Érigone
+erilis:du maître
 Erillus:Erillus (philosophe carthaginois)
 Erinys:Erinys (une des Furies)
 Eriphyle:Ériphyle [épouse d'Amphiaraüs]
@@ -7686,7 +7705,9 @@ Erymanthius:de l'Érymanthe
 Erymanthus:Érymanthe (montagne d'Arcadie, fleuve de Perse, rivière d'Élide)
 Erythea:Erythea (île voisine de l'Hispanie, où habitait Géryon)
 erythinus:rouget [poisson de mer]
+Erythrae:Érythres (villes de Béotie, d'Ionie, port de Locride)
 Erythrus:Erithea
+Erythraeus2:d'Érythres
 Eryx:mont Eryx
 esca:nourriture
 escarius:qui sert aux repas (escaria, orum, n. : ce qui est bon à manger)
@@ -7725,6 +7746,8 @@ Etrusci:les Étrusques
 Etruscus:étrusque
 etsi:même si
 eu2:bien ! très bien ! bravo ! à merveille !
+Euandrius:d'Évandre
+Euanthes:Euanthes (écrivain grec)
 Euboea:Eubée (île de la mer Egée)
 Euboicus:de l'Eubée
 Eubulidas:Eubulidas (statuaire, maître de Démosthène)
@@ -7735,6 +7758,7 @@ Eudaemon:heureux
 Eudemus:Eudème [de Chypre] (ami d'Aristote, nom d'un médecin grec)
 Eudoses:Eudoses (peuple de Germanie)
 Eudoxus:Eudoxe (de Cnide, astronome célèbre, autres)
+Euergetae:Euergètes (peuple scythe)
 eugae:bien, bravo!
 Euganeus:des Euganéens
 eugeneus:bien né, de bonne race
@@ -7754,6 +7778,7 @@ Eumolpus:Eumolpe
 Eunones:Eunones (roi des Adorses).
 eunuchus:eunuque
 Eunus:Eunus (chef des esclaves révoltés en Sicile)
+Euodus:Euodus (nom de femme, nom d'homme)
 Euphorus:Euphorus
 Euphranor:Euphranor (statuaire, architecte, général de Persée)
 Euphrates:Euphrate
@@ -7820,6 +7845,7 @@ evoco:attirer, provoquer
 evolo:sortir en toute hâte
 evolvo:emporter en roulant
 evomo:rejetter en vomissant
+evulgo:divulguer, publier
 exacerbo:exacerber, irriter
 exactio:expulsion, bannissement, levée, recouvrement, perception, achèvement, perfection
 exactor:celui qui chasse, qui expulse ; celui qui exige, créancier ; le collecteur d'impôts, percepteur ; le surveillant, contrôleur- ; qui a la conduite d'un ouvrage, directeur de travaux
@@ -7887,6 +7913,7 @@ excipio:retirer de, excepter, stipuler expressément ; accueillir, recevoir (une
 excisio:entaille, coupure, ruine, destruction
 excitatus:violent, intense ; [rhét.] animé, vif
 excito:appeler hors de, faire sortir ; éveiller, réveiller ; faire lever, faire quitter une place, chasser ; faire paraître, produire ; élever, bâtir, construire, ériger, faire pousser ; relever, remettre sur pied ; allumer (le feu) ; (au fig.) allumer, enflammer, exciter, ranimer; provoquer, soulever
+excitus:tourmenté
 exclamatio:cri
 exclamo:s'exclamer
 excludo:ne pas laisser entrer, chasser
@@ -7973,6 +8000,7 @@ exitialis:mortel, qui donne la mort
 exitiosus:funeste, pernicieux, fatal
 exitium:fin, mort
 exitus:sortie, issue, résultat, aboutissement, mort, fin, conclusion
+exlecebra:charme, séduction
 exlex:qui n'est pas soumis à la loi, débridé
 exodium:fin, terme, exode
 exolesco:se faner, dépérir
@@ -8069,6 +8097,9 @@ expostulo:réclamer
 expresse:clairement, distinctement, d'une manière expressive
 expressus:saillant, en relief
 exprimo:faire sortir en pressant, représenter, dessiner avec netteté
+exprobratio:reproche, blâme
+exprobrator:celui ou celle qui fait des reproches
+exprobratrix:celui ou celle qui fait des reproches
 exprobro:blâmer, reprocher
 expromo:tirer (une chose d'un endroit où elle est serrée), tirer dehors, faire sortir, faire paraître, produire, montrer; faire entendre ; (au fig.) montrer, manifester, déployer ; proférer, exposer, raconter, dire
 expudoratus:éhonté, effronté
@@ -8079,6 +8110,7 @@ expugno:prendre par la force, vaincre
 expulsio:expulsion, bannissement, renvoi
 expulsor:celui qui chasse
 expungo:effacer, verifier, terminer
+expurgatio:justification, excuse
 expurgo:nettoyer, émonder, retrancher, enlever, corriger, purger, disculper, justifier
 exputesco:sentir très mauvais
 exquiro:chercher à découvrir, rechercher, demander, s'informer
@@ -8095,7 +8127,9 @@ exscribo:transcrire
 exsculpo:arracher, enlever [en creusant], ôter, ciseler, sculpter, graver, inciser
 exseco:retrancher [en coupant], châtrer, couper, rogner, retrancher, déduire
 exsecrabilis:exécrable, abominable
+exsecrandus:exécrable,
 exsecratio:promesse solennelle, malédiction, exécration
+exsecratus2:maudit, détesté, exécré
 exsecror:maudire, lancer des imprécations
 exsectio:amputation
 exsecutio:achèvement, accomplissement, exécution, administration, exposition, développement
