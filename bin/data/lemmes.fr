@@ -14758,6 +14758,7 @@ obicio:jeter devant, placer devant
 obirascor:s'irriter contre, s'irriter
 obiter:chemin faisant, en passant, en passant, sans insister, à l'instant, aussitôt, tout de suite
 obitus:mort
+obitus2:étant mort (part. de obeo)
 objaceo:être couché devant, être devant, être auprès
 objecta:charges, accusations
 objectatio:reproche, accusation
@@ -14873,6 +14874,7 @@ obsono:acheter des provisions
 obsonor:s'approvisionner
 obsorbeo:avaler, engloutir
 obstantia2:obstacle, empêchement
+obstetrix:accoucheuse, sage-femme
 obstinate:avec constance, obstinément
 obstinatio:constance, persévérance, fermeté
 obstinatus:obstiné
@@ -14984,6 +14986,7 @@ oclopeta:oclopeta (animal comestible inconnu)
 Ocnus:Ocnus [fondateur de Mantoue; personnage allégorique, pris pour type de l'indolence)
 Ocrea2:Ocrea (surnom)
 ocrea:jambière
+ocreatus:qui porte des guêtres de cuir
 Ocresia:Ocresia
 Ocricolum:Ocricolum (ville d'Ombrie)
 Ocriculanus:d'Ocriculum, les habitants d'Ocriculum
@@ -15031,7 +15034,9 @@ odorus:qui sent bon ou mauvais, qui a du flair
 Odrusae:Odruses (peuple de Thrace)
 Odrysius2:Odruse, Thrace
 Odyssea:l'Odyssée [poème d'Homère], poème latin de Livius Andronicus
-Oebalia:Tarente [colonie de Lacédémone]
+Oeagrius:d'Oeagre, de Thrace; d'Orphée
+Oeagrus:Oeagre (roi de Thrace, père d'Orphée)
+Oebalia:Oebalia (Tarente, colonie de Lacédémone)
 Oebalidae:les Oebalides (Castor et Pollux)
 Oebalides:Lacédémonien (Castor et Pollux)
 Oebalius:de Laconie, de Sparte, des Sabins
@@ -15087,6 +15092,7 @@ oggero:apporter en quantité
 Ogulnia:Ogulnia (nom d'homme ou de femme)
 Ogygius:d'Ogygès, Ogyges
 oh:oh!
+ohe:hé ! (pour appeler ou marquer l'impatience)
 Oileus:Oïlée [roi des Locriens, père d'Ajax], Ajax
 Oiliades:le fils d'Oïlée [Ajax]
 oleagineus:d'olivier, semblable à l'olive, couleur d'olive
@@ -15233,6 +15239,7 @@ oppressio:pression, destruction, étouffement, oppression
 oppressus:pression, action de peser sur
 opprimo:opprimer, tuer
 opprobratio:reproche, réprimande
+opprobrium:opprobre, honte, déshonneur; injure
 oppugnatio:attaque, assaut, siège
 oppugnator:attaquant, assiégeant, assaillant
 oppugno:assiéger, attaquer (une ville)
@@ -15461,6 +15468,7 @@ pacta:fiancée
 pactio:convention, accord, traité
 Pactolus:le Pactole [fleuve de Lydie, qui roule des sables d'or]
 pactum:pacte, convention, manière
+Pactumeius:Pactumeius (nom d'h.)
 pactus:convenu, arrêté, stipulé
 Pacuvius:Pacuvius
 Padua:Padua (une des bouches du Pô)
@@ -15502,6 +15510,7 @@ Palaetyros:Palaetyros (ville de Phénicie, près de Tyr)
 Palamedes:Palamède (inventeur grec)
 palam:ouvertement, publiquement
 pala:pelle, chaton (de bague)
+Palatinus:du mont Palatin, du palais des Césars, [subst.] officier du palais, chambellan
 palatium2:palais
 Palatium:mont Palatin, palais
 palatum:palais (voûte de la cavité buccale)
@@ -15646,6 +15655,7 @@ papyrus:papyrus
 par2:couple, paire.
 par3:compagnon, camarade, époux
 parabilis:qu'on se procure facilement, à bon marché
+parabole:comparaison, similitude, parabole (rhét.), proverbe
 Parada2:Parada (ville de la Zeugitane).
 paradoxon:paradoxe
 Paraetacene:la Parétacène [contrée de la Perse]
@@ -15795,17 +15805,27 @@ Patina2:Patina2 (nom d'homme)
 patina:casserole
 patinarius:de plat creux (struices - : monceaux de plats, - piscis : poisson à la sauce)
 patior:supporter, souffrir, être victime de, être agressé par
+Patrae:Patrae (ville d'Achaïe, auj. Patras)
+patrator:exécuteur, auteur
 patratus:(tj. dans pater patratus) chef des féciaux
 patria:patrie
+patrice:comme un maître de maison
+patricii:patriciens 
 patricius:patricien, noble
+patricus:du père, paternel; [- casus] le génitif
 patrimonium:patrimoine, bien de famille
+patrimus:qui a encore son père
 patrius:du père, héréditaire
 patro:accomplir, exécuter
+Patrobius:Patrobius (nom d'homme)
+patrocinor:défendre, protéger
+Patroclus:Patrocle (compagnon d'Achille)
 patrocinium:patronage, protection
+Patron:Patron (philosophe épicurien ami de Cicéron; compagnon d'Évandre)
 patrona:protectrice
 patronus:avocat, défenseur, patron
 patruelis:en rapport avec le frère du père
-patruus2:d'oncle paternel, sévère, grondeur
+patruelis2:cousin germain [du côté du père] ; cousine germaine
 patruus:oncle
 Patulcius:surnom de Janus
 patulus:large
@@ -15853,6 +15873,7 @@ pauxillum:une (très) petite quantité
 pauxillus:très petit
 pavefacio:effrayer
 paveo:être troublé, craindre, redouter
+pavefactus:effrayé, épouvanté
 pavesco:s'effrayer [au moindre bruit], craindre, redouter
 pavicula:batte (instrument pour aplanir)
 pavidus:effrayé, épouvanté
@@ -15918,6 +15939,7 @@ Pegasis2:Naïade, (pl.) les Muses
 Pegasus:(pl.) pégases (espèce de chevaux ailés), Pégase (messager rapide, constellation, nom d'h.)
 Pege:Pégé (source de Bithynie, près du mont Arganthus, ville d'Afrique)
 pegma:estrade, machine de théâtre
+pejero:parjurer
 pejus:(de façon) pire
 pelagius:maritime
 Pelagon:Pelagon (nom d'homme)
@@ -16009,6 +16031,7 @@ penus3:provisions de bouche, comestibles, garde-manger, sanctuaire du temple de 
 penus:provisions de bouche
 Peparethos:Peparethos (petite île de la mer Égée)
 peplum:peplum (vêtement de Pallas Athéna)
+peplus:péplum (vêtement des femmes grecques)
 pera:besace
 peracerbus:très aigre
 peracesco:s'aigrir entièrement, s'irriter
@@ -16018,6 +16041,7 @@ peradulescens:tout adolescent, tout jeune homme
 peraeque:exactement de même
 peragito:remuer en tout sens, exciter, harceler, achever
 perago:accomplir, achever
+peragratio:parcours
 peragro:parcourir
 peramanter:très affectueusement
 perambulo:se promener
@@ -16186,6 +16210,7 @@ perhonorificus:très honorable, plein d'égards pour qqn
 perhorresco:frissonner [de tout le corps], avoir en horreur, abhorrer, redouter
 Periander:Périandre
 Peribomius:Peribomius (nom d'homme)
+Pericles:Périclès (général et orateur Athénien)
 periclitabundus:qui essaie (- sui : qui essaie ses forces)
 periclitor:faire un essai, subir une épreuve, être en danger
 periculose:dangereusement, périlleusement
@@ -16227,6 +16252,7 @@ perjuro:parjurer, trahir
 perjurus:parjure, menteur
 perlabor:glisser à travers, glisser jusqu'à, traverser
 perlateo:rester caché constamment
+perlecebra:amorce, appât, séduction
 perlego:lire entièrement
 perlepide:très joliment
 perlevis:très leger
@@ -16510,11 +16536,16 @@ petitus2:action de gagner, demande
 peto:demander, attaquer, rechercher, briguer
 petorritum:chariot suspendu (origine gauloise)
 Petosiris:Petosiris (astrologue égyptien)
+Petraeus2:de l'Arabie Pétrée
+petra:roche, roc, rocher
 Petreianus:de Pétréius
 Petreius:Petreius (lieutenant de Pompée)
 Petrini:habitants de Pétra [en Sicile]
 Petrinum:maison de campagne de Pétrinum (bourgade près de Sinuesse)
 Petrocorii:Petrocores (peuple d'Aquitaine dans le Périgord)
+petro2:bélier, paysan lourdaud
+Petronia:Petronia (première femme de Vitellius; ruisseau affluent du Tibre)
+Petronius3:Petronius (famille)
 petulans:effronté
 petulanter:impudemment, effrontément
 petulantia:insolence, impudence, effronterie
@@ -16552,6 +16583,8 @@ Phanaeus:de Phanées, phanéen
 phantasia:vision, imagination, rêve, songe, idée, pensée, conception
 phantasma:être imaginaire, fantôme, spectre, idée
 Pharasmanes:Pharasmane (roi d'Ibérie, sous Tibère, et père de Rhadamiste)
+pharetra:carquois, cadran solaire (en forme de carquois)
+pharetratus:qui porte un carquois
 Pharitae:habitants de Pharos
 Pharius:de Pharos
 pharmacopola:pharmacien, apothicaire, droguiste
@@ -16575,6 +16608,7 @@ Phemius:Phemius (musicien à Ithaque)
 Pheneum:habitants de Phénée
 Pheneus:Phénée (ville d'Arcadie).
 Pheraeus:de Phères, de Thessalie, d'Admète, subst. habitant de Phères
+Pherecleus:de Phéréclus (charpentier qui construisit le vaisseau de Pâris)
 Pheretiades:fils de Phérès (Admète)
 phiala:coupe
 Phiale:Phiale (une des nymphes de Diane)
@@ -16677,6 +16711,7 @@ Phthia:Phthie (ville de Thessalie, patrie d'Achille)
 phthisis:phtisie (maladie)
 Phthius:de Phthie
 phylaca:prison, geôle
+Phylacides:Philacide (descendant de Phylacus)
 Phylarchus2:Phylarque (nom d'homme)
 Phylleis:de Phyllos
 Phylleius:de Phyllos
@@ -16724,6 +16759,7 @@ pigneror:prendre en gage, s'assurer en nantissement
 pignus:gage
 pigre:paresseusement, lentement
 pigritia:paresse
+pigror:paresser, (avec inf.) être lent à
 pila:balle
 pilanus:soldat armé du pilum, triaire
 Pilatus:Pilate, Ponce-Pilate
@@ -16796,6 +16832,8 @@ piscis:poisson
 piscor:pêcher
 piscosus:poissonneux, semblable à un poisson
 pisculentus:poissonneux, subst. médicament préparé avec des poissons
+Pisidae:habitants de la Pisidie
+Pisidia:Pisidie (contrée de l'Asie Mineure)
 Pisistratus:Pisistrate (fils d'Hipparque; chef Béotien)
 piso4:battre, frapper, piler, broyer
 Pisonianus:de Pison
@@ -16960,6 +16998,8 @@ pluvius:pluvieux, qui fait pleuvoir
 Pnytagoras:Pnytagoras (roi de Chypre)
 pocillum:petite coupe, petite tasse
 poculum:coupe
+podagra:goutte [aux pieds], podagre
+podagricus:goutteux
 Podalirius:Podalirius (fils d'Esculape, compagnon d'Énée)
 podex:derrière, anus
 podium:podium (mur autour de l'arène de l'amphithéâtre), console, tertre
@@ -17025,6 +17065,7 @@ Polybius:Polybius, Polybe
 Polyboetes:Polyboetes (nom d'homme)
 Polybus:Polybe (roi de Corinthe; un prétendant de Pénélope)
 Polyclitus:Polyclète
+Polydamas:Polydamas (prince troyen; athlète thessalien; lieutenant d'Alexandre)
 Polydorus:Polydore (dernier fils de Priam)
 Polyhymnia:Polymnie (muse des rythmes multiples)
 Polymestor:Polymnestor (roi de Thrace)
@@ -17032,6 +17073,7 @@ polymitus:polymite (tissu damassé; tapisseries d'Égypte)
 Polypemon:Polypemon (père de Procuste)
 Polyphemus:Polyphème (Cyclope; un des Argonautes)
 Polyplusius:Polyplusius (=très riche)
+polypus:polype, homme rapace
 Polytimetus:Polytimetus (rivière de la Sogdiane)
 Polyxena:Polyxène (fille de Priam)
 Polyxenius:de Polyxène
@@ -17046,11 +17088,14 @@ pomifer:qui porte des fruits
 pomosus:abondant en fruits
 pompa:procession, cortège, suite
 Pompeiani:les habitants de Pompéi
+Pompeianum:maison de Pompéi (appartenant à Cicéron)
+Pompeianus:pompéien (de Pompéi, de Pompée, du parti de Pompée)
 Pompeiopolis:Pompeiopolis (ville de Cilicie)
 Pompeius2:Trogue Pompée (historien)
 Pompeius:Pompée
 Pompilius2:de Pompilius, des Pompilius, de la famille Pompilia
 Pompilius:Pompilius (famille)
+pompilus:pompile (ou pilote, poisson)
 Pomponianus:Pomponianus
 Pomponia:Pomponia (mère de Scipion l'Africain)
 Pomponius:Pomponius
@@ -17126,6 +17171,7 @@ porrina:planche de poireaux
 porro:en avant, plus loin, au loin, plus tard, en outre
 porrum:poireau
 porrus:poireau
+Porsena:Porsena (roi de Clusium)
 porta:porte (d'une ville)
 portatio:port, transport
 portendo:présager, prédire
@@ -17479,6 +17525,7 @@ praestantia:supériorité
 praestatio:acquittement, paiement, garantie
 praesterno:étendre devant, joncher
 praestes:président, chef, défenseur, gardien, protecteur
+praestigiae:fantasmagories, illusions, prestiges, jongleries, tours de passe-passe, artifices, détours
 praestigiator:escamoteur, charlatan, imposteur
 praestigiatrix:trompeuse
 praestino:acheter
@@ -17689,6 +17736,7 @@ proclive2:en pente, en descendant, très vite
 proclive:pente
 proclivis:qui penche, incliné
 proclivitas:pente, descente, tendance, disposition, penchant naturel
+Procne:Procné (changée en hirondelle; île voisine de Rhodes)
 procoeton:antichambre
 proconsularis:proconsulaire
 proconsulatus:proconsulat
@@ -17769,6 +17817,7 @@ profor:présenter, relater, exposer, dire
 profugio:fuir, abandonner ; s'échapper
 profugus2:exilé, proscrit
 profugus:fugitif
+profundo:répandre, épancher, verser
 profundum:profondeur (de la mer)
 profundus:profond; dense, épais; élevé
 profuse:en se répandant, sans ordre, pêle-mêle, abondamment, sans retenue
@@ -17804,6 +17853,7 @@ proletarius:du bas peuple, trivial
 prolicio:attirer
 prolixe:largement, abondamment, avec empressement
 prolixus:allongé
+prologus:prologue [d'une pièce de théâtre]; acteur qui dit le prologue
 proloquor:parler haut, exposer à haute voix, prédire
 prolubium:désir, caprice
 proludo:s'exercer par avance, s'essayer, préluder
@@ -17852,6 +17902,9 @@ pronuntio:déclarer, déclamer, promettre
 pronurus:femme du petit-fils
 pronus:penché, en pente, incliné, enclin (prona, orum, n. : pentes)
 prooemium:prélude, préambule, début
+propagatio:provignement, propagation, agrandissement, prolongation
+propago2:propager, étendre, faire durer
+propago:lignée, descendance
 propalam:publiquement
 propatulo:in propatulo, en public, au vu et au su de tout le monde
 propatulum:extérieur, lieu non couvert, air libre
@@ -17895,15 +17948,18 @@ propraetor:propréteur
 proprie:en particulier, proprement, spécialement, personnellement, en termes propres
 proprietas:propriété, caractère propre, droit de propriété
 propritim:proprement (postclass.)
+proprium:propriété
 proprius:propre, particulier
 propter:à cause de, à côté
 propterea:à cause de cela (- quod : parce que)
 propugnaculum:ouvrage de défense, retranchement, rempart, fortification
 propugnatio:défense
 propugnator:défenseur, combattant; le protecteur
+propudium:obscénité, dévergondage, infamie
 propugno:combatre en avant, protéger, défendre
 propulsatio:action de repousser
 propulso:repousser
+propylaeum:portail, entrée; les Propylées
 proquam:selon que, à proportion que, dans la mesure où
 prora:proue
 prorepo:s'avancer en rampant, ramper
@@ -17926,6 +17982,7 @@ proseco:couper, amputer, fendre, sacrifier
 prosectum:entrailles [issues d'un sacrifice]
 Proselenos2:Proselenos (nom de femme)
 prosequor:suivre, poursuivre, continuer, conduire en cortège
+Proserpina:Proserpine
 proserpo:ramper
 proseucha:synagogue
 prosilio:sauter, jaillir
@@ -18203,6 +18260,9 @@ putillus:petit
 puto:élaguer, émonder, apurer ; supputer ; estimer, penser, croire ; supposer
 putor:puanteur, mauvaise odeur
 putrefacio:pourrir
+putrefio:se pourrir, se gâter, se corrompre, se dissoudre
+putresco:se gâter, se corrompre, se putréfier, pourrir
+putridus:pourri; gâté, carié; flétri
 putris:pourri, vermoulu
 pycta:pugiliste
 pygargus:pygargue (sorte d'aigle, espèce de gazelle)
@@ -18219,6 +18279,8 @@ pyramis:pyramide
 Pyramus:Pyrame (fleuve de Cilicie)
 Pyrenaeus:Les Pyrénnées (souvent au pluriel)
 Pyrgi:Pyrgi (ville d'Étrurie)
+Pyrene:Pyrène (une des 50 filles de Danaüs; fille de Bébryx); montagne des Pyrénées
+pyrethron:pyrèthre (plante)
 Pyrgopolinices:Pyrgopolinice
 Pyrgus2:Pyrgus (ville forte de l'Élide)
 pyropus:pyrope (alliage de cuivre et d'or)
