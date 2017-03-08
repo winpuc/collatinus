@@ -18304,17 +18304,31 @@ pyxis:boîte, petite boîte
 Q:Quintus
 quacumque:par n'importe quel endroit par où, par quelque endroit que, de quelque côté que, par n'importe quel moyen
 Quadi:les Quades (peuplade de Moravie)
+quadra:carré, socle [de colonne], plinthe, quartier
+quadragenarius:qui contient quarante, quadragénaire
 quadragenus:(pl.) quarante chacun, chaque fois quarante
+quadragesima:la quarantième partie, impôt du quarantième, carême (s.-ent. dies)
 quadragesimus:quarantième
 quadragiens:quarante fois
 quadraginta:quarante
 quadrans:0,25 as (monnaie)
+quadrantal:cube, quadrantal (= amphora = 8 conges)
+quadrantarius:d'un quart, du quart (d'un as)
+Quadratilla:Quadrantilla (nom de femme)
+quadratum:un carré; quadrat (astron.)
 Quadratus2:Quadratus
 quadratus:carré, équarri
+quadridens:qui a quatre dents (quatre pointes)
 quadriduum:espace de 4 jours
 quadriennium:espace de quatre ans
 quadrifariam:en quatre parts
+quadrifidus:fendu en quatre, partagé en quatre
 quadriga:(plutôt au pl.) quadrige, attelage à 4 chevaux
+quadrigarius2:cocher de quadrige
+Quadrigarius3:Q. Claudius Quadrigarius (historien latin)
+quadriiugis:de quadrige, attelé de quatre chevaux.
+quadrilibris:de quatre livres
+quadrimulus:d'à peine quatre ans
 quadrimus:de quatre ans
 quadringentiens:quatre cents fois
 quadringenties:quatre cent fois
@@ -18322,8 +18336,16 @@ quadringenti:quatre cents
 quadriremis:quadrirème
 quadrivium:carrefour
 quadrum:carré, quartier
+quadrini:chacun quatre, chaque fois quatre
+quadripertitus:partagé en quatre
+quadro:équarrir, disposer en carré, cadrer
+quadrupedans:qui va sur quatre pieds, qui galope
 quadrupedo:à quatre pattes
 quadrupedus:qui galope
+quadrupes:quadrupède
+quadruplator:quadruplateur (délateur qui recevait le quart des biens de l'accusé)
+quadruplico:quadrupler
+quadruplum:le quadruple
 quaerito:chercher longuement
 quaero:chercher, demander
 quaesitio:recherche, question, torture
