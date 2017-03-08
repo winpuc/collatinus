@@ -964,6 +964,10 @@ des:201-212:0:$ens
 des:213-224:0:ēns;ēns;ēns;ēntĭs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ēntĭŭm;ēntĭbŭs;ēntĭbŭs
 ! gérondif et supin
 des:261-264:0:ēndŭm;ēndī;ēndō;ēndō
+! adjectif verbal
+des+:339-350:0:end$lupus
+des+:351-362:0:end$uita
+des+:363-374:0:end$templum
 
 modele:patior
 pere:sequor
