@@ -18685,11 +18685,15 @@ recino:sonner de nouveau, résonner avec insistance, faire retentir en retour, r
 reciperator:celui qui reprend, récupérateur (juge)
 recipero:recouvrer, reprendre
 recipio:recevoir ; se recipere : se retirer
+reciproco:ramener encore, faire aller et venir, se mouvoir alternativement
 reciprocus:qui revient au point de départ, qui reflue
 recisus:diminué, écourté, abrégé
 recitatio:lecture [à haute voix], lecture publique
 recitator:lecteur [de documents judiciaires], lecteur, auteur qui lit publiquement
 recito:réciter, déclamer
+reclamatio:acclamation, désapprobation manifestée par des cris
+reclamito:se récrier [dat. contre]
+reclamo:crier contre, protester hautement, appeler plusieurs fois
 reclinis:penché en arrière, appuyé sur, couché
 reclino:pencher, incliner
 recludo:ouvrir, mettre à nu, dégainer, découvrir, dévoiler
@@ -18790,6 +18794,13 @@ reformator:réformateur, qui renouvelle
 reformido:reculer de crainte; craindre, redouter, appréhender
 reformo:rendre à sa première forme, refaire ; restaurer ; améliorer, corriger
 refoveo:réchauffer, ranimer, chasser (la fatigue)
+refractarius:casseur d'assiettes, querelleur
+refragor:voter contre, être d'avis contraire, s'opposer à, combattre [avec le datif]
+refrenatio:action de réfréner, répression
+refreno:arrêter par le frein, réfréner, dompter, maîtriser [qqn, qqch]
+refrico:irriter par le frottement, renouveler, réveiller, raviver
+refrigeratio:rafraîchissement, fraîcheur, soulagement
+refrigesco:se refroidir, se rafraîchir, diminuer
 refrigero:refroidir
 refringo:briser, enfoncer
 refugi:fugitives
@@ -18849,11 +18860,13 @@ relictio:abandon, délaissement, séparation [d'une ch.]
 relicuus:qui reste, de reste
 religatio:action de lier [la vigne]
 religio:scrupule religieux
+religiose:scrupuleusement, consciencieusement, pieusement
 religiosus:consciencieux, honnête ; pieux, scrupuleux, superstitieux
 religo:lier en arrière, lier, attacher, relier
 relino:ôter l'enduit, ouvrir, décacheter
 relinquo:laisser, abandonner
 reliquum:reste, restant, (au pl.) ce qui reste à payer, reliquat, arrérages
+reliquiae:les restes
 reliquus:restant
 reluceo:briler en retour, renvoyer de la lumière
 remaneo:rester
@@ -18868,6 +18881,7 @@ remex:rameur
 remigium:rames, rameurs
 remigo:ramer, conduire en ramant
 Remi:les Rémois (peuple de la Gaule Belgique), Reims
+remigro:revenir [habiter]
 reminiscor:(+ gén.) se ressouvenir de, se rappeler
 remisceo:remêler, mêler
 remissarius:qui se desserre, qui joue facilement (verrou)
@@ -18986,6 +19000,7 @@ rescisco:venir à savoir
 rescribo:répondre par écrit
 rescriptum:rescrit, réponse [par écrit] du prince
 reseco:couper, rogner
+resecro:relever [qqn] d'une interdiction, retirer les imprécations, prier de nouveau
 resegmen:rognure
 resero:ouvrir
 reservo:mettre de côté
@@ -19062,13 +19077,18 @@ retis:filet, piège
 retono:retentir
 retorqueo:tourner en arrière
 retorridus:brûlé [par le soleil], desséché, ridé, recroquevillé, rabougri, ratatiné, renfrogné
+retractatio:remaniement, correction, résistance
 retracto:remanier
 retractus:retiré, éloigné, enfoncé, à l'écart
 retraho:ramener
 retribuo:donner en échange, rendre, restituer
 retrices:conduites d'eau d'irrigation
+retrocedo:reculer, rebrousser chemin
 retro:en arrière, par derrière
+retrorsum:en arrière, en sens inverse
+retroversus2:en sens inverse
 retundo:rabattre une pointe, un tranchant, émousser, rabattre, réprimer
+retrudo:pousser en arrière, faire reculer
 retusus:adjt, émoussé, obtus, dépourvu de pénétration
 Reudigni:Reudigni (peuple de Germanie)
 reus:accusé
@@ -19243,6 +19263,8 @@ rubidus:rouge brun, rubicond
 rubigo:rouille
 Rubi:Rubi (ville d'Apulie auj. Ruvo)
 rubor:rougeur
+rubrica:rubrique, terre rouge, rouge, fard, rubrique (titre écrit en rouge)
+rubricatus:rougi
 rubricosus:qui a beaucoup de rubrique (de craie rouge)
 Rubrius:Rubrius (nom d'homme)
 rubus:ronce, framboisier, framboise
@@ -19319,6 +19341,7 @@ Ruteni:Rutènes (peuple et ville de l'Aquitaine auj. Rodez)
 rutilans:brillant, éclatant
 Rutila:Rutila (nom de femme)
 Rutilia:Rutilia (nom de femme)
+Rutilius2:Rutilius (famille)
 rutilo:rendre roux, teindre en rouge, briller [comme l'or], rutiler
 Rutilus2:Rutilus (surnom)
 rutilus:d'un rouge ardent (en parl. des cheveux), roux, rutilant 
@@ -19360,14 +19383,23 @@ sacerdotium:sacerdoce
 sacer:sacré
 Saces:Saces (nom de guerrier; lnation scythique)
 sacramentum:enjeu, serment militaire
+Sacranus:Sacrane
 sacrarium:sanctuaire, trésor (lieu où l'on garde les objets sacrés)
 Sacrata:Sacrata (ville du Picénum)
-sacrificalis:qui concerne les sacrifices
+Sacrator2:Sacrator (un guerrier).
+sacratus:consacré, sanctifié, sacré
+sacricola:prêtre [subalterne]
+sacrifer:qui porte les objets sacrés
+sacrificalis:sacrificiel
 sacrificium:sacrifice
 sacrifico:sacrifier, faire un sacrifice
+sacrificus:qui sacrifie, de sacrifice
+sacrilegium:sacrilège, profanation, impiété
+sacrilegus2:voleur de temple, sacrilège
 sacrilegus:sacrilège
 sacro:consacrer, dédicacer
 sacrosanctus:inviolable
+Sacrouir:Sacrovir (noble Gaulois)
 Sacrovirianus:de Sacrovir
 sacrum:cérémonie, sacrifice, temple
 Sadala:Sadale (roi de Thrace)
@@ -19426,6 +19458,7 @@ salarium:ration de sel, solde [pour acheter du sel]; émoluments, traitement, ga
 salarius:marchand de salaisons
 salax:lascif, lubrique, aphrodisiaque
 salebra:plus souvent au pl., difficulté, cahots, accidents (du sol)
+salebrosus:âpre, raboteux, rocailleux
 Saleius:Saléius Bassus (poète latin)
 Salernum:Salerne (ancienne capitale du Picénum)
 sale:sel
@@ -19695,6 +19728,7 @@ scapula:épaule
 scapus:tige (d'une plante)
 Scarphe:Scarphea (ville de Locride)
 scarus:scare (poisson de mer)
+scatebra:jaillissement, cascade
 scateo:être abondant, fourmiller (+ gén.)
 scato:être abondant, fourmiller, pulluler, regorger de
 scaurus2:pied-bot
@@ -19806,6 +19840,7 @@ scurror:faire le flatteur, flagorner
 scutatus:muni d'un bouclier, soldats armés de boucliers
 scutica:martinet, fouet [à lanières de cuir], étrivières
 scutigerulus:écuyer
+scutra:écuelle
 scutriscum:petite écuelle
 scutula:plat [en forme de losange], écuelle, carreau [pour carrelage], écusson (sorte de greffe), carré d'étoffe, rouleau [pour transporter les fardeaux]
 scutulata:vêtements à carreaux
@@ -19955,6 +19990,7 @@ semifactus:à moitié fait, inachevé
 semifer:moitié homme et moitié animal, être monstrueux, demi sauvage
 semifultus:à moitié appuyé
 semifunium:petite corde, ficelle
+semigro:se séparer de, quitter
 semihians:entrouvert
 semihomo:à moitié homme, qui a une tête d'homme, à demi sauvage
 semihora:demi-heure
@@ -20033,6 +20069,7 @@ senior:vieillard
 seniosus:d'un grand âge
 senium:grand âge, sénilité; le chagrin, douleur
 Senones:les Sénons
+Seno:un Sénon
 sensibilis:sensible, qui tombe sous les sens
 sensifer:qui donne une sensation
 sensilis:sensible, qui tombe sous les sens, tangible, matériel
@@ -20058,6 +20095,7 @@ sepes:haie, enceinte, clôture
 sepia:seiche, encre
 sepio:enfermer, enclore, entourer, protéger
 sepiola:petite seiche
+Seplasia:Seplasia
 seplasium:séplase (parfum)
 sepono:reléguer
 sepositus:mis à part, choisi, d'élite, éloigné, écarté
@@ -20135,6 +20173,7 @@ sermocinor:converser, s'entretenir, causer
 sermo:entretien, conversation ; le dialogue, discussion ; le discours ; la langue
 sermunculus:petit discours, racontars, cancans
 sero2:semer, engendrer
+sero3:tard, trop tard
 sero:unir, attacher, entrelacer
 serpens:serpent
 serpo:glisser, ramper
@@ -20243,6 +20282,7 @@ sextula:sextule (1/6e de l'once, 1/72e de l'as, du jugerum, d'un tout)
 sextus2:sixième
 Sextus:Sextus
 sexus:sexe
+si:si
 sibila:sifflements
 sibilo:siffler
 sibilus2:sifflement
@@ -20250,6 +20290,7 @@ sibilus:sifflant
 sibus:fin, avisé
 Sibylla:Sibylle
 Sibyllinus:sybillin (se dit des livres Sybillins)
+sic:ainsi (... ut, ainsi que)
 Sicania:Sicile
 Sicani:Sicaniens (peuple Ibérique en Sicile; peuple du Latium) ; Siciliens
 Sicanius:de Sicile
@@ -20282,6 +20323,8 @@ Sidicini:habitants de Sidicinum
 Sidicinus:de Sidicinum (v. de Campanie)
 Sido2:Sido2 (roi des Suèves)
 Sidonicus:sidonien
+Sidonii:Tyriens (habitants de Sidon)
+Sidonius:de Sidon, de Tyr, de Phénicie
 sido:s'asseoir, se poser; se fixer, s'arrêter; crouler
 sidus:étoile, astre
 siem:= sim
@@ -20347,6 +20390,7 @@ simitu:en même temps, à la fois
 simius:singe, imitateur servile
 Simo2:Simon (pers. de comédie; un chef juif)
 Simois:le Simoïs (rivière de la campagne de Troie)
+Simon:Simon
 Simonides:Simonide
 Simonideus:de Simonide
 Simplex2:Simplex (surnom)
@@ -20354,6 +20398,7 @@ simplex:simple, non mélangé, naturel
 simplicitas:simplicité, naïveté
 simpliciter:simplement, isolément, séparément
 simpuvium:simpule (coupe pour les libations)
+simul:en même temps, [conj.] dès que
 simulacrum:figure, représentation, statue ; fantôme
 Simulans2:Simulans (comédie d'Afranius)
 simulans:imitateur
@@ -20570,6 +20615,7 @@ Sophene:la Sophène (partie de l'Arménie)
 sophisma:sophisme
 sophistes:sophiste
 Sophocles:Sophocle
+Sophocleus:de Sophocle
 sophos:bravo !
 Sophroniscus:Sophroniscus (statuaire, père de Socrate)
 sopio2:pénis
@@ -20599,6 +20645,7 @@ sordide:salement, d'un style bas, sordidement, mesquinement
 sordido:salir
 sordidulus:un peu sale
 sordidus:sale, avare
+sorex:souris
 Soricaria:Soricaria (ville de Bétique)
 soricinus:de souris
 sorites:sorite (sorte d'argument)
@@ -20880,6 +20927,7 @@ stimulus:encouragement
 stipatio:foule entassée, foule pressée
 stipator:celui qui escorte, garde du corps
 stipatus:très entouré
+stipendiarii:les tributaires (versant une contribution en argent)
 stipendiarius:soumis à un tribut, tributaire
 stipendium:impôt, solde
 stipes:tronc, souche, pieu
@@ -20921,6 +20969,8 @@ stramineus:fait de paille, couvert de chaume
 strangulo:étrangler
 stranguria:strangurie, rétention d'urine
 strategus:général d'armée, [fig.] président [d'un banquet]
+Stratippocles:Stratippoclès (nom de jeune h.)
+Stratocles:Stratoclès (comédien célèbre)
 Stratonicenses:habitants de Stratonice
 Stratonice:Stratonice (femme de Séleucus Nicator; ville de Mésopotamie)
 Stratonicis:Stratonicis (surnom de Vénus à Smyrne)
@@ -20982,6 +21032,7 @@ stupidus:stupéfait, interdit, déconcerté, ahuri, immobile, en extase, stupide
 stupor:étonnement
 stuppa:étoupe
 stuppeus:de corde, de chanvre
+stuprator:séducteur, corrupteur
 stupro:violer, souiller, faire violence
 stuprum:déshonneur, opprobre, relations coupables
 sturnus:étourneau
@@ -21469,14 +21520,17 @@ suus:adj. son pron. le sien
 Sybaritae:les Sybarites
 sybota:porcher
 sybotes:porcher
+Sychaeus:Sychée (époux de Didon)
 Sychaeus2:de Sychée
 sycophanta:sycophante, fourbe, imposteur, flatteur habile, parasite
+sycophantia:fourberie, imposture
 Syene:Syène (ville de la Haute-Egypte, célèbre pour son granit rouge)
 Sygambra:une Sycambre
 Sygambrus:Sicambre
 syllaba:syllabe, poème
 syllogismus:syllogisme
 Symaetheus:du Symèthe
+Symaethius:habitant des environs du Symèthe
 symbola:écot, cotisation pour un repas
 symbolus:pièce justificative d'identité, signe de reconnaissance
 Symmachus:Symmaque
