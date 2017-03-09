@@ -22797,6 +22797,8 @@ ubertim:abondamment
 Ubii:les Ubiens (peuplade germanique)
 ubilibet:n'importe où
 ubi:où, où ?; (conj.) quand
+ubicumque:partout où, chaque fois que
+ubinam:où donc ? en quel lieu ?
 ubique:partout
 Ubius:ubien (de la peuplade des Ubiens)
 ubivis:n'importe où, partout
@@ -22831,7 +22833,9 @@ ultio:vengeance
 ultor2:vengeur, qui punit
 ultor:vengeur
 ultra:au delà, plus loin ; plus loin que, plus que (prép. + acc.)
+ultro:en plus, spontanément
 ultrix:vengeresse
+Ulubrae:Ulubres (bourg du Latium)
 ululabilis:perçant (en parlant de la voix)
 ulula:chat-huant, effraie
 ululatus:hurlement
@@ -22892,6 +22896,7 @@ undisonus:qui retentit du bruit des vagues, qui fait retentir les vagues
 undo:inonder, mouiller
 undosus:plein de vagues, agité, houleux
 Unelli:les Unelles (peuple le long de locéan)
+unetvicesimani:soldats de la 21e légion
 ungo:oindre, enduire, graisser, imprégner (unctus, a, um : rendu gras, riche, opulent)
 unguedo:onguent, parfum
 unguen:corps gras, graisse
@@ -23006,8 +23011,14 @@ utqui:= ut
 utraque:de chaque côté
 utriculus:petite outre
 utrimque:de part et d'autre
+utrinde:des deux côtés
+utrinque:de part et d'autre, des deux côtés
 utris:outre
+utrobique:des deux côtés, de part et d'autre
+utrolibet:d'un côté ou de l'autre
 utroque:vers l'un et l'autre côté, dans les deux directions, dans les deux sens [pr. et fig.]
+utrubi:dans l'un des deux endroits
+utrubique:des deux côtés, de part et d'autre
 utrum:est-ce que ?
 uva:raisin, vigne
 uvesco:devenir humide, s'humecter [le gosier]
@@ -23046,6 +23057,8 @@ vadum:bas-fond, gué
 vaecordia:extravagance, démence
 vae:las! hélas! malheur!
 vafer:rusé, adroit
+vafre:avec ruse
+vafritia:finesse [d'esprit]
 Vaga:Vaga (ville de Numidie; ndeux villes d'Afrique)
 vage:ça et là, de côté et d'autre
 Vagellius:Vagellius (nom d'homme)
@@ -23146,6 +23159,8 @@ vasus:vase, vaisseau, pot, bagages [des soldats], ruches, colei
 vas:vase
 vates:devin, poète
 Vatia:Servilius Vatia (consul)
+Vaticanus:du Vatican
+Vaticanus2:Vaticanus (dieu qui présidait aux débuts du langage des enfants; dieu du Vatican)
 vaticinatio:prédiction, oracle, prophétie
 vaticinor:prophétiser, extravaguer
 vatillum:pelle à braises
@@ -23185,6 +23200,7 @@ velamen:couverture, vêtement, robe
 velamentum:enveloppe (membrane) [t. d'anatomie], voile, rideau, rameaux entourés de bandelettes [portés par les suppliants], [fig.] voile pour dissimuler qqch
 velarium:voile (qu'on étendait au-dessus du théâtre, pour garantir du soleil)
 Veleda:Veleda (prophétesse divinisée par les Germains)
+veles:vélite
 Velia:Velia (ville de Lucanie)
 Velienses:habitants de Vélia
 Veliensis:de Vélia
@@ -23247,6 +23263,7 @@ venenum:poison, venin
 veneo:être vendu
 venerabilis:vénérable, respectable
 venerabundus:plein de respect, respectueux
+venerandus:vénérable, respectable
 venerarius:d'amour, amoureux
 veneratio:culte, respect religieux
 venero:adorer, prier, rendre un culte à
@@ -23263,6 +23280,7 @@ venter::ventre
 Ventidius:Ventidius (famille)
 ventilo:remuer
 Ventipo:Ventipo (ville de la Bétique)
+ventriculus:petit ventre, ventricule
 ventriosus:ventru, 
 ventulus:vent léger
 ventus:vent
@@ -23279,6 +23297,7 @@ venuste:avec grâce, avec élégance
 venustulus:gentil
 venustus:beau, charmant, élégant
 vepallidus:affreusement pâle
+veprecula:petit buisson
 vepres:buisson épineux
 Veragri:les Veragres (peuple de Suisse)
 Verania:Verania
@@ -23324,6 +23343,25 @@ ver:le printemps
 vermiculus:petit ver, vermisseau, rage des chiens, coccum
 vermina2:spasmes, convulsions, mouvements désordonnés
 verminatio:maladie des vers [chez les animaux], [fig.] démangeaison, élancement, douleur aiguë
+vermino:avoir des vers, être démangé
+vermis:ver, vermis (poisson)
+vernilis:d'esclave [né dans la maison], servile
+vernilitas:cajolerie d'esclave, servilité
+verniliter:servilement
+verno:reverdir, refleurir, muer (serpent), sentir le printemps
+vernula:jeune esclave [né dans la maison], indigène, national
+vernum:printemps
+Verona:Vérone (ville de Vénétie)
+Veronenses:Véronais (h. de Vérone)
+verpa:membre viril
+verpus:circoncis
+Verres2:C. Cornélius Verrès (propréteur en Sicile, attaqué par Cicéron)
+Verria:Verries (fêtes en l'honneur de Verrès)
+Verrinus:de Verrès
+verrinus2:de porc
+Verritus:Verritus (nom d'h.)
+Verrius:de Verrès
+verruca:hauteur, excroissance, verrue
 Verrucius:Verrucius (faux nom de Verrès)
 Verrucosus2:Verrucosus (surnom d'un Fabius)
 verrucosus:raboteux, grossier
@@ -23343,6 +23381,7 @@ versura:action de se tourner, extrémité du sillon [où les boeufs tournent], e
 versus3:dans la direction de, du côté de
 versus:sillon, ligne, vers
 versutus:qui sait se retourner, fécond en expédients, à l'esprit souple, agile, astucieux, artificieux
+vertebra:vertèbre, articulation
 vertex: sommet
 vertigo:mouvement de rotation, tournoiement, pirouette, révolution, vertige
 verto:tourner, changer, traduire
@@ -23362,6 +23401,7 @@ vervex:mouton
 vesania:folie, déraison, délire, extravagance
 vesanio:être insensé, être furieux
 vesanus:insensé, fou
+Vescinus:de Vescia
 vescor:se nourrir (de)
 vescus:nourrir, sans appétit, maigre
 vesica:vessie
@@ -23412,6 +23452,7 @@ veto:interdire, (veto ou voto :) je fais opposition
 Vettianus:Vettianus (nom d'homme)
 Vettius:Vettius
 Vettones:Vettons (peuple de Lusitanie, dans l'Estramadure)
+Vettonianus:Vettonianus (nom d'h.)
 vetula:[petite] vieille
 vetulus2:[petit] vieux
 vetulus:un peu vieux
@@ -23619,8 +23660,9 @@ viscatus:frotté de glu, englué
 visceratio:distribution publique de viande
 visco:engluer, poisser
 viscum:gui, glu [préparée avec le gui]
-viscus2:gui, glu
 viscus:chair, entrailles
+viscus2:gui, glu
+Viscus3:Viscus (nom d'homme)
 Visellius:Visellius (nom d'homme)
 vis:force
 visio:vision, image
@@ -23656,7 +23698,10 @@ vitisator:planteur de vigne
 vitis:vigne, cep, sarment
 vitium:vice, défaut
 vito:éviter
+vitrearius:verrier
+vitricus:beau-père (mari de la mère qui a des enfants d'un autre lit)
 vitreum:verre (brisé)
+vitrum:verre, pastel (ou guède, plante donnant une couleur bleue)
 vitreus:de verre q(uitrea, orum : objets de verre)
 vitta:la bandelette, le ruban
 vittatus:orné de bandelettes, orné de rubans, pavoisé
