@@ -5092,7 +5092,7 @@ conscĕlĕrātus=cōnscĕlĕrātus|doctus|||a, um|21
 conscĕlĕro=cōnscĕlĕro|amo|||as, are|2
 conscendo=cōnscēndo|lego|cōnscēnd|cōnscēns|is, ere, scendi, scensum|63
 conscĭentĭa=cōnscĭēntĭa|uita|||ae, f.|161
-conscĭo=cōnscĭo|audio|cōnscīv|cōnscīt|is, īre, ivi, itum|2
+conscĭo=cōnscĭo|scio|cōnscīv|cōnscīt|is, īre, ivi, itum|2
 conscisco=cōnscīsco|lego|cōnscīv,cōnscĭ|cōnscīt|is, ere, iui, itum|12
 conscĭus=cōnscĭus|doctus|||a, um|184
 conscrībillo=cōnscrībīllo|amo|||as, are|2
@@ -8215,7 +8215,7 @@ expugnātŏr=ēxpūgnātŏr|miles|ēxpūgnātōr||ōris, m.|3
 expugno=ēxpūgno|amo|||as, are|90
 expulsĭo=ēxpūlsĭo|miles|ēxpūlsĭōn||ōnis, f.|3
 expulsŏr=ēxpūlsŏr|miles|ēxpūlsōr||ōris, m.|3
-expūrgātĭō,expūrĭgātĭo|miles|expūrgātĭōn,ēxpūrĭgātĭōn||onis, f.|2
+expūrgātĭō=expūrgātĭō,expūrĭgātĭo|miles|expūrgātĭōn,ēxpūrĭgātĭōn||onis, f.|2
 expungo=ēxpūngo|lego|ēxpūnx|ēxpūnct|is, ere, punxi, pluctum|5
 expurgo=ēxpūrgo|amo|||as, are|5
 expūtesco=ēxpūtēsco|lego|||is, ĕre, intr.|2
@@ -14395,7 +14395,7 @@ Nāva|roma|||ae, m.|2
 nāvē|adve|||adv.|2
 nāvĭcŭlārĭa|uita|||ae, f.|2
 nāvĭcŭlārĭus2|lupus|||ii, m.|6
-nāvĭcŭla,nāucŭla|uita|||ae, f.|11
+nāvĭcŭla=nāvĭcŭla,nāucŭla|uita|||ae, f.|11
 nāvĭfrăgus|doctus|||a, um|2
 nāvĭgābĭlis=nāvĭgābĭlĭs|fortis|nāvĭgābĭl||e|7
 nāvĭgātĭo=nāvĭgātĭō̆|miles|nāvĭgātĭōn||ionis, f.|41
@@ -14530,7 +14530,7 @@ nervōsus=nērvōsus|doctus|||a, um|4
 nervus=nērvus|lupus|||i, m.|118
 Nēsaeē=Nēsāeē|cybele|||es, f.|3
 nĕsăpĭus|aureus|||a, um|2
-nescĭo=nēscĭo|audio|nēscīv,nēscĭ|nēscīt|is, ire, iui (ii), itum|455
+nescĭo=nēscĭo|scio|nēscīv,nēscĭ|nēscīt|is, ire, iui (ii), itum|455
 nescioquĭs=nēscĭoquĭs|inv|||nescioquis|6
 nescĭus=nēscĭus|doctus|||a, um|78
 Nessēus=Nēssēus|doctus|||a, um|4
@@ -16080,7 +16080,7 @@ Pēgăsis2|miles|Pēgăsĭd||ĭdis, f.|3
 Pēgăsus|lupus|||i, m.|6
 Pēgē|cybele|||es, f.|2
 pēgma|corpus|pēgmăt||atis, n.|3
-pējĕro,pējūro|amo|||as, are|17
+pējĕro=pējĕro,pējūro|amo|||as, are|17
 pējŭs|inv|||adv.|18
 pĕlăgĭus|doctus|||a, um|3
 Pĕlăgōn|miles|Pĕlăgōn||ōnis, m.|3
@@ -19163,7 +19163,7 @@ rĕsălūto|amo|||as, are|3
 rĕsānesco=rĕsānēsco|lego|rĕsānŭ||is, ere, sanŭi, intr.|2
 rĕsarcĭo=rĕsārcĭo|audio|rĕsārs|rĕsārt|is, ire, sarsi, sartum|3
 rēscindo=rēscīndo|lego|rēscĭd|rēscīss|is, ere; scidi, scissum|62
-rēscĭo|audio|rēscĭ,rēscīv|rēscīt|is, ire, ii-iui, itum|10
+rēscĭo|scio|rēscĭ,rēscīv|rēscīt|is, ire, ii-iui, itum|10
 rēscisco=rēscīsco|lego|rēscīv|rēscīt|is, ere, īvi (ii), ītum|6
 rēscrībo|lego|rēscrīps|rēscrīpt|is, ere, scripsi, scriptum|47
 rēscriptum=rēscrīptum|templum|||i, n.|4
@@ -19942,7 +19942,7 @@ scindo=scīndo|lego|scĭd|scīss|is, ere, scidi, scissum|121
 scĭnĭphes|opes|scĭnĭph||um, m.|2
 scintilla=scīntīlla|uita|||ae, f.|14
 scintillo=scīntīllo|amo|||as, are|5
-scĭo|audio|scīv|scīt|is, ire, sciui, scitum|1648
+scĭo|scio|scīv|scīt|is, ire, sciui, scitum|1648
 Scīpĭădas|aeneas|||ae, m.|5
 Scīpĭădēs|cometes|||ae, m.|4
 Scīpĭo2=Scīpĭō̆|miles|Scīpĭōn||onis, m.|315
@@ -20463,7 +20463,7 @@ sextŭla=sēxtŭla|uita|||ae, f.|6
 sextus2=sēxtus|nonus|||a, um|72
 Sextus=Sēxtus|lupus|||i, m.|17
 sexus=sēxus|manus|||us, m.|39
-sī,sĕī|inv|||conj. sub.|10946
+sī=sī,sĕī|inv|||conj. sub.|10946
 sībĭla|castra|||orum, n.|6
 sībĭlo|amo|||as, are|10
 sībĭlus2|lupus|||i, m.|3
@@ -20471,7 +20471,7 @@ sībĭlus|doctus|||a, um|4
 sĭbus|doctus|||a, um|2
 Sĭbylla=Sĭbȳlla,Sĭbūlla|roma|||ae, f.|23
 Sĭbyllīnus=Sĭbȳllīnus|doctus|||a, um|8
-sīc,sĕic|inv|||adv.|2237
+sīc=sīc,sĕic|inv|||adv.|2237
 Sīcănĭa|roma|||ae, f.|2
 Sĭcāni|liberi|||orum, m.|4
 Sīcănĭus|aureus|||a, um|4
@@ -20586,7 +20586,7 @@ sĭmŭlātē|adve|||adv.|4
 sĭmŭlātĭo=sĭmŭlātĭō̆|miles|sĭmŭlātĭōn||onis, f.|96
 sĭmŭlātor=sĭmŭlātŏr|miles|sĭmŭlātōr||oris, m.|7
 sĭmŭlatquĕ=sĭmŭlātquĕ|inv|||conj. sub.|9
-sĭmŭl,sĕmŭl|inv|||adv.|906
+sĭmŭl=sĭmŭl,sĕmŭl|inv|||adv.|906
 sĭmŭlo|amo|||as, are|167
 sĭmultās=sĭmūltās|miles|sĭmūltāt||atis, f.|37
 sīmŭlus|doctus|||a, um|2
