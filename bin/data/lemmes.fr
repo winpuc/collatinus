@@ -1487,6 +1487,7 @@ Antaeus:Antée [géant tué par Hercule]
 Antandrus:Antandrus (ville de Mysie)
 antarcticus:antarctique
 antea:auparavant
+anteactus:fait auparavant, passé, écoulé
 anteambulo:qui marche devant son patron
 antecapio:prendre avant
 antecedo:précéder, dépasser
@@ -5422,56 +5423,56 @@ corrugo:froncer, rider
 corrumpo:détruire, ruiner ; corrompre; détériorer, altérer, gâter, nuire à, falsifier ; corrompre, pervertir, dépraver, séduire, suborner, gagner (qqn)
 corruo:s'écrouler, crouler
 corruptela:corruption
-orrupte:vicieusement
-orruptio:altération; la séduction, tentative de débauche
-orruptor:corrupteur
-orsica:la Corse
-orsicus:de Corse, corse
-orsi:les Corses
-orsus:de Corse, corse
-ortex:coquille, liège, écorce
-ortina:vaisseau rond, chaudière, cuve, oracle [d'Apollon], auditoire, rideau, voile
-ortynia:Gortyna (ville de Crète)
-oruncanius:[Ti.] Coruncanius [premier pontife plébéien]
-orusco:s'agiter, branler; agiter, brandir
-oruscus:brillant, étincelant
-orvinus2:Corvinus2 (surnom dans la famille Valéria)
-orvus2:Corvus (surnom de M. Valérius)
-orvus:corbeau
-orybantes:Corybantes (prêtres de Cybèle)
-orybantius:des Corybantes
-orycius:corycien (grotte située sur le flanc du Parnasse ; de Corycus, en Cilicie)
-orycus:sac d'entraînement
-orydon:Corydon (nom de berger)
-oryletum:coudraie (lieu planté de coudriers)
-orylus:coudrier, noisetier
-orymbifer:couronné de grappes de lierre
-orymbion:perruque
-orymbus:grappe de lierre (à la proue des navires), mamelon [anatomie], stalactite
-orynaeus2:Corynaeus (nom d'un guerrier)
-oryphaeus:Coryphée (nom d'un cheval)
-orythus:Corythus (père de Dardanus, fils de Pâris, montagne et ville d'Étrurie)
-orytus:carquois
-osa:Cosa (ville d'Etrurie)
-osanum:territoire de Cosa
-osconius:Cosconius (nom d'homme)
-osmeta:celui qui orne
-osmus:Cosmus (parfumeur en renom à Rome)
-os:pierre à polir, à aiguiser
-oss:consuls (abréviation)
-ossinius:Cossinius (nom d'homme)
-ossunatius:Cossunatius
-ossus:Cossus
-ossutianus:Cossutianus (délateur fameux sous Néron)
-ossutius:Cossutius (nom d'homme)
-osta:flanc, côte, côté
-ostum:costus [plante aromatique]
-osyra:Cosyra (île entre la Sicile et l'Afrique)
-otes:roche, écueil
-othon2:port [creusé de main d'homme]
-othurnatus:acteurs tragiques, tragique, imposant
-othurnus:cothurne, chaussure montante, [fig.] tragédie, style élevé
-otidiano:tous les jours.
+corrupte:vicieusement
+corruptio:altération; la séduction, tentative de débauche
+corruptor:corrupteur
+Corsica:la Corse
+Corsicus:de Corse, corse
+Corsi:les Corses
+Corsus:de Corse, corse
+cortex:coquille, liège, écorce
+cortina:vaisseau rond, chaudière, cuve, oracle [d'Apollon], auditoire, rideau, voile
+Cortynia:Gortyna (ville de Crète)
+Coruncanius:[Ti.] Coruncanius [premier pontife plébéien]
+corusco:s'agiter, branler; agiter, brandir
+coruscus:brillant, étincelant
+Corvinus2:Corvinus2 (surnom dans la famille Valéria)
+Corvus2:Corvus (surnom de M. Valérius)
+corvus:corbeau
+Corybantes:Corybantes (prêtres de Cybèle)
+Corybantius:des Corybantes
+Corycius:corycien (grotte située sur le flanc du Parnasse ; de Corycus, en Cilicie)
+corycus:sac d'entraînement
+Corydon:Corydon (nom de berger)
+coryletum:coudraie (lieu planté de coudriers)
+corylus:coudrier, noisetier
+Corymbifer:couronné de grappes de lierre
+corymbion:perruque
+corymbus:grappe de lierre (à la proue des navires), mamelon [anatomie], stalactite
+Corynaeus2:Corynaeus (nom d'un guerrier)
+Coryphaeus:Coryphée (nom d'un cheval)
+Corythus:Corythus (père de Dardanus, fils de Pâris, montagne et ville d'Étrurie)
+corytus:carquois
+Cosa:Cosa (ville d'Etrurie)
+Cosanum:territoire de Cosa
+Cosconius:Cosconius (nom d'homme)
+cosmeta:celui qui orne
+Cosmus:Cosmus (parfumeur en renom à Rome)
+cos:pierre à polir, à aiguiser
+coss:consuls (abréviation)
+Cossinius:Cossinius (nom d'homme)
+Cossunatius:Cossunatius
+Cossus:Cossus
+Cossutianus:Cossutianus (délateur fameux sous Néron)
+Cossutius:Cossutius (nom d'homme)
+costa:flanc, côte, côté
+costum:costus [plante aromatique]
+Cosyra:Cosyra (île entre la Sicile et l'Afrique)
+cotes:roche, écueil
+cothon2:port [creusé de main d'homme]
+cothurnatus:acteurs tragiques, tragique, imposant
+cothurnus:cothurne, chaussure montante, [fig.] tragédie, style élevé
+cotidiano:tous les jours.
 cotidianus:quotidien
 cotidie:(et quo-) chaque jour
 cotinus:fustet [arbrisseau]
@@ -5833,8 +5834,9 @@ cyclicus:cyclique
 Cyclopius:des Cyclopes
 Cyclops:Cyclope
 cycneus:du cygne
-Cycnus2:Cycnus (roi de Ligurie)
 cycnus:cygne
+Cycnus2:Cycnus (roi de Ligurie)
+cycnus:cygne (oiseau); le Cygne (constellation)
 Cydas:Cydas (nom de plusieurs Crétois)
 Cydippe:Cydippe (une des Néréides)
 Cydnus:le Cydnus [fleuve de Cilicie, auj. Tersustschai]
@@ -9567,7 +9569,7 @@ hac:par ici
 hactenus:seulement jusque là
 Hadria:Hadria (villes du Picénum, de Vénétie); la mer Adriatique
 Hadriacus:de l'Adriatique
-Hadrianus2:Adrien (empereur romain)
+Hadrianus:d'Hadria (les deux villes de ce nom); de l'Adriatique
 Hadrianus2:Adrien, empereur romain
 Hadriaticus:de la mer Adriatique
 Hadrumetini:Adrumétins (habitants d'Adrumète)
@@ -11546,6 +11548,7 @@ investio:revêtir, garnir
 inveterasco:s'enraciner, se fixer
 inveterata:maladies chroniques
 invetero:laisser vieillir, [pass.] vieillir, s'enraciner
+inveteratus:enraciné, invétéré, effacé
 invia:endroits non frayés, lieux impraticables
 invicem:à son tour, à tour de rôle
 invictus:invincible
@@ -15827,6 +15830,7 @@ patronus:avocat, défenseur, patron
 patruelis:en rapport avec le frère du père
 patruelis2:cousin germain [du côté du père] ; cousine germaine
 patruus:oncle
+patruus2:d'oncle paternel; sévère, grondeur
 Patulcius:surnom de Janus
 patulus:large
 pauca:peu de choses
@@ -17959,7 +17963,7 @@ propudium:obscénité, dévergondage, infamie
 propugno:combatre en avant, protéger, défendre
 propulsatio:action de repousser
 propulso:repousser
-propylaeum:portail, entrée; les Propylées
+propylaeon:portail, entrée; les Propylées
 proquam:selon que, à proportion que, dans la mesure où
 prora:proue
 prorepo:s'avancer en rampant, ramper
@@ -21086,6 +21090,7 @@ subduco:retirer, soustraire
 subductarius:qui sert à soulever
 subductio:action de tirer les navires sur le rivage, mise à sec, calcul, supputation, ravissement, extase
 subeo:aller sous, se présenter à, entrer dans
+subeundus:qu'il faut fléchir, qu'il faut gagner
 suber:chêne-liège, bouchon de liège
 subflavus:un peu blond
 subhorridus:un peu hirsute
