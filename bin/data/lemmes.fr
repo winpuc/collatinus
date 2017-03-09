@@ -21626,6 +21626,8 @@ tamquam:comme, de même que, pour ainsi dire; tamquam si : comme si
 tam:si, autant
 Tamyris:Tomyris (reine des Massagètes)
 Tanager:Tanagre (fleuve de Lucanie)
+Tanagra:Tanagra (ville de Béotie)
+Tanagraeus:de Tanagra
 Tanais:le Tanaïs (fleuve qui sépare l'Europe de l'Asie auj. le Don; ville à son embouchure; nom d'homme)
 Tanaitis:habitante des bords du Tanaïs, Amazone
 Tanaquil:Tanaquil (femme de Tarquin)
@@ -21724,6 +21726,7 @@ Taygete:Taygète (fille d'Atlas)
 Taygetus:Taygète (montagne de Laconie)
 Teanum:Teanum (plusieurs villes : - Sidicinum, Téanum des Sidicins, auj. Teano; ville d'Apulie)
 techina:ruse, fourberie
+Tecmessa:Tecmesse (femme d'Ajax)
 tectarium:couvercle
 Tecta:(- via) la voie Tecta (à Rome)
 tecte:à couvert, en cachette, secrètement
@@ -21843,6 +21846,7 @@ tepor:tiédeur, douce chaleur
 terdeciens:treize fois
 terebinthinus:de térébinthe
 terebinthus:térébinthe (arbre résineux)
+terebra:tarière, vrille, ver du bois
 terebro:percer avec une vrille
 Terentianus:de Térence
 Terentia:Terentia
@@ -21923,7 +21927,11 @@ testu:couvercle d'argile, vase d'argile
 testudineus:de tortue, d'écaille [de tortue]
 testudo:tortue
 Tethys:Tethys (femme de l'Océan, mère des fleuves)
+tetrarches:tétrarque
+tetrarchia:tétrarchie
+tetrastylon:tétrastyle (galerie à quatre colonnes ou quatre rangs de colonnes)
 Tetrica:Tetrica (montagne de la Sabine)
+tetricus:sombre, sévère
 Tettius:Tettius (nom d'homme)
 Teucer:Teucer (premier roi de la Troade; beau-père de Dardanos; frère d'Ajax)
 Teucria:Troade (région de Troie)
@@ -22119,8 +22127,10 @@ Tigellius:Tigellius (nom de deux musiciens)
 tigillum:petite poutre, chevron, poutre du toit, toit
 tignum:madrier, solive
 Tigranes:Tigrane (roi d'Arménie)
+Tigranocerta:Tigranocerte [ville d'Arménie]
 Tigranocerta2:Tigranocerte (ville d'Arménie)
 tigris:tigre
+Tigris2:le Tigre (fleuve de Mésopotamie)
 Tigurini:Tigurins
 Tigurinus:Tigurinus (canton helvète)
 tilia:tilleul
@@ -22225,6 +22235,7 @@ tondeo:raser, tondre, brouter
 Tongilius:Tongilius (nom d'homme).
 tonitralis:tonitruant (qui fait un bruit de tonnerre)
 tonitrus:tonnerre, coup de tonnerre
+tonitruum:tonnerre
 tono:tonner, faire un grand bruit
 tonsa:aviron, rame, rames
 tonsito:tondre fréquemment
@@ -22271,6 +22282,7 @@ torto:torturer, (pass.) se tordre
 tortuosus:tortueux, sinueux, entortillé, embarrassé
 tortus2:repli d'un serpent, action de faire tournoyer la courroie d'une fronde
 tortus:tordu, sinueux
+torulus:aigrette, chignon,  petit muscle
 torus2:desséché, sec, aride
 torus:renflement, muscle saillant ; lit
 torva:de travers, d'une façon farouche, menaçante
@@ -22508,7 +22520,9 @@ Trimerus:Trimerus (une des îles de Diomède)
 trimestris:de trois mois
 trimeter:trimètre
 trimus:de trois ans
-Trinacrius:Sicilien (Sicile = île aux trois pointes)
+Trinacria:la Sicile (ainsi nommée de ses trois promontoires)
+Trinacris2:la Sicile
+Trinacrius:Sicilien
 trinoctialis:de trois nuits
 trinoctium:espace de trois nuits
 trinodis:qui a trois noeuds, qui a trois syllabes
@@ -22529,6 +22543,7 @@ Triptolemus:Triptolème (inventeur de l'agriculture)
 tripudio:danser [des danses religieuses], sauter, bondir, se trémousser
 tripudium:danse, saut, bond, augure favorable
 tripus:trépied
+triquetrus:triangulaire, relatif à la Sicile
 triremis2:trirème
 triremis:qui a trois rangées de rames, trirème
 triscurrium:bouffonnerie
