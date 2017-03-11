@@ -770,7 +770,7 @@ MapLem Lemmat::lemmatise(QString f)
     // romains
     if (estRomain(f) && !_lemmes.contains(f))
     {
-        QString lin = QString("%1|inv|||adj. num.").arg(f);
+        QString lin = QString("%1|inv|||adj. num.|1").arg(f);
         Lemme *romain = new Lemme(lin, 0, this);
         int nr = aRomano(f);
         romain->ajTrad(QString("%1").arg(nr), "fr");
