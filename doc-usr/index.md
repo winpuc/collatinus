@@ -35,6 +35,8 @@ qui la présente avec des images annotées.
 1. **[Tagger](tagger.html)** Utiliser un tagueur
    probabiliste pour obtenir la *meilleure* analyse
    de la phrase ou du texte.
+1. **[Serveur](server.html)** Interroger Collatinus depuis 
+   une autre application.
 1. **[Utilisation avancée](avancee.html)** Si on a 
     pris le soin de faire des sauvegardes, on peut
     essayer de modifier les lexiques, ajouter des mots,
