@@ -90,6 +90,7 @@ class Lemme : public QObject
     QString             grq();
     QString             grModele();
     QString             humain(bool html = false, QString l = "fr", bool nbr = false);
+    QString             indMorph();
     QString             irreg(int i, bool* excl);
     Modele*             modele();
     int                 nbOcc() const;    // Retourne le nombre d'occurrences du lemme

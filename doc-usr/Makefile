@@ -10,6 +10,8 @@ but:
 	echo $e > $(dest)dictionnaires.html; markdown dictionnaires.md >> $(dest)dictionnaires.html
 	echo $e > $(dest)scander.html;       markdown scander.md >> $(dest)scander.html
 	echo $e > $(dest)flechir.html;       markdown flechir.md >> $(dest)flechir.html
+	echo $e > $(dest)tagger.html;        markdown tagger.md  >> $(dest)tagger.html
+	echo $e > $(dest)server.html;        markdown tagger.md  >> $(dest)server.html
 	echo $e > $(dest)avancee.html;       markdown avancee.md >> $(dest)avancee.html
 	echo $e > $(dest)programmeurs.html;  markdown programmeurs.md >> $(dest)programmeurs.html
 	echo $e > $(dest)licence.html;       markdown licence.md >> $(dest)licence.html
