@@ -379,6 +379,11 @@ QString Lemme::humain(bool html, QString l, bool nbr)
     return res;
 }
 
+QString Lemme::indMorph()
+{
+    return _indMorph;
+}
+
 /**
  * \fn QString Lemme::irreg (int i, bool *excl)
  * \brief Renvoie la forme irrégulière de morpho i. excl devient
