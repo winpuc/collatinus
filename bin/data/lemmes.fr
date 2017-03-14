@@ -4842,7 +4842,7 @@ conditor:fondateur
 conditorium:cercueil, sarcophage
 conditura:manière d'accomoder, recette
 conditust:= conditus est
-condo:cacher, enfermer, enterrer (condere urbem : fonder une ville)
+condo:cacher, enfermer, enterrer, fonder (- urbem : une ville)
 condocefacio:dresser, façonner
 condoleo:souffrir vivement, compatir [à dat.]
 condolesco:éprouver un malaise, une souffrance
