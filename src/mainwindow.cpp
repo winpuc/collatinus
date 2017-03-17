@@ -56,13 +56,16 @@ bool EditLatin::event(QEvent *event)
             QTextCursor tc = cursorForPosition(P);
             tc.select(QTextCursor::WordUnderCursor);
             QString mot = tc.selectedText();
+            if (mot.isEmpty ())
+                return QWidget::event (event);
             QString txtBulle = mainwindow->lemmatiseur->lemmatiseT(
                 mot, true, true, true, false);
             txtBulle.prepend("<p style='white-space:pre'>");
             txtBulle.append("</p>");
+            QRect rect(P.x()-20,P.y()-10,40,40); // Je définis un rectangle autour de la position actuelle.
             QToolTip::setFont(font());
             QToolTip::showText(helpEvent->globalPos(), txtBulle.trimmed(),
-                               this);
+                               this, rect); // La bulle disparaît si le curseur sort du rectangle.
             return true;
         }
         default:
@@ -129,6 +132,11 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
             mainwindow->afficheLemsDic(lemmes);
         if (mainwindow->wDic->isVisible() && mainwindow->syncAct->isChecked())
             mainwindow->afficheLemsDicW(lemmes);
+        // 5. dock Syntaxe
+        if (!mainwindow->dockTag->visibleRegion().isEmpty())
+        {
+            mainwindow->tagger(toPlainText(),textCursor().position());
+        }
     }
     QTextEdit::mouseReleaseEvent(e);
 }
@@ -216,7 +224,11 @@ void MainWindow::afficheLemsDic(bool litt, bool prim)
  *        la connexion entre une action et la fonction
  *        afficheLemsDic().
  */
-void MainWindow::afficheLemsDicLitt() { afficheLemsDic(true); }
+void MainWindow::afficheLemsDicLitt()
+{
+    afficheLemsDic(true);
+}
+
 /**
  * \fn void MainWindow::afficheLemsDicW () * \brief Fonction de relais
  * permettant d'utiliser
@@ -224,7 +236,11 @@ void MainWindow::afficheLemsDicLitt() { afficheLemsDic(true); }
  *        afficheLemsDicW().
  *
  */
-void MainWindow::afficheLemsDicW() { afficheLemsDic(false, false); }
+void MainWindow::afficheLemsDicW()
+{
+    afficheLemsDic(false, false);
+}
+
 /**
  * \fn afficheLemsDic(true,false);
  * \brief
@@ -232,7 +248,11 @@ void MainWindow::afficheLemsDicW() { afficheLemsDic(false, false); }
  *        la connexion entre une action et la fonction
  *        afficheLemsDicW(), sans lemmatisation.
  */
-void MainWindow::afficheLemsDicLittW() { afficheLemsDic(true, false); }
+void MainWindow::afficheLemsDicLittW()
+{
+    afficheLemsDic(true, false);
+}
+
 /**
  * \fn void MainWindow::afficheLemsDic(QStringList ll, int no)
  * \brief Affiche la page ou les entrées de
@@ -349,18 +369,20 @@ void MainWindow::apropos()
 {
     QMessageBox::about(
         this, tr("Collatinus 11"),
-        tr("COLLATINVS\nLinguae latinae lemmatizatio \n"
-           "Licentia GPL, © Yves Ouvrard, 2009 - 2016 \n"
-           "Nonnullas partes operis scripsit Philippe Verkerk\n"
-           "Versio " VERSION "\n"
-           "Gratias illis habeo :\n"
-           "William Whitaker †\n"
-           "Jose Luis Redrejo,\n"
-           "Georges Khaznadar,\n"
-           "Matthias Bussonier,\n"
-           "Gérard Jeanneau,\n"
-           "Jean-Paul Woitrain,\n"
-           "Perseus Digital Library <http://www.perseus.tufts.edu>"));
+        tr("<b>COLLATINVS</b><br/>\n"
+           "<i>Linguae latinae lemmatizatio </i><br/>\n"
+           "Licentia GPL, © Yves Ouvrard, 2009 - 2016 <br/>\n"
+           "Nonnullas partes operis scripsit Philippe Verkerk<br/>\n"
+           "Versio " VERSION "<br/><br/>\n"
+           "Gratias illis habeo :<br/><ul>\n"
+           "<li>William Whitaker †</li>\n"
+           "<li>Jose Luis Redrejo</li>\n"
+           "<li>Georges Khaznadar</li>\n"
+           "<li>Matthias Bussonier</li>\n"
+           "<li>Gérard Jeanneau</li>\n"
+           "<li>Jean-Paul Woitrain</li>\n"
+           "<li><a href='http://www.perseus.tufts.edu'>Perseus Digital Library </a></li>\n"
+           "<li>Dominique Longrée et le <a href='http://web.philo.ulg.ac.be/lasla/'>LASLA</a>\n</li></ul>"));
 }
 
 /**
@@ -584,6 +606,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     settings.setValue("hyphenation", hyphenAct->isChecked());
     settings.setValue("repHyphen", repHyphen);
     settings.setValue("ficHyphen", ficHyphen);
+    settings.setValue("tagAffTout", affToutAct->isChecked());
     settings.endGroup();
     settings.beginGroup("dictionnaires");
     settings.setValue("courant", comboGlossaria->currentIndex());
@@ -719,6 +742,11 @@ void MainWindow::createActions()
     serverAct = new QAction(tr("Serveur"), this);
     serverAct->setCheckable(true);
     serverAct->setChecked(false);
+
+    // actions pour le tagger
+    affToutAct = new QAction(tr("tout afficher"),this);
+    affToutAct->setCheckable(true);
+    affToutAct->setChecked(true);
 
     // Restauration des docks
     dockRestoreAct = new QAction(tr("Restaurer les docks"),this);
@@ -952,7 +980,8 @@ void MainWindow::createMenus()
     optMenu->addAction(ambigueAct);
     optMenu->addAction(illiusAct);
     optMenu->addAction(hyphenAct);
-//    optMenu->addSeparator();
+    optMenu->addSeparator();
+    optMenu->addAction(affToutAct);
 //    optMenu->addAction(fontAct);
 //    optMenu->addAction(majAct);
 
@@ -1168,14 +1197,42 @@ void MainWindow::createDockWindows()
     vLayoutFlex->addWidget(textBrowserFlex);
     dockFlex->setWidget(dockWidgetFlex);
 
+    dockTag = new QDockWidget(tr("Tagger"), this);
+    dockTag->setObjectName("dockTag");
+    dockTag->setFloating(false);
+    dockTag->setFeatures(QDockWidget::DockWidgetFloatable |
+                          QDockWidget::DockWidgetMovable);
+    dockTag->setAllowedAreas(Qt::BottomDockWidgetArea);
+    dockWidgetTag = new QWidget(dockTag);
+    QVBoxLayout *vLayoutTag = new QVBoxLayout(dockWidgetTag);
+    QHBoxLayout *hLayoutTag = new QHBoxLayout();
+    textBrowserTag = new QTextBrowser(dockWidgetTag);
+    textBrowserTag->setSizePolicy(QSizePolicy::Expanding,
+                                   QSizePolicy::Expanding);
+    QLabel *lasla = new QLabel(tr("Tagger probabiliste dérivé des <a href='http://web.philo.ulg.ac.be/lasla/textes-latins-traites/'>textes du LASLA</a>"),this);
+    lasla->setOpenExternalLinks(true);
+    QToolButton *tbMajPertTag = new QToolButton(this);
+    tbMajPertTag->setDefaultAction(majPertAct);
+    QToolButton *tbAffTout = new QToolButton(this);
+    tbAffTout->setDefaultAction(affToutAct);
+    hLayoutTag->addWidget(lasla);
+    hLayoutTag->addStretch();
+    hLayoutTag->addWidget(tbMajPertTag);
+    hLayoutTag->addWidget(tbAffTout);
+    vLayoutTag->addLayout(hLayoutTag);
+    vLayoutTag->addWidget(textBrowserTag);
+    dockTag->setWidget(dockWidgetTag);
+
     addDockWidget(Qt::BottomDockWidgetArea, dockLem);
     addDockWidget(Qt::BottomDockWidgetArea, dockDic);
     addDockWidget(Qt::BottomDockWidgetArea, dockScand);
     addDockWidget(Qt::BottomDockWidgetArea, dockFlex);
+    addDockWidget(Qt::BottomDockWidgetArea, dockTag);
 
     tabifyDockWidget(dockLem, dockDic);
     tabifyDockWidget(dockDic, dockScand);
     tabifyDockWidget(dockScand, dockFlex);
+    tabifyDockWidget(dockScand, dockTag);
 
     setTabPosition(Qt::BottomDockWidgetArea, QTabWidget::North);
     dockLem->raise();
@@ -1296,6 +1353,7 @@ void MainWindow::effaceRes()
     if (dockVisible(dockLem)) textEditLem->clear();
     if (dockVisible(dockFlex)) textBrowserFlex->clear();
     if (dockVisible(dockScand)) textEditScand->clear();
+    if (dockVisible(dockTag)) textBrowserTag->clear();
 }
 
 /**
@@ -1402,6 +1460,7 @@ void MainWindow::lancer()
 {
     if (dockVisible(dockLem)) lemmatiseTxt();
     if (dockVisible(dockScand)) scandeTxt();
+    if (dockVisible(dockTag)) tagger(editLatin->toPlainText(),-1);
 }
 
 /**
@@ -1412,12 +1471,15 @@ void MainWindow::lancer()
  */
 void MainWindow::lemmatiseLigne()
 {
+    if (html())
+    {
     QString texteHtml = textEditLem->toHtml();
     texteHtml.insert(texteHtml.indexOf("</body>"),
                      lemmatiseur->lemmatiseT(lineEditLem->text()));
     textEditLem->setText(texteHtml);
+    }
+    else textEditLem->insertPlainText(lemmatiseur->lemmatiseT(lineEditLem->text()));
     textEditLem->moveCursor(QTextCursor::End);
-//    textEditLem->append(lemmatiseur->lemmatiseT(lineEditLem->text()));
 }
 
 /**
@@ -1583,6 +1645,7 @@ void MainWindow::readSettings()
     hyphenAct->setChecked(settings.value("hyphenation").toBool());
     repHyphen = settings.value("repHyphen").toString();
     ficHyphen = settings.value("ficHyphen").toString();
+    affToutAct->setChecked(settings.value("tagAffTout").toBool());
     if (repHyphen.isEmpty() || ficHyphen.isEmpty())
         repHyphen = qApp->applicationDirPath() + "/data";
 
@@ -1705,7 +1768,7 @@ void MainWindow::setCible()
                 msg.setIcon(QMessageBox::Question);
                 msg.setText("Choisir une 2nde langue  \nChoose a 2nd language");
                 QAbstractButton *frButton = msg.addButton("Français",QMessageBox::AcceptRole);
-                QAbstractButton *enButton = msg.addButton("English",QMessageBox::AcceptRole);
+                //QAbstractButton *enButton = msg.addButton("English",QMessageBox::AcceptRole);
                 msg.exec();
                 if (msg.clickedButton() == frButton)
                     lemmatiseur->setCible(cle + ".fr.en");
@@ -2046,4 +2109,17 @@ void MainWindow::dockRestore()
     dockDic->show();
     dockFlex->setFloating(false);
     dockFlex->show();
+    dockTag->setFloating(false);
+    dockTag->show();
+}
+
+void MainWindow::tagger(QString t, int p)
+{
+    if (t.length() > 2)
+    {
+        // Sans texte, je ne fais rien.
+        int tl = t.length() - 1;
+        if (p > tl) p = tl;
+        textBrowserTag->setHtml(lemmatiseur->tagTexte(t, p, affToutAct->isChecked()));
+    }
 }

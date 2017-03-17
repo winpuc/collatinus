@@ -35,7 +35,7 @@
 
 #include <QDebug>
 // #include <QElapsedTimer>
-// #define DEBOG
+#define DEBOG
 
 /**
  * \fn Lemmat::Lemmat (QObject *parent)
@@ -60,6 +60,7 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
     _morpho = false;
     _extension = false;
     _extLoaded = false;
+    _nbrLoaded = false;
     // suffixes
     suffixes.insert("ne", "nĕ");
     suffixes.insert("que", "quĕ");
@@ -79,11 +80,245 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
         lisMorphos(QFileInfo(nfl).suffix());
     lisModeles();
     lisLexique();
+    lisTags(false);
     lisTraductions(true, false);
     lisIrreguliers();
     lisParPos();
+    /* détection des non traduits
+    foreach (Lemme *l, _lemmes.values())
+    {
+        QString t = l->traduction("fr");
+        if (t.isEmpty() && !l->indMorph().contains("cf."))
+            qDebug()<<l->cle()<<l->cle()<<l->indMorph()<<" non traduit en fr.";
+    }
+    */
 }
 
+/**
+ * \fn Lemmat::lisNombres
+ * \brief Lecture du fichier nombres.la
+ * et peuplement de la variable _nbOcc de chaque lemme.
+ *
+ * Cette routine lit le fichier nombres.la.
+ * Ce fichier a été tiré de la lemmatisation de la liste
+ * des formes tirées des textes du LASLA.
+ * C'est un csv, avec la virgule comme séparateur.
+ *
+ * Un programme a essayé d'établir la correspondance
+ * entre les lemmes de Collatinus (1er champ)
+ * avec ceux du LASLA (2e champ) et
+ * le nombre d'occurrences associé.
+ *
+ */
+void Lemmat::lisNombres()
+{
+    QStringList lignes = lignesFichier(_resDir + "nombres.la");
+    foreach (QString lin, lignes)
+    {
+        QStringList liste = lin.split(',');
+        QString clef = liste[0];
+        clef.remove('-');
+        if (_lemmes.contains(clef))
+            _lemmes[clef]->ajNombre(liste[2].toInt());
+    }
+    _nbrLoaded = true;
+    // Je lis aussi le début du fichier tags.la
+    lisTags(false);
+    // Lorsque j'aurai besoin des trigammes pour le tagger, je rappellerai lisTags(true).
+    // Je commencerai avec un if (_trigram.isEmpty()) lisTags(true);
+}
+
+/**
+ * @brief Lemmat::lisTags
+ * @param tout : bool
+ *
+ * Lorsque le booléen tout est false, on ne lit que les nombres d'occurrences des tags.
+ *
+ * Lorsque le booléen tout est true, on lit tout le fichier,
+ * donc aussi les dénombrements des séquences de trois tags.
+ *
+ * Cette routine lit le fichier tags.la.
+ * Ce fichier a été tiré du traitement
+ * des textes lemmatisés du LASLA.
+ * C'est un csv, avec la virgule comme séparateur.
+ *
+ * La première partie du fichier donne le nombre d'occurrences de chaque tag
+ * que j'ai introduit pour traiter les textes du LASLA.
+ * Elle établit aussi la correspondance avec les tags de Collatinus.
+ *
+ * La deuxième partie donne les séquences de trois tags (LASLA) et
+ * le nombre d'occurrences mesuré.
+ *
+ */
+void Lemmat::lisTags(bool tout)
+{
+    // Nouveau format des données. Le 8 novembre 2016.
+    _tagOcc.clear();
+    _tagTot.clear();
+    _trigram.clear();
+    QStringList lignes = lignesFichier(_resDir + "tags.la");
+    int max = lignes.count() - 1;
+    int i = 0;
+    QString l = "";
+    QStringList eclats;
+    while (i <= max) // && !l.startsWith("! --- "))
+    {
+        l = lignes.at(i);
+        if (l.startsWith("! --- ")) break;
+        eclats = l.split(',');
+        _tagOcc[eclats[0]] += eclats[1].toInt();
+        _tagTot[eclats[0].mid(0,1)] += eclats[1].toInt();
+        ++i;
+    }
+    //  qDebug() << _tagOcc.size() << _tagTot.size();
+    if (tout)
+    {
+        l.clear();
+        ++i;
+        while (i <= max && !l.startsWith("! --- "))
+        {
+            l = lignes.at(i);
+            eclats = l.split(",");
+            _trigram.insert(eclats[0],eclats[1].toInt());
+            ++i;
+        }
+        //  qDebug() << _trigram.size();
+    }
+}
+
+/**
+ * @brief Lemmat::tag
+ * @param l : le pointeur vers le lemme
+ * @param morph : l'analyse morphologique
+ * @return : le tag pour Collatinus
+ *
+ * Cette routine calcule le tag correspondant
+ * à l'analyse morphologique donnée, morph,
+ * pour le lemme, l.
+ * Ce tag est toujours sur trois caractères.
+ *
+ * Ce tag est obtenu avec le POS du lemme,
+ * suivi des cas (1-6 ou 7) et nombre (1, 2) pour les formes déclinées.
+ * Pour les verbes conjugués, on donne le mode (1-4)
+ * et un 1 si c'est un présent ou un espace sinon.
+ * Les supins ont été joints aux impératifs autres que le présent (groupes trop peu nombreux).
+ * Les formes verbales déclinées ont un "w" en tête (à la place du "v" pour verbe).
+ * Pour les invariables, le POS est complété avec deux espaces.
+ *
+ */
+QString Lemmat::tag(Lemme *l, QString morph)
+{
+    // Il faut encore traiter le cas des pos multiples
+    QString lp = l->pos();
+    QString lTags = "";
+    while (lp.size() > 0)
+    {
+        QString p = lp.mid(0,1);
+        lp = lp.mid(1);
+        if ((p == "n") && (morph == morpho(413))) // Locatif !
+            lTags.append("n71,");
+        else if ((p == "v") && (morph.contains(" -u"))) // C'est un supin
+            lTags.append("v3 ,");
+        else
+        {
+            p.append("%1%2,");
+            if (p.startsWith("v"))
+            {
+                for (int i=0; i<4; i++) if (morph.contains(modes(i).toLower()))
+                {
+                    if (morph.contains(temps(0))) p = p.arg(i+1).arg(1); // présent
+                    else  p = p.arg(i+1).arg(" ");
+                    lTags.append(p);
+                    break;
+                }
+            }
+            if (p.size() > 4) // Si p == 4, c'est que c'était un verbe conjugué.
+            {
+                for (int i=0; i<6; i++) if (morph.contains(cas(i)))
+                {
+                    if (morph.contains(nombre(1))) p = p.arg(i+1).arg(2);
+                    else  p = p.arg(i+1).arg(1);
+                    if (p.startsWith("v")) p[0] = 'w'; // Forme verbale déclinée.
+                    lTags.append(p);
+                    break;
+                }
+            }
+            if (p.size() > 4)
+            {
+                p = p.arg(" ").arg(" ");
+                lTags.append(p);
+            }
+            if (!_tagOcc.contains(p.mid(0,3)))
+                qDebug() << l->cle() << morph << p << " : Tag non trouvé !";
+        }
+    }
+    return lTags;
+}
+
+/**
+ * @brief Lemmat::fraction
+ * @param t : le tag
+ * @return : la fraction moyenne du tag.
+ *
+ * Ce résultat est un entier, exprimé en 1/1024e
+ *
+ * On va chercher le nombre d'occurrences associé à ce tag.
+ * On le divise par le nombre d'occurrences associé au même POS.
+ *
+ * Si la fonction reçoit une liste de tags,
+ * elle retourne la plus grande fraction.
+ *
+ */
+int Lemmat::fraction(QString listTags)
+{
+    int frFin = 0;
+    while (listTags.size() > 2)
+    {
+        QString t = listTags.mid(0,3);
+        listTags = listTags.mid(4);
+        int fr = 0;
+        if (_tagOcc.contains(t))
+        {
+            if ((t[0] == 'a') || (t[0] == 'p') || (t[0] == 'w')) // Adj. ou pron. sans genre !
+                fr = _tagOcc[t] * 341 / _tagTot[t.mid(0,1)];
+            else if ((t[0] == 'v') && (t[2] == '1')) // verbe au présent
+                fr = _tagOcc[t] * 512 / _tagTot[t.mid(0,1)];
+            else if ((t[0] == 'v') && (t[2] == ' ')) // verbe à un autre temps
+                fr = _tagOcc[t] * 256 / _tagTot[t.mid(0,1)];
+            else if (t[0] == 'n') // Nom
+                fr = _tagOcc[t] * 1024 / _tagTot[t.mid(0,1)];
+            else fr = 1024;
+            if (fr == 0) fr = 1;
+            //  qDebug() << _tagOcc[t] << _tagTot[t.mid(0,1)] << fr;
+        }
+        else qDebug() << t << " : Tag non trouvé !";
+        if (frFin < fr) frFin = fr; // Si j'ai reçu une liste de tags, je garde la fraction la plus grande.
+    }
+    if (frFin == 0) return 1024;
+    return frFin;
+}
+
+/**
+ * @brief Lemmat::tagOcc
+ * @param t : tag
+ * @return Le nombre d'occurrences du tag t
+ */
+int Lemmat::tagOcc(QString t)
+{
+    return _tagOcc[t];
+}
+
+/**
+ * @brief Lemmat::lignesFichier
+ * @param nf : nom du fichier
+ * @return : l'ensemble de lignes du fichier qui ne sont
+ * ni vides ni commentées.
+ *
+ * Les fichiers de Collatinus ont adopté le point d'exclamation
+ * en début de ligne pour introduire un commentaire.
+ * Ces lignes doivent être ignorées par le programme.
+ *
+ */
 QStringList Lemmat::lignesFichier(QString nf)
 {
     QFile f(nf);
@@ -100,6 +335,19 @@ QStringList Lemmat::lignesFichier(QString nf)
     return retour;
 }
 
+/**
+ * @brief Lemmat::lisMorphos
+ * @param lang : langue pour les morphologies.
+ * Cette langue est donnée par deux caractères "fr" ou "en",
+ * pour l'instant.
+ *
+ * Cette routine lit le fichier morphos.* qui donne
+ * les analyses morphologiques en français ou en anglais.
+ * Les utilisateurs peuvent ajouter toutes les langues qu'ils maîtrisent.
+ *
+ * Des mots clefs essentiels sont aussi ajoutés après les 416 morphos possibles.
+ *
+ */
 void Lemmat::lisMorphos(QString lang)
 {
     QStringList lignes = lignesFichier(_resDir + "morphos." + lang);
@@ -119,6 +367,7 @@ void Lemmat::lisMorphos(QString lang)
     _morphos.insert(lang,morphos);
     QStringList cas;
     l.clear();
+    ++i;
     while (i <= max && !l.startsWith("! --- "))
     {
         l = lignes.at(i);
@@ -217,6 +466,34 @@ void Lemmat::ajContractions()
     }
 }
 
+int Lemmat::aRomano(QString f)
+{
+    if (f.size () == 0) return 0;
+    // création de la table de conversion : pourrait être créée ailleurs.
+    QMap<QChar,int> conversion;
+    conversion['I']=1;
+    conversion['V']=5;
+    conversion['X']=10;
+    conversion['L']=50;
+    conversion['C']=100;
+    conversion['D']=500;
+    conversion['M']=1000;
+    // calcul du résultat : ajout d'un terme si l'ordre est normal, soustraction sinon.
+    int res=0;
+    int conv_c;
+    int conv_s = conversion[f[0]];
+    for (int i = 0; i < f.count()-1; i++)
+    {
+        conv_c = conv_s;
+        conv_s = conversion[f[i+1]];
+        if (conv_c < conv_s)
+            res -= conv_c;
+        else res += conv_c;
+    }
+    res += conv_s;
+    return res;
+}
+
 /**
  * \fn void Lemmat::ajDesinence (Desinence *d)
  * \brief ajoute la désinence d dans la map des
@@ -225,6 +502,13 @@ void Lemmat::ajContractions()
 void Lemmat::ajDesinence(Desinence *d)
 {
     _desinences.insert(Ch::deramise(d->gr()), d);
+}
+
+bool Lemmat::estRomain(QString f)
+{
+    return !(f.contains(QRegExp ("[^IVXLCDM]"))
+             || f.contains("IL")
+             || f.contains("IVI"));
 }
 
 /**
@@ -250,26 +534,29 @@ void Lemmat::ajRadicaux(Lemme *l)
     foreach (int i, m->clesR())
     {
         if (l->clesR().contains(i)) continue;
-        QString g = l->grq();
-        Radical *r = NULL;
+        QStringList gs = l->grq().split(',');
+        foreach (QString g, gs)
         {
-            QString gen = m->genRadical(i);
-            // si gen == 'K', le radical est la forme canonique
-            if (gen == "K")
-                r = new Radical(g, i, l);
-            else
+            Radical *r = NULL;
             {
-                // sinon, appliquer la règle de formation du modèle
-                int oter = gen.section(',', 0, 0).toInt();
-                QString ajouter = gen.section(',', 1, 1);
-                if (g.endsWith(0x0306)) g.chop(1);
-                g.chop(oter);
-                if (ajouter != "0") g.append(ajouter);
-                r = new Radical(g, i, l);
+                QString gen = m->genRadical(i);
+                // si gen == 'K', le radical est la forme canonique
+                if (gen == "K")
+                    r = new Radical(g, i, l);
+                else
+                {
+                    // sinon, appliquer la règle de formation du modèle
+                    int oter = gen.section(',', 0, 0).toInt();
+                    QString ajouter = gen.section(',', 1, 1);
+                    if (g.endsWith(0x0306)) g.chop(1);
+                    g.chop(oter);
+                    if (ajouter != "0") g.append(ajouter);
+                    r = new Radical(g, i, l);
+                }
             }
+            l->ajRadical(i, r);
+            _radicaux.insert(Ch::deramise(r->gr()), r);
         }
-        l->ajRadical(i, r);
-        _radicaux.insert(Ch::deramise(r->gr()), r);
     }
 }
 
@@ -461,8 +748,7 @@ MapLem Lemmat::lemmatise(QString f)
                         if (!r.endsWith("i") && rad->gr().endsWith("i"))
                             fq = rad->grq().left(rad->grq().size()-1) + "ī"
                                     + des->grq().right(des->grq().size()-1);
-                        SLem sl = {fq,
-                                   morpho(des->morphoNum()), ""};
+                        SLem sl = {fq, morpho(des->morphoNum()), ""};
                         result[l].prepend(sl);
                     }
                 }
@@ -480,6 +766,19 @@ MapLem Lemmat::lemmatise(QString f)
         }
 
         if (!res.isEmpty()) result = res;
+    }
+    // romains
+    if (estRomain(f) && !_lemmes.contains(f))
+    {
+        QString lin = QString("%1|inv|||adj. num.|1").arg(f);
+        Lemme *romain = new Lemme(lin, 0, this);
+        int nr = aRomano(f);
+        romain->ajTrad(QString("%1").arg(nr), "fr");
+        _lemmes.insert(f, romain);
+        SLem sl = {f,"inv",""};
+        QList<SLem> lsl;
+        lsl.append(sl);
+        result.insert(romain, lsl);
     }
     return result;
 }
@@ -502,115 +801,6 @@ bool Lemmat::inv(Lemme *l, const MapLem ml)
  *        peut tenir compte des majuscules pour savoir
  *        s'il s'agit d'un nom propre.
  */
-/*
-MapLem Lemmat::lemmatiseM(QString f, bool debPhr)
-{
-    QString res;
-    QTextStream fl(&res);
-    MapLem mm = lemmatise(f);
-    if (f.isEmpty()) return mm;
-    // suffixes
-    foreach (QString suf, suffixes.keys())
-    {
-        if (mm.empty() && f.endsWith(suf))
-        {
-            QString sf = f;
-            sf.chop(suf.length());
-            // TODO : aequeque est la seule occurrence
-            // de -queque dans le corpus classique
-            mm = lemmatiseM(sf, debPhr);
-            bool sst = false;
-            if (mm.isEmpty() && (suf == "st"))
-            {
-                sf += "s";
-                mm = lemmatiseM(sf, debPhr);
-                sst = true;
-            }
-            foreach (Lemme *l, mm.keys())
-            {
-                QList<SLem> ls = mm.value(l);
-                for (int i = 0; i < ls.count(); ++i)
-                    if (sst) mm[l][i].sufq = "t";
-                    else mm[l][i].sufq += suffixes.value(suf); // Pour modoquest
-            }
-        }
-    }
-    if (debPhr && f.at(0).isUpper())
-    {
-        QString nf = f.toLower();
-        MapLem nmm = lemmatiseM(nf);
-        foreach (Lemme *nl, nmm.keys())
-            mm.insert(nl, nmm.value(nl));
-    }
-    // assimilations
-    QString fa = assim(f);
-    if (fa != f)
-    {
-        MapLem nmm = lemmatiseM(fa);
-        // désassimiler les résultats
-        foreach (Lemme *nl, nmm.keys())
-        {
-            for (int i = 0; i < nmm[nl].count(); ++i)
-                nmm[nl][i].grq = desassimq(nmm[nl][i].grq);
-            mm.insert(nl, nmm.value(nl));
-        }
-    }
-    else
-    {
-        QString fa = desassim(f);
-        if (fa != f)
-        {
-            MapLem nmm = lemmatise(fa);
-            foreach (Lemme *nl, nmm.keys())
-            {
-                for (int i = 0; i < nmm[nl].count(); ++i)
-                    nmm[nl][i].grq = assimq(nmm[nl][i].grq);
-                mm.insert(nl, nmm.value(nl));
-            }
-        }
-    }
-    // contractions
-    QString fd = f;
-    foreach (QString cle, _contractions.keys())
-        if (fd.endsWith(cle))
-        {
-            fd.chop(cle.length());
-            if ((fd.contains("v") || fd.contains("V")))
-                fd.append(_contractions.value(cle));
-            else
-                fd.append(Ch::deramise(_contractions.value(cle)));
-            MapLem nmm = lemmatise(fd);
-            foreach (Lemme *nl, nmm.keys())
-            {
-                int diff = _contractions.value(cle).size() - cle.size();
-                // nombre de lettres que je dois supprimer
-                for (int i = 0; i < nmm[nl].count(); ++i)
-                {
-                    int position = f.size() - cle.size() + 1;
-                    // position de la 1ère lettre à supprimer
-                    if (fd.size() != nmm[nl][i].grq.size())
-                    {
-                        // il y a une (ou des) voyelle(s) commune(s)
-                        QString debut = nmm[nl][i].grq.left(position + 2);
-                        position += debut.count("\u0306"); // Faut-il vérifier que je suis sur le "v".
-                    }
-                    nmm[nl][i].grq = nmm[nl][i].grq.remove(position, diff);
-                }
-                mm.insert(nl, nmm.value(nl));
-            }
-        }
-    // majuscule initiale
-    if (mm.empty())
-    {
-        f[0] = f.at(0).toUpper();
-        MapLem nmm = lemmatise(f);
-        foreach (Lemme *nl, nmm.keys())
-            mm.insert(nl, nmm.value(nl));
-    }
-    return mm;
-}
-*/
-
 MapLem Lemmat::lemmatiseM(QString f, bool debPhr, bool desas)
 {
     QString res;
@@ -752,7 +942,8 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
     // pour mesurer :
     // QElapsedTimer timer;
     // timer.start();
-/*    alpha = alpha || _alpha;
+/*    
+    alpha = alpha || _alpha;
     cumVocibus = cumVocibus || _formeT;
     cumMorpho = cumMorpho || _morpho;
     nreconnu = nreconnu || _nonRec;
@@ -762,7 +953,6 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
     t = t.simplified();
     // découpage en mots
     QStringList lm = t.split(QRegExp("\\b"));
-//    qDebug() << lm[0] << lm[1] << lm[2] << lm[3] << lm[4] << lm[5];
     // conteneur pour les résultats
     QStringList lsv;
     // conteneur pour les échecs
@@ -775,7 +965,6 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
         // nettoyage et identification des débuts de phrase
         QString sep = lm.at(i - 1);
         bool debPhr = ((i == 1 && lm.count() !=3) || sep.contains(Ch::rePonct));
-//        qDebug() << f << sep << debPhr << _majPert;
         // lemmatisation de la forme
         MapLem map = lemmatiseM(f, !_majPert || debPhr);
         // échecs
@@ -795,26 +984,44 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
         else if (cumVocibus)
         {
             QString lin;
+            QMultiMap<int,QString> listeLem;
             if (_html)
             {
                 lin = "<h4>" + f + "</h4><ul>";
                 foreach (Lemme *l, map.keys())
                 {
-                    lin.append("<li>" + l->humain(true, _cible));
+                    QString lem = "<li>" + l->humain(true, _cible, true);
+                    int frMax = 0;
                     if (cumMorpho && !inv(l, map))
                     {
-                        lin.append("<ul>");
+                        QMultiMap<int,QString> listeMorph;
                         foreach (SLem m, map.value(l))
+                        {
+                            int fr = fraction(tag(l,m.morpho));
+                            if (fr > frMax) frMax = fr;
                             if (m.sufq.isEmpty())
-                                lin.append("<li>" + m.grq + " " + m.morpho +
-                                           "</li>");
+                                listeMorph.insert(-fr,m.grq + " " + m.morpho);
                             else
-                                lin.append("<li>" + m.grq + " + " + m.sufq +
-                                           " " + m.morpho + "</li>");
-                        lin.append("</ul>\n");
+                                listeMorph.insert(-fr,m.grq + " + " + m.sufq +
+                                           " " + m.morpho);
+                        }
+                        lem.append("<ul><li>");
+                        QStringList lMorph = listeMorph.values();
+                        lem.append(lMorph.join("</li><li>"));
+                        lem.append("</li></ul>\n");
                     }
-                    lin.append("</li>");
+                    else foreach (SLem m, map.value(l))
+                    {
+                        int fr = fraction(tag(l,m.morpho));
+                        if (fr > frMax) frMax = fr;
+                    }
+                    if (frMax == 0) frMax = 1024;
+                    lem.append("</li>");
+                    listeLem.insert(-frMax * l->nbOcc(),lem);
                 }
+                QStringList lLem = listeLem.values();
+                // Les valeurs sont en ordre croissant
+                lin.append(lLem.join("\n"));
                 lin.append("</ul>\n");
             }
             else
@@ -822,7 +1029,7 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
                 lin = " " + f + "\n";
                 foreach (Lemme *l, map.keys())
                 {
-                    lin.append("  - " + l->humain(false, _cible) + "\n");
+                    lin.append("  - " + l->humain(false, _cible, true) + "\n");
                     if (cumMorpho && !inv(l, map))
                     {
                         foreach (SLem m, map.value(l))
@@ -895,7 +1102,6 @@ QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
         foreach (QString nr, nonReconnus)
             lRet.append(nr + nl);
     }
-//    qDebug() << lRet.join("");
     // fin de la mesure :
     // qDebug()<<"Eneide"<<timer.nsecsElapsed()<<"ns";
     return lRet.join("");
@@ -978,7 +1184,6 @@ void Lemmat::lisFichierLexique(QString filepath)
     foreach (QString lin, lignes)
     {
         Lemme *l = new Lemme(lin, orig, this);
-        if (_lemmes.contains(l->cle())) qDebug() << orig << lin << l->cle();
         _lemmes.insert(l->cle(), l);
     }
 }
@@ -989,7 +1194,7 @@ void Lemmat::lisFichierLexique(QString filepath)
  */
 void Lemmat::lisLexique()
 {
-    Lemmat::lisFichierLexique(_resDir + "lemmes.la");
+    lisFichierLexique(_resDir + "lemmes.la");
 }
 
 /**
@@ -998,7 +1203,11 @@ void Lemmat::lisLexique()
  */
 void Lemmat::lisExtension()
 {
-    Lemmat::lisFichierLexique(_resDir + "lem_ext.la");
+//    if (_nbrLoaded) foreach(Lemme *l, _lemmes.values())
+  //      l->clearOcc();
+    // Si les nombres d'occurrences ont été chargés, je dois les ré-initialiser.
+    lisFichierLexique(_resDir + "lem_ext.la");
+//    lisNombres();
 }
 
 /**
@@ -1088,8 +1297,8 @@ void Lemmat::lisTraductions(bool base, bool extension)
             if (l != 0) l->ajTrad(lin.section(':', 1), suff);
 #ifdef DEBOG
             else
-                qDebug() << "traduction, erreur dans la ligne" << lin
-                         << "\n  clé" << Ch::deramise(lin.section(':', 0, 0));
+                qDebug() << nfl << "traduction, erreur dans la ligne" << lin
+                         << " clé" << Ch::deramise(lin.section(':', 0, 0));
 #endif
         }
     }
@@ -1113,7 +1322,7 @@ QString Lemmat::morpho(int m)
         l = _cible.mid(3,2);
     if (m < 0 || m > _morphos[l].count())
         return "morpho, "+QString::number(m)+" : erreur d'indice";
-    if (m == _morphos[l].count() - 1) return "-";
+    if (m == _morphos[l].count()) return "-";
     return _morphos[l].at(m - 1);
 }
 
@@ -1282,6 +1491,21 @@ void Lemmat::setNonRec(bool n) { _nonRec = n; }
  */
 QString Lemmat::variable(QString v) { return _variables[v]; }
 
+/**
+ * @brief Lemmat::setExtension
+ * @param e : bool
+ *
+ * Cette routine gère l'extension du lexique.
+ * Si le paramètre e est true, l'extension du lexique est active.
+ * S'il n'a pas encore été chargé, il l'est.
+ *
+ * Lors de la lecture des préférences (à l'initialisation),
+ * cette routine est appelée.
+ * Si on ne charge pas l'extension du lexique,
+ * je charge quand même les nombres d'occurrences.
+ * Ces nombres seront ré-initialisés si on charge l'extension par la suite.
+ *
+ */
 void Lemmat::setExtension(bool e)
 {
     _extension = e;
@@ -1290,6 +1514,7 @@ void Lemmat::setExtension(bool e)
         lisTraductions(false,true);
         _extLoaded = true;
     }
+//    else if (!_nbrLoaded) lisNombres();
 }
 
 /**
@@ -1323,4 +1548,237 @@ void Lemmat::lireHyphen(QString fichierHyphen)
 #endif
         }
     }
+}
+
+QString Lemmat::tagTexte(QString t, int p, bool affTout)
+{
+    // éliminer les chiffres et les espaces surnuméraires
+    t.remove(QRegExp("\\d"));
+//    t = t.simplified(); // Rmq : perd les retours de ligne !
+    int tl = t.length() - 1;
+    const QString pp = ".;!?";
+    int dph = p;
+    bool tout = false;
+    if (p < 0)
+    {
+        p = 0;
+        dph = 0;
+        tout = true; // Pour faire tout le texte, phrase par phrase.
+    }
+    else
+    {
+        // régression au début de la phrase
+        while (dph > 0 && !pp.contains(t.at(dph)) && (t.mid(dph,2) != "\n\n")) --dph;
+        if (dph != 0) dph += 1; // J'élimine la ponctuation de la phrase précédente.
+    }
+
+    // conteneur pour les résultats
+    QStringList lsv;
+    // progression jusqu'en fin de phrase
+    int fph = p;
+    while (fph < tl)
+    {
+        while (fph < tl && !pp.contains(t.at(fph)) && (t.mid(fph,2) != "\n\n")) ++fph;
+        QString phr = t.mid(dph, fph - dph).trimmed();
+        // découpage en mots
+        QStringList lm = phr.split(QRegExp("\\b"));
+
+        if (lm.size() > 1)
+        {
+            // Il y a au moins un mot...
+            while (Ch::abrev.contains(lm[lm.size()-2]))
+            {
+                // Ma phrase se terminait par une abréviation : je continue.
+                fph++;
+                while (fph < tl && !pp.contains(t.at(fph))) ++fph;
+                phr = t.mid(dph, fph - dph).trimmed();
+                lm = phr.split(QRegExp("\\b"));
+            }
+
+            QList<Mot*> mots;
+            // lemmatisation pour chaque mot
+            for (int i = 1; i < lm.length(); i += 2)
+            {
+                bool debVers = !_majPert || lm[i-1].contains("\n");
+                Mot * mot = new Mot(lm[i],(i-1)/2, debVers,this); // TODO : Vérifier si on a des vers avec majuscule...
+                mots.append(mot);
+            }  // fin de boucle de lemmatisation pour chaque mot
+            Mot * mot = new Mot("",mots.size(),true,this); // Fin de phrase
+            mots.append(mot); // J'ajoute un mot virtuel en fin de phrase avec le tag "snt".
+
+            if (_trigram.isEmpty()) lisTags(true);
+            // Si je n'ai pas encore chargé les trigrammes, je dois le faire maintenant.
+
+            QStringList sequences;
+            QList<double> probabilites;
+            sequences.append("snt");
+            probabilites.append(1.0);
+            double branches = 1.0; // Pour savoir combien de branches a l'arbre.
+            // Je suis en début de phrase : je n'ai que le tag "snt" et une proba de 1.
+            for (int i = 0; i < mots.size(); i++)
+            {
+                Mot *mot = mots[i];
+                QStringList lTags = mot->tags(); // La liste des tags possibles pour le mot
+                QStringList nvlSeq; // Nouvelle liste des séquences possibles
+                QList<double> nvlProba; // Nouvelle liste des probas.
+                // Je dois ajouter tous les tags possibles à toutes les sequences et calculer les nouvelles probas.
+                int sSeq = sequences.size();
+                int sTag = lTags.size();
+                if (sTag == 0) continue; // J'ignore pour l'instant les mots inconnus, cf. plus bas.
+                branches *= sTag;
+                for (int j = 0; j < sSeq; j++)
+                {
+                    QString bigr = sequences[j].right(7); // Le bigramme terminal
+                    long prTot = 0;
+                    QList<long> pr;
+                    for (int k = 0; k < sTag; k++)
+                    {
+                        QString seq = bigr + " " + lTags[k];
+                        long p = mot->proba(lTags[k]) * (4 * _trigram[seq] + 1);
+                        pr << p;
+                        prTot += p;
+                    }
+                    // J'ai tout ce qui dépend de k et la somme pour normaliser.
+                    if (prTot == 0)
+                    {
+                        prTot = 1;
+                        qDebug() << mot->forme() << "proba nulle ! " << sequences[j];
+                    }
+                    for (int k = 0; k < sTag; k++)
+                    {
+                        nvlSeq.append(sequences[j] + " " + lTags[k]);
+                        nvlProba.append(probabilites[j] * pr[k] / prTot);
+                        // Si j'avais gardé toutes les séquences, ce serait une vraie probabilité (normalisée à 1)
+                    }
+                }
+                // Ajouter les enclitiques.
+                if (!mot->tagEncl().isEmpty())
+                {
+                    QString ajout = " " + mot->tagEncl();
+                    for (int j = 0; j < nvlSeq.size(); j++) nvlSeq[j].append(ajout);
+                    // Comme toutes les formes à tag unique, l'enclitique ne change pas les probabilités.
+                }
+                // J'ai toutes les sequences et leur proba.
+                // Pour chaque bigramme terminal, je ne dois garder que la séquence la plus probable.
+                // En faisant ce tri, je fais une sélection sur le tag i-2 (attention aux mots avec enclitique).
+                // Si je veux garder une info sur l'ordre des tags du mot i-2, c'est maintenant !
+                if (i > 1)
+                {
+                    // Le mot i-2 existe !
+                    int debut = nvlSeq[0].size() - 11;
+                    if (!mot->tagEncl().isEmpty()) debut -= 4; // Je dois reculer d'un tag de plus.
+                    if (!mots[i-1]->tagEncl().isEmpty()) debut -= 4; // Je dois reculer d'un tag de plus.
+                    if (!mots[i-2]->tagEncl().isEmpty()) debut -= 4; // Je dois reculer d'un tag de plus.
+                    // Le tag du mot i-2 est nvlSeq[j].mid(debut, 3);
+                    for (int j = 0; j < nvlSeq.size(); j++) mots[i-2]->setBestOf(nvlSeq[j].mid(debut, 3), nvlProba[j]);
+                }
+                sequences.clear();
+                probabilites.clear();
+                //qDebug() << mot->forme() << nvlProba << nvlSeq;
+                for (int j = 0; j < nvlSeq.size(); j++) if (nvlProba[j] > 0)
+                {
+                    QString bigr = nvlSeq[j].right(7); // Les deux derniers tags
+                    QString seq = "";
+                    double val = -1;
+                    QString seq2 = "";
+                    double val2 = -1;
+                    for (int k = j; k < nvlSeq.size(); k += sTag) // Pour retrouver le bigramme terminal, il faut au moins le même dernier tag.
+                        if (bigr == nvlSeq[k].right(7))
+                        {
+                            if (val2 < nvlProba[k])
+                            {
+                                // J'y passe au moins une fois au début.
+                                // La séquence mérite la 1ère ou la 2e place.
+                                if (val < nvlProba[k])
+                                {
+                                    // 1ère place !
+                                    val2 = val;
+                                    seq2 = seq;
+                                    val = nvlProba[k];
+                                    seq = nvlSeq[k];
+                                }
+                                else
+                                {
+                                    // Seulement la 2e place
+                                    val2 = nvlProba[k];
+                                    seq2 = nvlSeq[k];
+                                }
+                            }
+                            nvlProba[k] = -1; // Pour ne pas considérer deux fois les mêmes séquences.
+                        }
+                    // val et seq correspondent aux proba et séquence avec le bigramme considéré qui ont la plus grande proba.
+                    sequences << seq;
+                    probabilites << val;
+                    if (val2 > 0)
+                    {
+                        // J'ai une deuxième séquence assez probable.
+                        sequences << seq2;
+                        probabilites << val2;
+                    }
+                }
+        //        qDebug() << mot->forme() << sSeq << sTag << nvlSeq.size() << sequences.size();
+                if (sequences.size() == 0) break;
+            } // fin de la phrase.
+
+            // Les probas associées aux tags du dernier vrai mot.
+            if (mots.length() > 1)
+            {
+                // Le mot mots.length()-2 existe !
+                int debut = sequences[0].size() - 7;
+                if (!mots[mots.length()-2]->tagEncl().isEmpty()) debut -= 4; // Je dois reculer d'un tag de plus.
+                // Le tag du mot mots.length()-2 est sequences[j].mid(debut, 3);
+                for (int j = 0; j < sequences.size(); j++)
+                    mots[mots.length()-2]->setBestOf(sequences[j].mid(debut, 3), probabilites[j]);
+            }
+            // Le tri final !
+            QString seq = "";
+            double val = -1;
+            QString seq2 = "";
+            double val2 = -1;
+            for (int i = 0; i < sequences.size(); i++)
+                if (val2 < probabilites[i])
+                {
+                    if (val < probabilites[i])
+                    {
+                        val2 = val;
+                        seq2 = seq;
+                        val = probabilites[i];
+                        seq = sequences[i];
+                    }
+                    else
+                    {
+                        val2 = probabilites[i];
+                        seq2 = sequences[i];
+                    }
+                }
+
+            lsv.append(phr);
+            lsv.append("<ul>");
+            QString prob = "<br/> avec la proba : %1 pour %2 branches.<br/>";
+            lsv.append(seq + prob.arg(val).arg(branches));
+            if (val2 > 0)
+            {
+                prob = "Deuxième choix avec la proba : %1 <br/> %2<br/>";
+                lsv.append(prob.arg(val2).arg(seq2));
+            }
+
+            seq = seq.mid(4); // Je supprime le premier tag qui est "snt".
+            for (int i = 0; i < mots.size()-1; i++)
+                if (!mots[i]->inconnu()) // Les mots inconnus ne figurent pas dans la séquence (cf. plus haut)
+                {
+                    lsv.append(mots[i]->choisir(seq.left(3), affTout));
+                     // Si enclitique mid(8)
+                    if (mots[i]->tagEncl().isEmpty()) seq = seq.mid(4);
+                    else seq = seq.mid(5 + mots[i]->tagEncl().size());
+                }
+                else lsv.append("<li>" + mots[i]->forme() + " : non trouvé</li>");
+
+            lsv.append("</ul>");
+            if (tout) lsv << "<br/>";
+            else return lsv.join("\n");
+        }
+        dph = fph + 1;
+        fph++;
+    }
+    return lsv.join("\n");
 }

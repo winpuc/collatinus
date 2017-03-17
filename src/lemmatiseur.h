@@ -42,7 +42,8 @@ typedef struct
     QString sufq;
 } SLem;
 
-typedef QMap<Lemme *, QList<SLem> > MapLem;
+typedef QMap<Lemme*, QList<SLem> > MapLem;
+#include "mot.h"
 
 typedef QPair<QRegExp, QString> Reglep;
 
@@ -54,12 +55,14 @@ class Lemmat : public QObject
     // fonction d'initialisation
     void ajAssims();
     void ajContractions();
+    int  aRomano(QString f);
     void lisIrreguliers();
     void lisFichierLexique(QString filepath);
     void lisLexique();
     void lisExtension();
     void lisModeles();
     void lisMorphos(QString lang);
+    void lisNombres();
     void lisParPos();
     void lisTraductions(bool base, bool extension);
     // variables et utils
@@ -99,9 +102,15 @@ class Lemmat : public QObject
     bool _morpho;
     bool _nonRec;
 
+    QMap<QString, int> _tagOcc; // Nombre d'occurrences du tag.
+    QMap<QString, int> _tagTot; // Nombre total en fonction du premier caractère du tag.
+    QMap<QString, int> _trigram; // Nombre d'occurrences des séquences de 3 tags.
+    void lisTags(bool tout = false);
+
     QString _resDir; // Le chemin du répertoire de ressources
     bool _extLoaded; // = true après chargement de l'extension
     // Lorsque j'ai chargé l'extension, je dois pouvoir ignorer les analyses qui en viennent.
+    bool _nbrLoaded; // Si les nombres ont été chargés, je dois les effacer avant de les charger à nouveau.
 
    public:
     Lemmat(QObject *parent = 0, QString resDir="");
@@ -115,6 +124,7 @@ class Lemmat : public QObject
     QString desassim(QString a);
     QString desassimq(QString a);
     static QString deramise(QString r);
+    static bool estRomain(QString f);
     QStringList frequences(QString txt);
     MapLem lemmatise(QString f);  // lemmatise une forme
     QString lemmatiseFichier(QString f, bool alpha = false,
@@ -157,6 +167,13 @@ class Lemmat : public QObject
     QString modes(int i);
     QString voix(int i);
     QString motsClefs(int i);
+
+    // Pour le tagger
+    QString tagTexte(QString t, int p, bool affTout = true);
+//    QString tagPhrase(QString phr);
+    QString tag(Lemme *l, QString morph);
+    int fraction(QString listTags);
+    int tagOcc(QString t);
 
 
    public slots:

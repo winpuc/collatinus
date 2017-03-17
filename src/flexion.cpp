@@ -330,6 +330,7 @@ QString Flexion::tabV()
         << "<a href=\"#indpass\">"<< _lemmatiseur->voix(1) <<"</a><br/>&nbsp;"
         << "<a href=\"#indpass\">"<< _lemmatiseur->modes(0) <<"</a>&nbsp;"
         << "<a href=\"#subpass\">"<< _lemmatiseur->modes(1) <<"</a>&nbsp;"
+        << "<a href=\"#imppass\">"<< _lemmatiseur->modes(2) <<" &amp; "<< _lemmatiseur->modes(3) <<"</a>&nbsp;"
         << "<a href=\"#ppp\">"<< _lemmatiseur->modes(4) <<" "<< _lemmatiseur->temps(3) <<"</a>&nbsp;"
         << "<a href=\"#adjv\">"<< _lemmatiseur->modes(5) <<"</a><br/>";
 
@@ -443,6 +444,19 @@ QString Flexion::tabV()
     for (int i = 285; i < 291; ++i)
         fl << lina << forme(i) << linb << forme(i + 6) << linb << forme(i + 12)
            << linc;
+    fl << queue;
+
+    // impératif passif
+    fl << QString(
+        "<a name=\"imppass\"></a>"
+        "<p>");
+    fl << _lemmatiseur->modes(2) << "</p>";
+    fl << entete;
+    fl << lina << _lemmatiseur->motsClefs(1) << linb << _lemmatiseur->nombre(0) << linb << _lemmatiseur->nombre(1)
+       << linc;
+    fl << lina << _lemmatiseur->motsClefs(2) << linb << forme(297) << linb << forme(298) << linc;
+    fl << lina << _lemmatiseur->motsClefs(3) << linb << forme(299) << linb << "-" << linc;
+    fl << lina << _lemmatiseur->motsClefs(4) << linb << forme(300) << linb << forme(301) << linc;
     fl << queue;
 
     fl << _lemmatiseur->morpho(302) << " : " << forme(302) << "</p>";

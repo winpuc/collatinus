@@ -40,7 +40,7 @@
 !
 ! On peut ne donner qu'une fois une désinence qui se répète en fin de liste.
 !
-! Définition des constante: $<constante>=<valeurs>
+! Définition des constantes: $<constante>=<valeurs>
 ! Utilisation : ce qui précède une constante est répété devant chaque ';' de
 !   la constante
 !
@@ -530,6 +530,19 @@ abs:14-17,19-36,38,40,41,42-48
 des:13,18:1:īsquĭs,īcquĭs;ōquō
 des:37,39,42:1:īdquĭd,īcquĭd;īdquĭd,īcquĭd;ōquō
 
+modele:qualiscumque
+pere:plus
+R:1:8,0
+R:4:6,0
+sufd:cūnquĕ
+sufd:cūmquĕ
+
+modele:quantuscumque
+pere:nonus
+R:0:8,0
+sufd:cūnquĕ
+sufd:cūmquĕ
+
 modele:ego
 R:0:K
 R:1:3,0
@@ -578,9 +591,13 @@ sufd:quĕ
 
 modele:nemo
 R:0:3,0
-des:13,15-18:0:ēmō̆;ēmĭnĕm;ūllī̆ŭs,ēmĭnĭs;ēmĭnī;ūllō,ēmĭnĕ2
-des:25,27-30:0:ēmō̆;ēmĭnĕm;ūllī̆ŭs,ēmĭnĭs;ēmĭnī;ūllō,ēmĭnĕ2
-des:37,39:0:ĭhĭl
+des:13,15-18:0:ēmō̆;ēmĭnĕm;ūllī̆ŭs,ēmĭnĭs;ēmĭnī;ūllō,ēmĭnĕ
+des:25,27-30:0:ēmō̆;ēmĭnĕm;ūllī̆ŭs,ēmĭnĭs;ēmĭnī;ūllō,ēmĭnĕ
+!des:37,39:0:ĭhĭl
+
+modele:nihil
+R:0:1,0
+des:37,39:0:l
 
 modele:plerique
 pere:doctus
@@ -621,7 +638,7 @@ des:249-260:2:ūr$templum
 des:261-264:0:āndŭm;āndī;āndō;āndō
 des:265,266:2:ŭm;ū
 ! indicatif passif
-des:267-272:0:ŏr;ārĭs;ātŭr;āmŭr;āmĭnī;āntŭr
+des:267-272:0:ŏr;ārĭs,ārĕ;ātŭr;āmŭr;āmĭnī;āntŭr
 des:273-278:0:ābăr;ābārĭs,ābārĕ;ābātŭr;ābāmŭr;ābāmĭnī;ābāntŭr
 des:279-284:0:ābŏr;ābĕrĭs,ābĕrĕ;ābĭtŭr;ābĭmŭr;ābĭmĭnī;ābūntŭr
 ! subjonctif
@@ -683,7 +700,7 @@ des:213-224:0:ēns;ēns;ēns;ēntĭs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ē
 ! gérondif, supin hérité de amo
 des:261-264:0:ēndŭm;ēndī;ēndō;ēndō
 ! indicatif passif
-des:267-272:0:ĕŏr;ērĭs;ētŭr;ēmŭr;ēmĭnī;ēntŭr
+des:267-272:0:ĕŏr;ērĭs,ērĕ;ētŭr;ēmŭr;ēmĭnī;ēntŭr
 des:273-278:0:ēbăr;ēbārĭs,ēbārĕ;ēbātŭr;ēbāmŭr;ēbāmĭnī;ēbāntŭr
 des:279-284:0:ēbŏr;ēbĕrĭs,ēbĕrĕ;ēbĭtŭr;ēbĭmŭr;ēbĭmĭnī;ēbūntŭr
 ! subjonctif
@@ -826,6 +843,10 @@ des:297,298:3:īrĕ;īmĭnī
 des:299,300:3:ītŏr;ītŏr;ĭūntŏr
 des:302:3:īrī
 
+modele:scio
+pere:audio
+des+:133-138:3:ībō̆;ībĭs;ībĭt;ībĭmŭs;ībĭtĭs;ībūnt
+
 modele:fio
 pere:audio
 R:4:2,ī
@@ -843,6 +864,7 @@ R:4:3,0
 R:5:3,ĕr
 R:6:2,0
 R:7:3,ēss
+R:8:3,fŭt
 abs:189-374
 ! indicatif
 des:121,124,126:0:ŭm;ŭmŭs;ūnt
@@ -859,6 +881,18 @@ des:186:0:ūntō
 ! infinitif
 des:187:7:ĕ
 des:416:4:fŏrĕ
+! participe futur
+des:225-236:8:ūrŭs;ūrĕ;ūrŭm;ūrī;ūrō;ūrō;ūrī;ūrī;ūrōs;ūrōrŭm;ūrīs;ūrīs
+des:237-248:8:ūră;ūră;ūrăm;ūrāe;ūrāe;ūrā;ūrāe;ūrāe;ūrās;ūrārŭm;ūrīs;ūrīs
+des:249-260:8:ūrŭm;ūrŭm;ūrŭm;ūrī;ūrō;ūrō;ūră;ūră;ūră;ūrōrŭm;ūrīs;ūrīs
+
+modele:absum
+pere:sum
+! participe présent
+des:189-200:0:$ens
+des:201-212:0:$ens
+des:213-224:0:ēns;ēns;ēns;ēntĭs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
+
 
 modele:possum
 pere:sum
@@ -942,6 +976,10 @@ des:201-212:0:$ens
 des:213-224:0:ēns;ēns;ēns;ēntĭs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ēntĭŭm;ēntĭbŭs;ēntĭbŭs
 ! gérondif et supin
 des:261-264:0:ēndŭm;ēndī;ēndō;ēndō
+! adjectif verbal
+des+:339-350:0:end$lupus
+des+:351-362:0:end$uita
+des+:363-374:0:end$templum
 
 modele:patior
 pere:sequor
@@ -971,6 +1009,7 @@ des:249-260:0:tūr$templum
 
 modele:potior
 pere:patior
+R:4:2,ūnd
 des:122-125:3:īrĭs,īrĕ;ītŭr;īmŭr;īmĭnī
 ! subjonctif
 des:163-168:3:īrĕr;īrērĭs,īrērĕ;īrētŭr;īrēmŭr;īrēmĭnī;īrēntŭr
@@ -981,6 +1020,10 @@ des:299-301:3:ītŏr;ītŏr;ĭūntŏr
 des:187:3:īrī
 ! gérondif et supin
 des:261-264:0:ēndŭm;ēndī;ēndō;ēndō
+! adj. verbal
+des+:339-350:4:$lupus
+des+:351-362:4:$uita
+des+:363-374:4:$templum
 
 modele:eo
 pere:audio
@@ -997,6 +1040,10 @@ des:191-200:5:ntĕm;ntĭs;ntī;ntĕ;ntēs;ntēs;ntēs;ntĭŭm;ntĭbŭs
 des:203-212:5:ntĕm;ntĭs;ntī;ntĕ;ntēs;ntēs;ntēs;ntĭŭm,nt;ntĭbŭs
 des:216-224:5:ntĭs;ntī;ntĕ;ntĭă;ntĭă;ntĭă;ntĭŭm;ntĭbŭs
 ! adj. verbal
+des:339-350:5:nd$lupus
+des:351-362:5:nd$uita
+des:363-374:5:nd$templum
+! gérondif
 des:261-264:5:ndŭm;ndī;ndō
 ! pas de passif, sauf 3ème sing
 des:268,275:4:tŭr;bātŭr
