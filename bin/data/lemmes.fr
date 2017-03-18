@@ -7732,7 +7732,7 @@ Essuvii:les Essuviens
 esurio:avoir faim
 esuritio:faim
 esus:nourriture
-et:conj. adv. aussi
+et:conj. et, adv. aussi
 etenim:et en effet
 Eteocles:Étéocle (fils d'Œdipe)
 etesiae:vents étésiens [qui soufflent à l'époque de la canicule]
@@ -8275,7 +8275,7 @@ facilitas:facilité, faculté
 facinerosus:criminel
 facinorosus:chargé de crimes
 facinus:action, acte ; le forfait, crime
-facio:faire
+facio:faire, rendre (avec attr. de l'objet)
 factio:pouvoir de faire, conduite ; la troupe, association, parti, faction
 factiosus:intigant, factieux
 factito:faire souvent, habituellement
@@ -14226,7 +14226,7 @@ naturaliter:naturellement
 natura:nature
 natus2:(+ num.) âgé de
 natus3:par la naissance, par l'âge
-natus:sing. (poét.) fils ; (pl.) petits (d'un animal)
+natus:sing. (poét.) fils ; (pl.) petit (d'un animal)
 nauclericus:de patron de navire
 nauclerius:de patron de navire
 Naucrates:Naucrates (historien d'Érythrée)
