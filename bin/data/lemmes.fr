@@ -649,7 +649,7 @@ adversaria2:brouillon, brouillard
 adversarius2:opposé, adverse, contraire
 adversarius:adversaire
 adversor:s'opposer, être contraire, faire opposition
-adversus2:contre
+adversus2:contre, envers
 adversus:contraire (-ae res : adversité)
 adverto:tourner vers, faire attention  [- animum : s'apercevoir]
 advesperascit:le soir vient, il se fait tard
