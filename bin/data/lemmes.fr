@@ -18534,7 +18534,7 @@ quoad:tant que, aussi longtemps que
 quocirca:c'est pourquoi, en conséquence
 quocumque:en quelque lieu que, partout
 quodammodo:en quelque sorte, en quelque façon
-quod:conj. parce que, fait que (après si, nisi, ne, num = aliquod,  quelque chose)
+quod:conj. parce que, ce fait que (après si, nisi, ne, num = aliquod,  quelque chose)
 quodsi:= quod si, si, que si
 quoiquam:= cuiquam (datif de quisquam = chacun)
 quolibet:n'importe où, où l'on voudra
@@ -22755,7 +22755,7 @@ tutela:protection
 Tuticanus:Tuticanus (nom d'homme)
 Tutidanus:Tutidanus
 Tutilius:Tutilius (rhéteur)
-tu:toi (toi tu, acc. te dat. pour toi)
+tu:tu, toi, te (nomin. toi tu, acc. te, dat. pour toi)
 tutor2:veiller sur, défendre, (se) protéger
 Tutor3:Tutor (nom d'h.)
 tutor:défenseur, protécteur; le tuteur, curateur
