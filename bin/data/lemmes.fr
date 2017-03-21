@@ -15861,7 +15861,7 @@ Paulus:Paulus
 pauperculus:pauvre, nécessiteux
 pauperies:pauvreté
 paupero:appauvrir, frustrer, dépouiller
-pauper:pauvre ; [subst. m.] pauvre
+pauper:[adj.] pauvre ; [subst. m.] pauvre
 paupertas:pauvreté
 paupertinus:misérable
 pauperus:c. pauper
