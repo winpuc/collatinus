@@ -23643,7 +23643,7 @@ virgo:vierge, jeune fille non mariée
 virgula:petite branche, rameau
 virgulta:petites branches, broussailles, ronces
 virguncula:petite fille, fillette
-vir:homme ( par opp. à mulier, femme ), mari.
+vir:homme ( par opp. à mulier, femme ), mari
 Viriatus2:Viriate (ou Viriathe, chef des Lusitaniens)
 viridans:vert, verdoyant (part. de virido)
 viridarium:bosquet, parc
