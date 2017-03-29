@@ -477,6 +477,7 @@ void MainWindow::charger(QString f)
         return;
     }
     QTextStream in(&file);
+    in.setCodec("UTF-8"); // Pour windôze !
     QApplication::setOverrideCursor(Qt::WaitCursor);
     QString contenu = in.readAll();
     file.close();
@@ -607,6 +608,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     settings.setValue("repHyphen", repHyphen);
     settings.setValue("ficHyphen", ficHyphen);
     settings.setValue("tagAffTout", affToutAct->isChecked());
+    settings.setValue ("repVerba", repVerba);
     settings.endGroup();
     settings.beginGroup("dictionnaires");
     settings.setValue("courant", comboGlossaria->currentIndex());
@@ -687,9 +689,12 @@ void MainWindow::createActions()
     nouvAct->setShortcuts(QKeySequence::New);
     ouvrirAct->setShortcuts(QKeySequence::Open);
     printAct->setShortcuts(QKeySequence::Print);
-    reFindAct->setShortcut(QKeySequence(tr("Ctrl+J")));
+    reFindAct->setShortcut(QKeySequence::FindNext);
+//    reFindAct->setShortcut(QKeySequence(tr("Ctrl+J")));
     quitAct->setShortcut(
         QKeySequence(tr("Ctrl+Q")));  // QKeySequence::Quit inopérant
+    lancAct->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_L));
+    // Ctrl-L pour lancer la lemmatisation ou la scansion du texte
 
     // lemmatisation et options
     // ordre alpha
@@ -737,6 +742,9 @@ void MainWindow::createActions()
     optionsAccent->addAction(ambigueAct);
     optionsAccent->setEnabled(false);
     lireHyphenAct = new QAction(tr("Lire les césures"),this);
+    actionVerba_cognita = new QAction(tr("Lire une liste de mots connus"),this);
+    actionVerba_cognita->setCheckable(true);
+    actionVerba_cognita->setChecked(false);
 
     // actions pour le serveur
     serverAct = new QAction(tr("Serveur"), this);
@@ -820,7 +828,7 @@ void MainWindow::createConnections()
             SLOT(setAlpha(bool)));
     connect(formeTAct, SIGNAL(toggled(bool)), lemmatiseur,
             SLOT(setFormeT(bool)));
-    connect(htmlAct, SIGNAL(toggled(bool)), lemmatiseur, SLOT(setHtml(bool)));
+    connect(htmlAct, SIGNAL(toggled(bool)), this, SLOT(setHtml(bool)));
     connect(majPertAct, SIGNAL(toggled(bool)), lemmatiseur,
             SLOT(setMajPert(bool)));
     connect(morphoAct, SIGNAL(toggled(bool)), lemmatiseur,
@@ -885,6 +893,7 @@ void MainWindow::createConnections()
     connect(quitAct, SIGNAL(triggered()), this, SLOT(close()));
     connect(reFindAct, SIGNAL(triggered()), this, SLOT(rechercheBis()));
     connect(statAct, SIGNAL(triggered()), this, SLOT(stat()));
+    connect(actionVerba_cognita, SIGNAL(toggled(bool)), this, SLOT(verbaCognita(bool)));
 }
 
 /**
@@ -930,6 +939,7 @@ void MainWindow::createMenus()
     fileMenu->addSeparator();
     fileMenu->addAction(oteAAct);
     fileMenu->addAction(lireHyphenAct);
+    fileMenu->addAction(actionVerba_cognita);
     fileMenu->addSeparator();
     fileMenu->addAction(quitAct);
 
@@ -1250,9 +1260,11 @@ void MainWindow::createDicWindow()
     QVBoxLayout *vLayout = new QVBoxLayout(wDic);
     QHBoxLayout *hLayout = new QHBoxLayout();
     lineEditDicW = new QLineEdit(wDic);
+    lineEditDicW->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Fixed);
+    lineEditDicW->setMinimumWidth(40);
     // Lemmatisation + recherche
-    QToolButton *tbDic = new QToolButton(this);
-    tbDic->setDefaultAction(dicActW);
+    QToolButton *tbDicW = new QToolButton(this);
+    tbDicW->setDefaultAction(dicActW);
     // recherche sans lemmatisation
     QToolButton *tbDicLittW = new QToolButton(this);
     tbDicLittW->setDefaultAction(dicLittActW);
@@ -1260,18 +1272,22 @@ void MainWindow::createDicWindow()
     anteButtonW = new QPushButton(this);
     labelLewisW = new QLabel(this);
     postButtonW = new QPushButton(this);
-    QSpacerItem *hSpacerDic = new QSpacerItem(40, 20);
+//    QSpacerItem *hSpacerDic = new QSpacerItem(40, 20);
     //, QSizePolicy::Expanding, QSizePolicy::Minimum);
     QToolButton *tbSyncWD = new QToolButton(this);
     tbSyncWD->setDefaultAction(syncWDAct);
+    tbSyncWD->setSizePolicy(QSizePolicy::Minimum,QSizePolicy::Fixed);
+    tbSyncWD->setMinimumWidth(40);
+    tbSyncWD->setMaximumSize(60, 24);
     hLayout->addWidget(lineEditDicW);
-    hLayout->addWidget(tbDic);
+    hLayout->addWidget(tbDicW);
     hLayout->addWidget(tbDicLittW);
     hLayout->addWidget(comboGlossariaW);
     hLayout->addWidget(anteButtonW);
     hLayout->addWidget(labelLewisW);
     hLayout->addWidget(postButtonW);
-    hLayout->addItem(hSpacerDic);
+//    hLayout->addItem(hSpacerDic);
+    hLayout->addStretch();
     hLayout->addWidget(tbSyncWD);
     textBrowserW = new QTextBrowser(wDic);
     textBrowserW->setOpenExternalLinks(true);
@@ -1474,8 +1490,9 @@ void MainWindow::lemmatiseLigne()
     if (html())
     {
     QString texteHtml = textEditLem->toHtml();
+    QString txt = lineEditLem->text();
     texteHtml.insert(texteHtml.indexOf("</body>"),
-                     lemmatiseur->lemmatiseT(lineEditLem->text()));
+                     lemmatiseur->lemmatiseT(txt));
     textEditLem->setText(texteHtml);
     }
     else textEditLem->insertPlainText(lemmatiseur->lemmatiseT(lineEditLem->text()));
@@ -1492,12 +1509,16 @@ void MainWindow::lemmatiseTxt()
 {
     // si la tâche dure trop longtemps :
     // setUpdatesEnabled(false);
+    QString txt = editLatin->toPlainText();
+    QString res = lemmatiseur->lemmatiseT(txt);
     if (html())
-        textEditLem->setHtml(lemmatiseur->lemmatiseT(editLatin->toPlainText()));
+        textEditLem->setHtml(res);
     else
-        textEditLem->setPlainText(
-            lemmatiseur->lemmatiseT(editLatin->toPlainText()));
+        textEditLem->setPlainText(res);
     // setUpdatesEnabled(true);
+    if (txt.contains("<span"))
+        editLatin->setHtml(txt);
+    // Le texte a été modifié, donc colorisé.
 }
 
 /**
@@ -1646,6 +1667,8 @@ void MainWindow::readSettings()
     repHyphen = settings.value("repHyphen").toString();
     ficHyphen = settings.value("ficHyphen").toString();
     affToutAct->setChecked(settings.value("tagAffTout").toBool());
+    repVerba = settings.value("repVerba").toString();
+    if (repVerba.isEmpty()) repVerba = "~";
     if (repHyphen.isEmpty() || ficHyphen.isEmpty())
         repHyphen = qApp->applicationDirPath() + "/data";
 
@@ -2013,6 +2036,10 @@ void MainWindow::exec ()
 //            rep = lemmatiseur->txt2XML(requete);
             rep = "Pas encore disponible";
             break;
+        case 'K':
+        case 'k':
+            rep = lemmatiseur->k9(texte);
+            break;
         case 'c':
             if (options.size() > 2)
                 lemmatiseur->setMajPert(options[2] == '1');
@@ -2123,3 +2150,72 @@ void MainWindow::tagger(QString t, int p)
         textBrowserTag->setHtml(lemmatiseur->tagTexte(t, p, affToutAct->isChecked()));
     }
 }
+
+void MainWindow::verbaCognita(bool vb)
+{
+    QString fichier;
+    if (vb) fichier = QFileDialog::getOpenFileName(this, "Verba cognita", repVerba);
+    if (!fichier.isEmpty()) repVerba = QFileInfo (fichier).absolutePath ();
+    lemmatiseur->verbaCognita(fichier,vb);
+}
+
+void MainWindow::setHtml(bool h)
+{
+    // Passer en html ne pose pas de problème
+    if (h || textEditLem->toPlainText().isEmpty()) lemmatiseur->setHtml(h);
+    else if (alerte())
+    {
+        // L'inverse (html --> non-html) mettrait les nouveaux résultats en items du dernier lemme.
+        QString blabla = textEditLem->toHtml();
+//        qDebug() << blabla;
+        textEditLem->clear();
+        int pCourante = 0;
+        while (blabla.indexOf("<li ", pCourante) != -1)
+        {
+            pCourante = blabla.indexOf("<li ", pCourante) + 4;
+            pCourante = blabla.indexOf(">",pCourante) + 1;
+            int toto = blabla.mid(0,pCourante).lastIndexOf("-qt-list-indent: ");
+            int niveau = blabla.mid(toto + 17,1).toInt();
+//            int niveau = blabla.mid(0,pCourante).count("<ul ") - blabla.mid(0,pCourante).count("</ul>");
+            switch (niveau)
+            {
+            case 1:
+                blabla.insert(pCourante,"* ");
+                break;
+            case 2:
+                blabla.insert(pCourante," - ");
+                break;
+            case 3:
+                blabla.insert(pCourante,"   . ");
+                break;
+            default:
+                break;
+            }
+        }
+        textEditLem->setHtml(blabla);
+        blabla = textEditLem->toPlainText();
+        blabla.append("\n\n");
+        textEditLem->clear();
+        // J'efface les résultats précédents
+        textEditLem->setText(blabla);
+        textEditLem->moveCursor(QTextCursor::End);
+        lemmatiseur->setHtml(h);
+    }
+    else htmlAct->setChecked(true);
+}
+
+bool MainWindow::alerte()
+{
+    QMessageBox attention(QMessageBox::Warning,tr("Alerte !"),
+                          tr("Quitter le mode HTML perd la mise en forme des résultats précédents !"));
+    QPushButton *annulerButton =
+          attention.addButton(tr("Annuler"), QMessageBox::ActionRole);
+    QPushButton *ecraserButton =
+          attention.addButton(tr("Continuer"), QMessageBox::ActionRole);
+    attention.setDefaultButton(ecraserButton);
+    attention.exec();
+    if (attention.clickedButton() == annulerButton) return false;
+    return true;
+}
+
+

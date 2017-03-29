@@ -52,6 +52,8 @@ class Lemmat : public QObject
     Q_OBJECT
 
    private:
+    QHash<QString,int> _hLem;
+    QStringList _couleurs;
     // fonction d'initialisation
     void ajAssims();
     void ajContractions();
@@ -101,6 +103,8 @@ class Lemmat : public QObject
     bool _majPert;
     bool _morpho;
     bool _nonRec;
+    QMap<QString,QString> _catLasla;
+    void lisCat();
 
     QMap<QString, int> _tagOcc; // Nombre d'occurrences du tag.
     QMap<QString, int> _tagTot; // Nombre total en fonction du premier caractère du tag.
@@ -135,8 +139,8 @@ class Lemmat : public QObject
     //MapLem lemmatiseM(QString f, bool debPhr = true);
     MapLem lemmatiseM(QString f, bool debPhr = true, bool desas  =false);
     // lemmatiseT lemmatise un texte
-    QString lemmatiseT(QString t);
-    QString lemmatiseT(QString t, bool alpha, bool cumVocibus = false,
+    QString lemmatiseT(QString &t);
+    QString lemmatiseT(QString &t, bool alpha, bool cumVocibus = false,
                        bool cumMorpho = false, bool nreconnu = false);
     Lemme *lemme(QString l);
     // lemmes(ml) renvoie la liste des graphies des lemmes
@@ -175,9 +179,13 @@ class Lemmat : public QObject
     int fraction(QString listTags);
     int tagOcc(QString t);
 
+    // Code en 9 pour le LASLA
+    QString k9(QString m);
+
+    void verbaCognita(QString fichier, bool vb=false); // Coloriser le texte avec les mots connus
 
    public slots:
-    // modificateur       s d'options
+    // modificateurs d'options
     void setAlpha(bool a);
     void setCible(QString c);
     void setHtml(bool h);

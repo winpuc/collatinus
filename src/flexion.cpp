@@ -245,14 +245,17 @@ QString Flexion::tabAdj()
     fl << "<p>" << _lemmatiseur->genre(0) << "<p>";
     fl << entete;
 //    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(0) << "</td></tr>";
+    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(0) << "</td></tr>";
     fl << lina << _lemmatiseur->motsClefs(0) << linb << _lemmatiseur->morpho(414) << linb <<
           _lemmatiseur->morpho(411) << linb << _lemmatiseur->morpho(412)
        << linc;
-    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(0) << "</td></tr>";
     for (int i = 13; i < 19; ++i)
         fl << lina << _lemmatiseur->cas(i - 13) << linb << forme(i) << linb << forme(i + 36)
            << linb << forme(i + 72) << linc;
     fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(1) << "</td></tr>";
+    fl << lina << _lemmatiseur->motsClefs(0) << linb << _lemmatiseur->morpho(414) << linb <<
+          _lemmatiseur->morpho(411) << linb << _lemmatiseur->morpho(412)
+       << linc;
     for (int i = 19; i < 25; ++i)
         fl << lina << _lemmatiseur->cas(i - 19) << linb << forme(i) << linb << forme(i + 36)
            << linb << forme(i + 72) << linc;
@@ -261,14 +264,17 @@ QString Flexion::tabAdj()
     fl << "<p>" << _lemmatiseur->genre(1) << "<p>";
     fl << entete;
 //    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(0) << "</td></tr>";
+    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(0) << "</td></tr>";
     fl << lina << _lemmatiseur->motsClefs(0) << linb << _lemmatiseur->morpho(414) << linb <<
           _lemmatiseur->morpho(411) << linb << _lemmatiseur->morpho(412)
        << linc;
-    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(0) << "</td></tr>";
     for (int i = 25; i < 31; ++i)
         fl << lina << _lemmatiseur->cas(i - 25) << linb << forme(i) << linb << forme(i + 36)
            << linb << forme(i + 72) << linc;
     fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(1) << "</td></tr>";
+    fl << lina << _lemmatiseur->motsClefs(0) << linb << _lemmatiseur->morpho(414) << linb <<
+          _lemmatiseur->morpho(411) << linb << _lemmatiseur->morpho(412)
+       << linc;
     for (int i = 31; i < 37; ++i)
         fl << lina << _lemmatiseur->cas(i - 31) << linb << forme(i) << linb << forme(i + 36)
            << linb << forme(i + 72) << linc;
@@ -276,14 +282,17 @@ QString Flexion::tabAdj()
 
     fl << "<p>" << _lemmatiseur->genre(2) << "<p>";
     fl << entete;
+    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(0) << "</td></tr>";
     fl << lina << _lemmatiseur->motsClefs(0) << linb << _lemmatiseur->morpho(414) << linb <<
           _lemmatiseur->morpho(411) << linb << _lemmatiseur->morpho(412)
        << linc;
-    fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(0) << "</td></tr>";
     for (int i = 37; i < 43; ++i)
         fl << lina << _lemmatiseur->cas(i - 37) << linb << forme(i) << linb << forme(i + 36)
            << linb << forme(i + 72) << linc;
     fl << "<tr><td colspan=4>" << _lemmatiseur->nombre(1) << "</td></tr>";
+    fl << lina << _lemmatiseur->motsClefs(0) << linb << _lemmatiseur->morpho(414) << linb <<
+          _lemmatiseur->morpho(411) << linb << _lemmatiseur->morpho(412)
+       << linc;
     for (int i = 43; i < 49; ++i)
         fl << lina << _lemmatiseur->cas(i - 43) << linb << forme(i) << linb << forme(i + 36)
            << linb << forme(i + 72) << linc;
