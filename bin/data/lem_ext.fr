@@ -57989,6 +57989,9 @@ zythum:bière, boisson faite avec de l'orge
 ! Noms propres de + de 2 syllabes de la Vulgate
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+Abias:personnage biblique
 Aminadab:personnage biblique
-Naāsson:personnage biblique
+Josaphat=Iosaphat:personnage biblique
+Naasson:personnage biblique
+Urias:personnage biblique
 
