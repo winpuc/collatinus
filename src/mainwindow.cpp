@@ -1487,15 +1487,15 @@ void MainWindow::lancer()
  */
 void MainWindow::lemmatiseLigne()
 {
+    QString txt = lineEditLem->text();
     if (html())
     {
     QString texteHtml = textEditLem->toHtml();
-    QString txt = lineEditLem->text();
     texteHtml.insert(texteHtml.indexOf("</body>"),
                      lemmatiseur->lemmatiseT(txt));
     textEditLem->setText(texteHtml);
     }
-    else textEditLem->insertPlainText(lemmatiseur->lemmatiseT(lineEditLem->text()));
+    else textEditLem->insertPlainText(lemmatiseur->lemmatiseT(txt));
     textEditLem->moveCursor(QTextCursor::End);
 }
 
