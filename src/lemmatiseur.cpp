@@ -967,12 +967,12 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr, bool desas)
  *	      Les paramètres et options true outrepassent les false,
  *        _majPert et _html sont dans les options de la classe.
  */
-QString Lemmat::lemmatiseT(QString &t)
+QString Lemmat::lemmatiseT(QString t)
 {
     return lemmatiseT(t, _alpha, _formeT, _morpho, _nonRec);
 }
 
-QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
+QString Lemmat::lemmatiseT(QString t, bool alpha, bool cumVocibus,
                            bool cumMorpho, bool nreconnu)
 {
     // pour mesurer :
