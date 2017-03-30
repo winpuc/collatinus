@@ -139,8 +139,8 @@ class Lemmat : public QObject
     //MapLem lemmatiseM(QString f, bool debPhr = true);
     MapLem lemmatiseM(QString f, bool debPhr = true, bool desas  =false);
     // lemmatiseT lemmatise un texte
-    QString lemmatiseT(QString &t);
-    QString lemmatiseT(QString &t, bool alpha, bool cumVocibus = false,
+    QString lemmatiseT(QString t);
+    QString lemmatiseT(QString t, bool alpha, bool cumVocibus = false,
                        bool cumMorpho = false, bool nreconnu = false);
     Lemme *lemme(QString l);
     // lemmes(ml) renvoie la liste des graphies des lemmes
