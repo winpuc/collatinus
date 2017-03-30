@@ -966,6 +966,13 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr, bool desas)
  *        sont donnés par des variables de classe.
  *	      Les paramètres et options true outrepassent les false,
  *        _majPert et _html sont dans les options de la classe.
+ *
+ *        Par effet de bord, la fonction modifie le texte
+ *        t, passé par adresse dans le paramètre &t, en
+ *        tenant compte de la liste des mots connus définie
+ *        par l'utilisateur via l'option
+ *        Fichier/Lire une liste de mots connus.
+ *
  */
 QString Lemmat::lemmatiseT(QString &t)
 {
