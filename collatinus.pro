@@ -53,6 +53,7 @@ SOURCES += src/ch.cpp \
     src/mot.cpp
 
 RESOURCES += collatinus.qrc
+RC_ICONS = res/collatinus.ico
 
 macx:{
     TARGET = Collatinus_11
