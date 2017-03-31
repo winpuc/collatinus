@@ -1,6 +1,6 @@
 *Collatinus 11 -- guide*
 
-[index](index.html) précédent : [Scander](scander.html) suivant : [Utilisation avancée](avancee.html) 
+[index](index.html) précédent : [Scander](scander.html) suivant : [Tagger](tagger.html) 
 
 Fléchir
 =======
@@ -14,4 +14,4 @@ des liens permettent de montrer immédiatement la partie
 recherchée de la flexion. D'autres liens permettent de 
 changer de lemme.
 
-[index](index.html) précédent : [Scander](scander.html) suivant : [Utilisation avancée](avancee.html) 
+[index](index.html) précédent : [Scander](scander.html) suivant : [Tagger](tagger.html) 
