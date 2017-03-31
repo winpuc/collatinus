@@ -31,7 +31,7 @@ La **scansion** est calculée à partir du lexique de
 Collatinus, qui donne les quantités. Le résultat est
 ensuite soumis à un ensemble de règles prosodiques.
 Enfin les élisions sont recherchées et les syllabes
-élidées mises entre crochés.
+élidées mises entre crochets.
 
 L'icone _statistiques_ (un boulier) permet d'avoir 
 des suggestions pour les hexamètres et pentamètres.
@@ -53,5 +53,7 @@ Si on a lu le fichier "hyphen.la" (ou tout autre fichier
 construit sur ce modèle) dans le menu _Fichier/Lire les césures_, 
 le programme sera en mesure de tenir compte 
 des _exceptions étymologiques_ (en présence d'un préfixe).
+Le fichier "hyphen.la" est dû à la persévérance de 
+Frère Romain Marie de l'Abbaye Saint-Joseph de Flavigny-sur-Ozerain.
 
 [index](index.html) précédent : [Dictionnaires](dictionnaires.html) suivant : [Fléchir](flechir.html) 
