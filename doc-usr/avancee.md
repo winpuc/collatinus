@@ -6,10 +6,10 @@ Utilisation avancée
 ===================
 
 	Pour faire son travail, Collatinus s'appuie sur une
-collection de fichiers qui contiennent toutes les
-connaissances nécessaires. À l'initialisation du
-programme, ils sont tous lus, et leur données mises
-en listes et placées en mémoire vive.
+    collection de fichiers qui contiennent toutes les
+    connaissances nécessaires. À l'initialisation du
+    programme, ils sont tous lus, et les données mises
+    en listes et placées en mémoire vive.
 
 Si on remarque une erreur ou une lacune dans ses
 résultats, et qu'on a des connaissances suffisantes en
