@@ -1974,7 +1974,7 @@ Auentia:nom d'une déesse des habitants d'Aventicum
 Auenticensis:d'Aventicum
 Auentinensis:du mont Aventin.
 Auentiniensis:du mont Aventin.
-Auernus2:Averne, [lac de Campanie où les poètes placent une entrée des enfers] / [poét.] = les enfers / l'enfer des chrétiens
+!Auernus2:Averne, [lac de Campanie où les poètes placent une entrée des enfers] / [poét.] = les enfers / l'enfer des chrétiens
 Auerruncus:divinité qui détournait les malheurs
 Aufeius:d'Auféius
 Aufentum:fleuve du Latium
@@ -6214,7 +6214,7 @@ Fundanianus:qui a rapport à Fundanius
 Fundanius2:v. Fundi
 Fura:c. Furina
 Furatrinus:le dieu du vol, Mercure
-Furiae:les Furies [Alecto, Mégère, Tisiphone] / symbole de la vengeance, furies
+!Furiae:les Furies [Alecto, Mégère, Tisiphone] / symbole de la vengeance, furies
 Furiani:the soldiers of M. Furius Camillus, the Furians
 Furianus:de Furius
 Furina:par
@@ -8565,7 +8565,7 @@ Mallos:ville de Cilicie / ville d'Éthiopie / m., montagne chez les Malli
 Mallotes:de Mallos
 Malotes:an inhabitant of Mallus
 Malthace:île près de Corcyre
-Malthinus:nom d'homme
+!Malthinus:nom d'homme
 Maluane:fleuve d'Afrique, sortant de l'Atlas
 Mamaea:v. Mamm-.
 Mamaeus:de Mama [ville d'Égypte ou d'Éthiopie]
@@ -10524,7 +10524,7 @@ Ortygia:autre nom de l'île de Délos / île en face de Syracuse / autre nom d'�
 Orumbouii:peuple d'Italie
 Orumcolae:peuple de l'Inde
 Oruros:lieu ou ville de la Mésopotamie
-Osca:ville d'Espagne (Tarraconnaise), auj. Huesca
+!Osca:ville d'Espagne (Tarraconnaise), auj. Huesca
 Osce:adv., dans la langue des Osques
 Oscensis:d'Osca / les habitants d'Osca
 Oscidates:peuple d'Aquitaine
@@ -12157,7 +12157,7 @@ Ptolemenses:habitants de Ptolémaïs [en Phénicie]
 Ptolemocratia:nom de femme
 Ptychia:île voisine de Corcyre
 Publianus:de Publius
-Publicianus:de Publicius
+!Publicianus:de Publicius
 Publilia:seconde femme de Cicéron // (tribus) tribu Publilia
 Publilianus:Cicero's second wife, whom he married, and divorced the next year
 Publipor:esclave de Publius = Publii puer
@@ -14852,7 +14852,7 @@ Thuria:v. Turia.
 Thuriae:v. Thurium
 Thuringi:les Thuringiens [peuple germain]
 Thurini:the inhabitants of Thurii
-Thurium:Thurium [ville de la Grande-Grèce]
+!Thurium:Thurium [ville de la Grande-Grèce]
 Thurrus:roi d'Hispanie
 Thusci:the inhabitants of Etru, ria, the Tuscans, Etruscans, Etrurians
 Thussagetae:v. Thyssagetae.
@@ -17271,7 +17271,7 @@ adoratus2:adoration, prières
 adordinatio:arrangement
 adordino:tr., préparer, assigner
 adoreum:blé-froment
-adorio:v. adorior
+!adorio:v. adorior
 adornate:avec élégance
 adornatus:part. de adorno.
 adorsus:v. adorior
@@ -17482,7 +17482,7 @@ aemulatrix:celle qui rivalise
 aemulatus:part. de aemulor.
 aemulo:v. aemulor.
 aena:chaudière
-aeneator:sonneur de trompette
+!aeneator:sonneur de trompette
 aeneatus:écrit ou gravé sur l'airain
 aenigmatice:d'une manière énigmatique
 aenigmaticus:like an enigma, obscure, enigmatic
@@ -17799,7 +17799,7 @@ albicantius:adv. au compar., en tirant un peu trop sur le blanc
 albicapillus:vieillard aux cheveux blancs
 albicasco:int., commencer à blanchir
 albiceratus:wax-white, light yellow
-albicerus:
+!albicerus:
 albicolor:de couleur blanche
 albicomus:aux cheveux blancs
 albidulus:dim. de albidus
@@ -18328,7 +18328,7 @@ amygdalites:sorte d'euphorbe
 amygdalus:amandier
 amylatus:part. de amylo.
 amylo:mêler avec de l'amidon
-amylum:amidon, empois
+!amylum:amidon, empois
 amynticus:préservatif
 ana2:prép. acc. [à partir de Végèce]
 anabaptismus:Aug. second baptême.
@@ -20311,8 +20311,8 @@ baiulus:porteur, portefaix / messager / celui qui porte les morts
 baiulus2:porteur, portefaix / messager / celui qui porte les morts
 balabundus:bêlant
 balaena:baleine (cétacé)
-balaenaceus:de baleine
-balaenacius:of whalebone
+!balaenaceus:de baleine
+!balaenacius:of whalebone
 balaninus:qui vient du balanus
 balanites:pierre précieuse en forme de gland
 balanitis:qui a la forme d'un gland
@@ -20977,7 +20977,7 @@ bractearia:batteuse de métaux
 bractearius:batteur de métaux, et surtout d'or
 bracteator:a goldbeater
 bracteatus:couvert d'une feuille d'or, doré
-bracteola:petite feuille ou lame d'or
+!bracteola:petite feuille ou lame d'or
 bractor:pass.
 brado:jambon
 branca:patte [d'animal féroce]
@@ -22833,8 +22833,8 @@ chiliodynamia:polemonia ou philetaeria [plante]
 chiliophyllon:mille-feuilles [plante]
 chilo:qui a de grosses lèvres
 chimerinus:d'hiver
-chiragra:chiragre, goutte des mains
-chiragricus:chiragre, qui a la goutte aux mains
+!chiragra:chiragre, goutte des mains
+!chiragricus:chiragre, qui a la goutte aux mains
 chiridota:tunique à longues manches
 chiridotus:furnished with sleeves
 chirodyti:manches
@@ -25138,7 +25138,7 @@ confricamentum:ce qui sert à frotter
 confricatio:frottement
 confricatus:part. de confrico.
 confrixo:tr., faire griller, faire rôtir avec
-confrixus:part. de l'inus. confrigo, rôti, grillé
+!confrixus:part. de l'inus. confrigo, rôti, grillé
 confuga:celui ou celle qui se réfugie dans un lieu d'asile
 confugela:[arch.], refuge
 confugium:refuge, asile
@@ -30594,8 +30594,8 @@ ethologia:c. ethopoeia :
 ethologus:qui imite les moeurs, mime, comédien
 ethopoeia:éthopée [fig. de rhét.], portrait, caractère
 ethopoeiacus:servant à peindre le caractère
-etiam2:adv, encore alors, jusque-là [dans le passé]
-etiam3:adv, encore alors, jusque-là [dans le passé]
+!etiam2:adv, encore alors, jusque-là [dans le passé]
+!etiam3:adv, encore alors, jusque-là [dans le passé]
 etiamdum:adv., encore alors
 etussio:v. extussio.
 etymologia:étymologie [origine d'un mot]
@@ -30713,9 +30713,9 @@ euoe:v. euhoe.
 euoe2:v. euhoe.
 euolaticus:volage.
 euolatio:action de s'envoler, de fuir à la hâte
-euolgo:to bring out among the people, to publish, divulge, object-sentence
+!euolgo:to bring out among the people, to publish, divulge, object-sentence
 euolito:int., sortir souvent en volant
-euolsio:a pulling out
+!euolsio:a pulling out
 euolute:en détail, clairement
 euolutio:action de dérouler, de parcourir, de lire
 euolutus:part. p. de evolvo
@@ -31718,7 +31718,7 @@ faeceus:couvert de boue, ignoble
 faecinius:qui laisse du marc (raisin) / qui laisse de la lie (vin)
 faecinus:qui laisse du marc (raisin) / qui laisse de la lie (vin)
 faecla:v. faecula
-faecosus:bourbeux
+!faecosus:bourbeux
 faeculentia:abondance d'ordure
 faeculentus:plein de lie, de vase, bourbeux, trouble / [fig.] ordurier
 faeles:chat, chatte / martre, putois / [fig.] = ravisseur
@@ -31959,7 +31959,7 @@ febrio:int., avoir la fièvre
 februamentum:purification
 februatio:purification
 februo:tr., purifier, faire des expiations religieuses
-fecosus:v. faecosus, etc.
+!fecosus:v. faecosus, etc.
 fecundator:celui qui féconde
 fecunde:d'une manière féconde
 fecundia:c. fecunditas
@@ -33155,7 +33155,7 @@ gassinades:a Median precious stone
 gaster:ventre
 gastrimargia:voracité
 gastrimargus:vorace
-gastrum:vase ventru
+!gastrum:vase ventru
 gauata:écuelle, jatte
 gaudebundus:transporté de joie.
 gaudendus:de gaudeo
@@ -35157,7 +35157,7 @@ immontuosus:qui n'est pas montueux
 immorandus:que l'on doit maintenir
 immoranter:sans tarder
 immoratus:influence prolongée
-immorsus:mordu / [fig.] excité [en parl. de l'estomac]
+!immorsus:mordu / [fig.] excité [en parl. de l'estomac]
 immortale:éternellement
 immortaliter:éternellement
 immortalitus:adv., venant des dieux immortels
@@ -35720,7 +35720,7 @@ incohatio:a beginning
 incohatiuus:beginning, denoting a beginning, inchoative;
 incohator:a beginner
 incohatus:Neutr., to begin, commence, take a beginning.
-incohibilis:difficile à mettre au pas / qu'on ne peut arrêter
+!incohibilis:difficile à mettre au pas / qu'on ne peut arrêter
 incoibilis:difficile à rassembler.
 incoinquinabilis:incorruptible
 incoinquinabiliter:sans souillure
@@ -37989,8 +37989,8 @@ iugus2:c. jugum
 iuli:chatons [du coudrier]
 iulis2:poisson inconnu
 iulis3:a kind of rockfish
-iulus2:v. iuli.
-ium:an idol-temple, med.
+!iulus2:v. iuli.
+!ium:an idol-temple, med.
 iumentalis:c. jumentarius
 iumentarius:de bêtes de somme; Subst. m. éleveur
 iumentarius2:éleveur
@@ -40501,7 +40501,7 @@ metropolitanus:de métropole
 metropolitanus3:a metropolitan, the bishop of a metropolitan church
 metuendus:redoutable
 metutus:v. metuo
-meum:mon bien
+!meum:mon bien
 meum2:baudremoine [plante]
 micatio:ruade
 micatus:mouvement rapide [de la langue]
@@ -42519,7 +42519,7 @@ obsecutor:celui qui obéit à
 obsecutus:part. de obsequor
 obsepio:tr., fermer devant ; barrer, fermer, obstruer
 obseptus:v. obsaeptus.
-obsequela:complaisance, déférence
+!obsequela:complaisance, déférence
 obsequiae:obsèques
 obsequialis:obséquieux
 obsequibilis:obligeant, serviable
@@ -43836,7 +43836,7 @@ papyrio:lieu où croît du papyrus
 papyrius:de papyrus
 parabalani:infirmiers
 parabolanus:a sick-nurse
-parabole:[t. de rhét.] comparaison, similitude / parabole / proverbe
+!parabole:[t. de rhét.] comparaison, similitude / parabole / proverbe
 parabolice:figurément, allégoriquement
 parabolus:qui s'expose, casse-cou
 paracenterium:trocart, lancette [pour ponction]
@@ -43855,9 +43855,9 @@ paradisiacola:qui habite le paradis.
 paradisiacus:du paradis terrestre / du paradis, séjour des bienheureux
 paradisicola:habitant du paradis [céleste]
 paradisus:jardin / le paradis terrestre / le paradis [céleste]
-paradoxa:
+!paradoxa:
 paradoxi:mimes [acteurs de mimes] / ceux qui ont été vainqueurs [contre toute attente] le même jour dans la lutte et le pancrace
-paradoxon:chose contraire à l'opinion / phrase suspendue, suspension [fig. de rhét.]
+!paradoxon:chose contraire à l'opinion / phrase suspendue, suspension [fig. de rhét.]
 paradoxos:
 paradoxus:marvellous, strange, contrary to all expectation, paradoxical;, subst. m. one who, contrary to expectation, has conquered both in the lucta and in the pancratium on the same day
 paraenesis:avertissement, prescription
@@ -44931,7 +44931,7 @@ perleuiter:très légèrement, très faiblement
 perlibens:p.-adj. qui fait très volontiers
 perlibenter:très volontiers
 perliberalis:de très bon ton, très distingué
-perlibet:[suivi de l'infin.] il est très agréable [de]
+!perlibet:[suivi de l'infin.] il est très agréable [de]
 perlibratio:établissement du niveau [des eaux]
 perlibro:niveler tout à fait, égaliser / brandir
 perlicet:il est tout à fait permis de
@@ -46067,7 +46067,7 @@ plumbosus:plein de plomb
 plumella:dim. de pluma
 plumesco:int., commencer à se couvrir de plume
 plumiger:emplumé, de plumes
-plumipes:qui a les pieds garnis de plumes
+!plumipes:qui a les pieds garnis de plumes
 pluor:pluie
 pluralis:composé de plusieurs / pluriel [t. de gram.] / subst. m., le pluriel
 pluralis2:le pluriel
@@ -47842,7 +47842,7 @@ propungo:tr., piquer devant, sur le devant
 propurgo:tr., purifier préalablement
 propus:nom d'une étoile qui se trouve devant les pieds des Gémeaux
 propylaea:les Propylées, portique de l'Acropole [à Athènes]
-propylaeon:les Propylées, portique de l'Acropole [à Athènes]
+!propylaeon:les Propylées, portique de l'Acropole [à Athènes]
 propylon:un vestibule des Propylées
 proquaestor:proquesteur.
 proquirito:tr., proclamer
@@ -48485,7 +48485,7 @@ pyramidatus:en forme de pyramide, pyramidal, conique.
 pyrausta:insecte qui vit dans le feu
 pyraustes:insecte qui vit dans le feu
 pyren:sorte de pierre précieuse
-pyrethron:pyrèthre [plante]
+!pyrethron:pyrèthre [plante]
 pyreum:sanctuaire où les Perses entretenaient le feu sacré
 pyrgis:cynoglosse [plante]
 pyrgus:petite tour avec des étages à travers lesquels dégringolaient les dés ; [par ext.] cornet, v. phimus
@@ -50004,7 +50004,7 @@ rhedarius:de chariot
 rhedarius2:cocher / charron, carrossier
 rheno:rhénon, gilet fait d'une fourrure d'animal
 rhetorica2:rhetoric
-rhetorice:rhétorique
+!rhetorice:rhétorique
 rhetorice2:adv., en orateur
 rhetorici:Teachers of oratory
 rhetorico:int., parler en rhéteur, faire de la rhétorique
@@ -52506,7 +52506,7 @@ spartaria2:lieux abondants en sparte
 spartarius:abondant en sparte
 spartea:semelle de sparte
 sparteolus:pompier [muni de cordes de sparte]
-sparton:sparte [sorte de jonc] / corde en sparte
+!sparton:sparte [sorte de jonc] / corde en sparte
 spartopolia:sorte de pierre précieuse
 spartopolios:sorte de pierre précieuse
 sparum:c. sparus
