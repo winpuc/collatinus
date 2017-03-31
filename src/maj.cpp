@@ -18,11 +18,11 @@ Maj::Maj(QDialog *parent) : QDialog(parent)
     icon->setPixmap(QPixmap(":/res/collatinus.ico"));
     // label d'information
     QString texte =
-        tr("Sur Collatinus peuvent se greffer une collection "
+        tr("Sur Collatinus peut se greffer une collection "
            "de lexiques et de dictionnaires. À l'installation, "
            "on ne dispose que d'une partie de ces ressources. "
            "Pour en ajouter, il faut se rendre sur le site "
-           "(<em>ici, donner le site</em>), "
+           "(<em>http://outils.biblissima.fr/fr/collatinus/</em>), "
            "consulter la liste des fichiers disponibles et leur "
            "version, et les télécharger en notant bien l'endroit "
            "où on les enregistre.<br/>\n"
@@ -30,7 +30,7 @@ Maj::Maj(QDialog *parent) : QDialog(parent)
            "cliquant sur le bouton <em>Installer les paquets téléchargés</em> "
            "ci-dessous.<br/>\n"
            "Il est conseillé de revenir régulièrement sur "
-           "(<em>encore le site</em>) "
+           "(<em>http://outils.biblissima.fr/fr/collatinus/</em>) "
            "pour vérifier que l'on possède les dernières versions "
            "des lexiques et dictionnaires. Voici la liste de "
            "ce qui est installé sur cet ordinateur. "
