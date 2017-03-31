@@ -10,7 +10,7 @@ permet d'afficher les tableaux de flexion des lemmes
 qui peuvent donner cette forme. On peut aussi saisir
 une forme dans la ligne de saisie de l'onglet. Pour les
 lemmes à flexion riche, comme les verbes et les adjectifs,
-des liens permet de montrer immédiatement la partie
+des liens permettent de montrer immédiatement la partie
 recherchée de la flexion. D'autres liens permettent de 
 changer de lemme.
 
