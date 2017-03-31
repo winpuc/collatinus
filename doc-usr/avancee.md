@@ -1,6 +1,6 @@
 *Collatinus 11 -- guide*
 
-[index](index.html) précédent : [Fléchir](flechir.html) suivant : [Pour les programmeurs](programmeurs.html) 
+[index](index.html) précédent : [Serveur](server.html) suivant : [Pour les programmeurs](programmeurs.html) 
 
 Utilisation avancée
 ===================
@@ -171,4 +171,4 @@ fichiers qui permettent de déclarer
   règle de contraction permet de remplacer _-assem_ par
   _-auissem_, ce qui donne _amauissem_, qui est reconnu.
 
-[index](index.html) précédent : [Fléchir](flechir.html) suivant : [Pour les programmeurs](programmeurs.html) 
+[index](index.html) précédent : [Serveur](server.html) suivant : [Pour les programmeurs](programmeurs.html) 
