@@ -210,7 +210,12 @@ void MainWindow::afficheLemsDic(bool litt, bool prim)
     }
     if (requete.empty()) requete << lineEdit->text();
     requete.removeDuplicates();
-    if (prim)
+    if (syncAct->isChecked())
+    {
+        afficheLemsDic(requete, 0);
+        afficheLemsDicW(requete, 0);
+    }
+    else if (prim)
         afficheLemsDic(requete, 0);
     else
         afficheLemsDicW(requete, 0);
