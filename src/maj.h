@@ -18,10 +18,13 @@ class Maj : public QDialog
     // Fonction pour générer un .col à partir d'un djvu dans data/dicos/
     QLabel *label;
     QStringList listeF;  // liste des fichiers téléchargés
+    bool _dico; // Mise à jour des dicos ou des lexiques (si faux)
+
    private slots:
     void selectionne();  // lance un dialogue de sélection de fichier
+
    public:
-    Maj(QDialog *parent = 0);
+    Maj(bool dic = true, QDialog *parent = 0);
     void setFont(QFont font);
 };
 
