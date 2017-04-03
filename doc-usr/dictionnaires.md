@@ -22,6 +22,9 @@ Et voici un résumé des commandes :
    articles précédent et suivant pour les dictionnaires numériques) ;
 4. Ajouter une fenêtre de dictionnaire (le même, ou un différent).
 	Le même bouton permet de fermer le dictionnaire supplémentaire ;
-5. Demander l'affichage du même mot dans les deux dictionnaires.
+5. Demander l'affichage du même mot dans les deux dictionnaires,
+   systématiquement (en activant le bouton **sync+**) ou
+   ponctuellement (en appuyant sur un des boutons **sync->**
+   ou **<-sync**, selon la fenêtre active).
 
 [index](index.html) précédent : [Lemmatiser et analyser](lemmatiser.html) suivant : [Scander](scander.html) 

@@ -32,6 +32,8 @@ portant un &alpha; (pour forcer l'ordre alphabétique,
 sans tenir compte de l'option sélectionnée, cf. ci-dessous).
 Le raccourci **Ctrl-L** conduit au même résultat que
 les engrenages.
+La lemmatisation d'un texte permet aussi de le
+[coloriser](coloriser.html).
 
 L'onglet de lemmatisation de l'application fournit de
 nombreuses options, données par cette image. Une option
