@@ -622,6 +622,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     settings.setValue("posw", wDic->pos());
     settings.setValue("sizew", wDic->size());
     settings.setValue("sync", syncAct->isChecked());
+    settings.setValue("secondDic",visibleWAct->isChecked());
     settings.endGroup();
     delete wDic;
     QMainWindow::closeEvent(event);
@@ -669,7 +670,8 @@ void MainWindow::createActions()
     findAct = new QAction(QIcon(":res/edit-find.svg"), tr("&Chercher"), this);
     fontAct = new QAction(tr("Police de caractères"), this);
     lancAct = new QAction(QIcon(":res/gear.svg"), tr("&Lancer"), this);
-    majAct = new QAction(tr("Télécharger lexiques et dictionnaires"), this);
+    majDicAct = new QAction(tr("Installer les dictionnaires téléchargés"), this);
+    majLexAct = new QAction(tr("Installer les lexiques téléchargés"), this);
     nouvAct =
         new QAction(QIcon(":/res/document-new.svg"), tr("&Nouveau"), this);
     ouvrirAct =
@@ -872,7 +874,8 @@ void MainWindow::createConnections()
             SLOT(afficheLemsDicLittW()));
     connect(lineEditDicW, SIGNAL(returnPressed()), this,
             SLOT(afficheLemsDicW()));
-    connect(majAct, SIGNAL(triggered()), this, SLOT(maj()));
+    connect(majDicAct, SIGNAL(triggered()), this, SLOT(majDic()));
+    connect(majLexAct, SIGNAL(triggered()), this, SLOT(majLex()));
     connect(postButtonW, SIGNAL(clicked()), this, SLOT(clicPostW()));
     connect(syncWDAct, SIGNAL(triggered()), this, SLOT(syncWD()));
     connect(textBrowserW, SIGNAL(anchorClicked(QUrl)), this,
@@ -1002,7 +1005,8 @@ void MainWindow::createMenus()
 
     extraMenu = menuBar()->addMenu(tr("Extra"));
     extraMenu->addAction(serverAct);
-    extraMenu->addAction(majAct);
+    extraMenu->addAction(majDicAct);
+    extraMenu->addAction(majLexAct);
 
     helpMenu = menuBar()->addMenu(tr("&Aide"));
     helpMenu->addAction(aproposAct);
@@ -1527,14 +1531,29 @@ void MainWindow::lemmatiseTxt()
 }
 
 /**
- * \fn void MainWindow::maj()
+ * \fn void MainWindow::majDic()
  * \brief Lance le dialogue de mise à jour des
  *        lexiques et dictionnaires.
  */
 
-void MainWindow::maj()
+void MainWindow::majDic()
 {
-    Maj *majDial = new Maj();
+    Maj *majDial = new Maj(true);
+    majDial->setFont(editLatin->font());
+    majDial->exec();
+    createDicos();
+    createDicos(false);
+}
+
+/**
+ * \fn void MainWindow::majLex()
+ * \brief Lance le dialogue de mise à jour des
+ *        lexiques et dictionnaires.
+ */
+
+void MainWindow::majLex()
+{
+    Maj *majDial = new Maj(false);
     majDial->setFont(editLatin->font());
     majDial->exec();
 }
@@ -1700,6 +1719,7 @@ void MainWindow::readSettings()
     wDic->setVisible(settings.value("wdic").toBool());
     comboGlossariaW->setCurrentIndex(settings.value("courantW").toInt());
     syncAct->setChecked(settings.value("sync").toBool());
+    visibleWAct->setChecked(settings.value("secondDic").toBool());
     settings.endGroup();
 }
 

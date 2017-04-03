@@ -12,8 +12,9 @@
 
 #include <QDebug>
 
-Maj::Maj(QDialog *parent) : QDialog(parent)
+Maj::Maj(bool dic, QDialog *parent) : QDialog(parent)
 {
+    _dico = dic;
     QLabel *icon = new QLabel;
     icon->setPixmap(QPixmap(":/res/collatinus.ico"));
     // label d'information
@@ -44,10 +45,21 @@ Maj::Maj(QDialog *parent) : QDialog(parent)
     label->setWordWrap(true);
     label->setAlignment(Qt::AlignJustify);
     // liste des paquets installés
-    QDir chDicos(qApp->applicationDirPath() + "/data/dicos");
-    QStringList lcfg = chDicos.entryList(QStringList() << "*.cfg");
-    for (int i = 0; i < lcfg.count(); ++i) lcfg[i].remove(".cfg");
-    texte.append(lcfg.join("</li>\n<li>"));
+    if (dic)
+    {
+        QDir chDicos(qApp->applicationDirPath() + "/data/dicos");
+        QStringList lcfg = chDicos.entryList(QStringList() << "*.cfg");
+        for (int i = 0; i < lcfg.count(); ++i) lcfg[i].remove(".cfg");
+        texte.append(lcfg.join("</li>\n<li>"));
+    }
+    else
+    {
+        // Les lexiques.
+        QDir chDicos(qApp->applicationDirPath() + "/data");
+        QStringList lcfg = chDicos.entryList(QStringList() << "lem*.*");
+        // for (int i = 0; i < lcfg.count(); ++i) lcfg[i].remove(".cfg");
+        texte.append(lcfg.join("</li>\n<li>"));
+    }
     texte.append("</li>\n</ul>");
     label->setText(texte);
 
@@ -72,82 +84,108 @@ Maj::Maj(QDialog *parent) : QDialog(parent)
 
 bool Maj::installe(QString nfcol)
 {
-    // ouverture
-    QFile fcol(nfcol);
-    fcol.open(QFile::ReadOnly);
-    // lecture des adresses en queue de fichier
-    fcol.seek(fcol.size() - 100);
-    QString lin;
-    while (!lin.startsWith("idx:") && !fcol.atEnd()) lin = fcol.readLine().trimmed();
-    if (!lin.startsWith("idx:"))
+    if (_dico)
     {
-        QMessageBox::critical(
-            this, tr("Collatinus 11"),
-            tr("Impossible de comprendre le fichier" + nfcol.toUtf8() +
-               ". Le format semble être inadéquat."));
-        return false;
+        // ouverture
+        QFile fcol(nfcol);
+        fcol.open(QFile::ReadOnly);
+        // lecture des adresses en queue de fichier
+        fcol.seek(fcol.size() - 100);
+        QString lin;
+        while (!lin.startsWith("idx:") && !fcol.atEnd()) lin = fcol.readLine().trimmed();
+        if (!lin.startsWith("idx:"))
+        {
+            QMessageBox::critical(
+                        this, tr("Collatinus 11"),
+                        tr("Impossible de comprendre le fichier" + nfcol.toUtf8() +
+                           ". Le format semble être inadéquat."));
+            return false;
+        }
+        // nom du paquet
+        QString nom = QFileInfo(nfcol).baseName();
+        // fichiers destination
+        QString nf(qApp->applicationDirPath() + "/data/dicos/" + nom);
+        QString nfcz;
+        QString nfidx = nf + ".idx";
+        QString nfcfg = nf + ".cfg";
+        // adresses de l'index
+        qint64 aidx = lin.section(':', 1, 1).toLongLong();
+        // 2e ligne pour le cfg
+        lin = fcol.readLine().trimmed();
+        if (lin.section(':',0,0) == "Cfg")
+            nfcz = nf + ".djvu";  //"Gaffiot_1934.djvu";
+        else nfcz = nf + ".cz";  //"Lewis_and_Short_1879-fev16.cz";
+        // J'ai mis une majuscule à cfg pour distinguer les djvu des cz
+        qint64 acfg = lin.section(':', 1, 1).toLongLong();
+        qint64 tcfg = lin.section(':', 2, 2).toLongLong();
+        // Créations
+        QFile fcz(nfcz);
+        if (!fcz.open(QFile::WriteOnly))
+        {
+            QMessageBox::critical(
+                        this, tr("Collatinus 11"),
+                        tr("Impossible de créer le fichier" + nfcz.toUtf8() +
+                           ". Vérifiez vos drois d'accès, et éventuellent "
+                           "connectez-vous en administrateur avant de lancer Collatinus."));
+            return false;
+        }
+        QFile fidx(nfidx);
+        fidx.open(QFile::WriteOnly);
+        QFile fcfg(nfcfg);
+        fcfg.open(QFile::WriteOnly);
+        // écriture cz
+        fcol.reset();
+        fcz.write(fcol.read(aidx));
+        // décompression et écriture idx
+        fidx.write(qUncompress(fcol.read(acfg - fcol.pos())));
+        // décompression et écriture cfg
+        fcfg.write(qUncompress(fcol.read(tcfg)));
+        // fermetures
+        fcol.close();
+        fcz.close();
+        fidx.close();
+        fcfg.close();
     }
-    // nom du paquet
-    QString nom = QFileInfo(nfcol).baseName();
-    // fichiers destination
-    QString nf(qApp->applicationDirPath() + "/data/dicos/" + nom);
-    QString nfcz;
-    QString nfidx = nf + ".idx";
-    QString nfcfg = nf + ".cfg";
-    // adresses de l'index
-    qint64 aidx = lin.section(':', 1, 1).toLongLong();
-    // 2e ligne pour le cfg
-    lin = fcol.readLine().trimmed();
-    if (lin.section(':',0,0) == "Cfg")
-        nfcz = nf + ".djvu";  //"Gaffiot_1934.djvu";
-    else nfcz = nf + ".cz";  //"Lewis_and_Short_1879-fev16.cz";
-    // J'ai mis une majuscule à cfg pour distinguer les djvu des cz
-    qint64 acfg = lin.section(':', 1, 1).toLongLong();
-    qint64 tcfg = lin.section(':', 2, 2).toLongLong();
-    // Créations
-    QFile fcz(nfcz);
-    if (!fcz.open(QFile::WriteOnly))
+    else
     {
-        QMessageBox::critical(
-            this, tr("Collatinus 11"),
-            tr("Impossible de créer le fichier" + nfcz.toUtf8() +
-               ". Vérifiez vos drois d'accès, et éventuellent "
-               "connectez-vous en administrateur avant de lancer Collatinus."));
-        return false;
+        // installer un lexique
+        // nom du paquet
+        QString nom = QFileInfo(nfcol).fileName();
+        // fichiers destination
+        QString nfDest(qApp->applicationDirPath() + "/data/" + nom);
+        if (QFile::exists(nfDest))
+            QFile::remove(nfDest);
+        // On ne peut pas copier si le fichier existe déjà
+        QFile::copy(nfcol,nfDest);
     }
-    QFile fidx(nfidx);
-    fidx.open(QFile::WriteOnly);
-    QFile fcfg(nfcfg);
-    fcfg.open(QFile::WriteOnly);
-    // écriture cz
-    fcol.reset();
-    fcz.write(fcol.read(aidx));
-    // décompression et écriture idx
-    fidx.write(qUncompress(fcol.read(acfg - fcol.pos())));
-    // décompression et écriture cfg
-    fcfg.write(qUncompress(fcol.read(tcfg)));
-    // fermetures
-    fcol.close();
-    fcz.close();
-    fidx.close();
-    fcfg.close();
     return true;
 }
 
 void Maj::selectionne()
 {
-    QStringList nfichiers = QFileDialog::getOpenFileNames(
-        this, "Sélectionner un ou plusieurs paquets", QDir::homePath(),
-        "paquets dictionnaires (*.col)");
-    listeF = nfichiers;
+    if (_dico)
+    {
+        QStringList nfichiers = QFileDialog::getOpenFileNames(
+                    this, "Sélectionner un ou plusieurs paquets", QDir::homePath(),
+                    "paquets dictionnaires (*.col)");
+        listeF = nfichiers;
+    }
+    else
+    {
+        QStringList nfichiers = QFileDialog::getOpenFileNames(
+                    this, "Sélectionner un ou plusieurs paquets", QDir::homePath(),
+                    "paquets lexiques (*.*)");
+        listeF = nfichiers;
+    }
     if (listeF.empty()) return;
     bool OK = true;
     foreach (QString nfcol, listeF)
-    {
-        bool OK1 = installe(nfcol);
-        if (OK1) qDebug() << "installé" << nfcol;
-        else OK = false;
-    }
+        if (_dico || nfcol.contains("/lemmes.") || nfcol.contains("/lem_ext."))
+        {
+            bool OK1 = installe(nfcol);
+            if (OK1) qDebug() << "installé" << nfcol;
+            else OK = false;
+        }
     // info
     if (OK) QMessageBox::information(this, tr("Collatinus 11"),
                              tr("L'installation s'est bien passée. "
