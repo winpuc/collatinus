@@ -38,7 +38,7 @@ Maj::Maj(bool dic, QDialog *parent) : QDialog(parent)
            "Par exemple, le nom\n"
            "<b>Lewis_and_Short_1879-fev16.cz</b>\n"
            "signifie que ce dictionnaire a été mis en ligne en février "
-           "2016.\n");
+           "2016.\n<br>\n<table><tr><td>• ");
     // liste des lexiques et dictionnaires + version
     label = new QLabel(this);
     label->setFont(this->font());
@@ -47,17 +47,27 @@ Maj::Maj(bool dic, QDialog *parent) : QDialog(parent)
     // liste des paquets installés
     if (dic)
     {
-        texte.append("<ul>\n<li>");
+//        texte.append("<ul>\n<li>");
         QDir chDicos(qApp->applicationDirPath() + "/data/dicos");
         QStringList lcfg = chDicos.entryList(QStringList() << "*.cfg");
-        for (int i = 0; i < lcfg.count(); ++i) lcfg[i].remove(".cfg");
-        texte.append(lcfg.join("</li>\n<li>"));
-        texte.append("</li>\n</ul>");
+        for (int i = 0; i < lcfg.count(); ++i)
+        {
+            lcfg[i].remove(".cfg");
+            if (lcfg[i][lcfg[i].size() - 6] == '-')
+            {
+                QString date = lcfg[i].section("-",-1);
+                lcfg[i] = lcfg[i].section("-",0,-2);
+                lcfg[i].append("&nbsp;</td><td>&nbsp;" + date);
+            }
+        }
+        texte.append(lcfg.join("</td></tr>\n<tr><td>• "));
+//        texte.append(lcfg.join("</li>\n<li>"));
+//        texte.append("</li>\n</ul>");
     }
     else
     {
         // Les lexiques.
-        texte.append("<br>\n<table><tr><td>");
+//        texte.append("<br>\n<table><tr><td>• ");
         QDir chDicos(qApp->applicationDirPath() + "/data");
         QStringList lcfg = chDicos.entryList(QStringList() << "lem*.*");
         for (int i = 0; i < lcfg.count(); ++i)
@@ -72,9 +82,9 @@ Maj::Maj(bool dic, QDialog *parent) : QDialog(parent)
             lcfg[i].append("&nbsp;</td><td>&nbsp;" + blabla.mid(1));
             fi.close();
         }
-        texte.append(lcfg.join("</td></tr>\n<tr><td>"));
-        texte.append("</td></tr></table>");
+        texte.append(lcfg.join("</td></tr>\n<tr><td>• "));
     }
+    texte.append("</td></tr></table>");
     label->setText(texte);
 
     // barre de boutons
