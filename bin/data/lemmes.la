@@ -1,5 +1,6 @@
 !               lemmes.la
 !Latin
+! Version 1 : 2017/04/04
 !This file is part of COLLATINUS and PRAELECTOR
 !COLLATINUS and PRAELECTOR are free software; you can
 !redistribute it and/or modify it under the terms of
@@ -8214,8 +8215,8 @@ expugnātŏr=ēxpūgnātŏr|miles|ēxpūgnātōr||ōris, m.|3
 expugno=ēxpūgno|amo|||as, are|90
 expulsĭo=ēxpūlsĭo|miles|ēxpūlsĭōn||ōnis, f.|3
 expulsŏr=ēxpūlsŏr|miles|ēxpūlsōr||ōris, m.|3
-expūrgātĭō=expūrgātĭō,expūrĭgātĭo|miles|expūrgātĭōn,ēxpūrĭgātĭōn||onis, f.|2
 expungo=ēxpūngo|lego|ēxpūnx|ēxpūnct|is, ere, punxi, pluctum|5
+expurgātĭō=ēxpūrgātĭo,ēxpūrĭgātĭo|miles|ēxpūrgātĭōn,ēxpūrĭgātĭōn||onis, f.|2
 expurgo=ēxpūrgo|amo|||as, are|5
 expūtesco=ēxpūtēsco|lego|||is, ĕre, intr.|2
 exquīro=ēxquīro,ēxquāero|lego|ēxquīsīv|ēxquīsīt|is, ere, iui, itum|74

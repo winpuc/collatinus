@@ -1,5 +1,6 @@
 !               lemmes.fr
 Français
+! Version 1 : 2017/04/04
 !This file is part of COLLATINUS and PRAELECTOR
 !COLLATINUS and PRAELECTOR are free software; you can
 !redistribute it and/or modify it under the terms of
