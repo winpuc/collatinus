@@ -115,9 +115,9 @@ bool Maj::installe(QString nfcol)
         fcol.open(QFile::ReadOnly);
         // lecture des adresses en queue de fichier
         fcol.seek(fcol.size() - 100);
-        QString lin;
-        while (!lin.startsWith("idx:") && !fcol.atEnd()) lin = fcol.readLine().trimmed();
-        if (!lin.startsWith("idx:"))
+        QStringList lignes;
+        while (!fcol.atEnd()) lignes << fcol.readLine().trimmed();
+        if (!lignes[1].contains(":"))
         {
             QMessageBox::critical(
                         this, tr("Collatinus 11"),
@@ -125,23 +125,23 @@ bool Maj::installe(QString nfcol)
                            ". Le format semble être inadéquat."));
             return false;
         }
+//        qDebug() << lignes;
         // nom du paquet
         QString nom = QFileInfo(nfcol).baseName();
+        // Supprimer les versions antérieures
+        QString nomSansDate = nom.section("-",0,-2) + "*.*";
+        QDir rep(qApp->applicationDirPath() + "/data/dicos",nomSansDate);
+        QStringList lfrem = rep.entryList();
+//        qDebug() << lfrem;
+        foreach (QString n, lfrem)
+        {
+            QFile::remove(qApp->applicationDirPath() + "/data/dicos/" + n);
+        }
         // fichiers destination
-        QString nf(qApp->applicationDirPath() + "/data/dicos/" + nom);
-        QString nfcz;
-        QString nfidx = nf + ".idx";
-        QString nfcfg = nf + ".cfg";
-        // adresses de l'index
-        qint64 aidx = lin.section(':', 1, 1).toLongLong();
-        // 2e ligne pour le cfg
-        lin = fcol.readLine().trimmed();
-        if (lin.section(':',0,0) == "Cfg")
-            nfcz = nf + ".djvu";  //"Gaffiot_1934.djvu";
-        else nfcz = nf + ".cz";  //"Lewis_and_Short_1879-fev16.cz";
-        // J'ai mis une majuscule à cfg pour distinguer les djvu des cz
-        qint64 acfg = lin.section(':', 1, 1).toLongLong();
-        qint64 tcfg = lin.section(':', 2, 2).toLongLong();
+        QString nf(qApp->applicationDirPath() + "/data/dicos/" + nom + ".");
+        QString nfcz = nf + lignes[1].section(":",0,0);
+        // Taille du 1er morceau
+        qint64 taille = lignes[1].section(':', 1, 1).toLongLong();
         // Créations
         QFile fcz(nfcz);
         if (!fcz.open(QFile::WriteOnly))
@@ -153,22 +153,21 @@ bool Maj::installe(QString nfcol)
                            "connectez-vous en administrateur avant de lancer Collatinus."));
             return false;
         }
-        QFile fidx(nfidx);
-        fidx.open(QFile::WriteOnly);
-        QFile fcfg(nfcfg);
-        fcfg.open(QFile::WriteOnly);
         // écriture cz
         fcol.reset();
-        fcz.write(fcol.read(aidx));
-        // décompression et écriture idx
-        fidx.write(qUncompress(fcol.read(acfg - fcol.pos())));
-        // décompression et écriture cfg
-        fcfg.write(qUncompress(fcol.read(tcfg)));
-        // fermetures
-        fcol.close();
+        fcz.write(fcol.read(taille));
         fcz.close();
-        fidx.close();
-        fcfg.close();
+        // décompression et écriture des autres
+        for (int i = 2; i<lignes.size(); i++)
+        {
+            fcz.setFileName(nf + lignes[i].section(":",0,0));
+            taille = lignes[i].section(':', 1, 1).toLongLong();
+            fcz.open(QFile::WriteOnly);
+            fcz.write(qUncompress(fcol.read(taille)));
+            fcz.close();
+        }
+        // fermeture
+        fcol.close();
     }
     else
     {
@@ -277,11 +276,12 @@ bool Maj::djvu2col(QString nfdjvu)
 
     qint64 p = fcol.pos();
     qDebug() << p;
-    QString nn = "%1:%2:%3\n";
+    QString nn = "%1:%2\n";
     QByteArray ba = qCompress(lin.toUtf8(),9);
     fcol.write(ba);
     QString piedDeFichier = "\n";
-    piedDeFichier += nn.arg("idx").arg(p).arg(ba.size());
+    piedDeFichier += nn.arg("djvu").arg(p);
+    piedDeFichier += nn.arg("idx").arg(ba.size());
 
     fzi.setFileName(nfcfg);
     fzi.open (QFile::ReadOnly|QFile::Text);
@@ -291,7 +291,7 @@ bool Maj::djvu2col(QString nfdjvu)
     ba = qCompress(baIn,9);
     p = fcol.pos();
     fcol.write(ba);
-    piedDeFichier += nn.arg("Cfg").arg(p).arg(ba.size());
+    piedDeFichier += nn.arg("cfg").arg(ba.size());
 
     int n = 100 - piedDeFichier.size();
     //        if (n<1) n += 64;
