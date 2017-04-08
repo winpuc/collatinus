@@ -36,7 +36,9 @@ QString versPC(QString k);
 QString versPedeCerto(QString k);
 QString const voyelles = "āăēĕīĭōŏūŭȳўĀĂĒĔĪĬŌŎŪŬȲЎ";
 
-QChar const separSyll = 0x02CC;
+//QChar const separSyll = 0x02CC;
+//QChar const separSyll = 0x00AD;
+QChar const separSyll = 0x00B7;
 QString transforme(QString k);
 QString accentue(QString l);
 QString ajoutSuff(QString fq, QString suffixe, QString l_etym, int accent);
