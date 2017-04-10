@@ -57999,6 +57999,7 @@ Josaphat=Iosaphat:personnage biblique
 Josias=Iosias:personnage biblique
 Maria:Marie, mère de Jésus
 Naasson:personnage biblique
+Nephthalim:région de la Palestine
 Ozias:personnage biblique
 quatuordecim:quatorze
 Salathiel:personnage biblique
