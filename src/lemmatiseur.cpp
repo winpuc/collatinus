@@ -257,8 +257,8 @@ QString Lemmat::tag(Lemme *l, QString morph)
                 p = p.arg(" ").arg(" ");
                 lTags.append(p);
             }
-            if (!_tagOcc.contains(p.mid(0,3)))
-                qDebug() << l->cle() << morph << p << " : Tag non trouvé !";
+            //if (!_tagOcc.contains(p.mid(0,3)))
+            //   qDebug() << l->cle() << morph << p << " : Tag non trouvé !";
         }
     }
     return lTags;
@@ -300,7 +300,7 @@ int Lemmat::fraction(QString listTags)
             if (fr == 0) fr = 1;
             //  qDebug() << _tagOcc[t] << _tagTot[t.mid(0,1)] << fr;
         }
-        else qDebug() << t << " : Tag non trouvé !";
+        //else qDebug() << t << " : Tag non trouvé !";
         if (frFin < fr) frFin = fr; // Si j'ai reçu une liste de tags, je garde la fraction la plus grande.
     }
     if (frFin == 0) return 1024;
@@ -1298,8 +1298,8 @@ void Lemmat::lisFichierLexique(QString filepath)
     foreach (QString lin, lignes)
     {
         Lemme *l = new Lemme(lin, orig, this);
-        if (_lemmes.contains(l->cle()))
-            qDebug() << lin << " existe déjà";
+        //if (_lemmes.contains(l->cle()))
+        //    qDebug() << lin << " existe déjà";
         _lemmes.insert(l->cle(), l);
     }
 }
@@ -1322,7 +1322,7 @@ void Lemmat::lisExtension()
 //    if (_nbrLoaded) foreach(Lemme *l, _lemmes.values())
   //      l->clearOcc();
     // Si les nombres d'occurrences ont été chargés, je dois les ré-initialiser.
-    qDebug() << "lecture extension";
+    //qDebug() << "lecture extension";
     lisFichierLexique(_resDir + "lem_ext.la");
 //    lisNombres();
 }
@@ -1687,6 +1687,8 @@ QString Lemmat::tagTexte(QString t, int p, bool affTout)
     }
     else
     {
+        if ((dph > 0) && pp.contains(t.at(dph))) --dph;
+        // Si j'ai cliqué sur une ponctuation, je traite la phrase qui précède.
         // régression au début de la phrase
         while (dph > 0 && !pp.contains(t.at(dph)) && (t.mid(dph,2) != "\n\n")) --dph;
         if (dph != 0) dph += 1; // J'élimine la ponctuation de la phrase précédente.
@@ -1700,6 +1702,10 @@ QString Lemmat::tagTexte(QString t, int p, bool affTout)
     {
         while (fph < tl && !pp.contains(t.at(fph)) && (t.mid(fph,2) != "\n\n")) ++fph;
         QString phr = t.mid(dph, fph - dph).trimmed();
+        // Si le texte se termine sans ponctuation, je perds le dernier caractère.
+//        qDebug() << tl << fph << t.at(tl);
+        if ((fph == tl) && !pp.contains(t.at(tl)) && (t.mid(tl,1) != "\n"))
+            phr.append(t[tl]);
         // découpage en mots
         QStringList lm = phr.split(QRegExp("\\b"));
 
@@ -1712,6 +1718,8 @@ QString Lemmat::tagTexte(QString t, int p, bool affTout)
                 fph++;
                 while (fph < tl && !pp.contains(t.at(fph))) ++fph;
                 phr = t.mid(dph, fph - dph).trimmed();
+                if ((fph == tl) && !pp.contains(t.at(tl)) && (t.mid(tl,1) != "\n"))
+                    phr.append(t[tl]);
                 lm = phr.split(QRegExp("\\b"));
             }
 
@@ -1762,7 +1770,7 @@ QString Lemmat::tagTexte(QString t, int p, bool affTout)
                     if (prTot == 0)
                     {
                         prTot = 1;
-                        qDebug() << mot->forme() << "proba nulle ! " << sequences[j];
+                        //qDebug() << mot->forme() << "proba nulle ! " << sequences[j];
                     }
                     for (int k = 0; k < sTag; k++)
                     {

@@ -69,7 +69,7 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
         if (total == 0)
         {
             total = 1;
-            qDebug() << forme << " : toutes les probas sont nulles !";
+            //qDebug() << forme << " : toutes les probas sont nulles !";
         }
         _maxProb = "";
         long prMax = -1;
