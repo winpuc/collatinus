@@ -1,4 +1,6 @@
 !               lem_ext.la
+!Latin
+! Version 1 : 2017/04/04
 !
 !This file is part of COLLATINVS.
 !COLLATINVS is free software; you can redistribute it and/or modify
@@ -31390,7 +31392,7 @@ expunctĭo=ēxpūnctĭo|miles|ēxpūnctĭōn||ōnis, f.|1
 expunctŏr=ēxpūnctŏr|miles|ēxpūnctōr||ōris, m.|1
 expunctrix=ēxpūnctrīx|miles|ēxpūnctrīc||īcis, f.|1
 expunctus=ēxpūnctus|doctus|||a, um|1
-expurgātĭo=ēxpūrgātĭo|miles|ēxpūrgātĭōn||ōnis, f.|1
+!expurgātĭo=ēxpūrgātĭo|miles|ēxpūrgātĭōn||ōnis, f.|1
 expurgātus=ēxpūrgātus|doctus|||a, um|1
 expŭtātus=ēxpŭtātus|doctus|||a, um|1
 expŭto=ēxpŭto|amo|||āvi, ātum, 1|1

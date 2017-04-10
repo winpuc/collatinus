@@ -39,7 +39,7 @@ Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
     QFileInfo fi(cfg);
     repertoire = qApp->applicationDirPath() + "/data/dicos/";
     // éviter de redéfinir partout le répertoire de travail.
-    n = fi.baseName().section('.', 0);
+    n = fi.baseName();
     // lire le fichier de ressource cfg
     QSettings settings(repertoire + cfg, QSettings::IniFormat);
     settings.setIniCodec("utf-8");
@@ -71,7 +71,12 @@ Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
  * \fn Dictionnaire::nom
  * \return le nom du dictionnaire
  */
-QString Dictionnaire::nom() { return n; }
+QString Dictionnaire::nom()
+{
+    QString nomCourt = n.section("-",0,0);
+    nomCourt.replace("_"," ");
+    return nomCourt;
+}
 /**
  * \fn chopNum (const QString c)
  * \brief Renvoie une copie de c tronquée de tous les caractères

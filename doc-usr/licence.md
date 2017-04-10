@@ -16,6 +16,7 @@ alphabétique, une liste partielle :
 
 - **L'équipe de Biblissima**, qui héberge les sources et les paquets d'installation de Collatinus ;
 - **Matthias Bussonnier**, qui a adapté Collatinus pour Mac ;
+- **L'École nationnale des chartes** pour le dictionnaire _Du Cange_ ;
 - **Gérard Gréco**, qui nous a confié son _Gaffiot 2016_ avant parution ;
 - **Peter J. Heslin**, dont le _Diogenes_ nous a été très utile.
 - **Gérard Jeanneau**, qui nous a donné l'autorisation de consulter son dictionnaire via Collatinus ;
