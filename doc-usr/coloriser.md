@@ -31,7 +31,7 @@ tous les homonymes sont supposés connus.
 
 Attention, une forme est supposée connue si son lemme l'est.
 Ce n'est pas nécessairement vrai au cours de l'apprentissage : 
-un élève pourrait ne pas encore appris à construire
+un élève pourrait ne pas encore avoir appris à construire
 le subjonctif imparfait d'un verbe.
 L'enseignant devra donc être attentif !
 

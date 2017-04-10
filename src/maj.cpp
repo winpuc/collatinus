@@ -108,24 +108,25 @@ Maj::Maj(bool dic, QDialog *parent) : QDialog(parent)
 
 bool Maj::installe(QString nfcol)
 {
+    // ouverture
+    QFile fcol(nfcol);
+    fcol.open(QFile::ReadOnly);
+    // lecture des adresses en queue de fichier
+    fcol.seek(fcol.size() - 100);
+    QStringList lignes;
+    while (!fcol.atEnd()) lignes << fcol.readLine().trimmed();
+    if (!lignes[1].contains(":"))
+    {
+        QMessageBox::critical(
+                    this, tr("Collatinus 11"),
+                    tr("Impossible de comprendre le fichier" + nfcol.toUtf8() +
+                       ". Le format semble être inadéquat."));
+        return false;
+    }
+//        qDebug() << lignes;
+
     if (_dico)
     {
-        // ouverture
-        QFile fcol(nfcol);
-        fcol.open(QFile::ReadOnly);
-        // lecture des adresses en queue de fichier
-        fcol.seek(fcol.size() - 100);
-        QStringList lignes;
-        while (!fcol.atEnd()) lignes << fcol.readLine().trimmed();
-        if (!lignes[1].contains(":"))
-        {
-            QMessageBox::critical(
-                        this, tr("Collatinus 11"),
-                        tr("Impossible de comprendre le fichier" + nfcol.toUtf8() +
-                           ". Le format semble être inadéquat."));
-            return false;
-        }
-//        qDebug() << lignes;
         // nom du paquet
         QString nom = QFileInfo(nfcol).baseName();
         // Supprimer les versions antérieures
@@ -173,13 +174,33 @@ bool Maj::installe(QString nfcol)
     {
         // installer un lexique
         // nom du paquet
-        QString nom = QFileInfo(nfcol).fileName();
+        QString nom = QFileInfo(nfcol).baseName();
+//        qDebug() << nom;
         // fichiers destination
-        QString nfDest(qApp->applicationDirPath() + "/data/" + nom);
+        QString nfDest(qApp->applicationDirPath() + "/data/");
+        if (nom.startsWith("lemmes")) nfDest.append("lemmes.");
+        else if (nom.startsWith("lem_ext")) nfDest.append("lem_ext.");
+        else return false;
+        /*
         if (QFile::exists(nfDest))
             QFile::remove(nfDest);
         // On ne peut pas copier si le fichier existe déjà
-        QFile::copy(nfcol,nfDest);
+        QFile::copy(nfcol,nfDest);*/
+        fcol.reset();
+        QFile fcz;
+//        qDebug() << lignes.size() << lignes[1];
+        // décompression et écriture des lexiques
+        for (int i = 1; i<lignes.size(); i++)
+        {
+            fcz.setFileName(nfDest + lignes[i].section(":",0,0));
+//            qDebug() << fcz.fileName();
+            qint64 taille = lignes[i].section(':', 1, 1).toLongLong();
+            fcz.open(QFile::WriteOnly);
+            fcz.write(qUncompress(fcol.read(taille)));
+            fcz.close();
+        }
+        // fermeture
+        fcol.close();
     }
     return true;
 }
@@ -197,13 +218,13 @@ void Maj::selectionne()
     {
         QStringList nfichiers = QFileDialog::getOpenFileNames(
                     this, "Sélectionner un ou plusieurs paquets", QDir::homePath(),
-                    "paquets lexiques (*.*)");
+                    "paquets lexiques (*.col)");
         listeF = nfichiers;
     }
     if (listeF.empty()) return;
     bool OK = true;
     foreach (QString nfcol, listeF)
-        if (_dico || nfcol.contains("/lemmes.") || nfcol.contains("/lem_ext."))
+        if (_dico || nfcol.contains("/lemmes") || nfcol.contains("/lem_ext"))
         {
             bool OK1 = installe(nfcol);
             if (OK1) qDebug() << "installé" << nfcol;
@@ -218,13 +239,15 @@ void Maj::selectionne()
     // Provisoirement, j'utilise la mise à jour pour créer les .col à partir des djvu.
     QStringList nfichiers = QFileDialog::getOpenFileNames(
         this, "Sélectionner un ou plusieurs paquets", qApp->applicationDirPath() + "/data/dicos/",
-        "dictionnaires djvu (*.djvu)");
+//        "dictionnaires djvu (*.djvu)");
+                "lexiques (*.*)");
     listeF = nfichiers;
     if (listeF.empty()) return;
     bool OK = true;
     foreach (QString nfcol, listeF)
     {
-        bool OK1 = djvu2col(nfcol);
+//        bool OK1 = djvu2col(nfcol);
+        bool OK1 = lem2col(nfcol);
         if (OK1) qDebug() << "installé" << nfcol;
         else OK = false;
     }
@@ -258,7 +281,7 @@ bool Maj::djvu2col(QString nfdjvu)
     QString nfcol("/Users/Philippe/Documents/dicos_C11/" + nom + ".col");
     QString nfidx = nf + ".idx";
     QString nfcfg = nf + ".cfg";
-    qDebug() << nfdjvu << nfcol << nf;
+    //qDebug() << nfdjvu << nfcol << nf;
 
     if (QFile::exists(nfcol))
         QFile::remove(nfcol);
@@ -275,7 +298,7 @@ bool Maj::djvu2col(QString nfdjvu)
     fzi.close();
 
     qint64 p = fcol.pos();
-    qDebug() << p;
+    //qDebug() << p;
     QString nn = "%1:%2\n";
     QByteArray ba = qCompress(lin.toUtf8(),9);
     fcol.write(ba);
@@ -295,7 +318,50 @@ bool Maj::djvu2col(QString nfdjvu)
 
     int n = 100 - piedDeFichier.size();
     //        if (n<1) n += 64;
-    qDebug() << n;
+    //qDebug() << n;
+    piedDeFichier.prepend(QString(n,' '));
+    fcol.write(piedDeFichier.toUtf8());
+
+    fcol.close();
+    return true;
+}
+
+/**
+ * @brief Maj::lem2col
+ * @param nfLem
+ * @return
+ *
+ * Fonction provisoire pour créer un fichier .col à partir
+ * des fichiers djvu, idx et cfg présents dans /data/dicos.
+ * C'est une fonction que je suis seul à utiliser, une seule fois.
+ * Les utilisateurs utiliseront la fonction "installe" qui fait le contraire,
+ * i.e. installer les fichiers djvu, idx et cfg dans /data/dicos
+ * à partir d'un .col placé ailleurs.
+ *
+ */
+bool Maj::lem2col(QString nfLem)
+{
+    // nom du paquet
+    QString nom = QFileInfo(nfLem).baseName();
+    QString ext = QFileInfo(nfLem).suffix();
+    // fichiers destination
+    QString nfcol("/Users/Philippe/Documents/dicos_C11/" + nom + "_" + ext + "-avr17.col");
+    QFile fcol(nfcol);
+    if (!fcol.open(QFile::WriteOnly)) return false;
+
+    QFile fLem(nfLem);
+    fLem.open(QFile::ReadOnly|QFile::Text);
+    QString lin = fLem.readAll();
+    fLem.close();
+
+    QString nn = "%1:%2\n";
+    QByteArray ba = qCompress(lin.toUtf8(),9);
+    fcol.write(ba);
+    QString piedDeFichier = "\n";
+    piedDeFichier += nn.arg(ext).arg(ba.size());
+    int n = 100 - piedDeFichier.size();
+    //        if (n<1) n += 64;
+    //qDebug() << n;
     piedDeFichier.prepend(QString(n,' '));
     fcol.write(piedDeFichier.toUtf8());
 

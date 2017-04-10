@@ -212,8 +212,10 @@ void MainWindow::afficheLemsDic(bool litt, bool prim)
     requete.removeDuplicates();
     if (syncAct->isChecked())
     {
-        afficheLemsDic(requete, 0);
-        afficheLemsDicW(requete, 0);
+        if (!dockDic->visibleRegion().isEmpty())
+            afficheLemsDic(requete, 0);
+        if (wDic->isVisible())
+            afficheLemsDicW(requete, 0);
     }
     else if (prim)
         afficheLemsDic(requete, 0);
@@ -500,7 +502,11 @@ void MainWindow::clicAnte()
     listeD.courant()->vide_ligneLiens();
     if (listeD.courant()->estXml())
     {
-        afficheLemsDic(QStringList() << anteButton->text());
+        QStringList lBouton;
+        lBouton << anteButton->text();
+        afficheLemsDic(lBouton);
+        if (syncAct->isChecked() && wDic->isVisible())
+            afficheLemsDicW(lBouton);
     }
     else
     {
@@ -521,7 +527,11 @@ void MainWindow::clicAnteW()
     listeD.courant2()->vide_ligneLiens();
     if (listeD.courant2()->estXml())
     {
-        afficheLemsDicW(QStringList() << anteButton->text());
+        QStringList lBouton;
+        lBouton << anteButtonW->text();
+        afficheLemsDicW(lBouton);
+        if (syncAct->isChecked() && !dockDic->visibleRegion().isEmpty())
+            afficheLemsDic(lBouton);
     }
     else
     {
@@ -541,7 +551,11 @@ void MainWindow::clicPost()
     listeD.courant()->vide_ligneLiens();
     if (listeD.courant()->estXml())
     {
-        afficheLemsDic(QStringList() << postButton->text());
+        QStringList lBouton;
+        lBouton << postButton->text();
+        afficheLemsDic(lBouton);
+        if (syncAct->isChecked() && wDic->isVisible())
+            afficheLemsDicW(lBouton);
     }
     else
     {
@@ -563,7 +577,11 @@ void MainWindow::clicPostW()
     listeD.courant2()->vide_ligneLiens();
     if (listeD.courant2()->estXml())
     {
-        afficheLemsDicW(QStringList() << postButtonW->text());
+        QStringList lBouton;
+        lBouton << postButtonW->text();
+        afficheLemsDicW(lBouton);
+        if (syncAct->isChecked() && !dockDic->visibleRegion().isEmpty())
+            afficheLemsDic(lBouton);
     }
     else
     {
@@ -662,6 +680,8 @@ void MainWindow::createActions()
                            tr("Lancer et classer &alphabétiquement"), this);
     aproposAct =
         new QAction(QIcon(":/res/collatinus.svg"), tr("à &Propos"), this);
+    auxAct =
+        new QAction(QIcon(":res/help-browser.svg"), tr("aide"), this);
     balaiAct = new QAction(QIcon(":res/edit-clear.svg"),
                            tr("&Effacer les résultats"), this);
     copieAct = new QAction(QIcon(":res/copie.svg"),
@@ -859,7 +879,7 @@ void MainWindow::createConnections()
             SLOT(changeGlossarium(QString)));
     connect(dicAct, SIGNAL(triggered()), this, SLOT(afficheLemsDic()));
     connect(dicLittAct, SIGNAL(triggered()), this, SLOT(afficheLemsDicLitt()));
-    connect(lineEditDic, SIGNAL(returnPressed()), this, SLOT(afficheLemsDic()));
+    connect(lineEditDic, SIGNAL(returnPressed()), this, SLOT(afficheLemsDicLitt()));
     connect(postButton, SIGNAL(clicked()), this, SLOT(clicPost()));
     connect(syncDWAct, SIGNAL(triggered()), this, SLOT(syncDW()));
     connect(textBrowserDic, SIGNAL(anchorClicked(QUrl)), this,
@@ -872,7 +892,7 @@ void MainWindow::createConnections()
     connect(dicLittActW, SIGNAL(triggered()), this,
             SLOT(afficheLemsDicLittW()));
     connect(lineEditDicW, SIGNAL(returnPressed()), this,
-            SLOT(afficheLemsDicW()));
+            SLOT(afficheLemsDicLittW()));
     connect(majDicAct, SIGNAL(triggered()), this, SLOT(majDic()));
     connect(majLexAct, SIGNAL(triggered()), this, SLOT(majLex()));
     connect(postButtonW, SIGNAL(clicked()), this, SLOT(clicPostW()));
@@ -888,6 +908,7 @@ void MainWindow::createConnections()
     // autres actions
     connect(alphaAct, SIGNAL(triggered()), this, SLOT(alpha()));
     connect(aproposAct, SIGNAL(triggered()), this, SLOT(apropos()));
+    connect(auxAct, SIGNAL(triggered()), this, SLOT(auxilium()));
     connect(balaiAct, SIGNAL(triggered()), this, SLOT(effaceRes()));
     connect(copieAct, SIGNAL(triggered()), this, SLOT(dialogueCopie()));
     connect(exportAct, SIGNAL(triggered()), this, SLOT(exportPdf()));
@@ -1008,6 +1029,7 @@ void MainWindow::createMenus()
     extraMenu->addAction(majLexAct);
 
     helpMenu = menuBar()->addMenu(tr("&Aide"));
+    helpMenu->addAction(auxAct);
     helpMenu->addAction(aproposAct);
 }
 
@@ -2243,3 +2265,7 @@ bool MainWindow::alerte()
 }
 
 
+void MainWindow::auxilium()
+{
+    QDesktopServices::openUrl(QUrl("file:" + qApp->applicationDirPath() + "/doc/index.html"));
+}
