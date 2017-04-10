@@ -134,7 +134,8 @@ class MainWindow : public QMainWindow
     void lancer();
     void lemmatiseLigne();
     void lemmatiseTxt();
-    void maj();
+    void majDic();
+    void majLex();
     void montreWDic(bool visible);
     void nouveau();
     void ouvrir();
@@ -240,7 +241,8 @@ class MainWindow : public QMainWindow
     QAction *frAct;
     QActionGroup *grCibles;
     QAction *lancAct;
-    QAction *majAct;
+    QAction *majDicAct;
+    QAction *majLexAct;
     QAction *nouvAct;
     QAction *oteAAct;
     QAction *ouvrirAct;
