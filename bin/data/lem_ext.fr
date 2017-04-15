@@ -6949,7 +6949,8 @@ Hieron2:Hiéron, [nom de deux rois de Syracuse]
 Hieronesus:île voisine de la Sicile
 Hierorenses:peuple de Galatie
 Hierosolymarius:surnom que Cicéron donne à Pompée, qui était fier de ses victoires en Asie
-Hierosolymitae:habitants de Jérusalem
+!Hierosolymitae:habitants de Jérusalem
+Hierosolymita:habitant de Jérusalem
 Hierosolymitanus:de Jérusalem
 Hierum:ville d'Asie, près du Palus-Méotide
 Hierus:nom d'homme
@@ -57999,8 +58000,6 @@ Eliacim:personnage biblique
 Genesar:région de Palestine
 Haceldama:nom d'un champ (Évangiles)
 Jechonias=Iechonias:personnage biblique
-Jerosolyma=Ierosolyma:Jérusalem
-Jerusalem=Ierusalem:Jérusalem
 Joatham=Ioatham:personnage biblique
 Josaphat=Iosaphat:personnage biblique
 Josias=Iosias:personnage biblique
