@@ -57990,10 +57990,17 @@ zythum:bière, boisson faite avec de l'orge
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 Abias:personnage biblique
+Alphaeus:personnage biblique
 Aminadab:personnage biblique
+Barachias:personnage biblique
+Bethphage:ville de Judée
+Corozain:ville de Galilée
 Eliacim:personnage biblique
+Genesar:région de Palestine
+Haceldama:nom d'un champ (Évangiles)
 Jechonias=Iechonias:personnage biblique
 Jerosolyma=Ierosolyma:Jérusalem
+Jerusalem=Ierusalem:Jérusalem
 Joatham=Ioatham:personnage biblique
 Josaphat=Iosaphat:personnage biblique
 Josias=Iosias:personnage biblique
@@ -58001,8 +58008,8 @@ Maria:Marie, mère de Jésus
 Naasson:personnage biblique
 Nephthalim:région de la Palestine
 Ozias:personnage biblique
-quatuordecim:quatorze
 Salathiel:personnage biblique
+Thaddaeus:l'un des douze Apôtres
 Urias:personnage biblique
 Zorobabel:personnage biblique
 
