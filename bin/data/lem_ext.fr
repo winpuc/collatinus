@@ -57995,15 +57995,17 @@ Alphaeus:personnage biblique
 Aminadab:personnage biblique
 Barachias:personnage biblique
 Bethphage:ville de Judée
+Boanerges:surnom donné par Jésus aux Apôtres Jacques et Jean
 Corozain:ville de Galilée
 Eliacim:personnage biblique
 Genesar:région de Palestine
+Genesareth:nom d'un lac de Palestine
 Haceldama:nom d'un champ (Évangiles)
+Jairus=Iairus:personnage biblique
 Jechonias=Iechonias:personnage biblique
 Joatham=Ioatham:personnage biblique
 Josaphat=Iosaphat:personnage biblique
 Josias=Iosias:personnage biblique
-Maria:Marie, mère de Jésus
 Naasson:personnage biblique
 Nephthalim:région de la Palestine
 Ozias:personnage biblique
