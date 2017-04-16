@@ -1,5 +1,6 @@
 !               lemmes.fr
 Français
+! Version 1 : 2017/04/04
 !This file is part of COLLATINUS and PRAELECTOR
 !COLLATINUS and PRAELECTOR are free software; you can
 !redistribute it and/or modify it under the terms of
@@ -2518,6 +2519,7 @@ Baianus:de Baïes (ville de Campanie)
 Baius2:Baius (un des compagnons d'Ulysse)
 Baius:de Baïes ; de bains
 Balacrus:Balacrus (nom d'h.)
+!balaenaceus:de baleine
 balanatus:parfumé d'huile de balanus
 balanus:gland du chêne, châtaigne, datte, arbrisseau odoriférant [le balanus], gland de mer, suppositoire [t. de méd.]
 balatro:hâbleur, charlatan, vaurien
@@ -16977,7 +16979,7 @@ plumbo:souder
 plumbum:plomb
 plumeus:de plumes, de duvet, léger comme la plume
 plumipeda:oie
-plumipes:aux pieds emplumés:
+plumipes:aux pieds emplumés
 plumo:se couvrir de plumes, couvrir de plumes, broder
 plumosus:emplumé, qui a un duvet, velouté
 plumula:petite plume, duvet
@@ -18392,6 +18394,7 @@ quanto:combien ?, (avec tanto) autant [que]
 quantopere:combien
 quantulum:combien peu
 quantulus:combien petit, aussi petit que
+quantulumcumque:quelque petit que, si petit que, si peu que, si peu que ce soit
 quantuluscumque:si petit, tant soit peu
 quantum2:autant (... autant)
 quantum:combien ?
@@ -21928,7 +21931,7 @@ testificor:déposer, témoigner, certifier, attesterprouver, prendre à témoin
 testimonium:témoignage, preuve
 testis:témoin
 testor:témoigner, attester, démontrer
-testu:couvercle d'argile, vase d'argile
+testum:couvercle d'argile, vase d'argile
 testudineus:de tortue, d'écaille [de tortue]
 testudo:tortue
 Tethys:Tethys (femme de l'Océan, mère des fleuves)
@@ -23643,7 +23646,7 @@ virgo:vierge, jeune fille non mariée
 virgula:petite branche, rameau
 virgulta:petites branches, broussailles, ronces
 virguncula:petite fille, fillette
-vir:homme ( par opp. à mulier, femme ), mari.
+vir:homme ( par opp. à mulier, femme ), mari
 Viriatus2:Viriate (ou Viriathe, chef des Lusitaniens)
 viridans:vert, verdoyant (part. de virido)
 viridarium:bosquet, parc
