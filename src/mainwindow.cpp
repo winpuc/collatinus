@@ -500,7 +500,11 @@ void MainWindow::clicAnte()
     listeD.courant()->vide_ligneLiens();
     if (listeD.courant()->estXml())
     {
-        afficheLemsDic(QStringList() << anteButton->text());
+        QStringList lBouton;
+        lBouton << anteButton->text();
+        afficheLemsDic(lBouton);
+        if (syncAct->isChecked() && wDic->isVisible())
+            afficheLemsDic(lBouton);
     }
     else
     {
@@ -521,7 +525,11 @@ void MainWindow::clicAnteW()
     listeD.courant2()->vide_ligneLiens();
     if (listeD.courant2()->estXml())
     {
-        afficheLemsDicW(QStringList() << anteButton->text());
+        QStringList lBouton;
+        lBouton << anteButtonW->text();
+        afficheLemsDicW(lBouton);
+        if (syncAct->isChecked() && !dockDic->visibleRegion().isEmpty())
+            afficheLemsDic(lBouton);
     }
     else
     {
@@ -541,7 +549,11 @@ void MainWindow::clicPost()
     listeD.courant()->vide_ligneLiens();
     if (listeD.courant()->estXml())
     {
-        afficheLemsDic(QStringList() << postButton->text());
+        QStringList lBouton;
+        lBouton << postButton->text();
+        afficheLemsDic(lBouton);
+        if (syncAct->isChecked() && wDic->isVisible())
+            afficheLemsDic(lBouton);
     }
     else
     {
@@ -563,7 +575,11 @@ void MainWindow::clicPostW()
     listeD.courant2()->vide_ligneLiens();
     if (listeD.courant2()->estXml())
     {
-        afficheLemsDicW(QStringList() << postButtonW->text());
+        QStringList lBouton;
+        lBouton << postButtonW->text();
+        afficheLemsDicW(lBouton);
+        if (syncAct->isChecked() && !dockDic->visibleRegion().isEmpty())
+            afficheLemsDic(lBouton);
     }
     else
     {
