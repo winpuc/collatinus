@@ -212,8 +212,10 @@ void MainWindow::afficheLemsDic(bool litt, bool prim)
     requete.removeDuplicates();
     if (syncAct->isChecked())
     {
-        afficheLemsDic(requete, 0);
-        afficheLemsDicW(requete, 0);
+        if (!dockDic->visibleRegion().isEmpty())
+            afficheLemsDic(requete, 0);
+        if (wDic->isVisible())
+            afficheLemsDicW(requete, 0);
     }
     else if (prim)
         afficheLemsDic(requete, 0);
@@ -875,7 +877,7 @@ void MainWindow::createConnections()
             SLOT(changeGlossarium(QString)));
     connect(dicAct, SIGNAL(triggered()), this, SLOT(afficheLemsDic()));
     connect(dicLittAct, SIGNAL(triggered()), this, SLOT(afficheLemsDicLitt()));
-    connect(lineEditDic, SIGNAL(returnPressed()), this, SLOT(afficheLemsDic()));
+    connect(lineEditDic, SIGNAL(returnPressed()), this, SLOT(afficheLemsDicLitt()));
     connect(postButton, SIGNAL(clicked()), this, SLOT(clicPost()));
     connect(syncDWAct, SIGNAL(triggered()), this, SLOT(syncDW()));
     connect(textBrowserDic, SIGNAL(anchorClicked(QUrl)), this,
@@ -888,7 +890,7 @@ void MainWindow::createConnections()
     connect(dicLittActW, SIGNAL(triggered()), this,
             SLOT(afficheLemsDicLittW()));
     connect(lineEditDicW, SIGNAL(returnPressed()), this,
-            SLOT(afficheLemsDicW()));
+            SLOT(afficheLemsDicLittW()));
     connect(majDicAct, SIGNAL(triggered()), this, SLOT(majDic()));
     connect(majLexAct, SIGNAL(triggered()), this, SLOT(majLex()));
     connect(postButtonW, SIGNAL(clicked()), this, SLOT(clicPostW()));
