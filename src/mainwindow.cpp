@@ -504,7 +504,7 @@ void MainWindow::clicAnte()
         lBouton << anteButton->text();
         afficheLemsDic(lBouton);
         if (syncAct->isChecked() && wDic->isVisible())
-            afficheLemsDic(lBouton);
+            afficheLemsDicW(lBouton);
     }
     else
     {
@@ -553,7 +553,7 @@ void MainWindow::clicPost()
         lBouton << postButton->text();
         afficheLemsDic(lBouton);
         if (syncAct->isChecked() && wDic->isVisible())
-            afficheLemsDic(lBouton);
+            afficheLemsDicW(lBouton);
     }
     else
     {
