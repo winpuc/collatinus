@@ -57991,12 +57991,18 @@ zythum:bière, boisson faite avec de l'orge
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 Abias:personnage biblique
+Abiathar:personnage biblique
+Abilina:région de Syrie
 Alphaeus:personnage biblique
 Aminadab:personnage biblique
+Arphaxad:personnage biblique
 Barachias:personnage biblique
+Bartimaeus:personnage biblique
 Bethphage:ville de Judée
 Boanerges:surnom donné par Jésus aux Apôtres Jacques et Jean
 Corozain:ville de Galilée
+Cyrinus:Quirinius, gouverneur de Syrie au temps du Christ
+Dalmanutha:région de Palestine
 Eliacim:personnage biblique
 Genesar:région de Palestine
 Genesareth:nom d'un lac de Palestine
@@ -58006,11 +58012,22 @@ Jechonias=Iechonias:personnage biblique
 Joatham=Ioatham:personnage biblique
 Josaphat=Iosaphat:personnage biblique
 Josias=Iosias:personnage biblique
+Malaleel:personnage biblique
+Mathatha:personnage biblique
+Mathathias:personnage biblique
+Mathusale:personnage biblique
+Mathusalem:personnage biblique
+Melea:personnage biblique
+Naaman:personnage biblique
 Naasson:personnage biblique
 Nephthalim:région de la Palestine
 Ozias:personnage biblique
+Phanuel:personnage biblique
 Salathiel:personnage biblique
+Semei:personnage biblique
+Susanna:nom de plusieurs femmes dans la bible
 Thaddaeus:l'un des douze Apôtres
+Timaeus:personnage biblique
 Urias:personnage biblique
 Zorobabel:personnage biblique
 
