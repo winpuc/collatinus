@@ -58029,5 +58029,6 @@ Susanna:nom de plusieurs femmes dans la bible
 Thaddaeus:l'un des douze Apôtres
 Timaeus:personnage biblique
 Urias:personnage biblique
+Zachaeus:personnage biblique
 Zorobabel:personnage biblique
 
