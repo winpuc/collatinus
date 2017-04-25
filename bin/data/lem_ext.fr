@@ -7576,7 +7576,8 @@ Isocrateus:d'Isocrate
 Isocratius:d'Isocrate
 Israel:nom de Jacob et de ses descendants
 Israel2:nom de Jacob et de ses descendants
-Israelitae:Israélites [la race d'Israël] / sing. Israelita
+!Israelitae:Israélites [la race d'Israël] / sing. Israelita
+Israelita:Israélite [de la race d'Israël]
 Israeliticus:des Israélites
 Israelitis:femme israélite ou juive
 Israhel:Israël (nom de Jacob et de ses descendants).
@@ -58004,6 +58005,7 @@ Corozain:ville de Galilée
 Cyrinus:Quirinius, gouverneur de Syrie au temps du Christ
 Dalmanutha:région de Palestine
 Eliacim:personnage biblique
+Gabbatha:nom d'une place à Jérusalem
 Genesar:région de Palestine
 Genesareth:nom d'un lac de Palestine
 Haceldama:nom d'un champ (Évangiles)
@@ -58020,7 +58022,9 @@ Mathusalem:personnage biblique
 Melea:personnage biblique
 Naaman:personnage biblique
 Naasson:personnage biblique
+Nathanael:l'un des douze Apôtres
 Nephthalim:région de la Palestine
+Nicodemus:personnage biblique
 Ozias:personnage biblique
 Phanuel:personnage biblique
 Salathiel:personnage biblique
