@@ -57996,25 +57996,35 @@ Abiathar:personnage biblique
 Abilina:région de Syrie
 Alphaeus:personnage biblique
 Aminadab:personnage biblique
+Ananias:nom de plusieurs personnages bibliques
+Antipatris:ville de Palestine
 Arphaxad:personnage biblique
 Barachias:personnage biblique
+Bariesu:personnage biblique
+Barsabas:personnage biblique
 Bartimaeus:personnage biblique
 Bethphage:ville de Judée
 Boanerges:surnom donné par Jésus aux Apôtres Jacques et Jean
+Boniportus:port de Crète
 Corozain:ville de Galilée
 Cyrinus:Quirinius, gouverneur de Syrie au temps du Christ
 Dalmanutha:région de Palestine
+Damaris:nom d'une femme dans la bible
 Eliacim:personnage biblique
+Eutychus:personnage biblique
 Gabbatha:nom d'une place à Jérusalem
+Gamaliel:personnage biblique
 Genesar:région de Palestine
 Genesareth:nom d'un lac de Palestine
 Haceldama:nom d'un champ (Évangiles)
 Jairus=Iairus:personnage biblique
+Jason:nom de plusieurs personnages bibliques
 Jechonias=Iechonias:personnage biblique
 Joatham=Ioatham:personnage biblique
 Josaphat=Iosaphat:personnage biblique
 Josias=Iosias:personnage biblique
 Malaleel:personnage biblique
+Manahen:personnage biblique
 Mathatha:personnage biblique
 Mathathias:personnage biblique
 Mathusale:personnage biblique
@@ -58026,12 +58036,19 @@ Nathanael:l'un des douze Apôtres
 Nephthalim:région de la Palestine
 Nicodemus:personnage biblique
 Ozias:personnage biblique
+Parmenas:personnage biblique
 Phanuel:personnage biblique
+Portius:personnage biblique
 Salathiel:personnage biblique
+Saphira:nom d'une femme dans la bible
+Sarona:ville de Palestine
 Semei:personnage biblique
+Sosthenes:personnage biblique
 Susanna:nom de plusieurs femmes dans la bible
+Tertullus:personnage biblique
 Thaddaeus:l'un des douze Apôtres
 Timaeus:personnage biblique
+Trophimus:personnage biblique
 Urias:personnage biblique
 Zachaeus:personnage biblique
 Zorobabel:personnage biblique

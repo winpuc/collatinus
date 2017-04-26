@@ -22042,7 +22042,8 @@ Thessalia:la Thessalie (grande province au nord de la Grèce)
 Thessalicus:de Thessalie
 Thessali:Thessaliens
 Thessalonica:Thessalonique (ville de Macédoine), Thessalonice (fille de Philippe)
-Thessalonicenses:habitants de Thessalonique
+!Thessalonicenses:habitants de Thessalonique
+Thessalonicensis:habitant de Thessalonique
 Thessalus2:Thessalus (nom d'h.)
 Thessalus:Thessalien
 Thessandrus:Thessandre (nom de guerrier grec)
