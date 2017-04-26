@@ -46,3 +46,7 @@ qui la présente avec des images annotées.
     être adapté pour analyser une autre langue flexionnelle.
 1. **[Remerciements, licence](licence.html)**.
 
+Conformément à la licence de Collatinus, ses
+développeurs mettent régulièrement à jour son code
+source, présent sur ce [dépôt Github](https://github.com/biblissima/collatinus)
+
