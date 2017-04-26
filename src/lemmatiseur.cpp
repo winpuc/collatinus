@@ -257,8 +257,8 @@ QString Lemmat::tag(Lemme *l, QString morph)
                 p = p.arg(" ").arg(" ");
                 lTags.append(p);
             }
-            if (!_tagOcc.contains(p.mid(0,3)))
-                qDebug() << l->cle() << morph << p << " : Tag non trouvé !";
+            //if (!_tagOcc.contains(p.mid(0,3)))
+            //   qDebug() << l->cle() << morph << p << " : Tag non trouvé !";
         }
     }
     return lTags;
@@ -300,7 +300,7 @@ int Lemmat::fraction(QString listTags)
             if (fr == 0) fr = 1;
             //  qDebug() << _tagOcc[t] << _tagTot[t.mid(0,1)] << fr;
         }
-        else qDebug() << t << " : Tag non trouvé !";
+        //else qDebug() << t << " : Tag non trouvé !";
         if (frFin < fr) frFin = fr; // Si j'ai reçu une liste de tags, je garde la fraction la plus grande.
     }
     if (frFin == 0) return 1024;
@@ -1298,8 +1298,8 @@ void Lemmat::lisFichierLexique(QString filepath)
     foreach (QString lin, lignes)
     {
         Lemme *l = new Lemme(lin, orig, this);
-        if (_lemmes.contains(l->cle()))
-            qDebug() << lin << " existe déjà";
+        //if (_lemmes.contains(l->cle()))
+        //    qDebug() << lin << " existe déjà";
         _lemmes.insert(l->cle(), l);
     }
 }
@@ -1322,7 +1322,7 @@ void Lemmat::lisExtension()
 //    if (_nbrLoaded) foreach(Lemme *l, _lemmes.values())
   //      l->clearOcc();
     // Si les nombres d'occurrences ont été chargés, je dois les ré-initialiser.
-    qDebug() << "lecture extension";
+    //qDebug() << "lecture extension";
     lisFichierLexique(_resDir + "lem_ext.la");
 //    lisNombres();
 }
@@ -1770,7 +1770,7 @@ QString Lemmat::tagTexte(QString t, int p, bool affTout)
                     if (prTot == 0)
                     {
                         prTot = 1;
-                        qDebug() << mot->forme() << "proba nulle ! " << sequences[j];
+                        //qDebug() << mot->forme() << "proba nulle ! " << sequences[j];
                     }
                     for (int k = 0; k < sTag; k++)
                     {

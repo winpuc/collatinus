@@ -281,7 +281,7 @@ bool Maj::djvu2col(QString nfdjvu)
     QString nfcol("/Users/Philippe/Documents/dicos_C11/" + nom + ".col");
     QString nfidx = nf + ".idx";
     QString nfcfg = nf + ".cfg";
-    qDebug() << nfdjvu << nfcol << nf;
+    //qDebug() << nfdjvu << nfcol << nf;
 
     if (QFile::exists(nfcol))
         QFile::remove(nfcol);
@@ -298,7 +298,7 @@ bool Maj::djvu2col(QString nfdjvu)
     fzi.close();
 
     qint64 p = fcol.pos();
-    qDebug() << p;
+    //qDebug() << p;
     QString nn = "%1:%2\n";
     QByteArray ba = qCompress(lin.toUtf8(),9);
     fcol.write(ba);
@@ -318,7 +318,7 @@ bool Maj::djvu2col(QString nfdjvu)
 
     int n = 100 - piedDeFichier.size();
     //        if (n<1) n += 64;
-    qDebug() << n;
+    //qDebug() << n;
     piedDeFichier.prepend(QString(n,' '));
     fcol.write(piedDeFichier.toUtf8());
 
@@ -361,7 +361,7 @@ bool Maj::lem2col(QString nfLem)
     piedDeFichier += nn.arg(ext).arg(ba.size());
     int n = 100 - piedDeFichier.size();
     //        if (n<1) n += 64;
-    qDebug() << n;
+    //qDebug() << n;
     piedDeFichier.prepend(QString(n,' '));
     fcol.write(piedDeFichier.toUtf8());
 
