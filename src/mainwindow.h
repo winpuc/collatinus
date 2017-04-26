@@ -116,6 +116,7 @@ class MainWindow : public QMainWindow
     void afficheLienW(QUrl url);
     void alpha();
     void apropos();
+    void auxilium();
     void changeGlossarium(QString nomDic);
     void changeGlossariumW(QString nomDic);
     void changePageDjvu(int p, bool prim = true);
@@ -227,6 +228,7 @@ class MainWindow : public QMainWindow
 
     // actions et groupes d'actions
     QAction *aproposAct;
+    QAction *auxAct;
     QAction *balaiAct;
     QAction *copieAct;
     QAction *deZoomAct;
