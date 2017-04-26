@@ -419,7 +419,7 @@ QString Dictionnaire::pageXml(QStringList lReq)
     else suiv = "error"; // Je n'ai ni ici, ni après : improbable.
     if (apres.size() > 1) for (int i=1; i<apres.size();i++)
         if (QString::compare(suiv, apres[i], Qt::CaseInsensitive) > 0) suiv = apres[i];
-    qDebug() << prec << suiv;
+    //qDebug() << prec << suiv;
 
     return pg;
 }

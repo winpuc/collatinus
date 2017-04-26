@@ -111,7 +111,7 @@ Lemme::Lemme(const QString linea, const int origin, QObject *parent)
     // contrôle de format. la liste doit avoir 6 items
     if (eclats.count() < 6)
     {
-        qDebug() << "Ligne mal formée : "<<_gr<<"dernier champ"<<eclats.last()<< linea;
+        //qDebug() << "Ligne mal formée : "<<_gr<<"dernier champ"<<eclats.last()<< linea;
         return;
     }
     // lecture des radicaux, champs 2 et 3
@@ -549,7 +549,7 @@ QString Lemme::traduction(QString l)
  */
 bool Lemme::operator<(const Lemme &l) const
 {
-    qDebug()<<"operator<"<<_gr;
+    //qDebug()<<"operator<"<<_gr;
     return _nbOcc < l.nbOcc();
     //return _gr < l.gr();
 }
