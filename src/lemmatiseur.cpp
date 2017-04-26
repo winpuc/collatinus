@@ -1687,6 +1687,8 @@ QString Lemmat::tagTexte(QString t, int p, bool affTout)
     }
     else
     {
+        if ((dph > 0) && pp.contains(t.at(dph))) --dph;
+        // Si j'ai cliqué sur une ponctuation, je traite la phrase qui précède.
         // régression au début de la phrase
         while (dph > 0 && !pp.contains(t.at(dph)) && (t.mid(dph,2) != "\n\n")) --dph;
         if (dph != 0) dph += 1; // J'élimine la ponctuation de la phrase précédente.
@@ -1700,6 +1702,10 @@ QString Lemmat::tagTexte(QString t, int p, bool affTout)
     {
         while (fph < tl && !pp.contains(t.at(fph)) && (t.mid(fph,2) != "\n\n")) ++fph;
         QString phr = t.mid(dph, fph - dph).trimmed();
+        // Si le texte se termine sans ponctuation, je perds le dernier caractère.
+//        qDebug() << tl << fph << t.at(tl);
+        if ((fph == tl) && !pp.contains(t.at(tl)) && (t.mid(tl,1) != "\n"))
+            phr.append(t[tl]);
         // découpage en mots
         QStringList lm = phr.split(QRegExp("\\b"));
 
@@ -1712,6 +1718,8 @@ QString Lemmat::tagTexte(QString t, int p, bool affTout)
                 fph++;
                 while (fph < tl && !pp.contains(t.at(fph))) ++fph;
                 phr = t.mid(dph, fph - dph).trimmed();
+                if ((fph == tl) && !pp.contains(t.at(tl)) && (t.mid(tl,1) != "\n"))
+                    phr.append(t[tl]);
                 lm = phr.split(QRegExp("\\b"));
             }
 
