@@ -680,6 +680,8 @@ void MainWindow::createActions()
                            tr("Lancer et classer &alphabétiquement"), this);
     aproposAct =
         new QAction(QIcon(":/res/collatinus.svg"), tr("à &Propos"), this);
+    auxAct =
+        new QAction(QIcon(":res/help-browser.svg"), tr("aide"), this);
     balaiAct = new QAction(QIcon(":res/edit-clear.svg"),
                            tr("&Effacer les résultats"), this);
     copieAct = new QAction(QIcon(":res/copie.svg"),
@@ -906,6 +908,7 @@ void MainWindow::createConnections()
     // autres actions
     connect(alphaAct, SIGNAL(triggered()), this, SLOT(alpha()));
     connect(aproposAct, SIGNAL(triggered()), this, SLOT(apropos()));
+    connect(auxAct, SIGNAL(triggered()), this, SLOT(auxilium()));
     connect(balaiAct, SIGNAL(triggered()), this, SLOT(effaceRes()));
     connect(copieAct, SIGNAL(triggered()), this, SLOT(dialogueCopie()));
     connect(exportAct, SIGNAL(triggered()), this, SLOT(exportPdf()));
@@ -1026,6 +1029,7 @@ void MainWindow::createMenus()
     extraMenu->addAction(majLexAct);
 
     helpMenu = menuBar()->addMenu(tr("&Aide"));
+    helpMenu->addAction(auxAct);
     helpMenu->addAction(aproposAct);
 }
 
@@ -2261,3 +2265,7 @@ bool MainWindow::alerte()
 }
 
 
+void MainWindow::auxilium()
+{
+    QDesktopServices::openUrl(QUrl("file:" + qApp->applicationDirPath() + "/doc/index.html"));
+}
