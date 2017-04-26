@@ -27,7 +27,7 @@ alphabétique, une liste partielle :
 - **Jose Luis Redrejo**, qui a coordonné les traductions en espagnol, catalan et galicien ;
 - **Philipp Roelli**, qui a permis d'ajouter le dictionnaire latin-allemand ; 
 - **Jean-Paul Woitrain**, qui a permis la correction de nombreuses erreurs ;
-- **William Whitaker †**, dont le lemmatiseur, placées dans le domaine public, a été utilisé ;
+- **William Whitaker †**, dont le lemmatiseur, placé dans le domaine public, a été utilisé.
 
 Licence
 =======
