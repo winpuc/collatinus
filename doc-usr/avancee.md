@@ -11,10 +11,10 @@ Utilisation avancée
     programme, ils sont tous lus, et les données mises
     en listes et placées en mémoire vive.
 
-Si on remarque une erreur ou une lacune dans ses
+Si on remarque une erreur ou une lacune dans les
 résultats, et qu'on a des connaissances suffisantes en
 gestion et édition de fichiers, on peut commencer à les
-modifier. Il faut bien sûr prendre des précaution,
+modifier. Il faut bien sûr prendre des précautions,
 notamment **en prenant soin de faire une copie de
 sauvegarde avant toute intervention** : on crée un
 répertoire dont on note bien le chemin, et on y copie
