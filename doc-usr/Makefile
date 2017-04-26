@@ -8,6 +8,7 @@ but:
 	echo $e > $(dest)anatomie.html;      markdown anatomie.md >> $(dest)anatomie.html
 	echo $e > $(dest)debuter.html;       markdown debuter.md >> $(dest)debuter.html
 	echo $e > $(dest)lemmatiser.html;    markdown lemmatiser.md >> $(dest)lemmatiser.html
+	echo $e > $(dest)coloriser.html;     markdown coloriser.md >> $(dest)coloriser.html
 	echo $e > $(dest)dictionnaires.html; markdown dictionnaires.md >> $(dest)dictionnaires.html
 	echo $e > $(dest)scander.html;       markdown scander.md >> $(dest)scander.html
 	echo $e > $(dest)flechir.html;       markdown flechir.md >> $(dest)flechir.html
