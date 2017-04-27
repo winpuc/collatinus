@@ -57998,7 +57998,9 @@ Alphaeus:personnage biblique
 Aminadab:personnage biblique
 Ananias:nom de plusieurs personnages bibliques
 Antipatris:ville de Palestine
+Aristobolus:personnage biblique
 Arphaxad:personnage biblique
+Asyncritus:personnage biblique
 Barachias:personnage biblique
 Bariesu:personnage biblique
 Barsabas:personnage biblique
@@ -58011,6 +58013,7 @@ Cyrinus:Quirinius, gouverneur de Syrie au temps du Christ
 Dalmanutha:région de Palestine
 Damaris:nom d'une femme dans la bible
 Eliacim:personnage biblique
+Epaenetus:personnage biblique
 Eutychus:personnage biblique
 Gabbatha:nom d'une place à Jérusalem
 Gamaliel:personnage biblique
@@ -58043,6 +58046,7 @@ Salathiel:personnage biblique
 Saphira:nom d'une femme dans la bible
 Sarona:ville de Palestine
 Semei:personnage biblique
+Sosipater:personnage biblique
 Sosthenes:personnage biblique
 Susanna:nom de plusieurs femmes dans la bible
 Tertullus:personnage biblique
