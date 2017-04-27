@@ -1397,7 +1397,7 @@ Andromeda:Andromède
 Andromede:Andromède
 Andron2:Andron (médecin grec).
 andron:appartement des hommes, passage entre deux murs
-Andronicus:Livius Andronicus (poète latin, grammairien de Syrie, nom d'un ami de Cicéron)
+Andronicus:Livius Andronicus (poète latin, grammairien de Syrie, nom d'un ami de Cicéron); nom d'un personnage biblique
 Andros:île d'Andros [une des Cyclades, île entre la Bretagne et l'Irlande]
 Androsthenes:Androsthène [nom d'h.]
 anellus:petit anneau
@@ -14177,7 +14177,7 @@ Nape:Nape (nom de chienne, nom d'une esclave)
 Narbo:Narbonne
 Narbonensis:de Narbonne
 narcissus2:narcisse [fleur]
-Narcissus:Narcisse
+Narcissus:Narcisse; nom d'un personnage biblique
 nardum:nard [arbrisseau]
 nardus:nard [arbrisseau]
 nares:narines, nez, finesse, orifice
