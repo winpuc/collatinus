@@ -22144,7 +22144,7 @@ Tigurini:Tigurins
 Tigurinus:Tigurinus (canton helvète)
 tilia:tilleul
 Tillius:Tillius
-Timaeus:Timée (historien; philosophe; titre d'un dialogue de Platon)
+Timaeus:Timée (historien; philosophe; titre d'un dialogue de Platon) ; nom d'un personnage biblique
 Timagenes:Timagène (rhéteur de l'époque d'Auguste)
 Timarchides:Timarchides (statuaire, affranchi de Verrès)
 Timarchus:Timarchus (statuaire)
@@ -22160,7 +22160,7 @@ Timocles:Timocles (statuaire)
 Timoneus:de Timon (célèbre misanthrape athénien)
 Timon:Timon d'Athènes (surnommé le Misanthrope)
 timor:peur
-Timotheus:Timotheus (musicien de Milet; restaurateur des murs d'Athènes)
+Timotheus:Timotheus (musicien de Milet; restaurateur des murs d'Athènes) ; nom d'un personnage biblique
 tinea:teigne, mite, ver intestina
 Tingitanus:de la Tingitane
 tingo:mouiller, teindre
