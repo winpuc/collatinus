@@ -1664,6 +1664,7 @@ appetisso:vouloir à toute force faire venir
 appetitio:désir [passionné], convoitise
 appetitus:désir de qqch
 appeto2:qui désire ardemment
+Appia:nom d'une femme dans la bible
 Appianus:Appianus
 Appias:les Appiades [groupe de nymphes ornant une fontaine située devant le temple de Vénus Genitrix, nom donné par Cic. à une Minerve d'Appius Claudius]
 Appia:(via -) la voie Appienne [commencée par Appius Claudius Caecus, ville de Phrygie]
