@@ -58001,6 +58001,7 @@ Antipatris:ville de Palestine
 Aristobolus:personnage biblique
 Arphaxad:personnage biblique
 Asyncritus:personnage biblique
+Balaam:nom d'un faux prophète dans la bible
 Barachias:personnage biblique
 Bariesu:personnage biblique
 Barsabas:personnage biblique
