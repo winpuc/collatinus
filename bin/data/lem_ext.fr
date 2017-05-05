@@ -23859,7 +23859,8 @@ coenobita:cénobite, moine
 coenobium:couvent, monastère
 coenolexia:expression banale
 coenomya:mouche commune
-coenomyia:the common fly
+!coenomyia:the common fly
+coenomyia:mouche commune
 coenonesis:notification aux juges ou à l'adversaire
 coenositas:Aug. bourbier.
 coenosus:Juv. bourbeux, fangeux.
@@ -57994,6 +57995,8 @@ zythum:bière, boisson faite avec de l'orge
 Abias:personnage biblique
 Abiathar:personnage biblique
 Abilina:région de Syrie
+Agareni:tribu nomade du Nord de l'Arabie
+Allophyli:peuple de Palestine, les Philistins
 Alphaeus:personnage biblique
 Aminadab:personnage biblique
 Ananias:nom de plusieurs personnages bibliques
@@ -58008,6 +58011,7 @@ Bariesu:personnage biblique
 Barsabas:personnage biblique
 Bartimaeus:personnage biblique
 Bethphage:ville de Judée
+Bethsabee:femme d'Urie puis de David, mère de Salomon
 Boanerges:surnom donné par Jésus aux Apôtres Jacques et Jean
 Boniportus:port de Crète
 Corozain:ville de Galilée
@@ -58018,14 +58022,18 @@ Eliacim:personnage biblique
 Epaenetus:personnage biblique
 Eutychus:personnage biblique
 Gabbatha:nom d'une place à Jérusalem
+Galaad:région de Transjordanie
 Gamaliel:personnage biblique
 Genesar:région de Palestine
 Genesareth:nom d'un lac de Palestine
 Haceldama:nom d'un champ (Évangiles)
+Hermoniim:l'Hermon, montagne de l'Anti-Liban
 Jairus=Iairus:personnage biblique
 Jason:nom de plusieurs personnages bibliques
 Jechonias=Iechonias:personnage biblique
+Jemini=Iemini:personnage biblique
 Joatham=Ioatham:personnage biblique
+Jonadab=Ionadab:personnage biblique, père des Réchabites
 Josaphat=Iosaphat:personnage biblique
 Josias=Iosias:personnage biblique
 Malaleel:personnage biblique
@@ -58049,6 +58057,7 @@ Salathiel:personnage biblique
 Saphira:nom d'une femme dans la bible
 Sarona:ville de Palestine
 Semei:personnage biblique
+Sichima:Sichem, ville de Palestine
 Sosipater:personnage biblique
 Sosthenes:personnage biblique
 Susanna:nom de plusieurs femmes dans la bible
@@ -58057,5 +58066,6 @@ Thaddaeus:l'un des douze Apôtres
 Trophimus:personnage biblique
 Urias:personnage biblique
 Zachaeus:personnage biblique
+Ziphaei:habitants de Ziph, ville de Palestine
 Zorobabel:personnage biblique
 
