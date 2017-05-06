@@ -58054,6 +58054,7 @@ Parmenas:personnage biblique
 Phanuel:personnage biblique
 Portius:personnage biblique
 Salathiel:personnage biblique
+Salmana:personnage biblique
 Saphira:nom d'une femme dans la bible
 Sarona:ville de Palestine
 Semei:personnage biblique
@@ -58066,6 +58067,7 @@ Thaddaeus:l'un des douze Apôtres
 Trophimus:personnage biblique
 Urias:personnage biblique
 Zachaeus:personnage biblique
+Zebee:personnage biblique
 Ziphaei:habitants de Ziph, ville de Palestine
 Zorobabel:personnage biblique
 
