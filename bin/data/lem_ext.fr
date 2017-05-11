@@ -58018,6 +58018,7 @@ Corozain:ville de Galilée
 Cyrinus:Quirinius, gouverneur de Syrie au temps du Christ
 Dalmanutha:région de Palestine
 Damaris:nom d'une femme dans la bible
+Dodanim:personnage ou peuple biblique
 Eliacim:personnage biblique
 Epaenetus:personnage biblique
 Eutychus:personnage biblique
@@ -58028,6 +58029,7 @@ Genesar:région de Palestine
 Genesareth:nom d'un lac de Palestine
 Haceldama:nom d'un champ (Évangiles)
 Hermoniim:l'Hermon, montagne de l'Anti-Liban
+Hevilath:région d'Arabie (dans la bible)
 Jairus=Iairus:personnage biblique
 Jason:nom de plusieurs personnages bibliques
 Jechonias=Iechonias:personnage biblique
@@ -58036,12 +58038,14 @@ Joatham=Ioatham:personnage biblique
 Jonadab=Ionadab:personnage biblique, père des Réchabites
 Josaphat=Iosaphat:personnage biblique
 Josias=Iosias:personnage biblique
+Madai:personnage biblique
 Malaleel:personnage biblique
 Manahen:personnage biblique
 Mathatha:personnage biblique
 Mathathias:personnage biblique
-Mathusale:personnage biblique
-Mathusalem:personnage biblique
+Mathusael:personnage biblique, descendant de Caïn
+Mathusalem:nom d'un patriarche dans la bible
+Maviael:personnage biblique, descendant de Caïn
 Melchisedech:personnage biblique
 Melea:personnage biblique
 Naaman:personnage biblique
@@ -58049,6 +58053,7 @@ Naasson:personnage biblique
 Nathanael:l'un des douze Apôtres
 Nephthalim:région de la Palestine
 Nicodemus:personnage biblique
+Noema:nom d'une femme dans la bible
 Ozias:personnage biblique
 Parmenas:personnage biblique
 Phanuel:personnage biblique
@@ -58056,6 +58061,7 @@ Portius:personnage biblique
 Salathiel:personnage biblique
 Salmana:personnage biblique
 Saphira:nom d'une femme dans la bible
+Sarai:Sara, femme d'Abraham
 Sarona:ville de Palestine
 Semei:personnage biblique
 Sichima:Sichem, ville de Palestine
@@ -58064,7 +58070,9 @@ Sosthenes:personnage biblique
 Susanna:nom de plusieurs femmes dans la bible
 Tertullus:personnage biblique
 Thaddaeus:l'un des douze Apôtres
+Thogorma:personnage biblique
 Trophimus:personnage biblique
+Tubalcain:personnage biblique, descendant de Caïn
 Urias:personnage biblique
 Zachaeus:personnage biblique
 Zebee:personnage biblique
