@@ -95,7 +95,7 @@ des+:1-4,6:1:ē;ē;ēn;ēs;ē
 
 modele:dea
 pere:uita
-des+:11,12:1:ăbŭs
+des+:11,12:1:ābŭs
 
 modele:lupus
 R:1:2,0
@@ -804,6 +804,7 @@ pere:lego
 abs:122,125
 des:157-162:0:$im
 des:163-168:0:lĕm;lēs;lĕt;lēmŭs;lētĭs;lēnt
+des:181-186:0:ī;ītĕ;ītō;ītō;ītōtĕ;ūntō
 des:187:0:lĕ
 abs:225-260,265-374
 
