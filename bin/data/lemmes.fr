@@ -7195,7 +7195,7 @@ ecce:voici, voici que
 ecclesia:assemblée [du peuple, des chrétiens];  l'Église, église (édifice)
 eccum:= ecce = voici
 ecdicus:avocat [d'une cité]
-ecfero:emporter, débarquer, emporter un mort, ensevelir, produire, donner
+!ecfero:emporter, débarquer, emporter un mort, ensevelir, produire, donner
 ecficio:achever, exécuter, produire, réaliser, rendre, faire
 ecfodio:déterrer, extraire, arracher [un oeil], creuser, fouir, remuer, bouleverser
 ecfreno:débrider, lâcher (rare)
