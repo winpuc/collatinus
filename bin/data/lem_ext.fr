@@ -58008,10 +58008,12 @@ Ananias:nom de plusieurs personnages bibliques
 Antipatris:ville de Palestine
 Apollyon:ange exterminateur dans l'Apocalypse
 Aracaeus:nom d'un peuple de Palestine
+Arbee:nom d'un géant, père des Enacim
 Aristobolus:personnage biblique
 Arphaxad:personnage biblique
 Asarmoth:personnage biblique
 Asasonthamar:nom d'une ville dans la bible
+Assurim:nom d'un peuple dans la bible
 Astarothcarnaim:nom d'une ville dans la bible
 Asyncritus:personnage biblique
 Balaam:nom d'un faux prophète dans la bible
@@ -58030,6 +58032,7 @@ Caphtorim:nom d'un peuple dans la bible
 Cariathaim:nom d'une ville de Palestine
 Cedmonaeus:membre de la tribu des Qedmonéens, en Palestine
 Cenezaeus:membre de la tribu des Qénézites, en Palestine
+Cetura:deuxième épouse d'Abraham
 Chalanne:ville de Mésopotamie
 Chasluim:nom d'un peuple dans la bible
 Chodorlahomor:personnage biblique
@@ -58042,6 +58045,7 @@ Dodanim:personnage ou peuple biblique
 Eliacim:personnage biblique
 Elmodad:personnage biblique
 Epaenetus:personnage biblique
+Ephron:personnage biblique
 Eutychus:personnage biblique
 Gabbatha:nom d'une place à Jérusalem
 Galaad:région de Transjordanie
@@ -58065,6 +58069,9 @@ Jonadab=Ionadab:personnage biblique, père des Réchabites
 Josaphat=Iosaphat:personnage biblique
 Josias=Iosias:personnage biblique
 Laabim:personnage biblique
+Latusim:nom d'un peuple dans la bible
+Loomim:nom d'un peuple dans la bible
+Maacha:personnage biblique
 Madai:personnage biblique
 Malaleel:personnage biblique
 Manahen:personnage biblique
@@ -58106,6 +58113,7 @@ Sinaeus:nom d'un peuple de Palestine
 Sosipater:personnage biblique
 Sosthenes:personnage biblique
 Susanna:nom de plusieurs femmes dans la bible
+Tabee:personnage biblique
 Tertullus:personnage biblique
 Thaddaeus:l'un des douze Apôtres
 Thogorma:personnage biblique
