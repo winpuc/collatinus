@@ -6911,7 +6911,8 @@ Hestiaeotis:l'Hestiéotide, province de Thessalie
 Hetaera:titre d'une comédie de Turpilius
 Hetereius:nom d'homme
 Heth:ind., fils de Chanaan
-Hethaei:Héthéens, Hittites
+!Hethaei:Héthéens, Hittites
+Hethaeus:Héthéen, Hittite
 Hetriculum:ville du Bruttium
 Hetruria:a country of central Italy
 Hetruscus:of Etruria, Etruscan
@@ -12614,6 +12615,7 @@ Sabaria:ville de Pannonie [auj. Sarvar]
 Sabariensis:de Sabaria
 Sabate:ville d'Étrurie avec le lac du même nom, lacus Sabate
 Sabatha:ville de l'Arabie Heureuse,
+Sabatha2:personnage biblique
 Sabatinca:ville de la Norique
 Sabatini:habitants de Sabate
 Sabatinus:de Sabate [en Étrurie] / Sabatini, ōrum, habitants de Sabate
@@ -57995,49 +57997,81 @@ zythum:bière, boisson faite avec de l'orge
 Abias:personnage biblique
 Abiathar:personnage biblique
 Abilina:région de Syrie
+Abimael:personnage biblique
 Agareni:tribu nomade du Nord de l'Arabie
 Allophyli:peuple de Palestine, les Philistins
 Alphaeus:personnage biblique
+Amathaeus:nom d'un peuple de Palestine
 Aminadab:personnage biblique
+Anamim:personnage biblique
 Ananias:nom de plusieurs personnages bibliques
 Antipatris:ville de Palestine
 Apollyon:ange exterminateur dans l'Apocalypse
+Aracaeus:nom d'un peuple de Palestine
+Arbee:nom d'un géant, père des Enacim
 Aristobolus:personnage biblique
 Arphaxad:personnage biblique
+Asarmoth:personnage biblique
+Asasonthamar:nom d'une ville dans la bible
+Assurim:nom d'un peuple dans la bible
+Astarothcarnaim:nom d'une ville dans la bible
 Asyncritus:personnage biblique
 Balaam:nom d'un faux prophète dans la bible
 Barachias:personnage biblique
 Bariesu:personnage biblique
 Barsabas:personnage biblique
 Bartimaeus:personnage biblique
+Bathuel:personnage biblique, père de Rebecca, oncle d'Isaac
+Bersabee:ville de Palestine
 Bethphage:ville de Judée
 Bethsabee:femme d'Urie puis de David, mère de Salomon
 Boanerges:surnom donné par Jésus aux Apôtres Jacques et Jean
 Boniportus:port de Crète
+Camuel:personnage biblique
+Caphtorim:nom d'un peuple dans la bible
+Cariathaim:nom d'une ville de Palestine
+Cedmonaeus:membre de la tribu des Qedmonéens, en Palestine
+Cenezaeus:membre de la tribu des Qénézites, en Palestine
+Cetura:deuxième épouse d'Abraham
+Chalanne:ville de Mésopotamie
+Chasluim:nom d'un peuple dans la bible
+Chodorlahomor:personnage biblique
+Cinaeus:membre de la tribu des Qénites, en Palestine
 Corozain:ville de Galilée
 Cyrinus:Quirinius, gouverneur de Syrie au temps du Christ
 Dalmanutha:région de Palestine
 Damaris:nom d'une femme dans la bible
 Dodanim:personnage ou peuple biblique
 Eliacim:personnage biblique
+Elmodad:personnage biblique
 Epaenetus:personnage biblique
+Ephron:personnage biblique
 Eutychus:personnage biblique
 Gabbatha:nom d'une place à Jérusalem
 Galaad:région de Transjordanie
 Gamaliel:personnage biblique
 Genesar:région de Palestine
 Genesareth:nom d'un lac de Palestine
+Gerara:ville de Palestine
+Gergesaeus:nom d'un peuple de Palestine
 Haceldama:nom d'un champ (Évangiles)
 Hermoniim:l'Hermon, montagne de l'Anti-Liban
+Hevaeus:nom d'un peuple de Palestine
+Hevila:personnage biblique
 Hevilath:région d'Arabie (dans la bible)
 Jairus=Iairus:personnage biblique
 Jason:nom de plusieurs personnages bibliques
+Jebusaeus=Iebusaeus:nom d'un peuple de Palestine
 Jechonias=Iechonias:personnage biblique
 Jemini=Iemini:personnage biblique
 Joatham=Ioatham:personnage biblique
 Jonadab=Ionadab:personnage biblique, père des Réchabites
 Josaphat=Iosaphat:personnage biblique
 Josias=Iosias:personnage biblique
+Laabim:personnage biblique
+Latusim:nom d'un peuple dans la bible
+Loomim:nom d'un peuple dans la bible
+Maacha:personnage biblique
 Madai:personnage biblique
 Malaleel:personnage biblique
 Manahen:personnage biblique
@@ -58048,26 +58082,38 @@ Mathusalem:nom d'un patriarche dans la bible
 Maviael:personnage biblique, descendant de Caïn
 Melchisedech:personnage biblique
 Melea:personnage biblique
+Mesraim:personnage biblique
 Naaman:personnage biblique
 Naasson:personnage biblique
 Nathanael:l'un des douze Apôtres
 Nephthalim:région de la Palestine
+Nephtuim:personnage biblique
 Nicodemus:personnage biblique
 Noema:nom d'une femme dans la bible
 Ozias:personnage biblique
 Parmenas:personnage biblique
 Phanuel:personnage biblique
+Phetrusim:nom d'un peuple dans la bible
 Portius:personnage biblique
+Raphaim:nom d'une race de géants dans la bible
+Sabatacha:personnage biblique
+Sabatha:personnage biblique
 Salathiel:personnage biblique
 Salmana:personnage biblique
+Samaraeus:nom d'un peuple de Palestine
 Saphira:nom d'une femme dans la bible
 Sarai:Sara, femme d'Abraham
 Sarona:ville de Palestine
+Seboim:ville de Palestine
+Semeber:personnage biblique
 Semei:personnage biblique
+Sennaab:personnage biblique
 Sichima:Sichem, ville de Palestine
+Sinaeus:nom d'un peuple de Palestine
 Sosipater:personnage biblique
 Sosthenes:personnage biblique
 Susanna:nom de plusieurs femmes dans la bible
+Tabee:personnage biblique
 Tertullus:personnage biblique
 Thaddaeus:l'un des douze Apôtres
 Thogorma:personnage biblique
