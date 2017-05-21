@@ -57996,6 +57996,7 @@ zythum:bière, boisson faite avec de l'orge
 
 Abias:personnage biblique
 Abiathar:personnage biblique
+Abida:personnage biblique
 Abilina:région de Syrie
 Abimael:personnage biblique
 Agareni:tribu nomade du Nord de l'Arabie
@@ -58017,11 +58018,16 @@ Assurim:nom d'un peuple dans la bible
 Astarothcarnaim:nom d'une ville dans la bible
 Asyncritus:personnage biblique
 Balaam:nom d'un faux prophète dans la bible
+Balaan:personnage biblique
+Balanan:personnage biblique
 Barachias:personnage biblique
 Bariesu:personnage biblique
 Barsabas:personnage biblique
 Bartimaeus:personnage biblique
+Basemath:nom d'une femme dans la bible
 Bathuel:personnage biblique, père de Rebecca, oncle d'Isaac
+Beeri:personnage biblique
+Benoni:autre nom de Benjamin
 Bersabee:ville de Palestine
 Bethphage:ville de Judée
 Bethsabee:femme d'Urie puis de David, mère de Salomon
@@ -58041,7 +58047,9 @@ Corozain:ville de Galilée
 Cyrinus:Quirinius, gouverneur de Syrie au temps du Christ
 Dalmanutha:région de Palestine
 Damaris:nom d'une femme dans la bible
+Denaba:nom d'une ville dans la bible
 Dodanim:personnage ou peuple biblique
+Dothain:ville de Palestine
 Eliacim:personnage biblique
 Elmodad:personnage biblique
 Epaenetus:personnage biblique
@@ -58059,6 +58067,8 @@ Hermoniim:l'Hermon, montagne de l'Anti-Liban
 Hevaeus:nom d'un peuple de Palestine
 Hevila:personnage biblique
 Hevilath:région d'Arabie (dans la bible)
+Horraei:nom d'un peuple dans la bible
+Issachar:l'un des douze fils d'Israël
 Jairus=Iairus:personnage biblique
 Jason:nom de plusieurs personnages bibliques
 Jebusaeus=Iebusaeus:nom d'un peuple de Palestine
@@ -58073,29 +58083,44 @@ Latusim:nom d'un peuple dans la bible
 Loomim:nom d'un peuple dans la bible
 Maacha:personnage biblique
 Madai:personnage biblique
+Magdiel:personnage biblique
+Magedan:région de Palestine
+Mahanaim:nom de lieu dans la bible
+Maheleth:nom d'une femme dans la bible
 Malaleel:personnage biblique
+Manahat:personnage biblique
 Manahen:personnage biblique
+Masreca:nom d'une ville dans la bible
 Mathatha:personnage biblique
 Mathathias:personnage biblique
 Mathusael:personnage biblique, descendant de Caïn
 Mathusalem:nom d'un patriarche dans la bible
 Maviael:personnage biblique, descendant de Caïn
+Meetabel:nom d'une femme dans la bible
+Merari:personnage biblique, un des trois fils de Lévi
+Mezaab:personnage biblique
 Melchisedech:personnage biblique
 Melea:personnage biblique
 Mesraim:personnage biblique
 Naaman:personnage biblique
 Naasson:personnage biblique
+Nabaioth:personnage biblique, un des fils d'Ismaël
 Nathanael:l'un des douze Apôtres
 Nephthalim:région de la Palestine
 Nephtuim:personnage biblique
 Nicodemus:personnage biblique
 Noema:nom d'une femme dans la bible
+Oolibama:nom d'une femme dans la bible
 Ozias:personnage biblique
 Parmenas:personnage biblique
 Phanuel:personnage biblique
 Phetrusim:nom d'un peuple dans la bible
 Portius:personnage biblique
+Putiphar:nom d'un Égyptien dans la bible
+Rahuel:personnage biblique
+Ramesses:ville d'Égypte
 Raphaim:nom d'une race de géants dans la bible
+Rohoboth:nom d'une ville dans la bible
 Sabatacha:personnage biblique
 Sabatha:personnage biblique
 Salathiel:personnage biblique
@@ -58104,6 +58129,7 @@ Samaraeus:nom d'un peuple de Palestine
 Saphira:nom d'une femme dans la bible
 Sarai:Sara, femme d'Abraham
 Sarona:ville de Palestine
+Sebeon:personnage biblique
 Seboim:ville de Palestine
 Semeber:personnage biblique
 Semei:personnage biblique
