@@ -57991,7 +57991,7 @@ zythum:bière, boisson faite avec de l'orge
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Flavigny
-! Noms propres de + de 2 syllabes de la Vulgate
+! Accentuation de la Vulgate
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 Abias:personnage biblique
@@ -58004,6 +58004,7 @@ Allophyli:peuple de Palestine, les Philistins
 Alphaeus:personnage biblique
 Amathaeus:nom d'un peuple de Palestine
 Aminadab:personnage biblique
+Amphipolis:ville grecque
 Anamim:personnage biblique
 Ananias:nom de plusieurs personnages bibliques
 Antipatris:ville de Palestine
@@ -58068,6 +58069,7 @@ Hevaeus:nom d'un peuple de Palestine
 Hevila:personnage biblique
 Hevilath:région d'Arabie (dans la bible)
 Horraei:nom d'un peuple dans la bible
+idipsum:la même chose (in idipsum:ensemble)
 Issachar:l'un des douze fils d'Israël
 Jairus=Iairus:personnage biblique
 Jason:nom de plusieurs personnages bibliques
@@ -58116,7 +58118,9 @@ Parmenas:personnage biblique
 Phanuel:personnage biblique
 Phetrusim:nom d'un peuple dans la bible
 Portius:personnage biblique
+pseudoapostolus:faux apôtre
 Putiphar:nom d'un Égyptien dans la bible
+quinimmo:bien plutôt, bien au contraire
 Rahuel:personnage biblique
 Ramesses:ville d'Égypte
 Raphaim:nom d'une race de géants dans la bible
