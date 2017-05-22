@@ -6,6 +6,8 @@ Les sources de la version 10 sont sur le dépôt [collatinus-10-src](https://git
 multi-plateforme (Mac, Windows et Debian GNU/Linux),
 simple à installer et facile à utiliser.**
 
+**Page de présentation et téléchargement sur le site Biblissima** : [http://outils.biblissima.fr/collatinus/](http://outils.biblissima.fr/collatinus/) (exécutables disponibles pour Mac OS, GNU/Linux et Windows).
+
 Collatinus est à la fois un **lemmatiseur** et un **analyseur
 morphologique de textes latins** : il est capable, si on
 lui donne une forme déclinée ou conjuguée, de trouver
@@ -65,3 +67,7 @@ lemme, Collatinus peut scander le mot et par là même
 tout un texte. Lorsqu'il scande un texte, Collatinus
 applique les règles habituelles d'allongement et
 d'élision.
+
+## Licence
+
+Ce programme est mis à disposition par Yves Ouvrard et Philippe Verkerk sous licence [GNU GPL v3](http://www.gnu.org/licenses/gpl.html).
