@@ -58002,6 +58002,7 @@ Abimael:personnage biblique
 Agareni:tribu nomade du Nord de l'Arabie
 Allophyli:peuple de Palestine, les Philistins
 Alphaeus:personnage biblique
+Amalec:nom d'un personnage et d'un peuple bibliques
 Amathaeus:nom d'un peuple de Palestine
 Aminadab:personnage biblique
 Amphipolis:ville grecque
@@ -58015,6 +58016,7 @@ Aristobolus:personnage biblique
 Arphaxad:personnage biblique
 Asarmoth:personnage biblique
 Asasonthamar:nom d'une ville dans la bible
+Ascenez:personnage biblique, l'un des descendants de Japheth
 Assurim:nom d'un peuple dans la bible
 Astarothcarnaim:nom d'une ville dans la bible
 Asyncritus:personnage biblique
@@ -58065,6 +58067,7 @@ Gerara:ville de Palestine
 Gergesaeus:nom d'un peuple de Palestine
 Haceldama:nom d'un champ (Évangiles)
 Hermoniim:l'Hermon, montagne de l'Anti-Liban
+Hesebon:ville de Transjordanie
 Hevaeus:nom d'un peuple de Palestine
 Hevila:personnage biblique
 Hevilath:région d'Arabie (dans la bible)
@@ -58108,6 +58111,8 @@ Naaman:personnage biblique
 Naasson:personnage biblique
 Nabaioth:personnage biblique, un des fils d'Ismaël
 Nathanael:l'un des douze Apôtres
+necnon:et aussi, et
+nequando:de peur que
 Nephthalim:région de la Palestine
 Nephtuim:personnage biblique
 Nicodemus:personnage biblique
