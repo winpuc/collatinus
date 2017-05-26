@@ -294,6 +294,10 @@ modele:jesus
 R:0:2,0
 des:1-6:0:ūs;ūs,ū;ūs,ŭm;ūs;ūs,ū
 
+modele:clio
+R:0:1,0
+des:1-6:ō,ō,ō,ōnĕm,ūs,ō,ōnĭ,ō
+
 modele:doctus
 R:0:2,0
 R:1:2,ĭ
