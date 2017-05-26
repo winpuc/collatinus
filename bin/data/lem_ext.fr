@@ -58075,6 +58075,7 @@ Hevilath:région d'Arabie (dans la bible)
 Horraei:nom d'un peuple dans la bible
 idipsum:la même chose (in idipsum:ensemble)
 Issachar:l'un des douze fils d'Israël
+Ithamar:personnage biblique, fils d'Aaron
 Jairus=Iairus:personnage biblique
 Jason:nom de plusieurs personnages bibliques
 Jebusaeus=Iebusaeus:nom d'un peuple de Palestine
