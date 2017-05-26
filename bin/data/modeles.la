@@ -283,6 +283,10 @@ modele:res
 R:1:2,0
 des:1-12:1:ēs;ēs;ĕm;ĕī;ĕī;ē;ēs;ēs;ēs;ērŭm;ēbŭs;ēbŭs
 
+modele:dies
+R:1:2,0
+des:1-12:1:ēs;ēs;ĕm;ēī;ēī;ē;ēs;ēs;ēs;ērŭm;ēbŭs;ēbŭs
+
 modele:abraham
 R:0:0,0
 R:1:2,0
