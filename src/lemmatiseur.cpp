@@ -751,7 +751,8 @@ MapLem Lemmat::lemmatise(QString f)
                     if (!c) c = (V_maj && (rad->gr()[0] == 'U')
                             && (cnt_v - 1 == rad->grq().toLower().count("v")));
                     c = c && ((cnt_oe==0)||(cnt_oe == rad->grq().toLower().count("ōe")));
-                    c = c && ((cnt_ae==0)||(cnt_ae == rad->grq().toLower().count("āe")));
+                    c = c && ((cnt_ae==0)||
+                              (cnt_ae == (rad->grq().toLower().count("āe") + rad->grq().toLower().count("prăe"))));
                     if (c)
                     {
                         QString fq = rad->grq() + des->grq();

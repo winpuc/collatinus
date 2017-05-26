@@ -208,6 +208,15 @@ void MainWindow::afficheLemsDic(bool litt, bool prim)
         MapLem lm = lemmatiseur->lemmatiseM(lineEdit->text(), true);
         requete = lemmatiseur->lemmes(lm);
     }
+    else
+    {
+        QString t = lineEdit->text();
+        t.replace("æ","ae");
+        t.replace("Æ","Ae");
+        t.replace("œ","oe");
+        t.replace("Œ","Oe");
+        requete << t;
+    }
     if (requete.empty()) requete << lineEdit->text();
     requete.removeDuplicates();
     if (syncAct->isChecked())
