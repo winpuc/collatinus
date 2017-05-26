@@ -12311,7 +12311,8 @@ Răbĭēnus|lupus|||i, m.|1
 Răbīrĭānus|doctus|||a, um|1
 Răbīrĭānus2|lupus|||i, m.|1
 Răbŭlēius=Răbŭlēĭus|filius|||i, m.|1
-Rachel=Rachĕl|inv|||indecl. f.|1
+!Rachel=Rachĕl|inv|||indecl. f.|1
+Rachel=Rachĕl|ciuis|Rachēl||is, f.|1
 Rachĭās|aeneas|||ae, m.|1
 Răcīlĭa|roma|||ae, f.|1
 Radata|roma|||ae, f.|1
@@ -33834,7 +33835,7 @@ haerēdo=hāerēdo|amo|||āre|1
 haerēs=hāerēs|miles|hāerēd||ēdis, m.|1
 haerĕsĭarcha=hāerĕsĭārcha|uita|||ae, m.|1
 haerĕsĭarchēs=hāerĕsĭārchēs|cometes|||ae, m.|1
-haerĕsis=hāerĕsis|poesis|hāerĕsis||eos (is), f.|1
+haerĕsis=hāerĕsis|poesis|hāerĕs||eos (is), f.|1
 haerĕtĭcē=hāerĕtĭcē|adve|||adv.|1
 haerĕtĭcus=hāerĕtĭcus|doctus|||a, um|1
 haerĕtĭcus2=hāerĕtĭcus|lupus|||i, m.|1
@@ -45612,7 +45613,7 @@ phormĭum=phōrmĭum|templum|||ii, n.|1
 phosphŏrĕus=phōsphŏrĕus|aureus|||a, um|1
 phragmītēs=phrāgmītēs|ciuis|phrāgmīt||is, m.|1
 phragmītis=phrāgmītĭs|ciuis|phrāgmīt||is, f.|1
-phrăsis|poesis|phrăsis||is, f.|1
+phrăsis|poesis|phrăs||is, f.|1
 phrĕnētizo=phrĕnētīzo|amo|||āre, intr.|1
 phrĕnĭŏn|ilion|||ii, n.|1
 phrĕnītĭcus|doctus|||a, um|1
@@ -57988,24 +57989,29 @@ zȳthum|templum|||i, n.|1
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Flavigny
-! Noms propres de + de 2 syllabes de la Vulgate
+! Accentuation de la Vulgate
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 Abīas|aeneas|||ae, m.|1
 Abiăthar|inv|||indecl. m.|1
+Abīda|uita|||ae, m.|1
 Abilīna|roma|||ae, f.|1
 Abimăel|inv|||indecl. m.|1
+accersĭo|audio|accersīv,accersī||īre, cf. accerso|1
 Agarēni|liberi|||orum, f.|1
-Ælamītae|epulae|||arum, m. cf. Elamitae|1
+Aelamītae|epulae|||arum, m. cf. Elamitae|1
 Allophȳli|liberi|||orum, m.|1
 Alphāeus|lupus|||i, m.|1
+Amălec|inv|||indecl. m.|1
 Amathāeus|lupus|||i, m.|1
 Aminădab|inv|||indecl. m.|1
+Amphipŏlis|poesis|Amphipŏl||is (eos), f.|1
 Anāmim|inv|||indecl. m.|1
 Ananīas|aeneas|||ae, m.|1
 Andrāeās=Āndrāeās|aeneas|||ae, m. cf. Andreas|1
 Andronĭcus2|lupus|||i, m. cf. Andronicus|1
 Antipatris|ciuis|Antipatrĭd||is, f.|1
+apocalȳpsis|poesis|apocalȳps||is (eos), f.|1
 Apollўon|inv|||indecl. m.|1
 Appīa2|roma|||ae, f. cf. Appia|3
 Aracāeus|filius|||i, m.|1
@@ -58014,17 +58020,23 @@ Aristobŏlus|lupus|||i, m.|1
 Arphāxad|inv|||indecl. m.|1
 Asārmoth|inv|||indecl. m.|1
 Asasonthămar|inv|||indecl. f.|1
+Ascĕnez|inv|||indecl. m.|1
 Assūrim|inv|||indecl. m.|1
 Astarothcarnăim|inv|||indecl. f.|1
 Asyncrĭtus|lupus|||i, m.|1
 Attalĭa2|uita|||ae, f. cf. Attalia|1
 Balăam|inv|||indecl. m.|1
+Balăan|inv|||indecl. m.|1
+Balănan|inv|||indecl. m.|1
 Barachīas|aeneas|||ae, m.|1
 Bariēsu|inv|||indecl. m.|1
 Barnăbas2|aeneas|||ae, m. cf. Barnabas|1
 Barsăbas|aeneas|||ae, m.|1
 Bartimāeus|lupus|||i, m.|1
+Basĕmath|inv|||indecl. f.|1
 Bathŭel|ciuis|Bathuēl||is, m.|1
+Beēri|inv|||indecl. m.|1
+Benŏni|inv|||indecl. m.|1
 Bersabēe|inv|||indecl. f.|1
 Bethphăge|inv|||indecl. f.|1
 Bethsabēe|inv|||indecl. f.|1
@@ -58034,6 +58046,7 @@ Caĭnan|inv|||indecl. m.|1
 Camŭel|inv|||indecl. m.|1
 Capharnăum2|inv|||indecl. f. cf. Capharnaum|1
 Caphtŏrim|inv|||indecl. m.|1
+carācter|miles|caractēr||ēris, m. cf. character|1
 Cariathăim|inv|||indecl. f.|1
 Cedmonāeus|lupus|||i, m.|1
 Cenezāeus|lupus|||i, m.|1
@@ -58041,12 +58054,18 @@ Cetūra|uita|||ae, f.|1
 Chalānne|inv|||indecl. f.|1
 Chaslŭim|inv|||indecl. m.|1
 Chodorlahŏmor|inv|||indecl. m.|1
+cĭdărĭs2|poesis|cĭdăr||is, f. cf. cidaris|1
 Cināeus|lupus|||i, m.|1
+cor2|ciuis|cord||cordis, n. cf. cor|192
 Corozăin|inv|||indecl. f.|1
 Cyrīnus|lupus|||i, m.|1
 Dalmanūtha|inv|||indecl. f.|1
 Damăris|inv|||indecl. f.|1
+decūmbo2|lego|||ĕre, cf. decumbo|1
+Denāba|inv|||indecl. f.|1
 Dodānim|inv|||indecl. m.|1
+Dothăin|inv|||indecl. f.|1
+Elcăna|inv|||indecl. m.|1
 Eliăcim|inv|||indecl. m.|1
 Eliăkim|inv|||indecl. m. cf. Eliacim|1
 Elisāeus|deus|||i, m. cf. Eliseus|1
@@ -58055,10 +58074,12 @@ Elmōdad|inv|||indecl. m.|1
 Epaenĕtus|lupus|||i, m.|1
 Epaphrodĭtus2|lupus|||i, m. cf. Epaphroditus|1
 Ephron|ciuis|Ephrōn||is, m.|1
+Esăū2|inv|||indecl. m. cf. Esau|1
 Eubŭlus2|lupus|||i, m. cf. Eubulus|1
 Euphrātes2|thales|Euphrāt||is, m. cf. Euphrates|1
 Eutўchus|lupus|||i, m.|1
 Evodĭa|uita|||ae, f. cf. Euodia|1
+exilĭo|audio|exilīv,exili||is, ire, īvi, cf. exsilio|1
 Ezechīas2|aeneas|||ae, m. cf. Ezechias|1
 Ezechĭel2|inv|||indecl. m. cf. Ezechiel|1
 Gabbătha|inv|||indecl. f.|1
@@ -58070,12 +58091,17 @@ Gerāra|uita|||ae, f.|1
 Gergesāeus|lupus|||i, m.|1
 Haceldăma|inv|||indecl. m.|1
 Hermonĭim|inv|||indecl. m.|1
+Hesĕbon|inv|||indecl. f.|1
 Hevāeus|filius|||i, m.|1
 Hevīla|inv|||indecl. f.|1
 Hevīlath|inv|||indecl. f.|1
+Horrāei|liberi|||orum, m.|1
+idīpsum|inv||||1
 Isaīas2|aeneas|||ae, m. cf. Isaias|1
 Iscariōtes2|thales|Iscariōt||ae, f. cf. Iscariotes|1
 Ismahelītae|epulae|||arum, m. cf. Ismaelitae|1
+Issăchar|inv|||indecl. m.|1
+Ithămar|inv|||indecl. m.|1
 Jaĭrus=Iaĭrus|lupus|||i, m.|1
 Jason=Iason|miles|Iasōn||ōnis, m.|1
 Jebusāeus=Iebusāeus|filius|||i, m.|1
@@ -58085,6 +58111,7 @@ Jerusălem=Ierusălem|inv|||indecl. f. cf. Hierosolyma|1
 Jerosolўma=Ierosolўma|uita|||ae, f. cf. Hierosolyma|1
 Jerosolymīta=Ierosolymīta|uita|||ae, m. cf. Hierosolymita|1
 Joătham=Ioătham|inv|||indecl. m.|1
+Jochăbed=Iochăbed|inv|||indecl. f.|1
 Jonădab=Ionădab|inv|||indecl. m.|1
 Josăphat=Iosăphat|inv|||indecl, m.|1
 Josīas=Iosīas|aeneas|||ae, m.|1
@@ -58094,10 +58121,16 @@ Lithostrŏtos2|inv|||indecl. m. cf. Lithostrotos|1
 Loŏmim|inv|||indecl. m.|1
 Maăcha|inv|||indecl. m.|1
 Madăi|inv|||indecl. m.|1
+Magdĭel|inv|||indecl. m.|1
 Magĕdan|inv|||indecl. f.|1
+Mahanāim|inv|||indecl. m.|1
+Mahĕleth|inv|||indecl. f.|1
 Malalĕel|inv|||indecl. m.|1
+Manăhat|inv|||indecl. m.|1
 Manăhen|inv|||indecl. m.|1
+manufacĭo|facio|manufēc|manufāct|is, ere, feci, factum|1
 Marīa2|uita|||ae, f., cf. Maria|1
+Masrĕca|inv|||indecl. f.|1
 Mathătha|uita|||ae, m.|1
 Mathathīas|aeneas|||ae, m.|1
 Mathusăel|inv|||indecl. m.|1
@@ -58105,23 +58138,41 @@ Mathusăla|uita|||ae, m. cf. Mathusalem|1
 Mathusăle|inv|||indecl. m. cf. Mathusalem|1
 Mathusălem|inv|||indecl. m.|1
 Maviăel|inv|||indecl. m.|1
+Meetăbel|inv|||indecl. f.|1
+Mezăab|inv|||indecl. m.|1
 Melchisĕdech|inv|||indecl. m.|1
 Melĕa|uita|||ae, m.|1
+Merāri|inv|||indecl. m.|1
 Mesrăim|inv|||indecl. m.|1
+Misaĕl|inv|||indecl. m.|1
 Moўses2|thales|Moўs||is (i), m. cf. Moyses|5
 Naăman|inv|||indecl.|1
 Naāsson|inv|||indecl. m.|1
+Nabaĭoth|inv|||indecl. m.|1
 Nathanăĕl|inv|||indecl. m.|1
+necnon|inv||||1
+nequāndo|inv||||1
 Nephthălim|inv|||indecl. f.|1
 Nephtŭim|inv|||indecl. m.|1
 Nicodēmus|lupus|||i, m.|1
 Noĕma|inv|||indecl. f.|1
+Oolibăma|inv|||indecl. f.|1
 Ozīas|aeneas|||ae, m.|1
 Parmĕnas|aeneas|||ae, m.|1
 Phanŭel|inv|||indecl. m.|1
 Phetrŭsim|inv|||indecl. m.|1
+Phinĕes|inv|||indecl. m.|1
 Portĭus|lupus|||i, m.|1
+praeordino|amo|||āre|1
+prendo|lego|prendīd||is, ere, i, prensum|1
+pseudoapostŏlus|lupus|||i, m.|1
+Putīphar|ciuis|Putiphăr||is, m.|1
+quinīmmo|inv|||adv.|1
+Ragŭel|ciuis|Raguēl||is, m.|1
+Rahŭel|inv|||indecl. m.|1
+Ramēsses|inv|||indecl. f.|1
 Raphăim|inv|||indecl. m.|1
+Rohōboth|inv|||indecl. f.|1
 Sabatăcha|inv|||indecl. m.|1
 Sabătha2|roma|||ae, m.|1
 Salathĭel|inv|||indecl. m.|1
@@ -58131,15 +58182,18 @@ Samarāeus|lupus|||i, m.|1
 Saphīra|uita|||ae, f.|1
 Sarăi|inv|||indecl. f.|1
 Sarōna|uita|||ae, f.|1
+Sebĕon|inv|||indecl. m.|1
 Sebŏim|inv|||indecl. f.|1
 Semĕber|inv|||indecl. m.|1
 Semĕi|inv|||indecl. m.|1
 Sennăab|inv|||indecl. m.|1
+Sephōra|uita|||ae, f.|1
 Sichĭma|uita|||ae, f.|1
 Silŏe2|inv|||indecl. f. cf. Siloe|1
 Sināeus|lupus|||i, m.|1
 Sosipăter|ciuis|Sosipătr||is, m.|1
 Sosthĕnes|ciuis|Sosthĕn||is, m.|1
+spiritualĭter|adv|||adv.|1
 Susānna|uita|||ae, f.|1
 Tabĕe|inv|||indecl. m.|1
 Tanis|poesis|Tan||is, f. cf. Tanis|1
@@ -58150,6 +58204,7 @@ Thogōrma|inv|||indecl. m.|1
 Trophĭmus|lupus|||i, m.|1
 Tubalcăin|inv|||indecl. m.|1
 Urīas|aeneas|||ae, m.|1
+usquĕquo|inv||||1
 Zacharīas2|aeneas|||ae, m. cf. Zacharias|1
 Zachāeus|lupus|||i, m.|1
 Zebĕe|inv|||indecl. m.|1
