@@ -58053,6 +58053,7 @@ Damaris:nom d'une femme dans la bible
 Denaba:nom d'une ville dans la bible
 Dodanim:personnage ou peuple biblique
 Dothain:ville de Palestine
+Elcana:personnage biblique
 Eliacim:personnage biblique
 Elmodad:personnage biblique
 Epaenetus:personnage biblique
@@ -58080,6 +58081,7 @@ Jebusaeus=Iebusaeus:nom d'un peuple de Palestine
 Jechonias=Iechonias:personnage biblique
 Jemini=Iemini:personnage biblique
 Joatham=Ioatham:personnage biblique
+Jochabed=Iochabed:mère de Moïse et d'Aaron
 Jonadab=Ionadab:personnage biblique, père des Réchabites
 Josaphat=Iosaphat:personnage biblique
 Josias=Iosias:personnage biblique
@@ -58107,6 +58109,7 @@ Mezaab:personnage biblique
 Melchisedech:personnage biblique
 Melea:personnage biblique
 Mesraim:personnage biblique
+Misael:personnage biblique
 Naaman:personnage biblique
 Naasson:personnage biblique
 Nabaioth:personnage biblique, un des fils d'Ismaël
@@ -58122,10 +58125,12 @@ Ozias:personnage biblique
 Parmenas:personnage biblique
 Phanuel:personnage biblique
 Phetrusim:nom d'un peuple dans la bible
+Phinees:personnage biblique
 Portius:personnage biblique
 pseudoapostolus:faux apôtre
 Putiphar:nom d'un Égyptien dans la bible
 quinimmo:bien plutôt, bien au contraire
+Raguel:personnage biblique
 Rahuel:personnage biblique
 Ramesses:ville d'Égypte
 Raphaim:nom d'une race de géants dans la bible
@@ -58156,6 +58161,7 @@ Thogorma:personnage biblique
 Trophimus:personnage biblique
 Tubalcain:personnage biblique, descendant de Caïn
 Urias:personnage biblique
+usquequo:jusqu'à quand ?
 Zachaeus:personnage biblique
 Zebee:personnage biblique
 Ziphaei:habitants de Ziph, ville de Palestine
