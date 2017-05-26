@@ -283,6 +283,12 @@ modele:res
 R:1:2,0
 des:1-12:1:ēs;ēs;ĕm;ĕī;ĕī;ē;ēs;ēs;ēs;ērŭm;ēbŭs;ēbŭs
 
+modele:dies
+pere:res
+des:4-5:1:ēī;ēī
+!R:1:2,0
+!des:1-12:1:ēs;ēs;ĕm;ēī;ēī;ē;ēs;ēs;ēs;ērŭm;ēbŭs;ēbŭs
+
 modele:abraham
 R:0:0,0
 R:1:2,0
@@ -293,6 +299,10 @@ abs:7-12
 modele:jesus
 R:0:2,0
 des:1-6:0:ūs;ūs,ū;ūs,ŭm;ūs;ūs,ū
+
+modele:clio
+R:0:1,0
+des:1-6:0:ō;ō;ō,ōnĕm;ūs;ō,ōnĭ;ō
 
 modele:doctus
 R:0:2,0

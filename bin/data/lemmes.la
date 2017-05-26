@@ -264,7 +264,7 @@ Achrădīna|roma|||ae, f.|2
 ăcĭdē|adve|||adv.|2
 Acidīnus|lupus|||i, m.|2
 ăcĭdus|doctus|||a, um|9
-ăcĭēs|res|||ei, f.|654
+ăcĭēs|dies|||ei, f.|654
 Ăcīlĭānus|doctus|||a, um|5
 Aci|liberi|||orum, m.|2
 Ăcīlĭus2|lupus|||ii, m.|18
@@ -464,6 +464,7 @@ adlūcĕo=ādlūcĕo|moneo|ādlūx||es, ere, luxi, intr.|2
 adlŭo=ādlŭo|lego|ādlŭ||is, ere, lui|26
 admātūro=ādmātūro|amo|||as, āre|2
 admētĭor=ādmētĭŏr|potior||ādmēns|īri, mensus sum|6
+Admētō=Ādmētō|clio|||us, f.|1
 Admētus=Ādmētus|lupus|||i, m.|6
 admĭnĭcŭlum=ādmĭnĭcŭlŭm|templum|||i, n.|19
 admĭnister=ādmĭnīstĕr|ager|ādmĭnīstr||tri, m.|14
@@ -737,6 +738,7 @@ Aelia=Āelĭa|roma|||ae, f.|4
 Aelĭānus=Āelĭānus|doctus|||a, um|3
 aelĭnos=āelĭnos|delos|||i, m.|2
 Aelĭus=Āelĭus|filius|||i, m.|17
+Ăellō|clio|||us, f.
 aelūrus=āelūrus|lupus|||i, m.|2
 Aemĭlĭa=Āemĭlĭa|roma|||ae, f.|4
 Aemĭlĭānus=Āemĭlĭānus|lupus|||i, m.|4
@@ -1117,7 +1119,7 @@ Allobrŏges=Āllō̆brŏgēs|miles|Āllō̆brŏg||um, m. pl.|50
 Allō̆brox=Āllō̆brōx|corpus|Āllō̆brŏg||ŏgis, m|2
 allŏcūtĭo=āllŏcūtĭō̆|miles|āllŏcūtĭōn||ionis, f.|5
 allūdo=āllūdo|lego|āllūs|āllūs|is, ere, lusi, lusum|8
-allŭvĭes=āllŭvĭes|res|||ei, f.|1
+allŭvĭes=āllŭvĭes|dies|||ei, f.|1
 Almo=Ālmo|miles|Ālmōn||ōnis, m.|6
 almus=ālmus|doctus|||a, um|55
 alnus=ālnus|lupus|||i, f.|11
@@ -1190,7 +1192,7 @@ alvus=ālvus|lupus|||i, f.|44
 ămārăcus|lupus|||i, f.|3
 ămărantus=ămărāntus|lupus|||i, m.|3
 ămārē|adve|||adv.|2
-ămārĭtĭēs|res|||ei, f.|2
+ămārĭtĭēs|dies|||ei, f.|2
 ămārĭtūdō|miles|ămārĭtūdĭn||inis, f.|11
 ămārŏr|miles|ămārōr||ōris, m.|4
 ămārum2|templum|||i, n.|3
@@ -1269,7 +1271,7 @@ amfractŭs=āmfrāctŭs|manus|||us, m.|3
 ămīcē|adve|||adv.|19
 ămĭcĭo|audio|ămĭcu,ămīx|ămīct|is, ire, icui et ixi, ictum|21
 ămīcĭtĭa|uita|||ae, f.|622
-ămīcĭtĭēs|res|||cf. amicitia|2
+ămīcĭtĭēs|dies|||cf. amicitia|2
 ămictus=ămīctus|manus|||us, m.|50
 ămīcŭla|uita|||ae, f.|2
 ămĭcŭlum=ămĭcŭlŭm|templum|||i, n.|12
@@ -1904,6 +1906,7 @@ Argĭnūsae=Ārgĭnūsāe|epulae|||arum, f.|2
 argītis=ārgītis|miles|ārgītĭd||ĭdis, f.|2
 Argīvi=Ārgīvi|liberi|||orum, m.|7
 Argīvus=Ārgīvus|doctus|||a, um|20
+Ārgō|clio|||us, f.
 Argŏlĭcus=Ārgŏlĭcus|doctus|||a, um|37
 Argŏlis=Ārgŏlis|miles|Ārgŏlĭd||ĭdis, f.|2
 Argŏnauta=Ārgŏnāuta|roma|||ae, m.|1
@@ -2454,7 +2457,7 @@ Avārĭcensis=Avārĭcēnsĭs|fortis|Avārĭcēns||e|2
 Avărĭcum|templum|||i, n.|11
 ăvārĭtĕr|advr|||adv.|3
 ăvārĭtĭa|uita|||ae, f.|257
-ăvārĭtĭēs|res|||ei, f. cf. auaritia|2
+ăvārĭtĭēs|dies|||ei, f. cf. auaritia|2
 ăvārus2|doctus|||a, um|91
 ăvārus|lupus|||i, m.|14
 āvĕho|lego|āvēx|āvēct|is, ere, uexi, uectum|20
@@ -2942,6 +2945,7 @@ brĕvĭter=brĕvĭtĕr|advr|||adv.|75
 Brĭăreus=Brĭărēus|lupus|||i, m.|4
 Brĭgantes2=Brĭgāntes|opes|Brĭgānt||um, m.|10
 Brĭgantĭcus=Brĭgāntĭcus|lupus|||i, m.|4
+Brīmō|clio|||us, f.
 Brīsaeus=Brīsāeus|lupus|||i, m.|2
 Brīsēida|roma|||ae, f. cf. Briseis|6
 Brīsēis|tethys|Brīsēĭd||ĭdis, f.|8
@@ -3118,7 +3122,7 @@ Caesărĕus=Cāesărĕus|aureus|||a, um|2
 Caesărĭāni=Cāesărĭāni|liberi|||orum, m.|7
 Caesărĭānus=Cāesărĭānus|doctus|||a, um|7
 Caesărĭensis=Cāesărĭēnsĭs|fortis|Cāesărĭēns||e|3
-caesărĭes=cāesărĭes|res|||ei, f.|12
+caesărĭes=cāesărĭes|dies|||ei, f.|12
 Caesellĭus=Cāesēllĭus|filius|||ii, m.|2
 Caesennĭus=Cāesēnnĭus|filius|||ii, m.|8
 Caesia=Cāesĭa|roma|||ae, f.|2
@@ -3234,6 +3238,7 @@ callis=cāllĭs|ciuis|cāll||is, m.|21
 callisco=cāllīsco|lego|cāllīsc||is, ĕre, llisci, intr.|2
 Callisthĕnēs=Cāllīsthĕnēs|ciuis|Cāllīsthĕn||is, m.|6
 Callistrătus=Cāllīstrătus|lupus|||i, m.|2
+Cāllīstō|clio|||us, f.
 Callistus=Cāllīstus|lupus|||i, m.|9
 callōsus=cāllōsus|doctus|||a, um|5
 callum=cāllŭm|templum|||i, n.|6
@@ -3258,7 +3263,7 @@ Calventĭus=Cālvēntĭus|filius|||ii, m.|5
 Calvīna=Cālvīna|roma|||ae, f.|4
 Calvīnus=Cālvīnus|lupus|||i, m.|5
 Calvĭsĭus=Cālvĭsĭus|filius|||ii, m.|18
-calvĭtĭēs=cālvĭtĭēs|res|||ei, f.|2
+calvĭtĭēs=cālvĭtĭēs|dies|||ei, f.|2
 calvor=cālvŏr|sequor|||3|2
 Calvus2=Cālvus|lupus|||i, m.|33
 calvus=cālvus|doctus|||a, um|12
@@ -3332,7 +3337,7 @@ Cănis2|ciuis|Căn||is, m.|13
 cănis=cănĭs|miles|căn||is, m. et f.|233
 cănistra=cănīstra|castra|||orum, n.|7
 cănistrum=cănīstrum|templum|||i, n.|4
-cānĭtĭes|res|||ei, f.|21
+cānĭtĭes|dies|||ei, f.|21
 Cānĭus|filius|||ii, m.|8
 cannăbis=cānnăbĭs|ciuis|cānnăb||is, f.|2
 canna=cānna|uita|||ae, f.|7
@@ -3902,6 +3907,7 @@ cētĕrum2|templum|||i, n.|326
 cētĕrum=cētĕrŭm|inv|||adv.|366
 cētĕrus|doctus|||a, um|688
 Cĕthĕgus|lupus|||i, m.|46
+Cētō|clio|||us, f.
 cētra|uita|||ae, f.|2
 cētus|lupus|||i, m.|3
 ceu=cēu|inv|||conj. coord.|38
@@ -3933,6 +3939,7 @@ chăractērismŏs=chărāctērīsmŏs|delos|||i, m.|2
 chara|uita|||ae, f.|2
 Chăraxus=Chărāxus|lupus|||i, m.|2
 Chărēs|miles|Chărēt||ētis, m.|2
+Chăriclō|clio|||us, f.
 Chărĭdēmus|lupus|||i, m.|3
 Chărīnus|lupus|||i, m.|2
 Chariovalda=Charĭovālda|roma|||ae, m.|3
@@ -4329,6 +4336,7 @@ clĭens=clĭēns|ciuis|clĭēnt||entis, m.|106
 clĭenta=clĭēnta|uita|||ae, f.|2
 clĭentēla=clĭēntēla|uita|||ae, f.|32
 clĭentŭlus=clĭēntŭlus|lupus|||i, m.|3
+Clīō|clio|||us, f.
 clīmactērĭcus=clīmāctērĭcus,clīmātērĭcus|doctus|||a, um|2
 !clīmātērĭcus|doctus|||cf. climactericus|1
 clīnāmen|corpus|clīnāmĭn||ĭnĭs, n.|2
@@ -4362,6 +4370,7 @@ Clŏnĭus|filius|||ii, m.|3
 Clŏnus|lupus|||i, m.|2
 clōstellum=clōstēllum|templum|||i, n.|2
 !clostrum=clōstrum|templum|||i, n. cf. claustrum|4
+Clōthō|clio|||us, f.
 clūdo|lego|clūs|clūs|(cludo) is, ere, clausi, clausum|61
 Clŭentĭa=Clŭēntĭa|roma|||ae, f.|3
 Clŭentĭānus=Clŭēntĭānus|doctus|||a, um|3
@@ -4549,7 +4558,7 @@ collŭo=cōllŭo|lego|cōllŭ|cōllūt|is, ere, lŭi, lūtum|3
 collus=cōllus|lupus|||i, m. cf. collum|5
 collūsĭo=cōllūsĭo|miles|cōllūsĭōn||ōnis, f.|2
 collūsŏr=cōllūsŏr|miles|cōllūsōr||ōris, m.|9
-collŭvĭes=cōllŭvĭes|res|||ei, f.|6
+collŭvĭes=cōllŭvĭes|dies|||ei, f.|6
 collŭvĭo=cōllŭvĭo|miles|cōllŭvĭōn||ōnis, f.|5
 collȳrĭum=cōllȳrĭum|templum|||ii, n.|3
 collўbus=cōllўbus|lupus|||i, m.|3
@@ -5001,7 +5010,7 @@ confŭtŭo=cōnfŭtŭo|lego|||is, ĕre|2
 congĕmĭno=cōngĕmĭno|amo|||as, are|4
 congĕmo=cōngĕmo|lego|cōngĕmŭ||is, ere, ui, -|6
 congĕr=cōngĕr|ager|cōngr||gri, m.|2
-congĕrĭes=cōngĕrĭes|res|||ei, f.|3
+congĕrĭes=cōngĕrĭes|dies|||ei, f.|3
 congĕro=cōngĕro|lego|cōngēss|cōngēst|is, ere, gessi, gestum|89
 congestīcĭus=cōngēstīcĭus|aureus|||a, um|2
 congestŭs2=cōngēstŭs|manus|||us, m.|9
@@ -5574,6 +5583,7 @@ cŏturnĭum=cŏtūrnĭum|templum|||ii, n.|4
 cō̆turnix=cō̆tūrnīx|miles|cōtūrnīc||icis, f.|5
 Cŏtўla2|uita|||ae, m.|4
 Cŏtўs|miles|Cŏtў||ўis, m.|16
+Cŏtȳttō|clio|||us, f.
 Cōus2|doctus|||a, um|28
 Cōus|lupus|||i, f.|1
 cŏvinnārĭus=cŏvīnnārĭus|filius|||ii, m.|3
@@ -6472,6 +6482,7 @@ dēpungo=dēpūngo|lego|||is, ĕre|2
 dēpurgo=dēpūrgo|amo|||as, are|4
 dēpŭto|amo|||as, are|5
 dērādo|lego|dērās|dērās|is, ere, derasi, derasum|4
+Dercĕtō=Dērcĕtō|clio|||us, f.
 dērēctē|adve|||adv.|2
 dērēctō|inv|||adv.|4
 dērectus=dērēctus|doctus|||a, um|17
@@ -6700,7 +6711,8 @@ dĭēcŭla|uita|||ae, f.|1
 dĭēquinti=dĭēquīnti|inv|||adv.|2
 diērectus=dĭērēctus|doctus|||a, um|4
 Dĭespĭter=Dĭēspĭtĕr|miles|Dĭēspī̆tr||tris, m.|5
-dĭes|res|||ei, m. et f.|2928
+!dĭes|res|||ei, m. et f.|2928
+dĭes|dies|||ei, m. et f.|2928
 diffāmo=dīffāmo|amo|||as, are|4
 diffĕrentĭa=dīffĕrēntĭa|uita|||ae, f.|12
 diffĕrĭtās=dīffĕrĭtās|miles|dīffĕrĭtāt||ātis, f.|2
@@ -6767,7 +6779,7 @@ dīlūdĭum|templum|||ii, n.|2
 dīlŭo|lego|dīlŭ|dīlūt|is, ere, dilui, dilutum|55
 dīlūtē|adve|||adv.|2
 dīlūtus|doctus|||a, um|2
-dīlŭvĭēs|res|||ei, f.|5
+dīlŭvĭēs|dies|||ei, f.|5
 dīlŭvĭo|amo|||as, are|2
 dīlŭvĭum=dīlŭvĭŭm|templum|||i, n.|5
 dĭmăchae=dĭmăchāe|epulae|||arum, m.|2
@@ -7170,6 +7182,7 @@ Drūsilla=Drūsīlla|roma|||ae, f.|6
 Drūsus|lupus|||i, m.|151
 Drўădes|opes|Drўăd||um, f.|7
 Drўas=Drўăs|miles|Drўăd||adis, f.|1
+Drȳmō|clio|||f. us
 Drўŏpē|cybele|||es, f.|2
 Drўŏpes|opes|Drўŏp||um, m.|2
 Drўops=Drўōps|miles|Drўŏp||ŏpis, m.|3
@@ -7248,7 +7261,7 @@ dūrē|adve|||adv.|24
 dūresco=dūrēsco|lego|dūrŭ||is, ere, durui, intr.|4
 dūrĭtĕr|advr|||adv.|2
 dūrĭtĭa|uita|||ae, f.|30
-dūrĭtĭēs|res|||ei, f.|3
+dūrĭtĭēs|dies|||ei, f.|3
 dūrĭtūdo|miles|dūrĭtūdĭn||ĭnis, f.|2
 Dūrĭus2|lupus|||ii, m.|2
 dūrĭuscŭlus=dūrĭūscŭlus|doctus|||a, um|2
@@ -7370,7 +7383,7 @@ effĭcax=ēffĭcāx|fortis|ēffĭcāc||acis|26
 effĭcĭens=ēffĭcĭēns|infans|ēffĭcĭēnt||entis|6
 effĭcĭo=ēffĭcĭo|capio|ēffēc|ēffēct|is, ere, effeci, effectum|448
 effĭgĭa=ēffĭgĭa|uita|||ae, f.|4
-effĭgĭes=ēffĭgĭes|res|||ei, f.|94
+effĭgĭes=ēffĭgĭes|dies|||ei, f.|94
 effingo=ēffīngo|lego|ēffīnx|ēffīct|is, ere, inxi, ictum|26
 efflāgĭtātĭo=ēfflāgĭtātĭō̆|miles|ēfflāgĭtātĭōn||ionis, f.|2
 efflāgĭtātus2=ēfflāgĭtātus|manus|||us, m.|2
@@ -7528,7 +7541,7 @@ Elpēnōr=Ēlpēnōr|miles|Ēlpēnŏr||ŏris, m.|2
 ēlŭo|lego|ēlŭ|ēlūt|is, ere, ui, utum|24
 Elŭsātes|manes|Elŭsāt||ium, m.|2
 ēlūtus|doctus|||a, um|2
-ēlŭvĭēs|res|||ei, f.|8
+ēlŭvĭēs|dies|||ei, f.|8
 ēlŭvĭo|miles|ēlŭvĭōn||ōnis, f.|2
 Elysii=Elysĭi|liberi|||orum, m.|2
 Ĕlўmaei=Ĕlўmāei|liberi|||orum, m.|2
@@ -7653,6 +7666,7 @@ enthȳmēma=ēnthȳmēma|corpus|ēnthȳmēmăt||ătis, n.|2
 ēnuntĭātum=ēnūntĭātum|templum|||i, n.|2
 ēnuntĭo=ēnūntĭo|amo|||as, are|19
 ēnuptĭo=ēnūptĭō̆|miles|ēnūptĭōn||ionis, f.|1
+Enȳō|clio|||us, f.
 ĕō2|inv|||adv.|581
 ĕōdem=ĕōdĕm|inv|||adv.|107
 ĕo|eo|ĭ,īv|ĭt|is, ire, iui, itum|1447
@@ -7802,6 +7816,7 @@ Erucius=Erucĭus|filius|||ii, m.|32
 ĕrus|lupus|||i, m.|129
 ervĭlĭa=ērvĭlĭa|uita|||ae, f.|2
 ervum=ērvum|templum|||i, n.|8
+Ĕrichthō|clio|||us, f.
 Erycīna|roma|||ae, f.|3
 Ĕrȳ̆thrae=Ĕrȳ̆thrāe|epulae|||arum, f.|3
 Ĕrȳ̆thraeus2=Ĕrȳ̆thrāeus|doctus|||a, um|2
@@ -8374,7 +8389,7 @@ făcētĭae=făcētĭāe|epulae|||arum, f.|16
 făcētĭa|uita|||ae, f.|1
 făcētus|doctus|||a, um|20
 făcĭa|uita|||ae, f.|2
-făcĭes|res|||ei, f.|380
+făcĭes|dies|||ei, f.|380
 făcĭlĕ|facile||făcĭllĭm|adv.|624
 făcĭlis=făcĭlĭs|fortis|făcĭl|facīllĭm|e|414
 făcĭlĭtās|miles|făcĭlĭtāt||atis, f.|53
@@ -9425,7 +9440,7 @@ glăbĕr2|ager|glā̆br||bri, m.|3
 glăbĕr|pulcher|glā̆br||bra, brum|2
 Glăbrĭo|miles|Glăbrĭōn||ōnis, m.|14
 glăcĭālĭs|fortis|glăcĭāl||e|12
-glăcĭes|res|||ei, f.|33
+glăcĭes|dies|||ei, f.|33
 glăcĭo|amo|||as, are|2
 glădĭātor=glădĭātŏr|miles|glădĭātōr||oris, m.|132
 glădĭātōrĭus|doctus|||a, um|25
@@ -11098,7 +11113,7 @@ ingĕnŭus=īngĕnŭus|aureus|||a, um|92
 ingĕro=īngĕro|lego|īngēss|īngēst|is, ere, gessi, gestum|93
 ingigno=īngīgno|lego|īngĕnŭ|īngĕnĭt|is, ere, genui, genitum|3
 inglōrĭus=īnglōrĭus|doctus|||a, um|17
-inglŭvĭes=īnglŭvĭes|res|||ei, f.|3
+inglŭvĭes=īnglŭvĭes|dies|||ei, f.|3
 ingrātē=īngrātē|adve|||adv.|4
 ingrātĭa=īngrātĭa|uita|||ae, f.|2
 ingrātĭfĭcus=īngrātĭfĭcus|doctus|||a, um|2
@@ -11172,7 +11187,7 @@ inlībātus=īnlībātus|doctus|||a, um|7
 inlĭcĭtus=īnlĭcĭtus|doctus|||a, um|18
 inlūnis=īnlūnĭs|fortis|īnlūn||e|2
 inlūstrē=īnlūstrē|adve|||adv.|2
-inlŭvĭes=īnlŭvĭes|res|||ei, f.|12
+inlŭvĭes=īnlŭvĭes|dies|||ei, f.|12
 inmĕrĭto=īnmĕrĭtō|inv|||adv.|29
 inmoenis=īnmōenĭs|fortis|īnmōen||e|1
 innascor=īnnāscŏr|sequor||īnnāt|eris, i, nātus sum, intr.|20
@@ -11421,7 +11436,7 @@ intempĕranter=īntēmpĕrāntĕr|advr|||adv.|11
 intempĕrantĭa=īntēmpĕrāntĭa|uita|||ae, f.|31
 intempĕrātus=īntēmpĕrātus|doctus|||a, um|2
 intempĕrĭae=īntēmpĕrĭāe|epulae|||arum, f.|5
-intempĕrĭes=īntēmpĕrĭes|res|||ei, f.|11
+intempĕrĭes=īntēmpĕrĭes|dies|||ei, f.|11
 intempestīvē=īntēmpēstīvē|adve|||adv.|5
 intempestīvus=īntēmpēstīvus|doctus|||a, um|29
 intempestus=īntēmpēstus|doctus|||a, um|19
@@ -12293,6 +12308,7 @@ lātĭtūdō|miles|lātĭtūdĭn||inis, f.|1
 Lătĭum=Lătĭŭm|templum|||ii, n.|62
 Lătĭus|aureus|||a, um|18
 Latmĭus=Lātmĭus|aureus|||a, um|4
+Lātō|clio|||us, f.
 Latobrigi=Latō̆brigi|liberi|||orum, m. pl.|4
 lātŏmĭae=lātŏmĭāe|epulae|||arum, f. pl.|2
 Lātōna|roma|||ae, f.|15
@@ -12938,7 +12954,7 @@ lux=lūx|miles|lūc||lucis, f.|551
 luxo=lūxo|amo|||as, are|3
 luxum=lūxum|templum|||i, n.|3
 luxŭrĭa=lūxŭrĭa|uita|||ae, f.|166
-luxŭrĭēs=lūxŭrĭēs|res|||ei, f.|29
+luxŭrĭēs=lūxŭrĭēs|dies|||ei, f.|29
 luxŭrĭo=lūxŭrĭo|amo|||as, are|15
 luxŭrĭor=lūxŭrĭŏr|imitor|||aris, ari|4
 luxŭrĭōsē=lūxŭrĭōsē|adve|||adv.|6
@@ -13031,7 +13047,7 @@ māchĭnātor=māchĭnātŏr|miles|māchĭnātōr||oris, m.|8
 māchĭnātrix=māchĭnātrīx|miles|māchĭnātrīc||icis, f.|2
 māchĭna|uita|||ae, f.|33
 māchĭnor=māchĭnŏr|imitor|||aris, ari|14
-măcĭes|res|||iei, f.|30
+măcĭes|dies|||iei, f.|30
 măcĭlentus=măcĭlēntus|doctus|||a, um|3
 mā̆cresco=mā̆crēsco|lego|mā̆crēscrŭ||is, ere, macrŭi, intr.|2
 Mā̆crīnus|lupus|||i, m.|5
@@ -13381,7 +13397,7 @@ mătellĭo=mătēllĭo|miles|mătēllĭōn||ōnis, m.|3
 matĕŏla|uita|||ae, f.|2
 mātercŭla=mātērcŭla|uita|||ae, f.|3
 mātĕrĭa|uita|||ae, f.|246
-mātĕrĭes|res|||ei, f.|79
+mātĕrĭes|dies|||ei, f.|79
 mātĕrīnus|doctus|||a, um|2
 mātĕrĭo|amo|||as, are|2
 mātĕrĭor=mātĕrĭŏr|imitor|||aris, āri, intr.|2
@@ -13520,6 +13536,7 @@ Mĕlănippē=Mĕlănīppē|cybele|||es, f.|2
 Mĕlanthēus=Mĕlānthēus|doctus|||a, um|2
 mĕlanthĭum=mĕlānthĭum|templum|||ii, n.|2
 Mĕlanthĭus=Mĕlānthĭus|filius|||ii, m.|2
+Mĕlanthō=Mĕlānthō|clio|||us, f.
 mĕlănūrus|lupus|||i, m.|2
 mĕl|corpus|mēll||mellis, n.|109
 melcŭlum=mēlcŭlum|templum|||i, n.|2
@@ -13653,7 +13670,7 @@ mergĕs=mērgĕs|miles|mērgĭt||ĭtis, f.|2
 mergo=mērgo|lego|mērs|mērs|is, ere, mersi, mersum|111
 mergus=mērgus|lupus|||i, m.|5
 mĕrīdĭānus|doctus|||a, um|9
-mĕrīdĭes|res|||ei, m.|33
+mĕrīdĭes|dies|||ei, m.|33
 mĕrīdĭo|amo|||1, intr.|2
 Mērĭŏnēs|cometes|||ae, m.|3
 mĕrĭtissĭmō=mĕrĭtīssĭmō|inv|||adv.|2
@@ -13957,7 +13974,7 @@ mollĭo=mōllĭo|audio|mōllīv|mōllīt|is, ire, iui, itum|58
 mollis=mōllĭs|fortis|mōll||e|401
 mollĭter=mōllĭtĕr|advr|||adv.|44
 mollĭtĭa=mōllĭtĭa|uita|||ae, f.|19
-mollĭtĭēs=mōllĭtĭēs|res|||ei, f.|6
+mollĭtĭēs=mōllĭtĭēs|dies|||ei, f.|6
 mŏlo3|amo|||as, are|2
 mŏlŏcĭnārĭus|filius|||ii, m.|2
 mŏlo|moneo|mŏlŭ|mŏlĭt|is, ere, ui, itum|3
@@ -14132,7 +14149,7 @@ mundānus=mūndānus|doctus|||a, um|1
 mundē=mūndē|adve|||adv.|5
 Mundensis=Mūndēnsĭs|fortis|Mūndēns||e|2
 mundĭtĭa=mūndĭtĭa|uita|||ae, f.|19
-mundĭtĭēs=mūndĭtĭēs|res|||ei, f.|3
+mundĭtĭēs=mūndĭtĭēs|dies|||ei, f.|3
 mundo=mūndo|amo|||as, are|2
 mundus2=mūndus|doctus|||a, um|28
 mundus=mūndus|lupus|||i, m.|298
@@ -14167,7 +14184,7 @@ Murgentīni=Mūrgēntīni|liberi|||orum, m.|2
 Murgentīnus=Mūrgēntīnus|doctus|||a, um|4
 mŭrĭa|uita|||ae, f.|9
 mūrĭcīdus|doctus|||a, um|2
-mŭrĭēs|res|||ei, f.|2
+mŭrĭēs|dies|||ei, f.|2
 murmillo=mūrmīllo|miles|mūrmīllōn||ōnis, m.|4
 murmŭrātĭo=mūrmŭrātĭo|miles|mūrmŭrātĭōn||ōnis, f.|4
 murmur=mūrmŭr|corpus|mūrmŭr||uris, n.|88
@@ -14502,7 +14519,7 @@ nēquīquam=nēquīquăm|inv|||adv.|100
 nēquissĭmus=nēquīssĭmus|doctus|||a, um|27
 nēquĭtĕr=nēquĭtĕr|advr|||adv.|7
 nēquĭtĭa|uita|||ae, f.|111
-nēquĭtĭēs=nēquĭtĭēs|res|||ei, f.|2
+nēquĭtĭēs=nēquĭtĭēs|dies|||ei, f.|2
 nēquiŭs=nēquĭŭs|inv|||adv.|1
 Nĕrātĭus|filius|||ii, m.|3
 Nērēĭda|roma|||ae, f.|2
@@ -14719,7 +14736,7 @@ nŏthus|doctus|||a, um|7
 nōti|liberi|||orum, m.|11
 nōtĭo|miles|nōtĭōn||ōnis, f.|13
 nōtĭtĭa|uita|||ae, f.|60
-nōtĭtĭēs|res|||ei, f.|4
+nōtĭtĭēs|dies|||ei, f.|4
 nŏto|amo|||as, are|180
 nōtŏr|miles|nōtōr||ōris, m.|4
 Nŏtus2|lupus|||i, m.|49
@@ -15996,7 +16013,7 @@ paulum=pāulŭm|inv|||adv.|101
 paulus2=pāulus|doctus|||a, um|2
 Paulus=Pāulus|lupus|||i, m.|57
 paupercŭlus=pāupērcŭlus|doctus|||a, um|5
-paupĕrĭes=pāupĕrĭes|res|||ei, f.|20
+paupĕrĭes=pāupĕrĭes|dies|||ei, f.|20
 paupĕro=pāupĕro|amo|||as, are|2
 paupĕr=pāupĕr|diues|pāupĕr||(pauperus) eris, adj. et subst.|178
 paupertās=pāupērtās|miles|pāupērtāt||atis, f.|165
@@ -16447,7 +16464,7 @@ pernĕcessārĭus=pērnĕcēssārĭus|aureus|||a, um|2
 pernĕcesse=pērnĕcēsse|inv|||adv.|2
 pernĕgo=pērnĕgo|amo|||as, are|10
 pernĭcĭābĭlis=pērnĭcĭābĭlĭs|fortis|pērnĭcĭābĭl||e|3
-pernĭcĭes=pērnĭcĭes,pērmĭtĭēs|res|||iei, f.|133
+pernĭcĭes=pērnĭcĭes,pērmĭtĭēs|dies|||iei, f.|133
 pernĭcĭōsē=pērnĭcĭōsē|adve|||adv.|2
 pernĭcĭōsus=pērnĭcĭōsus|doctus|||a, um|91
 pernīcĭtās=pērnīcĭtās|miles|pērnīcĭtāt||atis, f.|12
@@ -17048,7 +17065,7 @@ plangor=plāngŏr|miles|plāngōr||oris, m.|10
 plānĭpēs|miles|plānĭpĕd||ĕdis, m.|2
 plānĭtās|miles|plānĭtāt||ātis, f.|2
 plānĭtĭa|uita|||ae, f.|1
-plānĭtĭes|res|||ei, f.|52
+plānĭtĭes|dies|||ei, f.|52
 planta=plānta|uita|||ae, f.|40
 plantāris=plāntārĭs|fortis|plāntār||e|3
 planto=plānto|amo|||as, are|1
@@ -17227,6 +17244,7 @@ Pŏlўphēmus|lupus|||i, m.|9
 Pŏlўplūsĭus|aureus|||a, um|3
 pō̆lўpŭs|lupus|||i, m.|8
 Pŏlўtīmētus|lupus|||i, m.|2
+Pŏlȳxō|clio|||us, f.
 pōmārĭum|templum|||ii, n.|7
 pōmārĭus2|lupus|||i, m.|2
 pōmārĭus|doctus|||a, um|2
@@ -17981,7 +17999,7 @@ prŏfūsĭo|miles|prŏfūsĭōn||ōnis, f.|2
 prŏfūsus|doctus|||a, um|17
 prōgĕnĕro|amo|||as, are|2
 prōgĕnĕr|puer|prōgĕnĕr||eri, m.|5
-prōgĕnĭes|res|||ei, f.|40
+prōgĕnĭes|dies|||ei, f.|40
 prōgĕro|lego|prōgēss|prōgēst|is, ere, gessi, gestum|1
 prōgigno=prōgīgno|lego|prōgĕnŭ|prōgĕnĭt|is, ere, genui, genitum|9
 prōgnātus|doctus|||a, um|16
@@ -18016,7 +18034,7 @@ prōlŭbĭum=prōlŭbĭŭm|templum|||ii, n.|1
 prōlūdo|lego|prōlūs|prōlūs|is, ere, lusi, lusum, intr.|12
 prōlŭo|lego|prōlŭ|prōlūt|is, er,e lŭi, lūtum|10
 prōlūsĭo|miles|prōlūsĭōn||ōnis, f.|2
-prōlŭvĭēs|res|||ei, f.|4
+prōlŭvĭēs|dies|||ei, f.|4
 prōmĕrĕo|moneo|prōmĕrŭ|prōmĕrĭt|es, ere, merui, meritum|5
 prōmĕrĕor=prōmĕrĕŏr|uereor||prōmĕrĭt|eris, ēri, ĭtus sum|8
 prōmĕrĭtum|templum|||i, n.|7
@@ -18180,6 +18198,7 @@ prŏtervus=prŏtērvus|doctus|||a, um|31
 Prōtĕsĭlāēus|doctus|||a, um|2
 Prōtĕsĭlāus|lupus|||i, m.|6
 Prōtēus|perseus|||ĕi (ĕōs), m.|15
+Prōtō|clio|||us, f.
 Prŏthŏŭs|lupus|||i, m.|2
 prōtĭnŭs=prōtĭnŭs,prō̆tĭnăm|inv|||adv.|197
 Prōtŏgĕnēs|ciuis|Prōtŏgĕn||is, m.|3
@@ -18461,6 +18480,7 @@ Pўlŏs|delos|||i, f.|7
 Pўracmōn=Pўrācmōn|miles|Pўrācmŏn||ŏnis, m.|2
 pўra|uita|||ae, f.|13
 pўrē̆thron|ilion|||i, n.|2
+Pȳrgō|clio|||us, f.
 pўrōpus|lupus|||i, m.|3
 Q|inv||||432
 quācumquē=quācūmquē|adve|||adv. conj.|29
@@ -18724,7 +18744,7 @@ quŏtuscumque=quŏtūscūmquĕ|quantuscumque|||acumque, umcumque|2
 quŏusquē=quŏūsquē|inv|||conj. sub.|17
 quōvīs=quōvīs|inv|||adv.|2
 răbĭdus|doctus|||a, um|45
-răbĭes|res|||em, e, f.|66
+răbĭes|dies|||em, e, f.|66
 răbĭōsus|doctus|||a, um|9
 Răbīrĭus|aureus|||a, um|34
 Rabocentus=Rabocēntus|lupus|||i, m.|2
@@ -19747,7 +19767,7 @@ sanguĭnĕus=sāngụĭnĕus|aureus|||a, um|33
 sanguĭnŏlentus=sāngụĭnŏlēntus|doctus|||a, um|12
 sanguĭno=sāngụĭno|amo|||as, are|2
 sanguis=sāngụĭs|miles|sāngụĭn||inis, m.|233
-sănĭes|res|||ei, f.|15
+sănĭes|dies|||ei, f.|15
 sānĭtās|miles|sānĭtāt||atis, f.|54
 sanna=sānna|uita|||ae, f.|4
 sāno|amo|||as, are|82
@@ -19767,6 +19787,7 @@ săpĭentĭa=săpĭēntĭa|uita|||ae, f.|328
 săpĭo|capio|||is, ere, ii|158
 săpor=săpŏr|miles|săpōr||oris; m.|56
 Sapphĭcus=Sāpphĭcus|doctus|||a, um|2
+Sapphō|clio|||us, f.
 sarcĭnārĭus=sārcĭnārĭus|aureus|||a, um|2
 sarcĭna=sārcĭna|uita|||ae, f.|81
 sarcĭnātŏr=sārcĭnātŏr|miles|sārcĭnātōr||ōris, m.|2
@@ -19866,7 +19887,7 @@ saxōsus=sāxōsus|doctus|||a, um|7
 saxŭlum=sāxŭlŭm|templum|||i, n|1
 saxum=sāxŭm|templum|||i, n.|482
 scăber=scăbĕr|pulcher|||a, um|19
-scăbĭēs|res|||ei, f.|16
+scăbĭēs|dies|||ei, f.|16
 scăbillum=scăbīllum|templum|||i, n.|3
 scăbĭōsus|doctus|||a, um|3
 scăbĭtūdo|miles|scăbĭtūdĭn||ĭnis, f.|2
@@ -20115,7 +20136,7 @@ Segni=Sēgni|liberi|||orum, m.|2
 segnis=sēgnĭs|fortis|sēgn||e|117
 segnĭter=sēgnĭtĕr|advr|||adv.|9
 segnĭtĭa=sēgnĭtĭa|uita|||ae, f.|18
-segnĭtĭēs=sēgnĭtĭēs|res|||ei, f.|6
+segnĭtĭēs=sēgnĭtĭēs|dies|||ei, f.|6
 Segontĭăci=Segōntĭăci|liberi|||orum, m.|2
 Segovax=Segovāx|miles|Segovac||acis, m.|2
 Segovĭa|roma|||ae, f.|2
@@ -20338,7 +20359,7 @@ sērĭbĭbus|lupus|||i, m.|1
 sērĭca|castra|||orum, n.|3
 sērĭcum=sērĭcŭm|templum|||i, n.|1
 Sērĭcus|doctus|||a, um|5
-sĕrĭes|res|||ei, f.|40
+sĕrĭes|dies|||ei, f.|40
 sērĭō|inv|||adv.|17
 sērĭŏla|uita|||ae, f.|2
 Sĕrīphĭus|aureus|||a, um|3
@@ -20880,7 +20901,7 @@ spătĭōsē|adve|||adv.|4
 spătĭōsus|doctus|||a, um|31
 spătĭum=spătĭŭm|templum|||ii, n.|462
 spĕcĭālĭs|fortis|spĕcĭāl||e|4
-spĕcĭes|res|||ei, f|448
+spĕcĭes|dies|||ei, f|448
 spĕcillum=spĕcīllum|templum|||i, n.|2
 spĕcĭmĕn|corpus|spĕcĭmĭn||inis, n.|26
 spĕcĭo|capio|spēx|spēct|is, ere, spexi, spectum|3
@@ -20932,6 +20953,7 @@ Spinthēr=Spīnthēr|miles|Spīnthēr||ēris, m.|6
 spīntrĭa|uita|||ae, m.|3
 spīnŭla|uita|||ae, f.|1
 spīnus|lupus|||i, f.|2
+Spīō|clio|||us, f.
 spīrābĭlĭs|fortis|spīrābĭl||e|2
 spīrācŭlum|templum|||i, n.|3
 spīrāmentum=spīrāmēntum|templum|||i, n.|7
@@ -20993,7 +21015,7 @@ spurcātus=spūrcātus|doctus|||a, um|2
 spurcē=spūrcē|adve|||adv.|4
 spurcĭdĭcus=spūrcĭdĭcus|doctus|||a, um|2
 spurcĭtĭa=spūrcĭtĭa|uita|||ae, f.|2
-spurcĭtĭēs=spūrcĭtĭēs|res|||ei, f.|2
+spurcĭtĭēs=spūrcĭtĭēs|dies|||ei, f.|2
 spurco=spūrco|amo|||as, are|2
 spurcus=spūrcus|doctus|||a, um|14
 Spūrinna=Spūrīnna|roma|||ae, f.|16
@@ -21088,6 +21110,7 @@ Sthĕnĕboea=Sthĕnĕbōea|roma|||ae, f.|2
 Sthĕnĕlēĭus|aureus|||a, um|2
 Sthĕnĕlus|lupus|||i, m.|5
 Sthĕnĭus|filius|||ii, m.|67
+Sthĕnō|clio|||us, f.
 stĭbădĭum|templum|||ii, n.|5
 Stĭchus|lupus|||i, m.|6
 stigma=stīgma|corpus|stīgmăt||ătis, n.|5
@@ -21767,6 +21790,7 @@ Tăburnus=Tăbūrnus|lupus|||i, m.|3
 tăcĕdŭm|inv|||interj.|1
 tăcĕo|moneo|tăcŭ|tăcĭt|es, ere, cui, citum|337
 Tacfarīnās=Tācfarīnās|miles|Tācfarīnāt||atis, m.|19
+Tachempsō|clio|||us, f.
 Tăcĭta|roma|||ae, f.|2
 tăcĭtē|adve|||adv.|10
 tăcĭtum|templum|||i, n.|5
@@ -21971,7 +21995,7 @@ tempĕrātĭo=tēmpĕrātĭo|miles|tēmpĕrātĭōn||ōnis, f.|2
 tempĕrātŏr=tēmpĕrātŏr|miles|tēmpĕrātōr||ōris, m.|2
 tempĕrātūra=tēmpĕrātūra|uita|||ae, f.|3
 tempĕrātus=tēmpĕrātus|doctus|||a, um|23
-tempĕrĭēs=tēmpĕrĭēs|res|||ei, f.|9
+tempĕrĭēs=tēmpĕrĭēs|dies|||ei, f.|9
 tempĕrī=tēmpĕrī|inv|||adv.|6
 tempĕro=tēmpĕro|amo|||as, are|158
 tempestās=tēmpēstās|miles|tēmpēstāt||atis, f.|331
@@ -22164,6 +22188,7 @@ Thăsĭus|aureus|||a, um|3
 Thăsŏs|delos|||i, f.|4
 Thaumantĭăs=Thāumāntĭăs|miles|Thāumāntĭăd||ădis, f.|2
 Thĕaetētus=Thĕāetētus|lupus|||i, m.|2
+Thĕānō|clio|||us, f.
 thĕātrālis=thĕātrālĭs|fortis|thĕātrāl||e|7
 thĕātrum=thĕātrŭm|templum|||i, n.|123
 Thēbae=Thēbāe|epulae|||arum, f. pl.|59
@@ -22178,6 +22203,7 @@ Thĕmis|miles|Thĕmĭd||ĭdis, f.|3
 Thĕmĭsōn|miles|Thĕmĭsōn||ōnis, m.|3
 Thĕmistăgŏrās=Thĕmīstăgŏrās|aeneas|||ae, m.|4
 Thĕmista=Thĕmīsta|roma|||ae, f.|2
+Thĕmīstō|clio|||us, f.
 Thĕmistŏclēs=Thĕmīstŏclēs|thales|Thĕmīstŏcl||i (is), m.|15
 thensaurārĭus=thēnsāurārĭus|aureus|||a, um|2
 Thĕŏdōrus|lupus|||i, m.|5
@@ -24074,6 +24100,7 @@ vulva=vūlva,vōlva|uita|||ae, f.|6
 Xanthippē=Xānthīppē|cybele|Xānthīpp||es, f.|2
 Xanthippus=Xānthīppus|lupus|||i, m.|2
 xanthĭum=xānthĭum|templum|||ii, n.|2
+Xanthō=Xānthō|clio|||us, f.
 Xanthus=Xānthus|lupus|||i, m.|19
 Xĕnippa=Xĕnīppa|roma|||ae, f.|2
 xĕnĭum|templum|||ii, n.|3
