@@ -2995,7 +2995,7 @@ Cacus2:Cacus (brigand qui vomissait des flammes, tué par Hercule)
 cadaver:cadavre
 Cadmeius:de Cadmus, de Thèbes, des Carthaginois [descendants des Tyriens]
 Cadmeus:de Cadmos
-Cadmus:Cadmos, Fils du roi phénicien Agenor, frère d'Europa, mari d'Harmonie, père de Polydore, Ino, Semele, Autonoë, et Agave;
+Cadmus:Cadmos (fils du roi phénicien Agenor, frère d'Europa, mari d'Harmonie, père de Polydore, Ino, Semele, Autonoë, et Agave)
 cado:tomber
 Cadra:Cadra (colline de l'Asie Mineure)
 caduceator:envoyé, parlementaire [porteur d'un caducée]
@@ -11662,7 +11662,7 @@ irruo:se précipiter, se jeter contre
 irruptio:irruption, invasion
 irruptus:non rompu, indissoluble
 Isaac:Isaac
-is:adj. ce, cette pron. celui-ci, celle-ci, cela ; il, elle (au génitif : son, sa, ses)
+is:adj. ce, cette pron. celui-ci, celle-ci, cela ; il, elle, le (au génitif : son, sa, ses)
 Isaeus:Isée [orateur grec, orateur contemporain de Pline]
 Isauricus2:Isaurien [surnom de Servilius Vatia]
 Isaurus:isaurien
@@ -18447,7 +18447,7 @@ Querquetulanus2:Querquetulanus (surnom du mont Caelius)
 querquetum:chênaie, forêt de chênes
 querulus:plaintif, chagrin, maussade
 questus:plainte
-qui2:qui, que, dont (quoi, lequel, celui qui, celui que)
+qui2:qui, que (cuius = dont) (quoi, lequel, celui qui, celui que)
 quianam:pourquoi ?
 quia:parce que
 quibuscum:= cum quibus
