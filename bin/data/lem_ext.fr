@@ -58131,6 +58131,7 @@ Portius:personnage biblique
 pseudoapostolus:faux apôtre
 Putiphar:nom d'un Égyptien dans la bible
 quinimmo:bien plutôt, bien au contraire
+quippiam:quelque chose
 Raguel:personnage biblique
 Rahuel:personnage biblique
 Ramesses:ville d'Égypte
