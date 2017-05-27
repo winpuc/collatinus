@@ -462,6 +462,7 @@ adluceo:briller, luire auprès, en outre, briller
 adluo:venir baigner, mouiller
 admaturo:hâter
 admetior:mesurer à qqn qqch, alicui rem
+Admeto:Admeto (Néréide)
 Admetus:Admète (roi de Phères en Thessalie, roi des Molosses)
 adminiculum:aide
 administer:aide, agent
@@ -730,6 +731,7 @@ Aelia:Aelia
 Aelianus:d'Élius
 aelinos:chant funèbre
 Aelius:Aelius
+Aello:Aello (Harpie)
 aelurus:chat
 Aemilia:Aemilia
 Aemilianus:Emilien
@@ -1877,6 +1879,7 @@ Arginusae:Arginuses (îles de la Mer Égée, célèbres par la victoire navale d
 argitis:vigne à raisin blanc
 Argivi:les Argiens (ou poét., les Grecs)
 Argivus:d'Argos, argien, grec (Argivi, orum : les Argiens, les Grecs)
+Argo:Argo (navire des Argonautes)
 Argolicus:argien, grec
 Argolis:Argienne, grecque, l'Argolide
 Argonauta:Argonaute
@@ -2898,6 +2901,7 @@ breviter:brièvement
 Briareus:Briarée
 Brigantes2:Brigantes, peuple de la Bretagne, acc. as
 Briganticus:Briganticus (surnom).
+Brimo:Brimo (autre nom d'Hécate)
 Brisaeus:Brisaeus (surnom de Bacchus)
 Briseis:Briseis (fille de Brisès, esclave d'Achille)
 Briseus:Briseus (surnom de Bacchus)
@@ -2996,7 +3000,7 @@ Cacus2:Cacus (brigand qui vomissait des flammes, tué par Hercule)
 cadaver:cadavre
 Cadmeius:de Cadmus, de Thèbes, des Carthaginois [descendants des Tyriens]
 Cadmeus:de Cadmos
-Cadmus:Cadmos, Fils du roi phénicien Agenor, frère d'Europa, mari d'Harmonie, père de Polydore, Ino, Semele, Autonoë, et Agave;
+Cadmus:Cadmos (fils du roi phénicien Agenor, frère d'Europa, mari d'Harmonie, père de Polydore, Ino, Semele, Autonoë, et Agave)
 cado:tomber
 Cadra:Cadra (colline de l'Asie Mineure)
 caduceator:envoyé, parlementaire [porteur d'un caducée]
@@ -3185,6 +3189,7 @@ Callirhoe:Callirhoé [fille d'Achéloüs, fontaine près d'Athènes, fontaine d'
 callisco:s'endurcir
 callis:sentier
 Callisthenes:Callisthène [philosophe grec]
+Cāllīstō:Callisto (fille de Lycaon changée en ourse par Junon)
 Callistratus:Callistratus
 Callistus:Callistus (nom d'homme)
 callosus:calleux, dur, épais
@@ -3848,6 +3853,7 @@ ceterum2:le reste
 ceterum:du reste
 ceterus:[employé surtout au plur. ceteri, ae, a] tout le reste de, [acc. n. sing. pris substt] ceterum, le reste, [pl. m.] les autres, tous les autres
 Cethegus:Cethegus (nom d'homme)
+Ceto:Ceto (nymphe, mère des Gorgones)
 cetra:petit bouclier de cuir
 cetus:poisson
 ceu:comme, ainsi que
@@ -3879,6 +3885,7 @@ chara:crambé [plante]
 characterismos:éthopée [mise en valeur des traits caractéristiques]
 Charaxus:Charaxus (frère de Sapho, un des centaures)
 Chares:Chares (statuaire grec, historien grec), le Cher (rivière)
+Chariclo:Chariclo (épouse de Chiron)
 Charidemus:Charidemus (nom d'homme)
 Charinus:Charinus (nom d'homme)
 Chariovalda:Chariovalde (un Batave)
@@ -4274,6 +4281,7 @@ climactericus:climatérique, critique
 clinamen:inclinaison, déviation
 Clinia:Clinia (personnage de comédie)
 Cliniades:climiade (Alcibiade, fils de Clinias)
+Clio:Clio (muse de l'Histoire)
 Clipea:Clipea (ville d'Afrique)
 clipeatus:soldat pesamment armé
 clipeo:armer d'un bouclier, représenter sur un bouclier
@@ -4300,6 +4308,7 @@ Cloelius:Cloelius (nom romain)
 Clonius:Clonius (compagnon d'Énée)
 Clonus:Clonus (ciseleur grec).
 clostellum:verrou, serrure, cloison
+Clotho:Clotho (l'une des Parques)
 cludo:enfermer, fermer
 Cluentia:Cluentia (nom de femme)
 Cluentianus:de Cluentius
@@ -5494,6 +5503,7 @@ coturnium:vase de libation
 coturnix:caille
 Cotyla2:Cotyla (nom d'homme)
 Cotys:Cotys (roi de Thrace)
+Cotytto:Cotytto (déesse de l'impudicité)
 covinnarius:covinnaire, conducteur d'un char armé de faux
 Cous2:de l'île de Cos
 Cous:Cos (île de la mer Egée)
@@ -6382,6 +6392,7 @@ depungo:marquer avec des points, indiquer
 depurgo:enlever [en nettoyant], nettoyer
 deputo:évaluer, estimer
 derado:racler, raser complètement
+Derceto:Derceto (divinité Syrienne)
 derecte:directement
 derecto:directement, simplement, franchement
 derectus:droit, à angle droit, direct
@@ -7075,6 +7086,7 @@ Drusilla:Livia Drusilla (femme d'Auguste)
 Drusus:Drusus
 Dryades:les Dryades [nymphes des forêts]
 Dryas:dryade
+Drymo:Drymo (nymphe)
 Dryope:Dryope (fille d'Euryte, une nymphe, une femme de Lemnos)
 Dryopes:Dryopes [peuple d'Épire]
 Dryops:un Dryope
@@ -7196,7 +7208,7 @@ ecce:voici, voici que
 ecclesia:assemblée [du peuple, des chrétiens];  l'Église, église (édifice)
 eccum:= ecce = voici
 ecdicus:avocat [d'une cité]
-ecfero:emporter, débarquer, emporter un mort, ensevelir, produire, donner
+!ecfero:emporter, débarquer, emporter un mort, ensevelir, produire, donner
 ecficio:achever, exécuter, produire, réaliser, rendre, faire
 ecfodio:déterrer, extraire, arracher [un oeil], creuser, fouir, remuer, bouleverser
 ecfreno:débrider, lâcher (rare)
@@ -7555,6 +7567,7 @@ enuntiatum:proposition
 enuntio:dire haut et clair, annoncer, révéler
 enuptio:mariage d'une femme hors de sa classe, mésalliance
 en:voici
+Enyo:Enyo (nom grec de Bellone)
 eo2:à ce point (souvent suivi de ut = que)
 eo:aller
 eodem:au même endroit, au même point
@@ -7661,6 +7674,7 @@ ergastulum:ergastule (atelier d'esclaves ou bâtiment où on les enfermait; on y
 Ergenna:Ergenna (nom d'un aruspice)
 ergo:donc
 erice:bruyère [en arbre, grande espèce de bruyère]
+Erichto:Erichto (magicienne thessalienne)
 Erichthonius2:Érichthon (roi d'Athènes, roi des Troyens)
 ericius:hérisson, [milit.] chevaux de frise
 Eridanus:Éridan (le Pô)
@@ -11663,7 +11677,7 @@ irruo:se précipiter, se jeter contre
 irruptio:irruption, invasion
 irruptus:non rompu, indissoluble
 Isaac:Isaac
-is:adj. ce, cette pron. celui-ci, celle-ci, cela ; il, elle (au génitif : son, sa, ses)
+is:adj. ce, cette pron. celui-ci, celle-ci, cela ; il, elle, le (au génitif : son, sa, ses)
 Isaeus:Isée [orateur grec, orateur contemporain de Pline]
 Isauricus2:Isaurien [surnom de Servilius Vatia]
 Isaurus:isaurien
@@ -12176,6 +12190,7 @@ Latius:du Latium, latin
 Latmius:du mont Latmus
 Latobrigi:Les Latobriges (peuple celte)
 latomiae:carrières
+Lato:Latone (mère de Diane et Apollon)
 Latona:Latone
 Latonia:Latonia (fille de Latone, Diane)
 Latonigena:enfant de Latone [Apollon, Diane]
@@ -13395,6 +13410,7 @@ Melanippe:Mélanippe [fille d'Éole], [titre d'une trag. d'Accius], soeur d'Anti
 Melantheus:de Mélanthus [matelot]
 melanthium:nigelle (plante)
 Melanthius:Melanthius (berger d'Ulysse; peintre célèbre)
+Melantho:Mélantho (nymphe fille de Protée)
 melanurus:melanurus (sorte de poisson)
 melculum:petit miel (terme de caresse)
 Meldi:les Mèldes (aujourd'hui : Meaux)
@@ -17084,6 +17100,7 @@ polypus:polype, homme rapace
 Polytimetus:Polytimetus (rivière de la Sogdiane)
 Polyxena:Polyxène (fille de Priam)
 Polyxenius:de Polyxène
+Polyxo:Polyxo (une des Hyades; prêtresse d'Apollon)
 pomarium:verger, fruiterie, fruitier
 pomarius2:marchand de fruits, fruitier
 pomarius:de verger
@@ -18032,6 +18049,7 @@ Protesilaus:Protésilas (tué au moment où il débarquait le premier sur le riv
 Proteus:Protée (dieu capable de métamorphoses)
 Prothous:Prothoüs (roi de Thessalie)
 protinus:droit devant, aussitôt
+Proto:Proto (Néréide)
 Protogenes:Protogène (peintre de Rhodes)
 protollo:porter en avant, tendre, étendre; différer, remettre, (pass.) s'élever, monter (la voix)
 protraho:traîner en longueur, prolonger
@@ -18307,6 +18325,7 @@ Pythius:de Pytho, de Delphes, pythien, pythique, d'Apollon Pythien
 Python:Python (serpent énorme tué par Apollon)
 Pytho:Pytho (nom d'homme)
 pytisma:crachement, crachat
+Pyrgo:Pyrgo (nourrice des enfants de Priam)
 pyxis:boîte, petite boîte
 Q:Quintus
 quacumque:par n'importe quel endroit par où, par quelque endroit que, de quelque côté que, par n'importe quel moyen
@@ -18448,7 +18467,7 @@ Querquetulanus2:Querquetulanus (surnom du mont Caelius)
 querquetum:chênaie, forêt de chênes
 querulus:plaintif, chagrin, maussade
 questus:plainte
-qui2:qui, que, dont (quoi, lequel, celui qui, celui que)
+qui2:qui, que (cuius = dont) (quoi, lequel, celui qui, celui que)
 quianam:pourquoi ?
 quia:parce que
 quibuscum:= cum quibus
@@ -19600,6 +19619,7 @@ sapientia:sagesse
 sapio:avoir du goût, de l'intelligence
 sapor:goût, saveur, odeur, parfum
 Sapphicus:de Sapho
+Sappho:Sapho (ou Sappho, poétesse de Lesbos)
 sarcina:bagage (souvent au pluriel : bagages, effets)
 sarcinarius:muletier
 sarcinator:raccommodeur, porteur de bagages
@@ -20760,6 +20780,7 @@ Spinther:Spinther (surnom)
 spintria:prositué
 spinula:petite épine
 spinus:prunier sauvage
+Spio:Spio (Néréide)
 spirabilis:respirable, aérien, fait pour la respiration
 spiraculum:soupirail, ouverture
 spiramentum:canal, conduit, pore, soupirail, souffle, exhalaison, pause
@@ -20916,6 +20937,7 @@ Stheneboea:Sthénébée (femme de Prétus, éprise de son beau-fils, Belléropho
 Stheneleius:de Sthénélus
 Sthenelus:Sthénélus (un des chefs grecs au siège de Troie, roi de Ligurie)
 Sthenius:Sthenius (nom d'homme)
+Stheno:Stheno (fille de Phorcus, sœur de Méduse)
 stibadium:lit semi-circulaire [de table]
 Stichus:Stichus
 stigma:stigmate, marque [au fer rouge], flétrissure
@@ -21589,6 +21611,7 @@ Taburnus:Taburnus (mont du Samnium)
 tacedum:tais-toi
 taceo:se taire
 Tacfarinas:Tacfarinas (chef numide)
+Tachempso:Tachempso (île et ville d'Ionie)
 Tacita:Tacita (déesse du Silence)
 tacite:tacitement, silencieusement, en secret
 tacitum:secret, silence
@@ -21983,6 +22006,7 @@ Thasius:de Thasos
 Thasos:Thasos (île de la mer Égée)
 Thaumantias:fille de Thaumas (Iris) 
 Theaetetus:le Théétète (dialogue de Platon; amiral des Rhodiens)
+Theano:Theano (fille de Pythagore)
 theatralis:de théâtre
 theatrum:théâtre
 Thebae:Thèbes (villes de Grèce et d'Egypte)
@@ -21995,8 +22019,9 @@ theca:étui, gaine, fourreau, cassette, boîte, coffre
 Themiscyra:Themiscyra (ville de Cappadoce)
 Themison:Themison (médecin de Syrie)
 Themistagoras:Themistagoras (nom d'un habitant de Lampsaque)
-Themista:Themista (philosophe épicurienne de Lampsaque)
 Themis:Themis (déesse de la Justice)
+Themista:Themista (philosophe épicurienne de Lampsaque)
+Themisto:Thémisto (épouse d'Athamas)
 Themistocles:Themistocles (général athénien)
 thensaurarius:de trésor
 Theodorus:Théodore de Byzance (sophiste grec)
@@ -23864,6 +23889,7 @@ vulva:vulve, matrice, ventre de truie [mets très estimé chez les Romains], env
 Xanthippe:Xanthippe (femme de Socrate) (1ère déclinaison grecque)
 Xanthippus:Xanthippe (général grec)
 xanthium:lampourde [plante servant à teindre les cheveux en blond]
+Xantho:Xantho (Océanide)
 Xanthus:Xanthe (rivière de Troie appelée aussi Scamandre, rivière de Lycie, petite rivière d'Épire)
 Xenippa:Xenippa (contrée du nord de la Bactriane)
 xenium:cadeau fait à un hôte, présent [ordint au pl.], honoraires [d'un avocat]

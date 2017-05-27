@@ -95,7 +95,7 @@ des+:1-4,6:1:ē;ē;ēn;ēs;ē
 
 modele:dea
 pere:uita
-des+:11,12:1:ăbŭs
+des+:11,12:1:ābŭs
 
 modele:lupus
 R:1:2,0
@@ -283,6 +283,12 @@ modele:res
 R:1:2,0
 des:1-12:1:ēs;ēs;ĕm;ĕī;ĕī;ē;ēs;ēs;ēs;ērŭm;ēbŭs;ēbŭs
 
+modele:dies
+pere:res
+des:4-5:1:ēī;ēī
+!R:1:2,0
+!des:1-12:1:ēs;ēs;ĕm;ēī;ēī;ē;ēs;ēs;ēs;ērŭm;ēbŭs;ēbŭs
+
 modele:abraham
 R:0:0,0
 R:1:2,0
@@ -293,6 +299,10 @@ abs:7-12
 modele:jesus
 R:0:2,0
 des:1-6:0:ūs;ūs,ū;ūs,ŭm;ūs;ūs,ū
+
+modele:clio
+R:0:1,0
+des:1-6:0:ō;ō;ō,ōnĕm;ūs;ō,ōnĭ;ō
 
 modele:doctus
 R:0:2,0
@@ -471,6 +481,20 @@ R:1:9,0
 sufd:cūnquĕ
 sufd:cūmquĕ
 
+modele:qualiscumque
+pere:plus
+R:1:8,0
+R:4:6,0
+!des:13,14,25,26:1:ĭs
+sufd:cūnquĕ
+sufd:cūmquĕ
+
+modele:quantuscumque
+pere:nonus
+R:0:8,0
+sufd:cūnquĕ
+sufd:cūmquĕ
+
 modele:quidam
 pere:qui
 R:1:6,0
@@ -549,7 +573,7 @@ R:1:3,0
 des:13,25:0:-;-
 des:15-18:1:mē;mĕī;mĭhĭ,mī;mē
 des:27-30:1:mē;mĕī;mĭhĭ,mī;mē
-suf:13,25,15,17,18,27,29,30:met
+suf:13,25,15,17,18,27,29,30:mĕt
 
 modele:nos
 R:0:1,0
@@ -790,6 +814,7 @@ pere:lego
 abs:122,125
 des:157-162:0:$im
 des:163-168:0:lĕm;lēs;lĕt;lēmŭs;lētĭs;lēnt
+des:181-186:0:ī;ītĕ;ītō;ītō;ītōtĕ;ūntō
 des:187:0:lĕ
 abs:225-260,265-374
 
