@@ -111,8 +111,8 @@ Lemme::Lemme(const QString linea, const int origin, QObject *parent)
     // contrôle de format. la liste doit avoir 6 items
     if (eclats.count() < 6)
     {
-        //qDebug() << "Ligne mal formée : "<<_gr<<"dernier champ"<<eclats.last()<< linea;
-        return;
+        qDebug() << "Ligne mal formée : "<<_gr<<"dernier champ"<<eclats.last()<< linea;
+        //return;
     }
     // lecture des radicaux, champs 2 et 3
     for (int i = 2; i < 4; ++i)
