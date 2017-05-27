@@ -1079,7 +1079,7 @@ aliquo:quelque part (avec mouvement)
 aliquotfariam:en quelques endroits
 aliquotiens:quelquefois
 aliquot:quelques, plusieurs
-aliquovorsum:adv., vers qq endroit
+aliquovorsum:adv. vers qq endroit
 Alis2:l'Élide [province du Péloponnèse]
 Aliso:Aliso (forteresse sur la Lippe)
 Alison:Alison (forteresse sur la Lippe, Germanie)
@@ -5727,7 +5727,7 @@ Cumani:habitants de Cumes
 Cumanum:villa de Cumes, pays de Cumes
 Cumanus:de Cumes
 cumatilis:de couleur vert de mer
-cum:avec (prép. + abl.) ; (adv. cum ... tum) tantôt
+cum:prép. avec; adv. (cum ... tum) tantôt [... tantôt]
 cumba:barque
 cumbula:petite barque, nacelle, canot
 cumera:coffre à blé, coffre
