@@ -11896,7 +11896,7 @@ Juventius:Juventius (famille)
 juventus:jeunesse
 juvo:aider (quid iuvat : à quoi bon ?)
 juxta:à côté ; à côté de (prép. acc.)
-juxtim:adv. de près, à égalité, prép. près de
+juxtim:adv. de près, à égalité; prép. près de
 Kaeso:Caeson [prénom des Fabius, des Quinctius, des Duilius]
 Kal:Calendes (abréviation de Kalendis)
 Kalendae:calendes
