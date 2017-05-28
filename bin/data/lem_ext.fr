@@ -58002,7 +58002,7 @@ Abimael:personnage biblique
 Agareni:tribu nomade du Nord de l'Arabie
 Allophyli:peuple de Palestine, les Philistins
 Alphaeus:personnage biblique
-Amalec:nom d'un personnage et d'un peuple bibliques
+Amalecites:qui appartient au peuple Amalécite
 Amathaeus:nom d'un peuple de Palestine
 Aminadab:personnage biblique
 Amphipolis:ville grecque
@@ -58081,6 +58081,7 @@ Jason:nom de plusieurs personnages bibliques
 Jebusaeus=Iebusaeus:nom d'un peuple de Palestine
 Jechonias=Iechonias:personnage biblique
 Jemini=Iemini:personnage biblique
+Jephone=Iephone:personnage biblique, père de Caleb
 Joatham=Ioatham:personnage biblique
 Jochabed=Iochabed:mère de Moïse et d'Aaron
 Jonadab=Ionadab:personnage biblique, père des Réchabites
@@ -58112,8 +58113,8 @@ Melea:personnage biblique
 Mesraim:personnage biblique
 Misael:personnage biblique
 Naaman:personnage biblique
-Naasson:personnage biblique
 Nabaioth:personnage biblique, un des fils d'Ismaël
+Nahasson:personnage biblique
 Nathanael:l'un des douze Apôtres
 necnon:et aussi, et
 nequando:de peur que
