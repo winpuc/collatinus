@@ -58013,6 +58013,7 @@ Apollyon:ange exterminateur dans l'Apocalypse
 Aracaeus:nom d'un peuple de Palestine
 Arbee:nom d'un géant, père des Enacim
 Aristobolus:personnage biblique
+Aroer:ville de Transjordanie
 Arphaxad:personnage biblique
 Asarmoth:personnage biblique
 Asasonthamar:nom d'une ville dans la bible
@@ -58059,11 +58060,13 @@ Dothain:ville de Palestine
 Elcana:personnage biblique
 Eliacim:personnage biblique
 Elmodad:personnage biblique
+Enacim:nom d'une race de géants dans la bible
 Epaenetus:personnage biblique
 Ephron:personnage biblique
 Eutychus:personnage biblique
 Gabbatha:nom d'une place à Jérusalem
 Galaad:région de Transjordanie
+Galgala:nom de plusieurs villes de Palestine
 Gamaliel:personnage biblique
 Genesar:région de Palestine
 Genesareth:nom d'un lac de Palestine
@@ -58150,6 +58153,7 @@ Salphaad:personnage biblique
 Samaraeus:nom d'un peuple de Palestine
 Saphira:nom d'une femme dans la bible
 Sarai:Sara, femme d'Abraham
+Sarion:autre nom du mont Hermon, au Nord de la Palestine
 Sarona:ville de Palestine
 Sebeon:personnage biblique
 Seboim:ville de Palestine
