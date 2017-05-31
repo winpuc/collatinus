@@ -58013,10 +58013,12 @@ Apollyon:ange exterminateur dans l'Apocalypse
 Aracaeus:nom d'un peuple de Palestine
 Arbee:nom d'un géant, père des Enacim
 Aristobolus:personnage biblique
+Aroer:ville de Transjordanie
 Arphaxad:personnage biblique
 Asarmoth:personnage biblique
 Asasonthamar:nom d'une ville dans la bible
 Ascenez:personnage biblique, l'un des descendants de Japheth
+Asiongaber:nom d'un port sur la Mer Rouge, dans la bible
 Assurim:nom d'un peuple dans la bible
 Astarothcarnaim:nom d'une ville dans la bible
 Asyncritus:personnage biblique
@@ -58036,10 +58038,12 @@ Bethphage:ville de Judée
 Bethsabee:femme d'Urie puis de David, mère de Salomon
 Boanerges:surnom donné par Jésus aux Apôtres Jacques et Jean
 Boniportus:port de Crète
+Cadesbarne:nom d'un lieu dans la bible, situé dans la péninsule sinaïtique
 Camuel:personnage biblique
 Caphtorim:nom d'un peuple dans la bible
 Cariathaim:nom d'une ville de Palestine
 Cedmonaeus:membre de la tribu des Qedmonéens, en Palestine
+Cenereth:autre nom du Lac de Tibériade dans la bible
 Cenezaeus:membre de la tribu des Qénézites, en Palestine
 Cetura:deuxième épouse d'Abraham
 Chalanne:ville de Mésopotamie
@@ -58056,11 +58060,13 @@ Dothain:ville de Palestine
 Elcana:personnage biblique
 Eliacim:personnage biblique
 Elmodad:personnage biblique
+Enacim:nom d'une race de géants dans la bible
 Epaenetus:personnage biblique
 Ephron:personnage biblique
 Eutychus:personnage biblique
 Gabbatha:nom d'une place à Jérusalem
 Galaad:région de Transjordanie
+Galgala:nom de plusieurs villes de Palestine
 Gamaliel:personnage biblique
 Genesar:région de Palestine
 Genesareth:nom d'un lac de Palestine
@@ -58127,6 +58133,7 @@ Ozias:personnage biblique
 Parmenas:personnage biblique
 Phanuel:personnage biblique
 Phetrusim:nom d'un peuple dans la bible
+Phihahiroth:lieu du passage de la Mer Rouge par les Hébreux
 Phinees:personnage biblique
 Portius:personnage biblique
 pseudoapostolus:faux apôtre
@@ -58142,9 +58149,11 @@ Sabatacha:personnage biblique
 Sabatha:personnage biblique
 Salathiel:personnage biblique
 Salmana:personnage biblique
+Salphaad:personnage biblique
 Samaraeus:nom d'un peuple de Palestine
 Saphira:nom d'une femme dans la bible
 Sarai:Sara, femme d'Abraham
+Sarion:autre nom du mont Hermon, au Nord de la Palestine
 Sarona:ville de Palestine
 Sebeon:personnage biblique
 Seboim:ville de Palestine
