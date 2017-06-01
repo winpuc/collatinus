@@ -58015,6 +58015,7 @@ Arbee:nom d'un géant, père des Enacim
 Aristobolus:personnage biblique
 Aroer:ville de Transjordanie
 Arphaxad:personnage biblique
+Asarhaddon:nom d'un roi assyrien, fils et successeur de Sennacherib
 Asarmoth:personnage biblique
 Asasonthamar:nom d'une ville dans la bible
 Ascenez:personnage biblique, l'un des descendants de Japheth
@@ -58047,6 +58048,7 @@ Cenereth:autre nom du Lac de Tibériade dans la bible
 Cenezaeus:membre de la tribu des Qénézites, en Palestine
 Cetura:deuxième épouse d'Abraham
 Chalanne:ville de Mésopotamie
+Charcamis:capitale Hittite, sur la rive droite de l'Euphrate
 Chasluim:nom d'un peuple dans la bible
 Chodorlahomor:personnage biblique
 Cinaeus:membre de la tribu des Qénites, en Palestine
@@ -58064,6 +58066,7 @@ Enacim:nom d'une race de géants dans la bible
 Epaenetus:personnage biblique
 Ephron:personnage biblique
 Eutychus:personnage biblique
+Gabaath:ville de Palestine
 Gabbatha:nom d'une place à Jérusalem
 Galaad:région de Transjordanie
 Galgala:nom de plusieurs villes de Palestine
@@ -58073,6 +58076,7 @@ Genesareth:nom d'un lac de Palestine
 Gerara:ville de Palestine
 Gergesaeus:nom d'un peuple de Palestine
 Haceldama:nom d'un champ (Évangiles)
+Helcias:nom de plusieurs personnages bibliques
 Hermoniim:l'Hermon, montagne de l'Anti-Liban
 Hesebon:ville de Transjordanie
 Hevaeus:nom d'un peuple de Palestine
@@ -58088,12 +58092,13 @@ Jebusaeus=Iebusaeus:nom d'un peuple de Palestine
 Jechonias=Iechonias:personnage biblique
 Jemini=Iemini:personnage biblique
 Jephone=Iephone:personnage biblique, père de Caleb
-Joatham=Ioatham:personnage biblique
+Joatham=Ioatham:nom de plusieurs personnages bibliques
 Jochabed=Iochabed:mère de Moïse et d'Aaron
 Jonadab=Ionadab:personnage biblique, père des Réchabites
 Josaphat=Iosaphat:personnage biblique
 Josias=Iosias:personnage biblique
 Laabim:personnage biblique
+Laisa:ville de Palestine
 Latusim:nom d'un peuple dans la bible
 Loomim:nom d'un peuple dans la bible
 Maacha:personnage biblique
@@ -58140,6 +58145,7 @@ pseudoapostolus:faux apôtre
 Putiphar:nom d'un Égyptien dans la bible
 quinimmo:bien plutôt, bien au contraire
 quippiam:quelque chose
+Rabsaces:nom d'un Assyrien dans la bible
 Raguel:personnage biblique
 Rahuel:personnage biblique
 Ramesses:ville d'Égypte
@@ -58160,6 +58166,7 @@ Seboim:ville de Palestine
 Semeber:personnage biblique
 Semei:personnage biblique
 Sennaab:personnage biblique
+Sepharvaim:ville située sur l'Euphrate et conquise par les Assyriens
 Sephora:femme de Moïse
 Sichima:Sichem, ville de Palestine
 Sinaeus:nom d'un peuple de Palestine
@@ -58169,6 +58176,7 @@ Susanna:nom de plusieurs femmes dans la bible
 Tabee:personnage biblique
 Tertullus:personnage biblique
 Thaddaeus:l'un des douze Apôtres
+Tharaca:nom d'un Pharaon d'Égypte, de la dynastie éthiopienne
 Thogorma:personnage biblique
 Trophimus:personnage biblique
 Tubalcain:personnage biblique, descendant de Caïn
