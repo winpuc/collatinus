@@ -58092,6 +58092,7 @@ Jebusaeus=Iebusaeus:nom d'un peuple de Palestine
 Jechonias=Iechonias:personnage biblique
 Jemini=Iemini:personnage biblique
 Jephone=Iephone:personnage biblique, père de Caleb
+Joakim=Ioakim:nom d'un roi de Juda
 Joatham=Ioatham:nom de plusieurs personnages bibliques
 Jochabed=Iochabed:mère de Moïse et d'Aaron
 Jonadab=Ionadab:personnage biblique, père des Réchabites
