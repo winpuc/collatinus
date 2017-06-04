@@ -58030,6 +58030,7 @@ Baasa:nom d'un roi d'Israël
 Balaam:nom d'un faux prophète dans la bible
 Balaan:personnage biblique
 Balanan:personnage biblique
+Baltassar:fils de Nabuchodonosor
 Barachias:personnage biblique
 Bariesu:personnage biblique
 Barsabas:personnage biblique
