@@ -57999,6 +57999,8 @@ Abiathar:personnage biblique
 Abida:personnage biblique
 Abilina:région de Syrie
 Abimael:personnage biblique
+Accaron:ville de Palestine
+Achobor:nom de plusieurs personnages bibliques
 Agareni:tribu nomade du Nord de l'Arabie
 Allophyli:peuple de Palestine, les Philistins
 Alphaeus:personnage biblique
@@ -58023,6 +58025,8 @@ Asiongaber:nom d'un port sur la Mer Rouge, dans la bible
 Assurim:nom d'un peuple dans la bible
 Astarothcarnaim:nom d'une ville dans la bible
 Asyncritus:personnage biblique
+Azecha:ville de Palestine
+Baasa:nom d'un roi d'Israël
 Balaam:nom d'un faux prophète dans la bible
 Balaan:personnage biblique
 Balanan:personnage biblique
@@ -58033,6 +58037,7 @@ Bartimaeus:personnage biblique
 Basemath:nom d'une femme dans la bible
 Bathuel:personnage biblique, père de Rebecca, oncle d'Isaac
 Beeri:personnage biblique
+Benadad:nom de plusieurs rois de Syrie dans la bible
 Benoni:autre nom de Benjamin
 Bersabee:ville de Palestine
 Bethphage:ville de Judée
@@ -58043,6 +58048,7 @@ Cadesbarne:nom d'un lieu dans la bible, situé dans la péninsule sinaïtique
 Camuel:personnage biblique
 Caphtorim:nom d'un peuple dans la bible
 Cariathaim:nom d'une ville de Palestine
+Cariathiarim:nom d'une ville de Palestine
 Cedmonaeus:membre de la tribu des Qedmonéens, en Palestine
 Cenereth:autre nom du Lac de Tibériade dans la bible
 Cenezaeus:membre de la tribu des Qénézites, en Palestine
@@ -58061,11 +58067,13 @@ Dodanim:personnage ou peuple biblique
 Dothain:ville de Palestine
 Elcana:personnage biblique
 Eliacim:personnage biblique
+Elisama:personnage biblique
 Elmodad:personnage biblique
 Enacim:nom d'une race de géants dans la bible
 Epaenetus:personnage biblique
 Ephron:personnage biblique
 Eutychus:personnage biblique
+Evilmerodach:nom d'un roi de Babylone
 Gabaath:ville de Palestine
 Gabbatha:nom d'une place à Jérusalem
 Galaad:région de Transjordanie
@@ -58075,7 +58083,8 @@ Genesar:région de Palestine
 Genesareth:nom d'un lac de Palestine
 Gerara:ville de Palestine
 Gergesaeus:nom d'un peuple de Palestine
-Haceldama:nom d'un champ (Évangiles)
+Haceldama:nom du champ acheté par les Juifs avec les 30 deniers de Judas
+Hananeel:nom d'une tour à Jérusalem
 Helcias:nom de plusieurs personnages bibliques
 Hermoniim:l'Hermon, montagne de l'Anti-Liban
 Hesebon:ville de Transjordanie
@@ -58092,9 +58101,11 @@ Jebusaeus=Iebusaeus:nom d'un peuple de Palestine
 Jechonias=Iechonias:personnage biblique
 Jemini=Iemini:personnage biblique
 Jephone=Iephone:personnage biblique, père de Caleb
+Joachin=Ioachin:nom d'un roi de Juda
 Joakim=Ioakim:nom d'un roi de Juda
 Joatham=Ioatham:nom de plusieurs personnages bibliques
 Jochabed=Iochabed:mère de Moïse et d'Aaron
+Johanan=Iohanan:personnage biblique
 Jonadab=Ionadab:personnage biblique, père des Réchabites
 Josaphat=Iosaphat:personnage biblique
 Josias=Iosias:personnage biblique
@@ -58126,8 +58137,10 @@ Mesraim:personnage biblique
 Misael:personnage biblique
 Naaman:personnage biblique
 Nabaioth:personnage biblique, un des fils d'Ismaël
+Nabuzardan:chef de l'armée de Nabuchodonosor
 Nahasson:personnage biblique
 Nathanael:l'un des douze Apôtres
+Nechao:nom d'un Pharaon d'Égypte
 necnon:et aussi, et
 nequando:de peur que
 Nephthalim:région de la Palestine
@@ -58138,6 +58151,7 @@ Oolibama:nom d'une femme dans la bible
 Ozias:personnage biblique
 Parmenas:personnage biblique
 Phanuel:personnage biblique
+Phatures=Phathures:nome de la Haute-Égypte
 Phetrusim:nom d'un peuple dans la bible
 Phihahiroth:lieu du passage de la Mer Rouge par les Hébreux
 Phinees:personnage biblique
@@ -58151,6 +58165,8 @@ Raguel:personnage biblique
 Rahuel:personnage biblique
 Ramesses:ville d'Égypte
 Raphaim:nom d'une race de géants dans la bible
+Rechab:personnage biblique
+Rechabita:descendant de Rechab
 Rohoboth:nom d'une ville dans la bible
 Sabatacha:personnage biblique
 Sabatha:personnage biblique
@@ -58166,11 +58182,13 @@ Sebeon:personnage biblique
 Seboim:ville de Palestine
 Semeber:personnage biblique
 Semei:personnage biblique
+Semeias:personnage biblique
 Sennaab:personnage biblique
 Sepharvaim:ville située sur l'Euphrate et conquise par les Assyriens
 Sephora:femme de Moïse
 Sichima:Sichem, ville de Palestine
 Sinaeus:nom d'un peuple de Palestine
+Sophonias:nom d'un prophète et de plusieurs personnages bibliques
 Sosipater:personnage biblique
 Sosthenes:personnage biblique
 Susanna:nom de plusieurs femmes dans la bible
