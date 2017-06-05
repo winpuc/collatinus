@@ -58072,6 +58072,8 @@ Eliacim:personnage biblique
 Elisama:personnage biblique
 Elmodad:personnage biblique
 Enacim:nom d'une race de géants dans la bible
+Engaddi:ville située sur la rive Ouest de la Mer Morte
+Engallim:ville située près de la Mer Morte, à l'embouchure du Jourdain
 Epaenetus:personnage biblique
 Ephron:personnage biblique
 Eutychus:personnage biblique
