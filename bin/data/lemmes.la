@@ -285,7 +285,8 @@ Aconteus=Acōntēus|perseus|||ĕi (ĕos), m.|3
 ăcŏr|miles|ăcōr||ōris, m.|2
 ăcosmos=ăcōsmos|artios|||on|2
 acquĭesco=ācquĭēsco|lego|ācquĭēv|ācquĭēt|is, ere, quieui, quietum|41
-acquīro=ācquīro|lego|ācquīsīv|ācquīsīt|is, ere, siui, situm|47
+!acquīro=ācquīro|lego|ācquīsīv|ācquīsīt|is, ere, siui, situm|47
+acquīro=ācquīro|lego|ācquīsīv,ācquīs|ācquīsīt|is, ere, i, situm|47
 Acrăgantīnus=Ā̆crăgāntīnus|doctus|||a, um|2
 Ăcrăgās|ciuis|Ăcrăgānt||antis, m.|2
 ācrĭmōnĭa|uita|||ae, f.|3
@@ -11274,7 +11275,8 @@ insălūbris=īnsălūbrĭs|fortis|īnsălūbr||e|3
 īnsānābĭlĭs|fortis|īnsānābĭl||e|16
 insānē=īnsānē|adve|||adv.|4
 insānĭa=īnsānĭa|uita|||ae, f.|59
-insānĭo=īnsānĭo|audio|īnsān||is, ere, insani|61
+!insānĭo=īnsānĭo|audio|īnsān||is, ere, insani|61
+insānĭo=īnsānĭo|audio|insanīv,īnsān||is, ere, i|61
 insānus=īnsānus|doctus|||a, um|137
 insătĭābĭlis=īnsătĭābĭlĭs|fortis|īnsătĭābĭl||e|17
 insătĭābĭlĭtĕr=īnsătĭābĭlĭtĕr|advr|||adv.|5
@@ -13301,7 +13303,8 @@ Marcellinus=Mārcēllinus|lupus|||i, m.|16
 Marcellus=Mārcēllus|lupus|||i, m.|164
 marcens=mārcēns|infans|mārcēnt||entis|5
 marcĕo=mārcĕo|moneo|||es, ere|24
-marcesco=mārcēsco|lego|||is, ere|1
+!marcesco=mārcēsco|lego|||is, ere|1
+marcesco=mārcēsco|lego|marcŭ||is, ere, i|1
 Marcĭa=Mārcĭa|roma|||ae, f.|23
 Marcĭānus2=Mārcĭānus|lupus|||i, m.|12
 Marcĭānus=Mārcĭānus|doctus|||a, um|2
