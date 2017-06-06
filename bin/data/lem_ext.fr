@@ -57994,6 +57994,7 @@ zythum:bière, boisson faite avec de l'orge
 ! Accentuation de la Vulgate
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+Abdias:nom d'un prophète dans la bible
 Abias:personnage biblique
 Abiathar:personnage biblique
 Abida:personnage biblique
@@ -58005,6 +58006,7 @@ Agareni:tribu nomade du Nord de l'Arabie
 Allophyli:peuple de Palestine, les Philistins
 Alphaeus:personnage biblique
 Amalecites:qui appartient au peuple Amalécite
+Amasias:nom de plusieurs personnages bibliques
 Amathaeus:nom d'un peuple de Palestine
 Aminadab:personnage biblique
 Amphipolis:ville grecque
@@ -58025,6 +58027,7 @@ Asiongaber:nom d'un port sur la Mer Rouge, dans la bible
 Assurim:nom d'un peuple dans la bible
 Astarothcarnaim:nom d'une ville dans la bible
 Asyncritus:personnage biblique
+Azael:nom d'un roi d'Aram dans la bible
 Azecha:ville de Palestine
 Baasa:nom d'un roi d'Israël
 Balaam:nom d'un faux prophète dans la bible
@@ -58154,6 +58157,7 @@ Nephthalim:région de la Palestine
 Nephtuim:personnage biblique
 Nicodemus:personnage biblique
 Noema:nom d'une femme dans la bible
+Odollam:nom d'une ville de Palestine
 Oolibama:nom d'une femme dans la bible
 Ozias:personnage biblique
 Parmenas:personnage biblique
