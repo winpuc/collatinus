@@ -58046,8 +58046,10 @@ Benadad:nom de plusieurs rois de Syrie dans la bible
 Benoni:autre nom de Benjamin
 Bersabee:ville de Palestine
 Bethaven:ville de Palestine
+Bethoron:ville de Palestine
 Bethphage:ville de Judée
 Bethsabee:femme d'Urie puis de David, mère de Salomon
+Bethsura:ville de Judée
 Boanerges:surnom donné par Jésus aux Apôtres Jacques et Jean
 Boniportus:port de Crète
 Cadesbarne:nom d'un lieu dans la bible, situé dans la péninsule sinaïtique
@@ -58056,6 +58058,7 @@ Caphtorim:nom d'un peuple dans la bible
 Cariathaim:nom d'une ville de Palestine
 Cariathiarim:nom d'une ville de Palestine
 Cedmonaeus:membre de la tribu des Qedmonéens, en Palestine
+Cendebaeus:personnage biblique
 Cenereth:autre nom du Lac de Tibériade dans la bible
 Cenezaeus:membre de la tribu des Qénézites, en Palestine
 Cetura:deuxième épouse d'Abraham
@@ -58105,21 +58108,22 @@ Horraei:nom d'un peuple dans la bible
 idipsum:la même chose (in idipsum:ensemble)
 Issachar:l'un des douze fils d'Israël
 Ithamar:personnage biblique, fils d'Aaron
-Jairus=Iairus:personnage biblique
+Jairus:personnage biblique
+Jamnia:ville de Palestine
 Jason:nom de plusieurs personnages bibliques
-Jebusaeus=Iebusaeus:nom d'un peuple de Palestine
-Jechonias=Iechonias:personnage biblique
-Jemini=Iemini:personnage biblique
-Jephone=Iephone:personnage biblique, père de Caleb
-Jezrahel=Iezrahel:nom d'une ville de Palestine
-Joachin=Ioachin:nom d'un roi de Juda
-Joakim=Ioakim:nom d'un roi de Juda
-Joatham=Ioatham:nom de plusieurs personnages bibliques
-Jochabed=Iochabed:mère de Moïse et d'Aaron
-Johanan=Iohanan:personnage biblique
-Jonadab=Ionadab:personnage biblique, père des Réchabites
-Josaphat=Iosaphat:personnage biblique
-Josias=Iosias:personnage biblique
+Jebusaeus:nom d'un peuple de Palestine
+Jechonias:personnage biblique
+Jemini:personnage biblique
+Jephone:personnage biblique, père de Caleb
+Jezrahel:nom d'une ville de Palestine
+Joachin:nom d'un roi de Juda
+Joakim:nom d'un roi de Juda
+Joatham:nom de plusieurs personnages bibliques
+Jochabed:mère de Moïse et d'Aaron
+Johanan:personnage biblique
+Jonadab:personnage biblique, père des Réchabites
+Josaphat:personnage biblique
+Josias:personnage biblique
 Laabim:personnage biblique
 Laisa:ville de Palestine
 Latusim:nom d'un peuple dans la bible
