@@ -58104,8 +58104,10 @@ Hesebon:ville de Transjordanie
 Hevaeus:nom d'un peuple de Palestine
 Hevila:personnage biblique
 Hevilath:région d'Arabie (dans la bible)
+Hircanus:personnage biblique
 Horraei:nom d'un peuple dans la bible
 idipsum:la même chose (in idipsum:ensemble)
+Ioppita:habitant de Joppé (Jaffa)
 Issachar:l'un des douze fils d'Israël
 Ithamar:personnage biblique, fils d'Aaron
 Jairus:personnage biblique
@@ -58181,6 +58183,7 @@ Raguel:personnage biblique
 Rahuel:personnage biblique
 Ramesses:ville d'Égypte
 Raphaim:nom d'une race de géants dans la bible
+Razias:personnage biblique
 Rechab:personnage biblique
 Rechabita:descendant de Rechab
 Rohoboth:nom d'une ville dans la bible
