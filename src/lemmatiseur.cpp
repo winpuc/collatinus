@@ -853,12 +853,13 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr, bool desas)
             sf.chop(suf.length());
             // TODO : aequeque est la seule occurrence
             // de -queque dans le corpus classique
-            mm = lemmatiseM(sf, debPhr);
+            mm = lemmatiseM(sf, debPhr, desas);
+            // Ne pas assimiler une 2e fois.
             bool sst = false;
             if (mm.isEmpty() && (suf == "st"))
             {
                 sf += "s";
-                mm = lemmatiseM(sf, debPhr);
+                mm = lemmatiseM(sf, debPhr, desas);
                 sst = true;
             }
             foreach (Lemme *l, mm.keys())
