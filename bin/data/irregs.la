@@ -32,6 +32,7 @@ cĕlĕrī:celer:18,30,42
 cōrdĭŭm:cor:10
 Dănăŭm:Danai:10
 dĕŭm:deus:10
+dispĕrĭĕt:dispereo:135
 dĭūtīssĭmē:diu:412
 dĭūtĭŭs:diu:411
 dīvŏm:deus:10
@@ -39,7 +40,7 @@ dīvŭm:deus:10
 dūc*:duco:181
 ēssĕ*:edo:187
 ēxēssĕ*:exedo:187
-făc*:facio:181
+!făc*:facio:181
 fŏrĕm:sum:163
 fŏrĕs:sum:164
 fŏrĕt:sum:165
@@ -52,9 +53,11 @@ nōrās:nosco:146
 nōrī̆s:nosco:152,170
 nōstī:nosco:140
 nōstĭs:nosco:143
+ōssĭŭm:os:10
 Phrўgās:Phryx:9
 plūrĭŭm*:plus:22,34,46
 plūs*:multus:49,50,61,62,73,74,75
+praetĕrĭĕt:praetereo:135
 prōbĕăt:prohibeo:159
 quāesĭmūs:quaeso:123
 quāesŭmūs:quaeso:123

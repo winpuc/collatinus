@@ -15039,7 +15039,7 @@ Tmarus:montagne d'Épire
 Tmolites:habitant du Tmole
 Tmolites2:habitant du Tmole / vin du Tmole
 Tmolius2:(sc. mons), Mount Tmolus
-Tobias:Tobie
+Tobias:Tobie, personnage biblique
 Tocolosida:ville de la Mauritanie Tingitane
 Togienses:peuple d'Istrie
 Togisonus:rivière de la Vénétie
@@ -57994,15 +57994,21 @@ zythum:bière, boisson faite avec de l'orge
 ! Accentuation de la Vulgate
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+Abdias:nom d'un prophète dans la bible
 Abias:personnage biblique
 Abiathar:personnage biblique
 Abida:personnage biblique
+Abiezer:personnage biblique
 Abilina:région de Syrie
 Abimael:personnage biblique
+Accaron:ville de Palestine
+Achobor:nom de plusieurs personnages bibliques
+Adonisedec:personnage biblique, un des rois de Canaan
 Agareni:tribu nomade du Nord de l'Arabie
 Allophyli:peuple de Palestine, les Philistins
 Alphaeus:personnage biblique
 Amalecites:qui appartient au peuple Amalécite
+Amasias:nom de plusieurs personnages bibliques
 Amathaeus:nom d'un peuple de Palestine
 Aminadab:personnage biblique
 Amphipolis:ville grecque
@@ -58015,6 +58021,7 @@ Arbee:nom d'un géant, père des Enacim
 Aristobolus:personnage biblique
 Aroer:ville de Transjordanie
 Arphaxad:personnage biblique
+Asarhaddon:nom d'un roi assyrien, fils et successeur de Sennacherib
 Asarmoth:personnage biblique
 Asasonthamar:nom d'une ville dans la bible
 Ascenez:personnage biblique, l'un des descendants de Japheth
@@ -58022,9 +58029,14 @@ Asiongaber:nom d'un port sur la Mer Rouge, dans la bible
 Assurim:nom d'un peuple dans la bible
 Astarothcarnaim:nom d'une ville dans la bible
 Asyncritus:personnage biblique
+Azael:nom d'un roi d'Aram dans la bible
+Azecha:ville de Palestine
+Baasa:nom d'un roi d'Israël
 Balaam:nom d'un faux prophète dans la bible
 Balaan:personnage biblique
 Balanan:personnage biblique
+Baltassar:fils de Nabuchodonosor
+Banaias:nom de plusieurs personnages bibliques
 Barachias:personnage biblique
 Bariesu:personnage biblique
 Barsabas:personnage biblique
@@ -58032,21 +58044,31 @@ Bartimaeus:personnage biblique
 Basemath:nom d'une femme dans la bible
 Bathuel:personnage biblique, père de Rebecca, oncle d'Isaac
 Beeri:personnage biblique
+Benadad:nom de plusieurs rois de Syrie dans la bible
 Benoni:autre nom de Benjamin
 Bersabee:ville de Palestine
+Bethaven:ville de Palestine
+Bethoron:ville de Palestine
 Bethphage:ville de Judée
 Bethsabee:femme d'Urie puis de David, mère de Salomon
+Bethsames:ville de Judée
+Bethsura:ville de Judée
 Boanerges:surnom donné par Jésus aux Apôtres Jacques et Jean
 Boniportus:port de Crète
 Cadesbarne:nom d'un lieu dans la bible, situé dans la péninsule sinaïtique
 Camuel:personnage biblique
+Caphira:ville de Palestine
 Caphtorim:nom d'un peuple dans la bible
+Cariath:nom de plusieurs villes dans la bible
 Cariathaim:nom d'une ville de Palestine
+Cariathiarim:nom d'une ville de Palestine
 Cedmonaeus:membre de la tribu des Qedmonéens, en Palestine
+Cendebaeus:personnage biblique
 Cenereth:autre nom du Lac de Tibériade dans la bible
 Cenezaeus:membre de la tribu des Qénézites, en Palestine
 Cetura:deuxième épouse d'Abraham
 Chalanne:ville de Mésopotamie
+Charcamis:capitale Hittite, sur la rive droite de l'Euphrate
 Chasluim:nom d'un peuple dans la bible
 Chodorlahomor:personnage biblique
 Cinaeus:membre de la tribu des Qénites, en Palestine
@@ -58059,11 +58081,18 @@ Dodanim:personnage ou peuple biblique
 Dothain:ville de Palestine
 Elcana:personnage biblique
 Eliacim:personnage biblique
+Elisama:personnage biblique
 Elmodad:personnage biblique
 Enacim:nom d'une race de géants dans la bible
+Engaddi:ville située sur la rive Ouest de la Mer Morte
+Engallim:ville située près de la Mer Morte, à l'embouchure du Jourdain
 Epaenetus:personnage biblique
 Ephron:personnage biblique
+Estaol:ville de Palestine
 Eutychus:personnage biblique
+Evilmerodach:nom d'un roi de Babylone
+Gabaa:ville de Palestine
+Gabaath:ville de Palestine
 Gabbatha:nom d'une place à Jérusalem
 Galaad:région de Transjordanie
 Galgala:nom de plusieurs villes de Palestine
@@ -58072,31 +58101,44 @@ Genesar:région de Palestine
 Genesareth:nom d'un lac de Palestine
 Gerara:ville de Palestine
 Gergesaeus:nom d'un peuple de Palestine
-Haceldama:nom d'un champ (Évangiles)
+Godolias:nom de plusieurs personnages bibliques
+Haceldama:nom du champ acheté par les Juifs avec les 30 deniers de Judas
+Hananeel:nom d'une tour à Jérusalem
+Helcias:nom de plusieurs personnages bibliques
 Hermoniim:l'Hermon, montagne de l'Anti-Liban
 Hesebon:ville de Transjordanie
 Hevaeus:nom d'un peuple de Palestine
 Hevila:personnage biblique
 Hevilath:région d'Arabie (dans la bible)
+Hircanus:personnage biblique
 Horraei:nom d'un peuple dans la bible
 idipsum:la même chose (in idipsum:ensemble)
+Ioppita:habitant de Joppé (Jaffa)
 Issachar:l'un des douze fils d'Israël
 Ithamar:personnage biblique, fils d'Aaron
-Jairus=Iairus:personnage biblique
+Jairus:personnage biblique
+Jamnia:ville de Palestine
 Jason:nom de plusieurs personnages bibliques
-Jebusaeus=Iebusaeus:nom d'un peuple de Palestine
-Jechonias=Iechonias:personnage biblique
-Jemini=Iemini:personnage biblique
-Jephone=Iephone:personnage biblique, père de Caleb
-Joatham=Ioatham:personnage biblique
-Jochabed=Iochabed:mère de Moïse et d'Aaron
-Jonadab=Ionadab:personnage biblique, père des Réchabites
-Josaphat=Iosaphat:personnage biblique
-Josias=Iosias:personnage biblique
+Jebusaeus:nom d'un peuple de Palestine
+Jechonias:personnage biblique
+Jemini:personnage biblique
+Jephone:personnage biblique, père de Caleb
+Jezrahel:nom d'une ville de Palestine
+Joachin:nom d'un roi de Juda
+Joakim:nom d'un roi de Juda
+Joatham:nom de plusieurs personnages bibliques
+Jochabed:mère de Moïse et d'Aaron
+Johanan:personnage biblique
+Jonadab:personnage biblique, père des Réchabites
+Josaphat:personnage biblique
+Josedec:personnage biblique
+Josias:personnage biblique
 Laabim:personnage biblique
+Laisa:ville de Palestine
 Latusim:nom d'un peuple dans la bible
 Loomim:nom d'un peuple dans la bible
 Maacha:personnage biblique
+Maceda:ville de Palestine
 Madai:personnage biblique
 Magdiel:personnage biblique
 Magedan:région de Palestine
@@ -58120,18 +58162,23 @@ Mesraim:personnage biblique
 Misael:personnage biblique
 Naaman:personnage biblique
 Nabaioth:personnage biblique, un des fils d'Ismaël
+Nabuzardan:chef de l'armée de Nabuchodonosor
 Nahasson:personnage biblique
 Nathanael:l'un des douze Apôtres
+Nechao:nom d'un Pharaon d'Égypte
 necnon:et aussi, et
 nequando:de peur que
 Nephthalim:région de la Palestine
 Nephtuim:personnage biblique
 Nicodemus:personnage biblique
 Noema:nom d'une femme dans la bible
+Odollam:nom d'une ville de Palestine
 Oolibama:nom d'une femme dans la bible
+Othoniel:personnage biblique, l'un des Juges
 Ozias:personnage biblique
 Parmenas:personnage biblique
 Phanuel:personnage biblique
+Phatures=Phathures:nome de la Haute-Égypte
 Phetrusim:nom d'un peuple dans la bible
 Phihahiroth:lieu du passage de la Mer Rouge par les Hébreux
 Phinees:personnage biblique
@@ -58140,10 +58187,14 @@ pseudoapostolus:faux apôtre
 Putiphar:nom d'un Égyptien dans la bible
 quinimmo:bien plutôt, bien au contraire
 quippiam:quelque chose
+Rabsaces:nom d'un Assyrien dans la bible
 Raguel:personnage biblique
 Rahuel:personnage biblique
 Ramesses:ville d'Égypte
 Raphaim:nom d'une race de géants dans la bible
+Razias:personnage biblique
+Rechab:personnage biblique
+Rechabita:descendant de Rechab
 Rohoboth:nom d'une ville dans la bible
 Sabatacha:personnage biblique
 Sabatha:personnage biblique
@@ -58159,16 +58210,21 @@ Sebeon:personnage biblique
 Seboim:ville de Palestine
 Semeber:personnage biblique
 Semei:personnage biblique
+Semeias:personnage biblique
 Sennaab:personnage biblique
+Sepharvaim:ville située sur l'Euphrate et conquise par les Assyriens
 Sephora:femme de Moïse
+Siceleg:ville de Palestine
 Sichima:Sichem, ville de Palestine
 Sinaeus:nom d'un peuple de Palestine
+Sophonias:nom d'un prophète et de plusieurs personnages bibliques
 Sosipater:personnage biblique
 Sosthenes:personnage biblique
 Susanna:nom de plusieurs femmes dans la bible
 Tabee:personnage biblique
 Tertullus:personnage biblique
 Thaddaeus:l'un des douze Apôtres
+Tharaca:nom d'un Pharaon d'Égypte, de la dynastie éthiopienne
 Thogorma:personnage biblique
 Trophimus:personnage biblique
 Tubalcain:personnage biblique, descendant de Caïn
