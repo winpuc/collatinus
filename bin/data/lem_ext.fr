@@ -57998,10 +57998,12 @@ Abdias:nom d'un prophète dans la bible
 Abias:personnage biblique
 Abiathar:personnage biblique
 Abida:personnage biblique
+Abiezer:personnage biblique
 Abilina:région de Syrie
 Abimael:personnage biblique
 Accaron:ville de Palestine
 Achobor:nom de plusieurs personnages bibliques
+Adonisedec:personnage biblique, un des rois de Canaan
 Agareni:tribu nomade du Nord de l'Arabie
 Allophyli:peuple de Palestine, les Philistins
 Alphaeus:personnage biblique
@@ -58049,12 +58051,15 @@ Bethaven:ville de Palestine
 Bethoron:ville de Palestine
 Bethphage:ville de Judée
 Bethsabee:femme d'Urie puis de David, mère de Salomon
+Bethsames:ville de Judée
 Bethsura:ville de Judée
 Boanerges:surnom donné par Jésus aux Apôtres Jacques et Jean
 Boniportus:port de Crète
 Cadesbarne:nom d'un lieu dans la bible, situé dans la péninsule sinaïtique
 Camuel:personnage biblique
+Caphira:ville de Palestine
 Caphtorim:nom d'un peuple dans la bible
+Cariath:nom de plusieurs villes dans la bible
 Cariathaim:nom d'une ville de Palestine
 Cariathiarim:nom d'une ville de Palestine
 Cedmonaeus:membre de la tribu des Qedmonéens, en Palestine
@@ -58083,6 +58088,7 @@ Engaddi:ville située sur la rive Ouest de la Mer Morte
 Engallim:ville située près de la Mer Morte, à l'embouchure du Jourdain
 Epaenetus:personnage biblique
 Ephron:personnage biblique
+Estaol:ville de Palestine
 Eutychus:personnage biblique
 Evilmerodach:nom d'un roi de Babylone
 Gabaa:ville de Palestine
@@ -58132,6 +58138,7 @@ Laisa:ville de Palestine
 Latusim:nom d'un peuple dans la bible
 Loomim:nom d'un peuple dans la bible
 Maacha:personnage biblique
+Maceda:ville de Palestine
 Madai:personnage biblique
 Magdiel:personnage biblique
 Magedan:région de Palestine
@@ -58167,6 +58174,7 @@ Nicodemus:personnage biblique
 Noema:nom d'une femme dans la bible
 Odollam:nom d'une ville de Palestine
 Oolibama:nom d'une femme dans la bible
+Othoniel:personnage biblique, l'un des Juges
 Ozias:personnage biblique
 Parmenas:personnage biblique
 Phanuel:personnage biblique
@@ -58206,6 +58214,7 @@ Semeias:personnage biblique
 Sennaab:personnage biblique
 Sepharvaim:ville située sur l'Euphrate et conquise par les Assyriens
 Sephora:femme de Moïse
+Siceleg:ville de Palestine
 Sichima:Sichem, ville de Palestine
 Sinaeus:nom d'un peuple de Palestine
 Sophonias:nom d'un prophète et de plusieurs personnages bibliques
