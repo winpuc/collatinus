@@ -37,7 +37,7 @@ QStringList Lemmat::lemmatiseF(QString f, bool deb)
     QStringList res;
     MapLem ml = lemmatiseM(f, deb);
     foreach (Lemme *l, ml.keys())
-        res.append(l->humain());
+        res.append(l->humain(_html,_cible));
     // if (res.empty()) res.append(f);
     return res;
 }
