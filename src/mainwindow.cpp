@@ -60,6 +60,8 @@ bool EditLatin::event(QEvent *event)
                 return QWidget::event (event);
             QString txtBulle = mainwindow->lemmatiseur->lemmatiseT(
                 mot, true, true, true, false);
+            if (txtBulle.isEmpty()) return true;
+            // S'il n'y a qu'une ponctuation sous le curseur la lemmatisation donne un string vide.
             txtBulle.prepend("<p style='white-space:pre'>");
             txtBulle.append("</p>");
             QRect rect(P.x()-20,P.y()-10,40,40); // Je définis un rectangle autour de la position actuelle.
