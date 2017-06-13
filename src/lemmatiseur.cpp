@@ -1008,6 +1008,11 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
     // conteneur pour les échecs
     QStringList nonReconnus;
     // lemmatisation pour chaque mot
+    if (lm.size() < 2)
+    {
+//        qDebug() << t << lm.size() << lm;
+        return "";
+    }
     for (int i = 1; i < lm.length(); i += 2)
     {
         QString f = lm.at(i);
