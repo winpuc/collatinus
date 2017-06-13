@@ -1544,7 +1544,7 @@ Antiochia:Antioche
 Antiochinus:d'Antiochus
 Antiochus:Antiochus
 Antiope:Antiope
-Antipater:Antipatre (général d'Alexandre, nom de plusieurs philosophes, contemporain de Cicéron)
+Antipater:Antipatre (général d'Alexandre, nom de plusieurs philosophes, contemporain de Cicéron); nom d'un personnage biblique
 Antiphates:Antiphates (roi des Lestrygons, fils de Sarpédon)
 antipodes:les antipodes (gens qui font de la nuit le jour et du jour la nuit)
 Antiquaria:Antiquaria (ville de la Bétique)

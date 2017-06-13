@@ -774,7 +774,7 @@ pere:lego
 R:3:3,ērr
 R:4:1,0
 R:5:3,ēr
-des:122,123:5:s;t
+des:122,123,125:5:s;t;tĭs
 ! impératif
 des:181,182:5:-;tĕ
 ! infinitif
@@ -811,12 +811,12 @@ abs:267-374
 
 modele:nolo
 pere:lego
-abs:122,125
+des:124:0:ŭmŭs
 des:157-162:0:$im
 des:163-168:0:lĕm;lēs;lĕt;lēmŭs;lētĭs;lēnt
 des:181-186:0:ī;ītĕ;ītō;ītō;ītōtĕ;ūntō
 des:187:0:lĕ
-abs:225-260,265-374
+abs:122,123,125,225-260,265-374
 
 modele:edo
 pere:lego
@@ -847,6 +847,7 @@ des:302:3:ī
 
 modele:facio
 pere:capio
+des:181:3:
 abs:267-410
 
 modele:audio
