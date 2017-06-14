@@ -1012,6 +1012,7 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
     {
 //        qDebug() << t << lm.size() << lm;
         return "";
+        // Ça peut arriver que le texte ne contienne qu"une ponctuation
     }
     for (int i = 1; i < lm.length(); i += 2)
     {
@@ -1061,7 +1062,6 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                 }
             }
         }
-        // avec affichage des formes du texte
         else
         {
             bool connu = false;
@@ -1090,6 +1090,7 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
             }
             if (cumVocibus)
             {
+                // avec affichage des formes du texte
                 QString lin;
                 QMultiMap<int,QString> listeLem;
                 if (_html)
@@ -1149,7 +1150,9 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                         }
                     }
                 }
-                lsv.append(lin);
+//                lsv.append(lin);
+                if (!connu || listeVide) lsv.append(lin);
+                // Par défaut, pas d'aide pour les mots connus.
             }
             else  // sans les formes du texte
             {
@@ -1170,7 +1173,9 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                             foreach (SLem m, map.value(l))
                                 fl << "\n    . " << m.grq << " " << m.morpho;
                     }
-                    lsv.append(lin);
+//                    lsv.append(lin);
+                    if (!connu || listeVide) lsv.append(lin);
+                    // Par défaut, pas d'aide pour les mots connus.
                 }
             }
         }
