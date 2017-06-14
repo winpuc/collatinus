@@ -150,7 +150,7 @@ QStringList Lemmat::frequences(QString txt)
                       .arg(lemme)
                       .arg(n);
     }
-    qSort(sortie.begin(), sortie.end(), Ch::sort_i);
+    qSort(sortie.begin(), sortie.end(), Ch::inv_sort_i);
     // déformatage des nombres
     int cs = sortie.count();
     for (int i = 0; i < cs; ++i)
