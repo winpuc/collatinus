@@ -783,6 +783,7 @@ void MainWindow::createActions()
     actionVerba_cognita = new QAction(tr("Lire une liste de mots connus"),this);
     actionVerba_cognita->setCheckable(true);
     actionVerba_cognita->setChecked(false);
+    verba_cognita_out = new QAction(tr("Écrire l'emploi des mots connus"),this);
 
     // actions pour le serveur
     serverAct = new QAction(tr("Serveur"), this);
@@ -934,6 +935,7 @@ void MainWindow::createConnections()
     connect(reFindAct, SIGNAL(triggered()), this, SLOT(rechercheBis()));
     connect(statAct, SIGNAL(triggered()), this, SLOT(stat()));
     connect(actionVerba_cognita, SIGNAL(toggled(bool)), this, SLOT(verbaCognita(bool)));
+    connect(verba_cognita_out, SIGNAL(triggered()), this, SLOT(verbaOut()));
 }
 
 /**
@@ -980,6 +982,7 @@ void MainWindow::createMenus()
     fileMenu->addAction(oteAAct);
     fileMenu->addAction(lireHyphenAct);
     fileMenu->addAction(actionVerba_cognita);
+    fileMenu->addAction(verba_cognita_out);
     fileMenu->addSeparator();
     fileMenu->addAction(quitAct);
 
@@ -2280,4 +2283,16 @@ bool MainWindow::alerte()
 void MainWindow::auxilium()
 {
     QDesktopServices::openUrl(QUrl("file:" + qApp->applicationDirPath() + "/doc/index.html"));
+}
+
+void MainWindow::verbaOut()
+{
+    // Pour sauver un fichier avec l'utilisation des mots connus.
+    QString fichier;
+    fichier = QFileDialog::getSaveFileName(this, "Verba cognita", repVerba);
+    if (!fichier.isEmpty())
+    {
+        repVerba = QFileInfo (fichier).absolutePath ();
+        lemmatiseur->verbaOut(fichier);
+    }
 }

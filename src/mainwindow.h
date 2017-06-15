@@ -162,6 +162,7 @@ class MainWindow : public QMainWindow
     // Restauration des docks
     void dockRestore ();
     void verbaCognita(bool vb=false);
+    void verbaOut();
 
    public slots:
     void afficheLemsDic(QStringList ll, int no = 0);
@@ -210,6 +211,7 @@ class MainWindow : public QMainWindow
     QAction *hyphenAct;
     QAction *lireHyphenAct;
     QAction *actionVerba_cognita;
+    QAction *verba_cognita_out;
     // Nom du répertoire du fichier hyphen.la
     QString repHyphen;
     QString ficHyphen;
