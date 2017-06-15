@@ -58083,12 +58083,14 @@ Dodanim:personnage ou peuple biblique
 Dothain:ville de Palestine
 Elcana:personnage biblique
 Eliacim:personnage biblique
+Elimelech:personnage biblique
 Elisama:personnage biblique
 Elmodad:personnage biblique
 Enacim:nom d'une race de géants dans la bible
 Engaddi:ville située sur la rive Ouest de la Mer Morte
 Engallim:ville située près de la Mer Morte, à l'embouchure du Jourdain
 Epaenetus:personnage biblique
+Ephrathaeus:habitant d'Ephrata (= Bethlehem)
 Ephron:personnage biblique
 Estaol:ville de Palestine
 Eutychus:personnage biblique
@@ -58116,6 +58118,7 @@ Hircanus:personnage biblique
 Horraei:nom d'un peuple dans la bible
 idipsum:la même chose (in idipsum:ensemble)
 Ioppita:habitant de Joppé (Jaffa)
+Isai:autre nom de Jessé, père de David
 Issachar:l'un des douze fils d'Israël
 Ithamar:personnage biblique, fils d'Aaron
 Jairus:personnage biblique
