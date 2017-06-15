@@ -1048,6 +1048,7 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                     // qDebug() << lem;
                     if (_hLem.contains(lem))
                     {
+                        _hLem[lem]++;
                         if (colPrec != 0)
                         {
                             lm[i].prepend("</span><span style=\"color:"+_couleurs[0]+"\">");
@@ -1071,7 +1072,12 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                 {
                     // La liste de mots connus n'est pas vide. Un des lemmes identifiés en fait-il partie ?
                     foreach (Lemme *l, map.keys())
-                        connu = connu || _hLem.contains(l->cle());
+                        if (_hLem.contains(l->cle()))
+                        {
+                            connu = true;
+                            _hLem[l->cle()]++;
+                        }
+//                        connu = connu || _hLem.contains(l->cle());
                 }
                 if (connu)
                 {
@@ -1955,7 +1961,7 @@ void Lemmat::verbaCognita(QString fichier,bool vb)
                 {
                     item = lemmatiseM (ligne, false, false);
                     foreach (Lemme *lem, item.keys())
-                        _hLem.insert(lem->cle(),1);
+                        _hLem.insert(lem->cle(),0);
                 }
                 ligne = in.readLine();
             }
@@ -1963,3 +1969,14 @@ void Lemmat::verbaCognita(QString fichier,bool vb)
     }
 }
 
+void Lemmat::verbaOut(QString fichier)
+{
+    if (_hLem.isEmpty()) return; // Rien à sauver !
+    QString format = "%1\t%2\n";
+    QFile file(fichier);
+    if (file.open(QFile::WriteOnly | QFile::Text))
+        foreach (QString lem, _hLem.keys())
+    {
+            file.write(format.arg(lem).arg(_hLem[lem]).toUtf8());
+    }
+}
