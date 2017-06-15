@@ -58031,6 +58031,7 @@ Astarothcarnaim:nom d'une ville dans la bible
 Asyncritus:personnage biblique
 Azael:nom d'un roi d'Aram dans la bible
 Azecha:ville de Palestine
+Baalim:pluriel de Baal, la principale divinité cananéenne
 Baasa:nom d'un roi d'Israël
 Balaam:nom d'un faux prophète dans la bible
 Balaan:personnage biblique
@@ -58076,6 +58077,7 @@ Corozain:ville de Galilée
 Cyrinus:Quirinius, gouverneur de Syrie au temps du Christ
 Dalmanutha:région de Palestine
 Damaris:nom d'une femme dans la bible
+Debbora:une prophétesse d'Israël
 Denaba:nom d'une ville dans la bible
 Dodanim:personnage ou peuple biblique
 Dothain:ville de Palestine
@@ -58123,6 +58125,7 @@ Jebusaeus:nom d'un peuple de Palestine
 Jechonias:personnage biblique
 Jemini:personnage biblique
 Jephone:personnage biblique, père de Caleb
+Jerobaal:surnom de Gédéon, l'un des Juges d'Israël
 Jezrahel:nom d'une ville de Palestine
 Joachin:nom d'un roi de Juda
 Joakim:nom d'un roi de Juda
@@ -58217,6 +58220,7 @@ Sephora:femme de Moïse
 Siceleg:ville de Palestine
 Sichima:Sichem, ville de Palestine
 Sinaeus:nom d'un peuple de Palestine
+Sisara:personnage biblique, général de Jabin, roi de Canaan
 Sophonias:nom d'un prophète et de plusieurs personnages bibliques
 Sosipater:personnage biblique
 Sosthenes:personnage biblique
