@@ -182,6 +182,7 @@ class Lemmat : public QObject
     // Code en 9 pour le LASLA
     QString k9(QString m);
 
+    void verbaOut(QString fichier); // Connaître l'usage des mots connus
     void verbaCognita(QString fichier, bool vb=false); // Coloriser le texte avec les mots connus
 
    public slots:

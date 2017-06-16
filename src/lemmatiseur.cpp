@@ -1008,6 +1008,12 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
     // conteneur pour les échecs
     QStringList nonReconnus;
     // lemmatisation pour chaque mot
+    if (lm.size() < 2)
+    {
+//        qDebug() << t << lm.size() << lm;
+        return "";
+        // Ça peut arriver que le texte ne contienne qu"une ponctuation
+    }
     for (int i = 1; i < lm.length(); i += 2)
     {
         QString f = lm.at(i);
@@ -1042,6 +1048,7 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                     // qDebug() << lem;
                     if (_hLem.contains(lem))
                     {
+                        _hLem[lem]++;
                         if (colPrec != 0)
                         {
                             lm[i].prepend("</span><span style=\"color:"+_couleurs[0]+"\">");
@@ -1056,7 +1063,6 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                 }
             }
         }
-        // avec affichage des formes du texte
         else
         {
             bool connu = false;
@@ -1066,7 +1072,12 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                 {
                     // La liste de mots connus n'est pas vide. Un des lemmes identifiés en fait-il partie ?
                     foreach (Lemme *l, map.keys())
-                        connu = connu || _hLem.contains(l->cle());
+                        if (_hLem.contains(l->cle()))
+                        {
+                            connu = true;
+                            _hLem[l->cle()]++;
+                        }
+//                        connu = connu || _hLem.contains(l->cle());
                 }
                 if (connu)
                 {
@@ -1085,6 +1096,7 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
             }
             if (cumVocibus)
             {
+                // avec affichage des formes du texte
                 QString lin;
                 QMultiMap<int,QString> listeLem;
                 if (_html)
@@ -1144,7 +1156,9 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                         }
                     }
                 }
-                lsv.append(lin);
+//                lsv.append(lin);
+                if (!connu || listeVide) lsv.append(lin);
+                // Par défaut, pas d'aide pour les mots connus.
             }
             else  // sans les formes du texte
             {
@@ -1165,7 +1179,9 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                             foreach (SLem m, map.value(l))
                                 fl << "\n    . " << m.grq << " " << m.morpho;
                     }
-                    lsv.append(lin);
+//                    lsv.append(lin);
+                    if (!connu || listeVide) lsv.append(lin);
+                    // Par défaut, pas d'aide pour les mots connus.
                 }
             }
         }
@@ -1945,7 +1961,7 @@ void Lemmat::verbaCognita(QString fichier,bool vb)
                 {
                     item = lemmatiseM (ligne, false, false);
                     foreach (Lemme *lem, item.keys())
-                        _hLem.insert(lem->cle(),1);
+                        _hLem.insert(lem->cle(),0);
                 }
                 ligne = in.readLine();
             }
@@ -1953,3 +1969,14 @@ void Lemmat::verbaCognita(QString fichier,bool vb)
     }
 }
 
+void Lemmat::verbaOut(QString fichier)
+{
+    if (_hLem.isEmpty()) return; // Rien à sauver !
+    QString format = "%1\t%2\n";
+    QFile file(fichier);
+    if (file.open(QFile::WriteOnly | QFile::Text))
+        foreach (QString lem, _hLem.keys())
+    {
+            file.write(format.arg(lem).arg(_hLem[lem]).toUtf8());
+    }
+}
