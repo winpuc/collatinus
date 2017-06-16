@@ -239,11 +239,23 @@ void Ch::genStrNum(const QString s, QString *ch, int *n)
 
 /**
  * \fn Ch::sort_i(const QString &a, const QString &b)
- * \brief compare a et b sans tenire compte des diacritiques ni de la casse.
+ * \brief compare a et b sans tenir compte des diacritiques ni de la casse.
+ * \return true si a < b.
  */
 bool Ch::sort_i(const QString &a, const QString &b)
 {
     return QString::compare(atone(a), atone(b), Qt::CaseInsensitive) < 0;
+}
+
+/**
+ * \fn Ch::inv_sort_i(const QString &a, const QString &b)
+ * \brief compare a et b sans tenir compte des diacritiques ni de la casse.
+ * \return true si a > b.
+ * Utilisée pour ranger les mots en fontions des fréquences descendantes
+ */
+bool Ch::inv_sort_i(const QString &a, const QString &b)
+{
+    return QString::compare(atone(a), atone(b), Qt::CaseInsensitive) > 0;
 }
 
 /**

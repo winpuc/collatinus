@@ -32,6 +32,7 @@ const QRegExp reLettres("\\w");
 const QRegExp rePonct("([\\.?!;:])");
 // const QRegExp rePonct("([\\.?!;:]|$$)");
 bool sort_i(const QString &a, const QString &b);
+bool inv_sort_i(const QString &a, const QString &b);
 QString versPC(QString k);
 QString versPedeCerto(QString k);
 QString const voyelles = "āăēĕīĭōŏūŭȳўĀĂĒĔĪĬŌŎŪŬȲЎ";
