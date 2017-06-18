@@ -58001,14 +58001,19 @@ Abida:personnage biblique
 Abiezer:personnage biblique
 Abilina:région de Syrie
 Abimael:personnage biblique
+Abisag:nom d'une femme dans la bible
 Abisai:personnage biblique
 Accaron:ville de Palestine
+Achimaas:personnage biblique
+Achinoam:nom de plusieurs femmes dans la bible 
+Achitob:personnage biblique
 Achobor:nom de plusieurs personnages bibliques
 Adonisedec:personnage biblique, un des rois de Canaan
 Agareni:tribu nomade du Nord de l'Arabie
 Allophyli:peuple de Palestine, les Philistins
 Alphaeus:personnage biblique
 Amalecites:qui appartient au peuple Amalécite
+Amasa:personnage biblique
 Amasias:nom de plusieurs personnages bibliques
 Amathaeus:nom d'un peuple de Palestine
 Aminadab:personnage biblique
@@ -58018,10 +58023,12 @@ Ananias:nom de plusieurs personnages bibliques
 Antipatris:ville de Palestine
 Apollyon:ange exterminateur dans l'Apocalypse
 Aracaeus:nom d'un peuple de Palestine
+Arapha:nom d'une race de géants dans la bible
 Arbee:nom d'un géant, père des Enacim
 Aristobolus:personnage biblique
 Aroer:ville de Transjordanie
 Arphaxad:personnage biblique
+Asael:personnage biblique
 Asarhaddon:nom d'un roi assyrien, fils et successeur de Sennacherib
 Asarmoth:personnage biblique
 Asasonthamar:nom d'une ville dans la bible
@@ -58034,6 +58041,7 @@ Azael:nom d'un roi d'Aram dans la bible
 Azecha:ville de Palestine
 Baalim:pluriel de Baal, la principale divinité cananéenne
 Baasa:nom d'un roi d'Israël
+Bahurim:ville de Palestine
 Balaam:nom d'un faux prophète dans la bible
 Balaan:personnage biblique
 Balanan:personnage biblique
@@ -58049,6 +58057,7 @@ Beeri:personnage biblique
 Benadad:nom de plusieurs rois de Syrie dans la bible
 Benoni:autre nom de Benjamin
 Bersabee:ville de Palestine
+Berzellai:personnage biblique
 Bethaven:ville de Palestine
 Bethoron:ville de Palestine
 Bethphage:ville de Judée
@@ -58102,10 +58111,12 @@ Gabbatha:nom d'une place à Jérusalem
 Galaad:région de Transjordanie
 Galgala:nom de plusieurs villes de Palestine
 Gamaliel:personnage biblique
+Gelboe:nom d'une montagne de Palestine où périt Saül, roi d'Israël
 Genesar:région de Palestine
 Genesareth:nom d'un lac de Palestine
 Gerara:ville de Palestine
 Gergesaeus:nom d'un peuple de Palestine
+Gessuri:région de Transjordanie
 Godolias:nom de plusieurs personnages bibliques
 Haceldama:nom du champ acheté par les Juifs avec les 30 deniers de Judas
 Hananeel:nom d'une tour à Jérusalem
@@ -58120,6 +58131,7 @@ Horraei:nom d'un peuple dans la bible
 idipsum:la même chose (in idipsum:ensemble)
 Ioppita:habitant de Joppé (Jaffa)
 Isai:autre nom de Jessé, père de David
+Isboseth:fils de Saül et roi d'Israël
 Issachar:l'un des douze fils d'Israël
 Ithamar:personnage biblique, fils d'Aaron
 Jairus:personnage biblique
@@ -58166,6 +58178,7 @@ Mezaab:personnage biblique
 Melchisedech:personnage biblique
 Melea:personnage biblique
 Mesraim:personnage biblique
+Miphiboseth:personnage biblique
 Misael:personnage biblique
 Naaman:personnage biblique
 Nabaioth:personnage biblique, un des fils d'Ismaël
@@ -58179,6 +58192,7 @@ Nephthalim:région de la Palestine
 Nephtuim:personnage biblique
 Nicodemus:personnage biblique
 Noema:nom d'une femme dans la bible
+Obededom:personnage biblique
 Odollam:nom d'une ville de Palestine
 Oolibama:nom d'une femme dans la bible
 Othoniel:personnage biblique, l'un des Juges
