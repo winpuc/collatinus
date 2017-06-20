@@ -58010,6 +58010,7 @@ Achitob:personnage biblique
 Achobor:nom de plusieurs personnages bibliques
 Adonisedec:personnage biblique, un des rois de Canaan
 Agareni:tribu nomade du Nord de l'Arabie
+Ahias:nom de plusieurs personnages bibliques
 Allophyli:peuple de Palestine, les Philistins
 Alphaeus:personnage biblique
 Amalecites:qui appartient au peuple Amalécite
@@ -58024,7 +58025,7 @@ Antipatris:ville de Palestine
 Apollyon:ange exterminateur dans l'Apocalypse
 Aracaeus:nom d'un peuple de Palestine
 Arapha:nom d'une race de géants dans la bible
-Arbee:nom d'un géant, père des Enacim
+Arbee:nom d'un géant dans la bible, père des Enacim
 Aristobolus:personnage biblique
 Aroer:ville de Transjordanie
 Arphaxad:personnage biblique
@@ -58036,8 +58037,9 @@ Ascenez:personnage biblique, l'un des descendants de Japheth
 Asiongaber:nom d'un port sur la Mer Rouge, dans la bible
 Assurim:nom d'un peuple dans la bible
 Astarothcarnaim:nom d'une ville dans la bible
+Astarthen:déesse des Phéniciens
 Asyncritus:personnage biblique
-Azael:nom d'un roi d'Aram dans la bible
+Azael:nom d'un roi syrien dans la bible
 Azecha:ville de Palestine
 Baalim:pluriel de Baal, la principale divinité cananéenne
 Baasa:nom d'un roi d'Israël
@@ -58120,6 +58122,7 @@ Gessuri:région de Transjordanie
 Godolias:nom de plusieurs personnages bibliques
 Haceldama:nom du champ acheté par les Juifs avec les 30 deniers de Judas
 Hananeel:nom d'une tour à Jérusalem
+Hanani:nom de plusieurs personnages bibliques
 Helcias:nom de plusieurs personnages bibliques
 Hermoniim:l'Hermon, montagne de l'Anti-Liban
 Hesebon:ville de Transjordanie
@@ -58142,6 +58145,8 @@ Jechonias:personnage biblique
 Jemini:personnage biblique
 Jephone:personnage biblique, père de Caleb
 Jerobaal:surnom de Gédéon, l'un des Juges d'Israël
+Jesbibenob:nom d'un géant dans la bible
+Jezabel:femme d'Achab, roi d'Israël
 Jezrahel:nom d'une ville de Palestine
 Joachin:nom d'un roi de Juda
 Joakim:nom d'un roi de Juda
