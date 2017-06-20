@@ -38985,7 +38985,7 @@ linifio:tisserand.
 linimen:liniment
 linimentum:enduit [pour luter un vase], lut
 linio:tr., aligner
-linio2:v. lino
+!linio2:v. lino
 liniphio:a linen-weaver
 linitio:vernissage, vernis
 linitor:
