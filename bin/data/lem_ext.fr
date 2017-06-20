@@ -57994,6 +57994,7 @@ zythum:bière, boisson faite avec de l'orge
 ! Accentuation de la Vulgate
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+Abana:fleuve de Syrie
 Abdias:nom d'un prophète dans la bible
 Abias:personnage biblique
 Abiathar:personnage biblique
@@ -58119,6 +58120,7 @@ Genesareth:nom d'un lac de Palestine
 Gerara:ville de Palestine
 Gergesaeus:nom d'un peuple de Palestine
 Gessuri:région de Transjordanie
+Giezi:personnage biblique, serviteur du prophète Élisée
 Godolias:nom de plusieurs personnages bibliques
 Haceldama:nom du champ acheté par les Juifs avec les 30 deniers de Judas
 Hananeel:nom d'une tour à Jérusalem
@@ -58148,6 +58150,7 @@ Jerobaal:surnom de Gédéon, l'un des Juges d'Israël
 Jesbibenob:nom d'un géant dans la bible
 Jezabel:femme d'Achab, roi d'Israël
 Jezrahel:nom d'une ville de Palestine
+Joachaz:nom d'un roi d'Israël
 Joachin:nom d'un roi de Juda
 Joakim:nom d'un roi de Juda
 Joatham:nom de plusieurs personnages bibliques
@@ -58190,6 +58193,7 @@ Nabaioth:personnage biblique, un des fils d'Ismaël
 Nabuzardan:chef de l'armée de Nabuchodonosor
 Nahasson:personnage biblique
 Nathanael:l'un des douze Apôtres
+Nathanias:personnage biblique
 Nechao:nom d'un Pharaon d'Égypte
 necnon:et aussi, et
 nequando:de peur que
@@ -58198,6 +58202,7 @@ Nephtuim:personnage biblique
 Nicodemus:personnage biblique
 Noema:nom d'une femme dans la bible
 Obededom:personnage biblique
+Ochozias:nom de plusieurs personnages bibliques
 Odollam:nom d'une ville de Palestine
 Oolibama:nom d'une femme dans la bible
 Othoniel:personnage biblique, l'un des Juges
@@ -58226,6 +58231,7 @@ Sabatacha:personnage biblique
 Sabatha:personnage biblique
 Salathiel:personnage biblique
 Salmana:personnage biblique
+Salmanasar:nom d'un roi assyrien
 Salphaad:personnage biblique
 Samaraeus:nom d'un peuple de Palestine
 Saphira:nom d'une femme dans la bible
@@ -58252,6 +58258,7 @@ Tabee:personnage biblique
 Tertullus:personnage biblique
 Thaddaeus:l'un des douze Apôtres
 Tharaca:nom d'un Pharaon d'Égypte, de la dynastie éthiopienne
+Theglathphalasar:nom d'un roi assyrien
 Thogorma:personnage biblique
 Trophimus:personnage biblique
 Tubalcain:personnage biblique, descendant de Caïn
