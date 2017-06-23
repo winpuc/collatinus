@@ -58004,11 +58004,13 @@ Abilina:région de Syrie
 Abimael:personnage biblique
 Abisag:nom d'une femme dans la bible
 Abisai:personnage biblique
+Abisue:personnage biblique
 Accaron:ville de Palestine
 Achimaas:personnage biblique
 Achinoam:nom de plusieurs femmes dans la bible 
 Achitob:personnage biblique
 Achobor:nom de plusieurs personnages bibliques
+Adonias:nom d'un fils de David, roi d'Israël
 Adonisedec:personnage biblique, un des rois de Canaan
 Agareni:tribu nomade du Nord de l'Arabie
 Ahias:nom de plusieurs personnages bibliques
@@ -58097,6 +58099,8 @@ Dothain:ville de Palestine
 Elcana:personnage biblique
 Eliacim:personnage biblique
 Elimelech:personnage biblique
+Elioenai:personnage biblique
+Eliphaz:nom de plusieurs personnages bibliques
 Elisama:personnage biblique
 Elmodad:personnage biblique
 Enacim:nom d'une race de géants dans la bible
@@ -58134,6 +58138,7 @@ Hevilath:région d'Arabie (dans la bible)
 Hircanus:personnage biblique
 Horraei:nom d'un peuple dans la bible
 idipsum:la même chose (in idipsum:ensemble)
+Idithun:personnage biblique
 Ioppita:habitant de Joppé (Jaffa)
 Isai:autre nom de Jessé, père de David
 Isboseth:fils de Saül et roi d'Israël
