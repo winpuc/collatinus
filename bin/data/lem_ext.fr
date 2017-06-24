@@ -58162,6 +58162,7 @@ Joatham:nom de plusieurs personnages bibliques
 Jochabed:mère de Moïse et d'Aaron
 Johanan:personnage biblique
 Jonadab:personnage biblique, père des Réchabites
+Josabeth:nom d'une femme dans la bible
 Josaphat:personnage biblique
 Josedec:personnage biblique
 Josias:personnage biblique
@@ -58179,6 +58180,7 @@ Maheleth:nom d'une femme dans la bible
 Malaleel:personnage biblique
 Manahat:personnage biblique
 Manahen:personnage biblique
+Maresa:ville de Palestine
 Masreca:nom d'une ville dans la bible
 Mathatha:personnage biblique
 Mathathias:personnage biblique
