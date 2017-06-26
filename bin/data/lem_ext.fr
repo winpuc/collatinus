@@ -58008,6 +58008,7 @@ Abisue:personnage biblique
 Accaron:ville de Palestine
 Achimaas:personnage biblique
 Achinoam:nom de plusieurs femmes dans la bible 
+Achior:personnage biblique
 Achitob:personnage biblique
 Achobor:nom de plusieurs personnages bibliques
 Adonias:nom d'un fils de David, roi d'Israël
@@ -58109,12 +58110,14 @@ Engallim:ville située près de la Mer Morte, à l'embouchure du Jourdain
 Epaenetus:personnage biblique
 Ephrathaeus:habitant d'Ephrata (= Bethlehem)
 Ephron:personnage biblique
+Esdrelon:ville de Palestine
 Estaol:ville de Palestine
 Eutychus:personnage biblique
 Evilmerodach:nom d'un roi de Babylone
 Gabaa:ville de Palestine
 Gabaath:ville de Palestine
 Gabbatha:nom d'une place à Jérusalem
+Gabelus:personnage biblique
 Galaad:région de Transjordanie
 Galgala:nom de plusieurs villes de Palestine
 Gamaliel:personnage biblique
