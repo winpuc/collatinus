@@ -58103,6 +58103,7 @@ Elimelech:personnage biblique
 Elioenai:personnage biblique
 Eliphaz:nom de plusieurs personnages bibliques
 Elisama:personnage biblique
+Eliu:personnage biblique
 Elmodad:personnage biblique
 Enacim:nom d'une race de géants dans la bible
 Engaddi:ville située sur la rive Ouest de la Mer Morte
@@ -58218,6 +58219,7 @@ Oolibama:nom d'une femme dans la bible
 Othoniel:personnage biblique, l'un des Juges
 Ozias:personnage biblique
 Parmenas:personnage biblique
+parvipendo:faire peu de cas, dédaigner
 Phanuel:personnage biblique
 Phatures=Phathures:nome de la Haute-Égypte
 Phetrusim:nom d'un peuple dans la bible
@@ -58248,6 +58250,7 @@ Saphira:nom d'une femme dans la bible
 Sarai:Sara, femme d'Abraham
 Sarion:autre nom du mont Hermon, au Nord de la Palestine
 Sarona:ville de Palestine
+sardonichus:de sardoine
 Sebeon:personnage biblique
 Seboim:ville de Palestine
 Semeber:personnage biblique
