@@ -12542,6 +12542,7 @@ linea:ligne, séparation, cordon, ficelle
 lineamentum:ligne, trait
 lineola:petite ligne tracée
 lineus:de lin
+lingo:lécher, sucer
 Lingo:les Lingons
 Lingones:Lingons (peuple de la Gaule Celtique : Langres ; peuple de la Gaule Cispadane)
 Lingonus:un Lingon
