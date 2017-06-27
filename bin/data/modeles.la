@@ -397,17 +397,19 @@ des:15-24:1:ĕm;ĭs;ī;ī;ēs;ēs;ēs,īs;ĭŭm;ĭbŭs
 des:27-36:1:ĕm;ĭs;ī;ī;ēs;ēs;ēs,īs;ĭŭm;ĭbŭs
 des:37-48:1:ĕ;ĕ;ĕ;ĭs;ī;ī;ĭă;ĭă;ĭă;ĭŭm;ĭbŭs
 des:49-84:1:ĭ$compar;ĭ$compar;ĭŭs;ĭŭs;ĭŭs;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōră;ĭōră;ĭōră;ĭōrŭm;ĭōrĭbŭs
+des:85-120:1:īssĭm$lupus;īssĭm$uita;īssĭm$templum
 
 modele:infans
 pere:fortis
 des+:22,34,46:1:ŭm3
-des:85-120:1:īssĭm$lupus;īssĭm$uita;īssĭm$templum
 
 modele:acer
 pere:fortis
 R:0:2,r
 R:1:2,r
-R:2:0,rĭm
+R:2:2,ērrĭm
+des:25,26:1:ĭs
+des:85-120:2:$lupus;$uita;$templum
 
 modele:diues
 pere:fortis
@@ -415,7 +417,7 @@ des:18,30,42:1:ĕ;ĕ;ĕ
 des:37-39:4:-
 des:43-45:1:ă
 des:22,34,46:1:ŭm;ŭm;ŭm
-des:85-120:1:īssĭmŭs;īssĭmĕ;īssĭmŭm;īssĭmī;īssĭmō;īssĭmō;īssĭmī;īssĭmī;īssĭmōs;īssĭmōrŭm;īssĭmīs;īssĭmīs;īssĭmă;īssĭmă;īssĭmăm;īssĭmāe;īssĭmāe;īssĭmā;īssĭmāe;īssĭmāe;īssĭmās;īssĭmārŭm;īssĭmīs;īssĭmīs;īssĭmŭm;īssĭmŭm;īssĭmŭm;īssĭmī;īssĭmō;īssĭmō;īssĭmă;īssĭmă;īssĭmă;īssĭmōrŭm;īssĭmīs
+!des:85-120:1:īssĭmŭs;īssĭmĕ;īssĭmŭm;īssĭmī;īssĭmō;īssĭmō;īssĭmī;īssĭmī;īssĭmōs;īssĭmōrŭm;īssĭmīs;īssĭmīs;īssĭmă;īssĭmă;īssĭmăm;īssĭmāe;īssĭmāe;īssĭmā;īssĭmāe;īssĭmāe;īssĭmās;īssĭmārŭm;īssĭmīs;īssĭmīs;īssĭmŭm;īssĭmŭm;īssĭmŭm;īssĭmī;īssĭmō;īssĭmō;īssĭmă;īssĭmă;īssĭmă;īssĭmōrŭm;īssĭmīs
 
 ! plus: pas de degrés de signification
 modele:plus
