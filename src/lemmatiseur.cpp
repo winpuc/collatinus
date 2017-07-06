@@ -811,6 +811,9 @@ QString Lemmat::k9(QString m)
     QString cibAct = _cible;
     _cible = "k9,fr";
     MapLem mm = lemmatiseM(m);
+    _cible = cibAct;
+    if (mm.isEmpty()) return "\n";
+    // Il faut répondre quelque chose, sinon j'attends 30 secondes !
     foreach (Lemme *l, mm.keys())
     {
         QString clef = l->cle() + ", ,";
@@ -826,7 +829,6 @@ QString Lemmat::k9(QString m)
         }
     }
 
-    _cible = cibAct;
     return res.join("\n");
 }
 
