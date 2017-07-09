@@ -1851,10 +1851,12 @@ void MainWindow::setCible()
                 msg.setIcon(QMessageBox::Question);
                 msg.setText("Choisir une 2nde langue  \nChoose a 2nd language");
                 QAbstractButton *frButton = msg.addButton("Français",QMessageBox::AcceptRole);
-                //QAbstractButton *enButton = msg.addButton("English",QMessageBox::AcceptRole);
+                QAbstractButton *enButton = msg.addButton("English",QMessageBox::AcceptRole);
                 msg.exec();
                 if (msg.clickedButton() == frButton)
                     lemmatiseur->setCible(cle + ".fr.en");
+                else if (msg.clickedButton() == enButton)
+                    lemmatiseur->setCible(cle + ".en.fr");
                 else lemmatiseur->setCible(cle + ".en.fr");
             }
             break;
