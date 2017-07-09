@@ -348,19 +348,18 @@ des:13,14:0:-
 
 modele:unusquisque
 pere:unus
-modele:qui
-R:1:3,0
+R:1:9,0
 abs:14,20,26,32,38,44
 ! Faire 6 paquets en coupant à l'accusatif.
 ! Mettre les longues là où il faut.
 ! $lupus=ŭs;ĕ;ŭm;ī̆ŭs;ī;ō;ī;ī;ōs;ōrŭm;īs;īs
 ! $templum=ŭm;ŭm;ŭm;ī̆ŭs;ī;ō;ă;ă;ă;ōrŭm;īs;īs
 ! $uita=ă;ă;ăm;ī̆ŭs;ī;ā;āe;āe;ās;ārŭm;īs;īs
-des:13,15-19:1:ūsquīsquĕ;ūmquĕmquĕ;ī̆ūscūjūsquĕ,ī̆ūsquōjūsquĕ;īcuīquĕ,īquŏīquĕ;ōquōquĕ;īquīquĕ
+des:13,15-19:1:ūsquīsquĕ;ūmquēmquĕ;ī̆ūscūjūsquĕ,ī̆ūsquōjūsquĕ;īcuīquĕ,īquŏīquĕ;ōquōquĕ;īquīquĕ
 des:21-24:1:ōsquōsquĕ;ōrūmquōrūmquĕ;īsquĭbūsquĕ
 des:25,27-31:1:ăquāequĕ;āmquāmquĕ;ī̆ūscūjūsquĕ,ī̆ūsquōjūsquĕ;īcuīquĕ,īquŏīquĕ;āquāquĕ;āequāequĕ
 des:33-36:1:āsquāsquĕ;ārūmquārūmquĕ;īsquĭbūsquĕ
-des:37,39-43:1:ūmquŏdquĕ;ūmquŏdquĕ;ī̆ūscūjūsquĕ,ī̆ūsquōjūsquĕ;īcuīquĕ,īquŏīquĕ;ōquōquĕ;ăquāequĕ
+des:37,39-43:1:ūmquōdquĕ,ūmquīdquĕ;ūmquōdquĕ,ūmquīdquĕ;ī̆ūscūjūsquĕ,ī̆ūsquōjūsquĕ;īcuīquĕ,īquŏīquĕ;ōquōquĕ;ăquāequĕ
 des:45-48:1:ăquāequĕ;ōrūmquōrūmquĕ;īsquĭbūsquĕ
 
 modele:aureus
