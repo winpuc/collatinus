@@ -197,7 +197,10 @@ Modele::Modele(QStringList ll, Lemmat *parent)
                 _genRadicaux[nr] = eclats.at(2);
                 break;
             }
-            case 5:
+            case 8: // abs+
+                _absents.append(listeI(eclats.at(1)));
+                break;
+            case 5: // abs
                 _absents = listeI(eclats.at(1));
                 break;
             case 6:  // suffixes suf:<intervalle>:valeur
@@ -357,6 +360,7 @@ bool Modele::estUn(QString m)
  * \brief Nom du modèle.
  */
 QString Modele::gr() { return _gr; }
+
 QStringList const Modele::cles = QStringList() << "modele"  // 0
                                                << "pere"    // 1
                                                << "des"     // 2
@@ -364,7 +368,8 @@ QStringList const Modele::cles = QStringList() << "modele"  // 0
                                                << "R"       // 4
                                                << "abs"     // 5
                                                << "suf"     // 6
-                                               << "sufd";   // 7
+                                               << "sufd"    // 7
+                                               << "abs+";   // 8
 
 /**
  * \fn QString Modele::genRadical (int r)
