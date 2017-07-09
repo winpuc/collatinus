@@ -798,7 +798,7 @@ pere:lego
 R:3:3,ērr
 R:4:1,0
 R:5:3,ēr
-des:122,123:5:s;t
+des:122,123,125:5:s;t;tĭs
 ! impératif
 des:181,182:5:-;tĕ
 ! infinitif
@@ -881,6 +881,7 @@ des:302:3:ī
 
 modele:facio
 pere:capio
+des:181:3:
 abs:267-410
 
 modele:audio
@@ -1036,9 +1037,9 @@ des:213-224:0:ēns;ēns;ēns;ēntĭs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ē
 ! gérondif et supin
 des:261-264:0:ēndŭm;ēndī;ēndō;ēndō
 ! adjectif verbal
-des+:339-350:0:end$lupus
-des+:351-362:0:end$uita
-des+:363-374:0:end$templum
+des+:339-350:0:ēnd$lupus
+des+:351-362:0:ēnd$uita
+des+:363-374:0:ēnd$templum
 
 modele:patior
 pere:sequor
