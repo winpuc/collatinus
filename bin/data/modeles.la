@@ -733,6 +733,7 @@ des:163-168:0:ērĕm;ērēs;ērĕt;ērēmŭs;ērētĭs;ērēnt
 des:181-186:0:ē;ētĕ;ētō;ētō;ētōtĕ;ēntō
 ! infinitif
 des:187:0:ērĕ
+des:188:1:īssĕ
 ! participe présent
 des:189-200:0:$ens
 des:201-212:0:$ens
@@ -819,20 +820,30 @@ modele:uolo
 pere:lego
 R:5:3,0
 R:6:3,ēl
+R:7:3,ĕl
 des:122-125:5:īs;ūlt,ōlt;ŏlŭmŭs;ūltĭs,ōltĭs
-des:157-162:6:$im
+des:157-162:7:$im
 des:163-168:6:lĕm;lēs;lĕt;lēmŭs;lētĭs;lēnt
 des:187:6:lĕ
-abs:267-374
+abs:181-186,261-374
 
 modele:nolo
 pere:lego
-abs:122,125
+des:124:0:ŭmŭs
 des:157-162:0:$im
 des:163-168:0:lĕm;lēs;lĕt;lēmŭs;lētĭs;lēnt
 des:181-186:0:ī;ītĕ;ītō;ītō;ītōtĕ;ūntō
 des:187:0:lĕ
-abs:225-260,265-374
+abs:122,123,125,225-374
+
+modele:malo
+pere:nolo
+R:5:2,0
+des:122-125:5:vīs;vūlt;lŭmŭs;vūltĭs
+! des:157-162:0:$im
+! des:163-168:0:lĕm;lēs;lĕt;lēmŭs;lētĭs;lēnt
+! des:187:0:lĕ
+abs:181-186,189-374
 
 modele:edo
 pere:lego
