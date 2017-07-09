@@ -16,6 +16,13 @@
 !Foundation, Inc., 59 Temple Place, Suite 3inv, Boston, MA  02111-1307  USA
 ! (c) © Yves Ouvrard, 2011 - 2016
 ! ==========================================================================
+! 
+! samedi 08 juillet 2017 
+! -- flexion de quivis
+! -- compléter nolo
+! -- modèle et flexion de malo
+! -- modèle incomplet : unusquisque
+!
 ! clé:<valeurs>
 !
 ! modele:<nom du modèle>
@@ -348,6 +355,19 @@ des:13,14:0:-
 
 modele:unusquisque
 pere:unus
+R:1:9,0
+abs:14,20,26,32,38,44
+! Faire 6 paquets en coupant à l'accusatif.
+! Mettre les longues là où il faut.
+! $lupus=ŭs;ĕ;ŭm;ī̆ŭs;ī;ō;ī;ī;ōs;ōrŭm;īs;īs
+! $templum=ŭm;ŭm;ŭm;ī̆ŭs;ī;ō;ă;ă;ă;ōrŭm;īs;īs
+! $uita=ă;ă;ăm;ī̆ŭs;ī;ā;āe;āe;ās;ārŭm;īs;īs
+des:13,15-19:1:ūsquīsquĕ;ūmquēmquĕ;ī̆ūscūjūsquĕ,ī̆ūsquōjūsquĕ;īcuīquĕ,īquŏīquĕ;ōquōquĕ;īquīquĕ
+des:21-24:1:ōsquōsquĕ;ōrūmquōrūmquĕ;īsquĭbūsquĕ
+des:25,27-31:1:ăquāequĕ;āmquāmquĕ;ī̆ūscūjūsquĕ,ī̆ūsquōjūsquĕ;īcuīquĕ,īquŏīquĕ;āquāquĕ;āequāequĕ
+des:33-36:1:āsquāsquĕ;ārūmquārūmquĕ;īsquĭbūsquĕ
+des:37,39-43:1:ūmquōdquĕ,ūmquīdquĕ;ūmquōdquĕ,ūmquīdquĕ;ī̆ūscūjūsquĕ,ī̆ūsquōjūsquĕ;īcuīquĕ,īquŏīquĕ;ōquōquĕ;ăquāequĕ
+des:45-48:1:ăquāequĕ;ōrūmquōrūmquĕ;īsquĭbūsquĕ
 
 modele:aureus
 pere:doctus
@@ -429,7 +449,7 @@ pere:diues
 des:85-120:1:rĭmŭs;rĭmĕ;rĭmŭm;rĭmī;rĭmō;rĭmō;rĭmī;rĭmī;rĭmōs;rĭmōrŭm;rĭmīs;rĭmīs;rĭmă;rĭmă;rĭmăm;rĭmāe;rĭmāe;rĭmā;rĭmāe;rĭmāe;rĭmās;rĭmārŭm;rĭmīs;rĭmīs;rĭmŭm;rĭmŭm;rĭmŭm;rĭmī;rĭmō;rĭmō;rĭmă;rĭmă;rĭmă;rĭmōrŭm;rĭmīs
 
 ! provisoire
-modele:pronom
+! modele:pronom
 
 modele:prcum
 R:0:K
@@ -517,6 +537,7 @@ modele:quiuis
 pere:qui
 R:1:6,0
 sufd:vīs
+des+:37,39:1:quīdvīs
 
 modele:quis
 pere:qui
@@ -543,7 +564,7 @@ modele:quisquam
 pere:quis
 R:1:8,0
 sufd:quăm
-des:37,39:1:quōdquăm
+des+:37,39:1:quīcquăm
 
 modele:quisque
 pere:quis
@@ -719,6 +740,7 @@ des:163-168:0:ērĕm;ērēs;ērĕt;ērēmŭs;ērētĭs;ērēnt
 des:181-186:0:ē;ētĕ;ētō;ētō;ētōtĕ;ēntō
 ! infinitif
 des:187:0:ērĕ
+des:188:1:īssĕ
 ! participe présent
 des:189-200:0:$ens
 des:201-212:0:$ens
@@ -805,11 +827,12 @@ modele:uolo
 pere:lego
 R:5:3,0
 R:6:3,ēl
+R:7:3,ĕl
 des:122-125:5:īs;ūlt,ōlt;ŏlŭmŭs;ūltĭs,ōltĭs
-des:157-162:6:$im
+des:157-162:7:$im
 des:163-168:6:lĕm;lēs;lĕt;lēmŭs;lētĭs;lēnt
 des:187:6:lĕ
-abs:267-374
+abs:181-186,261-374
 
 modele:nolo
 pere:lego
@@ -818,7 +841,16 @@ des:157-162:0:$im
 des:163-168:0:lĕm;lēs;lĕt;lēmŭs;lētĭs;lēnt
 des:181-186:0:ī;ītĕ;ītō;ītō;ītōtĕ;ūntō
 des:187:0:lĕ
-abs:122,123,125,225-260,265-374
+abs:122,123,125,225-374
+
+modele:malo
+pere:nolo
+R:5:2,0
+des:122-125:5:vīs;vūlt;lŭmŭs;vūltĭs
+! des:157-162:0:$im
+! des:163-168:0:lĕm;lēs;lĕt;lēmŭs;lētĭs;lēnt
+! des:187:0:lĕ
+abs:181-186,189-374
 
 modele:edo
 pere:lego
