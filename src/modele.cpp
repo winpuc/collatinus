@@ -270,7 +270,9 @@ Modele::Modele(QStringList ll, Lemmat *parent)
     }
     // génération des désinences suffixées
     QList<Desinence *> ldsuf;
-    foreach (QString suff, msuff.keys())
+    QStringList clefsSuff = msuff.keys();
+    clefsSuff.removeDuplicates();
+    foreach (QString suff, clefsSuff)
     {
         foreach (Desinence *d, _desinences)
         {
