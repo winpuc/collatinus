@@ -1426,10 +1426,13 @@ void Lemmat::lisTraductions(bool base, bool extension)
         // suffixe
         QString suff = QFileInfo(nfl).suffix();
         QStringList lignes = lignesFichier(_resDir + nfl);
-        // lire le nom de la langue
-        QString lang = lignes.takeFirst();
-        //lang = lang.mid(1).simplified();
-        _cibles[suff] = lang;
+        if (base)
+        {
+            // lire le nom de la langue
+            QString lang = lignes.takeFirst();
+            //lang = lang.mid(1).simplified();
+            _cibles[suff] = lang;
+        }
 
         foreach (QString lin, lignes)
         {
