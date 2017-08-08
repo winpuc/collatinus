@@ -2864,7 +2864,7 @@ Borysthenidae:Borysthenidae (peuples riverains du Borysthène)
 bos:boeuf
 Bosporanus:Un habitant des bord du Bosphore Cimmérien
 Bosphorani:Bosphoriens (habitants du Bosphore)
-Bosphorus:Bosphore
+Bosphorus:Bosphore (nom de deux détroits communiquant avec le Pont-Euxin / le Bosphore de Thrace et le Bosphore Cimmérien)
 Bostar:Bostar (nom carthaginois)
 Bottiaei:Bottiens (habitants de la Bottiée)
 botularius:marchand de saucisses
@@ -3631,7 +3631,7 @@ caulae:barrière [d'un parc de moutons], enceinte [d'un temple, d'un tribunal]
 caulis:tige des plantes, chou, tuyau de plume
 Caulon:Caulon (ville du Bruttium)
 Caunii:Cauniens (les gens de Caunus)
-Caunus:Caunus (ville de Carie)
+Caunus:Caunus (ville de Carie / héros fondateur de Caunus)
 caupo:aubergiste, restaurateur
 caupona:cabaretière
 cauponor:traiter une affaire au cabaret, maquignonner
@@ -3778,7 +3778,7 @@ Cephenes2:Céphènes [peuple de l'Éthiopie]
 Cepheus2:Céphée [roi d'Éthiopie]
 Cepheus:de Céphée
 Cephisos:Céphise (fl. de Béotie)
-Cephisus:Céphise (fl. de Béotie)
+!Cephisus:Céphise (fl. de Béotie)
 cera:cire
 cerarium:impôt pour la cire [droit du sceau]
 cerasinus:de couleur cerise
@@ -3939,7 +3939,7 @@ chorda:corde (d'un instrument)
 chorea:danse
 chorus:danse en choeur, choeur, troupe
 Chremes:Chrémès [personnage de comédie]
-Chrestus:Chrestus (nom d'homme)
+Chrestus:Chrestus (nom d'homme / le Christ)
 chria:chrie (exposé, avec exemple, d'une pensée, d'un lieu commun)=
 Christianus2:chrétien
 Christianus:chrétien
@@ -4397,7 +4397,7 @@ coeo:aller ensemble, se réunir, en venir aux mains, combattre ; contracter (une
 coepio:commencer
 coepto:commencer, entreprendre
 coeptum:entreprise, projet, dessein
-Coeranus:Coeranus (philosophe grec)
+Coeranus:Céranus (philosophe grec)
 coerceo:enfermer, contenir, maintenir
 coercitio:contrainte
 Coetum:Coetum (ville sur le Nil)
@@ -5506,7 +5506,7 @@ Cotys:Cotys (roi de Thrace)
 Cotytto:Cotytto (déesse de l'impudicité)
 covinnarius:covinnaire, conducteur d'un char armé de faux
 Cous2:de l'île de Cos
-Cous:Cos (île de la mer Egée)
+Cous:Cos (île de la mer Egée/ ville de l'île de Calydna)
 coxa:hanche, cuisse, râble, angle rentrant
 coxendix:hanche
 coxo:boiteux

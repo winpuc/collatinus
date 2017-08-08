@@ -217,8 +217,8 @@ Acitauones:peuple des Alpes
 Acitoali:peuple d'Arabie
 Aclissae:peuple de l'Inde
 Acmodae:îles au nord de la Grande-Bretagne
-Acontizomenos:the title of a comedy of Naevius
-Acontizomenus:titre d'une pièce de Naevius
+!Acontizomenos:the title of a comedy of Naevius
+Acontizomenos:titre d'une pièce de Naevius
 Acra:Acra Iapygia [promontoire en Calabre]
 Acrabatena:contrée de la Judée
 Acrae:Acré / ville de Sicile / ville de la Chersonèse Taurique
@@ -237,7 +237,7 @@ Acroceraunium:promontoire d'Épire
 Acroceraunius:acrocéraunien ; [mét.] dangereux
 Acrocerretes:peuple des Pyrénées
 Acrocorinthos:l'Acrocorinthe, citadelle de Corinthe.
-Acrocorinthus:Acrocorinthe, citadelle de Corinthe
+!Acrocorinthus:Acrocorinthe, citadelle de Corinthe
 Acronius:le lac Acronien (une partie du lac de Constance).
 Acronus:partie du lac de Constance
 Acropolis:Acropole [citadelle de Thèbes]
@@ -457,7 +457,7 @@ Aeropa:Aéropé, épouse d'Atrée, mère d'Agamemnon et de Ménélas
 Aerope:Aéropé, épouse d'Atrée, mère d'Agamemnon et de Ménélas
 Aeropus:nom d'h.
 Aesacos:fils de Priam
-Aesacus:fils de Priam
+!Aesacus:fils de Priam
 Aesar:dieu des Étrusques / rivière de la Grande Grèce
 Aesareus:de l'Ésar
 Aesarius:de l'Ésar
@@ -566,7 +566,7 @@ Aglaie:Aglaé [une des Grâces]
 Aglaophon:célèbre peintre grec
 Aglaosthenes:historien grec
 Aglauros:Aglaure, [fille de Cécrops]
-Aglaurus:Aglaure, [fille de Cécrops]
+!Aglaurus:Aglaure, [fille de Cécrops]
 Aglaus:nom d'homme
 Agnanius:nom romain
 Agnes:sainte Agnès
@@ -784,7 +784,7 @@ Alopece:Alopèce [île du Pont-Euxin]
 Alopecea:Alopèce [île du Pont-Euxin]
 Alopeconnesus:Alopéconnèse [ville de la Chersonèse de Thrace]
 Aloros:ville de Macédoine
-Alorus:ville de Macédoine
+!Alorus:ville de Macédoine
 Alounae:déesses adorées en Germanie
 Alpheias:fille d'Alphée, [Aréthuse]
 Alphenor:un des fils de Niobé
@@ -945,7 +945,7 @@ Amphisa:c. Amphissa
 Amphissa:Amphisse [v. des Locriens]
 Amphissius:of Amphissa, Amphrisia
 Amphissos:fils d'Apollon et de Dryope
-Amphissus:fils d'Apollon et de Dryope
+!Amphissus:fils d'Apollon et de Dryope
 Amphitruoniades:Hercule
 Amphitryo:Amphitryon [mari d'Alcmène, roi de Thèbes]
 Amphitryonis:d'Amphitryon.
@@ -1014,7 +1014,7 @@ Anatis:fleuve de la Mauritanie Tingitane
 Anatole:une des Heures
 Anatolius:nom d'h.
 Anauros:fleuve de Thessalie
-Anaurus:fleuve de Thessalie
+!Anaurus:fleuve de Thessalie
 Anausis:roi des Albaniens, prétendant de Médée.
 Anaxagorastes:disciple d'Anaxagore
 Anaxagoreus:d'Anaxagore
@@ -1033,11 +1033,11 @@ Anchialea:port de Cilicie
 Anchialitanus:d'Anchiale
 Anchialos:ville maritime de Thrace
 Anchialum:ville maritime de Thrace
-Anchialus:ville maritime de Thrace
+!Anchialus:ville maritime de Thrace
 Anchialus2:Anchialus (esclave de Martial).
 Anclacae:peuple voisin du Palus Méotide
-Ancon2:port et ville du Pont.
-Ancon3:Ancône [port d'Italie sur l'Adriatique] / port et ville du Pont.
+!Ancon2:port et ville du Pont.
+Ancon2:Ancône [port d'Italie sur l'Adriatique] / port et ville du Pont.
 Ancorarius2:montagne de Mauritanie
 Ancyranus:d'Ancyre
 Andabalis:ville de Cappadoce
@@ -1109,7 +1109,7 @@ Anidus:montagne de Ligurie
 Anienicola:habitant des rives de l'Anio
 Anienus2:l'Anio [affluent du Tibre]
 Anigros:l'Anigre [fleuve de Thessalie]
-Anigrus:l'Anigre [fleuve de Thessalie]
+!Anigrus:l'Anigre [fleuve de Thessalie]
 Animula2:petite ville d'Apulie
 Anna2:déesse italienne
 AnnaPerenna:an old Italian goddess, the protector, bestower of the returning year, annare perennareque
@@ -1127,7 +1127,7 @@ Antaeopolites:nome Antéopolite
 Antandrius:d'Antandros / autre nom de l'île d'Andros
 Antandros:ville de Mysie
 Antarados:ville de Syrie
-Antaradus:ville de Syrie
+!Antaradus:ville de Syrie
 Antariani:peuple de la Scythie asiatique
 Antecanem:Procyon [astre]
 Antecanis:Procyon (constellation).
@@ -1198,7 +1198,7 @@ Antiochius:d'Antiochus [le phil.]
 Antipatrea:ville d'Illyrie ou de Macédoine
 Antipatria:Antipatria (ville de Macédoine).
 Antiphellos:ville de Lycie
-Antiphellus:ville de Lycie
+!Antiphellus:ville de Lycie
 Antiphilus:nom d'homme / peintre athénien du temps d'Alexandre
 Antipho:le premier des orateurs attiques / nom d'un interprétateur de rêves / histrion / personnage de la comédie latine
 Antiphon:le premier des orateurs attiques / nom d'un interprétateur de rêves / histrion / personnage de la comédie latine
@@ -1319,7 +1319,7 @@ Apros:ville de Thrace
 Aprusa:fleuve de l'Ombrie
 Aprustani:habitants d'Aprustum [Bruttium]
 Apsoros:île de l'Adriatique
-Apsorus:île de l'Adriatique
+!Apsorus:île de l'Adriatique
 Apta:ville de la Narbonnaise (Apt)
 Aptensis:d'Apta Julia
 Apteron:ville de Crète
@@ -1795,7 +1795,7 @@ Assuerus:roi d'Assyrie
 Assur:ind., fils de Sem / les Assyriens, les Babyloniens
 Assurae:Assures (ville de Numidie).
 Assuritanus:d'Assuras
-Assus2:v. Assos.
+!Assus2:v. Assos.
 Assyrani:peuple de la Chersonèse taurique
 Asta:ville de Ligurie / ville de la Bétique
 Astaboras:Astaboras (fleuve d'Ethiopie).
@@ -1804,9 +1804,9 @@ Astacae:peuple scythe
 Astacani:c. Aspagani
 Astaceni:peuple parthe
 Astacenus:golfe d'Astaque [Bithynie]
-Astacos:a town in Bithynia
+!Astacos:a town in Bithynia
 Astacum:Astaque [ville de Bithynie]
-Astacus:Astaque [ville de Bithynie]
+Astacos:Astaque [ville de Bithynie]
 Astacus3:nom du père de Ménalippe
 Astae:peuple de Thrace
 Astansobas:c. Astape
@@ -1857,8 +1857,8 @@ Astypalaeenses:the inhabitants of Astypal&oelig;a
 Astypalaeensis:d'Astypalée
 Astypalaeicus:d'Astypalée
 Astypaleius:d'Astypalée
-Astyra:Astyra (ville de Mysie).
-Astyre:ville de Mysie
+Astyre:Astyra (ville de Mysie).
+!Astyre:ville de Mysie
 Astyres:habitants de l'Asturie
 Asum:a town in Crete
 Atabuli:peuple de l'Éthiopie
@@ -2136,7 +2136,7 @@ Azotice:adv., à la façon des habitants d'Azote
 Azotis:d'Azote
 Azotius:d'Azote
 Azotos:ville de Judée
-Azotus:ville de Judée
+!Azotus:ville de Judée
 Baal:Baal [idole des Assyriens et des Phéniciens] / nom de plusieurs personnages
 Babba:ville de la Mauritanie Tingitane [nommée aussi Julia Campestris]
 Babel:Babylon
@@ -2182,7 +2182,7 @@ Bactri:Bactriens, habitants de Bactres ou de la Bactriane
 Bactria:la Bactriane
 Bactrinus:de la Bactriane
 Bactrius:c. Bactrenus
-Bactros:fleuve de la Bactriane
+!Bactros:fleuve de la Bactriane
 Bactrum:c. Bactra
 Bacuntius:rivière de Pannonie
 Bacurdus:divinité des Germains
@@ -2471,11 +2471,11 @@ Beruenses:habitants de Bérua
 Berytenses:the inhabitants of Berytus
 Berytensis:de Béryte
 Berytius:de Béryte
-Berytos:port de la Phénicie, auj. Beyrouth
+!Berytos:port de la Phénicie, auj. Beyrouth
 Besa:divinité égyptienne
 Besara:ville de Narbonnaise ;
 Besbicos:île de la Propontide
-Besbicus:île de la Propontide
+!Besbicus:île de la Propontide
 Besidiae:ville du Bruttium
 Besilus:fleuve de Lusitanie
 Bessa:ville des Locriens Opontins
@@ -2655,7 +2655,7 @@ Bosforus:fem., the name of several straits
 Bosphoreus:du Bosphore
 Bosphoricus:du Bosphore
 Bosphorius:du Bosphore
-Bosphoros:Bosphore [nom de deux détroits communiquant avec le Pont-Euxin / le Bosphore de Thrace et le Bosphore Cimmérien]
+!Bosphoros:Bosphore [nom de deux détroits communiquant avec le Pont-Euxin / le Bosphore de Thrace et le Bosphore Cimmérien]
 Bosporeus:
 Bosporicus:
 Bosporius:
@@ -3090,7 +3090,7 @@ Callidamates:Callidamatès (nom d'homme).
 Callidemides:nom d'homme
 Callidemus:Callidème [écrivain grec]
 Callides:statuaire grec
-Callidromos:nom du sommet du mont oeta
+!Callidromos:nom du sommet du mont oeta
 Callifae:ville du Samnium
 Callimachius:de Callimaque / sculpteur célèbre / médecin
 Callinicum:ville de Mésopotamie
@@ -3162,7 +3162,7 @@ Camillanus:de Camille [pas le dictateur]
 Camirenses:habitants de Camirus
 Camiros:fils d'Hercule, donna son nom à une ville de l'île de Rhodes / ville de l'île de Rhodes
 Camirus:ville de l'île de Rhodes
-Camirus2:fils d'Hercule, donna son nom à une ville de l'île de Rhodes
+!Camirus2:fils d'Hercule, donna son nom à une ville de l'île de Rhodes
 Camisares:nom d'un satrape perse
 Cammaneni:contrée de la Cappadoce
 Camoena:mauv. orth. de Camena.
@@ -3210,9 +3210,9 @@ Canopeus:de Canope, canopique
 Canopicum:ville de la province d'Afrique
 Canopicus:de Canope, canopique
 Canopitanus:de Canope
-Canopitis:
+Canopitis:de Canope
 Canopius:de Canope, canopique
-Canopos:Canope [ville de la Basse-Égypte] / [poét.] Basse-Égypte, Égypte
+Canopos:étoile qui fait partie de la constellation Argo
 Cantabas:fleuve de l'Inde
 Cantabras:a tributary of the Indus, Tschandrabagha
 Cantabri:les Cantabres [peuple de la Tarraconnaise, près des Pyrénées et sur l'océan]
@@ -3221,8 +3221,8 @@ Cantabrica:herbe inconnue
 Canteci:peuple d'Asie, au-delà du Palus-Méotide
 Canterius:nom d'homme
 Cantharidae:nom d'h.
-Cantharolethros:a place in Thrace near Olynthus
-Cantharolethrus:endroit de la Thrace
+!Cantharolethros:a place in Thrace near Olynthus
+Cantharolethros:endroit de la Thrace près d'Olynthus
 Cantharus2:nom d'un statuaire
 Canthus2:nom d'homme
 Cantia:v. Cantium
@@ -3305,7 +3305,7 @@ Carchedonius2:a Carthaginian
 Carcine:ville de la Sarmatie d'Europe
 Carcinos:le Cancer [signe du zodiaque]
 Carcinus:fleuve du Bruttium
-Carcinus2:le Cancer [signe du zodiaque]
+!Carcinus2:le Cancer [signe du zodiaque]
 Carcuuium:ville de la Tarraconnaise
 Carda:déesse qui présidait aux portes
 Cardaces:les Cardaces (milice perse, vaillante mais pillarde).
@@ -3360,7 +3360,7 @@ Carocotinum:ville de Belgique
 Caroni:pl., peuple de l'Asie
 Carpasium:ville de l'île de Chypre
 Carpathos:île de la mer Égée
-Carpathus:île de la mer Égée
+!Carpathus:île de la mer Égée
 Carpentoracte:ville de la Gaule Narbonnaise
 Carpesii:peuple de la Tarraconnaise
 Carpetani:peuple de l'Ibérie
@@ -3512,16 +3512,16 @@ Caulonea:ville du Bruttium
 Caulonia:Caulon (ville du Bruttium).
 Caunaraui:peuple de l'Arabie
 Cauneae:figues sèches de Caunus
-Caunei:
+Caunei:les habitants de Caunus
 Cauneus:de Caunus
 Caunius:de Caunus
-Caunos:ville de Carie / héros fondateur de Caunus
+!Caunos:ville de Carie / héros fondateur de Caunus
 Caura:ville de la Bétique
 Caurenses:peuple de Lusitanie
 Cauros:ancien nom de l'île d'Andros
 Cayci:les Chauques [peuple germain]
-Caystrius:le cygne
-Caystros:fleuve d'Ionie
+Caystrius:de Caystrus (ales = le cygne)
+!Caystros:fleuve d'Ionie
 Ceangi:
 Cebanus:de Ceba [ville de Ligurie]
 Cebren:dieu d'un fleuve de Troade
@@ -3626,9 +3626,9 @@ Cephisodorus:Céphisodore [peintre grec]
 Cephisodotus:Céphisodote [statuaire grec]
 Cephissias:fem., of Cephisus, the banks of the Attic Cephisus
 Cephissis:fem., of Cephisus
-Cephissius:
-Cephissos:du Céphise
-Cephissus:du Céphise
+Cephissius:Narcisse
+Cephissos:Céphise [fleuve de Béotie]
+!Cephissus:du Céphise
 Cepi:ville d'Asie, près du Bosphore Cimmérien
 Cepia:île près de Chypre
 Cepis:statuaire grec
@@ -3636,7 +3636,7 @@ Cepuros:le Jardinier [titre du 3e livre d'Apicius]
 Ceraine:ville de la Grande Phrygie
 Cerambis:(acc. -in) : Carambis (ville et promontoire de Paphlagonie).
 Cerambus:nom d'un homme qui échappa au déluge
-Ceramicos:
+!Ceramicos:
 Ceramicus:v. Ceramus
 Ceramicus2:le Céramique, place et quartier d'Athènes / (sinus) golfe Céramique [sur la côte de Carie]
 Ceramus:ville de Carie
@@ -3746,8 +3746,8 @@ Chaonis:de Chaonie
 Characene:la Characène [région de la Susiane]
 Characeni:habitants de la Characène
 Charadra:ville d'Épire
-Charadros:rivière de Phocide / ville de Syrie
-Charadrus:rivière de Phocide / ville de Syrie
+Charadros:rivière de Phocide
+Charadrus:ville de Syrie
 Charax:Charax [ville de la Susiane] / forteresse de la Thessalie
 Charbanus:montagne de Médie
 Charbrusa:nom d'une île déserte
@@ -3788,8 +3788,8 @@ Cheraemon:nom d'homme
 Cherrone:ville de la Chersonèse Taurique
 Cherronenses:habitants de la Chersonèse
 Cherronensis:de Chersonèse.
-Cherronesos:absol., the Thracian peninsula at the west of the Hellespont, the Chersonese
-Cherronesus:la Chersonèse de Thrace / (Taurica) promontoire en Argolide, près de Trézène
+!Cherronesos:absol., the Thracian peninsula at the west of the Hellespont, the Chersonese
+Cherronesos:la Chersonèse de Thrace / (Taurica) promontoire en Argolide, près de Trézène
 Chersidamas:nom d'un Troyen
 Chersiphron:architecte qui bâtit le temple d'Éphèse
 Chersonesus:la Chersonèse de Thrace / (Taurica) promontoire en Argolide, près de Trézène
@@ -3843,7 +3843,7 @@ Chosdroena:contrée de la Mésopotamie, nommée aussi Osdroène ou Osroène
 Chrestilla:nom de femme
 Chrestillus:Chrestillus (nom d'homme).
 Chrestologus:v. christologus.
-Chrestos:nom d'homme / le Christ
+!Chrestos:nom d'homme / le Christ
 Christiane:chrétiennement
 Christianismus:christianisme
 Christianitas:la religion chrétienne / la chrétienté / le clergé
@@ -3886,7 +3886,7 @@ Cibarci:peuple de la Tarraconnaise
 Cibdeli:les sources Cibdèles (sources malsaines, situées près de Trézène).
 Cibilitani:peuplade de Lusitanie
 Cibotos:ancien nom d'Apamée de Phrygie
-Cibotus:montagne de Carie (
+Cibotus:montagne de Carie (?)
 Cicereius:nom d'homme
 Ciceromastix:le Fouet de Cicéron [pamphlet de Largius Licinius]
 Ciceronianus:de Cicéron, cicéronien
@@ -4035,7 +4035,7 @@ Cleuum:ville de Bretagne
 Clibanus2:montagne de la Grande Grèce
 Clides:groupe d'îles près de Chypre
 Cliduchos:Porte-clefs [nom d'une statue de Phidias]
-Cliduchus:the name of two statues by Phidias and by Euphranor
+!Cliduchus:the name of two statues by Phidias and by Euphranor
 Climax2:montagne de Médie
 Climberrum:ville d'Aquitaine
 Clinias:Clinias [père d'Alcibiade] / surnom romain
@@ -4088,8 +4088,8 @@ Cnossiacus:v. Gnoss-.
 Cnossias:de Gnosse, de Cnossos, de Crète.
 Cnossius:v. Gnoss-.
 Cnossos:Gnosse, Cnossos (ville de Crète).
-Cnossus:v. Gnoss-.
-Cnosus:v. Gnoss-.
+!Cnossus:v. Gnoss-.
+!Cnosus:v. Gnoss-.
 Coa:cf. nola
 Coa2:étoffes de Cos [en tissu transparent]
 Coarianus:Arien avec, confrère en Arianisme
@@ -4131,7 +4131,7 @@ Coeliolus:le petit Célius (partie du mont Célius).
 Coelispex:Apollon qui regarde le mont Célius.
 Coelium:Célium (ville d'Apulie).
 Coelos:port de Thrace
-Coeranos:Céranus (nom d'homme).
+!Coeranos:Céranus (nom d'homme).
 Coeriensis:de Coeré [ville de Lusitanie]
 Cogamus:fleuve de Lydie
 Cogedus:v. Congedus.
@@ -4306,7 +4306,7 @@ Contrebis:nom d'une divinité de Contrebia
 Contributa:ville de la Bétique
 Contributensis:de Contributa
 Conuenae:peuple d'Aquitaine
-Coos:île de la mer Égée // ville de l'île de Calydna
+!Coos:île de la mer Égée // ville de l'île de Calydna
 Copae:ville de Béotie
 Copais:le lac Copaïs, en Béotie
 Copellius:nom de famille
