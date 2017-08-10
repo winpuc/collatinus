@@ -4320,7 +4320,7 @@ Coppa:ind., signe numérique grec = 90
 Coptis:de Coptos
 Coptites:de Coptos
 Coptiticus:d'Isis [honorée à Coptos]
-Coptos:ville de la Thébaïde d'Égypte
+!Coptos:ville de la Thébaïde d'Égypte
 Coracesium:ville de Cilicie
 Coracinus3:surnom d'homme
 Coralis:nom d'une source en Arabie
@@ -4345,7 +4345,7 @@ Cordylusa:île près de Rhodes
 Cordylussa:île près de Rhodes
 Corese:île de la mer Égée
 Coressos:ville de l'île de Céos
-Coressus:ville de l'île de Céos
+!Coressus:ville de l'île de Céos
 Coretus:golfe du Palus-Méotide
 Corfinius:de Corfinium
 Coria:surnom de Minerve chez les Arcadiens
@@ -4405,8 +4405,8 @@ Corumbus:nom d'homme
 Corus:vent du Nord-Ouest
 Corybas:fils de Cybèle / fils de Proserpine / [fig.] Corybante, fou furieux
 Corycides:nymphes du Parnasse
-Corycos:montagne de Crète / port d'Ionie
-Corycus2:montagne de Crète / port d'Ionie
+Corycos:montagne de Crète / port d'Ionie / ville et montagne de Cilicie
+!Corycus2:montagne de Crète / port d'Ionie
 Corydalla:ville de Lycie
 Corylenus:ville d'Éolie
 Corymbia2:autre nom de Rhodes
@@ -4456,16 +4456,16 @@ Cotton:ville de l'Éolie
 Cottonara:contrée de l'Inde
 Cottonare:port d'Éthiopie
 Cottus:c. Cotys.
-Cotus:chef Éduen
-Cotus2:nom d'un roi Thrace / chef Éduen
+!Cotus:chef Éduen
+Cotus:nom d'un roi Thrace / chef Éduen
 Cotyaeum:ville de Phrygie
 Cotyaion:ville de Phrygie
 Cotyorum:ville du Pont
 Cotyttia:mystères de Cotytto
 Couella:surnom de Junon
 Coum:vin de Cos
-Cragos:Hor. Cragos (mont et promontoire de Lycie).
-Cragus:montagne et promontoire de Lycie
+Cragos:Cragos (mont et promontoire de Lycie).
+!Cragus:montagne et promontoire de Lycie
 Crambusa:île près de Chypre
 Crambussa:Crambuse (île près de la Cilicie).
 Cranaos:ville de Carie
@@ -4550,8 +4550,8 @@ Cromyuacris:the most northern point of Cyprus
 Cronia:autre nom de la Bithynie
 Cronia2:fêtes de Cronos
 Cronius:nom d'homme
-Cronos:Saturne
-Cronus:- 1 - Saturne (le dieu du temps). - 2 - Saturne (planète).
+Cronos:Saturne (le dieu du temps / planète)
+!Cronus:- 1 - Saturne (le dieu du temps). - 2 - Saturne (planète).
 Crotalus:fleuve du Bruttium
 Croto2:héros fondateur de Crotone / nom romain
 Croto3:Crotone [ville de la Grande Grèce]
@@ -4562,7 +4562,7 @@ Crotoniatae:les habitants de Crotone
 Crotonienses:les habitants de Crotone
 Crotopus:Crotope [roi d'Argos]
 Crotos:le Sagittaire [constell.]
-Crotus:le Sagittaire (constellation).
+!Crotus:le Sagittaire (constellation).
 Croucasis:nom donné au Caucase par les Scythes
 Crumerum:ville de la Basse-Pannonie
 Cruni:les Crunes (ville de Mésie).
@@ -4674,7 +4674,7 @@ Cyclopis:île du Cyclope, près de Rhodes
 Cycneis:Hélène [née d'un cygne]
 Cycneius:de Cycnus, de Thessalie
 Cydara:fleuve de l'île Taprobane
-Cydnos:le Cydnus [fleuve de Cilicie, auj. Tersustschai]
+!Cydnos:le Cydnus [fleuve de Cilicie, auj. Tersustschai]
 Cydonea:ancienne ville de Crète / île près de Lesbos, célèbre par ses sources chaudes
 Cydonia:ancienne ville de Crète / île près de Lesbos, célèbre par ses sources chaudes
 Cydoniatae:pl., habitants de Cydon
@@ -4710,7 +4710,7 @@ Cynoscephalae:hauteurs de Thessalie, célèbres par la défaite de Philippe II, 
 Cynossema:promontoire de la Chersonèse de Thrace, où était le tombeau d'Hécube
 Cynosurae:pl., nom d'un promontoire de l'Attique
 Cynosuris:de la petite Ourse
-Cynus:ville de Locride
+!Cynus:ville de Locride
 Cyparia:a town in Messenia, Arkadhia
 Cyparissa:ville de Messénie / golfe de Cyparissa
 Cyparissae:c. Cyparissa.
@@ -4743,7 +4743,7 @@ Cyrnaeus:de Corse
 Cyrne:nom grec de l'île de Corse
 Cyrniacus:de Corse
 Cyrnos:nom grec de l'île de Corse
-Cyrnus:nom grec de l'île de Corse
+!Cyrnus:nom grec de l'île de Corse
 Cyropolis:ville de Médie
 Cyrrestica:Cyrrhestique (province de Syrie).
 Cyrrha:v. Cirrha.
@@ -4767,16 +4767,16 @@ Cythereis:de Cythère, de Vénus ; [qqf] Vénus
 Cytheris:comédienne aimée d'Antoine
 Cytherius:Cythérien, nom donné à Antoine [qui aimait Cythéris]
 Cythnius:de Cythnos
-Cythnos:une des Cyclades
+!Cythnos:une des Cyclades
 Cytis:île voisine de l'Arabie
 Cytisorus:son of Phrixus, and founder of Cytorus
 Cytoriacus:du Cytore
 Cytoros:le Cytore (mont de Paphlagonie)
 Cyzicenus:de Cyzique / pl., habitants de Cyzique
 Cyzicos:Cyzique [ville de Mysie]
-Cyzicos2:a king of the Dolones, after whom the town of Cyzicum was named
+!Cyzicos2:a king of the Dolones, after whom the town of Cyzicum was named
 Cyzicum:Cyzique [ville de Mysie]
-Cyzicus2:Cyzique [ville de Mysie]
+!Cyzicus2:Cyzique [ville de Mysie]
 Daae:Dahes [peuple scythe]
 Dabana:c. Davana.
 Dabelli:peuple d'Éthiopie
@@ -4811,13 +4811,13 @@ Dalmatinus:de Dalmatie
 Dalmatius:de la Dalmatie
 Damanitani:peuple de la Tarraconnaise
 Damaratus:c. Demaratus.
-Damascena:Damascène [partie de la Coelé-Syrie], pays de Damas
+!Damascena:Damascène [partie de la Coelé-Syrie], pays de Damas
 Damascene:Damascène [partie de la Coelé-Syrie], pays de Damas
 Damasceni:habitants de Damas
 Damascenus:de Damas; Subst. m. pl. habitants de Damas
 Damascenus2:surnom de Jupiter, adoré à Damas
-Damascos:Damas (capital de la Syrie).
-Damascus2:Damas [capitale de la Coelé-Syrie]
+Damascos:Damas (capitale de la Coelé-Syrie).
+!Damascus2:Damas [capitale de la Coelé-Syrie]
 Damasichthon:fils de Niobé, tué par Apollon avec ses frères
 Damastes:Damaste [historien grec, né en Syrie]
 Damastus:Damaste [historien grec, né en Syrie]
@@ -4887,7 +4887,7 @@ Datames:nom d'un satrape perse
 Datianus:nom d'homme
 Datis:général des Perses, vaincu par Miltiade à Marathon
 Datos:ville de Thrace
-Datus3:Datus (ville de Thrace).
+!Datus3:Datus (ville de Thrace).
 Dauana:ville de Mésopotamie
 Dauelli:v. Dabelli.
 Dauersi:v. Daorizi.
@@ -4900,7 +4900,7 @@ Daunia:la Daunie (autre nom de l'Apulie).
 Dauniacus:c. Daunius
 Daunias:de la Daunie
 Daunii:Dauniens, habitants de la Daunie
-Dauos:Dave, nom d'esclave
+!Dauos:Dave, nom d'esclave
 Deana:c. Diana
 Debora:nourrice de Rébecca / prophétesse qui gouverna le peuple d'Israël
 Debris:ville de Libye
@@ -5007,8 +5007,8 @@ Dercetis:Dercétis ou Dercéto [divinité des Syriens]
 Dercius:de Dercéto.
 Dercylides:a sculptor
 Dercyllus:gouverneur de l'Attique sous Antipater
-Dercylos:(Lebaigue P. 354) Dercyle (un jeune chasseur arcadien à qui Diane apprit l'art de la chasse).
-Dercylus:jeune homme à qui Diane apprit l'art de la chasse
+Dercylos:Dercyle (un jeune chasseur arcadien à qui Diane apprit l'art de la chasse).
+!Dercylus:jeune homme à qui Diane apprit l'art de la chasse
 Deretini:peuple de Dalmatie
 Derrha:ville de Macédoine, sur le golfe Thermaïque
 Derrhis:promontoire de Macédoine
@@ -5101,8 +5101,8 @@ Dindymarii:Corybantes [qui fréquentent le Dindyme]
 Dindymarius:a priest of Cybele
 Dindymena:nom de Cybèle
 Dindymon:a mountain in Mysia near Pessinus, sacred to Cybele
-Dindymos:le Dindyme [montagne de Phrygie avec temple de Cybèle]
-Dindymus2:le Dindyme [montagne de Phrygie avec temple de Cybèle] // nom d'homme
+Dindymos:le Dindyme [montagne de Phrygie avec temple de Cybèle] // nom d'homme
+!Dindymus2:le Dindyme [montagne de Phrygie avec temple de Cybèle] // nom d'homme
 Dinea:Dinéa (nom d'une femme romaine).
 Diniae:Dinies [ville de Phrygie]
 Dinias:Dinias [peintre célèbre]
@@ -5130,7 +5130,7 @@ Dionysias2:ancien nom de l'île de Naxos
 Dionysius2:de Dionysos, de Bacchus.
 Dionysopolis:ville de Thrace
 Dionysopolitae:habitants de Dionysopolis [en Phrygie]
-Dionysos:Dionysos [nom grec de Bacchus]
+!Dionysos:Dionysos [nom grec de Bacchus]
 Diophanes:rhéteur de Mitylène / agronome / préteur des Achéens
 Diopus:nom d'homme
 Dioryctos:lieu d'Acarnanie
@@ -5199,8 +5199,8 @@ Dolicha:Dolique. - 1 - ville de Thessalie. - 2 - île de la Méditerranée. - 3 
 Doliche:nom de femme // v. de la Pélasgiotide / île de la Méditerranée, nommée ensuite Icaros / ville de la Commagène
 Dolichenus:nom de Jupiter [ainsi appelé de Dolique, ville de Comagène où il était honoré]
 Dolichiste:île de la Méditerranée [près de la Lycie]
-Dolichos:nom d'homme, nom de femme
-Dolichus:nom d'homme, nom de femme
+Dolichos:nom d'homme
+!Dolichus:nom d'homme, nom de femme
 Doliola:quartier de Rome
 Doliones:nom d'un peuple pélasgique
 Dolionis:ancien nom de Cyzique
@@ -5399,7 +5399,7 @@ Ebusia:[île]
 Ebusitanus:d'Ébuse
 Ebusos:Ébuse [île près de la Tarraconnaise, auj. Eivissa (catalan) ou Ibiza (cast.)]
 Ebusus:nom d'homme
-Ebusus2:Ébuse [île près de la Tarraconnaise, auj. Eivissa (catalan) ou Ibiza (cast.)]
+!Ebusus2:Ébuse [île près de la Tarraconnaise, auj. Eivissa (catalan) ou Ibiza (cast.)]
 Ebutius:nom d'homme
 Ecbatana2:Ecbatane [capitale de la Médie]
 Ecbatanae:the principal city of Media, Hamadan
@@ -5418,7 +5418,7 @@ Echidneus:of Echidna (a monster, mother of Cerberus)
 Echinades:Échinades [nymphes changées en îles par Neptune] / îles de la mer Ionienne
 Echinis:Echinis (île de la mer Egée).
 Echinos:ville de la Phthiotide / ville de l'Acarnanie
-Echinus:ville de la Phthiotide / ville de l'Acarnanie
+!Echinus:ville de la Phthiotide / ville de l'Acarnanie
 Echinussa:île de la mer Égée, la même que Cimolus
 Echionides:fils d'Échion [Penthée]
 Echymnia:ville de Thrace
@@ -5521,7 +5521,7 @@ Eleutherocilices:Éleuthérociliciens [petite peuplade de Cilicie, qui avait tou
 Eleutheropolis:ville de Palestine
 Eleutheropolitanus:d'Éleutheropolis
 Eleutheros:fleuve de Phénicie
-Eleutherus:fleuve de Phénicie
+!Eleutherus:fleuve de Phénicie
 Elia:c. Elias 2
 Eliacin:ind., Éliacin [nom d'homme]
 Elias2:Élie [prophète des Hébreux]
@@ -5648,7 +5648,7 @@ Epi:nom de Ptolémaïs, dans la Troglodytique
 Epicadus:nom d'homme
 Epici:the epic poets
 Epicleros:titre d'une pièce de Ménandre, imitée par Turpilius
-Epiclerus:titre d'une pièce de Ménandre, imitée par Turpilius
+!Epiclerus:titre d'une pièce de Ménandre, imitée par Turpilius
 Epicnemidii:Épicnémidiens [surnom des Locriens voisins du mont Cnémis]
 Epicrane:fontaine de Béotie
 Epictetus:Épictète [philosophe stoïcien ; fin du 1er s. ap. J.-C.]
@@ -5656,7 +5656,7 @@ Epicurius:d'Épicure, Épicurien
 Epicydes:nom d'homme
 Epidamniensis:d'Épidamne
 Epidamnius:d'Épidamne
-Epidamnos:Epidamne (ville d'Epire, appelée depuis Dyrrachium).
+!Epidamnos:Epidamne (ville d'Epire, appelée depuis Dyrrachium).
 Epidaphnes:village voisin d'Antioche, en Syrie [situé près d'un lieu nommé Daphné]
 Epidaureus:d'Épidaure
 Epidauricus:d'Épidaure
@@ -5664,7 +5664,7 @@ Epidaurii:the inhabitants of Epidaurus
 Epidauritani:habitants d'Épidaure
 Epidaurius:d'Épidaure
 Epidaurius2:l'Épidaurien Esculape
-Epidauros:Épidaure [ville de l'Argolide, où Esculape était honoré]
+!Epidauros:Épidaure [ville de l'Argolide, où Esculape était honoré]
 Epidaurus2:d'Épidaure
 Epidicazomene:the title of a Greek comedy of Apollodorus, imitated by Terence in his Phormio
 Epidicazomenos:nom d'une pièce d'Apollodore
@@ -5720,7 +5720,7 @@ Erecthidae:the Athenians
 Erembi:peuple d'Afrique [les Troglodytes]
 Eresos:ville de Lesbos
 Eressos:ville de Lesbos
-Eressus:ville de Lesbos
+!Eressus:ville de Lesbos
 Eretinus:d'Érétum
 Eretria:[ville de l'Eubée, patrie du philosophe Ménédème]
 Eretriaci:les disciples de Ménédème
@@ -5734,7 +5734,7 @@ Ergetium:ville de Sicile
 Ergetum:Ergétum (ville de Sicile).
 Ergeus:Ergée [père de Céléno]
 Erginos:fleuve de Thrace / un des Argonautes
-Erginus:fleuve de Thrace / un des Argonautes
+!Erginus:fleuve de Thrace / un des Argonautes
 Erichthonius:d'Athènes / de Troie
 Ericinium:ville de Thessalie
 Ericusa:une des îles Éoliennes / île près de Corcyre
@@ -5772,7 +5772,7 @@ Erymandus:fleuve d'Arachosie
 Erymantheus:de l'Érymanthe
 Erymanthias:de l'Érymanthe
 Erymanthis:de l'Érymanthe
-Erymanthos:Érymanthe [montagne d'Arcadie, où Hercule tua un sanglier monstrueux] / fleuve de Perse / rivière d'Élide, qui se jette dans l'Alphée
+!Erymanthos:Érymanthe [montagne d'Arcadie, où Hercule tua un sanglier monstrueux] / fleuve de Perse / rivière d'Élide, qui se jette dans l'Alphée
 Erymas:guerrier troyen
 Erymnae:ville de Magnésie
 Erysichthon:roi de Thessalie
@@ -5782,8 +5782,8 @@ Erythia:île voisine de l'Hispanie [où habitait Géryon]
 Erythius:d'Erythie, érythéen.
 Erythraea:le territoire d'Érythres [Béotie]
 Erythraei:les habitants d'Érythres
-Erythras:v. Erythrae 4.
-Erythros:v. Erythrae 4.
+Erythras:Erythras (un roi de l'Asie méridionnale qui donna son nom à la mer Erythrée)
+!Erythros:v. Erythrae 4.
 Erytus:nom de guerrier
 Esaianus:of Isaiah
 Esaias:v. Isaias.
@@ -5873,9 +5873,9 @@ Eueninus2:
 Euenor:nom d'homme
 Euenor2:Evénor (nom d'homme).
 Euenos:Événus [roi d'Étolie, qui donna son nom au fleuve Lycormas]
-Euenos2:v. Euenos.
-Euenus:Événus [roi d'Étolie, qui donna son nom au fleuve Lycormas]
-Euenus2:v. Euenos.
+!Euenos2:v. Euenos.
+!Euenus:Événus [roi d'Étolie, qui donna son nom au fleuve Lycormas]
+!Euenus2:v. Euenos.
 Euergetes:Évergète [surnom commun à plusieurs rois de Macédoine, d'Égypte, etc.]
 Euerrae:
 Eugamius:nom d'homme
@@ -6436,8 +6436,8 @@ Gepidicus:Gépidique
 Ger:fleuve de Maurétanie
 Geraesticus:port d'Ionie
 Geraestos:ville et promontoire de l'Eubée
-Geraestum:c. Geraestus.
-Geraestus:ville et promontoire de l'Eubée
+!Geraestum:c. Geraestus.
+!Geraestus:ville et promontoire de l'Eubée
 Geranea:ville de la Mégaride
 Gerania:ville de Laconie / ville de Mésie, habitée par les Pygmées
 Geraseni:habitants de Gérasa [ville de Palestine]
@@ -6445,7 +6445,7 @@ Gereonium:
 Gergesaei:Gergéséens [peuple de la terre de Chanaan] / au sing.
 Gergesei:Gergéséens [peuple de la terre de Chanaan] / au sing.
 Gergithos:ville de Mysie ou d'Éolie
-Gergithus:ville de Mysie ou d'Éolie
+!Gergithus:ville de Mysie ou d'Éolie
 Germa:ville de Mysie
 Germalensis:
 Germalus:colline de Rome attenant au mont Palatin
@@ -6529,8 +6529,8 @@ Gnesiochartae:peuple de Mésopotamie
 Gneus:prénom romain
 Gnidii:the inhabitants of Gnidus, Gnidians
 Gnidius:de Gnide
-Gnidos:c. Cnidus.
-Gnidus:Gnide [ville de Carie où Vénus avait un temple]
+!Gnidos:c. Cnidus.
+Gnidos:Gnide [ville de Carie où Vénus avait un temple]
 Gnipho:M. Antonius Gniphon [grammairien et rhéteur, contemporain de Cicéron]
 Gnissi:peuple voisin du Palus-Maeotide
 Gnosias:de Gnosse, de Crète
@@ -6543,14 +6543,14 @@ Gnossis:de Gnosse, de Crète
 Gnossis2:Ariane
 Gnossius:de Gnosse ; de Crète
 Gnossos:Gnosse [ville de Crète, ancienne résidence de Minos]
-Gnossus:Gnosse [ville de Crète, ancienne résidence de Minos]
+!Gnossus:Gnosse [ville de Crète, ancienne résidence de Minos]
 Gnostici:gnostiques [secte d'illuminés]
-Gnosus:Gnosse [ville de Crète, ancienne résidence de Minos]
+!Gnosus:Gnosse [ville de Crète, ancienne résidence de Minos]
 Gobannium:ville de Bretagne
 Gogaraei:peuple d'Asie, au-delà du Palus Méotide
-Golgotha:ind., lieu près de Jérusalem où J.-C. fut crucifié
+Golgotha:lieu près de Jérusalem où J.-C. fut crucifié
 Golias:Goliath [géant philistin tué par David]
-Goliath:ind., Goliath [géant philistin tué par David]
+Goliath:Goliath [géant philistin tué par David]
 Gomorra:Gomorrhe [ville près du Jourdain, consumée par le feu du ciel]
 Gomorrha:Gomorrhe [ville près du Jourdain, consumée par le feu du ciel]
 Gomorrhaeus:de Gomorrhe
@@ -6686,7 +6686,7 @@ Haeduicus:pertaining to the &AElig;dui
 Haegra:ville d'Arabie
 Haemimontani:Hémimontins
 Haemimontus:partie de la Thrace près du mont Hémus
-Haemos:Hémus.
+!Haemos:Hémus.
 Hagelades:nom d'un statuaire de Rhodes
 Hagesander:nom d'un statuaire de Rhodes
 Hagesias:nom d'un statuaire
@@ -6705,8 +6705,8 @@ Halicanum:ville de la Haute Pannonie
 Halicarnassenses:habitants d'Halicarnasse
 Halicarnasseus:d'Halicarnasse
 Halicarnassii:habitants d'Halicarnasse
-Halicarnassos:Halicarnasse [capitale de la Carie]
-Halicarnassusos:a city of great antiquity in Caria, the birthplace of the historians Herodotus and Dionysius, also celebrated for the mausolēum erected there, Bodrun, Boudroum
+!Halicarnassos:Halicarnasse [capitale de la Carie]
+!Halicarnassusos:a city of great antiquity in Caria, the birthplace of the historians Herodotus and Dionysius, also celebrated for the mausolēum erected there, Bodrun, Boudroum
 Halicyae:ville de Sicile [auj. Salemi]
 Halieutica:pl. n., halieutiques [traité de pêche, titre d'un ouvrage d'Ovide]
 Halisarna:ville d'Étolie
@@ -6715,12 +6715,12 @@ Haliserne:ville de la Troade
 Haliserni:peuple sur les bords du Palus-Méotide
 Halizones:Halizons [peuple de la Bithynie ou du Pont]
 Halmydessos:Halmydesse [ville de Thrace]
-Halmydessus:Halmydesse [ville de Thrace]
+!Halmydessus:Halmydesse [ville de Thrace]
 Halmyris:lac de la Mésie Inférieure
 Halone:île de la mer Égée, en face d'Éphèse / autre dans la Propontide
 Halonesonnesus:île de la mer Égée, près de la Macédoine
 Halonesos:île de la mer Égée, près de la Macédoine
-Halonesus:île de la mer Égée, près de la Macédoine
+!Halonesus:île de la mer Égée, près de la Macédoine
 Halonnesi:île du golfe Arabique
 Halos:ville de Thessalie
 Halys:l'Halys [grand fleuve de l'Asie Mineure] / nom d'homme
@@ -6808,7 +6808,7 @@ Heliopolitae:habitants d'Héliopolis
 Heliopolitani:habitants d'Héliopolis
 Heliopolitanus:d'Héliopolis
 Heliopolites:le nome Héliopolite [en Égypte]
-Helios:le Soleil
+!Helios:le Soleil
 Hellada:c. Hellas
 Helladicus:Grec, de Grèce
 Hellen:fils de Deucalion, roi de Thessalie
@@ -6841,11 +6841,11 @@ Hephaestion2:Héphestion [ami et confident d'Alexandre]
 Hephaestium:ville de Lycie
 Heptagoniae:lieudit près de Sparte
 Heptaporos:rivière de la Troade
-Heptaporus:rivière de la Troade
+!Heptaporus:rivière de la Troade
 Heptapylos:seven-gated
 Heptastadium:digue de sept stades
-Heptateuchos:the first seven books of the Old Testament
-Heptateuchus:Heptateuque [les cinq livres de Moïse plus les livres de Josué et des Juges]
+!Heptateuchos:the first seven books of the Old Testament
+Heptateuchos:Heptateuque [les cinq livres de Moïse plus les livres de Josué et des Juges]
 Hequaesi:peuple de la Tarraconnaise
 Her:c. er.
 Hera2:la déesse Héra [Junon chez les Romains] / v. de Sicile
@@ -6864,7 +6864,7 @@ Heraeum:ville de l'île de Leucade
 Heraeus:
 Herbani:habitants d'Herbanum
 Herbanum:ville d'Étrurie
-Herbesos:Erbesse [ville de Sicile]
+!Herbesos:Erbesse [ville de Sicile]
 Herbessus:Herbessus (ville de Sicile).
 Herbulenses:habitants d'Herbula [ville de Sicile]
 Herceus2:Hercéen, qui veille aux clôtures [surnom de Jupiter, protecteur d'une maison]
@@ -7011,7 +7011,7 @@ Hipparinus:e fils de Denys l'Ancien
 Hipparis:fleuve de Sicile
 Hippasides:fils d'Hippase [Socus, Naubolus]
 Hippasos:Hippase. - 1 - un des centaures. - 2 - fils d'Eurytus, un de ceux qui firent la chasse au sanglier de Calydon.
-Hippasus:Hippase [un des centaures] / fils d'Eurytus, un de ceux qui firent la chasse au sanglier de Calydon
+!Hippasus:Hippase [un des centaures] / fils d'Eurytus, un de ceux qui firent la chasse au sanglier de Calydon
 Hippea:mère de l'Argonaute Polyphème
 Hippi:ville de l'Ionie
 Hippia:nom de femme
@@ -7118,7 +7118,7 @@ Hunni:les Huns [peuple de la Sarmatie Asiatique]
 Hunniscus:des Huns
 Hyacinthia:Hyacinthies [fêtes à Lacédémone en l'honneur d'Hyacinthe]
 Hyacinthos:Hyacinthe [jeune Lacédémonien métamorphosé en fleur par Apollon]
-Hyacinthus:Hyacinthe [jeune Lacédémonien métamorphosé en fleur par Apollon]
+!Hyacinthus:Hyacinthe [jeune Lacédémonien métamorphosé en fleur par Apollon]
 Hyades:] / sing. collectif Hyas
 Hyagnis:père de Marsyas
 Hyale:une des nymphes de Diane
@@ -7229,8 +7229,8 @@ Iadertini:habitants de Iader
 Iahel:ind., femme qui tua le général chananéen Sisara
 Ialmenus:fils de Lycus, un prétendant d'Hélène
 Ialysius:d'Ialyse
-Ialysos:A son of the fourth Sol
-Ialysus:héros protecteur de Rhodes ; l'Ialyse [tableau de Protogène] / ville de l'île de Rhodes
+!Ialysos:A son of the fourth Sol
+Ialysos:héros protecteur de Rhodes ; l'Ialyse [tableau de Protogène] / ville de l'île de Rhodes
 Ialysus3:Yalyse (ville de l'île de Rhodes).
 Iambe:île de la mer Rouge
 Iamblichus:roi d'Émèse
@@ -7295,10 +7295,10 @@ Icadium:nom de femme
 Icadius:nom d'un fils d'Apollon / c. Icadion
 Icariotis:fille d'Icarius [Pénélope]
 Icaris:fille d'Icarius [Pénélope]
-Icaros:c. Icaria
+Icaros:île de la mer Égée
 Icarusa:fleuve d'Asie
 Icatalae:peuple du Caucase
-Icelos:nom de Morphée
+!Icelos:nom de Morphée
 Ichanenses:les habitants d'Ichana (ville de Sicile).
 Ichara:île du golfe Arabique
 Ichnae:ville de Macédoine
@@ -7317,7 +7317,7 @@ Icositani:habitants d'Icosium
 Icosium:ville de la Mauritanie Césarienne (Alger)
 Ictis2:île près de la Bretagne
 Iculisma:ville de l'Aquitaine [auj. Angoulême]
-Icus:île de la mer Égée
+!Icus:île de la mer Égée
 Idaea2:ville de Phénicie
 Idale:ville de Mysie
 Idalie:surnom de Vénus
@@ -7381,7 +7381,7 @@ Ilipensis:d'Ilipa
 Ilipula:ville de Bétique
 Ilipulenses:habitants d'Ilipula
 Ilissos:rivière de l'île d'Imbros
-Ilissus:rivière de l'île d'Imbros
+!Ilissus:rivière de l'île d'Imbros
 Iliturgi:ville de Bétique
 Iliturgis:(Lebaigue P. 586 et P. 587) Iliturgi (ville de Bétique).
 Illetia:île près d'Éphèse
@@ -7423,7 +7423,7 @@ Imbreus:nom d'un centaure
 Imbricitor:qui cause la pluie
 Imbrinium:lieu du Samnium
 Imbrius:d'Imbros
-Imbros:Imbros, île près de la Thrace
+!Imbros:Imbros, île près de la Thrace
 Imenei:peuple de la Comagène
 Imityi:peuple riverain de l'Imytis
 Imperiosus2:a surname of the dictator L. Manlius Torquatus and his son, the consul T. Manlius Torquatus, on account of their severity
@@ -7776,7 +7776,7 @@ Laelaps:nom d'un chien
 Laepia:ville de Bétique
 Laeros:fleuve de la Tarraconnaise
 Laerta:Laërte [père d'Ulysse]
-Laerus:fleuve de la Tarraconnaise
+!Laerus:fleuve de la Tarraconnaise
 Laestrygon:Lestrygon.
 Laetoria:nom de femme
 Laetorius:de Létorius [tribun de la plèbe]
@@ -7850,7 +7850,7 @@ Laniuium:ville du Latium
 Lanos:fleuve du pays des Sères
 Lanuenses:peuplade d'Italie
 Lanumuium:v. Lanuvium.
-Lanus:fleuve du pays des Sères
+!Lanus:fleuve du pays des Sères
 Lanuuianus:c. Lanuvinus
 Lanuuinum:terre (maison de campagne) de Lanuvium
 Laodicensis:de Laodicée
@@ -7913,7 +7913,7 @@ Latinum:le latin, la langue latine.
 Latmiadeus:c. Latmius
 Latmiateus:c. Latmius
 Latmos:le mont Latmus [en Carie, sur lequel Diane venait voir le berger Endymion endormi]
-Latmus:le mont Latmus [en Carie, sur lequel Diane venait voir le berger Endymion endormi]
+!Latmus:le mont Latmus [en Carie, sur lequel Diane venait voir le berger Endymion endormi]
 Latobius:nom du dieu de la longévité
 Latoides:fils de Latone [Apollon]
 Latois:de Latone
@@ -7973,14 +7973,14 @@ Leandricus:de Léandre
 Leandrius:de Léandre
 Lebadea:Lébadée ou Lébadie, [v. de Béotie, auj. Livadia]
 Lebadia:Lébadée ou Lébadie, [v. de Béotie, auj. Livadia]
-Lebedos:ville d'Ionie
+!Lebedos:ville d'Ionie
 Lebena:ville de Crète
 Lebinthus:Lebinthe [une des Sporades]
 Leboriae:a district in Campania, lying around Capua and Nola, Terra di Lavoro
 Leborini:c. Laborini.
 Lebuni:peuple de la Tarraconnaise
 Lebynthos:Lébinthe (une des Sporades).
-Lebynthus:Lébinthe (une des Sporades).
+!Lebynthus:Lébinthe (une des Sporades).
 Lecca:un des complices de Catilina
 Lechaeae:the port of Corinth, on the Corinthian Gulf
 Lechaeus:de Léchée
@@ -8042,7 +8042,7 @@ Leponticus:des Lépontiens
 Lepreon:c. Leprion / ville d'Arcadie
 Lepreos:a sea-coast town in Elis, south of Pylos;, Strobitza
 Lepreum:- 1 - c. Leprion. - 2 - ville d'Arcadie. - gr. &Lambda;έ&pi;&rho;&epsilon;&omicron;&nu;.
-Lepreus:a sea-coast town in Elis, south of Pylos;, Strobitza
+!Lepreus:a sea-coast town in Elis, south of Pylos;, Strobitza
 Lepria:île de la mer Égée, près de la Carie
 Leprion:ville maritime d'Achaïe
 Leprium:- 1 - c. Leprion. - 2 - ville d'Arcadie. - gr. &Lambda;έ&pi;&rho;&epsilon;&omicron;&nu;.
@@ -8132,7 +8132,7 @@ Liberius:nom d'homme / le pape Libère
 Libethra:fontaine de Thessalie ou de Thrace, consacrée aux Muses
 Libethros:fontaine de Thessalie ou de Thrace, consacrée aux Muses
 Libethrum:ville de Thessalie
-Libethrus:fontaine de Thessalie ou de Thrace, consacrée aux Muses
+!Libethrus:fontaine de Thessalie ou de Thrace, consacrée aux Muses
 Libici:a people of
 Libienses:ville de Tarraconnaise
 Libisosa:ville de la Tarraconnaise
@@ -8206,10 +8206,10 @@ Limyra2:Limyre [ville de Lycie, sur le fleuve Limyra]
 Limyre:Limyre [ville de Lycie, sur le fleuve Limyra]
 Lindius:de Linde
 Lindos:Linde [ville de l'île de Rhodes]
-Lindus:Linde [ville de l'île de Rhodes]
+!Lindus:Linde [ville de l'île de Rhodes]
 Lingonicus:des Lingons
 Lingos:montagne d'Épire
-Lingus:montagne d'Épire
+!Lingus:montagne d'Épire
 Linternum:Literne [port de Campanie]
 Lintuma:ville située sur le Nil
 Liparae2:Lipara [une des îles Éoliennes, auj. Lipari]
@@ -8385,7 +8385,7 @@ Lycortas:chef de la ligue achéenne après la mort de Philopémen
 Lycos2:fleuve de Phénicie // roi de Béotie, époux d'Antiope / fils de Pandion / nom d'un Centaure / guerrier troyen / nom d'homme / historien de Rhégium / nom de plusieurs fleuves d'Asie / fleuve du Pont
 Lycotherses:roi d'Illyrie, époux d'Agavé
 Lyctos:ville de Crète
-Lyctus:ville de Crète
+!Lyctus:ville de Crète
 Lycurgei:disciples of Lycurgus, inflexibly severe
 Lycurgeus:[fig.] sévère, inflexible
 Lydda:ville de Palestine
@@ -8393,7 +8393,7 @@ Lydion:
 Lygdamum:ville de Mysie
 Lygii:peuple de Germanie
 Lygos2:ancien nom de Byzance
-Lygus:ancien nom de Byzance
+!Lygus:ancien nom de Byzance
 Lyncaeste:one of Act&aelig;on's hounds
 Lyncestis:l'eau du Lynceste
 Lyncestius:le Lynceste, fleuve de la Lyncestide
@@ -8411,7 +8411,7 @@ Lyrnessiades:femmes de Lyrnesse
 Lyrnessis:de Lyrnesse [Briséis]
 Lyrnessius:de Lyrnesse
 Lyrnessos:ville de la Troade, patrie de Briséis aimée d'Achille
-Lyrnessus:ville de la Troade, patrie de Briséis aimée d'Achille
+!Lyrnessus:ville de la Troade, patrie de Briséis aimée d'Achille
 Lyrnesus:a town in Troas, the birthplace of Briseis
 Lysanitae:peuple d'Arabie
 Lysiacus:de Lysias
@@ -8495,7 +8495,7 @@ Madianitis:Madianite
 Maduateni:peuple de Thrace
 Madum:ville d'Éthiopie
 Madytos:ville de la Chersonèse de Thrace
-Madytus:ville de la Chersonèse de Thrace
+!Madytus:ville de la Chersonèse de Thrace
 Maeandratus:sinueux, tortueux
 Maeandria:ville d'Épire
 Maeandricus:sinueux
@@ -8591,8 +8591,8 @@ Malianda:ancien nom de la Bithynie
 Malichu:indécl., île près de l'Inde
 Maliensis:du golfe Maliaque
 Malisianus:nom d'homme
-Malloea:ville de Thessalie / Erreur G2000
-Mallos:ville de Cilicie / ville d'Éthiopie / m., montagne chez les Malli
+Malloea:ville de Thessalie
+!Mallos:ville de Cilicie / ville d'Éthiopie / m., montagne chez les Malli
 Mallotes:de Mallos
 Malotes:an inhabitant of Mallus
 Malthace:île près de Corcyre
@@ -8726,9 +8726,9 @@ Maronillus:nom d'homme et de femme
 Maronites:de Maronée, en Thrace
 Marotiani:peuple d'Asie
 Marpessius:de Marpesse, et [poét.] de Paros, de marbre / bourg de Troade
-Marpessos:
+Marpessos:mont de l'île de Paros
 Marpessus:a town in the Troas, on Mount Ida, home of the Erythrean Sibyl
-Marpessus2:mont de l'île de Paros
+!Marpessus2:mont de l'île de Paros
 Marpesus:a town in the Troas, on Mount Ida, home of the Erythrean Sibyl
 Marpesus2:mont de l'île de Paros
 Marrubium2:ville des Marses, près du lac Fucin
@@ -8974,7 +8974,7 @@ Meleagreus:de Méléagre
 Meleagrides:soeurs de Méléagre
 Meleagrius:de Méléagre
 Meleagros:Méléagre [qui tua le sanglier suscité par Diane pour ravager Calydon]
-Meleagrus:Méléagre [qui tua le sanglier suscité par Diane pour ravager Calydon]
+!Meleagrus:Méléagre [qui tua le sanglier suscité par Diane pour ravager Calydon]
 Meles:fleuve d'Ionie sur les bords duquel Homère, dit-on, naquit
 Meles3:v. du Samnium
 Melessi:a people in
@@ -9099,7 +9099,7 @@ Merisus:montagne de Thrace
 Meritus2:v. Merisus.
 Merme:ville d'Arabie
 Mermeros:nom d'un Centaure
-Mermerus:nom d'un Centaure
+!Mermerus:nom d'un Centaure
 Mermessius:de Mermesse
 Mermessus:ville de Phrygie
 Mero:surnom donné à Tibère (Ti. Claudius Nero) [parce qu'il s'enivrait]
@@ -9383,15 +9383,15 @@ Molae:the daughters of Mars, the protectresses of mills
 Molindae:peuple de l'Inde
 Molliculus2:Molliculus (surnom).
 Molo2:Molon [de Rhodes, célèbre professeur de rhétorique]
-Moloch:ind., Moloch
+Moloch:Moloch
 Molon:Molon [de Rhodes, célèbre professeur de rhétorique]
 Molorchaeus:of or belonging to Molorchus
-Molos:the father of
+Molos:père de Mérion
 Molossi:Molosses, habitants de la Molossie
 Molossia:Molossie [partie de l'Épire]
 Molossis:Molossie [partie de l'Épire]
 Molpeus:Molpée [guerrier tué par Persée]
-Molus:père de Mérion
+!Molus:père de Mérion
 Molycria:ville d'Étolie
 Molyeria:ville d'Etolie.
 Monadi:peuple d'Apulie
@@ -9421,7 +9421,7 @@ Mopsucrenae:ville de Cappadoce
 Mopsuestia:ville de Cilicie, la même que Mopsos
 Mopsuhestia:ville de Cilicie, la même que Mopsos
 Mopsus:devin fameux et roi des Argiens / devin de Thessalie, un des Argonautes / nom d'un berger
-Mopsus2:ville de Cilicie
+!Mopsus2:ville de Cilicie
 Morbonia:pays de la maladie
 Morbouia:pays de la maladie
 Morges:ancien nom d'Éphèse
@@ -9555,7 +9555,7 @@ Mycalensis:of or belonging to Mycale
 Mycalesius:de Mycalesse
 Mycalesos:ville de Béotie / m., le mont Mycalesse
 Mycalessos:ville de Béotie / m., le mont Mycalesse
-Mycalessus:ville de Béotie / m., le mont Mycalesse
+!Mycalessus:ville de Béotie / m., le mont Mycalesse
 Mycene:Mycènes, ville d'Argolide, résidence d'Agamemnon
 Mycenenses:habitants de Mycènes
 Mycenensis:of or belonging to Mycen&aelig;, Mycen&aelig;an
@@ -9571,7 +9571,7 @@ Mygdones:Mygdoniens [peuple de Macédoine]
 Mygdonia:la Mygdonie [province de Macédoine] / province de Phrygie / province de Mésopotamie / ancien nom de la Bithynie
 Mygdonis:de Mygdonie
 Myiagros:dieu que l'on invoquait pour être débarrassé des mouches
-Myiagrus:dieu que l'on invoquait pour être débarrassé des mouches
+!Myiagrus:dieu que l'on invoquait pour être débarrassé des mouches
 Myiodes:dieu, le même que Myiagrus
 Myla:fleuve de Sicile
 Mylaeus:de Myles [en Sicile]
@@ -9586,14 +9586,14 @@ Mylassa:Mylasa (ville de Carie, auj. Melassa).
 Mylassensis:of or belonging to Mylasa, Mylasian
 Myle:ville de Sicile // ville de Thessalie / nom de deux îles voisines de la Crète
 Myndos:Mynde [ville de Carie]
-Myndus:Mynde [ville de Carie]
+!Myndus:Mynde [ville de Carie]
 Mynthes:nom d'un astronome
 Myonnesos:promontoire et ville d'Ionie / île voisine d'Éphèse
-Myonnesus:promontoire et ville d'Ionie / île voisine d'Éphèse
+!Myonnesus:promontoire et ville d'Ionie / île voisine d'Éphèse
 Myoshormos:port du golfe Arabique
 Myra:ville de Lycie
 Myriandros:ville de Séleucide
-Myriandrus:ville de Séleucide
+!Myriandrus:ville de Séleucide
 Myrice2:a nymph, from whom Hannibal's wife Imilce was said to be descended
 Myrinus:nom d'un gladiateur
 Myrlea:autre nom d'Apamée en Bithynie
@@ -9607,8 +9607,8 @@ Myrtea:v. Murcia.
 Myrtilis:ville de Lusitanie
 Myrtos:île voisine de l'Eubée
 Mysanda:ville de Cilicie
-Myscelos:the founder of the city of Croton, in Italy
-Myscelus:fils d'Alémon
+!Myscelos:the founder of the city of Croton, in Italy
+Myscelos:fils d'Alémon
 Mysicus:Mysian
 Mysius:de Mysie
 Mysomacedones:Mysomacédoniens [peuple de la Grande Mysie, originaire de Macédoine]
@@ -9699,7 +9699,7 @@ Nasotiani:v. Marotiani.
 Naspercenites:de Naspercène [ville du Pont]
 Nassica:épithète de l'une des Calagurris [Calahorra]
 Nastes:chef des Cariens au siège de Troie
-Nasus2:quartier de Syracuse / ville d'Acarnanie
+!Nasus2:quartier de Syracuse / ville d'Acarnanie
 Natabudes:peuple de Numidie
 Nathan:Nathan (prophète, contemporain de David).
 Natiso:fleuve de Vénétie
@@ -9718,10 +9718,10 @@ Nauius2:Attius ou Accius Navius, célèbre augure
 Naulocha:ville de Sicile
 Naulochos:île voisine de la Crète
 Naulochum:ville de Sicile
-Naulochus:île voisine de la Crète
+!Naulochus:île voisine de la Crète
 Naumachaei:peuple d'Arabie
 Nauos:ville d'Éthiopie
-Naupactos:Naupacte [ville d'Étolie à l'entrée du golfe de Corinthe]
+!Naupactos:Naupacte [ville d'Étolie à l'entrée du golfe de Corinthe]
 Naupactum:Naupacte (= Lépante, ville d'Etolie).
 Naupidame:fille d'Amphidamas, mère d'Augias
 Nauportus2:fleuve de la Haute Pannonie
@@ -9730,7 +9730,7 @@ Nausiphous:fils d'Ulysse et de Circé
 Nausistrata:name of a woman
 Naustalo:ville de la Narbonnaise, vers l'embouchure du Rhône
 Naustathmos:port d'Ionie, près de Phocée
-Naustathmus:port d'Ionie, près de Phocée
+!Naustathmus:port d'Ionie, près de Phocée
 Nautii:the Nautians, a Roman family, descended from Nautes the Trojan, who brought the image of Minerva to Italy. The sacrifices to Minerva remained in this family, and the goddess herself was called
 Naxus:Naxos [île de la mer Égée, la plus grande des Cyclades] / ville située dans l'île / ville de Sicile
 Nazanzus:Nazianze [ville de Cappadoce]
@@ -9862,7 +9862,7 @@ Neripi:peuple de l'Asie, au-delà du Palus Méotide
 Neris:montagne d'Argolide
 Neritini:v. Neretini.
 Neritis:v. Neretis.
-Neritos:Nérite [île voisine d'Ithaque]
+!Neritos:Nérite [île voisine d'Ithaque]
 Neritos2:montagne d'Ithaque
 Neronia:jeux institués par Néron en son propre honneur et célébrés tous les cinq ans [cf.
 Neronianus2:a Roman surname
@@ -9894,7 +9894,7 @@ Nestoriani:Nestoriens, sectateurs de Nestorius
 Nestorides:fils de Nestor [Antiloque]
 Nestorius:e siècle
 Nestos:fleuve de Thrace / f., ville d'Arabie
-Nestus:fleuve de Thrace / f., ville d'Arabie
+!Nestus:fleuve de Thrace / f., ville d'Arabie
 Nesua:fleuve de la Tarraconnaise
 Netinenses:habitants de Nétum
 Neuerita:a sea-goddess
@@ -9983,7 +9983,7 @@ Nisicathae:peuple d'Éthiopie
 Nisitae:peuple d'Éthiopie
 Nisuetae:peuple de l'Afrique
 Nisyros:île voisine de la Carie / ville de l'île de Calydne
-Nisyrus:île voisine de la Carie / ville de l'île de Calydne
+!Nisyrus:île voisine de la Carie / ville de l'île de Calydne
 Nitibrum:ville d'Afrique
 Nitiobriges:peuple de l'Aquitaine, près de la Garonne
 Nitria:province de l'Égypte, au-dessous de Memphis
@@ -10021,7 +10021,7 @@ Nomentani:les habitants de Nomentum
 Nomio:surnom d'Apollon
 Nomion:surnom d'Apollon
 Nomios:le Pasteur [surnom d'Apollon] / fils d'Apollon et de Cyrène
-Nomius:le Pasteur [surnom d'Apollon] / fils d'Apollon et de Cyrène
+!Nomius:le Pasteur [surnom d'Apollon] / fils d'Apollon et de Cyrène
 Nomothetes:Nomothète ou Législateur [titre d'une comédie de Ménandre]
 Nona:une des Parques
 Nonacria:montagne d'Arcadie // Atalante
@@ -10042,7 +10042,7 @@ Nostolo:ville de la Narbonnaise, vers l'embouchure du Rhône
 Nostos:name of a Roman slave
 Notitae:peuple de Mésopotamie
 Notium:ville d'Ionie / ville de l'île de Calydne // (mare) mer Tyrrhénienne
-Notos2:Notus [le vent du midi] / [poét.] vent
+!Notos2:Notus [le vent du midi] / [poét.] vent
 Noua:ville de la Tarraconnaise
 Nouae:s.-ent. tabernae), Boutiques Neuves [emplacement sur le forum de Rome]
 Nouana:ville du Picénun
@@ -10172,7 +10172,7 @@ Ocha:ville de l'Eubée
 Ochani:a people on the shores of the Caspian Sea
 Ocharius:fleuve d'Asie, au-delà du Palus-Méotide
 Ocilia:port de l'Arabie Heureuse
-Ocnos:Ocnus. - 1 - fils du Tibre et de Manto, fondateur de Mantoue. - 2 - personnage allégorique qu'on représente tressant une corde rongée au fur et à mesure par un âne.
+!Ocnos:Ocnus. - 1 - fils du Tibre et de Manto, fondateur de Mantoue. - 2 - personnage allégorique qu'on représente tressant une corde rongée au fur et à mesure par un âne.
 Ocra:ville de la Vénétie
 Ocricolanus:of or belonging to Ocriculum, Ocriculan, plur. subst.
 Ocriculani:les habitants d'Ocriculum
@@ -10196,7 +10196,7 @@ Ocyrhoe:nom d'une nymphe
 Ocyrrhoe:Ocyrrhoé (fille de Chiron).
 Ocythous:Ocythoüs (un des chiens d'Actéon).
 Odessos:Odesse [ville de Mésie, sur le Pont-Euxin]
-Odessus:Odesse [ville de Mésie, sur le Pont-Euxin]
+!Odessus:Odesse [ville de Mésie, sur le Pont-Euxin]
 Odia:une des Sporades
 Odice:nom d'une des Heures
 Odites:nom d'un Centaure / guerrier tué aux noces de Persée
@@ -10209,13 +10209,13 @@ Odrusius:des Odryses, des Thraces
 Odrysii:les Odryses, les Thraces
 Odrysius:l'Odryse, Orphée
 Odyssos:a city of Lower Mœsia, on the Pontus Euxinus, now Varna
-Odyssus:a city of Lower Mœsia, on the Pontus Euxinus, now Varna
+!Odyssus:a city of Lower Mœsia, on the Pontus Euxinus, now Varna
 Oea:ville d'Afrique, près des Syrtes [auj. Tripoli]
 Oeandenses:peuple de Galatie
 Oeanthe:ville de Locride
 Oeanthia:c. Oeanthe.
 Oebalis:de Laconie, de Sparte
-Oebalos:Oebalus. - 1 - roi de Sparte, père d'Hyacinthe. - 2 - Virg. roi des Téléboens, allié de Turnus.
+!Oebalos:Oebalus. - 1 - roi de Sparte, père d'Hyacinthe. - 2 - Virg. roi des Téléboens, allié de Turnus.
 Oebasus:chef des troupes de Colchide
 Oebreus:nom de guerrier
 Oecalices:peuple d'Éthiopie
@@ -10298,7 +10298,7 @@ Olcades:les Olcades [peuple de la Tarraconnaise, au-delà de l'Èbre]
 Olciniatae:habitants d'Olcinium
 Olciniates:habitants d'Olcinium
 Olcinium:ville maritime de l'Illyrie
-Olearos:une des Cyclades
+!Olearos:une des Cyclades
 Oleastrensis:d'Oléastre
 Oleastrum2:ville de la Bétique
 Olenides:fils d'Olénus
@@ -10307,8 +10307,8 @@ Olenius2:a centurion under Drusus
 Olenos:Olène [ville d'Achaïe où Jupiter fut nourri par la chèvre Amalthée]
 Olenos2:fils de Jupiter, qui fut changé en rocher
 Olenum:c. Olenus.
-Olenus:Olène [ville d'Achaïe où Jupiter fut nourri par la chèvre Amalthée]
-Olenus2:fils de Jupiter, qui fut changé en rocher
+!Olenus:Olène [ville d'Achaïe où Jupiter fut nourri par la chèvre Amalthée]
+!Olenus2:fils de Jupiter, qui fut changé en rocher
 Oletandros:une des îles Sporades
 Oliaros:une des Cyclades
 Olimpus:The name of several mountains, the most celebrated of which is one on the borders of Macedonia and Thessaly, Lacha, of great height, and consequently regarded as the seat of the gods
@@ -10326,7 +10326,7 @@ Olophyxos:ville de Macédoine, au pied du mont Athos
 Olostrae:peuple de l'Inde
 Oltis:le Lot [rivière]
 Oluros:ville d'Achaïe
-Olurus:ville d'Achaïe
+!Olurus:ville d'Achaïe
 Olyarum:ville de Béotie
 Olybriacus:d'Olybrius
 Olybrius:un des derniers empereurs d'Occident, Ve s. ap. J.-C.
@@ -10341,12 +10341,12 @@ Olympiodorus:joueur de flûte, maître d'Épaminondas
 Olympionicus:nom d'homme
 Olympium:temple de Jupiter à Olympie
 Olympius2:un des noms du poète Némésianus
-Olympos:The name of several mountains, the most celebrated of which is one on the borders of Macedonia and Thessaly, Lacha, of great height, and consequently regarded as the seat of the gods
+Olympos:Olympe [montagne entre la Thessalie et la Macédoine ; séjour des dieux] / [fig.] le ciel / montagnes de Bithynie, de Lycie, d'Ionie, de Mysie, de Galatie
 Olympus:célèbre joueur de flûte, élève de Marsyas
-Olympus2:Olympe [montagne entre la Thessalie et la Macédoine ; séjour des dieux] / [fig.] le ciel / montagnes de Bithynie, de Lycie, d'Ionie, de Mysie, de Galatie / ville maritime de Pamphylie
+Olympus2:ville maritime de Pamphylie
 Olynthia:le territoire d'Olynthe
 Olynthii:the inhabitants of Olynthus, the Olynthians
-Olynthos:Olynthe [ville de Thrace, détruite par les Athéniens]
+!Olynthos:Olynthe [ville de Thrace, détruite par les Athéniens]
 Olyros:ville de Béotie
 Olysiponensis:of or belonging to Olisipo, Plur. subst.
 Olysippo:a city of Lusitania, Lisbon
@@ -10359,7 +10359,7 @@ Onchesmites:vent qui souffle d'Onchesme [port d'Épire]
 Onchestios:d'Oncheste.
 Onchestius:d'Onchestos, Béotien
 Onchestos:ville de la Béotie / rivière de Thessalie
-Onchestus:ville de la Béotie / rivière de Thessalie
+!Onchestus:ville de la Béotie / rivière de Thessalie
 Oncheus:nom de guerrier
 Onenses:peuple d'Espagne
 Onesima:a Roman surname
@@ -10427,7 +10427,7 @@ Oratae:peuple de l'Inde
 Oratelli:peuple des Alpes
 Orba2:rivière qui se jette dans le Méandre
 Orbelos:le mont Orbèle (entre la Macédoine et la Thrace).
-Orbelus:montagne sur les confins de la Macédoine et de la Thrace
+!Orbelus:montagne sur les confins de la Macédoine et de la Thrace
 Orbi:peuple de Gédrosie
 Orbis2:l'Orbis (fleuve de la Narbonnaise, auj. l'Orb).
 Orbitanium:ville du Samnium
@@ -10439,8 +10439,8 @@ Orcheni:peuple de la Chaldée
 Orchomenii:les Orchoméniens / ville d'Arcadie
 Orchomenius:d'Orchomène
 Orchomenon:The son of Athamas and Themisto ; A city in B&oelig;otia, Thessaly or Arcadia
-Orchomenos:Orchomène / ville de Béotie
-Orchomenum:The son of Athamas and Themisto ; A city in B&oelig;otia, Thessaly or Arcadia
+!Orchomenos:Orchomène / ville de Béotie
+!Orchomenum:The son of Athamas and Themisto ; A city in B&oelig;otia, Thessaly or Arcadia
 Orchus:c. Orcus
 Orciani:peuple d'Asie
 Orcistani:habitants d'Orciste, ville de Galatie
@@ -10454,7 +10454,7 @@ Oreon2:ville de l'Eubée
 Oreos:ville de l'Eubée
 Oreos2:surnom de Bacchus [qui habite sur des montagnes]
 Oresitrophos:nom d'un chien d'Actéon
-Oresitrophus:one of Act&oelig;on's hounds
+!Oresitrophus:one of Act&oelig;on's hounds
 Oresta:ancien nom d'Adrianopolis, en Thrace
 Orestes2:Orestès (surnom romain).
 Oresteus:d'Oreste
@@ -10466,8 +10466,8 @@ Oretanus:d'Orétum, Orétain
 Oretes:peuple de l'Inde
 Oreticus:d'Oréum, de l'Eubée
 Oretum:ville de la Tarraconnaise [auj. Calatrava]
-Oreum:ville de l'Eubée
-Oreus:ville de l'Eubée
+!Oreum:ville de l'Eubée
+!Oreus:ville de l'Eubée
 Orga:fontaine de la Narbonnaise
 Organagae:peuple de l'Inde
 Orge:fontaine de la Narbonnaise
@@ -10480,8 +10480,8 @@ Orgus:rivière de l'Italie supérieure, affluent du Pô
 Orhozes:(Lebaigue P. 873) Orhozès (roi de Colchide).
 Ori:c. Oritae
 Orias:chienne d'Actéon
-Oribasos:Oribase [chien d'Actéon]
-Oribasus:Oribase (un des chiens d'Actéon).
+!Oribasos:Oribase [chien d'Actéon]
+Oribasos:Oribase (un des chiens d'Actéon).
 Oricini:les habitants d'Oricum
 Oricum:Orique [ville d'Épire avec un port]
 Oricus:Orique [ville d'Épire avec un port]
@@ -10498,7 +10498,7 @@ Oritani:habitants d'Oréum
 Oritanum:ville de l'Eubée
 Orithyios:montagne d'Idalie
 Oriundus2:fleuve de l'Illyrie
-Orius:nom d'un Lapithe
+!Orius:nom d'un Lapithe
 Ormenis:fille d'Orménius [Astydamie]
 Orna:rivière de la Gaule Belgique [l'Ornain]
 Ornas:rivière de la Gaule Belgique [l'Ornain]
@@ -10521,7 +10521,7 @@ Orongis:ville d'Espagne
 Orontes2:peuple de la Mésopotamie
 Orontes3:l'Oronte [fleuve de Syrie]
 Oropos:ville de la Béotie, près de l'Attique
-Oropus:ville de la Béotie, près de l'Attique
+!Oropus:ville de la Béotie, près de l'Attique
 Orosines:rivière de Thrace, près du Pont-Euxin
 Orosius:Paul Orose [historien chrétien]
 Orostrae:peuple de l'Inde
@@ -10598,14 +10598,14 @@ Othrepte:nom d'une Amazone
 Othronos:île près de Corcyre
 Othryonei:peuple de Macédoine
 Othrysius:du mont Othrys
-Othus:nom d'un géant
-Otos:the name of a giant
-Otrera:une des Amazones, mère d'Hippolyte et de Penthésilée
+!Othus:nom d'un géant
+Otos:nom d'un géant
+!Otrera:une des Amazones, mère d'Hippolyte et de Penthésilée
 Otrere:une des Amazones, mère d'Hippolyte et de Penthésilée
 Otreus:nom d'homme
 Otriculanus:v. Ocricul-.
 Otris:région traversée par l'Euphrate
-Otus2:nom d'un géant
+!Otus2:nom d'un géant
 Ouetanus:d'Ovétum
 Ouetum:ville de la Tarraconnaise [auj. Oviédo]
 Oufens:A small river in Latium, that flows past Tarracina, Ufente
@@ -10616,7 +10616,7 @@ Oxia:petite île devant Leucade
 Oxii:Oxiens [peuple de Perse, près de l'Araxe]
 Oximum:v. Auxinum
 Oxiones:peuple germain
-Oxos:fleuve de la Sogdiane [auj. Amou-Daria], qui se jette dans la mer d'Aral
+!Oxos:fleuve de la Sogdiane [auj. Amou-Daria], qui se jette dans la mer d'Aral
 Oxubii:peuple de la Narbonnaise
 Oxybii:peuple de la Narbonnaise
 Oxydracae:peuple de l'Inde
@@ -10688,11 +10688,11 @@ Pagus2:ville de la Gaule Belgique (auj. Dieuze)
 Palaebyblos:ville de Phénicie, près de Byblos
 Palaemonius:de Palémon / des jeux isthmiques en l'honneur de Palémon
 Palaemyndos:ville de Carie
-Palaemyndus:ville de Carie
+!Palaemyndus:ville de Carie
 Palaeno:une des Danaïdes
 Palaeogoni:nom des habitants de l'île Taprobane
 Palaepaphos:ville de Chypre, non loin de Paphos
-Palaepaphus:ville de Chypre, non loin de Paphos
+!Palaepaphus:ville de Chypre, non loin de Paphos
 Palaephatius:de Paléphate
 Palaephatus:ancien écrivain grec
 Palaepolis:ville de la Campanie, réunie plus tard à Naples
@@ -10752,7 +10752,7 @@ Palmyrenus2:vainqueur de Palmyre
 Palo2:fleuve d'Italie
 Palsicium:ancienne ville d'Italie
 Paltos:ville de Syrie près de Laodicée
-Paltus:ville de Syrie près de Laodicée
+!Paltus:ville de Syrie près de Laodicée
 Paluda:cf. paludamentum), épithète de Pallas
 Palumbinum:ville du Samnium
 Palumbus2:nom d'homme
@@ -10812,8 +10812,8 @@ Panopion:a Roman surname
 Panopolis:ville de l'Égypte supérieure
 Panormitanus:de Panorme.
 Panormos:Panorme (nom de plusieurs villes, en particulier la ville de Palerme, en Sicile).
-Panormum:c. Panormos.
-Panormus:Panorme (nom de plusieurs villes, en particulier la ville de Palerme, en Sicile).
+!Panormum:c. Panormos.
+!Panormus:Panorme (nom de plusieurs villes, en particulier la ville de Palerme, en Sicile).
 Panoti:peuple de Scythie qui avait de longues oreilles
 Pantacyes:rivière près de Syracuse
 Pantagathus2:nom d'homme
@@ -10846,9 +10846,9 @@ Paphii:the stalks of the Cyprian lettuce
 Paphlago:Paphlagonien
 Paphlagon:a Paphlagonian
 Paphlagonius:des Paphlagoniens, de Paphlagonie
-Paphos2:son of Pygmalion, and founder of the city of Paphos
-Paphus:Paphos [ville de l'île de Chypre, célèbre par son culte de Vénus]
-Paphus2:fils du sculpteur Pygmalion, donna son nom à Paphos
+Paphos2:fils du sculpteur Pygmalion, donna son nom à Paphos
+!Paphus:Paphos [ville de l'île de Chypre, célèbre par son culte de Vénus]
+!Paphus2:fils du sculpteur Pygmalion, donna son nom à Paphos
 Papias:nom d'homme
 Papilus:surnom romain
 Papinianista:partisan de Papinien
@@ -10900,7 +10900,7 @@ Parnasseus:c. Parnassius.
 Parnassia:une Muse
 Parnassis:du Parnasse
 Parnassos:le Parnasse [montagne de la Phocide, à deux cimes, séjour d'Apollon et des Muses]
-Parnassus:le Parnasse [montagne de la Phocide, à deux cimes, séjour d'Apollon et des Muses]
+!Parnassus:le Parnasse [montagne de la Phocide, à deux cimes, séjour d'Apollon et des Muses]
 Parnasus:le Parnasse [montagne de la Phocide, à deux cimes, séjour d'Apollon et des Muses]
 Parnes:le Parnès [mont de l'Attique]
 Paroa:ville située sur le Nil
@@ -10908,7 +10908,7 @@ Paropamisadae:peuple voisin du Paropamisus
 Paropamisii:peuple voisin du Paropamisus
 Paropamisus:le Paropamise [montagne d'Asie au-delà de la mer Caspienne]
 Paropanisos:le Paropamise [montagne d'Asie au-delà de la mer Caspienne]
-Paropanisus:A high mountain beyond the Caspian Sea, Hindu-Kuh, HinduKusch
+!Paropanisus:A high mountain beyond the Caspian Sea, Hindu-Kuh, HinduKusch
 Paropini:habitants de Parope [ville de Sicile]
 Paroraei:peuple d'Épire ou de Macédoine
 Parorea:partie de la Thrace ou pays voisin de la Thrace
@@ -11011,7 +11011,7 @@ Patigga:ville située sur le Nil
 Patinga:ville située sur le Nil
 Patiscus:nom d'homme
 Patmos:l'île de Patmos, une des Sporades
-Patmus:l'île de Patmos, une des Sporades
+!Patmus:l'île de Patmos, une des Sporades
 Patrenses:the Patr&oelig;ans
 Patrensis:de Patras
 Patriciensis:de Patricia
@@ -11064,7 +11064,7 @@ Pegae:v. Pege
 Pegasianus:de Pégase [jurisconsulte]
 Pegasis:adj. f., de Pégase / subst. f., Naïade / pl., les Muses
 Pegasius:nom d'un évêque de Poitiers
-Pegasos:] / pl., pégases, espèce de chevaux ailés / [fig.] Pégase, messager rapide / Pégase [constellation] / nom d'un jurisconsulte romain, consul sous Vespasien
+!Pegasos:] / pl., pégases, espèce de chevaux ailés / [fig.] Pégase, messager rapide / Pégase [constellation] / nom d'un jurisconsulte romain, consul sous Vespasien
 Peguntium:place forte de Dalmatie
 Pegusa:ancien nom de Cnide
 Peiso:c. Pelso.
@@ -11123,10 +11123,10 @@ Pelopidas:célèbre général des Thébains
 Peloponnensis:du Péloponnèse.
 Peloponnesiaci:Péloponnésiens, habitants du Péloponnèse
 Peloponnesius:du Péloponnèse
-Peloponnesos:le Péloponnèse [presqu'île de la Grèce, auj. la Morée]
+!Peloponnesos:le Péloponnèse [presqu'île de la Grèce, auj. la Morée]
 Peloritanus:de Pélore, de Sicile
-Peloros:Pélore [promontoire à l'est de la Sicile]
-Pelorum:Pélore [promontoire à l'est de la Sicile]
+!Peloros:Pélore [promontoire à l'est de la Sicile]
+!Pelorum:Pélore [promontoire à l'est de la Sicile]
 Pelso:lac de la Pannonie ou du Norique
 Pelteni:habitants de Peltae, ville de Lycaonie
 Peltuinas:n., de Peltuinum
@@ -11189,7 +11189,7 @@ Pergamena:territoire de Pergame // parchemin
 Pergamina:c. Pergamena 2
 Pergamis:ville d'Épire
 Pergamos:Pergame [forteresse de Troie, et par ext., Troie], v. Troja
-Pergamus:Pergame [forteresse de Troie, et par ext., Troie], v. Troja
+!Pergamus:Pergame [forteresse de Troie, et par ext., Troie], v. Troja
 Perge:v. Perga
 Pergensis:de Perga
 Pergeus:de Perga
@@ -11207,7 +11207,7 @@ Perimelis:nymphe protectrice des brebis
 Perimula:promontoire et ville de l'Inde, en deçà du Gange [auj. Malacca]
 Perinthia:la Périnthienne (comédie de Ménandre).
 Perinthius:la Périnthienne, comédie de Ménandre
-Perinthos:Périnthe [ville de Thrace]
+!Perinthos:Périnthe [ville de Thrace]
 Periocha:Sommaire [titre d'un ouvrage d'Ausone]
 Peripateticus2:a disciple of the Peripatetic school
 Periphetes:fils de Vulcain et d'Anticlée
@@ -11216,7 +11216,7 @@ Perirrheusa:île de la mer Égée, en face de l'Ionie
 Peristerides:îles de la mer Égée, près de Smyrne [îles des Colombes]
 Perius:un des fils d'Égyptus
 Perixyomenos:le Périxyomène, celui qui se frotte dans le bain [titre d'une statue du sculpteur Antigone]
-Perixyomenus:le Périxyomène, celui qui se frotte dans le bain [titre d'une statue du sculpteur Antigone]
+!Perixyomenus:le Périxyomène, celui qui se frotte dans le bain [titre d'une statue du sculpteur Antigone]
 Permessis:source du Permesse [consacrée aux Muses]
 Permessius:du Permesse
 Perne:île près de Milet qui fut réunie au continent
@@ -11396,7 +11396,7 @@ Pharnacias:fleuve de Bithynie
 Pharnacotis:fleuve de l'Ariane
 Pharnutis:fleuve de Bithynie
 Pharsalos:Pharsale [ville de Thessalie, où Pompée fut vaincu par César]
-Pharsalus:Pharsale [ville de Thessalie, où Pompée fut vaincu par César]
+!Pharsalus:Pharsale [ville de Thessalie, où Pompée fut vaincu par César]
 Pharus:île d'Égypte, près d'Alexandrie / le phare [de Pharos] / l'Égypte / phare [en gén.], fanal
 Pharus2:nom de guerrier
 Pharusii:Pharusiens [peuple de Mauritanie]
@@ -11423,7 +11423,7 @@ Phellus:ville de Lycie
 Phellusa:île près de Lesbos
 Phemonoe:fille d'Apollon, à laquelle on attribue l'invention du vers héroïque / nom d'une Pythie
 Pheneatae:habitants de Phénée
-Pheneos:Phénée [ville avec lac en Arcadie]
+!Pheneos:Phénée [ville avec lac en Arcadie]
 Pherae:Phères [ville de Thessalie, résidence d'Admète] / ville de Messénie
 Pheraei:A city in Messenia, a colony of Sparta, Kalamata
 Pheraeus2:Alexandre, tyran de Phères
@@ -11474,7 +11474,7 @@ Phileteriae:ville sur la mer Rouge
 Philetes:nom d'un ami de Phèdre
 Phileteus:v. Philetaeus.
 Philetos:nom d'homme
-Philetus:nom d'homme
+!Philetus:nom d'homme
 Philimatius:v. Phile-.
 Philios:île d'Ionie
 Philippeum:a gold coin struck by Philip
@@ -11524,7 +11524,7 @@ Philopater:a Roman surname
 Philopoemen:chef de la ligue Achéenne
 Philorhomaeus:friend, lover of the Romans, a title given to Ariobarzanes, king of Cappadocia
 Philoromaeus:ami des Romains
-Philos:v. Philios.
+Philos:île d'Ionie.
 Philosophiana:ville de Sicile, aux sources du Géla
 Philostephanus:nom d'un écrivain, ami de Callimaque
 Philostratus:chef des Épirotes / nom d'homme
@@ -11552,13 +11552,13 @@ Phlegethonteus:Phlegethontian
 Phlegethontis:du Phlégéthon
 Phlegon:un des chevaux du Soleil / nom d'un disciple des apôtres
 Phlegraeos:nom d'un Centaure
-Phlegraeus2:nom d'un Centaure
-Phlegyae:Ov. les Phlégyens (peuple de brigands en Thessalie).
+!Phlegraeus2:nom d'un Centaure
+Phlegyae:les Phlégyens (peuple de brigands en Thessalie).
 Phlias:fils de Bacchus, un des Argonautes
 Phliasii:habitants de Phlionte
 Phliasius:de Phlionte
 Phliuntii:habitants de Phlionte
-Phlius:Φλιοῦς), Phlionte [ville d'Achaïe, près de Sicyone]
+Phlius:Phlionte [ville d'Achaïe, près de Sicyone]
 Phlogis:nom de femme
 Phlogius:nom de guerrier
 Phlygone:ville de Béotie
@@ -11587,7 +11587,7 @@ Phoenicus:port d'Ionie / port de Lycie
 Phoenicusa:une des îles Éoliennes
 Phoenicussa:une des îles Éoliennes
 Pholegandros:une des Sporades
-Pholegandrus:une des Sporades
+!Pholegandrus:une des Sporades
 Pholoeticus:du mont Pholoé
 Phonolenides:nom d'un centaure [fils de Phonolénus]
 Phorcis:fille de Phorcus [Méduse]
@@ -11667,7 +11667,7 @@ Pieres:Plin. habitants de la Piérie.
 Pieriae:les Muses
 Piericus:de la Piérie
 Pieros:Piérus [père des Muses] / père des Piérides, changées en pies / le mont Piérus [consacré aux Muses, aux confins de la Thessalie et de la Macédoine]
-Pierus:Piérus [père des Muses] / père des Piérides, changées en pies / le mont Piérus [consacré aux Muses, aux confins de la Thessalie et de la Macédoine]
+!Pierus:Piérus [père des Muses] / père des Piérides, changées en pies / le mont Piérus [consacré aux Muses, aux confins de la Thessalie et de la Macédoine]
 Pilia:femme d'Atticus
 Pilus3:a Roman surname, a consul
 Pimpla:v. Pimpleus.
@@ -11716,7 +11716,7 @@ Pirina:ville de Sicile
 Pirisabora:ville de la Babylonie
 Pisaea:Hippodamia
 Pisandros:Pisandre [poète épique de Rhodes] / un des prétendants de Pénélope / un Athénien / un Lacédémonien
-Pisandrus:Pisandre [poète épique de Rhodes] / un des prétendants de Pénélope / un Athénien / un Lacédémonien
+!Pisandrus:Pisandre [poète épique de Rhodes] / un des prétendants de Pénélope / un Athénien / un Lacédémonien
 Pisani:habitants de Pise
 Pisas:Pisatic, Pisan
 Pisatilis:de Pise [en Étrurie]
@@ -11899,7 +11899,7 @@ Polymnestor:Polymnestor [roi de Thrace, meurtrier de Polydore]
 Polymnia:v. Polyhymnia
 Polynices:Polynice [fils d'oedipe et frère d'Étéocle]
 Polyperchon:général d'Alexandre le Grand
-Polyphemos:Polyphème [géant, fils de Neptune, un des Cyclopes] / un des Argonautes
+!Polyphemos:Polyphème [géant, fils de Neptune, un des Cyclopes] / un des Argonautes
 Polyphontes:Polyphonte [roi de Messénie, tua le fils de Cresphonte, et épousa Mérope, mère de sa victime]
 Polypoetes:fils de Pirithoüs, un des prétendants d'Hélène
 Polyrrhenium:ville de Crète
@@ -12034,7 +12034,7 @@ Precianus2:nom d'homme
 Prelius:] :
 Prema:déesse de l'union conjugale
 Prepesinthos:île de la mer Égée
-Prepesinthus:île de la mer Égée
+!Prepesinthus:île de la mer Égée
 Preti:v. Praeti.
 Pretianus:v. Praecianus.
 Prexaspes:nom d'un courtisan de Cambyse
@@ -12045,11 +12045,11 @@ Priapeius:de Priape
 Priapeus:v. Priapus.
 Priapicos:vers priapéen
 Priaponnesos:île de la mer Égée, voisine de la Carie
-Priaponnesus:Plin. une île de la mer Egée, près de la Carie.
+!Priaponnesus:Plin. une île de la mer Egée, près de la Carie.
 Priapos:île située en face d'Éphèse / ville de Mysie / autre ville en Asie
-Priapos2:Priape [fils de Bacchus et de Vénus, né à Lampsaque, dieu des jardins, représentant la vigueur génératrice] / [fig.] un Priape [un débauché]
-Priapus2:A town of Mysia, on the Hellespont
-Priena:Priène [ville d'Ionie, patrie de Bias]
+!Priapos2:Priape [fils de Bacchus et de Vénus, né à Lampsaque, dieu des jardins, représentant la vigueur génératrice] / [fig.] un Priape [un débauché]
+!Priapus2:A town of Mysia, on the Hellespont
+!Priena:Priène [ville d'Ionie, patrie de Bias]
 Prienaeus:né à Priène
 Priene:Priène [ville d'Ionie, patrie de Bias]
 Prienenses:les habitants de Priène
@@ -12085,7 +12085,7 @@ Proclus:nom d'homme
 Proconnensis:de Proconnèse.
 Proconnesius:Proconnessian
 Proconnesos:île de la Propontide
-Proconnesus:île de la Propontide
+!Proconnesus:île de la Propontide
 Procopianus:de Procope [le tyran]
 Procopius:Procope [usurpateur à Constantinople, sous Valens]
 Proculeiani:disciples de Proculus / Eutychius Proculus, grammairien maître de Marc-Aurèle
@@ -12111,7 +12111,7 @@ Proserius:nom d'homme
 Prosopites:le nome Prosopite [de Prosopis, ville de Delta]
 Prosper2:nom d'h.
 Prosumnus:nom d'un ancien héros latin
-Prosymna:ville de l'Argolide, où Junon était particulièrement honorée
+!Prosymna:ville de l'Argolide, où Junon était particulièrement honorée
 Prosymne:ville de l'Argolide, où Junon était particulièrement honorée
 Protadius:nom d'homme
 Protagorion:une maxime de Protagoras
@@ -12122,7 +12122,7 @@ Protenor:guerrier
 Protesilaodamia:nom d'une tragédie de Livius Andronicus
 Protheon:un des fils d'Égyptus
 Prothoenor:v. Protenor
-Prothoos:Prothoüs [roi de Thessalie, héros au siège de Troie]
+!Prothoos:Prothoüs [roi de Thessalie, héros au siège de Troie]
 Protodamas:un des fils de Priam
 Protogenia:fille de Deucalion et de Pyrrha
 Prouidentia2:la Providence, déesse chez les Grecs et les Romains
@@ -12422,7 +12422,7 @@ Retouium:
 Rha:le Rha [grand fleuve de la Sarmatie, qui se jette dans la mer Caspienne, auj. la Volga]
 Rhacotes:ancien nom d'Alexandrie, ville d'Égypte
 Rhadamaei:peuple d'Arabie
-Rhadamanthos:Radamanthe [fils de Jupiter et d'Europe, un des juges des enfers]
+!Rhadamanthos:Radamanthe [fils de Jupiter et d'Europe, un des juges des enfers]
 Rhadamas:nom d'homme
 Rhadamistus:Rhadamiste [roi d'Arménie, fils de Phraate]
 Rhaeti:les Rhètes ou Rhétiens, habitants de la Rhétie
@@ -12506,7 +12506,7 @@ Rhondes:nom d'un pirate
 Rhosicus:montagnes de Rhosos
 Rhosius:of Rhosos
 Rhosos:ville de Syrie
-Rhosus:ville de Syrie
+!Rhosus:ville de Syrie
 Rhoxane:Roxane [femme d'Alexandre le Grand]
 Rhuncus:nom d'un géant, probablement le même que Rhoetus ou Rhoecus
 Rhymmici:peuple de Scythie, sur les rives du Rhymmus, fleuve qui se jette dans la mer Caspienne
@@ -12694,8 +12694,8 @@ Saepone:ville de la Bétique
 Saetabis:ville de la Tarraconnaise
 Saetabitani:habitants de Sétabis
 Sagalassenus:canton de Pisidie
-Sagalassos:ville de Pisidie
-Sagalassus:Sagalasse (ville de Pisidie).
+!Sagalassos:ville de Pisidie
+Sagalassos:Sagalasse (ville de Pisidie).
 Sagalessos:an important town of Pisidia, Aghtasan
 Saganos:le Saganos (fleuve de Carmanie).
 Sagarinus:nom d'homme
@@ -12707,11 +12707,11 @@ Sagis:une des bouches du Pô
 Sagittifer2:le Sagittaire
 Sagittiger:le Sagittaire
 Sagittipotens:le Sagittaire
-Sagra:Σάγρας), rivière du Bruttium [auj. la Sagra] entre le pays des Locriens et celui des Crotoniates, célèbre par la victoire des Locriens sur les Crotoniates infiniment plus nombreux
+Sagra:rivière du Bruttium [auj. la Sagra] entre le pays des Locriens et celui des Crotoniates, célèbre par la victoire des Locriens sur les Crotoniates infiniment plus nombreux
 Saguntia:ville de la Tarraconnaise [auj. Siguenza]
 Saguntius:of or belonging to Saguntum, Saguntine
 Saguntos:Sagonte, ville de la Tarraconnaise
-Saguntus:Sagonte, ville de la Tarraconnaise
+!Saguntus:Sagonte, ville de la Tarraconnaise
 Sais:ville d'Égypte, dans le Delta
 Saitae:habitants de Saïs
 Saiticus:of Sais, Saitic
@@ -13083,7 +13083,7 @@ Scodrensis:de Scodra / habitants de Scodra
 Scodri:peuplade indienne
 Scodrus:montagne d' Illyrie
 Scolos:petite ville de Béotie
-Scolus:petite ville de Béotie
+!Scolus:petite ville de Béotie
 Scope:île près de Chypre / nom de femme
 Scopelos:île de la Propontide / île voisine de Chios
 Scopinas:architecte de Syracuse
@@ -13143,7 +13143,7 @@ Sebastopolis:ville du Pont ; ville de l'Éolide ; ville de Colchide
 Sebatum:ville de Rhétie
 Sebazius:v. Sab-.
 Sebethos:fleuve de Campanie qui se jette dans le golfe de Naples / le dieu de ce fleuve
-Sebethus:fleuve de Campanie qui se jette dans le golfe de Naples / le dieu de ce fleuve
+!Sebethus:fleuve de Campanie qui se jette dans le golfe de Naples / le dieu de ce fleuve
 Sebetis:- 1 - du Sébéthos. - 2 - fille du Sébéthos.
 Sebini:Sabini
 Sebinnus:lac voisin du Pô
@@ -13557,7 +13557,7 @@ Sinuessuanus:of or belonging to Sinuessa, Absol.
 Sion2:ind., montagne de Jérusalem / Jérusalem
 Siphae:ville de Béotie
 Siphnius:de Siphnus
-Siphnos:une des Cyclades
+!Siphnos:une des Cyclades
 Sipontum:ville d'Apulie
 Sipuntum:ville d'Apulie
 Sipus:c. Sipontum
@@ -13594,7 +13594,7 @@ Sisupus:Son of &AElig;olus, king of Corinth, famous for his cunning and robberie
 Sisygambis:nom de la mère et de la femme de Darius Codoman
 Sisypheius:c. Sisyphius
 Sisypheus:c. Sisyphius
-Sisyphos:Sisyphe [fils d'Éole, brigand tué par Thésée]
+!Sisyphos:Sisyphe [fils d'Éole, brigand tué par Thésée]
 Sitellitergus:the title of a comedy by Plautus;
 Sithon:nom d'un hermaphrodite
 Sithonis2:une femme de Thrace
@@ -13655,8 +13655,8 @@ Solus2:ville de Sicile
 Solyma:Solyme, Jérusalem
 Solyma2:Solyme, Jérusalem
 Solymnia:v. Solimnia.
-Solymos:a Trojan, the founder of Sulmo
-Solymus2:un des compagnons d'Énée, qui fonda une colonie à Sulmone
+!Solymos:a Trojan, the founder of Sulmo
+Solymos:un des compagnons d'Énée, qui fonda une colonie à Sulmone
 Solymus3:Solyme (= Sulmone, ville d'Italie).
 Somena:Somme [fleuve de Belgique]
 Sonautes:fleuve de Bithynie
@@ -13739,7 +13739,7 @@ Spercheus:le Sperchius [fleuve de Thessalie]
 Sperchiae:ville de Thessalie
 Sperchionides:riverain du Sperchius
 Sperchios:le Sperchius [fleuve de Thessalie]
-Sperchius:le Sperchius [fleuve de Thessalie]
+!Sperchius:le Sperchius [fleuve de Thessalie]
 Sphaeria:île près d'Éphèse
 Sphaerus:nom d'un philosophe stoïcien
 Sphageae:nom de trois îles en face de Pylos
@@ -13881,7 +13881,7 @@ Stratoniceum:nom d'un temple dédié à Vénus Stratonicis
 Stratoniceus:adj. m., originaire de Stratonicée [en Carie]
 Stratonidas:nom grec
 Stratophanes:nom de personnage
-Stratos:ville d'Acarnanie / rivière d'Hyrcanie
+!Stratos:ville d'Acarnanie / rivière d'Hyrcanie
 Strenia:déesse qui présidait à la bonne santé
 Strenion:nom d'homme
 Strenua2:c. Strenia
@@ -13903,7 +13903,7 @@ Stygialis:du Styx
 Stymphalicus:du Stymphale
 Stymphalos:le Stymphale [montagne et lac d'Arcadie]
 Stymphalum:le Stymphale [montagne et lac d'Arcadie]
-Stymphalus:le Stymphale [montagne et lac d'Arcadie]
+!Stymphalus:le Stymphale [montagne et lac d'Arcadie]
 Styphelus:nom d'un Centaure
 Styppax:sculpteur de l'île de Chypre
 Suaeuconi:peuple de Belgique
@@ -14134,7 +14134,7 @@ Syro:un Épicurien, contemporain de Cicéron
 Syrocilices:Syrociliciens [Syriens mélangés aux Ciliciens]
 Syrophoenissa:la Chananéenne
 Syros:une des Cyclades
-Syrtis:f., Syrtian
+Syrtis:Syrtian
 Syrus3:nom d'esclave / Publius Syrus, poète, auteur de mimes
 Taautes:dieu chez les Phéniciens
 Tabalta:ville de l'Afrique
@@ -14163,7 +14163,7 @@ Taduti:ville de Numidie
 Taenara:[poét.] = les enfers
 Taenarides:le Ténaride [Hyacinthe, qui était de Ténare]
 Taenaron:: - 1 - Ténare (ville de Laconie). - 2 - le Ténare (promontoire de Laconie, considéré par les Anciens comme une des entrées des Enfers). - 3 - le Ténare, les Enfers (pour les poètes).
-Taenaros:[poét.] = les enfers
+!Taenaros:[poét.] = les enfers
 Tafa:ville d'Égypte dans le Delta
 Tagaste:de Tagaste
 Tagastensis:de Tagaste
@@ -14203,7 +14203,7 @@ Tamaricicus:du Tamaris
 Tamaris:fleuve de la Tarraconnaise
 Tamaseus:de Tamasos
 Tamasos:nom d'une ville de Chypre
-Tamasus:
+!Tamasus:
 Tamfana:v. Tanf-
 Tamiagi:peuple d'Afrique
 Tamiani:peuple d'Afrique
@@ -14215,7 +14215,7 @@ Tamphilus:surnom romain
 Tampsapor:nom d'un général perse
 Tamuda:ville de la Mauritanie Tingitane
 Tamudaei:peuple d'Arabie
-Tamus:promontoire de l'Inde
+!Tamus:promontoire de l'Inde
 Tana:fleuve de Numidie
 Tanagricus:de Tanagra
 Tanaitae:les Tanaïtes, peuple riverain du Tanaïs
@@ -14232,7 +14232,7 @@ Taniticus:de Tanis
 Tannetani:voir Tanetum.
 Tannetum:bourg de la Gaule Cispadane
 Tantaleus2:c. Tantalus
-Tantalos:a king of Phrygia, son of Jupiter, and father of Pelops and Niobe.
+!Tantalos:a king of Phrygia, son of Jupiter, and father of Pelops and Niobe.
 Tanus:nom d'un roi Scythe
 Taphiassus:montagne d'Étolie
 Taphis:ville de la Haute-Égypte, dans la Thébaïde
@@ -14240,7 +14240,7 @@ Taphiusa:région près de Leucade
 Taphiusius:du Taphius
 Taphrae:isthme de la Chersonèse Taurique / ville de cet isthme
 Taphros:détroit entre la Corse et la Sardaigne
-Taphrus:c. Taphros
+!Taphrus:c. Taphros
 Tapori:peuple de Lusitanie
 Taposiris:ville d'Égypte
 Tapponia:nom de femme
@@ -14303,8 +14303,8 @@ Tartesis:f., Tartessian
 Tartessiacus:de Tartessse
 Tartessis:adj. f., de Tartesse
 Tartessos:Tartesse [ville à l'embouchure du Bétis]
-Tartessus:Tartesse [ville à l'embouchure du Bétis]
-Tartesus:c. Tartessus.
+!Tartessus:Tartesse [ville à l'embouchure du Bétis]
+!Tartesus:c. Tartessus.
 Taruenna:ville de la Belgique
 Taruenna2:ville de la Belgique
 Taruesede:ville de Rhétie
@@ -14407,10 +14407,10 @@ Teleboae:Téléboens [peuple de l'Acarnanie]
 Teleboas:a centaur killed by Nestor at the marriage of Pirithous
 Teleboides:îles des Téléboens, les mêmes que Taphiae
 Telebois:of Telebo&aelig;, Teleboic.&mdash;Plur
-Telegonos:Télégone [fils d'Ulysse et de Circé, meurtrier de son père qu'il ne connaissait pas, fondateur de Tusculum] / [fig.] qui est funeste à son auteur
+!Telegonos:Télégone [fils d'Ulysse et de Circé, meurtrier de son père qu'il ne connaissait pas, fondateur de Tusculum] / [fig.] qui est funeste à son auteur
 Telendos:île voisine de la Cilicie
 Telephanes:nom de deux artistes
-Telephos:Télèphe. - 1 - fils d'Hercule et roi de Mysie, il fut blessé par Achille, puis guéri par la rouille de sa lance et devint l'allié des Grecs. - 2 - un ami d'Horace.
+!Telephos:Télèphe. - 1 - fils d'Hercule et roi de Mysie, il fut blessé par Achille, puis guéri par la rouille de sa lance et devint l'allié des Grecs. - 2 - un ami d'Horace.
 Telepte:ville de l'Afrique
 Telesia:ville du Samnium
 Telesina:nom de femme, nom d'homme
@@ -14437,12 +14437,12 @@ Telmessicus:adj. f., de Telmesse
 Telmessis:adj. f., de Telmesse
 Telmessius:adj. f., de Telmesse
 Telmessos:Telmesse [ville maritime de Lycie]
-Telmessus:Telmesse [ville maritime de Lycie]
-Telmesus:a town in Lycia, near to Caria, at the head of the Glaucus Sinus, Makri;
+!Telmessus:Telmesse [ville maritime de Lycie]
+!Telmesus:a town in Lycia, near to Caria, at the head of the Glaucus Sinus, Makri;
 Telmissicus:of or belonging to Telmessus, Telmessian
 Telmissii:the innabitants of Telmissus, the Telmissians
 Telmissius:of Telmissus, Telmissian
-Telmissus:a town in Lycia, near to Caria, at the head of the Glaucus Sinus, Makri;
+!Telmissus:a town in Lycia, near to Caria, at the head of the Glaucus Sinus, Makri;
 Telmisum:ville de Carie
 Telobis:ville de la Tarraconnaise
 Telonensis:de Telo Martius
@@ -14453,14 +14453,14 @@ Temarunda:nom donné par les Scythes au Palus Méotis
 Tembrogius:rivière de Bithynie
 Temenitis:Téménienne [épith. d'une porte de Tarente] / fontaine près de Syracuse
 Temenos:lieu voisin de Syracuse où Apollon avait un temple
-Temenus:lieu voisin de Syracuse où Apollon avait un temple
-Temesa:v. Temese
+!Temenus:lieu voisin de Syracuse où Apollon avait un temple
+!Temesa:v. Temese
 Temesae:c. Temese
 Temese:Témèse ou Tempsa [ville du Bruttium]
 Temmelisum:ville de Syrie
 Temnitae:habitants de Temnos
-Temnos:ville d'Éolide
-Temnus:Temnos (ville d'Eolide).
+!Temnos:ville d'Éolide
+Temnos:Temnos (ville d'Eolide).
 Tempanius:nom d'homme
 Tempsis:sommet du mont Tmolus
 Tempyra:ville de Thrace
@@ -14496,8 +14496,7 @@ Terentinus:de Térentum
 Terentiolus:nom d'h.
 Terentos:Térentus (partie du Champ de Mars affectée au jeux séculaires).
 Terentum:emplacement du Champ de Mars où l'on célébrait les jeux séculaires
-Terentus:Térentus (partie du Champ de Mars affectée au jeux séculaires).
-Terentusoros:a place at the extremity of the, on the Tiber, where the, were held
+!Terentus:Térentus (partie du Champ de Mars affectée au jeux séculaires).
 Tereses:a people of Spain
 Tereuentinates:peuple d'Italie
 Tergedum:ville d'Égypte ou d'Éthiopie
@@ -14554,7 +14553,7 @@ Teudurum:Teudurum (village de la Germanie inférieure).
 Teueste:Tébeste (ville de Numidie).
 Teumesius:Stat. du Teumèse.
 Teurnia:ville du Norique
-Teus:c. Teos.
+!Teus:c. Teos.
 Teuta:c. Teutana
 Teutana:reine d'Illyrie
 Teutani:peuple du Péloponnèse
@@ -14703,7 +14702,7 @@ Theodosiacus:de Théodose, théodosien
 Theodosianus:de Théodose, théodosien
 Theodote:nom de femme
 Theodotion2:traducteur d'une partie de la Bible
-Theodotos:nom d'homme
+!Theodotos:nom d'homme
 Theodulfus:nom d'homme
 Theodulus:nom d'homme
 Theogenes:nom d'homme, nom de femme
@@ -14725,7 +14724,7 @@ Theoplastus:nom d'un évêque
 Theopolis:localité de la Narbonnaise
 Theopompeus:de Théopompe / un partisan de César
 Theopompius:de Théopompe / un partisan de César
-Theopompos:a Greek historian and orator, a pupil of Isocrates
+!Theopompos:a Greek historian and orator, a pupil of Isocrates
 Theoris:nom d'homme, nom de femme
 Theorus:nom d'homme, nom de femme
 Theotima:nom de femme
@@ -14804,8 +14803,8 @@ Theueste:ville de Numidie [auj. Tébessa, en Algérie]
 Theuestinus:de Théveste
 Theuma:bourg de Thessalie
 Theumesius:Theban
-Theumesos:
-Theumesus:a mountain of B&oelig;otia, near Thebes
+!Theumesos:
+!Theumesus:a mountain of B&oelig;otia, near Thebes
 Theutates:Teutatès [divinité gauloise]
 Theuth:Thot (nom d'une divinité et du premier mois des Egyptiens).
 Theutoni:v. Teutoni.
@@ -14834,7 +14833,7 @@ Thomna:ville des Gébanites, dans l'Arabie
 Thonitis:lac d'Arménie
 Thora:ville de la Samarie
 Thoricos:ville de l'Attique
-Thoricus:ville de l'Attique
+!Thoricus:ville de l'Attique
 Thoringi:les Thuringiens [peuple germain]
 Thoringia:la Thuringe
 Thoringus:thuringien
@@ -14965,7 +14964,7 @@ Tigisitanus:de Tigisis
 Tigullia:ville de la Ligurie
 Tigullii:habitants de Tigullie
 Tiliauentum:fleuve de de la Vénétie
-Tima:nom de femme
+!Tima:nom de femme
 Timachi:peuple de Mésie
 Timachum:nom de deux villes de Mésie
 Timachus:rivière de Mésie
@@ -14979,7 +14978,7 @@ Timarete:peintre elle-même comme son père, Micon
 Timaristus:Plin. Timaristus (nom d'un médecin botaniste).
 Timasicrates:nom d'un Rhodien
 Timasitheus:nom d'un prince de l'île de Lipara
-Timauos:a river in Istria, between Aquileia and Trieste
+!Timauos:a river in Istria, between Aquileia and Trieste
 Time:nom de femme
 Timicitanus:de Timici
 Timochares:ami du roi Pyrrhus / nom d'un architecte
@@ -15036,8 +15035,8 @@ Titanius2:the Sun-god
 Titanomachia:lutte des Titans et de Jupiter
 Titanus:Son of Cœlus and Vesta, elder brother of Saturn, and ancestor of the Titans
 Titarisos:fleuve de Thessalie
-Titarissus:fleuve de Thessalie
-Titarisus:fleuve de Thessalie
+!Titarissus:fleuve de Thessalie
+!Titarisus:fleuve de Thessalie
 Titedius:Titédius Labéo, proconsul en Narbonnaise
 Tithoes:roi d'Égypte qui construisit le labyrinthe
 Tithonaeus:adj. m., fils de Tithon
@@ -15247,7 +15246,7 @@ Triones:boeufs de labour / les deux Ourses [constellations]
 Triopas:roi de Thessalie, père d'Érisichthon
 Triopeios:Érisichthon, fils de Triopas
 Triopeis:Mestra, petite-fille de Triopas
-Triopeius:Érisichthon, fils de Triopas
+!Triopeius:Érisichthon, fils de Triopas
 Triopes:roi de Thessalie, père d'Érisichthon
 Triopia:ancien nom de l'île de Gnide
 Tripertita:titre d'une comédie de Novius
@@ -15477,10 +15476,10 @@ Tyrrheus:
 Tyrrhigena:
 Tyrrhigenae:les Tyrrhéniens
 Tyrus:nom d'homme
-Tyrus2:Tyr [ville maritime de Phénicie, renommée pour sa pourpre] / [p. ext., poét.] pourpre, couleur pourpre
+!Tyrus2:Tyr [ville maritime de Phénicie, renommée pour sa pourpre] / [p. ext., poét.] pourpre, couleur pourpre
 Tyscos:bourg de la Galatie
 Tysdritanus:v. Thysdritanus.
-Tzitzi:ind., ville d'Égypte dans la Thébaïde
+Tzitzi:ville d'Égypte dans la Thébaïde
 Uabar:fleuve de Numidie
 Uacca2:ville de la Byzacène / ville de Numidie
 Uacca3:v. Vagia.
@@ -15493,7 +15492,7 @@ Uacerra2:nom d'un jurisconsulte du temps de Cicéron / autre du même nom
 Uachalis:v. Vahalis
 Uachati:peuple d'Ethiopie
 Uacianae:ville de Gaule [auj. Baix]
-UadaUolaterrana:a port in Etruria south of Pisa, Torre di Vado
+!UadaUolaterrana:a port in Etruria south of Pisa, Torre di Vado
 Uadaei:peuple de l'Arabie Heureuse
 Uadomarius:chef des Alamanni
 Uagedrusa:rivière de la Sicile
@@ -16161,7 +16160,7 @@ Wisegothi:c. Visegothi
 Xantha:nom de femme
 Xanthe:nom d'une Amazone
 Xanthicus:le mois Xanthique [le mois d'avril chez les Macédoniens]
-Xanthos2:rivière de Troie [appelée aussi Scamandre] / rivière de Lycie / petite rivière d'Épire
+!Xanthos2:rivière de Troie [appelée aussi Scamandre] / rivière de Lycie / petite rivière d'Épire
 Xenagoras:nom d'un historien
 Xenarchus:Xénarque [général des Achéens]
 Xenia:nom de femme
@@ -16231,10 +16230,10 @@ Zelasium:promontoire de l'Eubée
 Zele:nom de femme
 Zelia:ville de la Troade
 Zelotos:nom d'homme
-Zelotus:nom d'homme
-Zena:noms de femmes, nom d'homme
-Zenas:noms de femmes, nom d'homme
-Zene:noms de femmes, nom d'homme
+!Zelotus:nom d'homme
+!Zena:noms de femmes, nom d'homme
+Zenas:nom d'homme
+Zene:noms de femmes
 Zenobius:nom d'homme
 Zenodorus:Zénodore [célèbre sculpteur grec]
 Zenonianus:de Zénon [l'empereur]
