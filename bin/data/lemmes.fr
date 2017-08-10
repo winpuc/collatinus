@@ -5907,7 +5907,7 @@ cytisus:cytise
 Cytorius:de Cytore
 Cytorus:Cytore [mont de Paphlagonie]
 Cyziceni:habitants de Cyzique
-Cyzicus:Cyzique (en Turquie actuelle)
+Cyzicus:Cyzique (héros qui donna son nom à la ville de Cyzique en Turquie actuelle)
 D2:Dominus (abréviation)
 Dabar:Dabar (Numide parent Masinissa)
 Dacia:Dacie [grande contrée au S.-E. de la Germanie, auj. la Moldavie, la Valachie]
@@ -6725,7 +6725,7 @@ Dionysia2:Dionysiaques [fêtes de Bacchus]
 Dionysia:Dionysia (nom de femme, île de la mer Égée)
 Dionysius:Denys (tyran de Syracuse)
 Dionysodorus:Dionysodore (célèbre géomètre, autres)
-Dionysus:Dionysos (nom grec de Bacchus)
+Dionysos:Dionysos (nom grec de Bacchus)
 Diores:Diorès (nom de guerrier)
 Dioscorides:Dioscoride [nom de plusieurs Grecs célèbres]
 Dios:marron
@@ -7604,7 +7604,7 @@ Epicurus:Epicure
 Epidamnus:Épidamne [ville d'Épire, appelée depuis Dyrrachium]
 Epidaphna:Epidaphné (village près d'Antioche)
 Epidaurum:Épidaure [ville de l'Argolide, où Esculape était honoré, ville de Dalmatie]
-Epidaurus:Epidaure
+Epidaurus:Epidaure (ville de l'Argolide, où Esculape était honoré)
 Epidicus:Epidicus (nom d'homme; pièce de Plaute)
 epidipnis:dessert
 epidromus:corde pour serrer un filet, corde de hamac, voile de la poupe
@@ -7725,7 +7725,7 @@ Erymanthus:Érymanthe (montagne d'Arcadie, fleuve de Perse, rivière d'Élide)
 Erythea:Erythea (île voisine de l'Hispanie, où habitait Géryon)
 erythinus:rouget [poisson de mer]
 Erythrae:Érythres (villes de Béotie, d'Ionie, port de Locride)
-Erythrus:Erithea
+Erythrus:Erythras (un roi de l'Asie méridionnale qui donna son nom à la mer Erythrée)
 Erythraeus2:d'Érythres
 Eryx:mont Eryx
 esca:nourriture
@@ -9617,7 +9617,7 @@ Halaesinus:d'Halésa, habitants d'Halésa
 Halaesus:Halaesus (fils d'Agamemnon, un des Lapithes, montagne et rivière de Sicile)
 halcyoneus:des alcyons
 Haliacmon:Haliacmon (fleuve de Macédoine)
-Halicarnassus:Halicarnasse [capitale de la Carie]
+Halicarnassus:Halicarnasse (capitale de la Carie)
 Halicarnasus:Halicarnasse (ville de Carie).
 Halicyenses:habitants d'Halicyes
 Halicyensis:d'Halicyes
@@ -13059,7 +13059,7 @@ Malli:Malli (peuple de l'Inde)
 Mallius:Mallius (nom d'homme)
 Mallovendus:Mallovendus (chef germain)
 mallus2:fil de laine
-Mallus:Mallus (ville de Cilicie;  d'Éthiopie; montagne chez les Malli)
+Mallus:Mallus (ville de Cilicie;  d'Éthiopie; m. montagne chez les Malli)
 malobathron:malobathrum (arbre qui fournissait un parfum), essence de malobathrum
 malo:préférer
 Malthinus:Malthinus (nom d'homme)
@@ -14402,7 +14402,7 @@ Nereus:Nérée (dieu de la mer)
 Neria:Néria (déesse des Sabins, épouse de Mars)
 Nerinus:de Nérée (de la mer)
 Neritius:de Nérite (île)
-Neritus:Nérite (île voisine d'Ithaque; montagne d'Ithaque)
+Neritus:Nérite (île voisine d'Ithaque; m. montagne d'Ithaque)
 Nerius:Nerius (nom d'h.)
 Nero:Néron
 Neroneus:de Néron
@@ -15006,7 +15006,7 @@ ocior:plus rapide, plus prompt à (+ inf.à), qui mûrit plus vite, plus précoc
 ocius:plus vite
 ocliferius:qui saute aux yeux
 oclopeta:oclopeta (animal comestible inconnu)
-Ocnus:Ocnus [fondateur de Mantoue; personnage allégorique, pris pour type de l'indolence)
+Ocnus:Ocnus (fondateur de Mantoue; personnage allégorique, pris pour type de l'indolence)
 Ocrea2:Ocrea (surnom)
 ocrea:jambière
 ocreatus:qui porte des guêtres de cuir
@@ -15156,7 +15156,7 @@ Olympio:Olympio (ambassadeur du roi d'Illyrie à Persée)
 Olympiscus:Olympiscus (hypocoristique de Olympio)
 Olympius:olympien
 Olynthius:d'Olynthe, les Olynthiens
-Olynthus:Olynthe [ville de Thrace, détruite par les Athéniens]
+Olynthus:Olynthe (ville de Thrace, détruite par les Athéniens)
 omasum:tripes de boeuf
 Ombos:Ombos (ville de la Thébaïde, sur le Nil)
 omen:présage
@@ -15661,7 +15661,7 @@ papaver:pavot
 Paphius:de Paphos (de Vénus)
 Paphlagones:Paphlagoniens
 Paphlagonia:la Paphlagonie [contrée de l'Asie Mineure]
-Paphos:Paphos (ville del'île de Chypre)
+Paphos:Paphos (ville de l'île de Chypre)
 Papia:Papia (nom de femme)
 papilla:bouton du sein, mamelon, tétin
 Papinius:Papinius (famille)
@@ -17667,7 +17667,7 @@ Priameis:fille de Priam, Cassandre
 Priameius:de Priam
 Priamides:fils de Priam, Pâris
 Priamus:Priam
-Priapus:Priape
+Priapus:Priape (fils de Bacchus et de Vénus)
 pridem:depuis longtemps
 pridie:veille
 primaevus:du premier âge
@@ -21788,7 +21788,7 @@ tela:toile ; la Toile, Internet
 Telegonus:Télégone (fils et meurtrier d'Ulysse)
 Telemachus:Télémaque (fils d'Ulysse et de Pénélope)
 Telemus:Télème (devin, fils de Protée)
-Telephus:Télèphe
+Telephus:Télèphe (fils d'Hercule et roi de Mysie ; un ami d'Horace)
 Telesinus2:Telesinus (nom de femme, nom d'homme)
 Telesphorus:Telesphorus (surnom)
 Telestis:Telestis (personnage de jeune fille)
@@ -23083,7 +23083,7 @@ Vacunalis:de Vacuna
 Vacuna:Vacuna (déesse du repos des champs, honorée chez les Sabins)
 vacuum:terrain inoccupé
 vacuus:vide
-Vada2:vada Sabatia (port d'Étrurie)
+Vada2:Vada (Sabatia = Savona ou Volterrana, port d'Étrurie)
 Vada:Vada (ville de Belgique)
 vadimonium:engagement, promesse de comparaître
 vado:aller
