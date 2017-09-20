@@ -56,7 +56,7 @@ RESOURCES += collatinus.qrc
 RC_ICONS = res/collatinus.ico
 
 macx:{
-    TARGET = Collatinus_11
+    TARGET = Collatinus_$${VERSION}
     #note mac os x, fair un $ qmake -spec macx-g++
     #CONFIG += x86 ppc
     QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.8
@@ -67,14 +67,14 @@ macx:{
 
     # install into app bundle
     # à changer en ressources
-    data.path = Collatinus_11.app/Contents/MacOS/data
+    data.path = $${TARGET}.app/Contents/MacOS/data
     data.files =  bin/data/*
 #    deploy.depends = install_documentation
     deploy.depends += install
 #    documentation.path = Collatinus_11.app/Contents/MacOS/doc/
 #    documentation.files = doc/*.html doc/*.css
     # ajouter un cible qui fait macdeploy Collatinus.app
-    deploy.commands = macdeployqt Collatinus_11.app
+    deploy.commands = macdeployqt $${TARGET}.app
 #    dmg.depends = deploy
 #	dmg.commands = ./MacOS/Collatinus.sh
 #    INSTALLS += documentation
