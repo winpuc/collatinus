@@ -72,6 +72,9 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
     ajAssims();
     // contractions
     ajContractions();
+    QString version = QString(VERSION);
+    _medieval = version.contains("med");
+    if (_medieval) lisTransfMed();
     // lecture des morphos
     QDir rep;
     rep = QDir(_resDir, "morphos.*");
@@ -511,7 +514,9 @@ int Lemmat::aRomano(QString f)
  */
 void Lemmat::ajDesinence(Desinence *d)
 {
-    _desinences.insert(Ch::deramise(d->gr()), d);
+    if (_medieval)
+        _desinences.insert(transfMed(Ch::deramise(d->gr())), d);
+    else _desinences.insert(Ch::deramise(d->gr()), d);
 }
 
 bool Lemmat::estRomain(QString f)
@@ -538,7 +543,9 @@ void Lemmat::ajRadicaux(Lemme *l)
     {
         QList<Radical *> lr = l->radical(i);
         foreach (Radical *r, lr)
-            _radicaux.insert(Ch::deramise(r->gr()), r);
+            if (_medieval)
+                _radicaux.insert(transfMed(Ch::deramise(r->gr()), true), r);
+            else _radicaux.insert(Ch::deramise(r->gr()), r);
     }
     // pour chaque radical du modèle
     foreach (int i, m->clesR())
@@ -565,7 +572,9 @@ void Lemmat::ajRadicaux(Lemme *l)
                 }
             }
             l->ajRadical(i, r);
-            _radicaux.insert(Ch::deramise(r->gr()), r);
+            if (_medieval)
+                _radicaux.insert(transfMed(Ch::deramise(r->gr()),true), r);
+            else _radicaux.insert(Ch::deramise(r->gr()), r);
         }
     }
 }
@@ -707,6 +716,8 @@ MapLem Lemmat::lemmatise(QString f)
     int cnt_oe = f_lower.count("œ");
     if (f_lower.endsWith("æ")) cnt_ae -= 1;
     f = Ch::deramise(f);
+    if (_medieval) f = transfMed(f);
+    qDebug() << _medieval << f;
     // formes irrégulières
     QList<Irreg *> lirr = _irregs.values(f);
     foreach (Irreg *irr, lirr)
@@ -753,7 +764,7 @@ MapLem Lemmat::lemmatise(QString f)
                     c = c && ((cnt_oe==0)||(cnt_oe == rad->grq().toLower().count("ōe")));
                     c = c && ((cnt_ae==0)||
                               (cnt_ae == (rad->grq().toLower().count("āe") + rad->grq().toLower().count("prăe"))));
-                    if (c)
+                    if (c || _medieval)
                     {
                         QString fq = rad->grq() + des->grq();
                         if (!r.endsWith("i") && rad->gr().endsWith("i"))
@@ -1294,7 +1305,11 @@ void Lemmat::lisIrreguliers()
     {
         Irreg *irr = new Irreg(lin, this);
         if (irr != 0 && irr->lemme() != 0)
-            _irregs.insert(Ch::deramise(irr->gr()), irr);
+        {
+            if (_medieval)
+                _irregs.insert(transfMed(Ch::deramise(irr->gr())), irr);
+            else _irregs.insert(Ch::deramise(irr->gr()), irr);
+        }
 #ifdef DEBOG
         else
             std::cerr << "Irréguliers, erreur dans la ligne" << qPrintable(lin);
@@ -1389,6 +1404,23 @@ void Lemmat::lisParPos()
     {
         rr = ligne.split(";");
         _reglesp.append(Reglep(QRegExp(rr.at(0)), rr.at(1)));
+    }
+}
+
+/**
+ * \fn void Lemmat::lisTransfMed()
+ * \brief Lecture des règles de transformation
+ * entre les graphies classique et médiévale
+ * enregistrées dans le fichier data/medieval.txt.
+ */
+void Lemmat::lisTransfMed()
+{
+    QStringList lignes = lignesFichier(_resDir + "medieval.txt");
+    QStringList rr;
+    foreach (QString ligne, lignes)
+    {
+        rr = ligne.split(";");
+        _reglesMed.append(Reglep(QRegExp(rr.at(0)), rr.at(1)));
     }
 }
 
@@ -1586,6 +1618,23 @@ QString Lemmat::parPos(QString f)
     f = f.toLower();
     foreach (Reglep r, _reglesp)
         f.replace(r.first, r.second);
+    if (maj) f[0] = f[0].toUpper();
+    return f;
+}
+
+QString Lemmat::transfMed(QString f, bool rad)
+{
+    if (f.isEmpty()) return "";
+    bool maj = f.at(0).isUpper();
+    f = f.toLower();
+    foreach (Reglep r, _reglesMed)
+        if (!r.second.endsWith("*")) f.replace(r.first, r.second);
+        else if (rad)
+        {
+            QString rs = r.second;
+            rs.chop(1);
+            f.replace(r.first, rs);
+        }
     if (maj) f[0] = f[0].toUpper();
     return f;
 }

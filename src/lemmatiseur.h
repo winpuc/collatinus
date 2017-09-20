@@ -94,6 +94,10 @@ class Lemmat : public QObject
     // Les morphos doivent pouvoir être données en anglais !
     QMultiMap<QString, Radical *> _radicaux;
     QList<Reglep> _reglesp;
+    QList<Reglep> _reglesMed; // Règles de transformation entre graphies classique et médiévale
+    void lisTransfMed();
+    QString transfMed(QString f, bool rad=false); // Exactement comme parPos, mais pour les transformations médiévales
+    bool _medieval; // Au cas où j'arrive avec le même code à traiter les deux cas.
     QMap<QString, QString> _variables;
     // options
     bool _alpha;
