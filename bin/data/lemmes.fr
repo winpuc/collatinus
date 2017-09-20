@@ -13492,7 +13492,7 @@ Menelaus:Ménélas
 Menenius:Menenius
 Menes:Ménès (lieutenant d'Alexandre)
 Menestheus:Ménesthée (roi d'Athènes; fils d'Iphicrate; cocher de Diomède)
-Menippaeus:Ménippée (nom d'une oeuvre de Varon : la Satire Ménippée)
+Menippeus:Ménippée (nom d'une oeuvre de Varon : la Satire Ménippée)
 Meniscus:Meniscus (nom d'homme)
 Menoeceus2:Ménécée [fils de Créon, roi de Thèbes]
 Menoetes:Ménétès (compagnon d'Énée)
