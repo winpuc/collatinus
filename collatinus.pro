@@ -1,5 +1,6 @@
 VERSION = "11med"
 DEFINES += VERSION=\\\"$$VERSION\\\"
+DEFINES += MEDIEVAL
 
 TEMPLATE = app
 TARGET = collatinus

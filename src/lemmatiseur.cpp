@@ -717,7 +717,6 @@ MapLem Lemmat::lemmatise(QString f)
     if (f_lower.endsWith("æ")) cnt_ae -= 1;
     f = Ch::deramise(f);
     if (_medieval) f = transfMed(f);
-    qDebug() << _medieval << f;
     // formes irrégulières
     QList<Irreg *> lirr = _irregs.values(f);
     foreach (Irreg *irr, lirr)
