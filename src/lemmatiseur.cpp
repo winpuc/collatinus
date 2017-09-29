@@ -744,6 +744,21 @@ MapLem Lemmat::lemmatise(QString f)
         // 2. conubium, ablP conubis : conubi.s -> conubi.i+s
         if (d.startsWith('i') && !d.startsWith("ii") && !r.endsWith('i'))
             lrad << _radicaux.values(r + "i");
+        if (_medieval && ((d=="") || d.startsWith("i")))
+        {
+            // Deux exceptions notables de la conversion ti+voyelle --> ci+voyelle
+            // - les invariables se terminant par "ti" : la forme reste en "ti" alors que le radical est devenu en "ci"
+            // - le comparatif de fortis ajoute ior+ : si le radical se termine par "t", la forme est devenue "cior"
+            QString rbis = r;
+            if ((d=="") && r.endsWith("ti")) rbis[rbis.size()-2] = 'c';
+            if (d.startsWith("i") && (d.size()>1) && r.endsWith("c"))
+            {
+                QString voy = "aeiouy";
+                // Plus général que le comparatif : d commence par i+voyelle.
+                if (voy.contains(d[1])) rbis[rbis.size()-1] = 't';
+            }
+            if (r != rbis) lrad << _radicaux.values(rbis);
+        }
         if (lrad.empty()) continue;
         // Il n'y a rien à faire si le radical n'existe pas.
         foreach (Radical *rad, lrad)
