@@ -418,6 +418,7 @@ QList<int> Modele::listeI(QString l)
  * \brief Liste des numéros des désinences définies par le modèle.
  */
 QList<int> Modele::morphos() { return _desinences.keys(); }
+
 /**
  * \fn QChar Modele::pos()
  * \brief Retourne la catégorie du modèle, en utilisant
