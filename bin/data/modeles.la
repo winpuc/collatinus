@@ -35,6 +35,10 @@
 !    n2 : nombre de caractères à ôter de la forme canonique
 !    ch : chaîne à ajouter à la chaîne obtenue pour avoir le radical
 !
+! autre possibilité :
+! Le radical est identique à la forme canonique
+! R:<n1>:K
+!
 ! des:<intervalle>:<numMorph>:<listeDes>
 !  <num> est le n° de radical
 !

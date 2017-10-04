@@ -380,6 +380,7 @@ QStringList const Modele::cles = QStringList() << "modele"  // 0
  *        du radical.
  */
 QString Modele::genRadical(int r) { return _genRadicaux[r]; }
+
 /**
  * \fn QList<int> Modele::listeI (QString l)
  * \brief Fonction importante permettant de renvoyer
