@@ -29,15 +29,24 @@
 !    nom du modèle, comme donné dans lemmes.la.
 !    ligne suivie des autres clés qui décrivent
 !    le modèle.
+!
+! RADICAUX
+! Première possibilité :
 ! R:<n1>:<n2>,<ch>
 !    Description d'un radical.
 !    n1 : numéro du radical
 !    n2 : nombre de caractères à ôter de la forme canonique
 !    ch : chaîne à ajouter à la chaîne obtenue pour avoir le radical
 !
-! autre possibilité :
+! Deuxième possibilité :
 ! Le radical est identique à la forme canonique
 ! R:<n1>:K
+!
+! Troisième possibilité :
+! Le radical n'existe que s'il est donné dans lemmes.la
+! R:<n1>:-
+! 
+! DÉSINENCES
 !
 ! des:<intervalle>:<numMorph>:<listeDes>
 !  <num> est le n° de radical
@@ -736,6 +745,7 @@ des:302:0:ărī
 modele:moneo
 pere:amo
 R:0:2,0
+R:2:-
 des:121-126:0:ĕō̆;ēs;ĕt;ēmŭs;ētĭs;ēnt
 des:127-132:0:ēbăm;ēbās;ēbăt;ēbāmŭs;ēbātĭs;ēbānt
 des:133-138:0:ēbō̆;ēbĭs;ēbĭt;ēbĭmŭs;ēbĭtĭs;ēbūnt
