@@ -14920,7 +14920,7 @@ obtego:recouvrir, cacher
 obtempero:obéir (à : dat.)
 obtendo:tendre devant, opposer; couvrir, cacher
 obtentus:action de tendre, prétexte
-obtero:écraser
+obtero:écraser, broyer, fouler, mépriser, anéantir, détruire, frotter
 obtestatio:action de prendre les dieux à témoin, engagement solennel
 obtestor:attester, supplier, conjurer
 obtexo:tisser devant, couvrir, envelopper
@@ -15275,14 +15275,10 @@ optatio:faculté de souhaiter, de faire un voeu, optation
 optato:selon le désir, à souhait
 optatum:voeu, souhait, désir
 optatus:choisi, agréable, désiré, souhaité
-optempero:obéir
-optero:écraser, broyer, fouler, mépriser, anéantir, détruire, frotter
 optimas2:optimate (du parti du sénat, conservateur et aristocratique), aristocrate
 optimates:conservateurs, optimates
 optime:très bien, parfait
 optimum:le bien, la perfection
-optineo:occuper, tenir
-optingo:arriver, échoir
 optio:choix
 optionatus:optionat (milit.)
 optivus:choisi
