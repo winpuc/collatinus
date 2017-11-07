@@ -14934,6 +14934,7 @@ obtrectator:détracteur
 obtrecto:dénigrer, rabaisser, critiquer par jalousie
 obtrudo:pousser violemment, imposer, avaler gloutonnement, engloutir, recouvrir, fermer
 obtrunco:tailler, massacrer, égorger, tuer
+obtueor:regarder en face, apercevoir, voir
 obtundo:frapper contre, émousser, affaiblir, assommer, fatiguer
 obturbo:rendre trouble, troubler; mettre en déroute; importuner
 obturo:boucher
@@ -15286,7 +15287,6 @@ optio:choix
 optionatus:optionat (milit.)
 optivus:choisi
 opto:souhaiter
-optueor:regarder en face, apercevoir, voir
 opulens:riche, opulent
 opulenter:avec opulence, richement, somptueusement
 opulentia:splendeur, richesse
