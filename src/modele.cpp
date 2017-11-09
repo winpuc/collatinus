@@ -236,6 +236,7 @@ Modele::Modele(QStringList ll, Lemmat *parent)
             case 9: // POS
             {
                 _pos = eclats.at(1).at(0);
+                break;
             }
             default:
                 qDebug() << "Modèle, erreur" << l;
