@@ -29800,7 +29800,7 @@ electrinus:d'ambre ou d'électrum
 electrix:celle qui choisit
 electrus:en électrum, d'électrum
 electuarium:électuaire [préparation pharmaceutique]
-eleemosyna:souvent
+eleemosyna:aumône
 eleemosynae:aumône, aumônes
 eleemosynarius:donné à titre d'aumône
 elegantes:Comp., sup.
@@ -58308,4 +58308,20 @@ Zachaeus:personnage biblique
 Zebee:personnage biblique
 Ziphaei:habitants de Ziph, ville de Palestine
 Zorobabel:personnage biblique
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Flavigny
+! Accentuation de la Règle de saint Benoît 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+adolescens:participe présent de adolesco
+directaneus:récité d'un trait, sans pause
+distollo:distraire, détourner l'attention
+eleison:mot grec ("Prends pitié")
+murmurium:murmure, protestation
+percompleo:finir, achever
+Sarabaita:genre de moine
+scapulare:scapulaire, vêtement monastique descendant devant et derrière les épaules jusqu'aux pieds
+sempecta:moine ancien
+stirpator:qui gaspille, dissipateur
 
