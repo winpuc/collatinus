@@ -1037,7 +1037,7 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                 if (_html)
                     lsv.append("<li style=\"color:blue;\">" + f + "</li>");
                 else
-                    lsv.append(f + " ÉCHEC");
+                    lsv.append("> " + f + " ÉCHEC\n");
             }
             if (cumColoribus)
             {
