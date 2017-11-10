@@ -538,7 +538,8 @@ void Lemmat::ajRadicaux(Lemme *l)
     // ablŭo=ā̆blŭo|lego|ā̆blŭ|ā̆blūt|is, ere, lui, lutum
     //      0        1    2    3         4
     Modele *m = modele(l->grModele());
-    // insérer d'abord les radicaux définis dans lemmes.la
+    /* insérer d'abord les radicaux définis dans lemmes.la
+    qui sont prioritaires */
     foreach (int i, l->clesR())
     {
         QList<Radical *> lr = l->radical(i);
@@ -558,6 +559,7 @@ void Lemmat::ajRadicaux(Lemme *l)
             {
                 QString gen = m->genRadical(i);
                 // si gen == 'K', le radical est la forme canonique
+                if (gen == "-") continue;
                 if (gen == "K")
                     r = new Radical(g, i, l);
                 else

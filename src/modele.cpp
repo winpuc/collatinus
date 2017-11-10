@@ -129,6 +129,7 @@ Modele::Modele(QStringList ll, Lemmat *parent)
 {
     _lemmatiseur = qobject_cast<Lemmat *>(parent);
     _pere = 0;
+    _pos = '\0';
     QMultiMap<QString, int> msuff;
     QRegExp re("[:;]([\\w]*)\\+{0,1}(\\$\\w+)");
     foreach (QString l, ll)
@@ -232,6 +233,11 @@ Modele::Modele(QStringList ll, Lemmat *parent)
                 }
                 break;
             }
+            case 9: // POS
+            {
+                _pos = eclats.at(1).at(0);
+                break;
+            }
             default:
                 qDebug() << "Modèle, erreur" << l;
         }
@@ -241,9 +247,11 @@ Modele::Modele(QStringList ll, Lemmat *parent)
     // père
     if (_pere != 0)
     {
+        // héritage du pos
+        if (_pos == '\0') _pos = _pere->pos();
+        // héritage des désinences
         foreach (int m, _pere->morphos())
         {
-            // héritage des désinence
             if (deja(m)) continue;
             QList<Desinence *> ld = _pere->desinences(m);
             foreach (Desinence *d, ld)
@@ -371,7 +379,8 @@ QStringList const Modele::cles = QStringList() << "modele"  // 0
                                                << "abs"     // 5
                                                << "suf"     // 6
                                                << "sufd"    // 7
-                                               << "abs+";   // 8
+                                               << "abs+"    // 8
+                                               << "pos";    // 9
 
 /**
  * \fn QString Modele::genRadical (int r)
@@ -380,6 +389,7 @@ QStringList const Modele::cles = QStringList() << "modele"  // 0
  *        du radical.
  */
 QString Modele::genRadical(int r) { return _genRadicaux[r]; }
+
 /**
  * \fn QList<int> Modele::listeI (QString l)
  * \brief Fonction importante permettant de renvoyer
@@ -417,6 +427,7 @@ QList<int> Modele::listeI(QString l)
  * \brief Liste des numéros des désinences définies par le modèle.
  */
 QList<int> Modele::morphos() { return _desinences.keys(); }
+
 /**
  * \fn QChar Modele::pos()
  * \brief Retourne la catégorie du modèle, en utilisant
@@ -424,10 +435,13 @@ QList<int> Modele::morphos() { return _desinences.keys(); }
  */
 QChar Modele::pos()
 {
+    return _pos;
+    /*
     if (estUn("uita") || estUn("lupus") || estUn("miles") || estUn("manus") ||
         estUn("res") || estUn("perseus"))
         return 'n';
     if (estUn("doctus") || estUn("fortis")) return 'a';
     if (estUn("amo") || estUn("imitor")) return 'v';
     return 'd';
+    */
 }
