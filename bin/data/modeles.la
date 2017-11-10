@@ -335,7 +335,8 @@ pos:n
 
 modele:jesus
 R:0:2,0
-des:1-6:0:ūs;ūs,ū;ūs,ŭm;ūs;ūs,ū
+des:1-6:0:ūs;ū;ŭm;ū;ū;ū
+!des:1-6:0:ūs;ūs,ū;ūs,ŭm;ūs;ūs,ū
 pos:n
 
 modele:clio
@@ -577,7 +578,7 @@ modele:quiuis
 pere:qui
 R:1:6,0
 sufd:vīs
-des+:37,39:1:quīdvīs
+!des+:37,39:1:quīdvīs
 
 modele:quis
 pere:qui
