@@ -1012,6 +1012,9 @@ pere:sum
 R:4:4,t
 !R:5:4,tĕr
 R:7:2,0
+! Pas d'impératif, ni participe, ni supin (dixit Cart-Grimal)
+abs:181-186
+abs:225-260
 
 modele:prosum
 pere:sum
