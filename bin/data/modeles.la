@@ -605,7 +605,7 @@ modele:quisquam
 pere:quis
 R:1:8,0
 sufd:quăm
-des+:37,39:1:quīcquăm
+!des+:37,39:1:quīcquăm
 
 modele:quisque
 pere:quis
