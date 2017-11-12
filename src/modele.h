@@ -66,6 +66,7 @@ class Modele : public QObject
     Lemmat *_lemmatiseur;
     Modele *_pere;
     QChar   _pos;
+    QString _suf;
 
    public:
     Modele(QStringList ll, Lemmat *parent = 0);
