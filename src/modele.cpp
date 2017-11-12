@@ -176,7 +176,7 @@ Modele::Modele(QStringList ll, Lemmat *parent)
                     }
                 }
                 // si des+, aller chercher les autres désinences chez le père :
-                if (p == 3)
+                if (p == 3 && _pere != 0)
                 {
                     foreach (int i, li)
                     {
@@ -216,7 +216,7 @@ Modele::Modele(QStringList ll, Lemmat *parent)
             {
                 if (_pere != 0)
                 {
-                    QString suf = eclats.at(1);
+                    _suf = eclats.at(1);
                     QList<Desinence *> ld = _pere->desinences();
                     foreach (Desinence *d, ld)
                     {
@@ -226,7 +226,7 @@ Modele::Modele(QStringList ll, Lemmat *parent)
                         QString nd = d->grq();
                         Ch::allonge (&nd);
                         Desinence *dsuf = new Desinence
-                            (nd+suf, d->morphoNum(), d->numRad(), this);
+                            (nd+_suf, d->morphoNum(), d->numRad(), this);
                         _desinences.insert(dsuf->morphoNum(), dsuf);
                         _lemmatiseur->ajDesinence(dsuf);
                     }
@@ -330,7 +330,7 @@ QList<int> Modele::clesR() { return _genRadicaux.keys(); }
  */
 Desinence *Modele::clone(Desinence *d)
 {
-    return new Desinence(d->grq(), d->morphoNum(), d->numRad(), this);
+    return new Desinence(d->grq()+_suf, d->morphoNum(), d->numRad(), this);
 }
 
 /**
