@@ -161,6 +161,7 @@ MainWindow::MainWindow()
 
     lemmatiseur = new Lemmat(this);
     flechisseur = new Flexion(lemmatiseur);
+    lasla = new Lasla(lemmatiseur);
 
     setLangue();
 
@@ -2100,7 +2101,7 @@ void MainWindow::exec ()
             break;
         case 'K':
         case 'k':
-            rep = lemmatiseur->k9(texte);
+            rep = lasla->k9(texte);
             break;
         case 'c':
             if (options.size() > 2)

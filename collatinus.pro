@@ -35,7 +35,8 @@ HEADERS += src/ch.h \
            src/flexfr.h \
            src/mainwindow.h \
 		   src/maj.h \
-    src/mot.h
+    src/mot.h \
+    src/lasla.h
 
 SOURCES += src/ch.cpp \
            src/flexion.cpp \
@@ -50,7 +51,8 @@ SOURCES += src/ch.cpp \
            src/mainwindow.cpp \
            src/modele.cpp \
            src/scandeur.cpp \
-    src/mot.cpp
+    src/mot.cpp \
+    src/lasla.cpp
 
 RESOURCES += collatinus.qrc
 RC_ICONS = res/collatinus.ico
