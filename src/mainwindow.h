@@ -29,6 +29,7 @@
 #include "lemmatiseur.h"
 #include "dicos.h"
 #include "ch.h"
+#include "lasla.h"
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -71,6 +72,8 @@ class MainWindow : public QMainWindow
     // cœur
     Lemmat *lemmatiseur;
     Flexion *flechisseur;
+    // modules divers
+    Lasla *lasla;
     // widgets d'édition et d'affichage
     EditLatin *editLatin;
     QTextEdit *textEditLem;

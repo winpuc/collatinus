@@ -81,7 +81,6 @@ class Lemmat : public QObject
     QString _cible;  // langue courante, 2 caractères
     QMap<QString, QString> _cibles;
     QMap<QString, Lemme *> _lemmes;
-    QStringList             lignesFichier(QString nf);
     QMap<QString, Modele *> _modeles;
     QMap<QString,QStringList> _morphos;
     QMap<QString,QStringList> _cas;
@@ -103,8 +102,6 @@ class Lemmat : public QObject
     bool _majPert;
     bool _morpho;
     bool _nonRec;
-    QMap<QString,QString> _catLasla;
-    void lisCat();
 
     QMap<QString, int> _tagOcc; // Nombre d'occurrences du tag.
     QMap<QString, int> _tagTot; // Nombre total en fonction du premier caractère du tag.
@@ -145,6 +142,8 @@ class Lemmat : public QObject
     Lemme *lemme(QString l);
     // lemmes(ml) renvoie la liste des graphies des lemmes
     QStringList lemmes(MapLem ml);
+    QStringList lignesFichier(QString nf);
+    // Lit les lignes d'un fichier. Est devenu public.
     Modele *modele(QString m);
     QString morpho(int i);
     QString parPos(QString f);
@@ -178,9 +177,6 @@ class Lemmat : public QObject
     QString tag(Lemme *l, QString morph);
     int fraction(QString listTags);
     int tagOcc(QString t);
-
-    // Code en 9 pour le LASLA
-    QString k9(QString m);
 
     void verbaOut(QString fichier); // Connaître l'usage des mots connus
     void verbaCognita(QString fichier, bool vb=false); // Coloriser le texte avec les mots connus
