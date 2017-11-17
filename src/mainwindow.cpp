@@ -162,6 +162,7 @@ MainWindow::MainWindow()
     lemmatiseur = new Lemmat(this);
     flechisseur = new Flexion(lemmatiseur);
     lasla = new Lasla(lemmatiseur);
+    tagueur = new Tagueur(lemmatiseur);
 
     setLangue();
 
@@ -2210,7 +2211,7 @@ void MainWindow::tagger(QString t, int p)
         // Sans texte, je ne fais rien.
         int tl = t.length() - 1;
         if (p > tl) p = tl;
-        textBrowserTag->setHtml(lemmatiseur->tagTexte(t, p, affToutAct->isChecked()));
+        textBrowserTag->setHtml(tagueur->tagTexte(t, p, affToutAct->isChecked(), majPertAct->isChecked()));
     }
 }
 

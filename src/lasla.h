@@ -3,6 +3,7 @@
 
 #include "lemmatiseur.h"
 #include "lemme.h"
+#include "ch.h"
 
 
 class Lasla

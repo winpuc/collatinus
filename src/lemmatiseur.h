@@ -43,7 +43,6 @@ typedef struct
 } SLem;
 
 typedef QMap<Lemme*, QList<SLem> > MapLem;
-#include "mot.h"
 
 typedef QPair<QRegExp, QString> Reglep;
 
@@ -171,12 +170,11 @@ class Lemmat : public QObject
     QString voix(int i);
     QString motsClefs(int i);
 
-    // Pour le tagger
-    QString tagTexte(QString t, int p, bool affTout = true);
 //    QString tagPhrase(QString phr);
     QString tag(Lemme *l, QString morph);
     int fraction(QString listTags);
     int tagOcc(QString t);
+    int trigram(QString seq);
 
     void verbaOut(QString fichier); // Connaître l'usage des mots connus
     void verbaCognita(QString fichier, bool vb=false); // Coloriser le texte avec les mots connus
