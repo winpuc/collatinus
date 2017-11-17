@@ -30,6 +30,7 @@
 #include "dicos.h"
 #include "ch.h"
 #include "lasla.h"
+#include "tagueur.h"
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -74,6 +75,7 @@ class MainWindow : public QMainWindow
     Flexion *flechisseur;
     // modules divers
     Lasla *lasla;
+    Tagueur *tagueur;
     // widgets d'édition et d'affichage
     EditLatin *editLatin;
     QTextEdit *textEditLem;
