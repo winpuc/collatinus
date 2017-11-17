@@ -19,13 +19,62 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
+#include "scandeur.h"
 #include "ch.h"
 #include "lemmatiseur.h"
 
 #include <QDebug>
 
+Scandeur::Scandeur(Lemmat *l, QString resDir)
+{
+    _lemmatiseur = l;
+    if (resDir == "")
+        _resDir = qApp->applicationDirPath() + "/data/";
+    else if (resDir.endsWith("/")) _resDir = resDir;
+    else _resDir = resDir + "/";
+    lisParPos();
+
+}
+
+
 /**
- * \fn QStringList Lemmat::cherchePieds (int nbr, QString ligne, int i, bool
+ * \fn void Scandeur::lisParPos()
+ * \brief Lecture des règles de quantité par position
+ * enregistrées dans le fichier data/parpos.txt.
+ */
+void Scandeur::lisParPos()
+{
+    QStringList lignes = _lemmatiseur->lignesFichier(_resDir + "parpos.txt");
+    QStringList rr;
+    foreach (QString ligne, lignes)
+    {
+        rr = ligne.split(";");
+        _reglesp.append(Reglep(QRegExp(rr.at(0)), rr.at(1)));
+    }
+}
+
+/**
+ * @brief Scandeur::parPos
+ * @param f : la forme sans quantité
+ * @return : la forme avec les quantités déterminables par position.
+ *
+ * Quand une forme n'est pas reconnue,
+ * on essaie quand même de trouver les quantités.
+ * Ça n'est possible que pour les quantités définies par position.
+ * On ne peut pas deviner les quantités par nature.
+ */
+QString Scandeur::parPos(QString f)
+{
+    bool maj = f.at(0).isUpper();
+    f = f.toLower();
+    foreach (Reglep r, _reglesp)
+        f.replace(r.first, r.second);
+    if (maj) f[0] = f[0].toUpper();
+    return f;
+}
+
+/**
+ * \fn QStringList Scandeur::cherchePieds (int nbr, QString ligne, int i, bool
  *pentam)
  * \brief cherchePieds est une routine récursive qui construit la liste
  * de toutes les combinaisons possibles de dactyles et de spondées
@@ -43,7 +92,7 @@
  * s=*+, +* ou **
  * d=*--, +*-, +-*, +**, *-*, **- ou ***.
  **************************/
-QStringList Lemmat::cherchePieds(int nbr, QString ligne, int i, bool pentam)
+QStringList Scandeur::cherchePieds(int nbr, QString ligne, int i, bool pentam)
 {
     QStringList res;
     QString longueurs = "+-*";
@@ -143,16 +192,16 @@ QStringList Lemmat::cherchePieds(int nbr, QString ligne, int i, bool pentam)
 }
 
 /**
- * \fn QStringList Lemmat::formeq (QString forme, bool *nonTrouve, bool debPhr)
+ * \fn QStringList Scandeur::formeq (QString forme, bool *nonTrouve, bool debPhr)
  * \brief Renvoie forme scandée de toutes les manières possibles en appliquant
  *        les quantités données par les dictionnaires et les règles prosodiques.
  */
-QStringList Lemmat::formeq(QString forme, bool *nonTrouve, bool debPhr,
+QStringList Scandeur::formeq(QString forme, bool *nonTrouve, bool debPhr,
                            int accent)
 {
     *nonTrouve = true;
     if (forme.isEmpty()) return QStringList();
-    MapLem mp = lemmatiseM(forme, !_majPert || debPhr);
+    MapLem mp = _lemmatiseur->lemmatiseM(forme, debPhr);
     if (mp.empty())
     {
         if (accent == 0)
@@ -175,7 +224,8 @@ QStringList Lemmat::formeq(QString forme, bool *nonTrouve, bool debPhr,
             //			if (s.grq == "-") f = l->grq();
             //			else f = parPos(s.grq);
             if (maj) f[0] = f[0].toUpper();
-            mFormes[f] += fraction(tag(l,s.morpho)) * l->nbOcc(); // Je compte le nombre d'occurrences de chaque forme.
+            mFormes[f] += _lemmatiseur->fraction(_lemmatiseur->tag(l,s.morpho)) * l->nbOcc();
+            // Je compte le nombre d'occurrences de chaque forme.
 //            lforme.append(f);
         }
     }
@@ -200,11 +250,12 @@ QStringList Lemmat::formeq(QString forme, bool *nonTrouve, bool debPhr,
 }
 
 /**
- * \fn QString Lemmat::scandeTxt (QString texte, bool stats)
+ * \fn QString Scandeur::scandeTxt (QString texte, int accent, bool stats, bool majAut)
  * \brief Scande le texte, avec les statistiques si stats
  *        est à true, et renvoie le résultat.
  * \param   texte : le texte à scander ou à accentuer
  *          stats : booléen qui affiche ou non les statistiques
+ *          majAut : booléen qui autorise les majuscules initiales
  *          accent : un entier qui détermine si le résultat est
  * scandé ou accentué. Les valeurs permises sont 0 (texte scandé),
  * 1-3 texte accentué, 5-7 texte accentué avec les syllabes marquées.
@@ -212,7 +263,7 @@ QStringList Lemmat::formeq(QString forme, bool *nonTrouve, bool debPhr,
  * est commune : 1 et 5 la considère comme longue, 2 et 6 comme brève,
  * 3 et 7 ne place pas l'accent car la pénultième est ambiguë.
  */
-QString Lemmat::scandeTxt(QString texte, int accent, bool stats)
+QString Scandeur::scandeTxt(QString texte, int accent, bool stats, bool majAut)
 {
     accent = accent & 15;
     QString schemaMetric;
@@ -261,7 +312,7 @@ QString Lemmat::scandeTxt(QString texte, int accent, bool stats)
             nonTr = nonTrSuiv;
             if (i < separ.length() - 2)
             {
-                deb_phr = separ[i + 1].contains(Ch::rePonct);
+                deb_phr = separ[i + 1].contains(Ch::rePonct) || majAut;
                 lfs = formeq(separ[i + 2], &nonTrSuiv, deb_phr, accent);
                 if (accent == 0)
                 {

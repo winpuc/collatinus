@@ -37,7 +37,8 @@ HEADERS += src/ch.h \
 		   src/maj.h \
     src/mot.h \
     src/lasla.h \
-    src/tagueur.h
+    src/tagueur.h \
+    src/scandeur.h
 
 SOURCES += src/ch.cpp \
            src/flexion.cpp \

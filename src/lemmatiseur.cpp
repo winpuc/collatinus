@@ -84,7 +84,6 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
     lisTags(false);
     lisTraductions(true, false);
     lisIrreguliers();
-    lisParPos();
 #ifdef VERIF_TRAD
     foreach (Lemme *l, _lemmes.values()) {
         QString t = l->traduction("fr");
@@ -1481,22 +1480,6 @@ void Lemmat::lisModeles()
 }
 
 /**
- * \fn void Lemmat::lisParPos()
- * \brief Lecture des règles de quantité par position
- * enregistrées dans le fichier data/parpos.txt.
- */
-void Lemmat::lisParPos()
-{
-    QStringList lignes = lignesFichier(_resDir + "parpos.txt");
-    QStringList rr;
-    foreach (QString ligne, lignes)
-    {
-        rr = ligne.split(";");
-        _reglesp.append(Reglep(QRegExp(rr.at(0)), rr.at(1)));
-    }
-}
-
-/**
  * \fn void Lemmat::lisTraductions()
  * \brief Lecture des fichiers de traductions
  *        trouvés dans data/, nommés lemmes, avec
@@ -1682,16 +1665,6 @@ bool Lemmat::optExtension() { return _extension; }
 bool Lemmat::optMorpho()
 {
     return _morpho;
-}
-
-QString Lemmat::parPos(QString f)
-{
-    bool maj = f.at(0).isUpper();
-    f = f.toLower();
-    foreach (Reglep r, _reglesp)
-        f.replace(r.first, r.second);
-    if (maj) f[0] = f[0].toUpper();
-    return f;
 }
 
 /**

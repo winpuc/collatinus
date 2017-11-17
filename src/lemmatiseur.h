@@ -64,17 +64,13 @@ class Lemmat : public QObject
     void lisModeles();
     void lisMorphos(QString lang);
     void lisNombres();
-    void lisParPos();
     void lisTraductions(bool base, bool extension);
     // variables et utils
     QMap<QString, QString> assims;
     QMap<QString, QString> assimsq;
-    QStringList cherchePieds(int nbr, QString ligne, int i, bool pentam);
     QMap<QString, QString> _contractions;
     QMultiMap<QString, Desinence *> _desinences;
     QString decontracte(QString d);
-    QStringList formeq(QString forme, bool *nonTrouve, bool debPhr,
-                       int accent = 0);
     bool inv(Lemme *l, const MapLem ml);
     QMultiMap<QString, Irreg *> _irregs;
     QString _cible;  // langue courante, 2 caractères
@@ -91,7 +87,6 @@ class Lemmat : public QObject
     QMap<QString,QStringList> _motsClefs;
     // Les morphos doivent pouvoir être données en anglais !
     QMultiMap<QString, Radical *> _radicaux;
-    QList<Reglep> _reglesp;
     QMap<QString, QString> _variables;
     // options
     bool _alpha;
@@ -145,8 +140,6 @@ class Lemmat : public QObject
     // Lit les lignes d'un fichier. Est devenu public.
     Modele *modele(QString m);
     QString morpho(int i);
-    QString parPos(QString f);
-    QString scandeTxt(QString texte, int accent = 0, bool stats = false);
     // QStringList           suffixes;
     QMap<QString, QString> suffixes;
     QString variable(QString v);
