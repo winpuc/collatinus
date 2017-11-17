@@ -113,7 +113,7 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
     {
         int accent = mainwindow->lireOptionsAccent();
         mainwindow->textEditScand->append(
-            mainwindow->lemmatiseur->scandeTxt(st, accent, false));
+            mainwindow->scandeur->scandeTxt(st, accent, false, ! mainwindow->majPertAct->isChecked()));
     }
     if (unSeulMot)
     {
@@ -163,6 +163,7 @@ MainWindow::MainWindow()
     flechisseur = new Flexion(lemmatiseur);
     lasla = new Lasla(lemmatiseur);
     tagueur = new Tagueur(lemmatiseur);
+    scandeur = new Scandeur(lemmatiseur);
 
     setLangue();
 
@@ -1814,7 +1815,7 @@ void MainWindow::scandeLigne()
 {
     int accent = lireOptionsAccent();
     textEditScand->setHtml(
-        lemmatiseur->scandeTxt(lineEditScand->text(), accent, false));
+        scandeur->scandeTxt(lineEditScand->text(), accent, false, !majPertAct->isChecked()));
 }
 
 /**
@@ -1826,7 +1827,7 @@ void MainWindow::scandeTxt()
 {
     int accent = lireOptionsAccent();
     textEditScand->setHtml(
-        lemmatiseur->scandeTxt(editLatin->toPlainText(), accent, false));
+        scandeur->scandeTxt(editLatin->toPlainText(), accent, false, !majPertAct->isChecked()));
 }
 
 /**
@@ -1901,7 +1902,7 @@ void MainWindow::stat()
     }
     if (dockVisible(dockScand))
         textEditScand->setHtml(
-            lemmatiseur->scandeTxt(editLatin->toPlainText(), 0, true));
+            scandeur->scandeTxt(editLatin->toPlainText(), 0, true, !majPertAct->isChecked()));
 }
 
 /**
@@ -2056,7 +2057,7 @@ void MainWindow::exec ()
         case 's':
             if ((options.size() > 2) && (options[2].isDigit()))
                 optAcc = options[2].digitValue() & 7;
-            rep = lemmatiseur->scandeTxt(texte,0,optAcc==1);
+            rep = scandeur->scandeTxt(texte,0,optAcc==1, requete[1].isLower());
             if (optAcc==1) nonHTML = false;
             break;
         case 'A':
@@ -2068,7 +2069,7 @@ void MainWindow::exec ()
                 if ((options.size() > 3) && (options[3].isDigit()))
                     optAcc = 10 * optAcc + options[3].digitValue();
             }
-            rep = lemmatiseur->scandeTxt(texte,optAcc,false);
+            rep = scandeur->scandeTxt(texte,optAcc,false, requete[1].isLower());
             break;
         case 'H':
         case 'h':
@@ -2143,8 +2144,8 @@ void MainWindow::exec ()
         if ((a != 'C') && (a != 'c'))
             lemmatiseur->setMajPert(MP);
     }
-    else if (texte != "") rep= lemmatiseur->scandeTxt(texte);
-    else rep= lemmatiseur->scandeTxt(requete);
+    else if (texte != "") rep= scandeur->scandeTxt(texte);
+    else rep= scandeur->scandeTxt(requete);
     }
     if (nonHTML)
     {

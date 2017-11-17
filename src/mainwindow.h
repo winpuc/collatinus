@@ -31,6 +31,7 @@
 #include "ch.h"
 #include "lasla.h"
 #include "tagueur.h"
+#include "scandeur.h"
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -76,6 +77,7 @@ class MainWindow : public QMainWindow
     // modules divers
     Lasla *lasla;
     Tagueur *tagueur;
+    Scandeur *scandeur;
     // widgets d'édition et d'affichage
     EditLatin *editLatin;
     QTextEdit *textEditLem;
@@ -101,7 +103,8 @@ class MainWindow : public QMainWindow
     bool html();
     QAction *syncAct;
     QAction *calepAct;
-    // gr() de la dernière lemmatisation
+    QAction *majPertAct;
+    // L'option de majuscule pertinente doit être accessible depuis EditLatin.
     QStringList lemsDic;
     int lireOptionsAccent();
     // Pour le serveur
@@ -202,7 +205,6 @@ class MainWindow : public QMainWindow
     QAction *alphaOptAct;
     QAction *formeTAct;
     QAction *htmlAct;
-    QAction *majPertAct;
     QAction *morphoAct;
     QAction *nonRecAct;
     // bascule d'accentuation
