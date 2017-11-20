@@ -32,7 +32,7 @@
  *        si deb (= début de phrase) est à true, et renvoie le
  *        résultat dans une QStringList.
  */
-QStringList Lemmat::lemmatiseF(QString f, bool deb)
+QStringList LemCore::lemmatiseF(QString f, bool deb)
 {
     QStringList res;
     MapLem ml = lemmatiseM(f, deb);
@@ -48,7 +48,7 @@ QStringList Lemmat::lemmatiseF(QString f, bool deb)
  *        d'informations sur la fréquence d'emploi de
  *        chaque lemme.
  */
-QStringList Lemmat::frequences(QString txt)
+QStringList LemCore::frequences(QString txt)
 {
     // J'essaie d'échanger comptage et lemmatisation Ph.
     QStringList formes = txt.split(Ch::reEspace);

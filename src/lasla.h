@@ -32,13 +32,13 @@ class Lasla : public QObject
 //    Q_OBJECT
 
 public:
-    Lasla(QObject *parent = 0, Lemmat *l=0, QString resDir="");
+    Lasla(QObject *parent = 0, LemCore *l=0, QString resDir="");
     // Créateur de la classe
     QString k9(QString m);
     // Code en 9 pour le LASLA
 
 private:
-    Lemmat * _lemmatiseur;
+    LemCore * _lemCore;
     QString _resDir;
     QMap<QString,QString> _catLasla;
     // Les correspondances entre les modèles de Collatinus

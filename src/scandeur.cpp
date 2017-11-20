@@ -21,16 +21,16 @@
 
 #include "scandeur.h"
 
-Scandeur::Scandeur(QObject *parent, Lemmat *l, QString resDir) : QObject(parent)
+Scandeur::Scandeur(QObject *parent, LemCore *l, QString resDir) : QObject(parent)
 {
     if (l==0)
     {
-        _lemmatiseur = new Lemmat(this, resDir);
+        _lemCore = new LemCore(this, resDir);
         // Je crée le lemmatiseur...
-        _lemmatiseur->setExtension(true);
+        _lemCore->setExtension(true);
         // ... et charge l'extension du lexique.
     }
-    else _lemmatiseur = l;
+    else _lemCore = l;
     if (resDir == "")
         _resDir = qApp->applicationDirPath() + "/data/";
     else if (resDir.endsWith("/")) _resDir = resDir;
@@ -47,7 +47,7 @@ Scandeur::Scandeur(QObject *parent, Lemmat *l, QString resDir) : QObject(parent)
  */
 void Scandeur::lisParPos()
 {
-    QStringList lignes = _lemmatiseur->lignesFichier(_resDir + "parpos.txt");
+    QStringList lignes = _lemCore->lignesFichier(_resDir + "parpos.txt");
     QStringList rr;
     foreach (QString ligne, lignes)
     {
@@ -234,7 +234,7 @@ QStringList Scandeur::formeq(QString forme, bool *nonTrouve, bool debPhr,
 {
     *nonTrouve = true;
     if (forme.isEmpty()) return QStringList();
-    MapLem mp = _lemmatiseur->lemmatiseM(forme, debPhr);
+    MapLem mp = _lemCore->lemmatiseM(forme, debPhr);
     if (mp.empty())
     {
         if (accent == 0)
@@ -257,7 +257,7 @@ QStringList Scandeur::formeq(QString forme, bool *nonTrouve, bool debPhr,
             //			if (s.grq == "-") f = l->grq();
             //			else f = parPos(s.grq);
             if (maj) f[0] = f[0].toUpper();
-            mFormes[f] += _lemmatiseur->fraction(_lemmatiseur->tag(l,s.morpho)) * l->nbOcc();
+            mFormes[f] += _lemCore->fraction(_lemCore->tag(l,s.morpho)) * l->nbOcc();
             // Je compte le nombre d'occurrences de chaque forme.
 //            lforme.append(f);
         }

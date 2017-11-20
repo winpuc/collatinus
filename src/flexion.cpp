@@ -30,7 +30,7 @@
  */
 Flexion::Flexion(QObject *parent) : QObject(parent)
 {
-    _lemmatiseur = qobject_cast<Lemmat *>(parent);
+    _lemmatiseur = qobject_cast<LemCore *>(parent);
 }
 
 const QString Flexion::entete =

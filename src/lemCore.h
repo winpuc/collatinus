@@ -53,7 +53,7 @@ typedef QMap<Lemme*, QList<SLem> > MapLem;
 
 typedef QPair<QRegExp, QString> Reglep;
 
-class Lemmat : public QObject
+class LemCore : public QObject
 {
     Q_OBJECT
 
@@ -114,7 +114,7 @@ class Lemmat : public QObject
     bool _nbrLoaded; // Si les nombres ont été chargés, je dois les effacer avant de les charger à nouveau.
 
    public:
-    Lemmat(QObject *parent = 0, QString resDir="");
+    LemCore(QObject *parent = 0, QString resDir="");
     void ajDesinence(Desinence *d);
     void ajModele(Modele *m);
     void ajRadicaux(Lemme *l);

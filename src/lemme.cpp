@@ -86,7 +86,7 @@ Lemme::Lemme(const QString linea, const int origin, QObject *parent)
 {
     // cădo|lego|cĕcĭd|cās|is, ere, cecidi, casum|687
     //   0 | 1  | 2   | 3 |     4                | 5
-    _lemmatiseur = qobject_cast<Lemmat *>(parent);
+    _lemmatiseur = qobject_cast<LemCore *>(parent);
     QStringList eclats = linea.split('|');
     QStringList lg = eclats.at(0).split('=');
     _cle = Ch::atone(Ch::deramise(lg.at(0)));
