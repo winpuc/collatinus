@@ -25,9 +25,17 @@
 
 #include <QDebug>
 
-Scandeur::Scandeur(Lemmat *l, QString resDir)
+
+Scandeur::Scandeur(QObject *parent, Lemmat *l, QString resDir) : QObject(parent)
 {
-    _lemmatiseur = l;
+    if (l==0)
+    {
+        _lemmatiseur = new Lemmat(this, resDir);
+        // Je crée le lemmatiseur...
+        _lemmatiseur->setExtension(true);
+        // ... et charge l'extension du lexique.
+    }
+    else _lemmatiseur = l;
     if (resDir == "")
         _resDir = qApp->applicationDirPath() + "/data/";
     else if (resDir.endsWith("/")) _resDir = resDir;
@@ -192,9 +200,39 @@ QStringList Scandeur::cherchePieds(int nbr, QString ligne, int i, bool pentam)
 }
 
 /**
- * \fn QStringList Scandeur::formeq (QString forme, bool *nonTrouve, bool debPhr)
- * \brief Renvoie forme scandée de toutes les manières possibles en appliquant
- *        les quantités données par les dictionnaires et les règles prosodiques.
+ * @brief Scandeur::formeq
+ * @param forme : la forme à scander ou à accentuer.
+ * @param nonTrouve : booléen qui indique que la forme a été reconnue.
+ * @param debPhr : booléen qui indique que l'initiale peut être en majuscule.
+ * @param accent : entier qui détermine le comportement de l'accentuation.
+ * @return Renvoie une liste avec la forme scandée (ou accentuée) de
+ * toutes les manières possibles en appliquant
+ * les quantités données par les dictionnaires et les règles prosodiques.
+ *
+ * Cette fonction commence par lemmatiser la forme donnée
+ * en utilisant le lemmatiseur de Collatinus.
+ * Les solutions sont ordonnées en fonction de leur fréquence,
+ * la plus probable venant en premier.
+ *
+ * Le paramètre accent détermine le comportement de la fonction.
+ * S'il vaut 0, la forme est scandée.
+ * Non nul, la forme sera accentuée et plusieurs options sont possibles :
+ *
+ * - Les valeurs 1, 2 et 3 gèrent le comportement de l'accent
+ * lorsque l'avant dernière syllabe est commune.
+ *
+ * - La valeur 4 (ajoutée aux précédentes) conduira à marquer les syllabes.
+ *
+ * - La valeur 8 (ajoutée aux précédentes) introduit "l'exception illius"
+ * qui est toujours paroxyton quand son i est commun (supplante les valeurs 2 et 3)
+ *
+ * Les options et le groupe d'options sont additifs.
+ * Les valeurs permises sont 0 (forme scandée),
+ * 1-3 et 9-11 forme accentuée, 5-7 et 13-15 forme accentuée avec les syllabes marquées.
+ * Les valeurs non-nulles règlent le comportement de l'accent si la pénultième
+ * est commune : 1, 5, 9 et 13 la considère comme longue,
+ * 2, 6, 10 et 14 comme brève (sauf pour illius avec les valeurs 10 et 14),
+ * 3, 7, 11 et 15 ne place pas l'accent car la pénultième est ambiguë.
  */
 QStringList Scandeur::formeq(QString forme, bool *nonTrouve, bool debPhr,
                            int accent)
@@ -250,18 +288,39 @@ QStringList Scandeur::formeq(QString forme, bool *nonTrouve, bool debPhr,
 }
 
 /**
- * \fn QString Scandeur::scandeTxt (QString texte, int accent, bool stats, bool majAut)
- * \brief Scande le texte, avec les statistiques si stats
+ * @brief Scandeur::scandeTxt
+ * Scande le texte, avec les statistiques si stats
  *        est à true, et renvoie le résultat.
- * \param   texte : le texte à scander ou à accentuer
- *          stats : booléen qui affiche ou non les statistiques
- *          majAut : booléen qui autorise les majuscules initiales
- *          accent : un entier qui détermine si le résultat est
- * scandé ou accentué. Les valeurs permises sont 0 (texte scandé),
- * 1-3 texte accentué, 5-7 texte accentué avec les syllabes marquées.
+ * @param texte : le texte à scander ou à accentuer
+ * @param accent : un entier qui détermine si le résultat est
+ * scandé ou accentué.
+ * @param stats : booléen qui affiche ou non les statistiques
+ * @param majAut : booléen qui autorise les majuscules initiales
+ * @return
+ *
+ * Le paramètre accent détermine le comportement de la fonction.
+ * S'il vaut 0, le texte est scandé.
+ * Non nul, le texte sera accentué et plusieurs options sont possibles :
+ *
+ * - Les valeurs 1, 2 et 3 gèrent le comportement de l'accent
+ * lorsque l'avant dernière syllabe est commune.
+ *
+ * - La valeur 4 (ajoutée aux précédentes) conduira à marquer les syllabes.
+ *
+ * - La valeur 8 (ajoutée aux précédentes) introduit "l'exception illius"
+ * qui est toujours paroxyton quand son i est commun (supplante les valeurs 2 et 3)
+ *
+ * Les options et le groupe d'options sont additifs.
+ * Les valeurs permises sont 0 (texte scandé),
+ * 1-3 et 9-11 texte accentué, 5-7 et 13-15 texte accentué avec les syllabes marquées.
  * Les valeurs non-nulles règlent le comportement de l'accent si la pénultième
- * est commune : 1 et 5 la considère comme longue, 2 et 6 comme brève,
- * 3 et 7 ne place pas l'accent car la pénultième est ambiguë.
+ * est commune : 1, 5, 9 et 13 la considère comme longue,
+ * 2, 6, 10 et 14 comme brève (sauf pour illius avec les valeurs 10 et 14),
+ * 3, 7, 11 et 15 ne place pas l'accent car la pénultième est ambiguë.
+ *
+ * Les valeurs >15 sont tronquées à leur quatre bits de poids faibles.
+ * Les valeurs 4, 8 et 12 pourraient conduire à des résultats inattendus,
+ * bien qu'aujourd'hui elles donnent le même résultat que la valeur 0 (texte scandé).
  */
 QString Scandeur::scandeTxt(QString texte, int accent, bool stats, bool majAut)
 {
