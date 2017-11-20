@@ -32,7 +32,7 @@
 // #define VERIF_TRAD
 
 /**
- * \fn Lemmat::Lemmat (QObject *parent)
+ * \fn LemCore::LemCore (QObject *parent)
  * \brief Constructeur de la classe Lemmat.
  *
  * Il définit quelques constantes, initialise
@@ -40,7 +40,7 @@
  * de lecture des données : modèles, lexique,
  * traductions et irréguliers.
  */
-Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
+LemCore::LemCore(QObject *parent, QString resDir) : QObject(parent)
 {
     if (resDir == "")
         _resDir = qApp->applicationDirPath() + "/data/";
@@ -86,7 +86,7 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
 }
 
 /**
- * @brief Lemmat::lisTags
+ * @brief LemCore::lisTags
  * @param tout : bool
  *
  * Lorsque le booléen tout est false, on ne lit que les nombres d'occurrences des tags.
@@ -107,7 +107,7 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
  * le nombre d'occurrences mesuré.
  *
  */
-void Lemmat::lisTags(bool tout)
+void LemCore::lisTags(bool tout)
 {
     // Nouveau format des données. Le 8 novembre 2016.
     _tagOcc.clear();
@@ -144,7 +144,7 @@ void Lemmat::lisTags(bool tout)
 }
 
 /**
- * @brief Lemmat::tag
+ * @brief LemCore::tag
  * @param l : le pointeur vers le lemme
  * @param morph : l'analyse morphologique
  * @return : le tag pour Collatinus
@@ -163,7 +163,7 @@ void Lemmat::lisTags(bool tout)
  * Pour les invariables, le POS est complété avec deux espaces.
  *
  */
-QString Lemmat::tag(Lemme *l, QString morph)
+QString LemCore::tag(Lemme *l, QString morph)
 {
     // Il faut encore traiter le cas des pos multiples
     QString lp = l->pos();
@@ -213,7 +213,7 @@ QString Lemmat::tag(Lemme *l, QString morph)
 }
 
 /**
- * @brief Lemmat::fraction
+ * @brief LemCore::fraction
  * @param t : le tag
  * @return : la fraction moyenne du tag.
  *
@@ -226,7 +226,7 @@ QString Lemmat::tag(Lemme *l, QString morph)
  * elle retourne la plus grande fraction.
  *
  */
-int Lemmat::fraction(QString listTags)
+int LemCore::fraction(QString listTags)
 {
     int frFin = 0;
     while (listTags.size() > 2)
@@ -256,21 +256,21 @@ int Lemmat::fraction(QString listTags)
 }
 
 /**
- * @brief Lemmat::tagOcc
+ * @brief LemCore::tagOcc
  * @param t : tag
  * @return Le nombre d'occurrences du tag t
  */
-int Lemmat::tagOcc(QString t)
+int LemCore::tagOcc(QString t)
 {
     return _tagOcc[t];
 }
 
 /**
- * @brief Lemmat::trigram
+ * @brief LemCore::trigram
  * @param t : seq
  * @return Le nombre d'occurrences du trigram seq
  */
-int Lemmat::trigram(QString seq)
+int LemCore::trigram(QString seq)
 {
     if (_trigram.isEmpty()) lisTags(true);
     // Si je n'ai pas encore chargé les trigrammes, je dois le faire maintenant.
@@ -279,7 +279,7 @@ int Lemmat::trigram(QString seq)
 }
 
 /**
- * @brief Lemmat::lignesFichier
+ * @brief LemCore::lignesFichier
  * @param nf : nom du fichier
  * @return : l'ensemble de lignes du fichier qui ne sont
  * ni vides ni commentées.
@@ -289,7 +289,7 @@ int Lemmat::trigram(QString seq)
  * Ces lignes doivent être ignorées par le programme.
  *
  */
-QStringList Lemmat::lignesFichier(QString nf)
+QStringList LemCore::lignesFichier(QString nf)
 {
     QFile f(nf);
     f.open(QFile::ReadOnly);
@@ -307,7 +307,7 @@ QStringList Lemmat::lignesFichier(QString nf)
 }
 
 /**
- * @brief Lemmat::lisMorphos
+ * @brief LemCore::lisMorphos
  * @param lang : langue pour les morphologies.
  * Cette langue est donnée par deux caractères "fr" ou "en",
  * pour l'instant.
@@ -319,7 +319,7 @@ QStringList Lemmat::lignesFichier(QString nf)
  * Des mots clefs essentiels sont aussi ajoutés après les 416 morphos possibles.
  *
  */
-void Lemmat::lisMorphos(QString lang)
+void LemCore::lisMorphos(QString lang)
 {
     QStringList lignes = lignesFichier(_resDir + "morphos." + lang);
     int max = lignes.count() - 1;
@@ -403,12 +403,12 @@ void Lemmat::lisMorphos(QString lang)
 }
 
 /**
-* \fn void Lemmat::ajAssims ()
+* \fn void LemCore::ajAssims ()
 * \brief définit les débuts de mots
 * non assimilés, et associe à chacun sa
 * forme assimilée.
 */
-void Lemmat::ajAssims()
+void LemCore::ajAssims()
 {
     // peupler la QMap assims
     QStringList lignes = lignesFichier(_resDir + "assimilations.la");
@@ -421,12 +421,12 @@ void Lemmat::ajAssims()
 }
 
 /**
- * \fn void Lemmat::ajContractions ()
+ * \fn void LemCore::ajContractions ()
  * \brief Établit une liste qui donne, pour chaque
  * contraction, la forme non contracte qui lui
  * correspond.
  */
-void Lemmat::ajContractions()
+void LemCore::ajContractions()
 {
     // peupler la QMap _contractions
     QStringList lignes = lignesFichier(_resDir + "contractions.la");
@@ -437,7 +437,7 @@ void Lemmat::ajContractions()
     }
 }
 
-int Lemmat::aRomano(QString f)
+int LemCore::aRomano(QString f)
 {
     if (f.size () == 0) return 0;
     // création de la table de conversion : pourrait être créée ailleurs.
@@ -466,16 +466,16 @@ int Lemmat::aRomano(QString f)
 }
 
 /**
- * \fn void Lemmat::ajDesinence (Desinence *d)
+ * \fn void LemCore::ajDesinence (Desinence *d)
  * \brief ajoute la désinence d dans la map des
  * désinences.
  */
-void Lemmat::ajDesinence(Desinence *d)
+void LemCore::ajDesinence(Desinence *d)
 {
     _desinences.insert(Ch::deramise(d->gr()), d);
 }
 
-bool Lemmat::estRomain(QString f)
+bool LemCore::estRomain(QString f)
 {
     return !(f.contains(QRegExp ("[^IVXLCDM]"))
              || f.contains("IL")
@@ -483,13 +483,13 @@ bool Lemmat::estRomain(QString f)
 }
 
 /**
- * \fn void Lemmat::ajRadicaux (Lemme *l)
+ * \fn void LemCore::ajRadicaux (Lemme *l)
  * \brief Calcule tous les radicaux du lemme l,
  *  en se servant des modèles, les ajoute à ce lemme,
  *  et ensuite à la map *  des radicaux de la classe Lemmat.
  *
  */
-void Lemmat::ajRadicaux(Lemme *l)
+void LemCore::ajRadicaux(Lemme *l)
 {
     // ablŭo=ā̆blŭo|lego|ā̆blŭ|ā̆blūt|is, ere, lui, lutum
     //      0        1    2    3         4
@@ -534,13 +534,13 @@ void Lemmat::ajRadicaux(Lemme *l)
 }
 
 /**
- * \fn QString Lemmat::assim (QString a)
+ * \fn QString LemCore::assim (QString a)
  * \brief Cherche si la chaîne a peut subir
  *        une assimilation, et renvoie
  *        cette chaîne éventuellement assimilée.
  *        *version sans quantités*
  */
-QString Lemmat::assim(QString a)
+QString LemCore::assim(QString a)
 {
     foreach (QString d, assims.keys())
         if (a.startsWith(d))
@@ -552,13 +552,13 @@ QString Lemmat::assim(QString a)
 }
 
 /**
- * \fn QString Lemmat::assimq (QString a)
+ * \fn QString LemCore::assimq (QString a)
  * \brief Cherche si la chaîne a peut subir
  *        une assimilation, et renvoie
  *        cette chaîne éventuellement assimilée.
  *        *version avec quantités*
  */
-QString Lemmat::assimq(QString a)
+QString LemCore::assimq(QString a)
 {
     foreach (QString d, assimsq.keys())
         if (a.startsWith(d))
@@ -570,31 +570,31 @@ QString Lemmat::assimq(QString a)
 }
 
 /**
- * \fn QString Lemmat::cible()
+ * \fn QString LemCore::cible()
  * \brief Renvoie la langue cible dans sa forme
  *        abrégée (fr, en, de, it, etc.).
  */
-QString Lemmat::cible()
+QString LemCore::cible()
 {
     return _cible;
 }
 
 /**
- * \fn QMap<QString,QString> Lemmat::cibles()
+ * \fn QMap<QString,QString> LemCore::cibles()
  * \brief Renvoie la map des langues cibles.
  *
  */
-QMap<QString, QString> Lemmat::cibles()
+QMap<QString, QString> LemCore::cibles()
 {
     return _cibles;
 }
 
 /**
- * \fn QString Lemmat::decontracte (QString d)
+ * \fn QString LemCore::decontracte (QString d)
  * \brief Essaie de remplacer la contractions de d
  *        par sa forme entière, et renvoie le résultat.
  */
-QString Lemmat::decontracte(QString d)
+QString LemCore::decontracte(QString d)
 {
     foreach (QString cle, _contractions.keys())
     {
@@ -612,12 +612,12 @@ QString Lemmat::decontracte(QString d)
 }
 
 /**
- * \fn QString Lemmat::desassim (QString a)
+ * \fn QString LemCore::desassim (QString a)
  * \brief Essaie de remplacer l'assimilation de a
  *        par sa forme non assimilée, et renvoie
  *        le résultat.
  */
-QString Lemmat::desassim(QString a)
+QString LemCore::desassim(QString a)
 {
     foreach (QString d, assims.values())
     {
@@ -631,12 +631,12 @@ QString Lemmat::desassim(QString a)
 }
 
 /**
- * \fn QString Lemmat::desassimq (QString a)
+ * \fn QString LemCore::desassimq (QString a)
  * \brief Essaie de remplacer l'assimilation de a
  *        par sa forme non assimilée, et renvoie
  *        le résultat.
  */
-QString Lemmat::desassimq(QString a)
+QString LemCore::desassimq(QString a)
 {
     foreach (QString d, assimsq.values())
     {
@@ -650,7 +650,7 @@ QString Lemmat::desassimq(QString a)
 }
 
 /**
- * \fn MapLem Lemmat::lemmatise (QString f)
+ * \fn MapLem LemCore::lemmatise (QString f)
  * \brief Le cœur du lemmatiseur
  *
  *  renvoie une QMap<Lemme*,QStringlist> contenant
@@ -659,7 +659,7 @@ QString Lemmat::desassimq(QString a)
  *  - pour chacun de ces lemmes la QStringList des morphologies
  *    correspondant à la forme.
  */
-MapLem Lemmat::lemmatise(QString f)
+MapLem LemCore::lemmatise(QString f)
 {
     MapLem result;
     if (f.isEmpty()) return result;
@@ -758,24 +758,24 @@ MapLem Lemmat::lemmatise(QString f)
 }
 
 /**
- * \fn bool Lemmat::inv (Lemme *l, const MapLem ml)
+ * \fn bool LemCore::inv (Lemme *l, const MapLem ml)
  * \brief Renvoie true si le lemme l faisant partie
  *        de la MaplLem ml est invariable.
  */
-bool Lemmat::inv(Lemme *l, const MapLem ml)
+bool LemCore::inv(Lemme *l, const MapLem ml)
 {
     return ml.value(l).at(0).morpho == "-";
 }
 
 /**
- * \fn MapLem Lemmat::lemmatiseM (QString f, bool debPhr)
+ * \fn MapLem LemCore::lemmatiseM (QString f, bool debPhr)
  * \brief Renvoie dans une MapLem les lemmatisations de la
  *        forme f. le paramètre debPhr à true indique qu'il
  *        s'agit d'un début de phrase, et la fonction
  *        peut tenir compte des majuscules pour savoir
  *        s'il s'agit d'un nom propre.
  */
-MapLem Lemmat::lemmatiseM(QString f, bool debPhr, bool desas)
+MapLem LemCore::lemmatiseM(QString f, bool debPhr, bool desas)
 {
     QString res;
     QTextStream fl(&res);
@@ -889,7 +889,7 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr, bool desas)
 
 
 /**
- * \fn QString Lemmat::lemmatiseT (QString &t,
+ * \fn QString LemCore::lemmatiseT (QString &t,
  *  						   bool alpha,
  *  						   bool cumVocibus,
  *  						   bool cumMorpho,
@@ -913,12 +913,12 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr, bool desas)
  *        Fichier/Lire une liste de mots connus.
  *
  */
-QString Lemmat::lemmatiseT(QString &t)
+QString LemCore::lemmatiseT(QString &t)
 {
     return lemmatiseT(t, _alpha, _formeT, _morpho, _nonRec);
 }
 
-QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
+QString LemCore::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                            bool cumMorpho, bool nreconnu)
 {
     // pour mesurer :
@@ -1303,7 +1303,7 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
 }
 
 /**
- * \fn QString Lemmat::lemmatiseFichier (QString f,
+ * \fn QString LemCore::lemmatiseFichier (QString f,
  *								  bool alpha,
  *								  bool cumVocibus,
  *								  bool cumMorpho,
@@ -1312,7 +1312,7 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
  *        f et renvoie le résultat. Les paramètres sont
  *        les mêmes que ceux de lemmatiseT.
  */
-QString Lemmat::lemmatiseFichier(QString f, bool alpha, bool cumVocibus,
+QString LemCore::lemmatiseFichier(QString f, bool alpha, bool cumVocibus,
                                  bool cumMorpho, bool nreconnu)
 {
     // lecture du fichier
@@ -1326,17 +1326,17 @@ QString Lemmat::lemmatiseFichier(QString f, bool alpha, bool cumVocibus,
 }
 
 /**
- * \fn Lemme* Lemmat::lemme (QString l)
+ * \fn Lemme* LemCore::lemme (QString l)
  * \brief cherche dans la liste des lemmes le lemme
  *        dont la clé est l, et retourne le résultat.
  */
-Lemme *Lemmat::lemme(QString l) { return _lemmes.value(l); }
+Lemme *LemCore::lemme(QString l) { return _lemmes.value(l); }
 /**
- * \fn QStringList Lemmat::lemmes (MapLem lm)
+ * \fn QStringList LemCore::lemmes (MapLem lm)
  * \brief renvoie la liste des graphies des lemmes
  *        de la MapLem lm sans signes diacritiques.
  */
-QStringList Lemmat::lemmes(MapLem lm)
+QStringList LemCore::lemmes(MapLem lm)
 {
     QStringList res;
     foreach (Lemme *l, lm.keys())
@@ -1345,11 +1345,11 @@ QStringList Lemmat::lemmes(MapLem lm)
 }
 
 /**
- * \fn void Lemmat::lisIrreguliers()
+ * \fn void LemCore::lisIrreguliers()
  * \brief Chargement des formes irrégulières
  *        du fichier data/irregs.la
  */
-void Lemmat::lisIrreguliers()
+void LemCore::lisIrreguliers()
 {
     QStringList lignes = lignesFichier(_resDir + "irregs.la");
     foreach (QString lin, lignes)
@@ -1368,11 +1368,11 @@ void Lemmat::lisIrreguliers()
 }
 
 /**
- * \fn void Lemmat::lisFichierLexique(filepath)
+ * \fn void LemCore::lisFichierLexique(filepath)
  * \brief Lecture des lemmes, synthèse et enregistrement
  *        de leurs radicaux
  */
-void Lemmat::lisFichierLexique(QString filepath)
+void LemCore::lisFichierLexique(QString filepath)
 {
     int orig = 0;
     if (filepath.endsWith("ext.la")) orig = 1;
@@ -1387,19 +1387,19 @@ void Lemmat::lisFichierLexique(QString filepath)
 }
 
 /**
- * \fn void Lemmat::lisLexique()
+ * \fn void LemCore::lisLexique()
  * \brief Lecture du fichier de lemmes de base
  */
-void Lemmat::lisLexique()
+void LemCore::lisLexique()
 {
     lisFichierLexique(_resDir + "lemmes.la");
 }
 
 /**
- * \fn void Lemmat::lisExtension()
+ * \fn void LemCore::lisExtension()
  * \brief Lecture du fichier d'extension
  */
-void Lemmat::lisExtension()
+void LemCore::lisExtension()
 {
 //    if (_nbrLoaded) foreach(Lemme *l, _lemmes.values())
   //      l->clearOcc();
@@ -1410,11 +1410,11 @@ void Lemmat::lisExtension()
 }
 
 /**
- * \fn void Lemmat::lisModeles()
+ * \fn void LemCore::lisModeles()
  * \brief Lecture des modèles, synthèse et enregistrement
  *        de leurs désinences
  */
-void Lemmat::lisModeles()
+void LemCore::lisModeles()
 {
     QStringList lignes = lignesFichier(_resDir + "modeles.la");
     int max = lignes.count()-1;
@@ -1439,13 +1439,13 @@ void Lemmat::lisModeles()
 }
 
 /**
- * \fn void Lemmat::lisTraductions()
+ * \fn void LemCore::lisTraductions()
  * \brief Lecture des fichiers de traductions
  *        trouvés dans data/, nommés lemmes, avec
  *        un suffixe corresponant à la langue cible
  *        qu'ils fournissent.
  */
-void Lemmat::lisTraductions(bool base, bool extension)
+void LemCore::lisTraductions(bool base, bool extension)
 {
 //    QString nrep = _resDir;
     QDir rep;
@@ -1494,16 +1494,16 @@ void Lemmat::lisTraductions(bool base, bool extension)
 }
 
 /**
- * \fn Modele * Lemmat::modele (QString m)
+ * \fn Modele * LemCore::modele (QString m)
  * \brief Renvoie l'objet de la classe Modele dont le nom est m.
  */
-Modele *Lemmat::modele(QString m) { return _modeles[m]; }
+Modele *LemCore::modele(QString m) { return _modeles[m]; }
 /**
- * \fn QString Lemmat::morpho (int m)
+ * \fn QString LemCore::morpho (int m)
  * \brief Renvoie la chaîne de rang m dans la liste des morphologies
  *        donnée par le fichier data/morphos.la
  */
-QString Lemmat::morpho(int m)
+QString LemCore::morpho(int m)
 {
     QString l = "fr"; // La langue sélectionnée
     if (_morphos.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
@@ -1515,7 +1515,7 @@ QString Lemmat::morpho(int m)
     return _morphos[l].at(m - 1);
 }
 
-QString Lemmat::cas(int m)
+QString LemCore::cas(int m)
 {
     QString l = "fr"; // La langue sélectionnée
     if (_cas.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
@@ -1524,7 +1524,7 @@ QString Lemmat::cas(int m)
     return _cas[l].at(m);
 }
 
-QString Lemmat::genre(int m)
+QString LemCore::genre(int m)
 {
     QString l = "fr"; // La langue sélectionnée
     if (_genres.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
@@ -1533,7 +1533,7 @@ QString Lemmat::genre(int m)
     return _genres[l].at(m);
 }
 
-QString Lemmat::nombre(int m)
+QString LemCore::nombre(int m)
 {
     QString l = "fr"; // La langue sélectionnée
     if (_nombres.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
@@ -1542,7 +1542,7 @@ QString Lemmat::nombre(int m)
     return _nombres[l].at(m);
 }
 
-QString Lemmat::temps(int m)
+QString LemCore::temps(int m)
 {
     QString l = "fr"; // La langue sélectionnée
     if (_temps.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
@@ -1551,7 +1551,7 @@ QString Lemmat::temps(int m)
     return _temps[l].at(m);
 }
 
-QString Lemmat::modes(int m)
+QString LemCore::modes(int m)
 {
     QString l = "fr"; // La langue sélectionnée
     if (_modes.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
@@ -1560,7 +1560,7 @@ QString Lemmat::modes(int m)
     return _modes[l].at(m);
 }
 
-QString Lemmat::voix(int m)
+QString LemCore::voix(int m)
 {
     QString l = "fr"; // La langue sélectionnée
     if (_voix.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
@@ -1569,7 +1569,7 @@ QString Lemmat::voix(int m)
     return _voix[l].at(m);
 }
 
-QString Lemmat::motsClefs(int m)
+QString LemCore::motsClefs(int m)
 {
     QString l = "fr"; // La langue sélectionnée
     if (_motsClefs.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
@@ -1579,88 +1579,88 @@ QString Lemmat::motsClefs(int m)
 }
 
 /**
- * \fn bool Lemmat::optAlpha()
+ * \fn bool LemCore::optAlpha()
  * \brief Accesseur de l'option alpha, qui
  *        permet de fournir par défaut des résultats dans
  *        l'ordre alphabétique.
  */
-bool Lemmat::optAlpha() { return _alpha; }
+bool LemCore::optAlpha() { return _alpha; }
 /**
- * \fn bool Lemmat::optHtml()
+ * \fn bool LemCore::optHtml()
  * \brief Accesseur de l'option html, qui
  *        permet de renvoyer les résultats au format html.
  */
-bool Lemmat::optHtml() { return _html; }
+bool LemCore::optHtml() { return _html; }
 
 /**
- * \fn bool Lemmat::optFormeT()
+ * \fn bool LemCore::optFormeT()
  * \brief Accesseur de l'option formeT,
  *        qui donne en tête de lemmatisation
  *        la forme qui a été analysée.
  */
-bool Lemmat::optFormeT() { return _formeT; }
+bool LemCore::optFormeT() { return _formeT; }
 
 /**
- * \fn bool Lemmat::optMajPert()
+ * \fn bool LemCore::optMajPert()
  * \brief Accesseur de l'option majPert,
  *        qui permet de tenir compte des majuscules
  *        dans la lemmatisation.
  */
-bool Lemmat::optMajPert() { return _majPert; }
+bool LemCore::optMajPert() { return _majPert; }
 
 /**
- * \fn bool Lemmat::optExtension()
+ * \fn bool LemCore::optExtension()
  * \brief Accesseur de l'option extension,
  *        qui permet de charger l'extension.
  */
-bool Lemmat::optExtension() { return _extension; }
+bool LemCore::optExtension() { return _extension; }
 /**
- * \fn bool Lemmat::optMorpho()
+ * \fn bool LemCore::optMorpho()
  * \brief Accesseur de l'option morpho,
  *        qui donne l'analyse morphologique
  *        des formes lemmatisées.
  */
 
-bool Lemmat::optMorpho()
+bool LemCore::optMorpho()
 {
     return _morpho;
 }
 
 /**
- * \fn void Lemmat::setAlpha (bool a)
+ * \fn void LemCore::setAlpha (bool a)
  * \brief Modificateur de l'option alpha.
  */
 // modificateurs d'options
 
-void Lemmat::setAlpha(bool a) { _alpha = a; }
+void LemCore::setAlpha(bool a) { _alpha = a; }
 /**
- * \fn void Lemmat::setCible(QString c)
+ * \fn void LemCore::setCible(QString c)
  * \brief Permet de changer la langue cible.
  */
-void Lemmat::setCible(QString c) { _cible = c; }
+void LemCore::setCible(QString c) { _cible = c; }
 /**
- * \fn void Lemmat::setHtml (bool h)
+ * \fn void LemCore::setHtml (bool h)
  * \brief Modificateur de l'option html.
  */
-void Lemmat::setHtml(bool h) { _html = h; }
+void LemCore::setHtml(bool h) { _html = h; }
 /**
- * \fn void Lemmat::setFormeT (bool f)
+ * \fn void LemCore::setFormeT (bool f)
  * \brief Modificateur de l'option formeT.
  */
-void Lemmat::setFormeT(bool f) { _formeT = f; }
+void LemCore::setFormeT(bool f) { _formeT = f; }
 /**
- * \fn void Lemmat::setMajPert (bool mp)
+ * \fn void LemCore::setMajPert (bool mp)
  * \brief Modificateur de l'option majpert.
  */
-void Lemmat::setMajPert(bool mp) { _majPert = mp; }
+void LemCore::setMajPert(bool mp) { _majPert = mp; }
 /**
- * \fn void Lemmat::setMorpho (bool m)
+ * \fn void LemCore::setMorpho (bool m)
  * \brief Modificateur de l'option morpho.
  */
-void Lemmat::setMorpho(bool m) { _morpho = m; }
-void Lemmat::setNonRec(bool n) { _nonRec = n; }
+void LemCore::setMorpho(bool m) { _morpho = m; }
+void LemCore::setNonRec(bool n) { _nonRec = n; }
 /**
- * \fn QString Lemmat::variable (QString v)
+ * \fn QString LemCore::variable (QString v)
  * \brief permet de remplacer la métavariable v
  *        par son contenu. Ces métavariables sont
  *        utilisées par le fichier modeles.la, pour
@@ -1668,10 +1668,10 @@ void Lemmat::setNonRec(bool n) { _nonRec = n; }
  *        Elles sont repérées comme en PHP, par leur
  *        premier caractère $.
  */
-QString Lemmat::variable(QString v) { return _variables[v]; }
+QString LemCore::variable(QString v) { return _variables[v]; }
 
 /**
- * @brief Lemmat::setExtension
+ * @brief LemCore::setExtension
  * @param e : bool
  *
  * Cette routine gère l'extension du lexique.
@@ -1685,7 +1685,7 @@ QString Lemmat::variable(QString v) { return _variables[v]; }
  * Ces nombres seront ré-initialisés si on charge l'extension par la suite.
  *
  */
-void Lemmat::setExtension(bool e)
+void LemCore::setExtension(bool e)
 {
     _extension = e;
     if (!_extLoaded && e) {
@@ -1697,12 +1697,12 @@ void Lemmat::setExtension(bool e)
 }
 
 /**
- * @brief Lemmat::lireHyphen
+ * @brief LemCore::lireHyphen
  * @param fichierHyphen : nom du fichier (avec le chemin absolu)
  * \brief stocke pour tous les lemmes contenus dans le fichier
  * l'information sur la césure étymologique (non-phonétique).
  */
-void Lemmat::lireHyphen(QString fichierHyphen)
+void LemCore::lireHyphen(QString fichierHyphen)
 {
     foreach (Lemme *l, _lemmes.values()) l->setHyphen("");
     if (!fichierHyphen.isEmpty())
@@ -1729,7 +1729,7 @@ void Lemmat::lireHyphen(QString fichierHyphen)
     }
 }
 
-void Lemmat::verbaCognita(QString fichier,bool vb)
+void LemCore::verbaCognita(QString fichier,bool vb)
 {
     _hLem.clear();
     _couleurs.clear();
@@ -1769,7 +1769,7 @@ void Lemmat::verbaCognita(QString fichier,bool vb)
     }
 }
 
-void Lemmat::verbaOut(QString fichier)
+void LemCore::verbaOut(QString fichier)
 {
     if (_hLem.isEmpty()) return; // Rien à sauver !
     QString format = "%1\t%2\n";

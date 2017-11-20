@@ -21,16 +21,16 @@
 
 #include "tagueur.h"
 
-Tagueur::Tagueur(QObject *parent, Lemmat *l, QString resDir) : QObject(parent)
+Tagueur::Tagueur(QObject *parent, LemCore *l, QString resDir) : QObject(parent)
 {
     if (l==0)
     {
-        _lemmatiseur = new Lemmat(this, resDir);
+        _lemCore = new LemCore(this, resDir);
         // Je crée le lemmatiseur...
-        _lemmatiseur->setExtension(true);
+        _lemCore->setExtension(true);
         // ... et charge l'extension du lexique.
     }
-    else _lemmatiseur = l;
+    else _lemCore = l;
     if (resDir == "")
         _resDir = qApp->applicationDirPath() + "/data/";
     else if (resDir.endsWith("/")) _resDir = resDir;
@@ -96,10 +96,10 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert)
             for (int i = 1; i < lm.length(); i += 2)
             {
                 bool debVers = !majPert || lm[i-1].contains("\n");
-                Mot * mot = new Mot(lm[i],(i-1)/2, debVers, _lemmatiseur); // TODO : Vérifier si on a des vers avec majuscule...
+                Mot * mot = new Mot(lm[i],(i-1)/2, debVers, _lemCore); // TODO : Vérifier si on a des vers avec majuscule...
                 mots.append(mot);
             }  // fin de boucle de lemmatisation pour chaque mot
-            Mot * mot = new Mot("",mots.size(),true, _lemmatiseur); // Fin de phrase
+            Mot * mot = new Mot("",mots.size(),true, _lemCore); // Fin de phrase
             mots.append(mot); // J'ajoute un mot virtuel en fin de phrase avec le tag "snt".
 
             QStringList sequences;
@@ -127,7 +127,7 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert)
                     for (int k = 0; k < sTag; k++)
                     {
                         QString seq = bigr + " " + lTags[k];
-                        long p = mot->proba(lTags[k]) * (4 * _lemmatiseur->trigram(seq) + 1);
+                        long p = mot->proba(lTags[k]) * (4 * _lemCore->trigram(seq) + 1);
                         pr << p;
                         prTot += p;
                     }

@@ -52,7 +52,7 @@ bool EditLatin::event(QEvent *event)
             QString mot = tc.selectedText();
             if (mot.isEmpty ())
                 return QWidget::event (event);
-            QString txtBulle = mainwindow->lemmatiseur->lemmatiseT(
+            QString txtBulle = mainwindow->_lemCore->lemmatiseT(
                 mot, true, true, true, false);
             if (txtBulle.isEmpty()) return true;
             // S'il n'y a qu'une ponctuation sous le curseur la lemmatisation donne un string vide.
@@ -81,7 +81,7 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
     if (!cursor.hasSelection()) cursor.select(QTextCursor::WordUnderCursor);
     QString st = cursor.selectedText();
     bool unSeulMot = !st.contains(' ');
-    MapLem ml = mainwindow->lemmatiseur->lemmatiseM(st);
+    MapLem ml = mainwindow->_lemCore->lemmatiseM(st);
     // 1. dock de lemmatisation
     if (!mainwindow->dockLem->visibleRegion().isEmpty())
     {
@@ -93,13 +93,13 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
             if (mainwindow->html())
             {
                 QString texteHtml = mainwindow->textEditLem->toHtml();
-                texteHtml.insert(texteHtml.indexOf("</body>"),mainwindow->lemmatiseur->lemmatiseT(st));
+                texteHtml.insert(texteHtml.indexOf("</body>"),mainwindow->_lemCore->lemmatiseT(st));
                 mainwindow->textEditLem->setText(texteHtml);
                 mainwindow->textEditLem->moveCursor(QTextCursor::End);
             }
             else
                 mainwindow->textEditLem->insertPlainText(
-                    mainwindow->lemmatiseur->lemmatiseT(st));
+                    mainwindow->_lemCore->lemmatiseT(st));
         }
     }
     // 2. dock scansion
@@ -123,7 +123,7 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
             }
         }
         // 4. dock dictionnaires
-        QStringList lemmes = mainwindow->lemmatiseur->lemmes(ml);
+        QStringList lemmes = mainwindow->_lemCore->lemmes(ml);
         if (!mainwindow->dockDic->visibleRegion().isEmpty())
             mainwindow->afficheLemsDic(lemmes);
         if (mainwindow->wDic->isVisible() && mainwindow->syncAct->isChecked())
@@ -153,11 +153,11 @@ MainWindow::MainWindow()
     editLatin = new EditLatin(this);
     setCentralWidget(editLatin);
 
-    lemmatiseur = new Lemmat(this);
-    flechisseur = new Flexion(lemmatiseur);
-    lasla = new Lasla(this,lemmatiseur,"");
-    tagueur = new Tagueur(this,lemmatiseur);
-    scandeur = new Scandeur(this,lemmatiseur);
+    _lemCore = new LemCore(this);
+    flechisseur = new Flexion(_lemCore);
+    lasla = new Lasla(this,_lemCore,"");
+    tagueur = new Tagueur(this,_lemCore);
+    scandeur = new Scandeur(this,_lemCore);
 
     setLangue();
 
@@ -204,8 +204,8 @@ void MainWindow::afficheLemsDic(bool litt, bool prim)
     QStringList requete;
     if (!litt)
     {
-        MapLem lm = lemmatiseur->lemmatiseM(lineEdit->text(), true);
-        requete = lemmatiseur->lemmes(lm);
+        MapLem lm = _lemCore->lemmatiseM(lineEdit->text(), true);
+        requete = _lemCore->lemmes(lm);
     }
     else
     {
@@ -368,11 +368,11 @@ void MainWindow::alpha()
     // pour que l'action provoque le basculement à true
     // de l'option alpha du lemmatiseur, supprimer la
     // première et la dernière ligne.
-    bool tmpAlpha = lemmatiseur->optAlpha();
-    lemmatiseur->setAlpha(true);
+    bool tmpAlpha = _lemCore->optAlpha();
+    _lemCore->setAlpha(true);
     lancer();
     //	lemmatiseTxt();
-    lemmatiseur->setAlpha(tmpAlpha);
+    _lemCore->setAlpha(tmpAlpha);
 }
 
 /**
@@ -628,7 +628,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     settings.setValue("majpert", majPertAct->isChecked());
     settings.setValue("morpho", morphoAct->isChecked());
     settings.setValue("nonrec", nonRecAct->isChecked());
-    settings.setValue("cible", lemmatiseur->cible());
+    settings.setValue("cible", _lemCore->cible());
     // accentuation
     settings.setValue("accentuation", accentAct->isChecked());
     settings.setValue("longue", longueAct->isChecked());
@@ -821,10 +821,10 @@ void MainWindow::createActions()
 void MainWindow::createCibles()
 {
     grCibles = new QActionGroup(lexMenu);
-    foreach (QString cle, lemmatiseur->cibles().keys())
+    foreach (QString cle, _lemCore->cibles().keys())
     {
         QAction *action = new QAction(grCibles);
-        action->setText(lemmatiseur->cibles()[cle]);
+        action->setText(_lemCore->cibles()[cle]);
         action->setCheckable(true);
         lexMenu->addAction(action);
         connect(action, SIGNAL(triggered()), this, SLOT(setCible()));
@@ -859,18 +859,18 @@ void MainWindow::createConnections()
     connect(lineEditScand, SIGNAL(returnPressed()), this, SLOT(scandeLigne()));
 
     // options et actions du lemmatiseur
-    connect(alphaOptAct, SIGNAL(toggled(bool)), lemmatiseur,
+    connect(alphaOptAct, SIGNAL(toggled(bool)), _lemCore,
             SLOT(setAlpha(bool)));
-    connect(formeTAct, SIGNAL(toggled(bool)), lemmatiseur,
+    connect(formeTAct, SIGNAL(toggled(bool)), _lemCore,
             SLOT(setFormeT(bool)));
     connect(htmlAct, SIGNAL(toggled(bool)), this, SLOT(setHtml(bool)));
-    connect(majPertAct, SIGNAL(toggled(bool)), lemmatiseur,
+    connect(majPertAct, SIGNAL(toggled(bool)), _lemCore,
             SLOT(setMajPert(bool)));
-    connect(morphoAct, SIGNAL(toggled(bool)), lemmatiseur,
+    connect(morphoAct, SIGNAL(toggled(bool)), _lemCore,
             SLOT(setMorpho(bool)));
-    connect(nonRecAct, SIGNAL(toggled(bool)), lemmatiseur,
+    connect(nonRecAct, SIGNAL(toggled(bool)), _lemCore,
             SLOT(setNonRec(bool)));
-    connect(extensionWAct, SIGNAL(toggled(bool)), lemmatiseur, SLOT(setExtension(bool)));
+    connect(extensionWAct, SIGNAL(toggled(bool)), _lemCore, SLOT(setExtension(bool)));
 
     // actions et options de l'accentuation
     connect(accentAct, SIGNAL(toggled(bool)), this, SLOT(setAccent(bool)));
@@ -1492,7 +1492,7 @@ void MainWindow::langueInterface()
  */
 void MainWindow::flechisLigne()
 {
-    MapLem ml = lemmatiseur->lemmatiseM(lineEditFlex->text());
+    MapLem ml = _lemCore->lemmatiseM(lineEditFlex->text());
     if (!ml.empty())
     {
         textBrowserFlex->clear();
@@ -1533,10 +1533,10 @@ void MainWindow::lemmatiseLigne()
     {
     QString texteHtml = textEditLem->toHtml();
     texteHtml.insert(texteHtml.indexOf("</body>"),
-                     lemmatiseur->lemmatiseT(txt));
+                     _lemCore->lemmatiseT(txt));
     textEditLem->setText(texteHtml);
     }
-    else textEditLem->insertPlainText(lemmatiseur->lemmatiseT(txt));
+    else textEditLem->insertPlainText(_lemCore->lemmatiseT(txt));
     textEditLem->moveCursor(QTextCursor::End);
 }
 
@@ -1551,7 +1551,7 @@ void MainWindow::lemmatiseTxt()
     // si la tâche dure trop longtemps :
     // setUpdatesEnabled(false);
     QString txt = editLatin->toPlainText();
-    QString res = lemmatiseur->lemmatiseT(txt);
+    QString res = _lemCore->lemmatiseT(txt);
     if (html())
         textEditLem->setHtml(res);
     else
@@ -1730,20 +1730,20 @@ void MainWindow::readSettings()
 
     QString l = settings.value("cible").toString();
     if (l.size() < 2) l = "fr";
-    lemmatiseur->setCible(l);
+    _lemCore->setCible(l);
     foreach (QAction *action, grCibles->actions())
-        if (action->text() == lemmatiseur->cibles()[l.mid(0,2)])
+        if (action->text() == _lemCore->cibles()[l.mid(0,2)])
             action->setChecked(true);
     settings.endGroup();
     // options appliquées au lemmatiseur
-    lemmatiseur->setAlpha(alphaOptAct->isChecked());
-    lemmatiseur->setFormeT(formeTAct->isChecked());
-    lemmatiseur->setExtension(extensionWAct->isChecked());
-    if (!ficHyphen.isEmpty()) lemmatiseur->lireHyphen(ficHyphen);
+    _lemCore->setAlpha(alphaOptAct->isChecked());
+    _lemCore->setFormeT(formeTAct->isChecked());
+    _lemCore->setExtension(extensionWAct->isChecked());
+    if (!ficHyphen.isEmpty()) _lemCore->lireHyphen(ficHyphen);
     // Le fichier hyphen.la doit être lu après l'extension.
-    lemmatiseur->setHtml(htmlAct->isChecked());
-    lemmatiseur->setMajPert(majPertAct->isChecked());
-    lemmatiseur->setMorpho(morphoAct->isChecked());
+    _lemCore->setHtml(htmlAct->isChecked());
+    _lemCore->setMajPert(majPertAct->isChecked());
+    _lemCore->setMorpho(morphoAct->isChecked());
     settings.beginGroup("dictionnaires");
     comboGlossaria->setCurrentIndex(settings.value("courant").toInt());
     wDic->move(settings.value("posw").toPoint());
@@ -1832,14 +1832,14 @@ void MainWindow::scandeTxt()
 void MainWindow::setCible()
 {
     QAction *action = grCibles->checkedAction();
-    foreach (QString cle, lemmatiseur->cibles().keys())
+    foreach (QString cle, _lemCore->cibles().keys())
     {
-        if (lemmatiseur->cibles()[cle] == action->text())
+        if (_lemCore->cibles()[cle] == action->text())
         {
             if (cle == "fr")
-                lemmatiseur->setCible(cle + ".en.de");
+                _lemCore->setCible(cle + ".en.de");
             else if (cle == "en")
-                lemmatiseur->setCible(cle + ".fr.de");
+                _lemCore->setCible(cle + ".fr.de");
             else
             {
                 // Les deux langues principales sont le français et l'anglais.
@@ -1851,10 +1851,10 @@ void MainWindow::setCible()
                 QAbstractButton *enButton = msg.addButton("English",QMessageBox::AcceptRole);
                 msg.exec();
                 if (msg.clickedButton() == frButton)
-                    lemmatiseur->setCible(cle + ".fr.en");
+                    _lemCore->setCible(cle + ".fr.en");
                 else if (msg.clickedButton() == enButton)
-                    lemmatiseur->setCible(cle + ".en.fr");
-                else lemmatiseur->setCible(cle + ".en.fr");
+                    _lemCore->setCible(cle + ".en.fr");
+                else _lemCore->setCible(cle + ".en.fr");
             }
             break;
         }
@@ -1892,7 +1892,7 @@ void MainWindow::stat()
     if (dockVisible(dockLem))
     {
         textEditLem->setHtml(
-            lemmatiseur->frequences(editLatin->toPlainText()).join(""));
+            _lemCore->frequences(editLatin->toPlainText()).join(""));
     }
     if (dockVisible(dockScand))
         textEditScand->setHtml(
@@ -1953,7 +1953,7 @@ void MainWindow::lireFichierHyphen()
 {
     ficHyphen = QFileDialog::getOpenFileName(this, "Capsam legere", repHyphen+"/hyphen.la");
     if (!ficHyphen.isEmpty()) repHyphen = QFileInfo (ficHyphen).absolutePath ();
-    lemmatiseur->lireHyphen(ficHyphen);
+    _lemCore->lireHyphen(ficHyphen);
     // Si le nom de fichier est vide, ça efface les données précédentes.
 }
 
@@ -2037,14 +2037,14 @@ void MainWindow::exec ()
     {
         char a = requete[1].toLatin1();
         QString options = requete.mid(0,requete.indexOf(" "));
-        QString lang = lemmatiseur->cible(); // La langue actuelle;
-        bool html = lemmatiseur->optHtml(); // L'option HTML actuelle
-        bool MP = lemmatiseur->optMajPert();
-        lemmatiseur->setHtml(false); // Sans HTML, a priori
+        QString lang = _lemCore->cible(); // La langue actuelle;
+        bool html = _lemCore->optHtml(); // L'option HTML actuelle
+        bool MP = _lemCore->optMajPert();
+        _lemCore->setHtml(false); // Sans HTML, a priori
         int optAcc = 0;
         if (texte == "")
             texte = requete.mid(requete.indexOf(" ")+1);
-        lemmatiseur->setMajPert(requete[1].isUpper());
+        _lemCore->setMajPert(requete[1].isUpper());
         switch (a)
         {
         case 'S':
@@ -2067,7 +2067,7 @@ void MainWindow::exec ()
             break;
         case 'H':
         case 'h':
-            lemmatiseur->setHtml(true);
+            _lemCore->setHtml(true);
             nonHTML = false;
         case 'L':
         case 'l':
@@ -2082,17 +2082,17 @@ void MainWindow::exec ()
                 }
             }
             else options = options.mid(2); // Je coupe le "-l".
-            if ((options.size() == 2) && lemmatiseur->cibles().keys().contains(options))
-                lemmatiseur->setCible(options);
-            else if (((options.size() == 5) || (options.size() == 8)) && lemmatiseur->cibles().keys().contains(options.mid(0,2)))
-                lemmatiseur->setCible(options);
-            if (optAcc > 15) rep = lemmatiseur->frequences(texte).join("");
-            else rep = lemmatiseur->lemmatiseT(texte,optAcc&1,optAcc&2,optAcc&4,optAcc&8);
-            lemmatiseur->setCible(lang); // Je rétablis les langue et option HTML.
+            if ((options.size() == 2) && _lemCore->cibles().keys().contains(options))
+                _lemCore->setCible(options);
+            else if (((options.size() == 5) || (options.size() == 8)) && _lemCore->cibles().keys().contains(options.mid(0,2)))
+                _lemCore->setCible(options);
+            if (optAcc > 15) rep = _lemCore->frequences(texte).join("");
+            else rep = _lemCore->lemmatiseT(texte,optAcc&1,optAcc&2,optAcc&4,optAcc&8);
+            _lemCore->setCible(lang); // Je rétablis les langue et option HTML.
             break;
         case 'X':
         case 'x':
-//            rep = lemmatiseur->txt2XML(requete);
+//            rep = _lemCore->txt2XML(requete);
             rep = "Pas encore disponible";
             break;
         case 'K':
@@ -2101,18 +2101,18 @@ void MainWindow::exec ()
             break;
         case 'c':
             if (options.size() > 2)
-                lemmatiseur->setMajPert(options[2] == '1');
+                _lemCore->setMajPert(options[2] == '1');
             break;
         case 't':
             options = options.mid(2); // Je coupe le "-t".
             if (((options.size() == 2) || (options.size() == 5) || (options.size() == 8)) &&
-                    lemmatiseur->cibles().keys().contains(options.mid(0,2)))
+                    _lemCore->cibles().keys().contains(options.mid(0,2)))
             {
-                lemmatiseur->setCible(options);
+                _lemCore->setCible(options);
             }
             else
             {
-                QStringList clefs = lemmatiseur->cibles().keys();
+                QStringList clefs = _lemCore->cibles().keys();
                 rep = "Les langues connues sont : " + clefs.join(" ") + "\n";
             }
             break;
@@ -2134,9 +2134,9 @@ void MainWindow::exec ()
  //           rep += "\t-x : Mise en XML du texte.\n";
             break;
         }
-        lemmatiseur->setHtml(html);
+        _lemCore->setHtml(html);
         if ((a != 'C') && (a != 'c'))
-            lemmatiseur->setMajPert(MP);
+            _lemCore->setMajPert(MP);
     }
     else if (texte != "") rep= scandeur->scandeTxt(texte);
     else rep= scandeur->scandeTxt(requete);
@@ -2215,13 +2215,13 @@ void MainWindow::verbaCognita(bool vb)
     QString fichier;
     if (vb) fichier = QFileDialog::getOpenFileName(this, "Verba cognita", repVerba);
     if (!fichier.isEmpty()) repVerba = QFileInfo (fichier).absolutePath ();
-    lemmatiseur->verbaCognita(fichier,vb);
+    _lemCore->verbaCognita(fichier,vb);
 }
 
 void MainWindow::setHtml(bool h)
 {
     // Passer en html ne pose pas de problème
-    if (h || textEditLem->toPlainText().isEmpty()) lemmatiseur->setHtml(h);
+    if (h || textEditLem->toPlainText().isEmpty()) _lemCore->setHtml(h);
     else if (alerte())
     {
         // L'inverse (html --> non-html) mettrait les nouveaux résultats en items du dernier lemme.
@@ -2258,7 +2258,7 @@ void MainWindow::setHtml(bool h)
         // J'efface les résultats précédents
         textEditLem->setText(blabla);
         textEditLem->moveCursor(QTextCursor::End);
-        lemmatiseur->setHtml(h);
+        _lemCore->setHtml(h);
     }
     else htmlAct->setChecked(true);
 }
@@ -2291,6 +2291,6 @@ void MainWindow::verbaOut()
     if (!fichier.isEmpty())
     {
         repVerba = QFileInfo (fichier).absolutePath ();
-        lemmatiseur->verbaOut(fichier);
+        _lemCore->verbaOut(fichier);
     }
 }

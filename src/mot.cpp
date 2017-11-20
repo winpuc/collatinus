@@ -26,7 +26,7 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
 //    qDebug() << forme;
     _forme = forme;
     _rang = rang;
-    _lemmatiseur = qobject_cast<Lemmat *>(parent);
+    _lemmatiseur = qobject_cast<LemCore *>(parent);
     _probas.clear();
     _tagEncl = "";
     if (forme.isEmpty())

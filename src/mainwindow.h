@@ -77,7 +77,7 @@ class MainWindow : public QMainWindow
     // et second dictionnaire
     QWidget *wDic;
     // cœur
-    Lemmat *lemmatiseur;
+    LemCore *_lemCore;
     Flexion *flechisseur;
     // modules divers
     Lasla *lasla;

@@ -30,13 +30,13 @@
 class Scandeur : public QObject
 {
 public:
-    Scandeur(QObject *parent = 0, Lemmat *l=0, QString resDir="");
+    Scandeur(QObject *parent = 0, LemCore *l=0, QString resDir="");
     // Pour scander, un texte.
     QString parPos(QString f);
     QString scandeTxt(QString texte, int accent = 0, bool stats = false, bool majAut = false);
 
 private:
-    Lemmat * _lemmatiseur;
+    LemCore * _lemCore;
     QString _resDir;
     QList<Reglep> _reglesp;
     void lisParPos();

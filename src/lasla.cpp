@@ -48,16 +48,16 @@
  * en 9 commencera par "k9" en guise de catégorie
  * et sous-catégorie.
  */
-Lasla::Lasla(QObject *parent, Lemmat * l, QString resDir) : QObject(parent)
+Lasla::Lasla(QObject *parent, LemCore *l, QString resDir) : QObject(parent)
 {
     if (l==0)
     {
-        _lemmatiseur = new Lemmat(this, resDir);
+        _lemCore = new LemCore(this, resDir);
         // Je crée le lemmatiseur...
-        _lemmatiseur->setExtension(true);
+        _lemCore->setExtension(true);
         // ... et charge l'extension du lexique.
     }
-    else _lemmatiseur = l;
+    else _lemCore = l;
     if (resDir == "")
         _resDir = qApp->applicationDirPath() + "/data/";
     else if (resDir.endsWith("/")) _resDir = resDir;
@@ -69,7 +69,7 @@ Lasla::Lasla(QObject *parent, Lemmat * l, QString resDir) : QObject(parent)
 // et les catégories et sous-catégories du LASLA.
 void Lasla::lisCat()
 {
-    QStringList lignes = _lemmatiseur->lignesFichier(_resDir + "CatLASLA.txt");
+    QStringList lignes = _lemCore->lignesFichier(_resDir + "CatLASLA.txt");
     foreach (QString lin, lignes)
     {
         if (lin.contains(",")) _catLasla.insert(lin.section(",",0,0),lin.section(",",1,1));
@@ -97,10 +97,10 @@ QString Lasla::k9(QString m)
 {
 //    qDebug() << m;
     QStringList res;
-    QString cibAct = _lemmatiseur->cible();
-    _lemmatiseur->setCible("k9,fr");
-    MapLem mm = _lemmatiseur->lemmatiseM(m);
-    _lemmatiseur->setCible(cibAct);
+    QString cibAct = _lemCore->cible();
+    _lemCore->setCible("k9,fr");
+    MapLem mm = _lemCore->lemmatiseM(m);
+    _lemCore->setCible(cibAct);
     if (mm.isEmpty()) return "\n";
     // Il faut répondre quelque chose, sinon j'attends 30 secondes !
     foreach (Lemme *l, mm.keys())

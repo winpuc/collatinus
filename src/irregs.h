@@ -33,7 +33,7 @@
 
 #include <QDebug>
 
-class Lemmat;
+class LemCore;
 class Lemme;
 
 class Irreg : public QObject
@@ -44,7 +44,7 @@ class Irreg : public QObject
     bool _exclusif;
     QString _gr;
     QString _grq;
-    Lemmat* _lemmat;
+    LemCore* _lemmat;
     Lemme* _lemme;
     QList<int> _morphos;
 

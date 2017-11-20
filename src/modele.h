@@ -33,7 +33,7 @@
 #include "ch.h"
 #include "lemCore.h"
 
-class Lemmat;
+class LemCore;
 class Modele;
 
 class Desinence : public QObject
@@ -68,13 +68,13 @@ class Modele : public QObject
     QMap<int, QString> _genRadicaux;
     QString _gr;
     QString _grq;
-    Lemmat *_lemmatiseur;
+    LemCore *_lemmatiseur;
     Modele *_pere;
     QChar   _pos;
     QString _suf;
 
    public:
-    Modele(QStringList ll, Lemmat *parent = 0);
+    Modele(QStringList ll, LemCore *parent = 0);
     bool               absent(int a);
     QList<int>         absents();
     QList<int>         clesR();
