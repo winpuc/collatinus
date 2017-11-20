@@ -19,10 +19,6 @@
    */
 
 #include <flexfr.h>
-#include <QStringList>
-#include <QTextStream>
-
-#include <QDebug>
 
 using namespace std;
 

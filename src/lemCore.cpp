@@ -1,4 +1,4 @@
-/*                 lemmatiseur.cpp
+/*                 lemCore.cpp
  *
  *  This file is part of COLLATINUS.
  *
@@ -24,14 +24,7 @@
  * \brief module de lemmatisation des formes latines
  */
 
-#include <QDir>
-#include <QFile>
-#include <QRegExp>
-#include <QTextStream>
-#include <iostream>
-
-#include "ch.h"
-#include "lemmatiseur.h"
+#include "lemCore.h"
 
 #include <QDebug>
 // #include <QElapsedTimer>

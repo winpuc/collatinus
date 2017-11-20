@@ -1,4 +1,4 @@
-/*      lemmatiseur.h
+/*      lemCore.h
  *
  *  This file is part of COLLATINUS.
  *
@@ -19,14 +19,20 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
-#ifndef LEMMATISEUR_H
-#define LEMMATISEUR_H
+#ifndef LEMCORE_H
+#define LEMCORE_H
 
 #include <QMap>
 #include <QString>
 #include <QStringList>
 #include <QtCore/QCoreApplication>
+#include <QDir>
+#include <QFile>
+#include <QRegExp>
+#include <QTextStream>
+#include <iostream>
 
+#include "ch.h"
 #include "irregs.h"
 #include "lemme.h"
 #include "modele.h"
@@ -34,6 +40,7 @@
 class Irreg;
 class Lemme;
 class Radical;
+class Desinence;
 
 typedef struct
 {
@@ -183,4 +190,4 @@ class Lemmat : public QObject
     void setExtension(bool e);
 };
 
-#endif
+#endif // LEMCORE_H

@@ -22,6 +22,9 @@ Pour tout contact avec l'auteur : yves.ouvrard@collatinus.org
 #include <QMap>
 #include <QString>
 #include <QStringList>
+#include <QTextStream>
+
+#include <QDebug>
 
 /**
 Verbe est la classe de base. J'ai pris le premier groupe comme référence,

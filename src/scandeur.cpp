@@ -20,11 +20,6 @@
  */
 
 #include "scandeur.h"
-#include "ch.h"
-#include "lemmatiseur.h"
-
-#include <QDebug>
-
 
 Scandeur::Scandeur(QObject *parent, Lemmat *l, QString resDir) : QObject(parent)
 {

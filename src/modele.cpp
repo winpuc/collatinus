@@ -19,10 +19,6 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
-#include <QDebug>
-
-#include "ch.h"
-#include "lemmatiseur.h"
 #include "modele.h"
 
 ///////////////

@@ -21,17 +21,22 @@
 
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+
 #include <QMainWindow>
 #include <QtWidgets>
 #include <QtNetwork>
+#include <QDebug>
+#include <QPrintDialog>
+#include <QPrinter>
 
 #include "flexion.h"
-#include "lemmatiseur.h"
+#include "lemCore.h"
 #include "dicos.h"
 #include "ch.h"
 #include "lasla.h"
 #include "tagueur.h"
 #include "scandeur.h"
+#include "maj.h"
 
 QT_BEGIN_NAMESPACE
 class QAction;

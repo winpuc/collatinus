@@ -22,7 +22,7 @@
 #ifndef LASLA_H
 #define LASLA_H
 
-#include "lemmatiseur.h"
+#include "lemCore.h"
 #include "lemme.h"
 #include "ch.h"
 

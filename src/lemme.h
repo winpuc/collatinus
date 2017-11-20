@@ -25,9 +25,13 @@
 #include <QMultiMap>
 #include <QObject>
 #include <QString>
+#include <QDebug>
+#include <QStringList>
+
 #include "irregs.h"
-#include "lemmatiseur.h"
+#include "lemCore.h"
 #include "modele.h"
+#include "ch.h"
 
 class Irreg;
 class Lemmat;

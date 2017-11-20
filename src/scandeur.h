@@ -22,7 +22,10 @@
 #ifndef SCANDEUR
 #define SCANDEUR
 
-#include "lemmatiseur.h"
+#include <QDebug>
+
+#include "ch.h"
+#include "lemCore.h"
 
 class Scandeur : public QObject
 {

@@ -24,7 +24,14 @@
 
 #include <QList>
 #include <QString>
-#include "lemmatiseur.h"
+#include <QStringList>
+
+#include "lemCore.h"
+#include "ch.h"
+#include "lemme.h"
+#include "modele.h"
+
+#include <QDebug>
 
 class Lemmat;
 class Lemme;

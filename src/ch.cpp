@@ -27,7 +27,6 @@
  */
 
 #include "ch.h"
-#include <QRegExp>
 
 #include <QDebug>
 

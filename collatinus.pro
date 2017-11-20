@@ -28,7 +28,6 @@ QMAKE_DISTCLEAN += $${DESTDIR}/collatinus
 HEADERS += src/ch.h \
            src/flexion.h \
            src/irregs.h \
-           src/lemmatiseur.h \
            src/lemme.h \
            src/dicos.h \
 		   src/modele.h \
@@ -38,13 +37,13 @@ HEADERS += src/ch.h \
     src/mot.h \
     src/lasla.h \
     src/tagueur.h \
-    src/scandeur.h
+    src/scandeur.h \
+    src/lemCore.h
 
 SOURCES += src/ch.cpp \
            src/flexion.cpp \
 		       src/frequences.cpp \
            src/irregs.cpp \
-           src/lemmatiseur.cpp \
            src/lemme.cpp \
            src/dicos.cpp \
            src/flexfr.cpp \
@@ -55,7 +54,8 @@ SOURCES += src/ch.cpp \
            src/scandeur.cpp \
     src/mot.cpp \
     src/lasla.cpp \
-    src/tagueur.cpp
+    src/tagueur.cpp \
+    src/lemCore.cpp
 
 RESOURCES += collatinus.qrc
 RC_ICONS = res/collatinus.ico

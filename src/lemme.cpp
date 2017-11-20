@@ -20,12 +20,6 @@
  */
 
 #include "lemme.h"
-#include <QDebug>
-#include <QString>
-#include <QStringList>
-#include "ch.h"
-#include "lemmatiseur.h"
-#include "modele.h"
 
 /////////////
 // RADICAL //
