@@ -22,11 +22,14 @@
 #ifndef FLEXION_H
 #define FLEXION_H
 
+#include <QList>
+#include <QRegExp>
+
 #include <QString>
 #include <QStringList>
 #include <QUrl>
 
-#include "lemmatiseur.h"
+#include "lemCore.h"
 #include "lemme.h"
 
 #define OMIS 1

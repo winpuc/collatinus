@@ -22,7 +22,7 @@
 #ifndef TAGUEUR_H
 #define TAGUEUR_H
 
-#include "lemmatiseur.h"
+#include "lemCore.h"
 #include "mot.h"
 
 class Tagueur : public QObject

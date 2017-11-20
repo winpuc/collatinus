@@ -1,4 +1,4 @@
-/*                    lewis.h
+/*                    dicos.h
  *
  *  This file is part of COLLATINUS.
  *
@@ -21,6 +21,7 @@
 
 #ifndef LEWIS_H
 #define LEWIS_H
+
 #include <QtCore>
 
 typedef QPair<QString, qint64> pairL;

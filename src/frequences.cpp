@@ -22,7 +22,7 @@
 #include <QHash>
 
 #include "ch.h"
-#include "lemmatiseur.h"
+#include "lemCore.h"
 
 #include <QDebug>
 

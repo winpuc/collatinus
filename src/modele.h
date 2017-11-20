@@ -28,6 +28,11 @@
 #include <QStringList>
 #include <QtCore>
 
+#include <QDebug>
+
+#include "ch.h"
+#include "lemCore.h"
+
 class Lemmat;
 class Modele;
 

@@ -19,9 +19,6 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
-#include <QList>
-#include <QRegExp>
-
 #include "flexion.h"
 
 #include <QDebug>

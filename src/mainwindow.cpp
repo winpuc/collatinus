@@ -19,13 +19,7 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
-#include <QDebug>
-#include <QPrintDialog>
-#include <QPrinter>
-
-#include "flexion.h"
 #include "mainwindow.h"
-#include "maj.h"
 
 /**
  * \fn EditLatin::EditLatin (QWidget *parent): QTextEdit (parent)

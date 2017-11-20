@@ -26,12 +26,6 @@
 //
 
 #include "irregs.h"
-#include <QStringList>
-#include "ch.h"
-#include "lemme.h"
-#include "modele.h"
-
-#include <QDebug>
 
 /**
  * \fn Irreg::Irreg (QString l, QObject *parent)
