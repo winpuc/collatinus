@@ -36,6 +36,7 @@
 #include "lasla.h"
 #include "tagueur.h"
 #include "scandeur.h"
+#include "lemmatiseur.h"
 #include "maj.h"
 
 QT_BEGIN_NAMESPACE
@@ -83,6 +84,7 @@ class MainWindow : public QMainWindow
     Lasla *lasla;
     Tagueur *tagueur;
     Scandeur *scandeur;
+    Lemmatiseur *_lemmatiseur;
     // widgets d'édition et d'affichage
     EditLatin *editLatin;
     QTextEdit *textEditLem;

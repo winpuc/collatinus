@@ -38,11 +38,12 @@ HEADERS += src/ch.h \
     src/lasla.h \
     src/tagueur.h \
     src/scandeur.h \
-    src/lemCore.h
+    src/lemCore.h \
+    src/lemmatiseur.h
 
 SOURCES += src/ch.cpp \
            src/flexion.cpp \
-		       src/frequences.cpp \
+#		       src/frequences.cpp \
            src/irregs.cpp \
            src/lemme.cpp \
            src/dicos.cpp \
@@ -55,7 +56,8 @@ SOURCES += src/ch.cpp \
     src/mot.cpp \
     src/lasla.cpp \
     src/tagueur.cpp \
-    src/lemCore.cpp
+    src/lemCore.cpp \
+    src/lemmatiseur.cpp
 
 RESOURCES += collatinus.qrc
 RC_ICONS = res/collatinus.ico
