@@ -52,7 +52,7 @@ bool EditLatin::event(QEvent *event)
             QString mot = tc.selectedText();
             if (mot.isEmpty ())
                 return QWidget::event (event);
-            QString txtBulle = mainwindow->_lemCore->lemmatiseT(
+            QString txtBulle = mainwindow->_lemmatiseur->lemmatiseT(
                 mot, true, true, true, false);
             if (txtBulle.isEmpty()) return true;
             // S'il n'y a qu'une ponctuation sous le curseur la lemmatisation donne un string vide.
@@ -93,13 +93,13 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
             if (mainwindow->html())
             {
                 QString texteHtml = mainwindow->textEditLem->toHtml();
-                texteHtml.insert(texteHtml.indexOf("</body>"),mainwindow->_lemCore->lemmatiseT(st));
+                texteHtml.insert(texteHtml.indexOf("</body>"),mainwindow->_lemmatiseur->lemmatiseT(st));
                 mainwindow->textEditLem->setText(texteHtml);
                 mainwindow->textEditLem->moveCursor(QTextCursor::End);
             }
             else
                 mainwindow->textEditLem->insertPlainText(
-                    mainwindow->_lemCore->lemmatiseT(st));
+                    mainwindow->_lemmatiseur->lemmatiseT(st));
         }
     }
     // 2. dock scansion
@@ -154,6 +154,7 @@ MainWindow::MainWindow()
     setCentralWidget(editLatin);
 
     _lemCore = new LemCore(this);
+    _lemmatiseur = new Lemmatiseur(this,_lemCore);
     flechisseur = new Flexion(_lemCore);
     lasla = new Lasla(this,_lemCore,"");
     tagueur = new Tagueur(this,_lemCore);
@@ -1533,10 +1534,10 @@ void MainWindow::lemmatiseLigne()
     {
     QString texteHtml = textEditLem->toHtml();
     texteHtml.insert(texteHtml.indexOf("</body>"),
-                     _lemCore->lemmatiseT(txt));
+                     _lemmatiseur->lemmatiseT(txt));
     textEditLem->setText(texteHtml);
     }
-    else textEditLem->insertPlainText(_lemCore->lemmatiseT(txt));
+    else textEditLem->insertPlainText(_lemmatiseur->lemmatiseT(txt));
     textEditLem->moveCursor(QTextCursor::End);
 }
 
@@ -1551,7 +1552,7 @@ void MainWindow::lemmatiseTxt()
     // si la tâche dure trop longtemps :
     // setUpdatesEnabled(false);
     QString txt = editLatin->toPlainText();
-    QString res = _lemCore->lemmatiseT(txt);
+    QString res = _lemmatiseur->lemmatiseT(txt);
     if (html())
         textEditLem->setHtml(res);
     else
@@ -1892,7 +1893,7 @@ void MainWindow::stat()
     if (dockVisible(dockLem))
     {
         textEditLem->setHtml(
-            _lemCore->frequences(editLatin->toPlainText()).join(""));
+            _lemmatiseur->frequences(editLatin->toPlainText()).join(""));
     }
     if (dockVisible(dockScand))
         textEditScand->setHtml(
@@ -2086,8 +2087,8 @@ void MainWindow::exec ()
                 _lemCore->setCible(options);
             else if (((options.size() == 5) || (options.size() == 8)) && _lemCore->cibles().keys().contains(options.mid(0,2)))
                 _lemCore->setCible(options);
-            if (optAcc > 15) rep = _lemCore->frequences(texte).join("");
-            else rep = _lemCore->lemmatiseT(texte,optAcc&1,optAcc&2,optAcc&4,optAcc&8);
+            if (optAcc > 15) rep = _lemmatiseur->frequences(texte).join("");
+            else rep = _lemmatiseur->lemmatiseT(texte,optAcc&1,optAcc&2,optAcc&4,optAcc&8);
             _lemCore->setCible(lang); // Je rétablis les langue et option HTML.
             break;
         case 'X':
@@ -2215,7 +2216,7 @@ void MainWindow::verbaCognita(bool vb)
     QString fichier;
     if (vb) fichier = QFileDialog::getOpenFileName(this, "Verba cognita", repVerba);
     if (!fichier.isEmpty()) repVerba = QFileInfo (fichier).absolutePath ();
-    _lemCore->verbaCognita(fichier,vb);
+    _lemmatiseur->verbaCognita(fichier,vb);
 }
 
 void MainWindow::setHtml(bool h)
@@ -2291,6 +2292,6 @@ void MainWindow::verbaOut()
     if (!fichier.isEmpty())
     {
         repVerba = QFileInfo (fichier).absolutePath ();
-        _lemCore->verbaOut(fichier);
+        _lemmatiseur->verbaOut(fichier);
     }
 }

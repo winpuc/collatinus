@@ -58,8 +58,6 @@ class LemCore : public QObject
     Q_OBJECT
 
    private:
-    QHash<QString,int> _hLem;
-    QStringList _couleurs;
     // fonction d'initialisation
     void ajAssims();
     void ajContractions();
@@ -77,7 +75,6 @@ class LemCore : public QObject
     QMap<QString, QString> _contractions;
     QMultiMap<QString, Desinence *> _desinences;
     QString decontracte(QString d);
-    bool inv(Lemme *l, const MapLem ml);
     QMultiMap<QString, Irreg *> _irregs;
     QString _cible;  // langue courante, 2 caractères
     QMap<QString, QString> _cibles;
@@ -126,19 +123,11 @@ class LemCore : public QObject
     QString desassimq(QString a);
     static QString deramise(QString r);
     static bool estRomain(QString f);
-    QStringList frequences(QString txt);
+    bool inv(Lemme *l, const MapLem ml);
     MapLem lemmatise(QString f);  // lemmatise une forme
-    QString lemmatiseFichier(QString f, bool alpha = false,
-                             bool cumVocibus = false, bool cumMorpho = false,
-                             bool nreconnu = true);
-    QStringList lemmatiseF(QString f, bool deb);
     // lemmatiseM lemmatise une forme en contexte
     //MapLem lemmatiseM(QString f, bool debPhr = true);
     MapLem lemmatiseM(QString f, bool debPhr = true, bool desas  =false);
-    // lemmatiseT lemmatise un texte
-    QString lemmatiseT(QString &t);
-    QString lemmatiseT(QString &t, bool alpha, bool cumVocibus = false,
-                       bool cumMorpho = false, bool nreconnu = false);
     Lemme *lemme(QString l);
     // lemmes(ml) renvoie la liste des graphies des lemmes
     QStringList lemmes(MapLem ml);
@@ -159,6 +148,7 @@ class LemCore : public QObject
     bool optMajPert();
     bool optMorpho();
     bool optExtension();
+    bool optNonRec();
 
     // Pour l'internationalisation
     QString cas(int i);
@@ -174,9 +164,6 @@ class LemCore : public QObject
     int fraction(QString listTags);
     int tagOcc(QString t);
     int trigram(QString seq);
-
-    void verbaOut(QString fichier); // Connaître l'usage des mots connus
-    void verbaCognita(QString fichier, bool vb=false); // Coloriser le texte avec les mots connus
 
    public slots:
     // modificateurs d'options
