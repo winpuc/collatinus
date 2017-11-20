@@ -161,9 +161,9 @@ MainWindow::MainWindow()
 
     lemmatiseur = new Lemmat(this);
     flechisseur = new Flexion(lemmatiseur);
-    lasla = new Lasla(lemmatiseur);
-    tagueur = new Tagueur(lemmatiseur);
-    scandeur = new Scandeur(lemmatiseur);
+    lasla = new Lasla(this,lemmatiseur,"");
+    tagueur = new Tagueur(this,lemmatiseur);
+    scandeur = new Scandeur(this,lemmatiseur);
 
     setLangue();
 

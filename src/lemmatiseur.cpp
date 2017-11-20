@@ -93,40 +93,6 @@ Lemmat::Lemmat(QObject *parent, QString resDir) : QObject(parent)
 }
 
 /**
- * \fn Lemmat::lisNombres
- * \brief Lecture du fichier nombres.la
- * et peuplement de la variable _nbOcc de chaque lemme.
- *
- * Cette routine lit le fichier nombres.la.
- * Ce fichier a été tiré de la lemmatisation de la liste
- * des formes tirées des textes du LASLA.
- * C'est un csv, avec la virgule comme séparateur.
- *
- * Un programme a essayé d'établir la correspondance
- * entre les lemmes de Collatinus (1er champ)
- * avec ceux du LASLA (2e champ) et
- * le nombre d'occurrences associé.
- *
- */
-void Lemmat::lisNombres()
-{
-    QStringList lignes = lignesFichier(_resDir + "nombres.la");
-    foreach (QString lin, lignes)
-    {
-        QStringList liste = lin.split(',');
-        QString clef = liste[0];
-        clef.remove('-');
-        if (_lemmes.contains(clef))
-            _lemmes[clef]->ajNombre(liste[2].toInt());
-    }
-    _nbrLoaded = true;
-    // Je lis aussi le début du fichier tags.la
-    lisTags(false);
-    // Lorsque j'aurai besoin des trigammes pour le tagger, je rappellerai lisTags(true).
-    // Je commencerai avec un if (_trigram.isEmpty()) lisTags(true);
-}
-
-/**
  * @brief Lemmat::lisTags
  * @param tout : bool
  *
