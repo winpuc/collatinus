@@ -108,7 +108,7 @@ QString Lasla::k9(QString m)
         QString clef = l->cle() + ", ,";
         foreach (SLem s, mm.value(l))
         {
-            QString code9 = s.morpho;
+            QString code9 = _lemCore->morpho(s.morpho);
             QString forme = Ch::atone(s.grq);
             if (!s.sufq.isEmpty()) forme += "<" + Ch::atone(s.sufq) +">,";
             else forme += ",";

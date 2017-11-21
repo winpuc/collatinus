@@ -58,13 +58,13 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
                 //                    qDebug() << forme << lem << nb << lt << t << fr;
                 if (m.sufq.isEmpty())
                 {
-                    if (m.morpho == "-") _morphos.append(m.grq);
-                    else _morphos.append(m.grq + " " + m.morpho);
+                    if (m.morpho == 416) _morphos.append(m.grq);
+                    else _morphos.append(m.grq + " " + _lemmatiseur->morpho(m.morpho));
                 }
                 else
                 {
-                    if (m.morpho == "-") _morphos.append(m.grq + " + " + m.sufq);
-                    else _morphos.append(m.grq + " + " + m.sufq + " " + m.morpho);
+                    if (m.morpho == 416) _morphos.append(m.grq + " + " + m.sufq);
+                    else _morphos.append(m.grq + " + " + m.sufq + " " + _lemmatiseur->morpho(m.morpho));
                     enclitique = m.sufq;
                 }
                 while (lt.size() > 2)

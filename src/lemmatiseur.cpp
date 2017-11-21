@@ -387,11 +387,11 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                             int fr = _lemCore->fraction(_lemCore->tag(l,m.morpho));
                             if (fr > frMax) frMax = fr;
                             if (m.sufq.isEmpty())
-                                listeMorph.insert(-fr,m.grq + " " + m.morpho);
+                                listeMorph.insert(-fr,m.grq + " " + _lemCore->morpho(m.morpho));
                             // La fréquence est négative pour inverser l'ordre.
                             else
                                 listeMorph.insert(-fr,m.grq + " + " + m.sufq +
-                                                  " " + m.morpho);
+                                                  " " + _lemCore->morpho(m.morpho));
                         }
                         lem.append(debMorph);
                         QStringList lMorph = listeMorph.values();
@@ -446,12 +446,12 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                         {
                             fl << "<ul>";
                             foreach (SLem m, map.value(l))
-                                fl << "<li>" << m.grq << " " << m.morpho << "</li>";
+                                fl << "<li>" << m.grq << " " << _lemCore->morpho(m.morpho) << "</li>";
                             fl << "</ul>\n";
                         }
                         else
                             foreach (SLem m, map.value(l))
-                                fl << "\n    . " << m.grq << " " << m.morpho;
+                                fl << "\n    . " << m.grq << " " << _lemCore->morpho(m.morpho);
                     }
                     if (_lemCore->optHtml())
                     {
