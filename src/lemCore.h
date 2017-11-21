@@ -45,7 +45,7 @@ class Desinence;
 typedef struct
 {
     QString grq;
-    QString morpho;
+    int morpho;
     QString sufq;
 } SLem;
 
@@ -160,7 +160,7 @@ class LemCore : public QObject
     QString motsClefs(int i);
 
 //    QString tagPhrase(QString phr);
-    QString tag(Lemme *l, QString morph);
+    QString tag(Lemme *l, int m);
     int fraction(QString listTags);
     int tagOcc(QString t);
     int trigram(QString seq);

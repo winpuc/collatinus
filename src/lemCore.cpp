@@ -163,16 +163,17 @@ void LemCore::lisTags(bool tout)
  * Pour les invariables, le POS est complété avec deux espaces.
  *
  */
-QString LemCore::tag(Lemme *l, QString morph)
+QString LemCore::tag(Lemme *l, int m)
 {
     // Il faut encore traiter le cas des pos multiples
     QString lp = l->pos();
     QString lTags = "";
+    QString morph = morpho(m);
     while (lp.size() > 0)
     {
         QString p = lp.mid(0,1);
         lp = lp.mid(1);
-        if ((p == "n") && (morph == morpho(413))) // Locatif !
+        if ((p == "n") && (m == 413)) // Locatif !
             lTags.append("n71,");
         else if ((p == "v") && (morph.contains(" -u"))) // C'est un supin
             lTags.append("v3 ,");
@@ -676,7 +677,7 @@ MapLem LemCore::lemmatise(QString f)
     {
         foreach (int m, irr->morphos())
         {
-            SLem sl = {irr->grq(), morpho(m), ""};
+            SLem sl = {irr->grq(), m, ""};
             // result[irr->lemme()].prepend (morpho (m));
             result[irr->lemme()].prepend(sl);
         }
@@ -722,7 +723,7 @@ MapLem LemCore::lemmatise(QString f)
                         if (!r.endsWith("i") && rad->gr().endsWith("i"))
                             fq = rad->grq().left(rad->grq().size()-1) + "ī"
                                     + des->grq().right(des->grq().size()-1);
-                        SLem sl = {fq, morpho(des->morphoNum()), ""};
+                        SLem sl = {fq, des->morphoNum(), ""};
                         result[l].prepend(sl);
                     }
                 }
@@ -749,7 +750,7 @@ MapLem LemCore::lemmatise(QString f)
         int nr = aRomano(f);
         romain->ajTrad(QString("%1").arg(nr), "fr");
         _lemmes.insert(f, romain);
-        SLem sl = {f,"inv",""};
+        SLem sl = {f,416,""};
         QList<SLem> lsl;
         lsl.append(sl);
         result.insert(romain, lsl);
@@ -764,7 +765,7 @@ MapLem LemCore::lemmatise(QString f)
  */
 bool LemCore::inv(Lemme *l, const MapLem ml)
 {
-    return ml.value(l).at(0).morpho == "-";
+    return ml.value(l).at(0).morpho == 416;
 }
 
 /**
