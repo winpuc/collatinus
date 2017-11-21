@@ -31,7 +31,7 @@ HEADERS += src/ch.h \
            src/lemme.h \
            src/dicos.h \
 		   src/modele.h \
-           src/flexfr.h \
+#           src/flexfr.h \
            src/mainwindow.h \
 		   src/maj.h \
     src/mot.h \
@@ -47,7 +47,7 @@ SOURCES += src/ch.cpp \
            src/irregs.cpp \
            src/lemme.cpp \
            src/dicos.cpp \
-           src/flexfr.cpp \
+#           src/flexfr.cpp \
            src/main.cpp \
 		       src/maj.cpp \
            src/mainwindow.cpp \

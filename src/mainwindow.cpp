@@ -246,7 +246,8 @@ void MainWindow::afficheLemsDicLitt()
 }
 
 /**
- * \fn void MainWindow::afficheLemsDicW () * \brief Fonction de relais
+ * \fn void MainWindow::afficheLemsDicW ()
+ * \brief Fonction de relais
  * permettant d'utiliser
  *        la connexion entre une action et la fonction
  *        afficheLemsDicW().
