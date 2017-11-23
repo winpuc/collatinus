@@ -32,9 +32,9 @@
 
 class Lemmatiseur : public QObject
 {
-//    Q_OBJECT
+    Q_OBJECT
 public:
-    Lemmatiseur(QObject *parent = 0, LemCore *l=0, QString resDir="");
+    Lemmatiseur(QObject *parent = 0, LemCore *l=0, QString cible="", QString resDir="");
     // Créateur de la classe
     QStringList frequences(QString txt);
     QStringList lemmatiseF(QString f, bool deb);
@@ -49,11 +49,39 @@ public:
     void verbaOut(QString fichier); // Connaître l'usage des mots connus
     void verbaCognita(QString fichier, bool vb=false); // Coloriser le texte avec les mots connus
 
+    // accesseurs d'options
+    bool optAlpha();
+    bool optHtml();
+    bool optFormeT();
+    bool optMajPert();
+    bool optMorpho();
+    bool optNonRec();
+    QString cible();
+
+public slots :
+    // modificateurs d'options
+    void setAlpha(bool a);
+    void setCible(QString c);
+    void setHtml(bool h);
+    void setFormeT(bool f);
+    void setMajPert(bool mp);
+    void setMorpho(bool m);
+    void setNonRec(bool n);
+
 private:
     LemCore * _lemCore;
     QString _resDir;
     QHash<QString,int> _hLem;
     QStringList _couleurs;
+    // options
+    bool _alpha;
+    bool _formeT;
+    bool _html;
+    bool _majPert;
+    bool _morpho;
+    bool _nonRec;
+    QString _cible;  // langue courante, 2 caractères ou plus
+
 };
 
 #endif // LEMMATISEUR_H

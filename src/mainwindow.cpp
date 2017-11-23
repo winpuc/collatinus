@@ -370,11 +370,11 @@ void MainWindow::alpha()
     // pour que l'action provoque le basculement à true
     // de l'option alpha du lemmatiseur, supprimer la
     // première et la dernière ligne.
-    bool tmpAlpha = _lemCore->optAlpha();
-    _lemCore->setAlpha(true);
+    bool tmpAlpha = _lemmatiseur->optAlpha();
+    _lemmatiseur->setAlpha(true);
     lancer();
     //	lemmatiseTxt();
-    _lemCore->setAlpha(tmpAlpha);
+    _lemmatiseur->setAlpha(tmpAlpha);
 }
 
 /**
@@ -630,7 +630,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     settings.setValue("majpert", majPertAct->isChecked());
     settings.setValue("morpho", morphoAct->isChecked());
     settings.setValue("nonrec", nonRecAct->isChecked());
-    settings.setValue("cible", _lemCore->cible());
+    settings.setValue("cible", _lemmatiseur->cible());
     // accentuation
     settings.setValue("accentuation", accentAct->isChecked());
     settings.setValue("longue", longueAct->isChecked());
@@ -861,16 +861,16 @@ void MainWindow::createConnections()
     connect(lineEditScand, SIGNAL(returnPressed()), this, SLOT(scandeLigne()));
 
     // options et actions du lemmatiseur
-    connect(alphaOptAct, SIGNAL(toggled(bool)), _lemCore,
+    connect(alphaOptAct, SIGNAL(toggled(bool)), _lemmatiseur,
             SLOT(setAlpha(bool)));
-    connect(formeTAct, SIGNAL(toggled(bool)), _lemCore,
+    connect(formeTAct, SIGNAL(toggled(bool)), _lemmatiseur,
             SLOT(setFormeT(bool)));
     connect(htmlAct, SIGNAL(toggled(bool)), this, SLOT(setHtml(bool)));
-    connect(majPertAct, SIGNAL(toggled(bool)), _lemCore,
+    connect(majPertAct, SIGNAL(toggled(bool)), _lemmatiseur,
             SLOT(setMajPert(bool)));
-    connect(morphoAct, SIGNAL(toggled(bool)), _lemCore,
+    connect(morphoAct, SIGNAL(toggled(bool)), _lemmatiseur,
             SLOT(setMorpho(bool)));
-    connect(nonRecAct, SIGNAL(toggled(bool)), _lemCore,
+    connect(nonRecAct, SIGNAL(toggled(bool)), _lemmatiseur,
             SLOT(setNonRec(bool)));
     connect(extensionWAct, SIGNAL(toggled(bool)), _lemCore, SLOT(setExtension(bool)));
 
@@ -1732,20 +1732,20 @@ void MainWindow::readSettings()
 
     QString l = settings.value("cible").toString();
     if (l.size() < 2) l = "fr";
-    _lemCore->setCible(l);
+    _lemmatiseur->setCible(l);
     foreach (QAction *action, grCibles->actions())
         if (action->text() == _lemCore->cibles()[l.mid(0,2)])
             action->setChecked(true);
     settings.endGroup();
     // options appliquées au lemmatiseur
-    _lemCore->setAlpha(alphaOptAct->isChecked());
-    _lemCore->setFormeT(formeTAct->isChecked());
+    _lemmatiseur->setAlpha(alphaOptAct->isChecked());
+    _lemmatiseur->setFormeT(formeTAct->isChecked());
     _lemCore->setExtension(extensionWAct->isChecked());
     if (!ficHyphen.isEmpty()) _lemCore->lireHyphen(ficHyphen);
     // Le fichier hyphen.la doit être lu après l'extension.
-    _lemCore->setHtml(htmlAct->isChecked());
-    _lemCore->setMajPert(majPertAct->isChecked());
-    _lemCore->setMorpho(morphoAct->isChecked());
+    _lemmatiseur->setHtml(htmlAct->isChecked());
+    _lemmatiseur->setMajPert(majPertAct->isChecked());
+    _lemmatiseur->setMorpho(morphoAct->isChecked());
     settings.beginGroup("dictionnaires");
     comboGlossaria->setCurrentIndex(settings.value("courant").toInt());
     wDic->move(settings.value("posw").toPoint());
@@ -1839,9 +1839,9 @@ void MainWindow::setCible()
         if (_lemCore->cibles()[cle] == action->text())
         {
             if (cle == "fr")
-                _lemCore->setCible(cle + ".en.de");
+                _lemmatiseur->setCible(cle + ".en.de");
             else if (cle == "en")
-                _lemCore->setCible(cle + ".fr.de");
+                _lemmatiseur->setCible(cle + ".fr.de");
             else
             {
                 // Les deux langues principales sont le français et l'anglais.
@@ -1853,10 +1853,10 @@ void MainWindow::setCible()
                 QAbstractButton *enButton = msg.addButton("English",QMessageBox::AcceptRole);
                 msg.exec();
                 if (msg.clickedButton() == frButton)
-                    _lemCore->setCible(cle + ".fr.en");
+                    _lemmatiseur->setCible(cle + ".fr.en");
                 else if (msg.clickedButton() == enButton)
-                    _lemCore->setCible(cle + ".en.fr");
-                else _lemCore->setCible(cle + ".en.fr");
+                    _lemmatiseur->setCible(cle + ".en.fr");
+                else _lemmatiseur->setCible(cle + ".en.fr");
             }
             break;
         }
@@ -2039,14 +2039,14 @@ void MainWindow::exec ()
     {
         char a = requete[1].toLatin1();
         QString options = requete.mid(0,requete.indexOf(" "));
-        QString lang = _lemCore->cible(); // La langue actuelle;
-        bool html = _lemCore->optHtml(); // L'option HTML actuelle
-        bool MP = _lemCore->optMajPert();
-        _lemCore->setHtml(false); // Sans HTML, a priori
+        QString lang = _lemmatiseur->cible(); // La langue actuelle;
+        bool html = _lemmatiseur->optHtml(); // L'option HTML actuelle
+        bool MP = _lemmatiseur->optMajPert();
+        _lemmatiseur->setHtml(false); // Sans HTML, a priori
         int optAcc = 0;
         if (texte == "")
             texte = requete.mid(requete.indexOf(" ")+1);
-        _lemCore->setMajPert(requete[1].isUpper());
+        _lemmatiseur->setMajPert(requete[1].isUpper());
         switch (a)
         {
         case 'S':
@@ -2069,7 +2069,7 @@ void MainWindow::exec ()
             break;
         case 'H':
         case 'h':
-            _lemCore->setHtml(true);
+            _lemmatiseur->setHtml(true);
             nonHTML = false;
         case 'L':
         case 'l':
@@ -2085,12 +2085,12 @@ void MainWindow::exec ()
             }
             else options = options.mid(2); // Je coupe le "-l".
             if ((options.size() == 2) && _lemCore->cibles().keys().contains(options))
-                _lemCore->setCible(options);
+                _lemmatiseur->setCible(options);
             else if (((options.size() == 5) || (options.size() == 8)) && _lemCore->cibles().keys().contains(options.mid(0,2)))
-                _lemCore->setCible(options);
+                _lemmatiseur->setCible(options);
             if (optAcc > 15) rep = _lemmatiseur->frequences(texte).join("");
             else rep = _lemmatiseur->lemmatiseT(texte,optAcc&1,optAcc&2,optAcc&4,optAcc&8);
-            _lemCore->setCible(lang); // Je rétablis les langue et option HTML.
+            _lemmatiseur->setCible(lang); // Je rétablis les langue et option HTML.
             break;
         case 'X':
         case 'x':
@@ -2103,14 +2103,14 @@ void MainWindow::exec ()
             break;
         case 'c':
             if (options.size() > 2)
-                _lemCore->setMajPert(options[2] == '1');
+                _lemmatiseur->setMajPert(options[2] == '1');
             break;
         case 't':
             options = options.mid(2); // Je coupe le "-t".
             if (((options.size() == 2) || (options.size() == 5) || (options.size() == 8)) &&
                     _lemCore->cibles().keys().contains(options.mid(0,2)))
             {
-                _lemCore->setCible(options);
+                _lemmatiseur->setCible(options);
             }
             else
             {
@@ -2136,9 +2136,9 @@ void MainWindow::exec ()
  //           rep += "\t-x : Mise en XML du texte.\n";
             break;
         }
-        _lemCore->setHtml(html);
+        _lemmatiseur->setHtml(html);
         if ((a != 'C') && (a != 'c'))
-            _lemCore->setMajPert(MP);
+            _lemmatiseur->setMajPert(MP);
     }
     else if (texte != "") rep= scandeur->scandeTxt(texte);
     else rep= scandeur->scandeTxt(requete);
@@ -2223,7 +2223,7 @@ void MainWindow::verbaCognita(bool vb)
 void MainWindow::setHtml(bool h)
 {
     // Passer en html ne pose pas de problème
-    if (h || textEditLem->toPlainText().isEmpty()) _lemCore->setHtml(h);
+    if (h || textEditLem->toPlainText().isEmpty()) _lemmatiseur->setHtml(h);
     else if (alerte())
     {
         // L'inverse (html --> non-html) mettrait les nouveaux résultats en items du dernier lemme.
@@ -2260,7 +2260,7 @@ void MainWindow::setHtml(bool h)
         // J'efface les résultats précédents
         textEditLem->setText(blabla);
         textEditLem->moveCursor(QTextCursor::End);
-        _lemCore->setHtml(h);
+        _lemmatiseur->setHtml(h);
     }
     else htmlAct->setChecked(true);
 }

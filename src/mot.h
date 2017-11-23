@@ -46,7 +46,7 @@ public:
     double bestOf(QString t);
 
 private:
-    LemCore* _lemmatiseur;
+    LemCore* _lemCore;
     QString _forme;
     int _rang;
     QString _tagEncl;

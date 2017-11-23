@@ -28,7 +28,7 @@
 class Tagueur : public QObject
 {
 public:
-    Tagueur(QObject *parent = 0, LemCore *l=0, QString resDir="");
+    Tagueur(QObject *parent = 0, LemCore *l=0, QString cible = "", QString resDir="");
     // Pour le tagger
     QString tagTexte(QString t, int p, bool affTout = true, bool majPert = true);
 
