@@ -21,7 +21,7 @@
 
 #include "lemmatiseur.h"
 
-Lemmatiseur::Lemmatiseur(QObject *parent, LemCore *l, QString resDir) : QObject(parent)
+Lemmatiseur::Lemmatiseur(QObject *parent, LemCore *l, QString cible, QString resDir) : QObject(parent)
 {
     if (l==0)
     {
@@ -36,6 +36,13 @@ Lemmatiseur::Lemmatiseur(QObject *parent, LemCore *l, QString resDir) : QObject(
     else if (resDir.endsWith("/")) _resDir = resDir;
     else _resDir = resDir + "/";
 
+    _alpha = false;
+    _formeT = false;
+    _html = false;
+    _majPert = false;
+    _morpho = false;
+    if (cible != "") setCible(cible);
+    else setCible("fr en es");
 }
 
 /**
@@ -49,7 +56,7 @@ QStringList Lemmatiseur::lemmatiseF(QString f, bool deb)
     QStringList res;
     MapLem ml = _lemCore->lemmatiseM(f, deb);
     foreach (Lemme *l, ml.keys())
-        res.append(l->humain(_lemCore->optHtml(),_lemCore->cible()));
+        res.append(l->humain(_html,_cible));
     // if (res.empty()) res.append(f);
     return res;
 }
@@ -231,7 +238,7 @@ QStringList Lemmatiseur::frequences(QString txt)
  */
 QString Lemmatiseur::lemmatiseT(QString &t)
 {
-    return lemmatiseT(t, _lemCore->optAlpha(), _lemCore->optFormeT(), _lemCore->optMorpho(), _lemCore->optNonRec());
+    return lemmatiseT(t, _alpha, _formeT, _morpho, _nonRec);
 }
 
 QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
@@ -275,7 +282,7 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
         QString sep = lm.at(i - 1);
         bool debPhr = ((i == 1 && lm.count() !=3) || sep.contains(Ch::rePonct));
         // lemmatisation de la forme
-        MapLem map = _lemCore->lemmatiseM(f, !_lemCore->optMajPert() || debPhr);
+        MapLem map = _lemCore->lemmatiseM(f, !_majPert || debPhr);
         // échecs
         if (map.empty())
         {
@@ -283,7 +290,7 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                 nonReconnus.append(f + "\n");
             else
             {
-                if (_lemCore->optHtml())
+                if (_html)
                     lsv.append("<li style=\"color:blue;\">" + f + "</li>");
                 else
                     lsv.append("> " + f + " ÉCHEC\n");
@@ -361,7 +368,7 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                 QString debLem = "  - ";
                 QString finLem = "\n";
                 // Je définis les chaines de début et fin d'entités
-                if (_lemCore->optHtml())
+                if (_html)
                 {
                     // et les modifient si l'affichage est en html.
                     debMorph = "<ul><li>";
@@ -374,7 +381,7 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                 // Je construis un QMultiMap avec un nombre d'occurrences en clef.
                 foreach (Lemme *l, map.keys())
                 {
-                    QString lem = debLem + l->humain(_lemCore->optHtml(), _lemCore->cible(), true);
+                    QString lem = debLem + l->humain(_html, _cible, true);
                     int frMax = 0;
                     if (cumMorpho && !_lemCore->inv(l, map))
                     {
@@ -419,7 +426,7 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                 // Comme les fréquences sont négatives, la plus fréquente vient d'abord.
                 QString lin = lLem.join("");
                 // L'ensemble des solutions forme un tout que j'encapsule
-                if (_lemCore->optHtml())
+                if (_html)
                 {
                     lin.prepend("<li><h4>" + f + "</h4><ul>");
                     lin.append("</ul></li>\n");
@@ -436,13 +443,13 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
             {
                 foreach (Lemme *l, map.keys())
                 {
-                    QString lin = l->humain(_lemCore->optHtml(), _lemCore->cible());
+                    QString lin = l->humain(_html, _cible);
                     if (cumMorpho && !_lemCore->inv(l, map) && !alpha)
                     {
                         // Sans les formes du texte et avec les lemmes en ordre
                         // alphabétique, la morpho n'aurait que peu de sens.
                         QTextStream fl(&lin);
-                        if (_lemCore->optHtml())
+                        if (_html)
                         {
                             fl << "<ul>";
                             foreach (SLem m, map.value(l))
@@ -453,7 +460,7 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                             foreach (SLem m, map.value(l))
                                 fl << "\n    . " << m.grq << " " << _lemCore->morpho(m.morpho);
                     }
-                    if (_lemCore->optHtml())
+                    if (_html)
                     {
                         lin.prepend("<li>");
                         lin.append("</li>");
@@ -478,14 +485,14 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
     }
     // peupler lRet avec les résultats
     QStringList lRet = lsv;
-    if (_lemCore->optHtml())
+    if (_html)
     {
         lRet.prepend("<ul>");
         lRet.append("</ul>\n");
     }
 /*    foreach (QString item, lsv)
     {
-        if (_lemCore->optHtml())
+        if (_html)
             lRet.append("<li>" + item + "</li>");
         else
             lRet.append("* " + item + "\n");
@@ -497,7 +504,7 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
     {
         nonReconnus.removeDuplicates();
         QString nl;
-        if (_lemCore->optHtml()) nl = "<br/>";
+        if (_html) nl = "<br/>";
         if (alpha) qSort(nonReconnus.begin(), nonReconnus.end(), Ch::sort_i);
         QString titreNR;
         int tot = (lm.count() - 1) / 2;
@@ -599,4 +606,97 @@ void Lemmatiseur::verbaOut(QString fichier)
     {
             file.write(format.arg(lem).arg(_hLem[lem]).toUtf8());
     }
+}
+
+/**
+ * \fn bool Lemmatiseur::optAlpha()
+ * \brief Accesseur de l'option alpha, qui
+ *        permet de fournir par défaut des résultats dans
+ *        l'ordre alphabétique.
+ */
+bool Lemmatiseur::optAlpha() { return _alpha; }
+/**
+ * \fn bool Lemmatiseur::optHtml()
+ * \brief Accesseur de l'option html, qui
+ *        permet de renvoyer les résultats au format html.
+ */
+bool Lemmatiseur::optHtml() { return _html; }
+
+/**
+ * \fn bool Lemmatiseur::optFormeT()
+ * \brief Accesseur de l'option formeT,
+ *        qui donne en tête de lemmatisation
+ *        la forme qui a été analysée.
+ */
+bool Lemmatiseur::optFormeT() { return _formeT; }
+
+/**
+ * \fn bool Lemmatiseur::optMajPert()
+ * \brief Accesseur de l'option majPert,
+ *        qui permet de tenir compte des majuscules
+ *        dans la lemmatisation.
+ */
+bool Lemmatiseur::optMajPert() { return _majPert; }
+/**
+ * \fn bool Lemmatiseur::optMorpho()
+ * \brief Accesseur de l'option morpho,
+ *        qui donne l'analyse morphologique
+ *        des formes lemmatisées.
+ */
+bool Lemmatiseur::optMorpho()
+{
+    return _morpho;
+}
+
+bool Lemmatiseur::optNonRec()
+{
+    return _nonRec;
+}
+
+/**
+ * \fn void Lemmatiseur::setAlpha (bool a)
+ * \brief Modificateur de l'option alpha.
+ */
+// modificateurs d'options
+
+void Lemmatiseur::setAlpha(bool a) { _alpha = a; }
+/**
+ * \fn void Lemmatiseur::setCible(QString c)
+ * \brief Permet de changer la langue cible.
+ */
+void Lemmatiseur::setCible(QString c)
+{
+    _cible = c;
+    _lemCore->setCible(c);
+}
+/**
+ * \fn void Lemmatiseur::setHtml (bool h)
+ * \brief Modificateur de l'option html.
+ */
+void Lemmatiseur::setHtml(bool h) { _html = h; }
+/**
+ * \fn void Lemmatiseur::setFormeT (bool f)
+ * \brief Modificateur de l'option formeT.
+ */
+void Lemmatiseur::setFormeT(bool f) { _formeT = f; }
+/**
+ * \fn void Lemmatiseur::setMajPert (bool mp)
+ * \brief Modificateur de l'option majpert.
+ */
+void Lemmatiseur::setMajPert(bool mp) { _majPert = mp; }
+/**
+ * \fn void Lemmatiseur::setMorpho (bool m)
+ * \brief Modificateur de l'option morpho.
+ */
+void Lemmatiseur::setMorpho(bool m) { _morpho = m; }
+void Lemmatiseur::setNonRec(bool n) { _nonRec = n; }
+
+/**
+ * \fn QString Lemmatiseur::cible()
+ * \brief Renvoie la langue cible dans sa forme
+ *        abrégée (fr, en, de, it, etc.).
+ */
+QString Lemmatiseur::cible()
+{
+    return _cible;
 }

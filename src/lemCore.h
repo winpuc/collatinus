@@ -76,7 +76,6 @@ class LemCore : public QObject
     QMultiMap<QString, Desinence *> _desinences;
     QString decontracte(QString d);
     QMultiMap<QString, Irreg *> _irregs;
-    QString _cible;  // langue courante, 2 caractères
     QMap<QString, QString> _cibles;
     QMap<QString, Lemme *> _lemmes;
     QMap<QString, Modele *> _modeles;
@@ -91,14 +90,9 @@ class LemCore : public QObject
     // Les morphos doivent pouvoir être données en anglais !
     QMultiMap<QString, Radical *> _radicaux;
     QMap<QString, QString> _variables;
-    // options
-    bool _alpha;
+
     bool _extension; // = false;
-    bool _formeT;
-    bool _html;
-    bool _majPert;
-    bool _morpho;
-    bool _nonRec;
+    QString _cible;  // langue courante, 2 caractères ou plus
 
     QMap<QString, int> _tagOcc; // Nombre d'occurrences du tag.
     QMap<QString, int> _tagTot; // Nombre total en fonction du premier caractère du tag.
@@ -117,7 +111,6 @@ class LemCore : public QObject
     void ajRadicaux(Lemme *l);
     QString assim(QString a);
     QString assimq(QString a);
-    QString cible();
     QMap<QString, QString> cibles();
     QString desassim(QString a);
     QString desassimq(QString a);
@@ -141,15 +134,6 @@ class LemCore : public QObject
     // Lire un fichier de césures étymologiques (non-phonétiques)
     void lireHyphen (QString fichierHyphen);
 
-    // accesseurs d'options
-    bool optAlpha();
-    bool optHtml();
-    bool optFormeT();
-    bool optMajPert();
-    bool optMorpho();
-    bool optExtension();
-    bool optNonRec();
-
     // Pour l'internationalisation
     QString cas(int i);
     QString genre(int i);
@@ -159,6 +143,11 @@ class LemCore : public QObject
     QString voix(int i);
     QString motsClefs(int i);
 
+    void setCible(QString c);
+    QString cible();
+    bool optExtension();
+
+
 //    QString tagPhrase(QString phr);
     QString tag(Lemme *l, int m);
     int fraction(QString listTags);
@@ -166,14 +155,6 @@ class LemCore : public QObject
     int trigram(QString seq);
 
    public slots:
-    // modificateurs d'options
-    void setAlpha(bool a);
-    void setCible(QString c);
-    void setHtml(bool h);
-    void setFormeT(bool f);
-    void setMajPert(bool mp);
-    void setMorpho(bool m);
-    void setNonRec(bool n);
     void setExtension(bool e);
 };
 

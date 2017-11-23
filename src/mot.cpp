@@ -26,7 +26,7 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
 //    qDebug() << forme;
     _forme = forme;
     _rang = rang;
-    _lemmatiseur = qobject_cast<LemCore *>(parent);
+    _lemCore = qobject_cast<LemCore *>(parent);
     _probas.clear();
     _tagEncl = "";
     if (forme.isEmpty())
@@ -36,7 +36,7 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
     }
     else
     {
-        _mapLem = _lemmatiseur->lemmatiseM(forme, (rang == 0) || debVers);
+        _mapLem = _lemCore->lemmatiseM(forme, (rang == 0) || debVers);
         QString enclitique = "";
         // échecs
         if (_mapLem.empty())
@@ -45,13 +45,13 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
         }
         else foreach (Lemme *l, _mapLem.keys())
         {
-            QString lem = l->humain(true, _lemmatiseur->cible(), true);
+            QString lem = l->humain(true, _lemCore->cible(), true);
             int nb = l->nbOcc();
             foreach (SLem m, _mapLem.value(l))
             {
-                QString lt = _lemmatiseur->tag(l, m.morpho); // Maintenant, c'est une liste de tags.
+                QString lt = _lemCore->tag(l, m.morpho); // Maintenant, c'est une liste de tags.
                 // Pour les analyses, je garde la liste de tags.
-                long fr = nb * _lemmatiseur->fraction(lt);
+                long fr = nb * _lemCore->fraction(lt);
                 _lemmes.append(lem);
                 _tags.append(lt);
                 _nbOcc.append(fr);
@@ -59,19 +59,19 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
                 if (m.sufq.isEmpty())
                 {
                     if (m.morpho == 416) _morphos.append(m.grq);
-                    else _morphos.append(m.grq + " " + _lemmatiseur->morpho(m.morpho));
+                    else _morphos.append(m.grq + " " + _lemCore->morpho(m.morpho));
                 }
                 else
                 {
                     if (m.morpho == 416) _morphos.append(m.grq + " + " + m.sufq);
-                    else _morphos.append(m.grq + " + " + m.sufq + " " + _lemmatiseur->morpho(m.morpho));
+                    else _morphos.append(m.grq + " + " + m.sufq + " " + _lemCore->morpho(m.morpho));
                     enclitique = m.sufq;
                 }
                 while (lt.size() > 2)
                 {
                     QString t = lt.mid(0,3);
                     lt = lt.mid(4);
-                    fr = nb * _lemmatiseur->fraction(t);
+                    fr = nb * _lemCore->fraction(t);
                     _probas[t] += fr;
                 }
             }
@@ -81,7 +81,7 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
             // C'est un nom à n'importe quel cas !
             _probas.clear();
             QString pseudo = "n%1";
-            for (int i = 1; i < 7; i++) _probas[pseudo.arg(i)+"1"] = _lemmatiseur->tagOcc(pseudo.arg(i)+"1");
+            for (int i = 1; i < 7; i++) _probas[pseudo.arg(i)+"1"] = _lemCore->tagOcc(pseudo.arg(i)+"1");
         }
         // J'ai construit les listes de lemmes, morphos, tags et nombres d'occurrences.
         // J'ai aussi une QMap qui associe les tags aux probas, que je dois normaliser.

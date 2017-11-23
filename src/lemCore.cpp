@@ -47,14 +47,12 @@ LemCore::LemCore(QObject *parent, QString resDir) : QObject(parent)
     else if (resDir.endsWith("/")) _resDir = resDir;
     else _resDir = resDir + "/";
     // options
-    _alpha = false;
-    _formeT = false;
-    _html = false;
-    _majPert = false;
-    _morpho = false;
     _extension = false;
     _extLoaded = false;
     _nbrLoaded = false;
+    _cible = "fr en es";
+    // Par défaut, la langue cible est le français. L'anglais est le second choix
+    // (si une traduction n'existe pas en français, on la cherche en anglais).
     // suffixes
     suffixes.insert("ne", "nĕ");
     suffixes.insert("que", "quĕ");
@@ -579,6 +577,11 @@ QString LemCore::cible()
 {
     return _cible;
 }
+/**
+ * \fn void LemCore::setCible(QString c)
+ * \brief Permet de changer la langue cible.
+ */
+void LemCore::setCible(QString c) { _cible = c; }
 
 /**
  * \fn QMap<QString,QString> LemCore::cibles()
@@ -1142,91 +1145,11 @@ QString LemCore::motsClefs(int m)
 }
 
 /**
- * \fn bool LemCore::optAlpha()
- * \brief Accesseur de l'option alpha, qui
- *        permet de fournir par défaut des résultats dans
- *        l'ordre alphabétique.
- */
-bool LemCore::optAlpha() { return _alpha; }
-/**
- * \fn bool LemCore::optHtml()
- * \brief Accesseur de l'option html, qui
- *        permet de renvoyer les résultats au format html.
- */
-bool LemCore::optHtml() { return _html; }
-
-/**
- * \fn bool LemCore::optFormeT()
- * \brief Accesseur de l'option formeT,
- *        qui donne en tête de lemmatisation
- *        la forme qui a été analysée.
- */
-bool LemCore::optFormeT() { return _formeT; }
-
-/**
- * \fn bool LemCore::optMajPert()
- * \brief Accesseur de l'option majPert,
- *        qui permet de tenir compte des majuscules
- *        dans la lemmatisation.
- */
-bool LemCore::optMajPert() { return _majPert; }
-
-/**
  * \fn bool LemCore::optExtension()
  * \brief Accesseur de l'option extension,
  *        qui permet de charger l'extension.
  */
 bool LemCore::optExtension() { return _extension; }
-/**
- * \fn bool LemCore::optMorpho()
- * \brief Accesseur de l'option morpho,
- *        qui donne l'analyse morphologique
- *        des formes lemmatisées.
- */
-
-bool LemCore::optMorpho()
-{
-    return _morpho;
-}
-
-bool LemCore::optNonRec()
-{
-    return _nonRec;
-}
-
-/**
- * \fn void LemCore::setAlpha (bool a)
- * \brief Modificateur de l'option alpha.
- */
-// modificateurs d'options
-
-void LemCore::setAlpha(bool a) { _alpha = a; }
-/**
- * \fn void LemCore::setCible(QString c)
- * \brief Permet de changer la langue cible.
- */
-void LemCore::setCible(QString c) { _cible = c; }
-/**
- * \fn void LemCore::setHtml (bool h)
- * \brief Modificateur de l'option html.
- */
-void LemCore::setHtml(bool h) { _html = h; }
-/**
- * \fn void LemCore::setFormeT (bool f)
- * \brief Modificateur de l'option formeT.
- */
-void LemCore::setFormeT(bool f) { _formeT = f; }
-/**
- * \fn void LemCore::setMajPert (bool mp)
- * \brief Modificateur de l'option majpert.
- */
-void LemCore::setMajPert(bool mp) { _majPert = mp; }
-/**
- * \fn void LemCore::setMorpho (bool m)
- * \brief Modificateur de l'option morpho.
- */
-void LemCore::setMorpho(bool m) { _morpho = m; }
-void LemCore::setNonRec(bool n) { _nonRec = n; }
 /**
  * \fn QString LemCore::variable (QString v)
  * \brief permet de remplacer la métavariable v

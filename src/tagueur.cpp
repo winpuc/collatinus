@@ -21,7 +21,88 @@
 
 #include "tagueur.h"
 
-Tagueur::Tagueur(QObject *parent, LemCore *l, QString resDir) : QObject(parent)
+/**
+ * @brief Tagueur::Tagueur :
+ * \if French
+ * Créateur de la classe.
+ * \else
+ * \endif
+ * @param parent :
+ * \if French
+ * Un pointeur vers l'objet qui crée cette classe.
+ * \else
+ * The owner of this class.
+ * \endif
+ * @param l :
+ * \if French
+ * Un pointeur vers un moteur de lemmatisation (LemCore).
+ * \else
+ * A pointeur to the lemmatization core (LemCore).
+ * \endif
+ * @param cible :
+ * \if French
+ * La langue cible pour les traductions et les analyses.
+ * \else
+ * The language for the translations and analyses.
+ * \endif
+ * @param resDir :
+ * \if French
+ * Le chemin complet du dossier contenant les fichiers de donnée.
+ * \else
+ * The absolute path for the resources directory.
+ * \endif
+ *
+ * \if French
+ * La classe Tagueur est conçue pour proposer une fonction d'étiquetage
+ * basée sur un modèle de Markov caché (HMM) au 2e ordre.
+ * Initialement intégrée à Collatinus, elle en utilise le moteur de lemmatisation (LemCore).
+ * Si le moteur est déjà créé par ailleurs,
+ * il suffit de passer le pointeur en question.
+ * Si le pointeur n'est pas donné,
+ * le moteur (LemCore) sera créé ici.
+ * Si l'application envisagée utilise plusieurs modules
+ * intermédiaires (tagueur, scandeur...),
+ * il vaut mieux créer un seul moteur commun.
+ *
+ * Lors de la création de cette classe, on peut choisir
+ * la langue cible dans laquelle seront données les traductions et analyses.
+ * Il s'agit d'une chaine de caractères contenant au moins deux lettres
+ * (fr : français ; en : anglais ; etc...) et au plus huit
+ * (jusqu'à trois groupes de deux lettres séparés par un espace).
+ * Le fait de spécifier plusieurs langues précise l'ordre dans lequel
+ * seront cherchées les traductions si on ne dispose pas de la traduction
+ * dans la première langue choisie. Ainsi "it fr en" conduire le
+ * programme a cherché la traduction en italien. Si la traduction
+ * n'existe pas en italien, elle sera d'abord cherchée dans le lexique
+ * français et en désespoir de cause en anglais.
+ * Par défaut, elle vaut "fr en es", valeur définie dans LemCore.
+ *
+ * Le paramètre optionnel resDir donne
+ * le chemin complet du dossier contenant les fichiers de donnée.
+ * Par défaut, il s'agit du fichier "data" placé à côté de l'exécutable.
+ * \else
+ * The Tagueur class is meant to desambiguate with tags
+ * using a second order Hidden Markov Model (HMM).
+ * As part of Collatinus, it uses its lemmatization core (LemCore).
+ * If this core has been created elsewhere, a pointer is given to this creator.
+ * If the pointer l is empty, then the lemmatization core is created here.
+ * When the developped application uses different modules as this one
+ * (e.g. Lemmatiseur, Scandeur), it is recommended to create a shared core.
+ *
+ * One can change the language used for the translations and the analyses
+ * with the QString cible. It should contain at least two characters
+ * (en : English; fr : French) and at most eight (three groups of 2,
+ * separated by a space). For instance "de en fr" will give the translations
+ * in German, if possible. If the German translation is not found,
+ * the English one will be searched for. French would be the last trial.
+ * The default value is "fr en es" as defined in LemCore.
+ *
+ * The optional parameter resDir gives the absolute path to the
+ * resources directory. If empty, the resources are assumed to be
+ * in a folder "data" placed in the same dir as the exe.
+ * \endif
+ */
+Tagueur::Tagueur(QObject *parent, LemCore *l, QString cible, QString resDir) : QObject(parent)
 {
     if (l==0)
     {
@@ -35,9 +116,72 @@ Tagueur::Tagueur(QObject *parent, LemCore *l, QString resDir) : QObject(parent)
         _resDir = qApp->applicationDirPath() + "/data/";
     else if (resDir.endsWith("/")) _resDir = resDir;
     else _resDir = resDir + "/";
-
+    if (cible != "") _lemCore->setCible(cible);
 }
 
+/**
+ * @brief Tagueur::tagTexte
+ * \if French
+ * Pour désambiguïser une phrase (ou un texte) par étiquetage (HMM).
+ * \else
+ * To disambiguate a sentence (or a text) using a Hidden Markov Model.
+ * \endif
+ * @param t :
+ * \if French
+ * Le texte.
+ * \else
+ * The text.
+ * \endif
+ * @param p :
+ * \if French
+ * Une position dans le texte en nombre de caractères.
+ * \else
+ * A position in the text as a character count.
+ * \endif
+ * @param affTout :
+ * \if French
+ * Option pour afficher toutes les possibilités d'analyse
+ * plutôt que la seule choisie.
+ * \else
+ * Option to show all the possible analyses.
+ * \endif
+ * @param majPert :
+ * \if French
+ * Option pour tenir compte des majuscules initiales.
+ * \else
+ * Option to take into account the initial uppercase characters.
+ * \endif
+ * @return :
+ * \if French
+ * Une chaine de caractères contenant la meilleure solution en HTML.
+ * \else
+ * A QString with the best solution encoded in HTML.
+ * \endif
+ *
+ * \if French
+ * Cette fonction cherche la meilleure analyse des mots d'une phrase
+ * en tenant compte du contexte à l'aide d'un modèle de Markov caché (HMM).
+ * Pour cela, elle attribue des étiquettes aux mots et calcule une
+ * probabilité pour chaque séquence d'étiquettes possible.
+ * Pour ce faire, elle s'appuie sur les données statistiques
+ * tirées des textes lemmatisés du LASLA.
+ *
+ * La phrase traitée est celle autour de la position p dans le texte t.
+ * Si p<0, tout le texte sera traité en séparant chaque phrase.
+ * Pour p≥0, le programme va, en partant de la position p, remonter et descendre
+ * dans le texte jusqu'à trouver une ponctuation forte (. ! ? : ;).
+ * \else
+ * This function looks for the best analysis of the words in the sentence
+ * taking into account the context with tags and a Hidden Markov Model (HMM).
+ * The statistical data used in the HMM are taken from the texts
+ * lemmatized by the LASLA.
+ *
+ * The treated sentence in around the position p in the text.
+ * If p<0, all the text is treated, sentence by sentence.
+ * For p≥0, the program looks forward and backward for the next
+ * strong punctuation mark (. ! ? : ;).
+ * \endif
+ */
 QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert)
 {
     // éliminer les chiffres et les espaces surnuméraires
