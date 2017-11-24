@@ -190,6 +190,7 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert)
 //    t = t.simplified(); // Rmq : perd les retours de ligne !
     int tl = t.length() - 1;
     const QString pp = ".;!?";
+    int numPhr = 0; // Un numéro pour les phrases (utile seulement pous le texte complet)
     int dph = p;
     bool tout = false;
     if (p < 0)
@@ -390,34 +391,41 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert)
                     }
                 }
 
-            lsv.append(phr);
-            lsv.append("<ul>");
-            QString prob = "<br/> avec la proba : %1 pour %2 branches.<br/>";
+            QString prob = "<div id='Sentence_%1'>";
+            lsv.append(prob.arg(numPhr) + phr + "<br/><br/>\n");
+            prob = "<br/>\n avec la proba : %1 pour %2 branches.<br/>";
             lsv.append(seq + prob.arg(val).arg(branches));
             if (val2 > 0)
             {
-                prob = "Deuxième choix avec la proba : %1 <br/> %2<br/>";
+                prob = "Deuxième choix avec la proba : %1 <br/>\n %2<br/>";
                 lsv.append(prob.arg(val2).arg(seq2));
             }
-
+            prob = "<ul id='sent_%1'>";
+            lsv.append(prob.arg(numPhr)); // Je vais commencer la liste de mots
             seq = seq.mid(4); // Je supprime le premier tag qui est "snt".
             for (int i = 0; i < mots.size()-1; i++)
                 if (!mots[i]->inconnu()) // Les mots inconnus ne figurent pas dans la séquence (cf. plus haut)
                 {
-                    lsv.append(mots[i]->choisir(seq.left(3), affTout));
+                    lsv.append(mots[i]->choisir(seq.left(3), numPhr, affTout));
                      // Si enclitique mid(8)
                     if (mots[i]->tagEncl().isEmpty()) seq = seq.mid(4);
                     else seq = seq.mid(5 + mots[i]->tagEncl().size());
                 }
-                else lsv.append("<li>" + mots[i]->forme() + " : non trouvé</li>");
+                else lsv.append("<li id='unknown'>" + mots[i]->forme() + " : non trouvé</li>");
 
-            lsv.append("</ul>");
-            if (tout) lsv << "<br/>";
+            lsv.append("</ul></div>");
+            if (tout)
+            {
+                lsv << "<br/>";
+                numPhr++;
+            }
             else return lsv.join("\n");
+            // Je retourne le résultat de la phrase si tout est false.
         }
         dph = fph + 1;
         fph++;
-    }
+    } // while (fph < tl)
+    // Si tout est true, je vais jusqu'au bout de texte.
     return lsv.join("\n");
 }
 
