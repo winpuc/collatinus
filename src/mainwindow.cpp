@@ -2092,6 +2092,19 @@ void MainWindow::exec ()
             else rep = _lemmatiseur->lemmatiseT(texte,optAcc&1,optAcc&2,optAcc&4,optAcc&8);
             _lemmatiseur->setCible(lang); // Je rétablis les langue et option HTML.
             break;
+        case 'P':
+        case 'p':
+            // Appel au tagueur probabiliste.
+            // Ici, optAcc vaut 0.
+            // Si je veux changer le comportement par défaut, il faut ajouter une ligne :
+            // optAcc = 1;
+            if ((options.size() > 2) && (options[2].isDigit()))
+                optAcc = options[2].digitValue();
+            rep = tagueur->tagTexte(texte, -1, (optAcc & 1), requete[1].isUpper());
+            // Par défaut, je tague tout le texte.
+            nonHTML = false;
+            // Le résultat est en html : je veux conserver les <br/>.
+            break;
         case 'X':
         case 'x':
 //            rep = _lemCore->txt2XML(requete);
