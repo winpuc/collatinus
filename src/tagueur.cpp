@@ -26,6 +26,7 @@
  * \if French
  * Créateur de la classe.
  * \else
+ * Constructs a Tagueur.
  * \endif
  * @param parent :
  * \if French
