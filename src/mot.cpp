@@ -144,7 +144,7 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
 //    qDebug() << forme;
 }
 
-QString Mot::choisir(QString t, bool tout)
+QString Mot::choisir(QString t, int np, bool tout)
 {
     QString choix = "";
     int valeur = -1;
@@ -157,12 +157,12 @@ QString Mot::choisir(QString t, bool tout)
         }
     if (!choix.isEmpty())
     {
-        choix.prepend("<br/>—&gt;&nbsp;<span style='color:black'>");
+        choix.prepend("<br/>\n—&gt;&nbsp;<span style='color:black'>");
         choix.append("</span>\n");
     }
     if (tout || choix.isEmpty())
     {
-        choix.append("<span style='color:#777777'><ul>");
+        choix.append("<span style='color:#777777'><ul>\n");
         for (int i=0; i < _tags.size(); i++)
         {
             QString format = "%1 : %2 ; ";
@@ -184,7 +184,8 @@ QString Mot::choisir(QString t, bool tout)
     QString ajout;
     if (t == _maxProb) ajout = t;
     else ajout = t + " (" + _maxProb + ")";
-    choix.prepend("<li><strong>" + _forme + "</strong> " + ajout);
+    QString debut = "<li id='S_%1_w_%2'><strong>";
+    choix.prepend(debut.arg(np).arg(_rang) + _forme + "</strong> " + ajout);
     choix.append("</li>");
     return choix;
 }

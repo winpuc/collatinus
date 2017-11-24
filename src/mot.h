@@ -36,7 +36,7 @@ class Mot : public QObject
     Q_OBJECT
 public:
     Mot(QString forme, int rang, bool debVers, QObject *parent = 0);
-    QString choisir(QString t = "", bool tout = true);
+    QString choisir(QString t = "", int np = 0, bool tout = true);
     long proba(QString t);
     QStringList tags();
     QString forme();
