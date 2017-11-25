@@ -184,7 +184,7 @@ QString Mot::choisir(QString t, int np, bool tout)
     QString ajout;
     if (t == _maxProb) ajout = t;
     else ajout = t + " (" + _maxProb + ")";
-    QString debut = "<li id='S_%1_w_%2'><strong>";
+    QString debut = "<li id='S_%1_W_%2'><strong>";
     choix.prepend(debut.arg(np).arg(_rang) + _forme + "</strong> " + ajout);
     choix.append("</li>");
     return choix;

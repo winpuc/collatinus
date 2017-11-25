@@ -152,7 +152,7 @@ Tagueur::Tagueur(QObject *parent, LemCore *l, QString cible, QString resDir) : Q
  * \else
  * Option to take into account the initial uppercase characters.
  * \endif
- * @return :
+ * @return
  * \if French
  * Une chaine de caractères contenant la meilleure solution en HTML.
  * \else
@@ -171,6 +171,35 @@ Tagueur::Tagueur(QObject *parent, LemCore *l, QString cible, QString resDir) : Q
  * Si p<0, tout le texte sera traité en séparant chaque phrase.
  * Pour p≥0, le programme va, en partant de la position p, remonter et descendre
  * dans le texte jusqu'à trouver une ponctuation forte (. ! ? : ;).
+ *
+ * Le format de sortie est principalement destiné à l'affichage HTML.
+ * J'ai ajouté quelques ancres pour faciliter la navigation,
+ * mais je n'ai pas mis de liens pour y aller :
+ * elles servent de repères.
+ * Chaque phrase est entre des balises <div id='Sentence_x'> et </div>
+ * où x est le numéro de la phrase. La numérotation commence à 0.
+ * Ça n'a de sens que si l'ensemble du texte est tagué.
+ * Si on ne tague qu'une seule phrase, ce numéro vaut toujours 0.
+ *
+ * Ces <div> commencent par donner la phrase, puis la meilleure séquence de tags
+ * et la probabilité associées. Vient ensuite le second choix qui ne sera pas explicité.
+ * La meilleure séquence de tags est explicitée sous la forme d'une
+ * <ul id='sent_x'> où chaque mot est un <li id='S_x_W_y'>
+ * avec x le numéro de la phrase et y le numéro du mot dans celle-ci.
+ * Chaque <li> commence avec la forme du texte suivie du tag qui
+ * lui est attribué par la meilleure séquence.
+ * Le tag le plus probable hors contexte est donné entre parenthèses
+ * lorsqu'il diffère de celui choisi par le tagueur.
+ *
+ * Si l'option affTout est valisée (affTout = true), toutes les analyses possibles
+ * sont ajoutées, dans le <li> précédent, sous la forme d'une <ul> sans ancre.
+ * À la fin de chaque <li> de cette seconde liste,
+ * sont donnés le tag et la probabilité associée.
+ * S'il y a des homonymes qui ont des analyses avec le même tag,
+ * ces probabilités sont les mêmes (elles sont associées au tag).
+ * Le choix se fait alors en fonction du nombre d'occurrences
+ * relevé pour le lemme. Ce nombre est donné aussi (lorsqu'il n'est pas nul).
+ * Il est entre des balises <small> et </small> et entre parenthèses.
  * \else
  * This function looks for the best analysis of the words in the sentence
  * taking into account the context with tags and a Hidden Markov Model (HMM).
@@ -181,6 +210,29 @@ Tagueur::Tagueur(QObject *parent, LemCore *l, QString cible, QString resDir) : Q
  * If p<0, all the text is treated, sentence by sentence.
  * For p≥0, the program looks forward and backward for the next
  * strong punctuation mark (. ! ? : ;).
+ *
+ * The output format is mainly intended for the display.
+ * I have added a few anchors to facilitate the browsing,
+ * but I do not add any link to them.
+ * Each sentence is enclosed in tags <div id='Sentence_x'> and </div>
+ * where x is the rank of the sentence, starting from 0.
+ * It makes sense only if all the text is treated.
+ * If a single sentence is treated, this numbre is always 0.
+ *
+ * These <div> start with the sentence, and then give
+ * the best sequence of tags together with its probability.
+ * Then comes the second choice and the associated probability.
+ * The best choice is made explicit as a <ul id='sent_x'> where
+ * each word is an item <li id='S_x_W_y'>, x and y being
+ * the rank of respectively the sentence and the word.
+ * Each item begins with the form of the text and the associated tag.
+ * The most probable tag without taking into account the context
+ * is given between parenthesis if different.
+ *
+ * With affTout=true, all the possible analyses of the form are given
+ * in the previous item as a <ul> without any anchor.
+ * At the end of each item of this second list, the tag and
+ * the associated probability are given.
  * \endif
  */
 QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert)
