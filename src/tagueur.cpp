@@ -24,9 +24,9 @@
 /**
  * @brief Tagueur::Tagueur :
  * \if French
- * Créateur de la classe.
+ * Créateur de la classe Tagueur pour désambiguïser des textes.
  * \else
- * Constructs a Tagueur.
+ * Constructs a Tagueur to tag sentences.
  * \endif
  * @param parent :
  * \if French
