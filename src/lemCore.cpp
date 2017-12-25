@@ -680,7 +680,7 @@ MapLem LemCore::lemmatise(QString f)
     {
         foreach (int m, irr->morphos())
         {
-            SLem sl = {irr->grq(), m, ""};
+            SLem sl = {irr->lemme(),irr->grq(), m, ""};
             // result[irr->lemme()].prepend (morpho (m));
             result[irr->lemme()].prepend(sl);
         }
@@ -726,7 +726,7 @@ MapLem LemCore::lemmatise(QString f)
                         if (!r.endsWith("i") && rad->gr().endsWith("i"))
                             fq = rad->grq().left(rad->grq().size()-1) + "ī"
                                     + des->grq().right(des->grq().size()-1);
-                        SLem sl = {fq, des->morphoNum(), ""};
+                        SLem sl = {l,fq, des->morphoNum(), ""};
                         result[l].prepend(sl);
                     }
                 }
@@ -748,13 +748,18 @@ MapLem LemCore::lemmatise(QString f)
     // romains
     if (estRomain(f) && !_lemmes.contains(f))
     {
-        QString lin = QString("%1|inv|||adj. num.|1").arg(f);
-        Lemme *romain = new Lemme(lin, 0, this);
-        int nr = aRomano(f);
-        romain->ajTrad(QString("%1").arg(nr), "fr");
-        _lemmes.insert(f, romain);
-        SLem sl = {f,416,""};
         QList<SLem> lsl;
+        Lemme * romain;
+        if (_lemmes.contains(f)) romain = _lemmes.value(f);
+        else
+        {
+            QString lin = QString("%1|inv|||adj. num.|1").arg(f);
+            romain = new Lemme(lin, 0, this);
+            int nr = aRomano(f);
+            romain->ajTrad(QString("%1").arg(nr), "fr");
+            _lemmes.insert(f, romain);
+        }
+        SLem sl = {romain,f,416,""};
         lsl.append(sl);
         result.insert(romain, lsl);
     }

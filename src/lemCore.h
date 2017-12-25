@@ -44,6 +44,7 @@ class Desinence;
 
 typedef struct
 {
+    Lemme * lem;
     QString grq;
     int morpho;
     QString sufq;
