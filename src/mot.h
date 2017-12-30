@@ -40,7 +40,11 @@ public:
     long proba(QString t);
     QStringList tags();
     QString forme();
+    QString formeq(int i);
+    QString lemme(int i);
+    QString morpho(int i);
     QString tagEncl();
+    SLem sLem(int i);
     bool inconnu();
     void setBestOf(QString t, double pr);
     double bestOf(QString t);
@@ -52,9 +56,11 @@ private:
     QString _tagEncl;
     MapLem _mapLem;
     QStringList _lemmes;
+    QStringList _formes;
     QStringList _morphos;
     QStringList _tags;
     QList<int> _nbOcc;
+    QList<SLem> _sLems;
     QMap<QString,long> _probas;
     QString _maxProb;
     QMap<QString,double> _bestOf;

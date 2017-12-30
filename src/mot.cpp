@@ -55,8 +55,9 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
                 _lemmes.append(lem);
                 _tags.append(lt);
                 _nbOcc.append(fr);
+                _sLems.append(m);
                 //                    qDebug() << forme << lem << nb << lt << t << fr;
-                if (m.sufq.isEmpty())
+/*                if (m.sufq.isEmpty())
                 {
                     if (m.morpho == 416) _morphos.append(m.grq);
                     else _morphos.append(m.grq + " " + _lemCore->morpho(m.morpho));
@@ -67,6 +68,16 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
                     else _morphos.append(m.grq + " + " + m.sufq + " " + _lemCore->morpho(m.morpho));
                     enclitique = m.sufq;
                 }
+                */
+                if (m.sufq.isEmpty()) _formes.append(m.grq);
+                else
+                {
+                    _formes.append(m.grq + " + " + m.sufq);
+                    enclitique = m.sufq;
+                }
+                if (m.morpho == 416) _morphos.append("");
+                else _morphos.append(_lemCore->morpho(m.morpho));
+
                 while (lt.size() > 2)
                 {
                     QString t = lt.mid(0,3);
@@ -114,27 +125,31 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
         if (forme.endsWith("cum"))
         {
             bool encl = (forme == "mecum") || (forme == "tecum") || (forme == "secum");
-            encl = encl || (forme == "nobiscum") || (forme == "vobiscum") || (forme == "quibuscum");
             encl = encl || (forme == "quacum") || (forme == "quocum") || (forme == "quicum");
-            if (encl)
+            bool pl = (forme == "nobiscum") || (forme == "vobiscum") || (forme == "quibuscum");
+            // Ce sont des pluriels
+            if (encl || pl)
             {
 //                qDebug() << forme << " avec enclitique";
                 _tagEncl = "re ";
+                QString tt = "p61";
+                if (pl) tt = "p62";
                 if (_tags.isEmpty())
                 {
-                    _tags.append("p61");
-                    _probas.insert("p61",1024);
+                    _tags.append(tt);
+                    _probas.insert(tt,1024);
                     _lemmes.append(forme);
+                    _formes.append(forme.mid(0,-3));
                     _morphos.append("...");
                     _nbOcc.append(1);
                 }
                 else if (_probas.size() == 1)
                 {
-                    if (!_probas.keys().contains("p61"))
+                    if (!_probas.keys().contains(tt))
                     {
-                        _tags[0]="p61";
+                        _tags[0]=tt;
                         _probas.clear();
-                        _probas.insert("p61",1024);
+                        _probas.insert(tt,1024);
                     }
                 }
                 else qDebug() << "Erreur sur " << forme << " : " << _tags;
@@ -152,7 +167,7 @@ QString Mot::choisir(QString t, int np, bool tout)
         if ((_tags[i].contains(t)) && (valeur < _nbOcc[i]))
         {
             // _tags peut être une liste de tags, alors que t est un tag.
-            choix = _lemmes[i] + " — " + _morphos[i];
+            choix = _lemmes[i] + " — " + _formes[i] + " " + _morphos[i];
             valeur = _nbOcc[i];
         }
     if (!choix.isEmpty())
@@ -166,7 +181,7 @@ QString Mot::choisir(QString t, int np, bool tout)
         for (int i=0; i < _tags.size(); i++)
         {
             QString format = "%1 : %2 ; ";
-            QString lg = "<li>" + _lemmes[i] + " — " + _morphos[i] + " (";
+            QString lg = "<li>" + _lemmes[i] + " — " + _formes[i] + " " + _morphos[i] + " (";
             QString lt = _tags[i];
 //            qDebug() << lg << lt;
             while (lt.size() > 2)
@@ -227,4 +242,24 @@ void Mot::setBestOf(QString t, double pr)
     }
     else qDebug() << t << pr;
         // _bestOf[t] = pr;
+}
+
+QString Mot::formeq(int i)
+{
+    return _formes[i];
+}
+
+QString Mot::lemme(int i)
+{
+    return _lemmes[i];
+}
+
+QString Mot::morpho(int i)
+{
+    return _morphos[i];
+}
+
+SLem Mot::sLem(int i)
+{
+    return _sLems[i];
 }
