@@ -35,6 +35,9 @@ public:
 private:
     LemCore * _lemCore;
     QString _resDir;
+    QString _phrase;
+    QList<Mot*> _mots;
+    QList<Mot*> _tokens;
 };
 
 #endif // TAGUEUR_H

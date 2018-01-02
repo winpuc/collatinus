@@ -233,6 +233,21 @@ QString Mot::forme()
     return _forme;
 }
 
+/**
+ * @brief Mot::setBestOf retient la meilleure probabilité
+ * pr associée au tag t.
+ * @param t : un tag
+ * @param pr : une probabilité
+ *
+ * Lorsque je tague la phrase, au moment de traiter le mot i,
+ * j'ai encore tous les tags possibles pour le mot i-2.
+ * À chaque trigramme terminal, j'ai associé une probabilité.
+ * Avant d'élaguer l'arbre, j'appelle cette routine setBestOf
+ * en lui passant le tag associé au mot i-2 (celui-ci) et
+ * la proba associée à une séquence le contenant.
+ * Parmi toutes les probas reçues, pour un tag donné,
+ * je conserve la plus grande.
+ */
 void Mot::setBestOf(QString t, double pr)
 {
 //    qDebug() << t << pr;
@@ -240,8 +255,14 @@ void Mot::setBestOf(QString t, double pr)
     {
         if (pr > _bestOf[t]) _bestOf[t] = pr;
     }
-    else qDebug() << t << pr;
+    else qDebug() << "Erreur d'attribution :" << t << pr;
         // _bestOf[t] = pr;
+}
+
+double Mot::bestOf(QString t)
+{
+    if (_bestOf.keys().contains(t)) return _bestOf[t];
+    else return 0;
 }
 
 QString Mot::formeq(int i)
