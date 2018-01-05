@@ -29,6 +29,7 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
     _lemCore = qobject_cast<LemCore *>(parent);
     _probas.clear();
     _tagEncl = "";
+    _enclitique = "";
     if (forme.isEmpty())
     {
         _tags << "snt";
@@ -36,28 +37,83 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
     }
     else
     {
-        _mapLem = _lemCore->lemmatiseM(forme, (rang == 0) || debVers);
-        QString enclitique = "";
-        // échecs
-        if (_mapLem.empty())
+        // cum se colle aux pronoms personnels ou relatifs.
+        // Le LASLA le traite comme un enclitique.
+        // Mais il n'est pas considéré comme un enclitique par lemCore.
+        QString f = forme.toLower();
+        bool encl = (f == "mecum") || (f == "tecum") || (f == "secum");
+        encl = encl || (f == "quacum") || (f == "quocum") || (f == "quicum");
+        bool pl = (f == "nobiscum") || (f == "vobiscum") || (f == "quibuscum");
+        // Ce sont des pluriels
+        if (encl || pl)
         {
-            // Je ne sais pas encore quoi faire.
-        }
-        else foreach (Lemme *l, _mapLem.keys())
-        {
+            // Je dois donc le traiter "proprement"...
+            _tagEncl = "re ";
+            _enclitique = "cŭm";
+            QString tt = "p61";
+            if (pl) tt = "p62";
+//            if (f == "secum") tt = "p61, p62";
+            f = forme.mid(0,forme.size() - 3);
+            if (f == "qui") f = "quo";
+            _mapLem = _lemCore->lemmatiseM(f, (rang == 0) || debVers);
+            // Je lemmatise la forme comme si de rien n'était.
+            // Mais je ne dois garder que les ablatifs...
+            // des pronoms personnels et du seul qui (relatif i.e. qui2).
+            QList<Lemme*> listLems = _mapLem.keys();
+            if (listLems.size() == 0) qDebug() << f << tt;
+            Lemme * l = listLems[0];
+            if (listLems.size() > 1)
+                foreach (Lemme *lem, listLems)
+                    if ((lem->cle() == "qui2") || (lem->cle() == "se"))
+                        l = lem;
+            // l est donc le bon pointeur.
             QString lem = l->humain(true, _lemCore->cible(), true);
             int nb = l->nbOcc();
-            foreach (SLem m, _mapLem.value(l))
+            // Les ablatifs ont un numéro de morpho qui est 6, 12, 18 etc...
+            foreach (SLem m, _mapLem.value(l)) if (m.morpho % 6 == 0)
             {
-                QString lt = _lemCore->tag(l, m.morpho); // Maintenant, c'est une liste de tags.
-                // Pour les analyses, je garde la liste de tags.
-                long fr = nb * _lemCore->fraction(lt);
+                m.sufq = _enclitique;
+                if (f == "qui") m.grq = "quī";
+                // Je rétablis la graphie "qui".
+                // Une question ouverte est de savoir si cet ancien ablatif "qui"
+                // peut être féminin. Yves dixit (3 janvier 2018) :
+                // j'ai cru voir un féminin chez Virgile, En. XI, 820.
+                // Si c'est vrai, il faudrait ajouter cette analyse.
+                _morphos.append(_lemCore->morpho(m.morpho));
+                if (_morphos.last().contains(" plur")) tt = "p62";
+                // secum peut être singulier ou pluriel.
+                long fr = nb * _lemCore->fraction(tt);
                 _lemmes.append(lem);
-                _tags.append(lt);
+                _tags.append(tt);
                 _nbOcc.append(fr);
                 _sLems.append(m);
-                //                    qDebug() << forme << lem << nb << lt << t << fr;
-/*                if (m.sufq.isEmpty())
+                _formes.append(m.grq + " + cŭm");
+                _probas[tt] += fr;
+            }
+        }
+        else
+        {
+            _mapLem = _lemCore->lemmatiseM(forme, (rang == 0) || debVers);
+            // échecs
+            if (_mapLem.empty())
+            {
+                // Je ne sais pas encore quoi faire.
+            }
+            else foreach (Lemme *l, _mapLem.keys())
+            {
+                QString lem = l->humain(true, _lemCore->cible(), true);
+                int nb = l->nbOcc();
+                foreach (SLem m, _mapLem.value(l))
+                {
+                    QString lt = _lemCore->tag(l, m.morpho); // Maintenant, c'est une liste de tags.
+                    // Pour les analyses, je garde la liste de tags.
+                    long fr = nb * _lemCore->fraction(lt);
+                    _lemmes.append(lem);
+                    _tags.append(lt);
+                    _nbOcc.append(fr);
+                    _sLems.append(m);
+                    //                    qDebug() << forme << lem << nb << lt << t << fr;
+                    /*                if (m.sufq.isEmpty())
                 {
                     if (m.morpho == 416) _morphos.append(m.grq);
                     else _morphos.append(m.grq + " " + _lemCore->morpho(m.morpho));
@@ -69,30 +125,31 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
                     enclitique = m.sufq;
                 }
                 */
-                if (m.sufq.isEmpty()) _formes.append(m.grq);
-                else
-                {
-                    _formes.append(m.grq + " + " + m.sufq);
-                    enclitique = m.sufq;
-                }
-                if (m.morpho == 416) _morphos.append("");
-                else _morphos.append(_lemCore->morpho(m.morpho));
+                    if (m.sufq.isEmpty()) _formes.append(m.grq);
+                    else
+                    {
+                        _formes.append(m.grq + " + " + m.sufq);
+                        _enclitique = m.sufq;
+                    }
+                    if (m.morpho == 416) _morphos.append("");
+                    else _morphos.append(_lemCore->morpho(m.morpho));
 
-                while (lt.size() > 2)
-                {
-                    QString t = lt.mid(0,3);
-                    lt = lt.mid(4);
-                    fr = nb * _lemCore->fraction(t);
-                    _probas[t] += fr;
+                    while (lt.size() > 2)
+                    {
+                        QString t = lt.mid(0,3);
+                        lt = lt.mid(4);
+                        fr = nb * _lemCore->fraction(t);
+                        _probas[t] += fr;
+                    }
                 }
             }
-        }
-        if (Ch::abrev.contains(forme))
-        {
-            // C'est un nom à n'importe quel cas !
-            _probas.clear();
-            QString pseudo = "n%1";
-            for (int i = 1; i < 7; i++) _probas[pseudo.arg(i)+"1"] = _lemCore->tagOcc(pseudo.arg(i)+"1");
+            if (Ch::abrev.contains(forme))
+            {
+                // C'est un nom à n'importe quel cas !
+                _probas.clear();
+                QString pseudo = "n%1";
+                for (int i = 1; i < 7; i++) _probas[pseudo.arg(i)+"1"] = _lemCore->tagOcc(pseudo.arg(i)+"1");
+            }
         }
         // J'ai construit les listes de lemmes, morphos, tags et nombres d'occurrences.
         // J'ai aussi une QMap qui associe les tags aux probas, que je dois normaliser.
@@ -119,10 +176,11 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
             _probas[t] = pr;
         }
 
-        if ((enclitique == "quĕ") || (enclitique == "vĕ")) _tagEncl = "ce ";
-        else if (enclitique == "nĕ") _tagEncl = "de ";
-        else if (enclitique == "st") _tagEncl = "v11";
-        if (forme.endsWith("cum"))
+        if ((_enclitique == "quĕ") || (_enclitique == "vĕ")) _tagEncl = "ce ";
+        else if (_enclitique == "nĕ") _tagEncl = "de ";
+        else if (_enclitique == "st") _tagEncl = "v11";
+
+/*        if (forme.endsWith("cum"))
         {
             bool encl = (forme == "mecum") || (forme == "tecum") || (forme == "secum");
             encl = encl || (forme == "quacum") || (forme == "quocum") || (forme == "quicum");
@@ -132,6 +190,7 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
             {
 //                qDebug() << forme << " avec enclitique";
                 _tagEncl = "re ";
+                _enclitique = "cum";
                 QString tt = "p61";
                 if (pl) tt = "p62";
                 if (_tags.isEmpty())
@@ -142,6 +201,7 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
                     _formes.append(forme.mid(0,-3));
                     _morphos.append("...");
                     _nbOcc.append(1);
+                    _bestOf[tt] = 0.;
                 }
                 else if (_probas.size() == 1)
                 {
@@ -150,11 +210,12 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
                         _tags[0]=tt;
                         _probas.clear();
                         _probas.insert(tt,1024);
+                        _bestOf[tt] = 0.;
                     }
                 }
                 else qDebug() << "Erreur sur " << forme << " : " << _tags;
             }
-        }
+        } */
     }
 //    qDebug() << forme;
 }

@@ -54,16 +54,22 @@ private:
     QString _forme;
     int _rang;
     QString _tagEncl;
+    QString _enclitique;
     MapLem _mapLem;
     QStringList _lemmes;
     QStringList _formes;
     QStringList _morphos;
     QStringList _tags;
-    QList<int> _nbOcc;
+    QList<int> _nbOcc; // Nb d'occurrences supposées de la forme ainsi analysée.
     QList<SLem> _sLems;
+    // Les listes ci-dessus sont "synchronisées" :
+    // tous les éléments de même indice vont ensemble.
     QMap<QString,long> _probas;
+    // Il s'agit ici du nb d'occurrences du tag (qui est la clef de la QMap).
     QString _maxProb;
     QMap<QString,double> _bestOf;
+    // Il s'agit de la meilleure proba associée au tag (clef de la QMap).
+    // Elle est évaluée juste avant l'élagage qui risque de la faire disparaître.
 };
 
 #endif // MOT_H
