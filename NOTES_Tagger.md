@@ -186,7 +186,7 @@ ayons deux telles séquences associées à des probabilités P1 et P2.
 On supposera que P1 > P2. Puisque j'ai le même bigramme terminal,
 les probabilités conditionnelles associées à l'ajout du énième mot
 sont les mêmes. Toutes les séquences issues de la deuxième séquence
-considérée auront des probabilités plus petites que le séquence
+considérée auront des probabilités plus petites que la séquence
 correspondante issue de la première. Les ajouts successifs de mots
 ne permettront jamais à une séquence issue de la deuxième de 
 surpasser la meilleure de celle issue de la première.
@@ -311,3 +311,43 @@ de calcul aussi. Avec un tagger probabiliste qui m'indique
 quels sont les tags les plus probables, cette complexité
 peut se trouver réduite. J'ai un ordre pour établir des liens
 et pour essayer de les combiner. Ça peut aider… 
+
+La branche *tagPlus* reprend le tagueur dans cette optique.
+Je conserve désormais la phrase taguée et la liste de Mots
+qui lui est associée. Je vais ajouter les règles syntaxiques
+établies par Yves dans Carus et établir des liens entre les Mots.
+Les liens possibles seront stockés dans le Mot-fils.
+Comme dans Silva, la construction d'un arbre syntaxique consiste
+à choisir un lien qui aboutit sur chaque Mot parmi les possibles.
+Il y a quelques exceptions : 
+* les pronoms relatifs qui ont deux pères
+* le prédicat qui n'a pas de père
+* probablement aussi des orphelins par absence de règle établie.
+
+Je pense établir des listes statiques dans les Mots,
+aussi bien pour les analyses (déjà fait) que pour les liens.
+Afin de traiter simplement les enclitiques, j'envisage d'introduire
+une liste de *tokens* qui seront des Mots. Les enclitiques
+seront convertis en un Mot virtuel placé avant le Mot porteur
+de l'enclitique.
+Dans un Mot, un lien combine dans un entier cinq indices :
+* celui de la règle syntaxique (dans la liste de règles)
+* celui du token père
+* l'indice de l'analyse parmi celles du mot-père
+* celui du token fils
+* celui de l'analyse parmi celles du mot-fils.
+
+Pour combiner plusieurs indices dans un seul entier,
+je compte utiliser un multiplicateur comme 256 et un
+masque, 255 en l'occurrence. Cela impose que la phrase
+ne soit pas trop longue et que le nombre d'analyses possibles
+pour un mot ne dépasse pas cette limite. 256 me semble très large
+comme limite. Aujourd'hui, il y a une cinquantaine de règles.
+Si ce nombre devait croître démesurément, il peut être astucieux
+de mettre l'indice de la règle utilisée en poids fort sans masque.
+Le fils jouant un rôle
+particulier, son indice sera placé dans l'octet de poids faible.
+À l'extérieur d'un Mot, un lien pourrait être repéré par deux indices :
+* celui du token-fils
+* celui du lien dans la liste des possibles pour ce Mot.
+Mais cela n'est peut-être pas nécessaire.
