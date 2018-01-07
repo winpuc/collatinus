@@ -66,7 +66,8 @@ private:
     // tous les éléments de même indice vont ensemble.
     QMap<QString,long> _probas;
     // Il s'agit ici du nb d'occurrences du tag (qui est la clef de la QMap).
-    QString _maxProb;
+    // Que je normalise ensuite pour atteindre un total de 1024.
+    QString _maxProb; // Le tag associé à la plus forte proba.
     QMap<QString,double> _bestOf;
     // Il s'agit de la meilleure proba associée au tag (clef de la QMap).
     // Elle est évaluée juste avant l'élagage qui risque de la faire disparaître.

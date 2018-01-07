@@ -239,9 +239,21 @@ QString Mot::choisir(QString t, int np, bool tout)
     if (tout || choix.isEmpty())
     {
         choix.append("<span style='color:#777777'><ul>\n");
+        double total = 0.0;
         for (int i=0; i < _tags.size(); i++)
         {
-            QString format = "%1 : %2 ; ";
+            QString lt = _tags[i];
+            while (lt.size() > 2)
+            {
+                QString t = lt.mid(0,3);
+                lt = lt.mid(4);
+                total += _bestOf[t];
+            }
+        }
+        if (total == 0.0) total = 1.0;
+        for (int i=0; i < _tags.size(); i++)
+        {
+            QString format = "%1 : %2 HC %3 ; ";
             QString lg = "<li>" + _lemmes[i] + " — " + _formes[i] + " " + _morphos[i] + " (";
             QString lt = _tags[i];
 //            qDebug() << lg << lt;
@@ -249,7 +261,8 @@ QString Mot::choisir(QString t, int np, bool tout)
             {
                 QString t = lt.mid(0,3);
                 lt = lt.mid(4);
-                lg.append(format.arg(t).arg(_bestOf[t]));
+                lg.append(format.arg(t).arg(_bestOf[t]/total).arg(_probas[t]));
+                // Je donne les probas en contexte (_bestOf) et hors-contexte (_probas).
             }
             lg.chop(3);
             lg.append(")</li>\n");
