@@ -350,4 +350,12 @@ particulier, son indice sera placé dans l'octet de poids faible.
 À l'extérieur d'un Mot, un lien pourrait être repéré par deux indices :
 * celui du token-fils
 * celui du lien dans la liste des possibles pour ce Mot.
+
 Mais cela n'est peut-être pas nécessaire.
+
+Le point crucial est l'ordre à donner aux liens possibles.
+Je ne sais pas encore comment établir cette relation d'ordre. 
+Elle doit tenir compte de la nature du lien (une "fréquence"
+associée à la règle utilisée), de sa longueur (mesurable seulement
+en nombre de tokens entre le père et le fils) ainsi que des probas
+des analyses du père et du fils...

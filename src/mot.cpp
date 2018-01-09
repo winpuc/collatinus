@@ -91,6 +91,24 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
                 _probas[tt] += fr;
             }
         }
+        else if (forme.endsWith("."))
+        {
+            // C'est une abréviation : un nom à n'importe quel cas !
+            _probas.clear();
+            QString pseudo = "n%1";
+            QString t;
+            for (int i = 1; i < 7; i++)
+            {
+                t = pseudo.arg(i)+"1";
+                _morphos.append(_lemCore->morpho(i));
+                _lemmes.append("<strong>" + forme + "</strong> : abréviation.");
+                _nbOcc.append(1);
+    //            _sLems.append(m); // Je ne sais pas quoi mettre comme SLem
+                _formes.append(forme);
+                _tags.append(t);
+                _probas[t] = _lemCore->tagOcc(t);
+            }
+        }
         else
         {
             _mapLem = _lemCore->lemmatiseM(forme, (rang == 0) || debVers);
@@ -112,7 +130,7 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
                     _tags.append(lt);
                     _nbOcc.append(fr);
                     _sLems.append(m);
-                    //                    qDebug() << forme << lem << nb << lt << t << fr;
+//                    qDebug() << forme << lem << nb << lt << fr;
                     /*                if (m.sufq.isEmpty())
                 {
                     if (m.morpho == 416) _morphos.append(m.grq);
@@ -142,13 +160,6 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
                         _probas[t] += fr;
                     }
                 }
-            }
-            if (Ch::abrev.contains(forme))
-            {
-                // C'est un nom à n'importe quel cas !
-                _probas.clear();
-                QString pseudo = "n%1";
-                for (int i = 1; i < 7; i++) _probas[pseudo.arg(i)+"1"] = _lemCore->tagOcc(pseudo.arg(i)+"1");
             }
         }
         // J'ai construit les listes de lemmes, morphos, tags et nombres d'occurrences.
@@ -261,7 +272,7 @@ QString Mot::choisir(QString t, int np, bool tout)
             {
                 QString t = lt.mid(0,3);
                 lt = lt.mid(4);
-                lg.append(format.arg(t).arg(_bestOf[t]/total).arg(_probas[t]));
+                lg.append(format.arg(t).arg(_bestOf[t]/total).arg(1.0*_probas[t]/1024.0));
                 // Je donne les probas en contexte (_bestOf) et hors-contexte (_probas).
             }
             lg.chop(3);

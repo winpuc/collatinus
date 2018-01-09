@@ -125,7 +125,7 @@ Modele::Modele(QStringList ll, LemCore *parent)
 {
     _lemmatiseur = qobject_cast<LemCore *>(parent);
     _pere = 0;
-    _pos = '\0';
+    _pos = ' ';
     QMultiMap<QString, int> msuff;
     QRegExp re("[:;]([\\w]*)\\+{0,1}(\\$\\w+)");
     foreach (QString l, ll)

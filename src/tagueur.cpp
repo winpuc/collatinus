@@ -321,6 +321,13 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert)
             for (int i = 1; i < lm.length(); i += 2)
             {
                 bool debVers = !majPert || lm[i-1].contains("\n");
+                if (Ch::abrev.contains(lm[i]) && lm[i+1].startsWith("."))
+                {
+                    // J'ai bêtement découpé les mots : si j'avais une abréviation,
+                    // je dois déplacer le point.
+                    lm[i].append(".");
+                    lm[i+1] = lm[i+1].mid(1);
+                }
                 Mot * mot = new Mot(lm[i],(i-1)/2, debVers, _lemCore);
                 // TODO : Vérifier si on a des vers avec majuscule...
                 _mots.append(mot);
