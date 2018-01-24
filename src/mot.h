@@ -44,10 +44,17 @@ public:
     QString lemme(int i);
     QString morpho(int i);
     QString tagEncl();
+    QString enclitique();
     SLem sLem(int i);
     bool inconnu();
     void setBestOf(QString t, double pr);
     double bestOf(QString t);
+    int rang();
+    int nbAnalyses();
+    // Les 3 meilleurs indices...
+    int choix();
+    int maxEC();
+    int maxHC();
 
 private:
     LemCore* _lemCore;
@@ -64,6 +71,9 @@ private:
     QList<SLem> _sLems;
     // Les listes ci-dessus sont "synchronisées" :
     // tous les éléments de même indice vont ensemble.
+    int _choix; // L'indice de la solution choisie par le tagueur.
+    int _maxEC; // L'indice de la meilleure solution En Contexte.
+    int _maxHC; // L'indice de la meilleure solution Hors Contexte.
     QMap<QString,long> _probas;
     // Il s'agit ici du nb d'occurrences du tag (qui est la clef de la QMap).
     // Que je normalise ensuite pour atteindre un total de 1024.

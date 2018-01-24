@@ -30,6 +30,9 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
     _probas.clear();
     _tagEncl = "";
     _enclitique = "";
+    _choix = 0;
+    _maxEC = 0;
+    _maxHC = 0;
     if (forme.isEmpty())
     {
         _tags << "snt";
@@ -235,13 +238,29 @@ QString Mot::choisir(QString t, int np, bool tout)
 {
     QString choix = "";
     int valeur = -1;
+    long v1 = -1;
+    double v2 = -1;
     for (int i=0; i < _tags.size(); i++)
+    {
         if ((_tags[i].contains(t)) && (valeur < _nbOcc[i]))
         {
             // _tags peut être une liste de tags, alors que t est un tag.
             choix = _lemmes[i] + " — " + _formes[i] + " " + _morphos[i];
             valeur = _nbOcc[i];
+            _choix = i;
         }
+        if (v1 < (_nbOcc[i] * _probas[_tags[i]]))
+        {
+            v1 = (_nbOcc[i] * _probas[_tags[i]]);
+            _maxHC = i;
+        }
+        if (v2 < (_nbOcc[i] * _bestOf[_tags[i]]))
+        {
+            v2 = (_nbOcc[i] * _bestOf[_tags[i]]);
+            _maxEC = i;
+        }
+        // Je profite de l'occasion pour déterminer les 3 meilleurs indices.
+    }
     if (!choix.isEmpty())
     {
         choix.prepend("<br/>\n—&gt;&nbsp;<span style='color:black'>");
@@ -368,4 +387,34 @@ QString Mot::morpho(int i)
 SLem Mot::sLem(int i)
 {
     return _sLems[i];
+}
+
+QString Mot::enclitique()
+{
+    return _enclitique;
+}
+
+int Mot::rang()
+{
+    return _rang;
+}
+
+int Mot::choix()
+{
+    return _choix;
+}
+
+int Mot::maxEC()
+{
+    return _maxEC;
+}
+
+int Mot::maxHC()
+{
+    return _maxHC;
+}
+
+int Mot::nbAnalyses()
+{
+    return _sLems.size();
 }

@@ -319,11 +319,11 @@ des:1-3,7-9:1:ŭ;ŭ;ŭ;ŭă;ŭă;ŭă
 modele:res
 R:1:2,0
 des:1-12:1:ēs;ēs;ĕm;ĕī;ĕī;ē;ēs;ēs;ēs;ērŭm;ēbŭs;ēbŭs
+pos:n
 
 modele:dies
 pere:res
 des:4-5:1:ēī;ēī
-pos:n
 
 modele:abraham
 R:0:0,0
