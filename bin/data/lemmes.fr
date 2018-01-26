@@ -14868,7 +14868,7 @@ obsequiosus:plein de complaisance, obséquieux
 obsequium:complaisance, déférence, respect ; l'obéissance ; les complaisances coupables
 obsequor:se plier aux désirs de, obéir
 obsero2:ensemencer, semer, planter
-obsero:vérouiller
+obsero:verrouiller
 observabilis:qu'on peut observer, remarquable, admirable
 observans:qui a de la déférence, de la considération, du respect pour, qui observe, qui obéit
 observantia:action de remarquer, observation, respect [des coutumes, des lois], considération, égards, déférence, culte, religion
