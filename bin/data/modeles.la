@@ -252,7 +252,7 @@ abs:1-6
 
 modele:turris
 pere:ciuis
-des:3:1:ĭm
+des:3,6:1:ĭm;ī
 
 modele:uis
 pere:ciuis
