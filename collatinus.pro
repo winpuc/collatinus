@@ -16,8 +16,8 @@ QT += svg
 
 CONFIG += release_binary debug
 
-TRANSLATIONS    = collatinus_en.ts \
-                  collatinus_fr.ts
+TRANSLATIONS    = collatinus_fr.ts
+TRANSLATIONS    += collatinus_en.ts
 
 unix:!macx:DESTDIR = bin
 OBJECTS_DIR= obj/
@@ -35,22 +35,22 @@ HEADERS += src/ch.h \
            src/flexfr.h \
            src/mainwindow.h \
 		   src/maj.h \
-    src/mot.h
+           src/mot.h
 
 SOURCES += src/ch.cpp \
            src/flexion.cpp \
-		       src/frequences.cpp \
+		   src/frequences.cpp \
            src/irregs.cpp \
            src/lemmatiseur.cpp \
            src/lemme.cpp \
            src/dicos.cpp \
            src/flexfr.cpp \
            src/main.cpp \
-		       src/maj.cpp \
+		   src/maj.cpp \
            src/mainwindow.cpp \
            src/modele.cpp \
            src/scandeur.cpp \
-    src/mot.cpp
+           src/mot.cpp
 
 RESOURCES += collatinus.qrc
 RC_ICONS = res/collatinus.ico
