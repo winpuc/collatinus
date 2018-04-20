@@ -23383,6 +23383,7 @@ verniliter:servilement
 verno:reverdir, refleurir, muer (serpent), sentir le printemps
 vernula:jeune esclave [né dans la maison], indigène, national
 vernum:printemps
+vero:vraiment, en fait, quant à
 Verona:Vérone (ville de Vénétie)
 Veronenses:Véronais (h. de Vérone)
 verpa:membre viril
