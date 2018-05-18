@@ -1874,10 +1874,11 @@ void MainWindow::setLangue()
     settings.beginGroup("interface");
     langueI = settings.value("langue").toString();
     settings.endGroup();
+//    qDebug() << langueI;
     if (!langueI.isEmpty())
     {
         translator = new QTranslator(qApp);
-        translator->load(qApp->applicationDirPath() + "/collatinus_" + langueI);
+        translator->load(qApp->applicationDirPath() + "/data/collatinus_" + langueI);
         qApp->installTranslator(translator);
     }
     else

@@ -1227,9 +1227,10 @@ QString Tagueur::sauvArbre(int i, bool ordre)
     message.append("labelloc=\"t\";\n");
     message.append("label=\"" + p + " \";\n");
     message.append("node [shape=box];\n");
+    if (ordre) message.append("rankdir=LR;\n");
     arbr << message;
     /* pour Graphviz, définition de tous les noeuds */
-    QString label = "N%1 [label=\"%2\n%3\n%4\",URL=\"#N%1\"];";
+    QString label = "N%1 [label=\"%2\",URL=\"#N%1\n%3\n%4\"];";
     QString lem;
     QString pt;
     for (int j = 0; j < _tokens.size(); j++)
@@ -1254,7 +1255,7 @@ QString Tagueur::sauvArbre(int i, bool ordre)
     if (ordre)
     {
         // J'ajoute un lien invisible entre tous les mots pour imposer l'ordre de la phrase
-        message = "N";
+        message = "\nN";
         pt = "%1->N";
         for (int j = 0; j < _mots.size() - 1; j++)
             message.append(pt.arg(j));
