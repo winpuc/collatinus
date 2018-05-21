@@ -73,8 +73,31 @@ Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
                 caracteres.append(car[i]);
                 indices.append(i);
             }
+            else if (car[i].contains("-"))
+            {
+                // Plusieurs caractères occupent le même rang
+                QStringList cc = car[i].split("-");
+                for (int j=0; j < cc.size(); j++)
+                {
+                    if (cc[j].size()==1)
+                    {
+                        caracteres.append(cc[j]);
+                        indices.append(i);
+                        // Ce n'est pas une erreur : les caractères séparés par un -
+                        // occupent tous le même rang : "...e.f-ph.g.h.i-y...".
+                    }
+                    else
+                    {
+                        caracteres.prepend(cc[j]);
+                        indices.prepend(i); // C'est bien i !
+                    }
+                }
+            }
             else
             {
+                // Les digraphes (et plus) doivent être trouvés avant les simples caractères.
+                // En Tchèque, le "ch" est entre le h et le i.
+                // Si un mot contient un "ch", il ne contient pas de "c" (pas dans cette position).
                 caracteres.prepend(car[i]);
                 indices.prepend(i);
             }
