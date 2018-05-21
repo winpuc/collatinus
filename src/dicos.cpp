@@ -58,6 +58,29 @@ Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
     cond_jv = settings.value("condjv").toString();
     ji = settings.value("ji").toInt();
     JI = settings.value("JI").toInt();
+    alphabet = settings.value("alphabet").toString();
+//    qDebug() << alphabet.size();
+//    if (langue == "cs")
+//        alphabet = "a,b,c,č,d,ď,e,f,g,h,ch,i,j,k,l,m,n,o,p,q,r,ř,s,š,t,ť,u,v,w,x,y,z";
+    if (!alphabet.isEmpty())
+    {
+        QStringList car = alphabet.split(".");
+        nbCar = car.size();
+        for (int i=0; i<nbCar; i++)
+        {
+            if (car[i].size()==1)
+            {
+                caracteres.append(car[i]);
+                indices.append(i);
+            }
+            else
+            {
+                caracteres.prepend(car[i]);
+                indices.prepend(i);
+            }
+        }
+//        qDebug() << caracteres << indices << nbCar;
+    }
     settings.endGroup();
     settings.beginGroup("style");
     xsl = settings.value("xsl").toInt();
@@ -65,6 +88,48 @@ Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
     xml = QFileInfo(chData).suffix() == "cz" ||
           QFileInfo(chData).suffix() == "xml";
     djvu = !xml;
+}
+
+/**
+ * @brief Dictionnaire::compChaines
+ * @param s1 une première chaine
+ * @param s2 la deuxième chaine
+ * @return Un entier >0 si (s2 > s1) en tenant compte de l'ordre alphabétique
+ * donné par la variable alphabet.
+ */
+int Dictionnaire::compChaines(QString s1, QString s2)
+{
+    qDebug() << s1 << s2;
+    if (s1 == s2) return 0;
+    if (s1.isEmpty()) return 1;
+    if (s2.isEmpty()) return -1;
+    int i1 = 0;
+    while ((i1 < nbCar) && !s1.startsWith(caracteres[i1])) i1++;
+    qDebug() << i1 << nbCar;
+    if (i1 == nbCar)
+    {
+        // Je dois nettoyer la voyelle accentuée.
+        QString pr1 = s1.left(1).normalized(QString::NormalizationForm_D).left(1);
+        qDebug() << s1 << pr1;
+        // Décomposition canonique et la voyelle est en tête.
+        i1 = 0;
+        while ((i1 < nbCar) && (pr1 != caracteres[i1])) i1++;
+    }
+    int i2 = 0;
+    while ((i2 < nbCar) && !s2.startsWith(caracteres[i2])) i2++;
+    if (i2 == nbCar)
+    {
+        // Je dois nettoyer la voyelle accentuée.
+        QString pr2 = s2.left(1).normalized(QString::NormalizationForm_D).left(1);
+        // Décomposition canonique et la voyelle est en tête.
+        i2 = 0;
+        while ((i2 < nbCar) && (pr2 != caracteres[i2])) i2++;
+    }
+    // i1 et i2 sont le rang du 1er caractère de s1 et de s2 (éventuellement un digraphe).
+    if (i1 == i2) return compChaines(s1.mid(caracteres[i1].size()),s2.mid(caracteres[i1].size()));
+    if (i1 == nbCar) return 1;
+    if (i2 == nbCar) return -1;
+    return indices[i2] - indices[i1];
 }
 
 /**
@@ -137,9 +202,10 @@ bool Dictionnaire::lis_index_djvu()
     QFile f(idxJv);
     if (!f.open(QIODevice::ReadOnly | QIODevice::Text)) return false;
     QTextStream ts(&f);
-    while (!f.atEnd())
+    ts.setCodec("UTF-8"); // Pour windôze !
+    while (!ts.atEnd())
     {
-        idxDjvu << f.readLine().trimmed();
+        idxDjvu << ts.readLine().trimmed().toLower();
     }
     f.close();
     return true;
@@ -234,7 +300,17 @@ QString Dictionnaire::pageDjvu(QStringList req, int no)
     {
         lis_index_djvu();
     }
-    pdj = debut;
+    int i = 0;
+    if (!alphabet.isEmpty())
+    {
+        // J'ai un ordre alphabétique exotique à respecter.
+        // J'utilise donc la fonction compChaines que j'ai introduite.
+        while ((i < idxDjvu.size()) && (compChaines(leLem,idxDjvu[i])<=0)) i++;
+    }
+    else
+        while ((i < idxDjvu.size()) && (leLem.localeAwareCompare(idxDjvu[i]) >= 0)) i++;
+    pdj = debut + i;
+/*    pdj = debut;
     foreach (QString l, idxDjvu)
     {
         if (QString::compare(l, leLem, Qt::CaseInsensitive) > 0)
@@ -243,6 +319,7 @@ QString Dictionnaire::pageDjvu(QStringList req, int no)
         }
         ++pdj;
     }
+    */
     ligneLiens.clear();
     foreach (QString lien, req)
         ligneLiens.append("<a href=\"" + lien + "\">" + lien + "</a>&nbsp;");
