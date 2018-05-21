@@ -3,6 +3,7 @@ C*.app
 .*
 
 bin/data/*.bak
+moc
 
 # C++ objects and libs
 

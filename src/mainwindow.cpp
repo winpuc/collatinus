@@ -2190,6 +2190,9 @@ QString MainWindow::stopServer()
 
 void MainWindow::dockRestore()
 {
+    toolBar->setFloatable(false);
+    toolBar->show();
+    // Pour récupérer la barre d'outils qu'un utilisateur avait perdue.
     dockLem->setFloating(false);
     dockLem->show();
     dockScand->setFloating(false);
