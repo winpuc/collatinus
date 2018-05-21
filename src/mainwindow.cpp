@@ -1483,7 +1483,7 @@ void MainWindow::langueInterface()
     else
         langueI = "fr";
     QMessageBox::about(this, tr("Collatinus 11"),
-                       tr("Le changement de langue prendra effet"
+                       tr("Le changement de langue prendra effet "
                           "au prochain lancement de Collatinus."));
 }
 
@@ -1878,7 +1878,7 @@ void MainWindow::setLangue()
     if (!langueI.isEmpty())
     {
         translator = new QTranslator(qApp);
-        translator->load(qApp->applicationDirPath() + "/collatinus_" + langueI);
+        translator->load(qApp->applicationDirPath() + "/data/collatinus_" + langueI);
         qApp->installTranslator(translator);
     }
     else
