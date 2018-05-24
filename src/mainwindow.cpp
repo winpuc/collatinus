@@ -1482,7 +1482,7 @@ void MainWindow::langueInterface()
     else
         langueI = "fr";
     QMessageBox::about(this, tr("Collatinus 11"),
-                       tr("Le changement de langue prendra effet"
+                       tr("Le changement de langue prendra effet "
                           "au prochain lancement de Collatinus."));
 }
 
@@ -1877,7 +1877,7 @@ void MainWindow::setLangue()
     if (!langueI.isEmpty())
     {
         translator = new QTranslator(qApp);
-        translator->load(qApp->applicationDirPath() + "/collatinus_" + langueI);
+        translator->load(qApp->applicationDirPath() + "/data/collatinus_" + langueI);
         qApp->installTranslator(translator);
     }
     else
@@ -2202,6 +2202,9 @@ QString MainWindow::stopServer()
 
 void MainWindow::dockRestore()
 {
+    toolBar->setFloatable(false);
+    toolBar->show();
+    // Pour récupérer la barre d'outils qu'un utilisateur avait perdue.
     dockLem->setFloating(false);
     dockLem->show();
     dockScand->setFloating(false);

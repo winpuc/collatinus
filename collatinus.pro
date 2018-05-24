@@ -16,8 +16,8 @@ QT += svg
 
 CONFIG += release_binary debug
 
-TRANSLATIONS    = collatinus_en.ts \
-                  collatinus_fr.ts
+TRANSLATIONS    = collatinus_fr.ts
+TRANSLATIONS    += collatinus_en.ts
 
 unix:!macx:DESTDIR = bin
 OBJECTS_DIR= obj/
@@ -49,7 +49,7 @@ SOURCES += src/ch.cpp \
            src/dicos.cpp \
 #           src/flexfr.cpp \
            src/main.cpp \
-		       src/maj.cpp \
+		   src/maj.cpp \
            src/mainwindow.cpp \
            src/modele.cpp \
            src/scandeur.cpp \
