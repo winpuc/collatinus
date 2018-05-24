@@ -122,18 +122,18 @@ Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
  */
 int Dictionnaire::compChaines(QString s1, QString s2)
 {
-    qDebug() << s1 << s2;
+//    qDebug() << s1 << s2;
     if (s1 == s2) return 0;
     if (s1.isEmpty()) return 1;
     if (s2.isEmpty()) return -1;
     int i1 = 0;
     while ((i1 < nbCar) && !s1.startsWith(caracteres[i1])) i1++;
-    qDebug() << i1 << nbCar;
+//    qDebug() << i1 << nbCar;
     if (i1 == nbCar)
     {
         // Je dois nettoyer la voyelle accentuée.
         QString pr1 = s1.left(1).normalized(QString::NormalizationForm_D).left(1);
-        qDebug() << s1 << pr1;
+//        qDebug() << s1 << pr1;
         // Décomposition canonique et la voyelle est en tête.
         i1 = 0;
         while ((i1 < nbCar) && (pr1 != caracteres[i1])) i1++;
