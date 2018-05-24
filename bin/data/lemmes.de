@@ -219,22 +219,22 @@ administro:behilflich sein, leiten, lenken
 admirabilis:bewundernswert, wunderbar, seltsam, befremdet
 admirandus:digne d'admiration, admirable
 admiratio:Bewunderung, hohes Interesse, Verwunderung, Staunen, Aufsehen
-admirator:l'admirateur
+admirator:Bewunderer
 admiror:bewundern, anstaunen, sonderbar finden
 admisceo:hinzumischen, beimischen, vermischen
 admitto:loslassen, in Gang setzen, Zutritt gewähren
 admodum:genau, gerade, mindestens, völlig, allerdings, sehr, ganz und gar
 admolior:sich in Bewegung setzen
 admoneo:an eine Schuld mahnen
-admonitus:le rappel d'un souvenir; le conseil, l'avertissement
+admonitus:Erinnerung, Ermahnung, Mahnung
 admoveo:heranbewegen, irgendwohin führen, anwenden, befördern
 adnecto:attacher, rattacher à
 adnitor:s'efforcer de, travailler à
-adno:nager, arriver (par eau)
+adno:hranschwimmen
 adnoto:annoter, noter, mettre une note à
 adnuntio:annoncer
-adnuo:faire signe (oui) de la tête, consentir, acquiescer
-adnuto:faire un signe de consentement
+adnuo:zunicken, zustimmen
+adnuto:zunicken, zustimmen
 adoleo:als Opfer verbrennen
 adolescens:heranwachsend
 adolesco:aufwachsen, auflodern, aufflammen
@@ -254,7 +254,7 @@ adprimo:presser, serrer contre
 adprono:se pencher, se baisser
 adpugno:assaillir, attaquer
 adpulsus:1. l'abordage, l'accès, l'approche
-Adrana:l'Adrana (fleuve de Germanie)
+Adrana:die Eder (ein Fluss in Germanien)
 adrepo:ramper vers
 adrideo:rire à, sourire, plaire
 adrigo:mettre droit, dresser; relever, exciter
@@ -327,7 +327,7 @@ adversarius:entgegenstehend, feindlich, widerstrebend, Gegner
 adversor:sich widersetzen, widerstreben
 adversus:entgegen, feindlich, zugekehrt, zugewandt, widrig, wiedrig, ungünstig, gegenüber
 adverto:tourner vers, faire attention ; - animum : s'apercevoir
-advesperasco:(impersonnel) le soir vient, il se fait tard
+advesperasco:es beginnt Abend zu werden, es dämmert
 advocatus:Rechtsbeistand, Rechtsanwalt, Anwalt
 advoco:herbeirufen, einladen, als Rechtsbeistand berufen, zu Hilfe rufen
 advolo:heranfliegen, ich fliege herbei, ich eile herbei
@@ -514,7 +514,7 @@ alluvies:Überschwemmung, Lache
 almus:nährend, erquickend
 alnus:Kahn aus Erlenholz, Erle
 alo:ernähren, aufziehen, wachsen lassen
-Alpes:les Alpes
+Alpes:die Alpen
 Alpinus:des Alpes
 altare:autel
 altar:Opferaltar
@@ -1964,6 +1964,7 @@ confidens:trotzig
 confidenter:hardiment, résolument, sans crainte
 confidentia:Selbstvertrauen
 confido:vertrauen
+configo:zusammenheften, zusammennageln
 confingo:erdichten
 confinis:angrenzend, anstoßend, daran liegend, anstossend
 confinium:Grenzgebiet
@@ -2212,6 +2213,7 @@ corneus:aus Kornelkirschholz
 cornicen:Hornist
 Corniculanus:de Curniculum (ville du Latium)
 corniger:gehörnt
+cornix:Krähe
 cornu:Horn, Flügel
 cornum:Kornelkirsche
 corolla:Kränzchen
@@ -2669,7 +2671,7 @@ detestabilis:verabscheuenswert
 detestatio:Verwünschung
 detestor:jemanden verfluchen
 detineo:aufhalten
-detondeo:abschneiden
+detondeo:scheren, abscheren
 detorqueo:wegdrehen, verrenken
 detraho:herabziehen
 detrecto:verweigern
@@ -3679,7 +3681,7 @@ fodio:stochern, graben
 foede:honteusement
 foederatus:verbündet, Bundesgenosse
 foedo:verunstalten
-foedus2:facere, sich verbünden
+foedus2:Vertrag
 foedus:facere, sich verbünden
 foeteo:stinken
 foetidus:stinkend
@@ -3795,7 +3797,7 @@ funale:Strick
 funalis:zum Seil gehörig
 funambulus:Seiltänzer
 fundamentum:Fundament, Grundlage, Grunlage
-funda:mittere, schleudern
+funda:Schleuder
 funditor:Schleuderer
 fundito:schleudern
 funditus:von Grund aus, völlig
@@ -4312,7 +4314,7 @@ impudicus:unzüchtig
 impulsus:äußerer Anstoß
 impune:ungestraft
 imputo:anrechnen
-imus:Grund
+imus:der unterste
 inaccessus:unzugänglich
 inacesco:sauer werden
 inaequalis:uneben
@@ -5007,7 +5009,7 @@ largior:reichlich geben
 largiter:dans une large mesure
 largitio:das reichliche Geben, Spende
 largus:freigebig, reichlich, freigiebig
-larua:böser Geist, Geist
+larva:böser Geist, Geist, Gespenst
 lasarpicifer:fertile en résine
 lascivia:Lustigkeit, Mutwille
 lascivio:lustig sein
@@ -5939,7 +5941,8 @@ nota:Zeichen, Charakter, bekannt
 notesco:bekannt werden
 notitia:Bekanntsein, Kenntnis
 noto:kennzeichen
-notus:Südwind, bekannt
+notus:bekannt
+Notus2:Notus [Südwind]
 novacula:scharfes Messer
 novem:neunzehn, neun
 novercalis:stiefmütterlich
