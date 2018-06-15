@@ -476,9 +476,9 @@ void LemCore::ajDesinence(Desinence *d)
 
 bool LemCore::estRomain(QString f)
 {
-    return !(f.contains(QRegExp ("[^IVXLCDM]"))
+    return !(f.contains(QRegExp ("[^IUXLCDM]"))
              || f.contains("IL")
-             || f.contains("IVI"));
+             || f.contains("IUI"));
 }
 
 /**
@@ -748,6 +748,7 @@ MapLem LemCore::lemmatise(QString f)
     // romains
     if (estRomain(f) && !_lemmes.contains(f))
     {
+        f.replace('U','V');
         QString lin = QString("%1|inv|||adj. num.|1").arg(f);
         Lemme *romain = new Lemme(lin, 0, this);
         int nr = aRomano(f);
