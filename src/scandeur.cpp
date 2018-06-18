@@ -627,8 +627,14 @@ QString Scandeur::scandeTxt(QString texte, int accent, bool stats, bool majAut)
             while (ii < lsch)
             {
                 while (!longueurs.contains(schemaMetric[ii]) && ii < lsch)
+                {
+                    if (schemaMetric[ii] == ' ') numMot +=2;
+                    // Si je franchis un blanc, je passe au mot suivant.
                     ii += 1;
-                // Je suis au début du mot
+                }
+                // Je suis au début du mot.
+                // Si le mot est de longueur ambigüe (son schéma commence par un ?),
+                // je le traite quand même.
                 result.clear();
                 if (ii < lsch && schemaMetric[ii] != '-')
                     result = cherchePieds(6, schemaMetric, ii, false);
@@ -672,16 +678,21 @@ QString Scandeur::scandeTxt(QString texte, int accent, bool stats, bool majAut)
                                 // mot inconnu ou au nombre de syllabes indéterminé (eg Troiae)
                                 // Je le saute (même si c'est improbable...)
                                 nbMots += 2;
+                                // Vérifier ce que je fais avec les ?
                             }
                             else if (longueurs.contains(schemaMetric[j]))
                             {
                                 j += 1;
                                 syllabes -= 1;
                             }
-                            else if ((schemaMetric[j] == '`') && (syllabes == 1))
+                            else if (schemaMetric[j] == '`')
                             {
+                                if (syllabes == 1)
                                 // J'ai une dernière syllabe qui est élidée à tort.
                                 syllabes = 0;
+                                else j += 1;
+                                // Je peux avoir un mot entier élidé !
+                                // Par exemple, c[um] Āntĭŏchō
                             }
                             else
                             {
@@ -711,11 +722,13 @@ QString Scandeur::scandeTxt(QString texte, int accent, bool stats, bool majAut)
                     if (aff.count() > decalage + numMot + 5)
                         aff[decalage + numMot + 5].append("</span>");
                 }
+                // ii est le début du mot que je viens de traiter
                 while ((schemaMetric[ii] != ' ') && ii < lsch) ii += 1;
-                numMot += 2;
+                // J'avance jusqu'au blanc qui le suit.
+//                numMot += 2;
                 // Je suis sur le blanc qui précède un mot
-                if (schemaMetric[ii+1] == '@' || schemaMetric[ii+1] == '?')
-                    numMot +=2; // J'ai un mot inconnu ou ambigu.
+//                if (schemaMetric[ii+1] == '@' || schemaMetric[ii+1] == '?')
+  //                  numMot +=2; // J'ai un mot inconnu ou ambigu.
             }
             // Je remplace les +-* par des signes plus conventionnels
             schemaMetric.replace('-', "∪");
