@@ -708,6 +708,7 @@ void MainWindow::createActions()
     ouvrirAct =
         new QAction(QIcon(":/res/document-open.svg"), tr("&Ouvrir"), this);
     exportAct = new QAction(QIcon(":res/pdf.svg"), tr("Exporter en pdf"), this);
+    exportCsvAct = new QAction(QIcon(":res/csv.svg"), tr("Exporter en csv"), this);
     printAct = new QAction(QIcon(":res/print.svg"), tr("Im&primer"), this);
     quitAct = new QAction(QIcon(":/res/power.svg"), tr("&Quitter"), this);
     quitAct->setStatusTip(tr("Quitter l'application"));
@@ -924,6 +925,7 @@ void MainWindow::createConnections()
     connect(balaiAct, SIGNAL(triggered()), this, SLOT(effaceRes()));
     connect(copieAct, SIGNAL(triggered()), this, SLOT(dialogueCopie()));
     connect(exportAct, SIGNAL(triggered()), this, SLOT(exportPdf()));
+    connect(exportCsvAct, SIGNAL(triggered()), this, SLOT(exportCsv()));
     connect(findAct, SIGNAL(triggered()), this, SLOT(recherche()));
     connect(fontAct, SIGNAL(triggered()), this, SLOT(police()));
     connect(lancAct, SIGNAL(triggered()), this, SLOT(lancer()));
@@ -976,6 +978,7 @@ void MainWindow::createMenus()
     fileMenu->addSeparator();
     fileMenu->addAction(copieAct);
     fileMenu->addAction(exportAct);
+    fileMenu->addAction(exportCsvAct);
     fileMenu->addAction(printAct);
     fileMenu->addSeparator();
     fileMenu->addAction(oteAAct);
@@ -1439,6 +1442,101 @@ void MainWindow::exportPdf()
         delete tmpTE;
     }
 #endif
+}
+
+/**
+ * \fn
+ * \brief
+ *
+ */
+void MainWindow::exportCsv()
+{
+    QString nf =
+        QFileDialog::getSaveFileName(this, "Export CSV", QString(), "*.csv");
+    if (!nf.isEmpty())
+    {
+        if (QFileInfo(nf).suffix().isEmpty()) nf.append(".csv");
+        QString blabla;
+        if (htmlAct->isChecked())
+        {
+            // L'inverse (html --> non-html) mettrait les nouveaux résultats en items du dernier lemme.
+            blabla = textEditLem->toHtml();
+    //        qDebug() << blabla;
+            int pCourante = 0;
+            while (blabla.indexOf("<li ", pCourante) != -1)
+            {
+                pCourante = blabla.indexOf("<li ", pCourante) + 4;
+                pCourante = blabla.indexOf(">",pCourante) + 1;
+                int toto = blabla.mid(0,pCourante).lastIndexOf("-qt-list-indent: ");
+                int niveau = blabla.mid(toto + 17,1).toInt();
+    //            int niveau = blabla.mid(0,pCourante).count("<ul ") - blabla.mid(0,pCourante).count("</ul>");
+                switch (niveau)
+                {
+                case 1:
+                    blabla.insert(pCourante,"* ");
+                    break;
+                case 2:
+                    blabla.insert(pCourante," - ");
+                    break;
+                case 3:
+                    blabla.insert(pCourante,"   . ");
+                    break;
+                default:
+                    break;
+                }
+            }
+            QTextEdit *tmpTE = new QTextEdit();
+            tmpTE->setHtml(blabla);
+            blabla = tmpTE->toPlainText();
+            delete tmpTE;
+        }
+        else blabla = textEditLem->toPlainText();
+        if (!blabla.endsWith("\n")) blabla.append("\n");
+//        qDebug() << blabla;
+//        qDebug() << lem2csv(blabla);
+        // écrire le fichier en csv.
+        QFile f(nf);
+        f.open(QFile::WriteOnly);
+        QTextStream flux(&f);
+        flux.setCodec("UTF-8"); // Pour windôze !
+        flux << lem2csv(blabla);
+        f.close();
+    }
+}
+
+QString MainWindow::lem2csv(QString texte)
+{
+    QString res;
+    QString forme;
+    QString ligne;
+    int nn = 0;
+    int pos;
+    QString format = "%1\t%2\t%3\t%4\n"; // Une ligne avec quatre champs
+    while (texte.contains("\n"))
+    {
+        pos = texte.indexOf("\n");
+        ligne = texte.mid(0,pos).simplified();
+        texte = texte.mid(pos + 1);
+//        qDebug() << ligne << texte;
+        if (ligne.startsWith("*"))
+        {
+            forme = ligne.mid(2);
+            nn += 1;
+        }
+        else if (ligne.startsWith("-"))
+        {
+            ligne = ligne.mid(2);
+            res.append(format.arg(nn).arg(forme).arg(ligne.section(":",0,0).trimmed()).arg(ligne.section(":",1).trimmed()));
+        }
+        else if (ligne.startsWith(">"))
+        {
+            nn += 1;
+            ligne = ligne.mid(2);
+            forme = ligne.section(" ",0,0);
+            res.append(format.arg(nn).arg(forme).arg("unknown").arg(""));
+        }
+    }
+    return res;
 }
 
 /**
@@ -2093,6 +2191,15 @@ void MainWindow::exec ()
             else rep = lemmatiseur->lemmatiseT(texte,optAcc&1,optAcc&2,optAcc&4,optAcc&8);
             lemmatiseur->setCible(lang); // Je rétablis les langue et option HTML.
             break;
+        case 'E':
+        case 'e':
+            // Pour sortir la lemmatisation sous un format CSV
+            options = options.mid(2); // Je coupe le "-e".
+            if ((options.size() == 2) && lemmatiseur->cibles().keys().contains(options))
+                lemmatiseur->setCible(options);
+            rep = lem2csv(lemmatiseur->lemmatiseT(texte,false,true,false,false));
+            lemmatiseur->setCible(lang); // Je rétablis les langue et option HTML.
+            break;
         case 'X':
         case 'x':
 //            rep = lemmatiseur->txt2XML(requete);
@@ -2232,16 +2339,20 @@ void MainWindow::setHtml(bool h)
     {
         // L'inverse (html --> non-html) mettrait les nouveaux résultats en items du dernier lemme.
         QString blabla = textEditLem->toHtml();
-//        qDebug() << blabla;
+        qDebug() << blabla;
         textEditLem->clear();
         int pCourante = 0;
         while (blabla.indexOf("<li ", pCourante) != -1)
         {
             pCourante = blabla.indexOf("<li ", pCourante) + 4;
             pCourante = blabla.indexOf(">",pCourante) + 1;
-            int toto = blabla.mid(0,pCourante).lastIndexOf("-qt-list-indent: ");
-            int niveau = blabla.mid(toto + 17,1).toInt();
-//            int niveau = blabla.mid(0,pCourante).count("<ul ") - blabla.mid(0,pCourante).count("</ul>");
+  //          int toto = blabla.mid(0,pCourante).lastIndexOf("-qt-list-indent: ");
+//            int niveau = blabla.mid(toto + 17,1).toInt();
+            // Rien ne marche vraiment.
+            // Il faudrait trouver le "-qt-list-indent: " de la balise <ul active.
+            QString debut = blabla.mid(0,pCourante);
+            int niveau = debut.count("<ul") - debut.count("</ul>");
+            qDebug() << niveau << debut.count("<ul") << debut.count("</ul>");
             switch (niveau)
             {
             case 1:
