@@ -1509,9 +1509,14 @@ QString MainWindow::lem2csv(QString texte)
     QString res;
     QString forme;
     QString ligne;
+    QString trad;
+    QString fc;
+    int level;
+    int nbOcc;
     int nn = 0;
     int pos;
-    QString format = "%1\t%2\t%3\t%4\n"; // Une ligne avec quatre champs
+    QString f1 = "%1\t%2\t"; // Début de ligne avec deux champs numériques
+    QString f2 = "\"%1\"\t\"%2\"\t\"%3\"\t%4\n"; // Fin de ligne avec quatre champs
     while (texte.contains("\n"))
     {
         pos = texte.indexOf("\n");
@@ -1526,14 +1531,28 @@ QString MainWindow::lem2csv(QString texte)
         else if (ligne.startsWith("-"))
         {
             ligne = ligne.mid(2);
-            res.append(format.arg(nn).arg(forme).arg(ligne.section(":",0,0).trimmed()).arg(ligne.section(":",1).trimmed()));
+            fc = ligne.section(":",0,0).trimmed();
+            trad =ligne.section(":",1).trimmed();
+            if (fc.contains("("))
+            {
+                fc.chop(1);
+                nbOcc = fc.section("(",1).toInt();
+                fc = fc.section("(",0,0).trimmed();
+            }
+            else nbOcc = 0;
+            if (nbOcc < 500) level = 3;
+            else if (nbOcc < 5000) level = 2;
+            else level = 1;
+            res.append(f1.arg(nn).arg(level));
+            res.append(f2.arg(forme).arg(fc).arg(trad).arg(nbOcc));
         }
         else if (ligne.startsWith(">"))
         {
             nn += 1;
             ligne = ligne.mid(2);
             forme = ligne.section(" ",0,0);
-            res.append(format.arg(nn).arg(forme).arg("unknown").arg(""));
+            res.append(f1.arg(nn).arg(3));
+            res.append(f2.arg(forme).arg("unknown").arg("").arg(""));
         }
     }
     return res;
@@ -2236,7 +2255,8 @@ void MainWindow::exec ()
             rep += "\t-a : Accentuation du texte (avec options -a1..-a15).\n";
             rep += "\t-l : Lemmatisation du texte (avec options -l0..-l15, -l16 pour les fréquences).\n";
             rep += "\t-h : Lemmatisation du texte en HTML (mêmes options que -l).\n";
-            rep += "\t-S, -A, -L, -H : Les mêmes avec Majuscules pertinentes.\n";
+            rep += "\t-e : Lemmatisation du texte en CSV, sans option sauf la langue cible.\n";
+            rep += "\t-S, -A, -L, -H, -E : Les mêmes avec Majuscules pertinentes.\n";
             rep += "\t-t : Langue cible pour les traductions (par exemple -tfr, -ten).\n";
             rep += "\t-C : Majuscules pertinentes.\n";
             rep += "\t-c : Majuscules non-pertinentes.\n";
