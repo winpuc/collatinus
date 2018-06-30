@@ -502,6 +502,7 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                             }
                             else ligne.replace("</em> : ","\t\t");
                             ligne.replace(" — ","\t");
+                            ligne.replace(":","\t");
                             lsv.append(entete + ligne);
                         }
                         if (blabla.contains("<ul>"))
@@ -539,7 +540,7 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                         numMot += 1;
                         QString entete = mots[i]->forme();
                         entete.prepend(debut.arg(numMot).arg(numPhr+1).arg(i+1));
-                        entete.append("\tunknown");
+                        entete.append("\t\tunknown");
                         lsv.append(entete);
                     }
             }
