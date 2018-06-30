@@ -1271,10 +1271,13 @@ void MainWindow::createDockWindows()
     tbMajPertTag->setDefaultAction(majPertAct);
     QToolButton *tbAffTout = new QToolButton(this);
     tbAffTout->setDefaultAction(affToutAct);
+    QToolButton *tbHTML = new QToolButton(this);
+    tbHTML->setDefaultAction(htmlAct);
     hLayoutTag->addWidget(lasla);
     hLayoutTag->addStretch();
     hLayoutTag->addWidget(tbMajPertTag);
     hLayoutTag->addWidget(tbAffTout);
+    hLayoutTag->addWidget(tbHTML);
     vLayoutTag->addLayout(hLayoutTag);
     vLayoutTag->addWidget(textBrowserTag);
     dockTag->setWidget(dockWidgetTag);
@@ -2212,12 +2215,12 @@ void MainWindow::exec ()
         case 'P':
         case 'p':
             // Appel au tagueur probabiliste.
-            // Ici, optAcc vaut 0.
+            // Ici, optAcc vaut 0 : n'affiche que la meilleure solution.
             // Si je veux changer le comportement par défaut, il faut ajouter une ligne :
             // optAcc = 1;
             if ((options.size() > 2) && (options[2].isDigit()))
                 optAcc = options[2].digitValue();
-            rep = tagueur->tagTexte(texte, -1, (optAcc & 1), requete[1].isUpper());
+            rep = tagueur->tagTexte(texte, -1, (optAcc & 1), requete[1].isUpper(), !(optAcc & 2));
             // Par défaut, je tague tout le texte.
             nonHTML = false;
             // Le résultat est en html : je veux conserver les <br/>.
@@ -2226,11 +2229,13 @@ void MainWindow::exec ()
         case 'e':
             // Pour sortir la lemmatisation sous un format CSV
             options = options.mid(2); // Je coupe le "-e".
-            if ((options.size() == 2) && lemmatiseur->cibles().keys().contains(options))
-                lemmatiseur->setCible(options);
-            rep = lem2csv(lemmatiseur->lemmatiseT(texte,false,true,false,false));
-            if (options == "dc") rep.replace("|","\"\t\"");
-            lemmatiseur->setCible(lang); // Je rétablis les langue et option HTML.
+            if ((options.size() == 2) && _lemCore->cibles().keys().contains(options))
+                _lemmatiseur->setCible(options);
+            else if (((options.size() == 5) || (options.size() == 8)) && _lemCore->cibles().keys().contains(options.mid(0,2)))
+                _lemmatiseur->setCible(options);
+            rep = lem2csv(_lemmatiseur->lemmatiseT(texte,false,true,false,false));
+            if (options.startsWith("dc")) rep.replace(":","\"\t\"");
+            _lemmatiseur->setCible(lang); // Je rétablis les langue et option HTML.
             break;
         case 'X':
         case 'x':
@@ -2352,7 +2357,8 @@ void MainWindow::tagger(QString t, int p)
         // Sans texte, je ne fais rien.
         int tl = t.length() - 1;
         if (p > tl) p = tl;
-        textBrowserTag->setHtml(tagueur->tagTexte(t, p, affToutAct->isChecked(), majPertAct->isChecked()));
+        textBrowserTag->setHtml(tagueur->tagTexte(
+                                    t, p, affToutAct->isChecked(), majPertAct->isChecked(), htmlAct->isChecked()));
     }
 }
 
