@@ -2217,6 +2217,7 @@ void MainWindow::exec ()
             if ((options.size() == 2) && lemmatiseur->cibles().keys().contains(options))
                 lemmatiseur->setCible(options);
             rep = lem2csv(lemmatiseur->lemmatiseT(texte,false,true,false,false));
+            if (options == "dc") rep.replace("|","\"\t\"");
             lemmatiseur->setCible(lang); // Je rétablis les langue et option HTML.
             break;
         case 'X':
