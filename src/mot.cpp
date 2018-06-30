@@ -225,6 +225,6 @@ void Mot::setBestOf(QString t, double pr)
     {
         if (pr > _bestOf[t]) _bestOf[t] = pr;
     }
-    else qDebug() << t << pr;
+    else qDebug() << "tag non trouvé pour" << _forme << t << pr;
         // _bestOf[t] = pr;
 }

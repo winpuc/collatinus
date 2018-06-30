@@ -235,14 +235,15 @@ Tagueur::Tagueur(QObject *parent, LemCore *l, QString cible, QString resDir) : Q
  * the associated probability are given.
  * \endif
  */
-QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert)
+QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool affHTML)
 {
     // éliminer les chiffres et les espaces surnuméraires
     t.remove(QRegExp("\\d"));
 //    t = t.simplified(); // Rmq : perd les retours de ligne !
     int tl = t.length() - 1;
     const QString pp = ".;!?";
-    int numPhr = 0; // Un numéro pour les phrases (utile seulement pous le texte complet)
+    int numMot = 0; // Un numéro pour les mots (utile pour le CSV).
+    int numPhr = 0; // Un numéro pour les phrases (utile seulement pour le texte complet)
     int dph = p;
     bool tout = false;
     if (p < 0)
@@ -443,6 +444,8 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert)
                     }
                 }
 
+            if (affHTML)
+            {
             QString prob = "<div id='Sentence_%1'>";
             lsv.append(prob.arg(numPhr) + phr + "<br/><br/>\n");
             prob = "<br/>\n avec la proba : %1 pour %2 branches.<br/>";
@@ -466,9 +469,83 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert)
                 else lsv.append("<li id='unknown'>" + mots[i]->forme() + " : non trouvé</li>");
 
             lsv.append("</ul></div>");
+            }
+            else
+            {
+                // Pour avoir une sortie au format CSV.
+                QString debut = "%1\t%2\t%3\t";
+                seq = seq.mid(4); // Je supprime le premier tag qui est "snt".
+                for (int i = 0; i < mots.size()-1; i++)
+                    if (!mots[i]->inconnu()) // Les mots inconnus ne figurent pas dans la séquence (cf. plus haut)
+                    {
+                        numMot += 1;
+                        QString blabla = mots[i]->choisir(seq.left(3), numPhr, affTout);
+                        // C'est une ligne en HTML : je dois remplacer les délimiteurs par des tabulations...
+                        QString entete = blabla.mid(0,blabla.indexOf("<br"));
+                        if (entete.contains("<ul>")) entete = entete.mid(0,entete.indexOf("<span"));
+                        entete = entete.mid(entete.indexOf("ng>")+3);
+                        entete.replace("</strong> ","\t");
+                        entete.prepend(debut.arg(numMot).arg(numPhr+1).arg(i+1));
+                        entete.append("\t");
+                        // Dans l'entête, j'ai les numéros, la forme et le tag.
+                        if (blabla.contains("—&gt;"))
+                        {
+                            // C'est le premier choix.
+                            blabla = blabla.mid(blabla.indexOf("—&gt;"));
+                            QString ligne = blabla.mid(blabla.indexOf("ng>")+3);
+                            ligne = ligne.mid(0,ligne.indexOf("</span"));
+                            ligne.replace("</strong>, <em>",", ");
+                            if (ligne.contains("("))
+                            {
+                                ligne.replace("</em> <small>(","\t");
+                                ligne.replace(")</small> : ","\t");
+                            }
+                            else ligne.replace("</em> : ","\t\t");
+                            ligne.replace(" — ","\t");
+                            lsv.append(entete + ligne);
+                        }
+                        if (blabla.contains("<ul>"))
+                        {
+                            // Il n'y a pas de choix ou tout est affiché.
+                            blabla = blabla.mid(blabla.indexOf("<ul>"));
+                            blabla = blabla.mid(0,blabla.indexOf("</ul>"));
+                            while (blabla.contains("</li>")) {
+                                QString ligne = blabla.mid(0,blabla.indexOf("</li>"));
+                                blabla = blabla.mid(blabla.indexOf("</li>")+5);
+                                ligne = ligne.mid(ligne.indexOf("ng>")+3);
+                                ligne = ligne.mid(0,ligne.indexOf("</span"));
+                                ligne.replace("</strong>, <em>",", ");
+                                if (ligne.contains("<small>("))
+                                {
+                                    ligne.replace("</em> <small>(","\t");
+                                    ligne.replace(")</small> : ","\t");
+                                }
+                                else ligne.replace("</em> : ","\t\t");
+                                ligne.replace(" — ","\t");
+                                ligne.replace(":","\t");
+//                                ligne.replace(" (","\t");
+//                                ligne.remove(")");
+                                lsv.append(entete + ligne);
+                            }
+                        }
+//                        lsv.append(entete + blabla);
+                         // Si enclitique mid(8)
+                        if (mots[i]->tagEncl().isEmpty()) seq = seq.mid(4);
+                        else seq = seq.mid(5 + mots[i]->tagEncl().size());
+                    }
+                    else
+                    {
+                        // Mot inconnu !
+                        numMot += 1;
+                        QString entete = mots[i]->forme();
+                        entete.prepend(debut.arg(numMot).arg(numPhr+1).arg(i+1));
+                        entete.append("\tunknown");
+                        lsv.append(entete);
+                    }
+            }
             if (tout)
             {
-                lsv << "<br/>";
+                if (affHTML) lsv << "<br/>";
                 numPhr++;
             }
             else return lsv.join("\n");
