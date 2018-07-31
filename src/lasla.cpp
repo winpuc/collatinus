@@ -56,6 +56,7 @@ Lasla::Lasla(QObject *parent, LemCore *l, QString resDir) : QObject(parent)
         // Je crée le lemmatiseur...
         _lemCore->setExtension(true);
         // ... et charge l'extension du lexique.
+        _lemCore->setCible("k9,fr");
     }
     else _lemCore = l;
     if (resDir == "")
@@ -100,7 +101,6 @@ QString Lasla::k9(QString m)
     QString cibAct = _lemCore->cible();
     _lemCore->setCible("k9,fr");
     MapLem mm = _lemCore->lemmatiseM(m);
-    _lemCore->setCible(cibAct);
     if (mm.isEmpty()) return "\n";
     // Il faut répondre quelque chose, sinon j'attends 30 secondes !
     foreach (Lemme *l, mm.keys())
@@ -118,6 +118,7 @@ QString Lasla::k9(QString m)
         }
     }
 
+    _lemCore->setCible(cibAct);
     return res.join("\n");
 }
 

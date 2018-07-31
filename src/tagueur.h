@@ -24,6 +24,7 @@
 
 #include "lemCore.h"
 #include "mot.h"
+#include "ch.h"
 
 class Tagueur : public QObject
 {
