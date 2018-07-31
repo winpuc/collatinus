@@ -494,6 +494,7 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                             blabla = blabla.mid(blabla.indexOf("—&gt;"));
                             QString ligne = blabla.mid(blabla.indexOf("ng>")+3);
                             ligne = ligne.mid(0,ligne.indexOf("</span"));
+                            QString lem = Ch::atone( ligne.mid(0,ligne.indexOf("</str"))) + "\t";
                             ligne.replace("</strong>, <em>",", ");
                             if (ligne.contains("("))
                             {
@@ -503,7 +504,7 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                             else ligne.replace("</em> : ","\t\t");
                             ligne.replace(" — ","\t");
                             ligne.replace(":","\t");
-                            lsv.append(entete + ligne);
+                            lsv.append(entete + lem + ligne);
                         }
                         if (blabla.contains("<ul>"))
                         {
@@ -515,6 +516,7 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                                 blabla = blabla.mid(blabla.indexOf("</li>")+5);
                                 ligne = ligne.mid(ligne.indexOf("ng>")+3);
                                 ligne = ligne.mid(0,ligne.indexOf("</span"));
+                                QString lem = Ch::atone( ligne.mid(0,ligne.indexOf("</str"))) + "\t";
                                 ligne.replace("</strong>, <em>",", ");
                                 if (ligne.contains("<small>("))
                                 {
@@ -526,7 +528,7 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                                 ligne.replace(":","\t");
 //                                ligne.replace(" (","\t");
 //                                ligne.remove(")");
-                                lsv.append(entete + ligne);
+                                lsv.append(entete + lem + ligne);
                             }
                         }
 //                        lsv.append(entete + blabla);
