@@ -1467,13 +1467,33 @@ void MainWindow::exportCsv()
                 blabla = textEditLem->toHtml();
                 //        qDebug() << blabla;
                 int pCourante = 0;
+                int pPrecendente = 0;
+                int niveau = 0;
+                QList<int> niveaux;
+                niveaux.append(niveau);
                 while (blabla.indexOf("<li ", pCourante) != -1)
                 {
+                    pPrecendente = pCourante; // C'est la fin de la balise <li ...> précédente.
                     pCourante = blabla.indexOf("<li ", pCourante) + 4;
                     pCourante = blabla.indexOf(">",pCourante) + 1;
-                    int toto = blabla.mid(0,pCourante).lastIndexOf("-qt-list-indent: ");
-                    int niveau = blabla.mid(toto + 17,1).toInt();
-                    //            int niveau = blabla.mid(0,pCourante).count("<ul ") - blabla.mid(0,pCourante).count("</ul>");
+                    // Il faudrait trouver le "-qt-list-indent: " de la balise <ul active.
+                    QString morceau = blabla.mid(0,pCourante);
+                    morceau = morceau.mid(pPrecendente);
+                    // C'est le morceau entre les balises <li ...> précédente et courante.
+                    if (morceau.contains("</ul"))
+                    {
+                        niveaux.removeLast();
+                        niveau = niveaux.last();
+                        // Par défaut, quand j'ai un </ul>, je reprends le niveau précédent.
+                    }
+                    if (morceau.contains("<ul"))
+                    {
+                        // Quand j'ai un <ul...>, je prends le niveau indiqué...
+                        int toto = morceau.lastIndexOf("-qt-list-indent: ");
+                        niveau = morceau.mid(toto + 17,1).toInt();
+                        niveaux.append(niveau);
+                        // ... que je pousse aussi sur ma liste des niveaux.
+                    }
                     switch (niveau)
                     {
                     case 1:
@@ -2391,20 +2411,40 @@ void MainWindow::setHtml(bool h)
     {
         // L'inverse (html --> non-html) mettrait les nouveaux résultats en items du dernier lemme.
         QString blabla = textEditLem->toHtml();
-        qDebug() << blabla;
+//        qDebug() << blabla;
         textEditLem->clear();
         int pCourante = 0;
+        int pPrecendente = 0;
+        int niveau = 0;
+        QList<int> niveaux;
+        niveaux.append(niveau);
         while (blabla.indexOf("<li ", pCourante) != -1)
         {
+            pPrecendente = pCourante; // C'est la fin de la balise <li ...> précédente.
             pCourante = blabla.indexOf("<li ", pCourante) + 4;
             pCourante = blabla.indexOf(">",pCourante) + 1;
-  //          int toto = blabla.mid(0,pCourante).lastIndexOf("-qt-list-indent: ");
-//            int niveau = blabla.mid(toto + 17,1).toInt();
-            // Rien ne marche vraiment.
             // Il faudrait trouver le "-qt-list-indent: " de la balise <ul active.
-            QString debut = blabla.mid(0,pCourante);
-            int niveau = debut.count("<ul") - debut.count("</ul>");
-            qDebug() << niveau << debut.count("<ul") << debut.count("</ul>");
+            QString morceau = blabla.mid(0,pCourante);
+            morceau = morceau.mid(pPrecendente);
+            // C'est le morceau entre les balises <li ...> précédente et courante.
+            if (morceau.contains("</ul"))
+            {
+                niveaux.removeLast();
+                niveau = niveaux.last();
+                // Par défaut, quand j'ai un </ul>, je reprends le niveau précédent.
+            }
+            if (morceau.contains("<ul"))
+            {
+                // Quand j'ai un <ul...>, je prends le niveau indiqué...
+                int toto = morceau.lastIndexOf("-qt-list-indent: ");
+                niveau = morceau.mid(toto + 17,1).toInt();
+                niveaux.append(niveau);
+                // ... que je pousse aussi sur ma liste des niveaux.
+                // Je suppose qu'il n'y a pas de séquence "<ul ...> ... </ul>"
+                // sans <li ...> entre les deux.
+            }
+//            if ((niveau < 1) || (niveau > 3))
+  //              qDebug() << niveau << blabla.mid(0,pPrecendente) << morceau;
             switch (niveau)
             {
             case 1:
