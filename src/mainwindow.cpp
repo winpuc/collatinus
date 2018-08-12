@@ -1271,13 +1271,13 @@ void MainWindow::createDockWindows()
     tbMajPertTag->setDefaultAction(majPertAct);
     QToolButton *tbAffTout = new QToolButton(this);
     tbAffTout->setDefaultAction(affToutAct);
-    QToolButton *tbHTML = new QToolButton(this);
-    tbHTML->setDefaultAction(htmlAct);
+//    QToolButton *tbHTML = new QToolButton(this);
+//    tbHTML->setDefaultAction(htmlAct);
     hLayoutTag->addWidget(lasla);
     hLayoutTag->addStretch();
     hLayoutTag->addWidget(tbMajPertTag);
     hLayoutTag->addWidget(tbAffTout);
-    hLayoutTag->addWidget(tbHTML);
+//    hLayoutTag->addWidget(tbHTML);
     vLayoutTag->addLayout(hLayoutTag);
     vLayoutTag->addWidget(textBrowserTag);
     dockTag->setWidget(dockWidgetTag);
@@ -1458,51 +1458,64 @@ void MainWindow::exportCsv()
     if (!nf.isEmpty())
     {
         if (QFileInfo(nf).suffix().isEmpty()) nf.append(".csv");
-        QString blabla;
-        if (htmlAct->isChecked())
+        if (dockVisible(dockLem))
         {
-            // L'inverse (html --> non-html) mettrait les nouveaux résultats en items du dernier lemme.
-            blabla = textEditLem->toHtml();
-    //        qDebug() << blabla;
-            int pCourante = 0;
-            while (blabla.indexOf("<li ", pCourante) != -1)
+            QString blabla;
+            if (htmlAct->isChecked())
             {
-                pCourante = blabla.indexOf("<li ", pCourante) + 4;
-                pCourante = blabla.indexOf(">",pCourante) + 1;
-                int toto = blabla.mid(0,pCourante).lastIndexOf("-qt-list-indent: ");
-                int niveau = blabla.mid(toto + 17,1).toInt();
-    //            int niveau = blabla.mid(0,pCourante).count("<ul ") - blabla.mid(0,pCourante).count("</ul>");
-                switch (niveau)
+                // L'inverse (html --> non-html) mettrait les nouveaux résultats en items du dernier lemme.
+                blabla = textEditLem->toHtml();
+                //        qDebug() << blabla;
+                int pCourante = 0;
+                while (blabla.indexOf("<li ", pCourante) != -1)
                 {
-                case 1:
-                    blabla.insert(pCourante,"* ");
-                    break;
-                case 2:
-                    blabla.insert(pCourante," - ");
-                    break;
-                case 3:
-                    blabla.insert(pCourante,"   . ");
-                    break;
-                default:
-                    break;
+                    pCourante = blabla.indexOf("<li ", pCourante) + 4;
+                    pCourante = blabla.indexOf(">",pCourante) + 1;
+                    int toto = blabla.mid(0,pCourante).lastIndexOf("-qt-list-indent: ");
+                    int niveau = blabla.mid(toto + 17,1).toInt();
+                    //            int niveau = blabla.mid(0,pCourante).count("<ul ") - blabla.mid(0,pCourante).count("</ul>");
+                    switch (niveau)
+                    {
+                    case 1:
+                        blabla.insert(pCourante,"* ");
+                        break;
+                    case 2:
+                        blabla.insert(pCourante," - ");
+                        break;
+                    case 3:
+                        blabla.insert(pCourante,"   . ");
+                        break;
+                    default:
+                        break;
+                    }
                 }
+                QTextEdit *tmpTE = new QTextEdit();
+                tmpTE->setHtml(blabla);
+                blabla = tmpTE->toPlainText();
+                delete tmpTE;
             }
-            QTextEdit *tmpTE = new QTextEdit();
-            tmpTE->setHtml(blabla);
-            blabla = tmpTE->toPlainText();
-            delete tmpTE;
+            else blabla = textEditLem->toPlainText();
+            if (!blabla.endsWith("\n")) blabla.append("\n");
+            //        qDebug() << blabla;
+            //        qDebug() << lem2csv(blabla);
+            // écrire le fichier en csv.
+            QFile f(nf);
+            f.open(QFile::WriteOnly);
+            QTextStream flux(&f);
+            flux.setCodec("UTF-8"); // Pour windôze !
+            flux << lem2csv(blabla);
+            f.close();
         }
-        else blabla = textEditLem->toPlainText();
-        if (!blabla.endsWith("\n")) blabla.append("\n");
-//        qDebug() << blabla;
-//        qDebug() << lem2csv(blabla);
-        // écrire le fichier en csv.
-        QFile f(nf);
-        f.open(QFile::WriteOnly);
-        QTextStream flux(&f);
-        flux.setCodec("UTF-8"); // Pour windôze !
-        flux << lem2csv(blabla);
-        f.close();
+        else if (dockVisible(dockTag))
+        {
+            QFile f(nf);
+            f.open(QFile::WriteOnly);
+            QTextStream flux(&f);
+            flux.setCodec("UTF-8"); // Pour windôze !
+            flux << tagueur->tagTexte(editLatin->toPlainText(),
+                        -1, affToutAct->isChecked(), majPertAct->isChecked(), false);
+            f.close();
+        }
     }
 }
 
@@ -2358,7 +2371,7 @@ void MainWindow::tagger(QString t, int p)
         int tl = t.length() - 1;
         if (p > tl) p = tl;
         textBrowserTag->setHtml(tagueur->tagTexte(
-                                    t, p, affToutAct->isChecked(), majPertAct->isChecked(), htmlAct->isChecked()));
+                                    t, p, affToutAct->isChecked(), majPertAct->isChecked()));
     }
 }
 
