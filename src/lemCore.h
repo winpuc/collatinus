@@ -60,6 +60,9 @@ class LemCore : public QObject
    private:
     // fonction d'initialisation
     void ajAssims();
+    void ajAbrev();
+    QStringList abr;
+    // Pour avoir une liste d'abréviation éditable...
     void ajContractions();
     int  aRomano(QString f);
     void lisIrreguliers();
@@ -106,6 +109,8 @@ class LemCore : public QObject
 
    public:
     LemCore(QObject *parent = 0, QString resDir="");
+    bool estAbr(QString m);
+    // Pour remplacer Ch::abrev.contains(m) avec la liste des abréviations chargées.
     void ajDesinence(Desinence *d);
     void ajModele(Modele *m);
     void ajRadicaux(Lemme *l);

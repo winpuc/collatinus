@@ -76,7 +76,8 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
                 }
             }
         }
-        if (Ch::abrev.contains(forme))
+//        if (Ch::abrev.contains(forme))
+        if (_lemCore->estAbr(forme))
         {
             // C'est un nom à n'importe quel cas !
             _probas.clear();
