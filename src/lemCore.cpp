@@ -61,6 +61,7 @@ LemCore::LemCore(QObject *parent, QString resDir) : QObject(parent)
     suffixes.insert("st", "st");
     // assimilations
     ajAssims();
+    ajAbrev();
     // contractions
     ajContractions();
     // lecture des morphos
@@ -418,6 +419,18 @@ void LemCore::ajAssims()
         assims.insert(Ch::atone(liste.at(0)), Ch::atone(liste.at(1)));
     }
 }
+
+void LemCore::ajAbrev()
+{
+    // peupler la QStringList abr
+    abr = lignesFichier(_resDir + "abreviations.la");
+}
+
+bool LemCore::estAbr(QString m)
+{
+    return abr.contains(m);
+}
+
 
 /**
  * \fn void LemCore::ajContractions ()

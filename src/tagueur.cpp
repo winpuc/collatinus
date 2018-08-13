@@ -279,7 +279,8 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
         if (lm.size() > 1)
         {
             // Il y a au moins un mot...
-            while (Ch::abrev.contains(lm[lm.size()-2]))
+//            while (Ch::abrev.contains(lm[lm.size()-2]))
+            while (_lemCore->estAbr(lm[lm.size()-2]))
             {
                 // Ma phrase se terminait par une abréviation : je continue.
                 fph++;
