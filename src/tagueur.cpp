@@ -497,14 +497,14 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                             ligne = ligne.mid(0,ligne.indexOf("</span"));
                             QString lem = Ch::atone( ligne.mid(0,ligne.indexOf("</str"))) + "\t";
                             ligne.replace("</strong>, <em>",", ");
-                            if (ligne.contains("("))
+                            if (ligne.contains("<small>("))
                             {
                                 ligne.replace("</em> <small>(","\t");
                                 ligne.replace(")</small> : ","\t");
                             }
                             else ligne.replace("</em> : ","\t\t");
                             ligne.replace(" — ","\t");
-                            ligne.replace(":","\t");
+//                            ligne.replace(":","\t");
                             lsv.append(entete + lem + ligne);
                         }
                         if (blabla.contains("<ul>"))
