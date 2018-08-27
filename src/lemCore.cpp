@@ -786,12 +786,54 @@ bool LemCore::inv(Lemme *l, const MapLem ml)
 }
 
 /**
- * \fn MapLem LemCore::lemmatiseM (QString f, bool debPhr)
- * \brief Renvoie dans une MapLem les lemmatisations de la
- *        forme f. le paramètre debPhr à true indique qu'il
- *        s'agit d'un début de phrase, et la fonction
- *        peut tenir compte des majuscules pour savoir
- *        s'il s'agit d'un nom propre.
+ * @brief LemCore::lemmatiseM renvoie dans une MapLem les lemmatisations de la
+ *        forme f. Le paramètre debPhr à true indique qu'il
+ *        s'agit d'un début de phrase.
+ * @param f : la forme qui s'agit de lemmatiser.
+ * @param debPhr : booléen qui indique que l'on est en début de phrase
+ * @param etape : initialement 0, permet de suivre un protocole d'étapes
+ * @return une MapLem avec toutes les lemmatisations de la forme f.
+ *
+ * Cette routine est récursive et son but est de lemmatiser la forme f
+ * en tenant compte des modifications possibles.
+ * Les transformations de la forme peuvent être :
+ *     - la contraction amavisse ——> amasse
+ *     - l'assimilation du préfixe ads- ——> ass-
+ *     - la majuscule initiale en début de phrase ou de vers
+ *     - l'ajout d'un (ou plusieurs) suffixe(s) ou enclitique
+ *     - la disparition erronée d'une majuscule à un nom propre.
+ *
+ * Bien que certaines combinaisons ne soient pas attestées,
+ * nous n'avons pas voulu les exclure.
+ * La structure récursive avec un appel direct à l'étape suivante
+ * et un autre appel éventuel après transformation de la forme
+ * permet d'explorer toutes les possibilités.
+ * Essayées une fois et une seule.
+ *
+ * Cette routine est a priori sensible à la casse.
+ * Ainsi, à l'intérieur d'une phrase (i.e. lorsque debPhr est false),
+ * elle distinguera Aeneas (Énée) et aeneas (de bronze).
+ * En début de phrase (i.e. lorsque debPhr est true),
+ * la majuscule perd cette caractéristique distinctive
+ * et Aeneas sera lemmatisé avec ses deux solutions, Énée et d'airain.
+ *
+ * Dans la constitution du lexique, nous n'avons pas adopté un parti pris
+ * pour l'assimilation des préfixes.
+ * D'ailleurs, les différents dictionnaires ont des conventions différentes.
+ * Ainsi, le Gaffiot fait le renvoi aff ——> adf (p. 83 de l'edition de 1934) :
+ * le préfixe n'étant pas assimilé, il faudra chercher adfaber.
+ * En revanche, le Lewis & Short pratique l'assimilation et donnera affaber.
+ * Cette ambiguité de la forme canonique nous a conduit à essayer
+ * l'assimilation (adf ——> aff) et la "déassimilation" (aff ——> adf)
+ * de façon systématique sur toutes les formes.
+ * Cela mène à quelques fausses lemmatisations. Par exemple, la forme
+ * assum peut être un rôti ou la forme assimilée du verbe adsum.
+ * En revanche, adsum ne semble pas pouvoir être un rôti.
+ *
+ * La recherche d'un suffixe (ou enclitique) n'a lieu que si la forme
+ * complète n'a pas pu être lemmatisée.
+ * Cela évite une lemmatisation hasardeuse et improbable de
+ * "mentione" en "mentio"+"ne".
  */
 MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
 {
@@ -812,7 +854,7 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
     // Si j'arrive ici, c'est que j'ai encore des choses à essayer.
     mm = lemmatiseM(f, debPhr, etape + 1);
     // J'essaie d'abord l'étape suivante
-    QString fd;
+    QString fd; // On ne peut pas créer un variable QString à l'intérieur d'un switch.
     switch (etape)
     { // ensuite diverses manipulations sur la forme
     case 3:
@@ -893,7 +935,8 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
                 // L'exemple que j'ai trouvé au LASLA est "modoquest".
                 bool sst = false;
                 if (mm.isEmpty() && (suf == "st"))
-                {
+                { // Ce test mm.isEmpty() empêche la lemmatisation d'amatust
+                    // comme "amatus"+"st".
                     sf += "s";
                     mm = lemmatiseM(sf, debPhr, 1);
                     sst = true;
@@ -904,6 +947,8 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
                     for (int i = 0; i < ls.count(); ++i)
                         if (sst) mm[l][i].sufq = "t";
                         else mm[l][i].sufq += suffixes.value(suf); // Pour modoquest
+                    // TODO : corriger la longueur de la dernière voyelle si le suffixe est st.
+                    // Attention, elle peut être dans sufq, s'il n'est pas vide, ou dans grq.
                 }
             }
         }
