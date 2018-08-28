@@ -848,7 +848,15 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr, bool desas)
     QString res;
     QTextStream fl(&res);
     MapLem mm = lemmatise(f);
+//    qDebug() << f << desas;
     if (f.isEmpty()) return mm;
+    if (debPhr && f.at(0).isUpper())
+    {
+        QString nf = f.toLower();
+        MapLem nmm = lemmatiseM(nf);
+        foreach (Lemme *nl, nmm.keys())
+            mm.insert(nl, nmm.value(nl));
+    }
     // suffixes
     foreach (QString suf, suffixes.keys())
     {
@@ -875,13 +883,6 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr, bool desas)
                     else mm[l][i].sufq += suffixes.value(suf); // Pour modoquest
             }
         }
-    }
-    if (debPhr && f.at(0).isUpper())
-    {
-        QString nf = f.toLower();
-        MapLem nmm = lemmatiseM(nf);
-        foreach (Lemme *nl, nmm.keys())
-            mm.insert(nl, nmm.value(nl));
     }
     // assimilations
     if (!desas)
