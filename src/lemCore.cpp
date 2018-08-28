@@ -839,9 +839,10 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
 {
     MapLem mm;
     if (f.isEmpty()) return mm;
-    if (etape == 4) // Condition terminale
+    if ((etape > 3) || (etape <0)) // Condition terminale
     {
         mm = lemmatise(f);
+//        qDebug() << f << etape;
         if (debPhr && f.at(0).isUpper())
         {
             QString nf = f.toLower();
