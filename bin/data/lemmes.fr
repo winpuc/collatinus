@@ -7245,7 +7245,7 @@ edita:ordres, lieux élevés
 editicius:juge choisi par l'accusateur
 editio:enfantement, production, représentation, publication [de livres], édition, déclaration
 editum:tertre, hauteur
-editus:élevé, haut, supérieur
+editus:adjt, élevé, haut, supérieur
 edo2:mettre à jour, faire connaître, produire (editus, a, um : élevé, haut)
 edoceo:enseigner, former complètement
 edo:manger
@@ -8092,7 +8092,7 @@ explano:étendre, expliquer
 explaudo:chasser [en battant des mains], mal accueillir, huer, siffler, désapprouver, condamner
 explementum:remplissage
 expleo:remplir
-expletus:accompli, parfait
+expletus:adjt, accompli, parfait
 explicabilis:explicable
 explicatio:explication
 explico:déployer, dérouler ; étendre, allonger ; débrouiller, tirer au clair
@@ -13618,7 +13618,7 @@ Mevia:Mevia (nom de femme)
 Mevius:Mevius
 Mezentius:Mézence (allié de Turnus contre Enée)
 mia:une
-micans:brillant, étincelant
+micans:adjt, brillant, étincelant
 mica:parcelle, miette, grain
 micarius:ramasse-miettes
 Micipsa:Micipsa (fils de Masinissa)
@@ -19114,7 +19114,7 @@ retrorsum:en arrière, en sens inverse
 retroversus2:en sens inverse
 retundo:rabattre une pointe, un tranchant, émousser, rabattre, réprimer
 retrudo:pousser en arrière, faire reculer
-retusus:émoussé, obtus, dépourvu de pénétration
+retusus:adjt, émoussé, obtus, dépourvu de pénétration
 Reudigni:Reudigni (peuple de Germanie)
 reus:accusé
 revalesco:reprendre des forces, se relever, se rétablir
@@ -21764,7 +21764,7 @@ tector:badigeonneur, stucateur
 tectorium:revêtement de stuc, enduit, plâtrage, fard
 Tectosages:les Tectosages (peuple de la Narbonnaise)
 tectum:toit, maison
-tectus:caché, couvert, souterrain
+tectus:adjt, caché, couvert, souterrain
 tecum:avec toi
 Tegeaeus:de Tégée, d'Arcadie
 Tegeatae:Tégéates (habitants de Tégée)
