@@ -1,4 +1,4 @@
-/*                           lewis.cpp
+/*                           dicos.cpp
  *
  *  This file is part of COLLATINUS.
  *
