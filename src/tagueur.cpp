@@ -526,7 +526,7 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                                 }
                                 else ligne.replace("</em> : ","\t\t");
                                 ligne.replace(" — ","\t");
-                                ligne.replace(":","\t");
+//                                ligne.replace(":","\t");
 //                                ligne.replace(" (","\t");
 //                                ligne.remove(")");
                                 lsv.append(entete + lem + ligne);
