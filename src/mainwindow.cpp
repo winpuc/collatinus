@@ -1357,13 +1357,13 @@ void MainWindow::dialogueCopie()
     QLabel *text = new QLabel;
     text->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     text->setWordWrap(true);
-    text->setText(
+    text->setText(tr(
         "<p>Pour récupérer et modifier votre travail, la meilleure manière est "
         "d'ouvrir le traitement de textes de votre choix, puis de sélectionner "
         "ci-dessous ce que vous voulez utiliser. Cliquez ensuite sur le bouton "
-        "«Appliquer». Pour terminer, revenez dans votre traitement de texte, "
-        "et copiez votre sélection avec un raccourci clavier, ou l'option de "
-        "menu <b>Édition/Coller</b>.");
+        "«Appliquer». Pour terminer, revenez dans votre traitement de texte "
+        "et collez y votre sélection avec un raccourci clavier, ou l'option de "
+        "menu <b>Édition/Coller</b>."));
 
     cbTexteLatin = new QCheckBox(tr("Texte latin"));
     cbLemmatisation = new QCheckBox(tr("Lemmatisation"));
@@ -2354,16 +2354,19 @@ QString MainWindow::startServer()
     connect (serveur, SIGNAL(newConnection()), this, SLOT (connexion ()));
     if (!serveur->listen (QHostAddress::LocalHost, 5555))
     {
-        return "Ne peux écouter.";
+        return tr("Ne peux écouter.<br/>\n"
+                  "Le port TCP/IP 5555 est peut-être déjà utilisé.");
     }
-    return "Le serveur est lancé.";
+    return tr("Le serveur est lancé.<br/>\n"
+              "Collatinus répondra sur le port TCP/IP 5555.<br/>\n"
+              "Vous pouvez également utiliser le Client_C11 en console.");
 }
 
 QString MainWindow::stopServer()
 {
     serveur->close();
     delete serveur;
-    return "Le serveur est éteint.";
+    return tr("Le serveur est éteint.");
 }
 
 void MainWindow::dockRestore()

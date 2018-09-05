@@ -6,7 +6,7 @@
     <message>
         <location filename="src/mainwindow.cpp" line="176"/>
         <location filename="src/mainwindow.cpp" line="388"/>
-        <location filename="src/mainwindow.cpp" line="1604"/>
+        <location filename="src/mainwindow.cpp" line="1637"/>
         <source>Collatinus 11</source>
         <translation type="unfinished"></translation>
     </message>
@@ -24,7 +24,7 @@
     </message>
     <message>
         <location filename="src/mainwindow.cpp" line="490"/>
-        <location filename="src/mainwindow.cpp" line="1785"/>
+        <location filename="src/mainwindow.cpp" line="1818"/>
         <source>Collatinus</source>
         <translation type="unfinished"></translation>
     </message>
@@ -272,7 +272,7 @@ Versio </source>
     <message>
         <location filename="src/mainwindow.cpp" line="803"/>
         <location filename="src/mainwindow.cpp" line="807"/>
-        <location filename="src/mainwindow.cpp" line="1893"/>
+        <location filename="src/mainwindow.cpp" line="1926"/>
         <source>Chercher</source>
         <translation type="unfinished"></translation>
     </message>
@@ -368,6 +368,11 @@ Versio </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="src/mainwindow.cpp" line="1360"/>
+        <source>&lt;p&gt;Pour récupérer et modifier votre travail, la meilleure manière est d&apos;ouvrir le traitement de textes de votre choix, puis de sélectionner ci-dessous ce que vous voulez utiliser. Cliquez ensuite sur le bouton «Appliquer». Pour terminer, revenez dans votre traitement de texte et collez y votre sélection avec un raccourci clavier, ou l&apos;option de menu &lt;b&gt;Édition/Coller&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="src/mainwindow.cpp" line="1368"/>
         <source>Texte latin</source>
         <translation type="unfinished"></translation>
@@ -393,58 +398,76 @@ Versio </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1574"/>
+        <location filename="src/mainwindow.cpp" line="1607"/>
         <source>Imprimer le texte et le lexique</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1605"/>
+        <location filename="src/mainwindow.cpp" line="1638"/>
         <source>Le changement de langue prendra effet au prochain lancement de Collatinus.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1785"/>
+        <location filename="src/mainwindow.cpp" line="1818"/>
         <source>Un ou plusieurs onglets ont été modifiés. Effacer leur contenu ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1887"/>
+        <location filename="src/mainwindow.cpp" line="1920"/>
         <source>Recherche</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1887"/>
+        <location filename="src/mainwindow.cpp" line="1920"/>
         <source>Chercher :</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="1894"/>
+        <location filename="src/mainwindow.cpp" line="1927"/>
         <source>Retour au début ?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="2102"/>
-        <location filename="src/mainwindow.cpp" line="2108"/>
+        <location filename="src/mainwindow.cpp" line="2135"/>
+        <location filename="src/mainwindow.cpp" line="2141"/>
         <source>Serveur de Collatinus</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="2424"/>
+        <location filename="src/mainwindow.cpp" line="2357"/>
+        <source>Ne peux écouter.&lt;br/&gt;
+Le port TCP/IP 5555 est peut-être déjà utilisé.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="2360"/>
+        <source>Le serveur est lancé.&lt;br/&gt;
+Collatinus répondra sur le port TCP/IP 5555.&lt;br/&gt;
+Vous pouvez également utiliser le Client_C11 en console.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="2369"/>
+        <source>Le serveur est éteint.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/mainwindow.cpp" line="2480"/>
         <source>Alerte !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="2425"/>
+        <location filename="src/mainwindow.cpp" line="2481"/>
         <source>Quitter le mode HTML perd la mise en forme des résultats précédents !</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="2427"/>
+        <location filename="src/mainwindow.cpp" line="2483"/>
         <source>Annuler</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/mainwindow.cpp" line="2429"/>
+        <location filename="src/mainwindow.cpp" line="2485"/>
         <source>Continuer</source>
         <translation type="unfinished"></translation>
     </message>
@@ -453,34 +476,63 @@ Versio </source>
     <name>Maj</name>
     <message>
         <location filename="src/maj.cpp" line="31"/>
-        <source>Sur Collatinus peut se greffer une collection de lexiques et de dictionnaires. À l&apos;installation, on ne dispose que d&apos;une partie de ces ressources. Pour en ajouter, il faut se rendre sur le site (&lt;em&gt;http://outils.biblissima.fr/fr/collatinus/&lt;/em&gt;), consulter la liste des fichiers disponibles et leur version, et les télécharger en notant bien l&apos;endroit où on les enregistre.&lt;br/&gt;
+        <source>Sur Collatinus peut se greffer une collection de lexiques et de dictionnaires. À l&apos;installation, on ne dispose que d&apos;une partie de ces ressources. Pour en ajouter, il faut se rendre sur le site &lt;a href=&apos;http://outils.biblissima.fr/fr/collatinus/&apos;&gt; (&lt;em&gt;http://outils.biblissima.fr/fr/collatinus/&lt;/em&gt;)&lt;/a&gt;, consulter la liste des fichiers disponibles et leur version, et les télécharger en notant bien l&apos;endroit où on les enregistre.&lt;br/&gt;
 Lorsque ce sera fait, il faudra aller les chercher en cliquant sur le bouton &lt;em&gt;Installer les paquets téléchargés&lt;/em&gt; ci-dessous.&lt;br/&gt;
-Il est conseillé de revenir régulièrement sur (&lt;em&gt;http://outils.biblissima.fr/fr/collatinus/&lt;/em&gt;) pour vérifier que l&apos;on possède les dernières versions des lexiques et dictionnaires. Voici la liste de ce qui est installé sur cet ordinateur. Par exemple, le nom
+Il est conseillé de revenir régulièrement sur &lt;a href=&apos;http://outils.biblissima.fr/fr/collatinus/&apos;&gt; (&lt;em&gt;http://outils.biblissima.fr/fr/collatinus/&lt;/em&gt;)&lt;/a&gt; pour vérifier que l&apos;on possède les dernières versions des lexiques et dictionnaires. Voici la liste de ce qui est installé sur cet ordinateur. Par exemple, le nom
 &lt;b&gt;Lewis_and_Short_1879-fev16.cz&lt;/b&gt;
 signifie que ce dictionnaire a été mis en ligne en février 2016.
 &lt;br&gt;
 &lt;table&gt;&lt;tr&gt;&lt;td&gt;• </source>
+        <oldsource>Sur Collatinus peut se greffer une collection de lexiques et de dictionnaires. À l&apos;installation, on ne dispose que d&apos;une partie de ces ressources. Pour en ajouter, il faut se rendre sur le site (&lt;em&gt;http://outils.biblissima.fr/fr/collatinus/&lt;/em&gt;), consulter la liste des fichiers disponibles et leur version, et les télécharger en notant bien l&apos;endroit où on les enregistre.&lt;br/&gt;
+Lorsque ce sera fait, il faudra aller les chercher en cliquant sur le bouton &lt;em&gt;Installer les paquets téléchargés&lt;/em&gt; ci-dessous.&lt;br/&gt;
+Il est conseillé de revenir régulièrement sur &lt;A href=&apos;http://outils.biblissima.fr/fr/collatinus/&apos;&gt; (&lt;em&gt;http://outils.biblissima.fr/fr/collatinus/&lt;/em&gt;)&lt;/a&gt; pour vérifier que l&apos;on possède les dernières versions des lexiques et dictionnaires. Voici la liste de ce qui est installé sur cet ordinateur. Par exemple, le nom
+&lt;b&gt;Lewis_and_Short_1879-fev16.cz&lt;/b&gt;
+signifie que ce dictionnaire a été mis en ligne en février 2016.
+&lt;br&gt;
+&lt;table&gt;&lt;tr&gt;&lt;td&gt;• </oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/maj.cpp" line="130"/>
-        <location filename="src/maj.cpp" line="160"/>
-        <location filename="src/maj.cpp" line="243"/>
+        <location filename="src/maj.cpp" line="104"/>
+        <source>Installer les paquets téléchargés</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/maj.cpp" line="105"/>
+        <source>Fermer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/maj.cpp" line="133"/>
+        <location filename="src/maj.cpp" line="163"/>
+        <location filename="src/maj.cpp" line="246"/>
         <source>Collatinus 11</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/maj.cpp" line="131"/>
-        <source>Impossible de comprendre le fichier</source>
+        <location filename="src/maj.cpp" line="134"/>
+        <source>Impossible de comprendre le fichier </source>
+        <oldsource>Impossible de comprendre le fichier</oldsource>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/maj.cpp" line="161"/>
-        <source>Impossible de créer le fichier</source>
+        <location filename="src/maj.cpp" line="135"/>
+        <source>. Le format semble être inadéquat.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="src/maj.cpp" line="244"/>
+        <location filename="src/maj.cpp" line="164"/>
+        <source>Impossible de créer le fichier </source>
+        <oldsource>Impossible de créer le fichier</oldsource>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/maj.cpp" line="165"/>
+        <source>. Vérifiez vos drois d&apos;accès, et éventuellent connectez-vous en administrateur avant de lancer Collatinus.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="src/maj.cpp" line="247"/>
         <source>L&apos;installation s&apos;est bien passée. Au prochain lancement, les nouveaux lexiques et dictionnaires seront disponibles.</source>
         <translation type="unfinished"></translation>
     </message>

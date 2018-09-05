@@ -32,7 +32,8 @@ Maj::Maj(bool dic, QDialog *parent) : QDialog(parent)
            "de lexiques et de dictionnaires. À l'installation, "
            "on ne dispose que d'une partie de ces ressources. "
            "Pour en ajouter, il faut se rendre sur le site "
-           "(<em>http://outils.biblissima.fr/fr/collatinus/</em>), "
+           "<a href='http://outils.biblissima.fr/fr/collatinus/'> "
+           "(<em>http://outils.biblissima.fr/fr/collatinus/</em>)</a>, "
            "consulter la liste des fichiers disponibles et leur "
            "version, et les télécharger en notant bien l'endroit "
            "où on les enregistre.<br/>\n"
@@ -40,7 +41,8 @@ Maj::Maj(bool dic, QDialog *parent) : QDialog(parent)
            "cliquant sur le bouton <em>Installer les paquets téléchargés</em> "
            "ci-dessous.<br/>\n"
            "Il est conseillé de revenir régulièrement sur "
-           "(<em>http://outils.biblissima.fr/fr/collatinus/</em>) "
+           "<a href='http://outils.biblissima.fr/fr/collatinus/'> "
+           "(<em>http://outils.biblissima.fr/fr/collatinus/</em>)</a> "
            "pour vérifier que l'on possède les dernières versions "
            "des lexiques et dictionnaires. Voici la liste de "
            "ce qui est installé sur cet ordinateur. "
@@ -95,11 +97,12 @@ Maj::Maj(bool dic, QDialog *parent) : QDialog(parent)
     }
     texte.append("</td></tr></table>");
     label->setText(texte);
+    label->setOpenExternalLinks(true);
 
     // barre de boutons
     QPushButton *installButton =
-        new QPushButton("Installer les paquets téléchargés");
-    QPushButton *cloreButton = new QPushButton("Fermer");
+        new QPushButton(tr("Installer les paquets téléchargés"));
+    QPushButton *cloreButton = new QPushButton(tr("Fermer"));
     QHBoxLayout *bottomLayout = new QHBoxLayout;
     bottomLayout->addStretch();
     bottomLayout->addWidget(installButton);
@@ -128,8 +131,8 @@ bool Maj::installe(QString nfcol)
     {
         QMessageBox::critical(
                     this, tr("Collatinus 11"),
-                    tr("Impossible de comprendre le fichier" + nfcol.toUtf8() +
-                       ". Le format semble être inadéquat."));
+                    tr("Impossible de comprendre le fichier ") + nfcol.toUtf8() +
+                       tr(". Le format semble être inadéquat."));
         return false;
     }
 //        qDebug() << lignes;
@@ -158,8 +161,8 @@ bool Maj::installe(QString nfcol)
         {
             QMessageBox::critical(
                         this, tr("Collatinus 11"),
-                        tr("Impossible de créer le fichier" + nfcz.toUtf8() +
-                           ". Vérifiez vos drois d'accès, et éventuellent "
+                        tr("Impossible de créer le fichier ") + nfcz.toUtf8() +
+                           tr(". Vérifiez vos drois d'accès, et éventuellent "
                            "connectez-vous en administrateur avant de lancer Collatinus."));
             return false;
         }
