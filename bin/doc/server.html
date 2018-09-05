@@ -16,11 +16,11 @@ Il faut ensuite laisser Collatinus tourner (éventuellement
 en arrière plan) pour qu’il puisse répondre aux requêtes.</p>
 
 <p>Pour les amateurs de commandes en ligne, Collatinus est
-fourni avec un petit utilitaire Client<em>C11 qui peut servir
-d’intermédiaire. Sous Windows, Client</em>C11.exe est placé
-à côté de l’exécutable Collatinus<em>11.exe. Sous MacOS,
-il est enfoui au cœur de Collatinus</em>11.app à côté de
-l’exécutable (Collatinus<em>11.app/Contents/MacOS/Client</em>C11).
+fourni avec un petit utilitaire Client_C11 qui peut servir
+d’intermédiaire. Sous Windows, Client_C11.exe est placé
+à côté de l’exécutable Collatinus_11.exe. Sous MacOS,
+il est enfoui au cœur de Collatinus_11.1.app à côté de
+l’exécutable (Collatinus_11.1.app/Contents/MacOS/Client_C11).
 La syntaxe ressemble à celle d'Unix. Par exemple :</p>
 
 <pre><code>     ./Client_C11 -lfr arma
@@ -37,8 +37,8 @@ d’interroger Collatinus sans quitter le tratement de texte.
 
 <h2>Syntaxe de la requête</h2>
 
-<p>La syntaxe est &lsquo;[cmd] [texte]&rsquo; ou &lsquo;[cmd] -f nom<em>de</em>fichier&rsquo;.
-Éventuellement complétée par &lsquo;-o nom<em>de</em>fichier<em>de</em>sortie&rsquo;.</p>
+<p>La syntaxe est &lsquo;[cmd] [texte]&rsquo; ou &lsquo;[cmd] -f nom_de_fichier&rsquo;.
+Éventuellement complétée par &lsquo;-o nom_de_fichier_de_sortie&rsquo;.</p>
 
 <p>Contrairement à l'usage Unix, on ne peut pas combiner plusieurs commandes.
 Si on veut obtenir, par exemple, la scansion et la lemmatisation d'un texte,
@@ -46,57 +46,61 @@ il faudra envoyer deux requêtes distinctes.</p>
 
 <p>Par défaut (sans cmd), on obtient la scansion du texte.</p>
 
-<p>Les commandes possibles sont :
-&ndash; -s : Scansion du texte (-s1 : avec recherche des mètres).
-&ndash; -a : Accentuation du texte (avec options -a0..-a15).
-&ndash; -l : Lemmatisation du texte (avec options -l0..-l16).
-&ndash; -h : Lemmatisation du texte en HTML (mêmes options que -l)
-&ndash; -S, -A, -L, -H : Les mêmes avec Majuscules pertinentes.
-&ndash; -t : Langue cible pour les traductions (par exemple -tfr, -tde).
-&ndash; -C : Majuscules pertinentes.
-&ndash; -c : Majuscules non-pertinentes.
-&ndash; &ndash;? : Affichage de l'aide.</p>
+<p>Les commandes possibles sont :<ul>
+<li> -s : Scansion du texte (-s1 : avec recherche des mètres).</li>
+<li> -a : Accentuation du texte (avec options -a0..-a15).</li>
+<li> -l : Lemmatisation du texte (avec options -l0..-l16).</li>
+<li> -h : Lemmatisation du texte en HTML (mêmes options que -l)</li>
+<li> -S, -A, -L, -H : Les mêmes avec Majuscules pertinentes.</li>
+<li> -t : Langue cible pour les traductions (par exemple -tfr, -tde).</li>
+<li> -C : Majuscules pertinentes.</li>
+<li> -c : Majuscules non-pertinentes.</li>
+<li> -? : Affichage de l'aide.</li></ul></p>
 
-<p>Avec l'option &lsquo;-f nom<em>de</em>fichier&rsquo;, c'est le contenu du fichier qui est traité.
+<p>Avec l'option &lsquo;-f nom_de_fichier&rsquo;, c'est le contenu du fichier qui est traité.
 Comme le fichier est ouvert dans Collatinus, il vaut probablement mieux
 donner le chemin complet du fichier. Par exemple :</p>
 
 <pre><code>      /Users/Philippe/Documents/Virgile/Eneide1.txt
 </code></pre>
 
-<p>Avec l'option &lsquo;-o nom<em>de</em>fichier<em>de</em>sortie&rsquo;, le résultat de l'opération est stocké
+<p>Avec l'option &lsquo;-o nom_de_fichier_de_sortie&rsquo;, le résultat de l'opération est stocké
 dans le fichier. Comme pour -f, il vaut mieux donner le chemin complet.</p>
 
 <h2>Détails des commandes</h2>
 
-<p>Attention, les commandes sans texte (-c, -C et -t) modifient les paramètres
-correspondants de l'application. L'affichage de l'aide n'affecte en rien l'application.
-Si un texte suit ces commandes, il est ignoré.
-&ndash; La langue cible : on peut changer la langue dans laquelle sont données les traductions
-en spécifiant l'intitulé de la langue en deux caractères.
- <em> Par exemple -tfr permet d'obtenir les traductions en français.
-Dans l'application, la langue-cible est également modifiée.
- </em> La commande nue, -t, ou avec un complément inconnu, -txx, donne la liste
-des langues disponibles (et ne modifie pas la langue dans l'application).
-&ndash; Majuscules pertinentes : on peut décider si Aeneas est équivalent à aeneas ou pas.
+<p>Attention, les commandes (-c, -C et -t) modifient les paramètres
+correspondants de l'application.
+Si un texte suit les commandes qui n'en utilise pas (-c, -C et -?), il est ignoré. L'affichage de l'aide n'affecte en rien l'application.
+<ul>
+<li> La langue cible : on peut changer la langue dans laquelle sont données les traductions
+en spécifiant l'intitulé de la langue en deux caractères.<br/>
+ – Par exemple -tfr permet d'obtenir les traductions en français.
+Dans l'application, la langue-cible est également modifiée.<br/>
+ – La commande nue, -t, ou avec un complément inconnu, -txx, donne la liste
+des langues disponibles (et ne modifie pas la langue dans l'application).</li>
+<li> Majuscules pertinentes : on peut décider si Aeneas est équivalent à aeneas ou pas.
 En début de phrase ou de vers, la majuscule initiale n'est pas considérée
-comme pertinente.
- <em> -C ou -c1 : les majuscules sont respectées.
- </em> -c : les majuscules sont ignorées.</p>
+comme pertinente.<br/>
+ – -C ou -c1 : les majuscules sont respectées.<br/>
+ – -c : les majuscules sont ignorées.</li></ul></p>
 
 <p>Les commandes avec texte modifient temporairement les paramètres de l'application,
 mais les rétablissent à la fin du traitement.
 Les commandes -s, -a, -l et -h ont leur contrepartie en majuscule (-S, -A, -L et -H)
 qui considèreront que les majuscules sont pertinentes.
-&ndash; Scansion du texte : avec les commandes -s et -S, le texte est seulement scandé ;
+<ul>
+<li> Scansion du texte : avec les commandes -s et -S, le texte est seulement scandé ;
 alors que les commandes -s1 et -S1 cherchent également les schémas métriques
 et font des statistiques.
-Attention, avec l'option 1, la réponse est en HTML avec des balises de mise en forme.
-&ndash; Accentuation du texte : les commandes -a et -A peuvent être suivies d'un ou deux
+Attention, avec l'option 1, la réponse est en HTML avec des balises de mise en forme.</li>
+
+<li> Accentuation du texte : les commandes -a et -A peuvent être suivies d'un ou deux
 chiffres qui définissent les options d'accentuation.
 Les options de groupes différents s'ajoutent (OU binaire).
- * Le premier groupe d'option détermine le comportement à adopter si la pénultième
-voyelle est commune. Ces options occupent les deux bits de poids faibles :</p>
+<ul>
+<li> Le premier groupe d'option détermine le comportement à adopter si la pénultième
+voyelle est commune. Ces options occupent les deux bits de poids faibles :
 
 <pre><code> * -a0 est équivalent à -s et retourne donc le texte scandé. 
 </code></pre>
@@ -115,8 +119,7 @@ voyelle est commune. Ces options occupent les deux bits de poids faibles :</p>
 
 <pre><code> * -a3 n'accentue pas les mots dont la pénultième est commune.
 </code></pre>
-
-<ul>
+</li>
 <li>Le troisième bit (de valeur 4) permet la syllabisation des mots.
 Il est inactif si les deux premiers bits sont nuls.
 
@@ -131,6 +134,7 @@ Le latin ecclésiastique considère en effet les voyelles communes comme brèves
 sauf dans le cas des génitifs en -ī̆ŭs, dont le plus fréquent est illius.
 La &ldquo;bonne option&rdquo; pour le latin ecclésiastique serait donc -a10 qui donnera :
 ténebræ (proparoxyton) mais illíus (paroxyton).</li>
+</ul></li>
 <li>Lemmatisation du texte : les commandes -l, -L, -h et -H retournent l'ensemble des
 lemmes du texte. -L et -H considèrent les majuscules pertinentes.
 Les commandes -l et -L retournent l'ensemble des lemmes en texte simple,
@@ -143,6 +147,7 @@ Tout comme la langue, auquel cas c'est la langue choisie dans l'appli qui
 est prise par défaut. Pour connaître la liste des langues disponibles,
 on utilisera la commande -t (voir ci-dessus).
 Comme pour les options de l'accentuation, les options de la lemmatisation s'ajoutent.</li>
+<ul>
 <li>Bit de poids faible (de valeur 1) : détermine l'ordre des lemmes
 
 <ul>
@@ -172,6 +177,7 @@ Comme pour les options de l'accentuation, les options de la lemmatisation s'ajou
 </li>
 <li>-l16 est la dernière option numérique possible et n'est pas combinable :
 elle évalue la fréquence des lemmes dans le texte.</li>
+</ul></li>
 </ul>
 
 
