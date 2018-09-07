@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <meta charset="utf-8"><link rel="stylesheet" href="doc.css"/>
 <p><em>Collatinus 11 &mdash; guide</em></p>
 
@@ -33,6 +34,10 @@ l’utilisation dans un traitement de texte.</p>
 
 <p>Dans LibreOffice, j’ai écrit des macros qui permettent
 d’interroger Collatinus sans quitter le tratement de texte.
+Sans être spécialiste, je donne néanmoins le code de mes macros
+LibreOffice à titre d'exemple au bas de cette page.
+J'ai également associé des raccourcis clavier
+pour accéder facilement à ces macros.
 Ça doit être possible aussi sous msOffice.</p>
 
 <h2>Syntaxe de la requête</h2>
@@ -46,16 +51,19 @@ il faudra envoyer deux requêtes distinctes.</p>
 
 <p>Par défaut (sans cmd), on obtient la scansion du texte.</p>
 
-<p>Les commandes possibles sont :<ul>
+<p>Les commandes possibles sont :</p><ul>
 <li> -s : Scansion du texte (-s1 : avec recherche des mètres).</li>
 <li> -a : Accentuation du texte (avec options -a0..-a15).</li>
-<li> -l : Lemmatisation du texte (avec options -l0..-l16).</li>
-<li> -h : Lemmatisation du texte en HTML (mêmes options que -l)</li>
-<li> -S, -A, -L, -H : Les mêmes avec Majuscules pertinentes.</li>
+<li> -l : Lemmatisation du texte (avec options -l0..-l16 et langue-cible).</li>
+<li> -h : Lemmatisation du texte en HTML (mêmes options que -l).</li>
+<li> -e : Lemmatisation du texte en CSV (sans option, si ce n'est la langue).</li>
+<li> -p : Appel au tagueur probabiliste.</li>
+<li> -S, -A, -L, -H, -E, -P : Les mêmes avec Majuscules pertinentes.</li>
+<li> -k9, -K9 : lemmatisation d'une <b>forme</b> avec le format du LASLA (code en 9).</li>
 <li> -t : Langue cible pour les traductions (par exemple -tfr, -tde).</li>
 <li> -C : Majuscules pertinentes.</li>
 <li> -c : Majuscules non-pertinentes.</li>
-<li> -? : Affichage de l'aide.</li></ul></p>
+<li> -? : Affichage de l'aide.</li></ul>
 
 <p>Avec l'option &lsquo;-f nom_de_fichier&rsquo;, c'est le contenu du fichier qui est traité.
 Comme le fichier est ouvert dans Collatinus, il vaut probablement mieux
@@ -71,7 +79,7 @@ dans le fichier. Comme pour -f, il vaut mieux donner le chemin complet.</p>
 
 <p>Attention, les commandes (-c, -C et -t) modifient les paramètres
 correspondants de l'application.
-Si un texte suit les commandes qui n'en utilise pas (-c, -C et -?), il est ignoré. L'affichage de l'aide n'affecte en rien l'application.
+Si un texte suit les commandes qui n'en utilise pas (-c, -C et -?), il est ignoré. L'affichage de l'aide n'affecte en rien l'application.</p>
 <ul>
 <li> La langue cible : on peut changer la langue dans laquelle sont données les traductions
 en spécifiant l'intitulé de la langue en deux caractères.<br/>
@@ -83,17 +91,21 @@ des langues disponibles (et ne modifie pas la langue dans l'application).</li>
 En début de phrase ou de vers, la majuscule initiale n'est pas considérée
 comme pertinente.<br/>
  – -C ou -c1 : les majuscules sont respectées.<br/>
- – -c : les majuscules sont ignorées.</li></ul></p>
+ – -c : les majuscules sont ignorées.</li></ul>
+
+<p><em>Remarque sur les langues</em> : la langue-cible (pour les traductions) est donnée, en général, sur deux lettres. Toutefois, en dehors du Français (fr) et de l'Anglais (en) qui ont presque toutes les traductions, les lexiques sont aujourd'hui limités (environ 11&nbsp;000 traductions). Par défaut, si la traduction dans la langue choisie n'existe pas, Collatinus donne la traduction française. On peut changer ce comportement en spécifiant plusieurs langues : par exemple, -tde.en.fr ou -L3de.en.fr donnera la traduction en Allemand si elle existe, sinon il cherchera la traduction en Anglais avant de se rabattre, si nécessaire, sur la traduction française. En bref, la langue peut être spécifiée sur 2, 5 ou 8 caractères. Le séparateur (le "." dans l'exemple ci-dessus) est ignoré.
+</p>
 
 <p>Les commandes avec texte modifient temporairement les paramètres de l'application,
 mais les rétablissent à la fin du traitement.
 Les commandes -s, -a, -l et -h ont leur contrepartie en majuscule (-S, -A, -L et -H)
-qui considèreront que les majuscules sont pertinentes.
+qui considèreront que les majuscules sont pertinentes.</p>
 <ul>
 <li> Scansion du texte : avec les commandes -s et -S, le texte est seulement scandé ;
 alors que les commandes -s1 et -S1 cherchent également les schémas métriques
 et font des statistiques.
-Attention, avec l'option 1, la réponse est en HTML avec des balises de mise en forme.</li>
+Attention, avec l'option 1, la réponse est en HTML avec des balises de mise en forme.
+<br/></li>
 
 <li> Accentuation du texte : les commandes -a et -A peuvent être suivies d'un ou deux
 chiffres qui définissent les options d'accentuation.
@@ -134,7 +146,8 @@ Le latin ecclésiastique considère en effet les voyelles communes comme brèves
 sauf dans le cas des génitifs en -ī̆ŭs, dont le plus fréquent est illius.
 La &ldquo;bonne option&rdquo; pour le latin ecclésiastique serait donc -a10 qui donnera :
 ténebræ (proparoxyton) mais illíus (paroxyton).</li>
-</ul></li>
+</ul>
+<br/></li>
 <li>Lemmatisation du texte : les commandes -l, -L, -h et -H retournent l'ensemble des
 lemmes du texte. -L et -H considèrent les majuscules pertinentes.
 Les commandes -l et -L retournent l'ensemble des lemmes en texte simple,
@@ -145,8 +158,8 @@ Attention, l'ordre est imposé : la langue, si elle est donnée, vient en dernie
 L'option numérique peut être omise (0 est alors la valeur par défaut).
 Tout comme la langue, auquel cas c'est la langue choisie dans l'appli qui
 est prise par défaut. Pour connaître la liste des langues disponibles,
-on utilisera la commande -t (voir ci-dessus).
-Comme pour les options de l'accentuation, les options de la lemmatisation s'ajoutent.</li>
+on utilisera la commande -t (voir ci-dessus).<br/>
+Comme pour les options de l'accentuation, les options de la lemmatisation s'ajoutent.
 <ul>
 <li>Bit de poids faible (de valeur 1) : détermine l'ordre des lemmes
 
@@ -169,7 +182,7 @@ Comme pour les options de l'accentuation, les options de la lemmatisation s'ajou
 <li>-l5..7 : combinaison avec les options précédentes.</li>
 </ul>
 </li>
-<li>Quatrième bit (de valeur 8) : regroupe les formes non-reconnues à la fin
+<li>Quatrième bit (de valeur 8) : regroupe les formes non-reconnues à la fin.
 
 <ul>
 <li>-l8..15 : combinaison avec les options précédentes.</li>
@@ -177,8 +190,181 @@ Comme pour les options de l'accentuation, les options de la lemmatisation s'ajou
 </li>
 <li>-l16 est la dernière option numérique possible et n'est pas combinable :
 elle évalue la fréquence des lemmes dans le texte.</li>
-</ul></li>
+</ul><br/></li>
+<li>Lemmatisation au format CSV : les commandes -e ou -E retournent les résultats au format CSV (voir les détails du format ci-dessous). A priori, ce sont plutôt des commandes à utiliser de fichier à fichier, donc en combinaison avec -f et -o.
+<pre><code>      -E -f /Users/Philippe/Documents/Virgile/Eneide1.txt -o /Users/Philippe/Documents/Virgile/Eneide1_lem.csv
+</code></pre>
+Contrairement à l'export en CSV que l'on trouve dans les menus de Collatinus, on n'a pas d'options possibles ici. Les formes sont données dans l'ordre du texte et les analyses morpho-syntaxiques ne sont pas données.
+<br/>
+</li>
+<li>Appel du tagueur probabiliste : les commandes -p ou -P retournent les résultats du tagueur probabiliste (on se réfèrera à la <a href="tagger.html">page précédente</a> pour en savoir plus sur le tagueur probabiliste). Une option numérique (de 0 à 3) permet de choisir le format de sortie (HTML ou CSV). Il n'y a pas ici de choix possible pour la langue : c'est la langue-cible définie dans l'application qui s'applique. Mais on peut la modifier avec la commande -t (voir les détails plus haut). A priori, ce sont plutôt des commandes à utiliser de fichier à fichier, donc en combinaison avec -f et -o.
+<pre><code>      -P3 -f /Users/Philippe/Documents/Virgile/Eneide1.txt -o /Users/Philippe/Documents/Virgile/Eneide1_tag.csv
+</code></pre>
+Les options sont codées sur 2 bits qui s'ajoutent. Si l'option n'est pas spécifiée, la valeur 0 est prise par défaut.
+<ul>
+<li>Bit de poids 0 (valeur 1) : il sert à déterminer si le programme donne toutes les analyses possibles ou seulement la plus probable.
+<ul>
+<li>Si le bit de poids 0 est à 0, seule l'analyse la plus probable est donnée.</li>
+<li>Si le bit de poids 0 est à 1, toutes les analyses sont données.</li>
 </ul>
+</li>
+<li>Le Bit de poids 1 (valeur 2) détermine le format de sortie : HTML (ce qui est affiché dans l'appli normale) ou CSV (voir ci-dessous les détails du format)
+<ul>
+<li>Si le bit de poids 1 est à 0, le format de sortie est l'HTML.</li>
+<li>Si le bit de poids 1 est à 1, le format de sortie est le CSV.</li>
+</ul>
+</li>
+</ul>
+La valeur 3 prise dans l'exemple ci-dessous donne toutes les analyses possibles dans un format CSV. Pour chaque mot, la première est celle que le tagueur préfère.<br/>
+</li>
+</ul>
+
+<H2>Pour utilisateurs avancés</H2>
+
+<h3>Format des fichiers CSV</h3>
+
+<h3>Exemples d'appel au port 5555</h3>
+
+Je donne ici, à titre d'exemples, les routines qui appellent le serveur de Collatinus que nous avons écrites en Qt5 et en PHP. Ce ne sont que des exemples qui, je l'espère, inspireront les adeptes d'autres langages désireux de converser avec Collatinus pour des applications spécifiques.
+<ul>
+<li>Au cœur de l'application-console Client_C11 (écrite en C++, Qt5) se trouve un appel au port TCP/IP 5555. Le code complet du Client_C11 est sur <a href="https://github.com/biblissima/collatinus">GitHub</a> (fichier <em>src/client_main.cpp</em>) :
+<pre><code>
+    QTcpSocket * tcpSocket = new QTcpSocket();
+    tcpSocket->abort();
+    tcpSocket->connectToHost(QHostAddress::LocalHost, 5555);
+    QByteArray ba = req.toUtf8();
+    tcpSocket->write(ba);
+    tcpSocket->waitForBytesWritten();
+    tcpSocket->waitForReadyRead();
+    ba = tcpSocket->readAll();
+    tcpSocket->disconnectFromHost();
+    tcpSocket->close();
+    QString rep(ba);
+    std::cout << rep.toStdString();
+</code></pre>
+</li>
+
+<li>Si on souhaite installer un serveur-web local pour lemmatiser des textes latins, on peut être conduit à écrire un code en PHP. C'est le cas, par exemple, pour <a href="https://outils.biblissima.fr/fr/collatinus-web/">Collatinus-web</a>. L'appel au port 5555 s'y fait avec le code suivant (le code complet est sur <a href="https://github.com/biblissima/collatinus-web-client">GitHub</a>) :
+<pre><code>
+//---- Transmet la requete au demon sur le serveur
+function interroge($requete) {
+  $sk = fsockopen("localhost", 5555, $errnum, $errstr, 30);
+  if (!$sk) {
+    return "erreur $errnum $errstr";
+  }
+  $avant = array('æ','Æ','œ','Œ','̀','́','à','á','è','é','ì','í','ò','ó','ù','ú','À','Á','È','É','Ì','Í','Ò','Ó','Ù','Ú');
+  $apres = array('ae','Ae','oe','Oe','','','a','a','e','e','i','i','o','o','u','u','A','A','E','E','I','I','O','O','U','U');
+  $requete = str_replace($avant, $apres, $requete);
+  $avant = array('̄','̆','ā','ă','ē','ĕ','ī','ĭ','ō','ŏ','ū','ŭ','Ā','Ă','Ē','Ĕ','Ī','Ĭ','Ō','Ŏ','Ū','Ŭ');
+  $apres = array('','','a','a','e','e','i','i','o','o','u','u','A','A','E','E','I','I','O','O','U','U');
+  $requete = str_replace($avant, $apres, $requete);
+  // Remplacement de caractères exotiques par leur équivalent ASCII
+  fwrite($sk, $requete);
+  $dati = "";
+  while (!feof($sk)) {
+    $dati .= fgets($sk, 1024);
+  }
+  fclose($sk);
+  return $dati;
+}
+ 
+</code></pre>
+</li></ul>
+
+<h3>Exemple de macros utilisées sous LibreOffice pour interroger Collatinus</h3>
+
+<p>On peut créer des macros en allant dans le menu <em>Outils/Macros/Éditer les macros</em> de LibreOffice en ayant ouvert un document Texte. On arrive alors dans un monde inconnu où on va créer un nouveau module et y coller le code ci-dessous.</p> 
+<p><em>Remarque</em> : ce code appelle Client_C11 et il faut lui donner l'adresse complète de celui-ci. Je donne en commentaire une suggestion pour les utilisateur de windows, mais je n'ai pas testé. D'autre part, il est probable qu'il y ait moyen d'appeler directement le port 5555 en Basic...</p>
+
+<pre><code>
+REM  *****  BASIC  *****
+
+Sub Main
+
+End Sub
+
+' Coll_Req est la routine clef qui envoie une requête à Collatinus.
+' Elle fonctionne sous LibreOffice 4.2 et 5.3 sur Mac et
+' elle nécessite surement des ajustements pour d'autres machines.
+'
+' Elle prend un paramètre, cmd$, qui est la commande à transmettre.
+' Elle envoie le texte sélectionné ou le mot sous le curseur,
+' précédé par cmd$, à Collatinus en passant par Client_C11.
+' Cela suppose évidemment que Collatinus tourne et que
+' son serveur est actif.
+' La réponse de Collatinus est dans le presse-papier.
+' Cette routine l'affiche dans une boîte de dialogue.
+' Dans la suite, elle est appelée avec "-S", "-L" ou "-A14"
+' pour scander, lemmatiser ou accentuer.
+Sub Coll_Req (cmd$)
+	oCurSelection = thisComponent.getCurrentSelection()
+	Dim morceau As String
+    morceau = oCurSelection.getByIndex(0).getString
+    if morceau = "" Then
+ 	' Si la sélection est vide, je prends le mot sous le curseur
+		oVC = thisComponent.getCurrentController.getViewCursor
+		oCursor = oVC.getText.createTextCursorByRange(oVC)
+		oCursor.gotoEndOfWord(false)
+		oCursor.gotoStartOfWord(true)
+		morceau = oCursor.string
+	end if
+'	Appel à un programme externe qui relaie la demande au port 5555
+	dim prog$
+	prog$ = "/Applications/Collatinus_11.app/Contents/MacOS/Client_C11"
+	' Cette adresse absolue est celle de l'exécutable Client_C11
+	' lors d'une installation standard sur Mac (dans le dossier Applications).
+	' Sous Windows, elle devrait être définie différemment. Peut-être :
+	' prog$ = "C:\Program Files\Collatinus_11\Client_C11.exe"
+	' Lors d'une installation standard, un alias de Collatinus est installé
+	' sur le bureau. On peut cliquer sur l'alias et afficher ses propriétés.
+	' La recherche de l'original donne l'adresse complète de l'exécutable
+	' Collatinus_11.exe. Client_C11.exe est juste à côté.
+	Shell(prog$,6,cmd$ + " " + morceau,true)
+'	La réponse est dans le presse-papier
+	
+' Je recopie un code trouvé sur le web
+' https://www.experts-exchange.com/questions/23646654/Moving-text-data-directly-from-clipboard-into-a-var-using-OpenOffice-Basic-in-CALC.html
+	Dim oClip, oClipContents, oTypes
+	Dim oConverter, convertedString$
+	Dim i%, iPlainLoc%
+	iPlainLoc = -1
+	Dim s$ : s$ = "com.sun.star.datatransfer.clipboard.SystemClipboard"
+	oClip = createUnoService(s$)
+	oConverter = createUnoService("com.sun.star.script.Converter")
+	oClipContents = oClip.getContents()
+	oTypes = oClipContents.getTransferDataFlavors()
+	For i=LBound(oTypes) To UBound(oTypes)
+		If oTypes(i).MimeType = "text/plain;charset=utf-16" Then
+			iPlainLoc = i
+			Exit For
+		End If
+	Next
+	If (iPlainLoc >= 0) Then
+		convertedString = oConverter.convertToSimpleType( _
+		oClipContents.getTransferData(oTypes(iPlainLoc)), _
+		com.sun.star.uno.TypeClass.STRING)
+		MsgBox convertedString
+	End If
+' Fin de copie.
+End Sub
+
+' J'ai maintenant plusieurs possibilités du côté du serveur
+' (accentuation, scansion, lemmatisation...)
+Sub Coll_Scand
+	Coll_Req ("-S")
+End Sub
+
+Sub Coll_Accent
+	Coll_Req ("-A14")
+End Sub
+
+Sub Coll_Lem
+	Coll_Req ("-L")
+End Sub
+
+</code></pre>
+
+On peut ensuite associer à ces macros des raccourcis clavier en allant dans <em>Outils/Personnaliser</em>. On a une fenêtre avec plusieurs onglets : celui qui nous intéresse est <em>Clavier</em>. Un premier cadre donne les raccourcis clavier dont beaucoup, surtout en début de liste, sont déjà utilisés. On en choisit un qui est libre et pas trop difficile à retenir et à obtenir. Par exemple, shift-cmd-L pour lemmatiser. Dans le cadre en bas à gauche ("Catégorie"), il faut aller chercher le module que l'on a créé. Chez moi, il s'appelle "Module1" et il est rangé dans <em>Macros LibreOffice/user/Standard</em>. Quand on l'a sélectionné, on voit apparaître dans le cadre "Fonction" les routines que l'on a définies. On clique sur celle que l'on veut, par exemple Coll_Lem, et on peut l'associer au raccourci de notre choix.
 
 
 <p><a href="index.html">index</a> précédent : <a href="tagger.html">Tagueur</a> suivant : <a href="avancee.html">Utilisation avancée</a></p>
