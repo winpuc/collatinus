@@ -223,6 +223,39 @@ La valeur 3 prise dans l'exemple ci-dessous donne toutes les analyses possibles 
 
 <h3>Format des fichiers CSV</h3>
 
+Les fichiers CSV reproduisent plus ou moins les informations contenues dans l'onglet de lemmatisation ou celui du tagueur. Le séparateur de champs est ici le caractère de tabulation. En effet, contrairement aux autres séparateurs courants (virgule ou point-virgule), il n'est pas utilisé dans les traductions proposées par Collatinus.<br/>
+Le fonctionnement de l'export et le format final seront différents dans les deux cas. 
+<ul>
+<li><b>Cas de la lemmatisation</b> : Dans le cas d'un export depuis l'application Collatinus, ce n'est qu'une autre présentation du travail fait. Si on a lemmatisé deux fois le même mot ou lemmatisé un mot hors texte (et que cela apparaît dans la fenêtre de lemmatisation), le fichier CSV contiendra ces lemmatisations. En revanche, dans le cas d'un appel au serveur, c'est le texte qui est lemmatisé, sans tenir compte de ce qu'il y a dans la fenêtre de lemmatisation.<br/>
+Les lignes contiennent chacune une lemmatisation. Si un mot a plusieurs lemmatisations possibles (ou plusieurs analyses possibles, si elles sont demandées), il apparaîtra autant de fois que nécessaire. S'il porte un enclitique, ce dernier ne sera pas explicité. Chaque colonne contient une information particulière :
+<ol>
+<li>Numéro du mot</li>
+<li>Niveau (pédagogique) : de 1 (mot courant) à 3 (mot rare)</li>
+<li>Forme du texte</li>
+<li>Lemme associé avec ses informations morphologiques</li>
+<li>Traduction</li>
+<li>Nombre d'occurrences du lemme dans les textes du LASLA</li>
+</ol>
+</li>
+<li><b>Cas du tagueur</b> : Quel que soit le contenu de la fenêtre du tagueur, l'export au format CSV traite l'ensemble du texte. Chaque colonne contient une information particulière :
+<ol>
+<li>Numéro du mot dans le texte</li>
+<li>Numéro de la phrase</li>
+<li>Numéro du mot dans la phrase</li>
+<li>Forme du texte</li>
+<li>Tag</li>
+<li>Lemme associé, sans quantité (pour faciliter un tri en ordre alphabétique)</li>
+<li>Lemme associé, avec ses quantités et ses informations morphologiques</li>
+<li>Nombre d'occurrences du lemme dans les textes du LASLA</li>
+<li>Traduction</li>
+<li>Forme avec quantités et son analyse morpho-syntaxique ; si le mot porte l'enclitique, on le retrouve ici (par exemple, "Pōmpējŭs + quĕ")</li>
+</ol>
+Dans le cas particulier où on a demandé toutes les analyses possibles, les mots sont répétés autant de fois que nécessaires (avec les mêmes numéros de références). La première ligne, pour chaque mot, est celle que le tagueur préfère. Dans la dernière colonne des lignes suivantes (pour chaque mot), s'ajoute une information supplémentaire qui est un "élément de probabilité" qui est associé au tag de la solution proposée. Il ne s'agit pas d'une probabilité puisque la somme n'est pas normalisée à 1. La solution préférée est donnée une deuxième fois : elle est celle qui a la plus forte de ces <em>probabilités</em>. Dans le cas où un même tag (même analyse) est partagé par deux lemmes différents, c'est le plus fréquent des deux lemmes qui est préféré. <br/>
+Ces <em>probabilités</em> peuvent donner des indications précieuses. Si les deux plus grands nombres donnés sont voisins, cela signifie que le tagueur a dû choisir la solution la plus probable, mais qu'il aurait pu hésiter. Si les statistiques avaient été faites sur plus (ou moins) de textes ou des textes différents, les <em>probabilités</em> trouvées auraient pu être légèrement différentes et l'ordre des meilleures solutions inversées. En bref, le tagueur a des chances de se tromper dans de tels cas. Nous laisserons l'utilisateur se faire une opinion sur le sens à donner à <em>nombres voisins</em> en fonction des erreurs d'analyses qu'il pourra relever.
+</li>
+</ul>
+Cette fonctionnalité étant nouvelle, le format des fichiers pourrait évoluer dans le futur (en particulier en fonction de la demande des utilisateurs). A priori, plutôt avec un éventuel ajout d'informations, donc de colonnes. Si le contenu d'une colonne n'intéresse pas un utilisateur, il devra la supprimer ou se contenter de l'ignorer.<br/>
+
 <h3>Exemples d'appel au port 5555</h3>
 
 Je donne ici, à titre d'exemples, les routines qui appellent le serveur de Collatinus que nous avons écrites en Qt5 et en PHP. Ce ne sont que des exemples qui, je l'espère, inspireront les adeptes d'autres langages désireux de converser avec Collatinus pour des applications spécifiques.
