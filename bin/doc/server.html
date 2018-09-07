@@ -260,7 +260,7 @@ Cette fonctionnalité étant nouvelle, le format des fichiers pourrait évoluer 
 
 Je donne ici, à titre d'exemples, les routines qui appellent le serveur de Collatinus que nous avons écrites en Qt5 et en PHP. Ce ne sont que des exemples qui, je l'espère, inspireront les adeptes d'autres langages désireux de converser avec Collatinus pour des applications spécifiques.
 <ul>
-<li>Au cœur de l'application-console Client_C11 (écrite en C++, Qt5) se trouve un appel au port TCP/IP 5555. Le code complet du Client_C11 est sur <a href="https://github.com/biblissima/collatinus">GitHub</a> (fichier <em>src/client_main.cpp</em>) :
+<li><b>C++, dialecte Qt5</b> : Au cœur de l'application-console Client_C11 (écrite avec Qt5) se trouve un appel au port TCP/IP 5555. Le code complet du Client_C11 est sur <a href="https://github.com/biblissima/collatinus">GitHub</a> (fichier <em>src/client_main.cpp</em>) :
 <pre><code>
     QTcpSocket * tcpSocket = new QTcpSocket();
     tcpSocket->abort();
@@ -274,10 +274,11 @@ Je donne ici, à titre d'exemples, les routines qui appellent le serveur de Coll
     tcpSocket->close();
     QString rep(ba);
     std::cout << rep.toStdString();
+
 </code></pre>
 </li>
 
-<li>Si on souhaite installer un serveur-web local pour lemmatiser des textes latins, on peut être conduit à écrire un code en PHP. C'est le cas, par exemple, pour <a href="https://outils.biblissima.fr/fr/collatinus-web/">Collatinus-web</a>. L'appel au port 5555 s'y fait avec le code suivant (le code complet est sur <a href="https://github.com/biblissima/collatinus-web-client">GitHub</a>) :
+<li><b>PHP</b> : Si on souhaite installer un serveur-web local pour lemmatiser des textes latins, on peut être conduit à écrire un code en PHP. C'est le cas, par exemple, pour <a href="https://outils.biblissima.fr/fr/collatinus-web/">Collatinus-web</a>. L'appel au port 5555 s'y fait avec le code suivant (le code complet est sur <a href="https://github.com/biblissima/collatinus-web-client">GitHub</a>) :
 <pre><code>
 //---- Transmet la requete au demon sur le serveur
 function interroge($requete) {
@@ -329,6 +330,7 @@ End Sub
 ' Cette routine l'affiche dans une boîte de dialogue.
 ' Dans la suite, elle est appelée avec "-S", "-L" ou "-A14"
 ' pour scander, lemmatiser ou accentuer.
+
 Sub Coll_Req (cmd$)
 	oCurSelection = thisComponent.getCurrentSelection()
 	Dim morceau As String
@@ -383,6 +385,7 @@ End Sub
 
 ' J'ai maintenant plusieurs possibilités du côté du serveur
 ' (accentuation, scansion, lemmatisation...)
+
 Sub Coll_Scand
 	Coll_Req ("-S")
 End Sub
@@ -394,7 +397,6 @@ End Sub
 Sub Coll_Lem
 	Coll_Req ("-L")
 End Sub
-
 </code></pre>
 
 On peut ensuite associer à ces macros des raccourcis clavier en allant dans <em>Outils/Personnaliser</em>. On a une fenêtre avec plusieurs onglets : celui qui nous intéresse est <em>Clavier</em>. Un premier cadre donne les raccourcis clavier dont beaucoup, surtout en début de liste, sont déjà utilisés. On en choisit un qui est libre et pas trop difficile à retenir et à obtenir. Par exemple, shift-cmd-L pour lemmatiser. Dans le cadre en bas à gauche ("Catégorie"), il faut aller chercher le module que l'on a créé. Chez moi, il s'appelle "Module1" et il est rangé dans <em>Macros LibreOffice/user/Standard</em>. Quand on l'a sélectionné, on voit apparaître dans le cadre "Fonction" les routines que l'on a définies. On clique sur celle que l'on veut, par exemple Coll_Lem, et on peut l'associer au raccourci de notre choix.
