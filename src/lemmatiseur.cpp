@@ -521,9 +521,9 @@ void Lemmat::ajDesinence(Desinence *d)
 
 bool Lemmat::estRomain(QString f)
 {
-    return !(f.contains(QRegExp ("[^IVXLCDM]"))
+    return !(f.contains(QRegExp ("[^IUXLCDM]"))
              || f.contains("IL")
-             || f.contains("IVI"));
+             || f.contains("IUI"));
 }
 
 /**
@@ -808,6 +808,7 @@ MapLem Lemmat::lemmatise(QString f)
     // romains
     if (estRomain(f) && !_lemmes.contains(f))
     {
+        f.replace('U','V');
         QString lin = QString("%1|inv|||adj. num.|1").arg(f);
         Lemme *romain = new Lemme(lin, 0, this);
         int nr = aRomano(f);
@@ -872,7 +873,15 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr, bool desas)
     QString res;
     QTextStream fl(&res);
     MapLem mm = lemmatise(f);
+//    qDebug() << f << desas;
     if (f.isEmpty()) return mm;
+    if (debPhr && f.at(0).isUpper())
+    {
+        QString nf = f.toLower();
+        MapLem nmm = lemmatiseM(nf);
+        foreach (Lemme *nl, nmm.keys())
+            mm.insert(nl, nmm.value(nl));
+    }
     // suffixes
     foreach (QString suf, suffixes.keys())
     {
@@ -899,13 +908,6 @@ MapLem Lemmat::lemmatiseM(QString f, bool debPhr, bool desas)
                     else mm[l][i].sufq += suffixes.value(suf); // Pour modoquest
             }
         }
-    }
-    if (debPhr && f.at(0).isUpper())
-    {
-        QString nf = f.toLower();
-        MapLem nmm = lemmatiseM(nf);
-        foreach (Lemme *nl, nmm.keys())
-            mm.insert(nl, nmm.value(nl));
     }
     // assimilations
     if (!desas)
@@ -1062,7 +1064,7 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                 if (_html)
                     lsv.append("<li style=\"color:blue;\">" + f + "</li>");
                 else
-                    lsv.append(f + " ÉCHEC");
+                    lsv.append("> " + f + " ÉCHEC\n");
             }
             if (cumColoribus)
             {
@@ -1123,6 +1125,128 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                     colPrec = 1;
                 }
             }
+
+            if (cumVocibus)
+            {
+                // avec affichage des formes du texte
+                // Le 10 novembre 2017,
+                // Je reprends tout le passage qui ordonne les solutions
+                // pour que ça se fasse pour tous les modes d'affichage.
+                // Jusqu'à présent, ça ne marchait qu'en html avec les formes.
+                QString debMorph = "\n    . ";
+                QString sepMorph = "\n    . ";
+                QString finMorph = "";
+                QString debLem = "  - ";
+                QString finLem = "\n";
+                // Je définis les chaines de début et fin d'entités
+                if (_html)
+                {
+                    // et les modifient si l'affichage est en html.
+                    debMorph = "<ul><li>";
+                    sepMorph = "</li><li>";
+                    finMorph = "</li></ul>";
+                    debLem = "<li>";
+                    finLem = "</li>";
+                }
+                QMultiMap<int,QString> listeLem;
+                // Je construis un QMultiMap avec un nombre d'occurrences en clef.
+                foreach (Lemme *l, map.keys())
+                {
+                    QString lem = debLem + l->humain(_html, _cible, true);
+                    int frMax = 0;
+                    if (cumMorpho && !inv(l, map))
+                    {
+                        // Je veux aussi donner les morphos associées
+                        // ce qui n'a de sens que si la forme du texte apparaît.
+                        QMultiMap<int,QString> listeMorph;
+                        // Un 2e QMultiMap
+                        foreach (SLem m, map.value(l))
+                        {
+                            int fr = fraction(tag(l,m.morpho));
+                            if (fr > frMax) frMax = fr;
+                            if (m.sufq.isEmpty())
+                                listeMorph.insert(-fr,m.grq + " " + m.morpho);
+                            // La fréquence est négative pour inverser l'ordre.
+                            else
+                                listeMorph.insert(-fr,m.grq + " + " + m.sufq +
+                                                  " " + m.morpho);
+                        }
+                        lem.append(debMorph);
+                        QStringList lMorph = listeMorph.values();
+                        // Liste des morphos ordonnée en ordre croissant des clefs.
+                        // Comme la clef est -fr, la plus fréquente vient d'abord.
+                        lem.append(lMorph.join(sepMorph));
+                        // Je joins les différentes morphos.
+                        lem.append(finMorph);
+                        // J'ai encapsulé les morphos et les ai ajoutées au lemme.
+                    }
+                    else foreach (SLem m, map.value(l))
+                    {
+                        // Sans donner les morphos, je dois quand même évaluer frMax.
+                        int fr = fraction(tag(l,m.morpho));
+                        if (fr > frMax) frMax = fr;
+                    }
+                    if (frMax == 0) frMax = 1024;
+                    lem.append(finLem);
+                    // Je finis d'encapsuler le lemme
+                    listeLem.insert(-frMax * l->nbOcc(),lem);
+                    // et lui associe la plus grande fréquence observée pour les morphos.
+                }
+                QStringList lLem = listeLem.values();
+                // Les valeurs sont en ordre croissant
+                // Comme les fréquences sont négatives, la plus fréquente vient d'abord.
+                QString lin = lLem.join("");
+                // L'ensemble des solutions forme un tout que j'encapsule
+                if (_html)
+                {
+                    lin.prepend("<li><h4>" + f + "</h4><ul>");
+                    lin.append("</ul></li>\n");
+                }
+                else
+                {
+                    lin.prepend("* " + f + "\n");
+                }
+//                lsv.append(lin);
+                if (!connu || listeVide) lsv.append(lin);
+                // Par défaut, pas d'aide pour les mots connus.
+            }
+            else  // sans les formes du texte
+            {
+                foreach (Lemme *l, map.keys())
+                {
+                    QString lin = l->humain(_html, _cible);
+                    if (cumMorpho && !inv(l, map) && !alpha)
+                    {
+                        // Sans les formes du texte et avec les lemmes en ordre
+                        // alphabétique, la morpho n'aurait que peu de sens.
+                        QTextStream fl(&lin);
+                        if (_html)
+                        {
+                            fl << "<ul>";
+                            foreach (SLem m, map.value(l))
+                                fl << "<li>" << m.grq << " " << m.morpho << "</li>";
+                            fl << "</ul>\n";
+                        }
+                        else
+                            foreach (SLem m, map.value(l))
+                                fl << "\n    . " << m.grq << " " << m.morpho;
+                    }
+                    if (_html)
+                    {
+                        lin.prepend("<li>");
+                        lin.append("</li>");
+                    }
+                    else
+                    {
+                        lin.prepend("* ");
+                        lin.append("\n");
+                    }
+//                    lsv.append(lin);
+                    if (!connu || listeVide) lsv.append(lin);
+                    // Par défaut, pas d'aide pour les mots connus.
+                }
+            }
+            /* Le passage modifié est conservé.
             if (cumVocibus)
             {
                 // avec affichage des formes du texte
@@ -1213,6 +1337,7 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                     // Par défaut, pas d'aide pour les mots connus.
                 }
             }
+*/
         }
     }  // fin de boucle de lemmatisation pour chaque mot
 
@@ -1222,16 +1347,20 @@ QString Lemmat::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
         qSort(lsv.begin(), lsv.end(), Ch::sort_i);
     }
     // peupler lRet avec les résultats
-    QStringList lRet;
-    if (_html) lRet.append("<ul>");
-    foreach (QString item, lsv)
+    QStringList lRet = lsv;
+    if (_html)
+    {
+        lRet.prepend("<ul>");
+        lRet.append("</ul>\n");
+    }
+/*    foreach (QString item, lsv)
     {
         if (_html)
             lRet.append("<li>" + item + "</li>");
         else
             lRet.append("* " + item + "\n");
     }
-    if (_html) lRet.append("</ul>\n");
+    if (_html) lRet.append("</ul>\n");*/
     // non-reconnus en fin de liste si l'option nreconnu
     // est armée
     if (nreconnu && !nonReconnus.empty())

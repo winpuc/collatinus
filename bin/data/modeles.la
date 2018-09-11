@@ -252,7 +252,7 @@ abs:1-6
 
 modele:turris
 pere:ciuis
-des:3:1:ĭm
+des:3,6:1:ĭm;ī
 
 modele:uis
 pere:ciuis
@@ -335,7 +335,8 @@ pos:n
 
 modele:jesus
 R:0:2,0
-des:1-6:0:ūs;ūs,ū;ūs,ŭm;ūs;ūs,ū
+des:1-6:0:ūs;ū;ŭm;ū;ū;ū
+!des:1-6:0:ūs;ūs,ū;ūs,ŭm;ūs;ūs,ū
 pos:n
 
 modele:clio
@@ -454,6 +455,8 @@ des:85-120:1:īssĭm$lupus;īssĭm$uita;īssĭm$templum
 
 modele:infans
 pere:fortis
+des:37-39:1:ns
+des+:18,30,42:1:ē
 des+:22,34,46:1:ŭm3
 
 modele:acer
@@ -527,7 +530,7 @@ abs:14,20,26,32,38,44
 modele:ille
 pere:ipse
 des:13,37,39:0:ĕ;ŭd
-des+:15,18,21,25,27,42:1:ūnc3;ōc3;ōscĭnĕ1;āec3;ānc3;ōc1
+des+:15,18,21,25,27,42,43,45:0:ūnc3;ōc3;ōscĭnĕ1;āec3;ānc3;ōc1;āec;āec
 
 modele:qui
 R:1:3,0
@@ -562,6 +565,7 @@ pere:qui
 R:1:6,0
 sufd:dăm
 des:37,39:1:quīddăm
+des+:25:1:quāndăm
 
 modele:quilibet
 pere:qui
@@ -604,7 +608,7 @@ modele:quisquam
 pere:quis
 R:1:8,0
 sufd:quăm
-des+:37,39:1:quīcquăm
+!des+:37,39:1:quīcquăm
 
 modele:quisque
 pere:quis
@@ -973,10 +977,10 @@ pere:lego
 R:0:2,0
 R:2:3,0
 R:4:3,0
-R:5:3,ĕr
+!R:5:3,ĕr
 R:6:2,0
 R:7:3,ēss
-R:8:3,fŭt
+!R:8:3,fŭt
 abs:189-374
 ! indicatif
 des:121,124,126:0:ŭm;ŭmŭs;ūnt
@@ -994,9 +998,10 @@ des:186:0:ūntō
 des:187:7:ĕ
 des:416:4:fŏrĕ
 ! participe futur
-des:225-236:8:ūrŭs;ūrĕ;ūrŭm;ūrī;ūrō;ūrō;ūrī;ūrī;ūrōs;ūrōrŭm;ūrīs;ūrīs
-des:237-248:8:ūră;ūră;ūrăm;ūrāe;ūrāe;ūrā;ūrāe;ūrāe;ūrās;ūrārŭm;ūrīs;ūrīs
-des:249-260:8:ūrŭm;ūrŭm;ūrŭm;ūrī;ūrō;ūrō;ūră;ūră;ūră;ūrōrŭm;ūrīs;ūrīs
+des:225-260:1:tūr$lupus;tūr$uita;tūr$templum
+!des:225-236:8:ūrŭs;ūrĕ;ūrŭm;ūrī;ūrō;ūrō;ūrī;ūrī;ūrōs;ūrōrŭm;ūrīs;ūrīs
+!des:237-248:8:ūră;ūră;ūrăm;ūrāe;ūrāe;ūrā;ūrāe;ūrāe;ūrās;ūrārŭm;ūrīs;ūrīs
+!des:249-260:8:ūrŭm;ūrŭm;ūrŭm;ūrī;ūrō;ūrō;ūră;ūră;ūră;ūrōrŭm;ūrīs;ūrīs
 
 modele:absum
 pere:sum
@@ -1008,13 +1013,16 @@ des:213-224:0:ēns;ēns;ēns;ēntĭs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ē
 modele:possum
 pere:sum
 R:4:4,t
-R:5:4,tĕr
+!R:5:4,tĕr
 R:7:2,0
+! Pas d'impératif, ni participe, ni supin (dixit Cart-Grimal)
+abs:181-186
+abs:225-260
 
 modele:prosum
 pere:sum
 R:4:3,d
-R:5:3,dĕr
+!R:5:3,dĕr
 R:7:3,dēss
 
 modele:imitor

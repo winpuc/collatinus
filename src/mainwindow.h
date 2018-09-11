@@ -103,6 +103,8 @@ class MainWindow : public QMainWindow
     QString startServer ();
     QString stopServer ();
 
+    QString lem2csv(QString texte);
+
     void tagger(QString t, int p); // Je voudrais créer dans MainWindow l'interface du tagger.
 
 
@@ -129,6 +131,7 @@ class MainWindow : public QMainWindow
     void dialogueCopie();
     void effaceRes();
     void exportPdf();
+    void exportCsv();
     void flechisLigne();
     void imprimer();
     void langueInterface();
@@ -240,6 +243,7 @@ class MainWindow : public QMainWindow
     QAction *dicLittActW;
     QAction *enAct;
     QAction *exportAct;
+    QAction *exportCsvAct;
     QAction *fontAct;
     QAction *findAct;
     QAction *frAct;

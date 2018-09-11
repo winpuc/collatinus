@@ -41,6 +41,19 @@ class Dictionnaire : public QObject
     QString chData;  // chemin complet du fichier djvu ou xml
     QString chopNum(const QString c);
     QString cond_jv;
+    // Pour pouvoir lire l'index de dicos en Tchèque, par exemple,
+    // je dois pouvoir modifier l'ordre alphabétique.
+    QString alphabet;
+    // Dans le fichier cfg, la variable "alphabet" donne
+    // toutes les "lettres" utilisées, séparées par un point ".".
+    QStringList caracteres; // En Tchèque, le digraphe "ch" est entre le h et le i.
+    QList<int> indices;
+    // Les caractères ont dû être ordonnés, mais en conservant leur indice
+    // dans l'ordre alphabétique.
+    int compChaines(QString s1, QString s2);
+    int nbCar;
+    // Une fonction pour comparer deux chaines en tenant compte
+    // de l'ordre alphabétique donné par alphabet.
     int debut;
     bool djvu;
     QString echelle;  // échelle pour l'extraction d'une image d'un djvu

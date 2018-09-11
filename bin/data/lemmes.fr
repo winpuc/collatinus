@@ -282,7 +282,7 @@ Aconteus:Aconteus
 Acontius:Acontius (mont de Béotie, amant de Cydippe)
 acor:aigreur, acidité
 acosmos:(beauté) négligée
-acquiesco:se reposer, se calmer,
+acquiesco:se reposer, se calmer
 acquiro:ajouter à, augmenter
 Acragantinus:d'Acragas [Agrigente]
 Acragas:Agrigente [ville de Sicile, sur une hauteur]
@@ -5133,7 +5133,7 @@ consudo:suer abondamment, ressuer
 consuefacio:accoutumer
 consuesco:s'habituer
 consuetio:commerce, liaison
-consuetudo:habitude, coutume, usage ; l'usage d'une langue, langue, langage ; liaison,
+consuetudo:habitude, coutume, usage ; l'usage d'une langue, langue, langage ; liaison
 consuetus:habituel, accoutumé
 consularis2:consulaire, ancien consul
 consularis:consulaire
@@ -5334,7 +5334,7 @@ Coponius:Coponius (nom romain)
 cops:riche, opulent, qui abonde de, formes usitées
 coptoplacenta:coptoplacenta (sorte de gâteau à pâte dure)
 Coptus:Coptus (ville de la Thébaïde d'Égypte)
-copula:chaîne, lien moral,
+copula:chaîne, lien moral
 copulatus:lié, attaché
 copulo:lier, attacher
 copulor:lier, attacher
@@ -6425,7 +6425,7 @@ describo:diviser, distribuer, décrire
 descripta:récit, exposé, journal
 descriptio:reproduction, copie, dessin, tracé, description
 deseco:séparer en coupant
-desero2:semer,
+desero2:semer
 desero:abandonner
 desertor:celui qui abandonne, déserteur
 desertum:désert, solitude
@@ -7245,7 +7245,7 @@ edita:ordres, lieux élevés
 editicius:juge choisi par l'accusateur
 editio:enfantement, production, représentation, publication [de livres], édition, déclaration
 editum:tertre, hauteur
-editus:adjt, élevé, haut, supérieur
+editus:élevé, haut, supérieur
 edo2:mettre à jour, faire connaître, produire (editus, a, um : élevé, haut)
 edoceo:enseigner, former complètement
 edo:manger
@@ -7753,7 +7753,7 @@ et:conj. et, adv. aussi
 etenim:et en effet
 Eteocles:Étéocle (fils d'Œdipe)
 etesiae:vents étésiens [qui soufflent à l'époque de la canicule]
-etesius:étésien,
+etesius:étésien
 etiam:encore, en plus, aussi, même, bien plus
 etiamnum:encore maintenant, encore
 etiamnunc:encore maintenant
@@ -8092,7 +8092,7 @@ explano:étendre, expliquer
 explaudo:chasser [en battant des mains], mal accueillir, huer, siffler, désapprouver, condamner
 explementum:remplissage
 expleo:remplir
-expletus:adjt, accompli, parfait
+expletus:accompli, parfait
 explicabilis:explicable
 explicatio:explication
 explico:déployer, dérouler ; étendre, allonger ; débrouiller, tirer au clair
@@ -8146,7 +8146,7 @@ exscribo:transcrire
 exsculpo:arracher, enlever [en creusant], ôter, ciseler, sculpter, graver, inciser
 exseco:retrancher [en coupant], châtrer, couper, rogner, retrancher, déduire
 exsecrabilis:exécrable, abominable
-exsecrandus:exécrable,
+exsecrandus:exécrable
 exsecratio:promesse solennelle, malédiction, exécration
 exsecratus2:maudit, détesté, exécré
 exsecror:maudire, lancer des imprécations
@@ -8847,7 +8847,7 @@ fortasse:peut-être, sans doute
 fortassis:peut-être
 fortax:support, assise
 forte:par hasard
-fortis:fort, vigoureux, courageux,
+fortis:fort, vigoureux, courageux
 fortiter:courageusement
 fortitudo:courage
 fortuito:par hasard, fortuitement
@@ -11780,6 +11780,7 @@ jejune:sèchement, maigrement, sans développement
 jejuniosus:à jeun, affamé
 jejunium:jeûne, faim
 jejunus:à jeun, altéré, sec ; [en parl. du sol] maigre, pauvre
+jentaculum:déjeuner, petit déjeuner
 Jesus:Jésus
 joca:plaisanterie
 jocatio:badinage, plaisanterie
@@ -13617,7 +13618,7 @@ Mevia:Mevia (nom de femme)
 Mevius:Mevius
 Mezentius:Mézence (allié de Turnus contre Enée)
 mia:une
-micans:adjt, brillant, étincelant
+micans:brillant, étincelant
 mica:parcelle, miette, grain
 micarius:ramasse-miettes
 Micipsa:Micipsa (fils de Masinissa)
@@ -14868,7 +14869,7 @@ obsequiosus:plein de complaisance, obséquieux
 obsequium:complaisance, déférence, respect ; l'obéissance ; les complaisances coupables
 obsequor:se plier aux désirs de, obéir
 obsero2:ensemencer, semer, planter
-obsero:vérouiller
+obsero:verrouiller
 observabilis:qu'on peut observer, remarquable, admirable
 observans:qui a de la déférence, de la considération, du respect pour, qui observe, qui obéit
 observantia:action de remarquer, observation, respect [des coutumes, des lois], considération, égards, déférence, culte, religion
@@ -16196,7 +16197,7 @@ perfluctuo:flotter à travers, grouiller dans
 perfluo:être inondé
 perfodio:transpercer, blesser, creuser
 perforo:percer, trouer
-perfrico:frotter complètement, frictionner; oindre,
+perfrico:frotter complètement, frictionner; oindre
 perfrigesco:devenir très froid, prendre froid, se refroidir
 perfrigidus:très froid
 perfringo:briser entièrement, se frayer un chemin par la force
@@ -16870,7 +16871,7 @@ pisum:pois (légume)
 pithus:comète
 pittacium:morceau de peau (cuir ou parchemin) ; étiquette, emplâtre, mémoire, liste, état, récépissé, quittance, pièce [sur un vêtement ou une chaussure]
 Pittacos:Pittacos [de Mitylène] (un des sept sages de la Grèce)
-Pittheis:de Pitthée,
+Pittheis:de Pitthée
 Pittheius:de Pitthée, de Trézène
 Pituanius:Pituanius (nom d'homme)
 Pituavius:Pituavius
@@ -18121,7 +18122,7 @@ puberes:adultes
 pubertas:puberté, signe de la puberté, poils, barbe, duvet des plantes, faculté virile, jeunes gens
 pubes2:(signe de la virilité) poil, aine, pubis, jeunesse, jeunes gens, gens, peuple, foule
 pubesco:devenir adolescent
-pubes:pubère, adulte,
+pubes:pubère, adulte
 publica:courtisane, prostituée.
 publicanus2:du publicain, du fermier de l'État, du fermier d'un impôt public
 publicanus:publicain, fermier d'impôt
@@ -19113,7 +19114,7 @@ retrorsum:en arrière, en sens inverse
 retroversus2:en sens inverse
 retundo:rabattre une pointe, un tranchant, émousser, rabattre, réprimer
 retrudo:pousser en arrière, faire reculer
-retusus:adjt, émoussé, obtus, dépourvu de pénétration
+retusus:émoussé, obtus, dépourvu de pénétration
 Reudigni:Reudigni (peuple de Germanie)
 reus:accusé
 revalesco:reprendre des forces, se relever, se rétablir
@@ -20682,7 +20683,7 @@ sors:réponse d'un oracle, sort, destinée
 Sortientes:Les Tirages au sort (titre d'une comédie)
 sortilegus:prophétique
 sortio:partager
-sortior:tirer au sort, choisir par le sort,
+sortior:tirer au sort, choisir par le sort
 sortitio:tirage au sort
 sortito:par tirage au sort
 sortitor:celui qui tire les noms de l'urne
@@ -20789,7 +20790,7 @@ spissamentum:bouchon, tampon
 spisse:en tassant, lentement, en accumulant, souvent
 spissesco:se condenser, s'épaissir
 spisso:épaissir, condenser, coaguler, faire souvent, sans arrêt
-spissus:serré, dense, compact, dru, lent,
+spissus:serré, dense, compact, dru, lent
 splendens:brillant
 splendeo:briller
 splendesco:devenir brillant, prendre de l'éclat
@@ -21763,7 +21764,7 @@ tector:badigeonneur, stucateur
 tectorium:revêtement de stuc, enduit, plâtrage, fard
 Tectosages:les Tectosages (peuple de la Narbonnaise)
 tectum:toit, maison
-tectus:adjt, caché, couvert, souterrain
+tectus:caché, couvert, souterrain
 tecum:avec toi
 Tegeaeus:de Tégée, d'Arcadie
 Tegeatae:Tégéates (habitants de Tégée)
@@ -23383,6 +23384,7 @@ verniliter:servilement
 verno:reverdir, refleurir, muer (serpent), sentir le printemps
 vernula:jeune esclave [né dans la maison], indigène, national
 vernum:printemps
+vero:vraiment, en fait, quant à
 Verona:Vérone (ville de Vénétie)
 Veronenses:Véronais (h. de Vérone)
 verpa:membre viril
