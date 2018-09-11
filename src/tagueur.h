@@ -1,4 +1,4 @@
-/*               mot.h
+/*               tagueur.h
  *
  *  This file is part of COLLATINUS.
  *
@@ -19,45 +19,23 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
-#ifndef MOT_H
-#define MOT_H
-
-#include <QString>
-#include <QStringList>
-#include <QMap>
-#include <QtCore/QCoreApplication>
+#ifndef TAGUEUR_H
+#define TAGUEUR_H
 
 #include "lemCore.h"
-#include "lemme.h"
+#include "mot.h"
 #include "ch.h"
 
-class Mot : public QObject
+class Tagueur : public QObject
 {
-    Q_OBJECT
 public:
-    Mot(QString forme, int rang, bool debVers, QObject *parent = 0);
-    QString choisir(QString t = "", int np = 0, bool tout = true);
-    long proba(QString t);
-    QStringList tags();
-    QString forme();
-    QString tagEncl();
-    bool inconnu();
-    void setBestOf(QString t, double pr);
-    double bestOf(QString t);
+    Tagueur(QObject *parent = 0, LemCore *l=0, QString cible = "", QString resDir="");
+    // Pour le tagger
+    QString tagTexte(QString t, int p, bool affTout = true, bool majPert = true, bool affHTML = true);
 
 private:
-    LemCore* _lemCore;
-    QString _forme;
-    int _rang;
-    QString _tagEncl;
-    MapLem _mapLem;
-    QStringList _lemmes;
-    QStringList _morphos;
-    QStringList _tags;
-    QList<int> _nbOcc;
-    QMap<QString,long> _probas;
-    QString _maxProb;
-    QMap<QString,double> _bestOf;
+    LemCore * _lemCore;
+    QString _resDir;
 };
 
-#endif // MOT_H
+#endif // TAGUEUR_H

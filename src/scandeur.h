@@ -1,4 +1,4 @@
-/*      irregs.h
+/*               scandeur.h
  *
  *  This file is part of COLLATINUS.
  *
@@ -19,42 +19,31 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
-#ifndef IRREGS_H
-#define IRREGS_H
-
-#include <QList>
-#include <QString>
-#include <QStringList>
-
-#include "lemCore.h"
-#include "ch.h"
-#include "lemme.h"
-#include "modele.h"
+#ifndef SCANDEUR
+#define SCANDEUR
 
 #include <QDebug>
 
-class LemCore;
-class Lemme;
+#include "ch.h"
+#include "lemCore.h"
 
-class Irreg : public QObject
+class Scandeur : public QObject
 {
-    Q_OBJECT
+public:
+    Scandeur(QObject *parent = 0, LemCore *l=0, QString resDir="");
+    // Pour scander, un texte.
+    QString parPos(QString f);
+    QString scandeTxt(QString texte, int accent = 0, bool stats = false, bool majAut = false);
 
-   private:
-    bool _exclusif;
-    QString _gr;
-    QString _grq;
-    LemCore* _lemmat;
-    Lemme* _lemme;
-    QList<int> _morphos;
-
-   public:
-    Irreg(QString l, QObject* parent = 0);
-    bool exclusif();
-    QString gr();
-    QString grq();
-    Lemme* lemme();
-    QList<int> morphos();
+private:
+    LemCore * _lemCore;
+    QString _resDir;
+    QList<Reglep> _reglesp;
+    void lisParPos();
+    QStringList cherchePieds(int nbr, QString ligne, int i, bool pentam);
+    QStringList formeq(QString forme, bool *nonTrouve, bool debPhr,
+                       int accent = 0);
 };
 
-#endif
+#endif // SCANDEUR
+

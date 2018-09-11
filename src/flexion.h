@@ -22,11 +22,14 @@
 #ifndef FLEXION_H
 #define FLEXION_H
 
+#include <QList>
+#include <QRegExp>
+
 #include <QString>
 #include <QStringList>
 #include <QUrl>
 
-#include "lemmatiseur.h"
+#include "lemCore.h"
 #include "lemme.h"
 
 #define OMIS 1
@@ -38,7 +41,7 @@ class Flexion : public QObject
 
    private:
     Lemme *_lemme;
-    Lemmat *_lemmatiseur;
+    LemCore *_lemmatiseur;
     // constantes de table html :
     QString const static entete;
     QString const static lina;

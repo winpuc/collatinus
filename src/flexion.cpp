@@ -19,9 +19,6 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
-#include <QList>
-#include <QRegExp>
-
 #include "flexion.h"
 
 #include <QDebug>
@@ -33,7 +30,7 @@
  */
 Flexion::Flexion(QObject *parent) : QObject(parent)
 {
-    _lemmatiseur = qobject_cast<Lemmat *>(parent);
+    _lemmatiseur = qobject_cast<LemCore *>(parent);
 }
 
 const QString Flexion::entete =

@@ -1,3 +1,24 @@
+/*               mot.cpp
+ *
+ *  This file is part of COLLATINUS.
+ *
+ *  COLLATINUS is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  COLLATINVS is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with COLLATINUS; if not, write to the Free Software
+ *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ *
+ * © Yves Ouvrard, 2009 - 2016
+ */
+
 #include "mot.h"
 
 Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
@@ -5,7 +26,7 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
 //    qDebug() << forme;
     _forme = forme;
     _rang = rang;
-    _lemmatiseur = qobject_cast<Lemmat *>(parent);
+    _lemCore = qobject_cast<LemCore *>(parent);
     _probas.clear();
     _tagEncl = "";
     if (forme.isEmpty())
@@ -15,7 +36,7 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
     }
     else
     {
-        _mapLem = _lemmatiseur->lemmatiseM(forme, (rang == 0) || debVers);
+        _mapLem = _lemCore->lemmatiseM(forme, (rang == 0) || debVers);
         QString enclitique = "";
         // échecs
         if (_mapLem.empty())
@@ -24,43 +45,44 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
         }
         else foreach (Lemme *l, _mapLem.keys())
         {
-            QString lem = l->humain(true, _lemmatiseur->cible(), true);
+            QString lem = l->humain(true, _lemCore->cible(), true);
             int nb = l->nbOcc();
             foreach (SLem m, _mapLem.value(l))
             {
-                QString lt = _lemmatiseur->tag(l, m.morpho); // Maintenant, c'est une liste de tags.
+                QString lt = _lemCore->tag(l, m.morpho); // Maintenant, c'est une liste de tags.
                 // Pour les analyses, je garde la liste de tags.
-                long fr = nb * _lemmatiseur->fraction(lt);
+                long fr = nb * _lemCore->fraction(lt);
                 _lemmes.append(lem);
                 _tags.append(lt);
                 _nbOcc.append(fr);
                 //                    qDebug() << forme << lem << nb << lt << t << fr;
                 if (m.sufq.isEmpty())
                 {
-                    if (m.morpho == "-") _morphos.append(m.grq);
-                    else _morphos.append(m.grq + " " + m.morpho);
+                    if (m.morpho == 416) _morphos.append(m.grq);
+                    else _morphos.append(m.grq + " " + _lemCore->morpho(m.morpho));
                 }
                 else
                 {
-                    if (m.morpho == "-") _morphos.append(m.grq + " + " + m.sufq);
-                    else _morphos.append(m.grq + " + " + m.sufq + " " + m.morpho);
+                    if (m.morpho == 416) _morphos.append(m.grq + " + " + m.sufq);
+                    else _morphos.append(m.grq + " + " + m.sufq + " " + _lemCore->morpho(m.morpho));
                     enclitique = m.sufq;
                 }
                 while (lt.size() > 2)
                 {
                     QString t = lt.mid(0,3);
                     lt = lt.mid(4);
-                    fr = nb * _lemmatiseur->fraction(t);
+                    fr = nb * _lemCore->fraction(t);
                     _probas[t] += fr;
                 }
             }
         }
-        if (Ch::abrev.contains(forme))
+//        if (Ch::abrev.contains(forme))
+        if (_lemCore->estAbr(forme))
         {
             // C'est un nom à n'importe quel cas !
             _probas.clear();
             QString pseudo = "n%1";
-            for (int i = 1; i < 7; i++) _probas[pseudo.arg(i)+"1"] = _lemmatiseur->tagOcc(pseudo.arg(i)+"1");
+            for (int i = 1; i < 7; i++) _probas[pseudo.arg(i)+"1"] = _lemCore->tagOcc(pseudo.arg(i)+"1");
         }
         // J'ai construit les listes de lemmes, morphos, tags et nombres d'occurrences.
         // J'ai aussi une QMap qui associe les tags aux probas, que je dois normaliser.
@@ -123,7 +145,7 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
 //    qDebug() << forme;
 }
 
-QString Mot::choisir(QString t, bool tout)
+QString Mot::choisir(QString t, int np, bool tout)
 {
     QString choix = "";
     int valeur = -1;
@@ -136,12 +158,12 @@ QString Mot::choisir(QString t, bool tout)
         }
     if (!choix.isEmpty())
     {
-        choix.prepend("<br/>—&gt;&nbsp;<span style='color:black'>");
+        choix.prepend("<br/>\n—&gt;&nbsp;<span style='color:black'>");
         choix.append("</span>\n");
     }
     if (tout || choix.isEmpty())
     {
-        choix.append("<span style='color:#777777'><ul>");
+        choix.append("<span style='color:#777777'><ul>\n");
         for (int i=0; i < _tags.size(); i++)
         {
             QString format = "%1 : %2 ; ";
@@ -163,7 +185,8 @@ QString Mot::choisir(QString t, bool tout)
     QString ajout;
     if (t == _maxProb) ajout = t;
     else ajout = t + " (" + _maxProb + ")";
-    choix.prepend("<li><strong>" + _forme + "</strong> " + ajout);
+    QString debut = "<li id='S_%1_W_%2'><strong>";
+    choix.prepend(debut.arg(np).arg(_rang) + _forme + "</strong> " + ajout);
     choix.append("</li>");
     return choix;
 }
@@ -203,6 +226,6 @@ void Mot::setBestOf(QString t, double pr)
     {
         if (pr > _bestOf[t]) _bestOf[t] = pr;
     }
-    else qDebug() << t << pr;
+    else qDebug() << "tag non trouvé pour" << _forme << t << pr;
         // _bestOf[t] = pr;
 }

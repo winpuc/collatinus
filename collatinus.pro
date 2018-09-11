@@ -1,4 +1,5 @@
 VERSION = "11med"
+
 DEFINES += VERSION=\\\"$$VERSION\\\"
 DEFINES += MEDIEVAL
 
@@ -29,29 +30,36 @@ QMAKE_DISTCLEAN += $${DESTDIR}/collatinus
 HEADERS += src/ch.h \
            src/flexion.h \
            src/irregs.h \
-           src/lemmatiseur.h \
            src/lemme.h \
            src/dicos.h \
 		   src/modele.h \
-           src/flexfr.h \
+#           src/flexfr.h \
            src/mainwindow.h \
 		   src/maj.h \
-           src/mot.h
+    src/mot.h \
+    src/lasla.h \
+    src/tagueur.h \
+    src/scandeur.h \
+    src/lemCore.h \
+    src/lemmatiseur.h
 
 SOURCES += src/ch.cpp \
            src/flexion.cpp \
-		   src/frequences.cpp \
+#		       src/frequences.cpp \
            src/irregs.cpp \
-           src/lemmatiseur.cpp \
            src/lemme.cpp \
            src/dicos.cpp \
-           src/flexfr.cpp \
+#           src/flexfr.cpp \
            src/main.cpp \
 		   src/maj.cpp \
            src/mainwindow.cpp \
            src/modele.cpp \
            src/scandeur.cpp \
-           src/mot.cpp
+    src/mot.cpp \
+    src/lasla.cpp \
+    src/tagueur.cpp \
+    src/lemCore.cpp \
+    src/lemmatiseur.cpp
 
 RESOURCES += collatinus.qrc
 RC_ICONS = res/collatinus.ico

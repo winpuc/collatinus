@@ -21,14 +21,23 @@
 
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
+
 #include <QMainWindow>
 #include <QtWidgets>
 #include <QtNetwork>
+#include <QDebug>
+#include <QPrintDialog>
+#include <QPrinter>
 
 #include "flexion.h"
-#include "lemmatiseur.h"
+#include "lemCore.h"
 #include "dicos.h"
 #include "ch.h"
+#include "lasla.h"
+#include "tagueur.h"
+#include "scandeur.h"
+#include "lemmatiseur.h"
+#include "maj.h"
 
 QT_BEGIN_NAMESPACE
 class QAction;
@@ -69,8 +78,13 @@ class MainWindow : public QMainWindow
     // et second dictionnaire
     QWidget *wDic;
     // cœur
-    Lemmat *lemmatiseur;
+    LemCore *_lemCore;
     Flexion *flechisseur;
+    // modules divers
+    Lasla *lasla;
+    Tagueur *tagueur;
+    Scandeur *scandeur;
+    Lemmatiseur *_lemmatiseur;
     // widgets d'édition et d'affichage
     EditLatin *editLatin;
     QTextEdit *textEditLem;
@@ -96,7 +110,8 @@ class MainWindow : public QMainWindow
     bool html();
     QAction *syncAct;
     QAction *calepAct;
-    // gr() de la dernière lemmatisation
+    QAction *majPertAct;
+    // L'option de majuscule pertinente doit être accessible depuis EditLatin.
     QStringList lemsDic;
     int lireOptionsAccent();
     // Pour le serveur
@@ -200,7 +215,6 @@ class MainWindow : public QMainWindow
     QAction *alphaOptAct;
     QAction *formeTAct;
     QAction *htmlAct;
-    QAction *majPertAct;
     QAction *morphoAct;
     QAction *nonRecAct;
     // bascule d'accentuation

@@ -25,12 +25,16 @@
 #include <QMultiMap>
 #include <QObject>
 #include <QString>
+#include <QDebug>
+#include <QStringList>
+
 #include "irregs.h"
-#include "lemmatiseur.h"
+#include "lemCore.h"
 #include "modele.h"
+#include "ch.h"
 
 class Irreg;
-class Lemmat;
+class LemCore;
 class Lemme;
 class Modele;
 
@@ -65,7 +69,7 @@ class Lemme : public QObject
     QList<Irreg*>               _irregs;
     Modele*                     _modele;
     int                         _nh;
-    Lemmat*                     _lemmatiseur;
+    LemCore*                     _lemmatiseur;
     QList<int>                  _morphosIrrExcl;
     int                         _nbOcc; // Nombre d'occurrences du lemme dans les textes du LASLA
     int                         _origin; // lemmes ou lem_ext

@@ -19,10 +19,6 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
-#include <QDebug>
-
-#include "ch.h"
-#include "lemmatiseur.h"
 #include "modele.h"
 
 ///////////////
@@ -125,9 +121,9 @@ void Desinence::setModele(Modele *m)
  *        fichier data/modeles.la, consulter la documentation
  *        utilisateur.
  */
-Modele::Modele(QStringList ll, Lemmat *parent)
+Modele::Modele(QStringList ll, LemCore *parent)
 {
-    _lemmatiseur = qobject_cast<Lemmat *>(parent);
+    _lemmatiseur = qobject_cast<LemCore *>(parent);
     _pere = 0;
     _pos = '\0';
     QMultiMap<QString, int> msuff;

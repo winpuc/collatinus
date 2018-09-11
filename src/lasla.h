@@ -1,4 +1,4 @@
-/*               mot.h
+/*               lasla.h
  *
  *  This file is part of COLLATINUS.
  *
@@ -19,45 +19,32 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
-#ifndef MOT_H
-#define MOT_H
-
-#include <QString>
-#include <QStringList>
-#include <QMap>
-#include <QtCore/QCoreApplication>
+#ifndef LASLA_H
+#define LASLA_H
 
 #include "lemCore.h"
 #include "lemme.h"
 #include "ch.h"
 
-class Mot : public QObject
+
+class Lasla : public QObject
 {
-    Q_OBJECT
+//    Q_OBJECT
+
 public:
-    Mot(QString forme, int rang, bool debVers, QObject *parent = 0);
-    QString choisir(QString t = "", int np = 0, bool tout = true);
-    long proba(QString t);
-    QStringList tags();
-    QString forme();
-    QString tagEncl();
-    bool inconnu();
-    void setBestOf(QString t, double pr);
-    double bestOf(QString t);
+    Lasla(QObject *parent = 0, LemCore *l=0, QString resDir="");
+    // Créateur de la classe
+    QString k9(QString m);
+    // Code en 9 pour le LASLA
 
 private:
-    LemCore* _lemCore;
-    QString _forme;
-    int _rang;
-    QString _tagEncl;
-    MapLem _mapLem;
-    QStringList _lemmes;
-    QStringList _morphos;
-    QStringList _tags;
-    QList<int> _nbOcc;
-    QMap<QString,long> _probas;
-    QString _maxProb;
-    QMap<QString,double> _bestOf;
+    LemCore * _lemCore;
+    QString _resDir;
+    QMap<QString,QString> _catLasla;
+    // Les correspondances entre les modèles de Collatinus
+    // et les catégories du LASLA
+    void lisCat();
+    // Pour la lecture du fichier.
 };
 
-#endif // MOT_H
+#endif // LASLA_H

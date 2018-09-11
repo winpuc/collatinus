@@ -26,12 +26,6 @@
 //
 
 #include "irregs.h"
-#include <QStringList>
-#include "ch.h"
-#include "lemme.h"
-#include "modele.h"
-
-#include <QDebug>
 
 /**
  * \fn Irreg::Irreg (QString l, QObject *parent)
@@ -42,7 +36,7 @@
  */
 Irreg::Irreg(QString l, QObject* parent)
 {
-    if (parent != 0) _lemmat = qobject_cast<Lemmat*>(parent);
+    if (parent != 0) _lemmat = qobject_cast<LemCore*>(parent);
     QStringList ecl = l.split(':');
     _grq = ecl.at(0);
     if (_grq.endsWith("*"))
