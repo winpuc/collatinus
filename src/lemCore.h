@@ -94,6 +94,11 @@ class LemCore : public QObject
     QMultiMap<QString, Radical *> _radicaux;
     QMap<QString, QString> _variables;
 
+    QList<Reglep> _reglesMed; // Règles de transformation entre graphies classique et médiévale
+    void lisTransfMed();
+    QString transfMed(QString f, bool rad=false); // Exactement comme parPos, mais pour les transformations médiévales
+    bool _medieval; // Au cas où j'arrive avec le même code à traiter les deux cas.
+
     bool _extension; // = false;
     QString _cible;  // langue courante, 2 caractères ou plus
 
