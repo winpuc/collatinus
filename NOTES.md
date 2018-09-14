@@ -1,8 +1,23 @@
 # Collatinus-11, notes
 
-Dimanche 2 octobre 2016
+## vendredi 14 septembre 2018*
 
-## BRANCHE SERVEUR
+La branche master est aujourd'hui la source de la version 11.1 de
+Collatinus. Elle est issue de la branche saucisson. Le merge 
+de saucisson dans master étant devenu très difficile, master a été
+mise à jour par copie des sources de saucisson dans le répertoire src/,
+et l'état antérieur de master est archivé dans la branche vmaster.
+La branche saucisson est conservée parce qu'elle conserve la trace de son
+développement depuis sa création à partir de master.
+
+Deux autres branches sont conservées :
+- Medieval : Cette branche essaie de traiter simplement la variabilité des graphies médiévales.
+- tagPlus : Tentative de construire sur le tagueur un générateur d'arbres syntaxiques (non-aboutie en septembre 2018).
+
+
+
+## Dimanche 2 octobre 2016 BRANCHE SERVEUR
+
 J'ai repris le serveur TCP que j'avais implémenté dans C10.3 et je l'ai installé dans C11.
 Pour l'interroger, on utilise un client qui envoie une requête au serveur
 et affiche la réponse.
