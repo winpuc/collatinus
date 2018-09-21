@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<meta charset="utf-8"><link rel="stylesheet" href="doc.css"/>
+<meta charset="utf-8">
+<link rel="stylesheet" href="doc.css"/>
 <p><em>Collatinus 11 &mdash; guide</em></p>
 
 <p><a href="index.html">index</a> précédent : <a href="tagger.html">Tagueur</a> suivant : <a href="avancee.html">Utilisation avancée</a></p>
@@ -224,6 +225,10 @@ La valeur 3 prise dans l'exemple ci-dessous donne toutes les analyses possibles 
 <h3>Format des fichiers CSV</h3>
 
 Les fichiers CSV reproduisent plus ou moins les informations contenues dans l'onglet de lemmatisation ou celui du tagueur. Le séparateur de champs est ici le caractère de tabulation. En effet, contrairement aux autres séparateurs courants (virgule ou point-virgule), il n'est pas utilisé dans les traductions proposées par Collatinus.<br/>
+<b>NB</b> : l'encodage des caractères est toujours l'UTF-8. 
+Des logiciels obsolètes comme Excel auront peut-être du mal à lire ces fichiers CSV.
+Les utilisateurs qui tiennent à Excel trouveront des informations pour lui faire digérer l'UTF-8 
+en suivant <a href="https://www.itg.ias.edu/content/how-import-csv-file-uses-utf-8-character-encoding-0">ce lien</a>.<br/>
 Le fonctionnement de l'export et le format final seront différents dans les deux cas. 
 <ul>
 <li><b>Cas de la lemmatisation</b> : Dans le cas d'un export depuis l'application Collatinus, ce n'est qu'une autre présentation du travail fait. Si on a lemmatisé deux fois le même mot ou lemmatisé un mot hors texte (et que cela apparaît dans la fenêtre de lemmatisation), le fichier CSV contiendra ces lemmatisations. En revanche, dans le cas d'un appel au serveur, c'est le texte qui est lemmatisé, sans tenir compte de ce qu'il y a dans la fenêtre de lemmatisation.<br/>
