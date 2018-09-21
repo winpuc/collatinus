@@ -7,25 +7,25 @@
 - Elles sont livrées sous forme de paquet qui se décompresse dans l'espace
   personnel de l'utilisateur ;
 - Dans un paquet :
-  . lexique
-  . traductions
-  . particularités graphiques (assimilations, contractions, équivalences graphiques)
-  . modèles
+  * lexique
+  * traductions
+  * particularités graphiques (assimilations, contractions, équivalences graphiques)
+  * modèles
 - Action des données optionnelles sur les données permanentes
   Les données permanentes ne sont pas déchargées au chargement des données
   optionnelles, mais elle peuvent être modifiées par elles. Liste des 
   actions des données optionnelles :
-  . ajouter un lemme et ses traductions ;
-  . supprimer un lemme et ses traductions (seulement si son apparition est
+  * ajouter un lemme et ses traductions ;
+  * supprimer un lemme et ses traductions (seulement si son apparition est
     ultérieure au corpus visé par le paquet) ; on garde les lemmes
     apparemment inutilisés, parce qu'un auteur est toujours susceptible
     d'employer un archaïsme.
-  . modifier seulement la graphie et le modèle d'un lemme ;
-  . modifier les traductions d'un lemme, quelquefois en changeant l'ordre
+  * modifier seulement la graphie et le modèle d'un lemme ;
+  * modifier les traductions d'un lemme, quelquefois en changeant l'ordre
     d'apparition de ces traductions ;
-  . supprimer des traductions (sens apparu ultérieurement au corpus visé) ;
-  . ajouter des traductions sans supprimer celles des données permanentes ;
-  . même principe pour les autres données : assimilations, contractions, équivalences.
+  * supprimer des traductions (sens apparu ultérieurement au corpus visé) ;
+  * ajouter des traductions sans supprimer celles des données permanentes ;
+  * même principe pour les autres données : assimilations, contractions, équivalences.
   
 - Problème du classement des traductions. Les dictionnaires papier suivent
   plutôt un ordre chronologique. Par exemple, /lego/ a comme premier sens
