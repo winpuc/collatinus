@@ -1990,19 +1990,36 @@ void MainWindow::rechercheBis()
  */
 QTextEdit * MainWindow::editeurRes()
 {
-    // Pour retourner le pointeur vers le QTextEdit qui est dans le dock actif
-    if (textEditLem->hasFocus() || lineEditLem->hasFocus()) return textEditLem;
-    if (textBrowserDic->hasFocus() || lineEditDic->hasFocus()) return textBrowserDic;
-    if (textBrowserW->hasFocus() || lineEditDicW->hasFocus()) return textBrowserW;
-    if (textEditScand->hasFocus() || lineEditScand->hasFocus()) return textEditScand;
-    if (textBrowserFlex->hasFocus() || lineEditFlex->hasFocus()) return textBrowserFlex;
-    if (textBrowserTag->hasFocus()) return textBrowserTag;
-/*    if (dockVisible(dockLem)) return textEditLem;
-    if (dockVisible(dockDic)) return textBrowserDic;
-    if (dockVisible(dockScand)) return textEditScand;
-    if (dockVisible(dockFlex)) return textBrowserFlex;
-    if (dockVisible(dockTag)) return textBrowserTag;
-    */
+    // Pour retourner le pointeur vers le QTextEdit qui est dans le dock actif.
+    // Si le dock qui "a le focus" n'est pas visible,
+    // je fais la recherche dans le texte latin
+    // qui est supposé être toujours visible.
+    if (textEditLem->hasFocus() || lineEditLem->hasFocus())
+    {
+        if (dockVisible(dockLem)) return textEditLem;
+        return editLatin;
+    }
+    if (textBrowserDic->hasFocus() || lineEditDic->hasFocus())
+    {
+        if (dockVisible(dockDic)) return textBrowserDic;
+        return editLatin;
+    }
+    if (textBrowserW->hasFocus() || lineEditDicW->hasFocus())
+    {
+        if (wDic->isVisible()) return textBrowserW;
+        return editLatin;
+    }
+    if (textEditScand->hasFocus() || lineEditScand->hasFocus())
+    {
+        if (dockVisible(dockScand)) return textEditScand;
+        return editLatin;
+    }
+    if (textBrowserFlex->hasFocus() || lineEditFlex->hasFocus())
+    {
+        if (dockVisible(dockFlex)) return textBrowserFlex;
+        return editLatin;
+    }
+    if (textBrowserTag->hasFocus() && dockVisible(dockTag)) return textBrowserTag;
     return editLatin;
 }
 
