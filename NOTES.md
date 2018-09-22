@@ -11,26 +11,39 @@
   * traductions
   * particularités graphiques (assimilations, contractions, équivalences graphiques)
   * modèles
-- Action des données optionnelles sur les données permanentes
+- Ces paquets doivent pouvoir être chargés et déchargés sans quitter
+  l'application.
+- Question : peut-on charger plusieurs paquets à la fois ? A priori, non.
+- **Interface** -- à l'initialisation, le répertoire des paquets optionnels est scané,
+  et un dialogue propose leur chargement.
+- Un paquet doit, en plus des données, fournir une description de sa cible :
+  époque / genre / auteur / lieu.
+- **Action des données optionnelles sur les données permanentes**    
   Les données permanentes ne sont pas déchargées au chargement des données
   optionnelles, mais elle peuvent être modifiées par elles. Liste des 
   actions des données optionnelles :
   * ajouter un lemme et ses traductions ;
-  * supprimer un lemme et ses traductions (seulement si son apparition est
-    ultérieure au corpus visé par le paquet) ; on garde les lemmes
-    apparemment inutilisés, parce qu'un auteur est toujours susceptible
-    d'employer un archaïsme.
+  * supprimer un lemme et ses traductions, apparemment inutilisés, parce
+    qu'un auteur est toujours susceptible d'employer un archaïsme. On
+    supprimera un lemme :    
+    seulement si son apparition est ultérieure au corpus cible,   
+    seulement si le lemme à supprimer peut créer des ambiguïtés.
   * modifier seulement la graphie et le modèle d'un lemme ;
   * modifier les traductions d'un lemme, quelquefois en changeant l'ordre
     d'apparition de ces traductions ;
   * supprimer des traductions (sens apparu ultérieurement au corpus visé) ;
   * ajouter des traductions sans supprimer celles des données permanentes ;
-  * même principe pour les autres données : assimilations, contractions, équivalences.
+  * même principe pour les autres données : modèles, assimilations,
+    contractions, équivalences.
+- **Syntaxe** Il faudra trouver le moyen d'indiquer, dans les données,
+  ce qu'il faut ajouter et supprimer, (supprimer et ajouter au même endroit
+  = remplacer)
   
-- Problème du classement des traductions. Les dictionnaires papier suivent
-  plutôt un ordre chronologique. Par exemple, /lego/ a comme premier sens
-  « cueillir ». Faudrait-il adopter un ordre fréquenciel ? On peut aussi,
-  garder l'ordre chronologique, et trouver le moyen d'indiquer les fréquences.
+- **Problème du classement des traductions** -- Les dictionnaires papier
+  suivent plutôt un ordre chronologique. Par exemple, /lego/ a comme
+  premier sens « cueillir ». Faudrait-il adopter un ordre fréquenciel ? On
+  peut aussi, garder l'ordre chronologique, et trouver le moyen d'indiquer
+  les fréquences.
 
 ## vendredi 14 septembre 2018*
 
