@@ -93,6 +93,7 @@ class MainWindow : public QMainWindow
     QTextBrowser *textBrowserW;
     QTextBrowser *textBrowserFlex;
     QTextBrowser *textBrowserTag;
+    QTextEdit *editeurRes();
     QLineEdit *lineEditLem;
     QLineEdit *lineEditDic;
     QLineEdit *lineEditDicW;
