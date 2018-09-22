@@ -11,6 +11,8 @@
   * traductions
   * particularités graphiques (assimilations, contractions, équivalences graphiques)
   * modèles
+- Ces paquets doivent pouvoir être chargés et déchargés sans quitter
+  l'application.
 - Question : peut-on charger plusieurs paquets à la fois ? A priori, non.
 - **Interface** -- à l'initialisation, le répertoire des paquets optionnels est scané,
   et un dialogue propose leur chargement.
@@ -33,6 +35,9 @@
   * ajouter des traductions sans supprimer celles des données permanentes ;
   * même principe pour les autres données : modèles, assimilations,
     contractions, équivalences.
+- **Syntaxe** Il faudra trouver le moyen d'indiquer, dans les données,
+  ce qu'il faut ajouter et supprimer, (supprimer et ajouter au même endroit
+  = remplacer)
   
 - **Problème du classement des traductions** -- Les dictionnaires papier
   suivent plutôt un ordre chronologique. Par exemple, /lego/ a comme
