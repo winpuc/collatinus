@@ -10,7 +10,7 @@
   * lexique
   * traductions
   * particularités graphiques (assimilations, contractions, équivalences graphiques)
-  * modèles
+  * éventuellment, modèles
 - Ces paquets doivent pouvoir être chargés et déchargés sans quitter
   l'application.
 - Question : peut-on charger plusieurs paquets à la fois ? A priori, non.
@@ -35,10 +35,22 @@
   * ajouter des traductions sans supprimer celles des données permanentes ;
   * même principe pour les autres données : modèles, assimilations,
     contractions, équivalences.
-- **Syntaxe** Il faudra trouver le moyen d'indiquer, dans les données,
-  ce qu'il faut ajouter et supprimer, (supprimer et ajouter au même endroit
-  = remplacer)
-  
+- **Syntaxe**
+  * en-tête : Dans l'interface de C12, les analyses et traductions issues
+    d'un paquet optionnel doivent être identifiables.
+  * Il faudra trouver le moyen d'indiquer, dans les données, ce qu'il faut
+    ajouter et supprimer, (supprimer et ajouter au même endroit = remplacer)
+  * un fichier de paquet optionnel est partagé en plusieurs sections :
+    - lignes à ajouter
+    - lignes à compléter
+    - lignes à supprimer
+  * Exemple : lemmes.fr donne    
+   miles:soldat    
+   le paquet med (= médiéval) aura, dans la partie "lignes à compléter" :    
+   miles:chevalier    
+   L'interpréteur de paquets ajoutera donc "class." devant la partie tronc commun,
+   et "med.", càd le nom du paquet, devant l'ajout, ce qui donnera dans l'interface :
+   miles, itis, m. : class. soldat med. chevalier
 - **Problème du classement des traductions** -- Les dictionnaires papier
   suivent plutôt un ordre chronologique. Par exemple, /lego/ a comme
   premier sens « cueillir ». Faudrait-il adopter un ordre fréquenciel ? On
