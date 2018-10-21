@@ -31720,7 +31720,7 @@ faceto:tr., orner, embellir
 facialia:linges pour essuyer le visage
 faciliter:c. facile
 facilius:`
-facillimus:superl. de facilis.
+!facillimus:superl. de facilis.
 facillo:
 facinorose:d'une manière criminelle
 facitergium:serviette de toilette
