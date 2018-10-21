@@ -50,7 +50,7 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
             foreach (SLem m, _mapLem.value(l))
             {
                 QString lt = _lemCore->tag(l, m.morpho); // Maintenant, c'est une liste de tags.
-                qDebug() << lem << lt;
+//                qDebug() << lem << lt;
                 // Pour les analyses, je garde la liste de tags.
                 long fr = nb * _lemCore->fraction(lt);
                 _lemmes.append(lem);
@@ -149,12 +149,12 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
             }
         }
     }
-    qDebug() << forme << _tags.size() << _tags;
+//    qDebug() << forme << _tags.size() << _tags;
 }
 
 QString Mot::choisir(QString t, int np, bool tout)
 {
-    qDebug() << _forme << t << np << tout << _tags.isEmpty() << _tags.size();
+//    qDebug() << _forme << t << np << tout << _tags.isEmpty() << _tags.size();
     QString choix = "";
     int valeur = -1;
     for (int i=0; i < _tags.size(); i++)
@@ -177,7 +177,7 @@ QString Mot::choisir(QString t, int np, bool tout)
             QString format = "%1 : %2 ; ";
             QString lg = "<li>" + _lemmes[i] + " — " + _morphos[i] + " (";
             QString lt = _tags[i];
-            qDebug() << lg << lt;
+//            qDebug() << lg << lt;
             if (lt.size() > 2)
             {
                 while (lt.size() > 2)

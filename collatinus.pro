@@ -1,4 +1,4 @@
-VERSION = "11.1"
+VERSION = "11.2"
 DEFINES += VERSION=\\\"$$VERSION\\\"
 
 TEMPLATE = app
