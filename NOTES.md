@@ -14,6 +14,13 @@
 - Ces paquets doivent pouvoir être chargés et déchargés sans quitter
   l'application.
 - Question : peut-on charger plusieurs paquets à la fois ? A priori, non.
+- Les paquets peuvent, au lieu de modifier le tronc commun, modifier un
+  autre paquet.
+- **Deux possibilités de chargement**
+    1. On charge d'abord le tronc commun (ou le paquet père), puis le paquet
+      qui modifie le tronc commun.
+    2. Le paquet et le tronc commun ont été compilés, et il n'y a plus qu'un jeu
+       de données : modèles, lemmes, irreguliers, alternances.
 - **Interface** -- à l'initialisation, le répertoire des paquets optionnels est scané,
   et un dialogue propose leur chargement.
 - Un paquet doit, en plus des données, fournir une description de sa cible :
