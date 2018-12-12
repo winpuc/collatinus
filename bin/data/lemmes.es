@@ -1,5 +1,5 @@
 ! lemmes.es
-!Español
+Español
 ! Version 1 : 2017/04/04
 !
 !This file is part of COLLATINUS.
