@@ -321,6 +321,11 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                         colPrec = 2;
                     }
                 }
+                else if (colPrec != 2)
+                {
+                    lm[i].prepend("</span><span style=\"color:"+_couleurs[2]+"\">");
+                    colPrec = 2;
+                }
             }
         }
         else
@@ -560,12 +565,18 @@ void Lemmatiseur::verbaCognita(QString fichier,bool vb)
 {
     _hLem.clear();
     _couleurs.clear();
-    if (vb && !fichier.isEmpty())
+    if (vb)
     {
         // Couleurs par défaut
         _couleurs << "#00A000"; // vert
         _couleurs << "#000000"; // noir
         _couleurs << "#A00000"; // rouge
+    }
+    // Je peux activer le textiColor sans avoir de liste.
+    // Auquel cas, j'aurai les mots connus par Collatinus en noir
+    // et les non-reconnus en rouge.
+    if (vb && !fichier.isEmpty())
+    {
         QFile file(fichier);
         if (file.open(QFile::ReadOnly | QFile::Text))
         {
