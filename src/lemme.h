@@ -29,7 +29,7 @@
 #include <QStringList>
 
 #include "irregs.h"
-#include "lemCore.h"
+#include "lemcore.h"
 #include "modele.h"
 #include "ch.h"
 

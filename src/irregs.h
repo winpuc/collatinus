@@ -26,7 +26,7 @@
 #include <QString>
 #include <QStringList>
 
-#include "lemCore.h"
+#include "lemcore.h"
 #include "ch.h"
 #include "lemme.h"
 #include "modele.h"

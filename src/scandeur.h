@@ -25,7 +25,7 @@
 #include <QDebug>
 
 #include "ch.h"
-#include "lemCore.h"
+#include "lemcore.h"
 
 class Scandeur : public QObject
 {

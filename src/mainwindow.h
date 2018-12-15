@@ -30,7 +30,7 @@
 #include <QPrinter>
 
 #include "flexion.h"
-#include "lemCore.h"
+#include "lemcore.h"
 #include "dicos.h"
 #include "ch.h"
 #include "lasla.h"

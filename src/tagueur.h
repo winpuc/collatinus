@@ -22,7 +22,7 @@
 #ifndef TAGUEUR_H
 #define TAGUEUR_H
 
-#include "lemCore.h"
+#include "lemcore.h"
 #include "mot.h"
 #include "ch.h"
 

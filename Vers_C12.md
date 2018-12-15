@@ -162,5 +162,3 @@ bien.
 
 - §30. Côté créateur (§25.), j'essaierais plutôt de créer des extensions au format C11 pour les toponymes, les patronymes et le Du Cange. Ça me semble déjà un vaste programme, surtout si on veut des traductions pour le Du Cange. Un option plus modeste de création d'extension serait d'extraire les ajouts de Frère Romain de lem_ext. On aurait ainsi une première extension, lem_Vulg, avec laquelle faire des essais dans C11 (cela dit, il n'y aurait que ~400 entrées). Pour l'utilisateur (§26.), je ferais évoluer C11 pour que l'on puisse choisir plusieurs extensions et pas seulement **l'extension**, i.e. lem_ext.
 
-
-

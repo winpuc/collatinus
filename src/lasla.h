@@ -22,7 +22,7 @@
 #ifndef LASLA_H
 #define LASLA_H
 
-#include "lemCore.h"
+#include "lemcore.h"
 #include "lemme.h"
 #include "ch.h"
 

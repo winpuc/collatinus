@@ -27,7 +27,7 @@
 #include <QMap>
 #include <QtCore/QCoreApplication>
 
-#include "lemCore.h"
+#include "lemcore.h"
 #include "lemme.h"
 #include "ch.h"
 

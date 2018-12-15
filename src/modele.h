@@ -31,7 +31,7 @@
 #include <QDebug>
 
 #include "ch.h"
-#include "lemCore.h"
+#include "lemcore.h"
 
 class LemCore;
 class Modele;

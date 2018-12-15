@@ -28,7 +28,7 @@
 #include <QDebug>
 
 #include "ch.h"
-#include "lemCore.h"
+#include "lemcore.h"
 
 class Lemmatiseur : public QObject
 {

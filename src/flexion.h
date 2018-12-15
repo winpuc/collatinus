@@ -29,7 +29,7 @@
 #include <QStringList>
 #include <QUrl>
 
-#include "lemCore.h"
+#include "lemcore.h"
 #include "lemme.h"
 
 #define OMIS 1
