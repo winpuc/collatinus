@@ -26,6 +26,10 @@
  *
  */
 
+#include <QApplication>
+#include <QFileInfo>
+#include <QStandardPaths>
+
 #include "ch.h"
 
 #include <QDebug>
@@ -118,6 +122,40 @@ QString Ch::atone(QString a, bool bdc)
 }
 
 /**
+ * \fn Ch:chemin(QString f, char t)
+ * \brief chemin complet du fichier f, de type t
+ * 'e' = exécutable
+ * 'd' = données
+ * 'p' = données perso
+ */
+QString Ch::chemin(QString f, char t)
+{
+    if (t == 'd')
+    {
+        //QString dir = QStandardPaths::locate(QStandardPaths::AppDataLocation,
+        QString dir = QStandardPaths::locate(QStandardPaths::GenericDataLocation,
+                                             f, QStandardPaths::LocateDirectory);
+        if (dir.isEmpty()) dir = qApp->applicationDirPath()+"/data/";
+        return dir;
+    }
+    QStringList chemins;
+    if (t == 'e')
+        chemins = QStandardPaths::standardLocations(QStandardPaths::ApplicationsLocation);
+    else if (t == 'p')
+        chemins = QStandardPaths::standardLocations(QStandardPaths::HomeLocation);
+    f.prepend('/');
+    QString ret;
+    for (int i=chemins.count()-1;i>-1;--i)
+    {
+        ret = chemins.at(i);
+        ret.append(f);
+        QFileInfo fi(ret);
+        if (fi.exists()) return ret;
+    }
+    return qApp->applicationDirPath()+f;
+}
+
+/**
  * \fn Ch:communes(QString g)
  * \brief note comme communes toutes les voyelles qui ne portent pas de quantité.
  */
@@ -199,27 +237,21 @@ QString Ch::deramise(QString r)
  */
 void Ch::elide(QString *mp)
 {
-    //"Tāntāene"
-    //bool debog = (*mp == "Tāntāene");
-    //if (debog) qDebug() << "tantaene" << *mp;
     int taille = mp->size();
     if ((taille > 1) && ((mp->endsWith('m') || mp->endsWith("\u0101e")) ||
                          mp->endsWith("\u0306")) &&
         voyelles.contains(mp->at(taille - 2)))
     {
-        //if (debog) qDebug() << "cond1";
         deQuant(mp);
         mp->insert(taille - 2, '[');
         mp->append(']');
     }
     else if (voyelles.contains(mp->at(taille - 1)) && *mp != "\u014d")
     {
-        //if (debog) qDebug() << "cond2";
         deQuant(mp);
         mp->insert(taille - 1, '[');
         mp->append(']');
     }
-    //if (debog) qDebug() << *mp;
 }
 
 void Ch::genStrNum(const QString s, QString *ch, int *n)
