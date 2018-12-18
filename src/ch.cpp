@@ -130,29 +130,25 @@ QString Ch::atone(QString a, bool bdc)
  */
 QString Ch::chemin(QString f, char t)
 {
-    if (t == 'd')
+    qDebug()<<"chemin"<<f<<t;
+    QStringList dirs = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
+    qDebug()<<"   dirs="<<dirs;
+    if (f.isEmpty()) f = "/";
+    if (!f.startsWith('/')) f.prepend('/');
+    switch(t)
     {
-        //QString dir = QStandardPaths::locate(QStandardPaths::AppDataLocation,
-        QString dir = QStandardPaths::locate(QStandardPaths::GenericDataLocation,
-                                             f, QStandardPaths::LocateDirectory);
-        if (dir.isEmpty()) dir = qApp->applicationDirPath()+"/data/";
-        return dir;
+        case 'd':
+            {
+                if (QFile::exists(dirs.last()))
+                    return dirs.last()+f;
+                return qApp->applicationDirPath()+f;
+            }
+        case 'p':
+            return dirs.first()+f;
+        default:
+            return qApp->applicationDirPath()+f;
     }
-    QStringList chemins;
-    if (t == 'e')
-        chemins = QStandardPaths::standardLocations(QStandardPaths::ApplicationsLocation);
-    else if (t == 'p')
-        chemins = QStandardPaths::standardLocations(QStandardPaths::HomeLocation);
-    f.prepend('/');
-    QString ret;
-    for (int i=chemins.count()-1;i>-1;--i)
-    {
-        ret = chemins.at(i);
-        ret.append(f);
-        QFileInfo fi(ret);
-        if (fi.exists()) return ret;
-    }
-    return qApp->applicationDirPath()+f;
+    return "chemin introuvable";
 }
 
 /**

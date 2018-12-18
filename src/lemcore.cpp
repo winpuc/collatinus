@@ -42,21 +42,20 @@
  */
 LemCore::LemCore(QObject *parent, QString resDir) : QObject(parent)
 {
- /* 'e' = exécutable
- *  'd' = données
- *  'p' = données perso
- */
+    qDebug()<<"lemcore";
     if (resDir.isEmpty())
     {
-        QString rd = Ch::chemin("collatinus/data",'d');
-        _resDir = rd+"/";
-
-        /*
-           _resDir = Ch::chemin("",'d');
-        //_resDir = qApp->applicationDirPath() + "/data/";
-        else if (resDir.endsWith("/")) _resDir = resDir;
-        else _resDir = resDir + "/";
+        /* Ch::chemin(QString, char)
+         *  char ==
+         *  'e' exécutable
+         *  'd' données
+         *  'p' données perso
          */
+        _resDir = Ch::chemin("data", 'd');
+        _modDir = Ch::chemin("data", 'p');
+        if (!_resDir.endsWith('/')) _resDir.append('/');
+        qDebug()<<"LemCore, _resDir"<<_resDir;
+        qDebug()<<"LemCore, _modDir"<<_modDir;
     }
     // options
     _extension = false;
@@ -1034,6 +1033,7 @@ void LemCore::lisIrreguliers()
  */
 void LemCore::lisFichierLexique(QString filepath)
 {
+    qDebug()<<"lisFichierLexique"<<filepath;
     int orig = 0;
     if (filepath.endsWith("ext.la")) orig = 1;
     QStringList lignes = lignesFichier(filepath);
