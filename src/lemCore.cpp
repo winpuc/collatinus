@@ -169,6 +169,8 @@ QString LemCore::tag(Lemme *l, int m)
 {
     // Il faut encore traiter le cas des pos multiples
     QString lp = l->pos();
+    if ((lp.size() > 0) && !lp[0].isLetter()) lp = "";
+//    qDebug() << lp << lp.size();
     QString lTags = "";
     QString morph = morpho(m);
     while (lp.size() > 0)
@@ -179,7 +181,7 @@ QString LemCore::tag(Lemme *l, int m)
             lTags.append("n71,");
         else if ((p == "v") && (morph.contains(" -u"))) // C'est un supin
             lTags.append("v3 ,");
-        else
+        else if (!p.isEmpty())
         {
             p.append("%1%2,");
             if (p.startsWith("v"))
@@ -786,13 +788,14 @@ MapLem LemCore::lemmatise(QString f)
     // romains
     if (estRomain(f) && !_lemmes.contains(f))
     {
+        QString f1 = f;
         f.replace('U','V');
         QString lin = QString("%1|inv|||adj. num.|1").arg(f);
         Lemme *romain = new Lemme(lin, 0, this);
         int nr = aRomano(f);
         romain->ajTrad(QString("%1").arg(nr), "fr");
-        _lemmes.insert(f, romain);
-        SLem sl = {f,416,""};
+        _lemmes.insert(f1, romain);
+        SLem sl = {f1,416,""};
         QList<SLem> lsl;
         lsl.append(sl);
         result.insert(romain, lsl);
@@ -880,7 +883,7 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
     // Si j'arrive ici, c'est que j'ai encore des choses à essayer.
     mm = lemmatiseM(f, debPhr, etape + 1);
     // J'essaie d'abord l'étape suivante
-    QString fd; // On ne peut pas créer un variable QString à l'intérieur d'un switch.
+    QString fd; // On ne peut pas créer une variable QString à l'intérieur d'un switch.
     switch (etape)
     { // ensuite diverses manipulations sur la forme
     case 3:

@@ -1912,16 +1912,25 @@ void MainWindow::readSettings()
 
 /**
  * \fn void MainWindow::recherche()
- * \brief Recherche dans l'éditeur de texte latin.
+ * \brief Recherche dans l'éditeur actif.
+ *
+ * Je regarde quelle fenêtre est active
+ * et je recherche à partir du curseur.
+ *
+ *
  */
 void MainWindow::recherche()
 {
+    // détecter l'éditeur actif
+    QTextEdit * editeur;
+    if (editLatin->hasFocus ()) editeur = editLatin;
+    else editeur = editeurRes ();
     bool ok;
     rech = QInputDialog::getText(this, tr("Recherche"), tr("Chercher :"),
                                  QLineEdit::Normal, rech, &ok);
     if (ok && !rech.isEmpty())
     {
-        if (!editLatin->find(rech))
+        if (!editeur->find(rech))
         {
             rech = QInputDialog::getText(this, tr("Chercher"),
                                          tr("Retour au début ?"),
@@ -1929,9 +1938,9 @@ void MainWindow::recherche()
             if (ok && !rech.isEmpty())
             {
                 // Retourner au debut
-                editLatin->moveCursor(QTextCursor::Start);
+                editeur->moveCursor(QTextCursor::Start);
                 // Chercher à nouveau
-                editLatin->find(rech);
+                editeur->find(rech);
             }
         }
     }
@@ -1941,18 +1950,77 @@ void MainWindow::recherche()
  * \fn void MainWindow::rechercheBis()
  * \brief Suite de la recherche.
  *
+ * Continue la recherche dans la fenêtre active.
+ * Sur le même principe de "recherche",
+ * je regarde quelle fenêtre est active
+ * et je recherche à partir du curseur.
+ * Fonctionne aussi si on a changé de fenêtre
+ * entre la première recherche et cette suite.
  */
 void MainWindow::rechercheBis()
 {
     if (rech.isEmpty()) return;
-    bool ok = editLatin->find(rech);
+    // détecter l'éditeur actif
+    QTextEdit * editeur;
+    if (editLatin->hasFocus ()) editeur = editLatin;
+    else editeur = editeurRes ();
+    bool ok = editeur->find(rech);
     if (!ok)
     {
-        QTextCursor tc = editLatin->textCursor();
-        editLatin->moveCursor(QTextCursor::Start);
-        ok = editLatin->find(rech);
-        if (!ok) editLatin->setTextCursor(tc);
+        rech = QInputDialog::getText(this, tr("Chercher"),
+                                     tr("Retour au début ?"),
+                                     QLineEdit::Normal, rech, &ok);
+        if (ok && !rech.isEmpty())
+        {
+            QTextCursor tc = editeur->textCursor();
+            editeur->moveCursor(QTextCursor::Start);
+            ok = editeur->find(rech);
+            if (!ok) editeur->setTextCursor(tc);
+        }
     }
+}
+
+/**
+ * @brief MainWindow::editeurRes
+ * @return QTextEdit* qui est dans le dock actif
+ *
+ * Pour pouvoir mener une recherche dans n'importe quelle fenêtre,
+ * je cherche laquelle est la première visible.
+ * Je retourne alors le pointeur vers le QTextEdit qu'elle contient.
+ */
+QTextEdit * MainWindow::editeurRes()
+{
+    // Pour retourner le pointeur vers le QTextEdit qui est dans le dock actif.
+    // Si le dock qui "a le focus" n'est pas visible,
+    // je fais la recherche dans le texte latin
+    // qui est supposé être toujours visible.
+    if (textEditLem->hasFocus() || lineEditLem->hasFocus())
+    {
+        if (dockVisible(dockLem)) return textEditLem;
+        return editLatin;
+    }
+    if (textBrowserDic->hasFocus() || lineEditDic->hasFocus())
+    {
+        if (dockVisible(dockDic)) return textBrowserDic;
+        return editLatin;
+    }
+    if (textBrowserW->hasFocus() || lineEditDicW->hasFocus())
+    {
+        if (wDic->isVisible()) return textBrowserW;
+        return editLatin;
+    }
+    if (textEditScand->hasFocus() || lineEditScand->hasFocus())
+    {
+        if (dockVisible(dockScand)) return textEditScand;
+        return editLatin;
+    }
+    if (textBrowserFlex->hasFocus() || lineEditFlex->hasFocus())
+    {
+        if (dockVisible(dockFlex)) return textBrowserFlex;
+        return editLatin;
+    }
+    if (textBrowserTag->hasFocus() && dockVisible(dockTag)) return textBrowserTag;
+    return editLatin;
 }
 
 /**

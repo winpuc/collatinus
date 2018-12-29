@@ -301,6 +301,7 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
             }  // fin de boucle de lemmatisation pour chaque mot
             Mot * mot = new Mot("",mots.size(),true, _lemCore); // Fin de phrase
             mots.append(mot); // J'ajoute un mot virtuel en fin de phrase avec le tag "snt".
+//            qDebug() << mots.size();
 
             QStringList sequences;
             QList<double> probabilites;
@@ -310,6 +311,7 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
             // Je suis en début de phrase : je n'ai que le tag "snt" et une proba de 1.
             for (int i = 0; i < mots.size(); i++)
             {
+//                qDebug() << "Traitement du mot : " <<  i;
                 Mot *mot = mots[i];
                 QStringList lTags = mot->tags(); // La liste des tags possibles pour le mot
                 QStringList nvlSeq; // Nouvelle liste des séquences possibles
@@ -474,13 +476,16 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
             else
             {
                 // Pour avoir une sortie au format CSV.
+//                qDebug() << "je suis sorti du tagage." << mots.size();
                 QString debut = "%1\t%2\t%3\t";
                 seq = seq.mid(4); // Je supprime le premier tag qui est "snt".
                 for (int i = 0; i < mots.size()-1; i++)
                     if (!mots[i]->inconnu()) // Les mots inconnus ne figurent pas dans la séquence (cf. plus haut)
                     {
+//                        qDebug() << "mot" << i << mots[i]->forme();
                         numMot += 1;
                         QString blabla = mots[i]->choisir(seq.left(3), numPhr, affTout);
+//                        qDebug() << "fin du choix";
                         // C'est une ligne en HTML : je dois remplacer les délimiteurs par des tabulations...
                         QString entete = blabla.mid(0,blabla.indexOf("<br"));
                         if (entete.contains("<ul>")) entete = entete.mid(0,entete.indexOf("<span"));
@@ -512,7 +517,8 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                             // Il n'y a pas de choix ou tout est affiché.
                             blabla = blabla.mid(blabla.indexOf("<ul>"));
                             blabla = blabla.mid(0,blabla.indexOf("</ul>"));
-                            while (blabla.contains("</li>")) {
+                            while (blabla.contains("</li>") && !blabla.isEmpty())
+                            {
                                 QString ligne = blabla.mid(0,blabla.indexOf("</li>"));
                                 blabla = blabla.mid(blabla.indexOf("</li>")+5);
                                 ligne = ligne.mid(ligne.indexOf("ng>")+3);
@@ -536,10 +542,12 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                          // Si enclitique mid(8)
                         if (mots[i]->tagEncl().isEmpty()) seq = seq.mid(4);
                         else seq = seq.mid(5 + mots[i]->tagEncl().size());
+//                        qDebug() << "fin du mot" << i << lsv;
                     }
                     else
                     {
                         // Mot inconnu !
+//                        qDebug() << "mot inconnu" << i << mots[i]->forme();
                         numMot += 1;
                         QString entete = mots[i]->forme();
                         entete.prepend(debut.arg(numMot).arg(numPhr+1).arg(i+1));
@@ -552,13 +560,13 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                 if (affHTML) lsv << "<br/>";
                 numPhr++;
             }
-            else return lsv.join("\n");
+            else return lsv.join("\n") + "\n";
             // Je retourne le résultat de la phrase si tout est false.
         }
         dph = fph + 1;
         fph++;
     } // while (fph < tl)
     // Si tout est true, je vais jusqu'au bout de texte.
-    return lsv.join("\n");
+    return lsv.join("\n") + "\n";
 }
 

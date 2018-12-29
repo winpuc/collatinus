@@ -384,7 +384,10 @@ QStringList const Modele::cles = QStringList() << "modele"  // 0
  *        de la forme canonique d'un lemme. r est le numéro
  *        du radical.
  */
-QString Modele::genRadical(int r) { return _genRadicaux[r]; }
+QString Modele::genRadical(int r)
+{
+    return _genRadicaux[r];
+}
 
 /**
  * \fn QList<int> Modele::listeI (QString l)
