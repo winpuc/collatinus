@@ -66,7 +66,7 @@ LemCore::LemCore(QObject *parent, QString resDir) : QObject(parent)
     ajContractions();
     QString version = QString(VERSION);
     _medieval = version.contains("med");
-    if (_medieval) lisTransfMed();
+//    if (_medieval) lisTransfMed();
     // lecture des morphos
     QDir rep;
     rep = QDir(_resDir, "morphos.*");
@@ -701,6 +701,7 @@ MapLem LemCore::lemmatise(QString f)
     if (_medieval) f = transfMed(f);
     // formes irrégulières
     QList<Irreg *> lirr = _irregs.values(f);
+    if (_medieval && _irrMed.contains(f)) lirr.append(_irregs.values(_irrMed[f]));
     foreach (Irreg *irr, lirr)
     {
         foreach (int m, irr->morphos())
@@ -716,11 +717,13 @@ MapLem LemCore::lemmatise(QString f)
         QString r = f.left(i);
         QString d = f.mid(i);
         QList<Desinence *> ldes = _desinences.values(d);
+        if (_medieval && _desMed.contains(d)) ldes.append(_desinences.values(_desMed[d]));
         if (ldes.empty()) continue;
         // Je regarde d'abord si d est une désinence possible,
         // car il y a moins de désinences que de radicaux.
         // Je fais la recherche sur les radicaux seulement si la désinence existe.
         QList<Radical *> lrad = _radicaux.values(r);
+        if (_medieval && _radMed.contains(r)) lrad.append(_radicaux.values(_radMed[r]));
         // ii noté ī
         // 1. Patauium, gén. Pataui : Patau.i -> Patau+i.i
         // 2. conubium, ablP conubis : conubi.s -> conubi.i+s
@@ -739,7 +742,11 @@ MapLem LemCore::lemmatise(QString f)
                 // Plus général que le comparatif : d commence par i+voyelle.
                 if (voy.contains(d[1])) rbis[rbis.size()-1] = 't';
             }
-            if (r != rbis) lrad << _radicaux.values(rbis);
+            if (r != rbis)
+            {
+                lrad << _radicaux.values(rbis);
+                lrad << _radicaux.values(_radMed[rbis]);
+            }
         }
         if (lrad.empty()) continue;
         // Il n'y a rien à faire si le radical n'existe pas.
@@ -1150,6 +1157,7 @@ void LemCore::lisTransfMed()
 QString LemCore::transfMed(QString f, bool rad)
 {
     if (f.isEmpty()) return "";
+    if (estRomain(f)) return f;
     bool maj = f.at(0).isUpper();
     f = f.toLower();
     foreach (Reglep r, _reglesMed)
@@ -1330,9 +1338,6 @@ QString LemCore::variable(QString v) { return _variables[v]; }
  *
  * Lors de la lecture des préférences (à l'initialisation),
  * cette routine est appelée.
- * Si on ne charge pas l'extension du lexique,
- * je charge quand même les nombres d'occurrences.
- * Ces nombres seront ré-initialisés si on charge l'extension par la suite.
  *
  */
 void LemCore::setExtension(bool e)
@@ -1343,7 +1348,51 @@ void LemCore::setExtension(bool e)
         lisTraductions(false,true);
         _extLoaded = true;
     }
-//    else if (!_nbrLoaded) lisNombres();
+}
+
+/**
+ * @brief LemCore::setMedieval
+ * @param e : bool
+ *
+ * Cette routine gère la lecture de graphies médiévales.
+ * Si le paramètre e est true, la graphie médiévale est active.
+ * Si le fichier de transformation n'a pas encore été chargé, il l'est.
+ *
+ * Lors de la lecture des préférences (à l'initialisation),
+ * cette routine est appelée.
+ *
+ */
+void LemCore::setMedieval(bool e)
+{
+    _medieval = e;
+    if (_reglesMed.isEmpty() && e)
+    {
+        lisTransfMed();
+        // Si les règles de transformations est vide,
+        // c'est que rien n'a été défini.
+        QStringList liste = _desinences.keys();
+        liste.removeDuplicates();
+        QString cleMed;
+        foreach (QString clef, liste)
+        {
+            cleMed = transfMed(clef);
+            if (clef != cleMed) _desMed[cleMed] = clef;
+        }
+        liste = _irregs.keys();
+        liste.removeDuplicates();
+        foreach (QString clef, liste)
+        {
+            cleMed = transfMed(clef);
+            if (clef != cleMed) _irrMed[cleMed] = clef;
+        }
+        liste = _radicaux.keys();
+        liste.removeDuplicates();
+        foreach (QString clef, liste)
+        {
+            cleMed = transfMed(clef, true);
+            if (clef != cleMed) _radMed[cleMed] = clef;
+        }
+    }
 }
 
 /**

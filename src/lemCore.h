@@ -98,6 +98,9 @@ class LemCore : public QObject
     void lisTransfMed();
     QString transfMed(QString f, bool rad=false); // Exactement comme parPos, mais pour les transformations médiévales
     bool _medieval; // Au cas où j'arrive avec le même code à traiter les deux cas.
+    QMap<QString, QString> _desMed;
+    QMap<QString, QString> _irrMed;
+    QMap<QString, QString> _radMed;
 
     bool _extension; // = false;
     QString _cible;  // langue courante, 2 caractères ou plus
@@ -166,6 +169,7 @@ class LemCore : public QObject
 
    public slots:
     void setExtension(bool e);
+    void setMedieval(bool e);
 };
 
 #endif // LEMCORE_H

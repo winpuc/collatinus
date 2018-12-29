@@ -277,6 +277,7 @@ class MainWindow : public QMainWindow
     QAction *syncWDAct;
     QAction *visibleWAct;
     QAction *extensionWAct;
+    QAction *medievalAct;
     QAction *zoomAct;
     // QAction *undoAct;
     // widgets, variables et fonctions du dock dictionnaires

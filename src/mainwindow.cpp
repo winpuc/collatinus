@@ -627,6 +627,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     settings.setValue("html", htmlAct->isChecked());
     settings.setValue("formetxt", formeTAct->isChecked());
     settings.setValue("extensionlexique", extensionWAct->isChecked());
+    settings.setValue("graphieMedievale", medievalAct->isChecked());
     settings.setValue("majpert", majPertAct->isChecked());
     settings.setValue("morpho", morphoAct->isChecked());
     settings.setValue("nonrec", nonRecAct->isChecked());
@@ -814,6 +815,8 @@ void MainWindow::createActions()
     visibleWAct->setCheckable(true);
     extensionWAct = new QAction(tr("Extension du lexique"), this);
     extensionWAct->setCheckable(true);
+    medievalAct = new QAction(tr("Graphies médiévales"), this);
+    medievalAct->setCheckable(true);
 }
 
 /**
@@ -874,6 +877,7 @@ void MainWindow::createConnections()
     connect(nonRecAct, SIGNAL(toggled(bool)), _lemmatiseur,
             SLOT(setNonRec(bool)));
     connect(extensionWAct, SIGNAL(toggled(bool)), _lemCore, SLOT(setExtension(bool)));
+    connect(medievalAct, SIGNAL(toggled(bool)), _lemCore, SLOT(setMedieval(bool)));
 
     // actions et options de l'accentuation
     connect(accentAct, SIGNAL(toggled(bool)), this, SLOT(setAccent(bool)));
@@ -1017,6 +1021,7 @@ void MainWindow::createMenus()
     lexMenu->addAction(statAct);
     lexMenu->addSeparator();
     lexMenu->addAction(extensionWAct);
+    lexMenu->addAction(medievalAct);
     lexMenu->addSeparator();
 
     optMenu = menuBar()->addMenu(tr("&Options"));
@@ -1863,6 +1868,7 @@ void MainWindow::readSettings()
     alphaOptAct->setChecked(settings.value("alpha").toBool());
     formeTAct->setChecked(settings.value("formetxt").toBool());
     extensionWAct->setChecked(settings.value("extensionlexique").toBool());
+    medievalAct->setChecked(settings.value("graphieMedievale").toBool());
     htmlAct->setChecked(settings.value("html").toBool());
     majPertAct->setChecked(settings.value("majpert").toBool());
     morphoAct->setChecked(settings.value("morpho").toBool());
@@ -1894,6 +1900,7 @@ void MainWindow::readSettings()
     _lemmatiseur->setAlpha(alphaOptAct->isChecked());
     _lemmatiseur->setFormeT(formeTAct->isChecked());
     _lemCore->setExtension(extensionWAct->isChecked());
+    _lemCore->setMedieval(medievalAct->isChecked());
     if (!ficHyphen.isEmpty()) _lemCore->lireHyphen(ficHyphen);
     // Le fichier hyphen.la doit être lu après l'extension.
     _lemmatiseur->setHtml(htmlAct->isChecked());
