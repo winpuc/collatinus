@@ -516,7 +516,7 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
         int tot = (lm.count() - 1) / 2;
         QTextStream(&titreNR) << "--- " << nonReconnus.count() << "/"
                               << tot << " ("
-                              << ((nonReconnus.count() * 100) / tot)
+                              << (((nonReconnus.count() * 200 + tot) / tot) / 2)
                               << " %) FORMES NON RECONNUES ---" << nl << "\n";
         lRet.append(titreNR + nl);
         foreach (QString nr, nonReconnus)
