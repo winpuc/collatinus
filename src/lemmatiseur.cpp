@@ -275,6 +275,81 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
         return "";
         // Ça peut arriver que le texte ne contienne qu"une ponctuation
     }
+    int i = 1;
+    QMap<QString,int> occCode;
+    while (i < lm.length())
+    {
+        if ((lm[i-1].endsWith("&") || lm[i-1].endsWith("&#")) && lm[i+1].startsWith(";"))
+        {
+            // Il y a un caractère en code html.
+            if (lm[i].endsWith("gr") || lm[i].endsWith("aquo") ||
+                    lm[i].endsWith("long") || lm[i-1].endsWith("&#"))
+            {
+                // C'est un caractère grec : je ne le traite pas.
+                lm[i-1].append(lm[i]);
+                lm.removeAt(i);
+                lm[i-1].append(lm[i]);
+                lm.removeAt(i);
+                // Le pseudo-mot et le séparateur suivant sont groupés
+                // dans le séparateur précédent sans être modifiés.
+            }
+            else
+            {
+                if (lm[i].endsWith("acute") || lm[i].endsWith("grave") ||
+                        lm[i].endsWith("circ") || lm[i].endsWith("uml"))
+                {
+                    // C'est un acute, grave, circ ou uml :
+                    // seul le premier caractère m'intéresse.
+                    lm[i] = lm[i].mid(0,1);
+                    if (lm[i+1] == ";")
+                    {
+                        // Cette voyelle se colle au mot suivant.
+                        lm.removeAt(i+1);
+                        lm[i].append(lm[i+1]);
+                        lm.removeAt(i+1);
+                        if (lm[i-1] == "&")
+                        {
+                            // Cette voyelle se colle au mot précédent.
+                            lm[i-2].append(lm[i]);
+                            lm.removeAt(i);
+                            lm.removeAt(i-1);
+                        }
+                        else
+                        {
+                            lm[i-1].chop(1);
+                            i += 2;
+                        }
+                    }
+                    else
+                    {
+                        lm[i+1] = lm[i+1].mid(1);
+                        if (lm[i-1] == "&")
+                        {
+                            // Cette voyelle se colle au mot précédent.
+                            lm[i-2].append(lm[i]);
+                            lm.removeAt(i);
+                            lm.removeAt(i-1);
+                        }
+                        else
+                        {
+                            lm[i-1].chop(1);
+                            i += 2;
+                        }
+                    }
+                }
+                else
+                {
+                    if (occCode.contains(lm[i])) occCode[lm[i]]++;
+                    else occCode[lm[i]] = 1;
+                    i += 2;
+                }
+            }
+        }
+        else i += 2;
+    }
+    foreach (QString code, occCode.keys())
+        qDebug() << code << occCode[code];
+    // Pour l'instant, juste la liste des codes rencontrés
     for (int i = 1; i < lm.length(); i += 2)
     {
         QString f = lm.at(i);
