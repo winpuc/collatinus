@@ -166,9 +166,15 @@ void Ch::deQuant(QString *c)
 QString Ch::deAccent(QString c)
 {
     c = c.normalized(QString::NormalizationForm_D, QChar::currentUnicodeVersion());
-    c.remove("\u0301");
-    c.remove("\u0306");
-    c.remove("\u0304");
+    c.remove("\u0300"); // Accent grave
+    c.remove("\u0301"); // Accent aigu
+    c.remove("\u0302"); // Accent circonflexe
+    c.remove("\u0303"); // Tilde
+    c.remove("\u0304"); // macron
+    c.remove("\u0306"); // breve
+    c.remove("\u0308"); // Trémas
+    c.remove("\u0327"); // Cédille
+    c.remove("\u0328"); // Ogonek
     return c;
 }
 
