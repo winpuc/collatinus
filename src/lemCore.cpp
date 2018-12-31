@@ -745,7 +745,7 @@ MapLem LemCore::lemmatise(QString f)
             if (r != rbis)
             {
                 lrad << _radicaux.values(rbis);
-                lrad << _radicaux.values(_radMed[rbis]);
+                if (_radMed.contains(rbis)) lrad << _radicaux.values(_radMed[rbis]);
             }
         }
         if (lrad.empty()) continue;
