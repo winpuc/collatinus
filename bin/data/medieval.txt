@@ -37,7 +37,7 @@ ph;f
 ! Les paires y/i et ph/f sont interchangeables, je les remplace par le plus simple.
 h;
 ! Le h peut disparaître ou apparaître : je le supprime.
-ti([aeiou]);ci\1
+! ti([aeiou]);ci\1
 ! ti+voyelle devient ci+voyelle. Il faudrait faire attention au "u" qui serait un "v"
 ! et au ti en fin de radical qui sont devant la première voyelle de la désinence.
 ti$;ci*
