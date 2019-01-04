@@ -39,6 +39,10 @@ Server::Server()
     tagueur = new Tagueur(this,_lemCore);
     scandeur = new Scandeur(this,_lemCore);
 
+    _lemCore->setExtension(true); // Je charge l'extension du lexique,
+    _lemCore->setExtension(false); // mais je ne l'utilise que comme réserve.
+    // Ainsi, n'apparaissent les analyses issues de lextension que
+    // si elles sont les seules possibles.
 
     createDicos();
 
