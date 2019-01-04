@@ -37,7 +37,7 @@
 Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
 {
     QFileInfo fi(cfg);
-    repertoire = qApp->applicationDirPath() + "/data/dicos/";
+    repertoire = qApp->applicationDirPath() + "/dicos/";
     // éviter de redéfinir partout le répertoire de travail.
     n = fi.baseName();
     // lire le fichier de ressource cfg

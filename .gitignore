@@ -1,4 +1,6 @@
 bin/collatinus
+bin/collatinusd
+bin/dicos
 C*.app
 .*
 

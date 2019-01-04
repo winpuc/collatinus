@@ -29,9 +29,9 @@
  * main
  */
 
-#include <QApplication>
+#include <QtCore>
 
-#include "mainwindow.h"
+#include "server.h"
 
 /**
  * \fn main (int argc, char *argv[])
@@ -39,8 +39,8 @@
  */
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
-    MainWindow mainWin;
-    mainWin.show();
+    fprintf (stdout, "Daemon Collatinus 11.2\n");
+    QCoreApplication app(argc, argv);
+    Server s;
     return app.exec();
 }

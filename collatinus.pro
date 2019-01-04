@@ -1,30 +1,26 @@
-VERSION = "11.21"
+VERSION = "11.2"
 
 DEFINES += VERSION=\\\"$$VERSION\\\"
 DEFINES += MEDIEVAL
 
 TEMPLATE = app
-TARGET = collatinus
+TARGET = collatinusd
 INCLUDEPATH += . src
 DEPENDPATH += .
 
-qtHaveModule(printsupport): QT += printsupport
-QT += widgets
-QT += network
-QT += svg
-
-#QMAKE_CXXFLAGS += -Wall -Wextra -pedantic -fstack-protector-strong
-#QMAKE_CPPFLAGS += -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2
-
-CONFIG += release_binary debug
-
-TRANSLATIONS    = collatinus_fr.ts
-TRANSLATIONS    += collatinus_en.ts
-
-unix:!macx:DESTDIR = bin
+DESTDIR = bin
 OBJECTS_DIR= obj/
 MOC_DIR = moc/
 QMAKE_DISTCLEAN += $${DESTDIR}/collatinus
+
+CONFIG += console
+CONFIG -= app_bundle
+CONFIG += release_binary
+
+QT += core
+QT -= gui
+QT          += xmlpatterns
+QT += network
 
 # Input
 HEADERS += src/ch.h \
@@ -34,14 +30,13 @@ HEADERS += src/ch.h \
            src/dicos.h \
 		   src/modele.h \
 #           src/flexfr.h \
-           src/mainwindow.h \
-		   src/maj.h \
     src/mot.h \
     src/lasla.h \
     src/tagueur.h \
     src/scandeur.h \
     src/lemCore.h \
-    src/lemmatiseur.h
+    src/lemmatiseur.h \
+    src/server.h
 
 SOURCES += src/ch.cpp \
            src/flexion.cpp \
@@ -51,43 +46,12 @@ SOURCES += src/ch.cpp \
            src/dicos.cpp \
 #           src/flexfr.cpp \
            src/main.cpp \
-		   src/maj.cpp \
-           src/mainwindow.cpp \
            src/modele.cpp \
            src/scandeur.cpp \
     src/mot.cpp \
     src/lasla.cpp \
     src/tagueur.cpp \
     src/lemCore.cpp \
-    src/lemmatiseur.cpp
+    src/lemmatiseur.cpp \
+    src/server.cpp
 
-RESOURCES += collatinus.qrc
-RC_ICONS = res/collatinus.ico
-
-macx:{
-    TARGET = Collatinus_$${VERSION}
-    #note mac os x, fair un $ qmake -spec macx-g++
-    #CONFIG += x86 ppc
-    QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.8
-    ICON = collatinus.icns
-    #QMAKE_MAC_SDK = /Developer/SDKs/MacOSX10.4u.sdk
-
-    #QMAKE_POST_LINK=strip Collatinus.app/Contents/MacOS/collatinus
-
-    # install into app bundle
-    # à changer en ressources
-    data.path = $${TARGET}.app/Contents/MacOS/data
-    data.files =  bin/data/*
-#    deploy.depends = install_documentation
-    deploy.depends += install
-#    documentation.path = Collatinus_11.app/Contents/MacOS/doc/
-#    documentation.files = doc/*.html doc/*.css
-    # ajouter un cible qui fait macdeploy Collatinus.app
-    deploy.commands = macdeployqt $${TARGET}.app
-#    dmg.depends = deploy
-#	dmg.commands = ./MacOS/Collatinus.sh
-#    INSTALLS += documentation
-    INSTALLS += data
-    QMAKE_EXTRA_TARGETS += deploy
-#    QMAKE_EXTRA_TARGETS += dmg
-}
