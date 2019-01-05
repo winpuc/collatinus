@@ -344,29 +344,30 @@ QString Server::consult(QString req, QString texte)
     // Un seul mot !
     MapLem ml = _lemCore->lemmatiseM(texte);
     if (ml.isEmpty()) return "";
+    Dictionnaire * dico_courant;
     QString p = req.mid(1);
     if (p == "dge")
     {
-        listeD.change_courant ("Georges 1913");
+        dico_courant = listeD.dictionnaire_par_nom("Georges 1913");
     }
     else if (p == "dle")
     {
-        listeD.change_courant ("Lewis and Short 1879");
+        dico_courant = listeD.dictionnaire_par_nom("Lewis and Short 1879");
     }
     else if (p == "dga")
     {
-        listeD.change_courant ("Gaffiot 2016");
+        dico_courant = listeD.dictionnaire_par_nom("Gaffiot 2016");
     }
     else if (p == "ddu")
     {
-        listeD.change_courant ("du Cange 1883");
+        dico_courant = listeD.dictionnaire_par_nom("du Cange 1883");
     }
     else if (p == "dje")
     {
-        listeD.change_courant ("Jeanneau 2017");
+        dico_courant = listeD.dictionnaire_par_nom("Jeanneau 2017");
     }
     QStringList lemmes;
     if (ml.isEmpty()) lemmes << texte;
     else lemmes = _lemCore->lemmes(ml);
-    return listeD.courant()->pageXml(lemmes);
+    return dico_courant->pageXml(lemmes);
 }
