@@ -140,6 +140,7 @@ void Server::exec ()
 {
     QByteArray octets = soquette->readAll ();
     QString requete = QString (octets).trimmed();
+    std::cout << requete.toStdString() << "\n";
     if (requete.isEmpty()) requete = "-?";
     QString texte = "";
     QString rep = "";
@@ -195,6 +196,8 @@ void Server::exec ()
                 optAcc = options[2].digitValue() & 7;
             rep = scandeur->scandeTxt(texte,0,optAcc==1, requete[1].isLower());
             if (optAcc==1) nonHTML = false;
+            nonHTML = false;
+//            rep.replace("\n","<br />\n");
             break;
         case 'A':
         case 'a':
@@ -206,6 +209,8 @@ void Server::exec ()
                     optAcc = 10 * optAcc + options[3].digitValue();
             }
             rep = scandeur->scandeTxt(texte,optAcc,false, requete[1].isLower());
+            nonHTML = false;
+            rep.replace("\n","<br />\n");
             break;
         case 'H':
         case 'h':
@@ -279,6 +284,7 @@ void Server::exec ()
             break;
         case 'd':
             rep = consult(options, texte);
+            nonHTML = false;
             break;
         case 't':
             options = options.mid(2); // Je coupe le "-t".
@@ -319,14 +325,16 @@ void Server::exec ()
     else if (texte != "") rep= scandeur->scandeTxt(texte);
     else rep= scandeur->scandeTxt(requete);
     }
-    if (nonHTML)
+/*    if (nonHTML)
     {
         rep.remove("<br />"); // Avec -H/h, j'ai la lemmatisation en HTML
         rep.remove("<br/>"); // Avec -H/h, j'ai la lemmatisation en HTML
     }
-
+*/
     QByteArray ba = rep.toUtf8();
+//    std::cout << "Je retourne la page.\n";
     soquette->write(ba);
+    soquette->close ();
 }
 
 QString Server::flechis(QString texte)
@@ -340,10 +348,11 @@ QString Server::flechis(QString texte)
 
 QString Server::consult(QString req, QString texte)
 {
+    std::cout << req.toStdString() << " " << texte.toStdString() << "\n";
     if (texte.contains(" ")) texte = texte.section(" ",0,0);
     // Un seul mot !
     MapLem ml = _lemCore->lemmatiseM(texte);
-    if (ml.isEmpty()) return "";
+//    if (ml.isEmpty()) return "";
     Dictionnaire * dico_courant;
     QString p = req.mid(1);
     if (p == "dge")
@@ -366,6 +375,7 @@ QString Server::consult(QString req, QString texte)
     {
         dico_courant = listeD.dictionnaire_par_nom("Jeanneau 2017");
     }
+    else return "Dico inconnu";
     QStringList lemmes;
     if (ml.isEmpty()) lemmes << texte;
     else lemmes = _lemCore->lemmes(ml);

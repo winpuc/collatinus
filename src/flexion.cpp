@@ -165,7 +165,7 @@ QString Flexion::tableaux(MapLem *ml)
     foreach (Lemme *l, ml->keys())
     {
         // numéro d'homonymie
-        flm << "<a href=\"#" << l->cle() << "\">" << l->grq() << "</a> "
+        flm << " <a href=\"#" << l->cle() << "\">" << l->grq() << "</a> "
             << l->humain(false,_lemmatiseur->cible()) << "<br/>";
     }
     flm << "</h4>";
