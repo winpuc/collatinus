@@ -183,6 +183,11 @@ MainWindow::MainWindow()
     readSettings();
 }
 
+void MainWindow::actModule()
+{
+    qDebug()<<"actModule";
+}
+
 /**
  * \fn void MainWindow::afficheLemsDic (bool litt, bool prim)
  * \brief Surcharge. Récupère le contenu de la ligne de saisie du
@@ -784,6 +789,11 @@ void MainWindow::createActions()
     actionVerba_cognita->setChecked(false);
     verba_cognita_out = new QAction(tr("Écrire l'emploi des mots connus"),this);
 
+    // actions pour les modules et vargraph
+    modInstAct = new QAction(tr("Installer un module"), this);
+    modActAct = new QAction(tr("Activer/désactiver un module"), this);
+    vargraphAct = new QAction(tr("Variantes graphiques"), this);
+
     // actions pour le serveur
     serverAct = new QAction(tr("Serveur"), this);
     serverAct->setCheckable(true);
@@ -874,6 +884,11 @@ void MainWindow::createConnections()
     connect(nonRecAct, SIGNAL(toggled(bool)), _lemmatiseur,
             SLOT(setNonRec(bool)));
     connect(extensionWAct, SIGNAL(toggled(bool)), _lemCore, SLOT(setExtension(bool)));
+
+    // action modules
+    connect(modInstAct, SIGNAL(triggered()), this, SLOT(instModule()));
+    connect(modActAct, SIGNAL(triggered()), this, SLOT(actModule()));
+    connect(vargraphAct, SIGNAL(triggered()), this, SLOT(editVargraph()));
 
     // actions et options de l'accentuation
     connect(accentAct, SIGNAL(toggled(bool)), this, SLOT(setAccent(bool)));
@@ -1016,8 +1031,12 @@ void MainWindow::createMenus()
     lexMenu->addAction(alphaAct);
     lexMenu->addAction(statAct);
     lexMenu->addSeparator();
-    lexMenu->addAction(extensionWAct);
-    lexMenu->addSeparator();
+
+    modulMenu = lexMenu->addMenu(tr("Modules lexicaux"));
+    modulMenu->addAction(extensionWAct);
+    modulMenu->addAction(modInstAct);
+    modulMenu->addAction(modActAct);
+    modulMenu->addAction(vargraphAct);
 
     optMenu = menuBar()->addMenu(tr("&Options"));
     optMenu->addAction(alphaOptAct);
@@ -1409,6 +1428,11 @@ bool MainWindow::dockVisible(QDockWidget *d)
     return !d->visibleRegion().isEmpty();
 }
 
+void MainWindow::editVargraph()
+{
+    qDebug()<<"editVarGraph";
+}
+
 /**
  * \fn void MainWindow::effaceRes()
  * \brief Efface le contenu des docs visibles.
@@ -1615,6 +1639,11 @@ void MainWindow::imprimer()
     }
     delete dlg;
 #endif
+}
+
+void MainWindow::instModule()
+{
+    qDebug()<<"instModule";
 }
 
 /**

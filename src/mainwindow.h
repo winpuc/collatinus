@@ -118,13 +118,12 @@ class MainWindow : public QMainWindow
     // Pour le serveur
     QString startServer ();
     QString stopServer ();
-
     QString lem2csv(QString texte);
-
     void tagger(QString t, int p); // Je voudrais créer dans MainWindow l'interface du tagger.
 
 
    private slots:
+    void actModule();
     void afficheLemsDic(bool litt = false,
                         bool prim = true);  // ligne de saisie
     void afficheLemsDicLitt();              // relais pour le précédent
@@ -145,11 +144,13 @@ class MainWindow : public QMainWindow
     void closeEvent(QCloseEvent *event);
     void copie();
     void dialogueCopie();
+    void editVargraph();
     void effaceRes();
     void exportPdf();
     void exportCsv();
     void flechisLigne();
     void imprimer();
+    void instModule();
     void langueInterface();
     void lancer();
     void lemmatiseLigne();
@@ -205,8 +206,9 @@ class MainWindow : public QMainWindow
     QMenu *viewMenu;
     QMenu *lFrEngMenu;
     QMenu *lexMenu;
-    QMenu *optMenu;
+    QMenu *modulMenu;
     QMenu *extraMenu;
+    QMenu *optMenu;
     QMenu *helpMenu;
 
     QToolBar *toolBar;
@@ -278,7 +280,11 @@ class MainWindow : public QMainWindow
     QAction *visibleWAct;
     QAction *extensionWAct;
     QAction *zoomAct;
-    // QAction *undoAct;
+    // Modules : installer, activer, désactiver, variantes graphiques
+    QAction *modInstAct;
+    QAction *modActAct;
+    QAction *vargraphAct;
+
     // widgets, variables et fonctions du dock dictionnaires
     QComboBox *comboGlossaria;
     QPushButton *anteButton;
