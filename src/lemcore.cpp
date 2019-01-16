@@ -45,17 +45,9 @@ LemCore::LemCore(QObject *parent, QString resDir) : QObject(parent)
     qDebug()<<"lemcore";
     if (resDir.isEmpty())
     {
-        /* Ch::chemin(QString, char)
-         *  char ==
-         *  'e' exécutable
-         *  'd' données
-         *  'p' données perso
-         */
         _resDir = Ch::chemin("data", 'd');
-        _modDir = Ch::chemin("data", 'p');
+        //_modDir = Ch::chemin("data", 'p');
         if (!_resDir.endsWith('/')) _resDir.append('/');
-        qDebug()<<"LemCore, _resDir"<<_resDir;
-        qDebug()<<"LemCore, _modDir"<<_modDir;
     }
     // options
     _extension = false;
@@ -856,7 +848,6 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
     if ((etape > 3) || (etape <0)) // Condition terminale
     {
         mm = lemmatise(f);
-        // qDebug() << f << etape;
         if (debPhr && f.at(0).isUpper())
         {
             QString nf = f.toLower();
@@ -1033,15 +1024,12 @@ void LemCore::lisIrreguliers()
  */
 void LemCore::lisFichierLexique(QString filepath)
 {
-    qDebug()<<"lisFichierLexique"<<filepath;
     int orig = 0;
     if (filepath.endsWith("ext.la")) orig = 1;
     QStringList lignes = lignesFichier(filepath);
     foreach (QString lin, lignes)
     {
         Lemme *l = new Lemme(lin, orig, this);
-        //if (_lemmes.contains(l->cle()))
-        //    qDebug() << lin << " existe déjà";
         _lemmes.insert(l->cle(), l);
     }
 }
@@ -1061,12 +1049,7 @@ void LemCore::lisLexique()
  */
 void LemCore::lisExtension()
 {
-//    if (_nbrLoaded) foreach(Lemme *l, _lemmes.values())
-  //      l->clearOcc();
-    // Si les nombres d'occurrences ont été chargés, je dois les ré-initialiser.
-    //qDebug() << "lecture extension";
     lisFichierLexique(_resDir + "lem_ext.la");
-//    lisNombres();
 }
 
 /**
