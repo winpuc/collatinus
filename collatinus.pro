@@ -27,7 +27,6 @@ QMAKE_DISTCLEAN += $${DESTDIR}/collatinus
 # Input
 HEADERS += src/ch.h \
            src/dicos.h \
-           src/diff_match_patch.h \
            src/flexion.h \
            src/irregs.h \
            src/lasla.h \
@@ -43,7 +42,6 @@ HEADERS += src/ch.h \
 
 SOURCES += src/ch.cpp \
            src/dicos.cpp \
-           src/diff_match_patch.cpp \
            src/flexion.cpp \
            src/irregs.cpp \
            src/lasla.cpp \
