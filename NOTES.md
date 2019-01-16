@@ -1,5 +1,20 @@
 # Collatinus-11, notes
 
+## mardi 15 janvier 2019
+**Notes sur le passage à C12 à partir du code de Ecce**
+
+- Question : supprimer le chargement optionnel de lem\_ext ?
+- Par défaut : aucun paquet chargé
+- implémenter l'installation de paquets
+- modifier LemCore :
+  - menus de pilotage des modules
+  - ordre de chargement et priorités
+  - Vargraph
+  - dans le cœur : modification des vargraph
+  - dialogue des vargraph
+  - fonction ::reinitRads
+- Intégration du module et des vargraph dans QSettings
+
 ## vendredi 21 septembre 2018
 
 # Format des données optionnelles chargeables et déchargeables.
