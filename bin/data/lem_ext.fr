@@ -217,7 +217,6 @@ Acitauones:peuple des Alpes
 Acitoali:peuple d'Arabie
 Aclissae:peuple de l'Inde
 Acmodae:îles au nord de la Grande-Bretagne
-!Acontizomenos:the title of a comedy of Naevius
 Acontizomenos:titre d'une pièce de Naevius
 Acra:Acra Iapygia [promontoire en Calabre]
 Acrabatena:contrée de la Judée
@@ -236,8 +235,7 @@ Acroathon:Acroathon (ville de la Chalcidique, sur l'Athos).
 Acroceraunium:promontoire d'Épire
 Acroceraunius:acrocéraunien ; [mét.] dangereux
 Acrocerretes:peuple des Pyrénées
-Acrocorinthos:l'Acrocorinthe, citadelle de Corinthe.
-!Acrocorinthus:Acrocorinthe, citadelle de Corinthe
+Acrocorinthos:Acrocorinthe (citadelle de Corinthe.)
 Acronius:le lac Acronien (une partie du lac de Constance).
 Acronus:partie du lac de Constance
 Acropolis:Acropole [citadelle de Thèbes]
@@ -457,7 +455,6 @@ Aeropa:Aéropé, épouse d'Atrée, mère d'Agamemnon et de Ménélas
 Aerope:Aéropé, épouse d'Atrée, mère d'Agamemnon et de Ménélas
 Aeropus:nom d'h.
 Aesacos:fils de Priam
-!Aesacus:fils de Priam
 Aesar:dieu des Étrusques / rivière de la Grande Grèce
 Aesareus:de l'Ésar
 Aesarius:de l'Ésar
@@ -5666,7 +5663,7 @@ Epidaurius:d'Épidaure
 Epidaurius2:l'Épidaurien Esculape
 !Epidauros:Épidaure [ville de l'Argolide, où Esculape était honoré]
 Epidaurus2:d'Épidaure
-Epidicazomene:the title of a Greek comedy of Apollodorus, imitated by Terence in his Phormio
+Epidicazomene:titre d'une pièce de Naevius
 Epidicazomenos:nom d'une pièce d'Apollodore
 Epidius:nom d'un rhéteur / tribun de la plèbe au temps de César
 Epigenes:nom d'un auteur grec
@@ -39978,7 +39975,7 @@ martiobarbulus:soldat qui lance des balles de plomb
 martisium:poisson pilé dans un mortier
 martulus2:v. marculus
 martyr:martyr, martyre
-martyra:
+martyra:martyr
 martyrium:martyre / lieu où un martyr est enseveli, tombe / église consacrée à un saint
 marum:marum ou germandrée maritime [plante]
 mas2:mâle, de sexe masculin, masculin. viril, énergique.
@@ -41721,7 +41718,7 @@ nauticarius:c. navicularius
 nautilos:nautile ou argonaute [mollusque]
 naxa:nasse de pêcheur / [fig.] mauvais pas
 naxium:pierre de Naxos servant à polir le marbre
-ne3:adv. et conj. de négation // pas même ou non plus / vous non plus ; [dans les conclusions] / « manquer » suppose un sujet sentant ; un mort n'est pas susceptible de sentir / [une négation et ne... quidem venant ensuite, ne se détruisent pas] / [ne... quidem étant le premier, il n'y a pas répétition d'un mot négatif] / [ne forme des composés] ex. / dans les prop. indép. exprimant / [exhortation] / [une supposition, une concession] / [un souhait] / conj. avec le subj., que ne, pour que ne... pas / [sens final] pour que ne... pas, pour éviter, empêcher que / [ne se rattachant à une idée s.-ent.] (je dis ceci) pour éviter que / [ellipse du verbe] / ne seul, même sens / qqf sans verbe [cf. modo ne] / tours elliptiques / grec, il est à craindre que, il se pourrait que / il n'y a pas à craindre que
+ne3:pas même, non plus
 neaniscologus:qui parle en jeune homme
 nebridae:nébrides, prêtres de Cérès
 nebrites:nébrite [sorte de pierre précieuse consacrée à Bacchus]
@@ -44488,7 +44485,6 @@ pentaeteris:espace ou période de cinq ans
 pentagonium:pentagone
 pentagonius:
 pentagonon:pentagone / c. pentaphyllon
-!pentagonum:pentagone / c. pentaphyllon
 pentagonus:qui a cinq côtés
 pentameter:pentamètre, qui a cinq pieds
 pentanummus:pièce de monnaie valant cinq as.
@@ -44500,16 +44496,13 @@ pentaptota:noms qui ont cinq cas
 pentaptotos:
 pentas:le nombre cinq
 pentasemos:qui a cinq temps [métrique]
-!pentasemus:qui a cinq temps [métrique]
 pentaspaston:pentaspaste, moufle à cinq poulies
 pentasphaerum:sorte de plante odoriférante (c. malabathron ?) / portiques à cinq rangs de colonnes
 pentasphaerus:a kind of costly spice
 pentastichos:
 pentasyllabos:qui est de cinq syllabes
-!pentasyllabus:qui est de cinq syllabes
 pentathlos:one who practised the five exercises
 pentathlum:pentathle, l'ensemble des cinq exercices gymnastiques
-!pentathlus:athlète qui pratique le pentathle
 pentatomon:c. pentaphyllon
 penteloris:lorum), qui a cinq bandes de couleur
 penteremis:remus), c. penteres
