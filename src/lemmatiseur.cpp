@@ -614,13 +614,20 @@ void Lemmatiseur::verbaOut(QString fichier)
  *        permet de fournir par défaut des résultats dans
  *        l'ordre alphabétique.
  */
-bool Lemmatiseur::optAlpha() { return _alpha; }
+bool Lemmatiseur::optAlpha()
+{
+    return _alpha;
+}
+
 /**
  * \fn bool Lemmatiseur::optHtml()
  * \brief Accesseur de l'option html, qui
  *        permet de renvoyer les résultats au format html.
  */
-bool Lemmatiseur::optHtml() { return _html; }
+bool Lemmatiseur::optHtml()
+{
+    return _html;
+}
 
 /**
  * \fn bool Lemmatiseur::optFormeT()
@@ -628,7 +635,10 @@ bool Lemmatiseur::optHtml() { return _html; }
  *        qui donne en tête de lemmatisation
  *        la forme qui a été analysée.
  */
-bool Lemmatiseur::optFormeT() { return _formeT; }
+bool Lemmatiseur::optFormeT()
+{
+    return _formeT;
+}
 
 /**
  * \fn bool Lemmatiseur::optMajPert()
@@ -636,7 +646,11 @@ bool Lemmatiseur::optFormeT() { return _formeT; }
  *        qui permet de tenir compte des majuscules
  *        dans la lemmatisation.
  */
-bool Lemmatiseur::optMajPert() { return _majPert; }
+bool Lemmatiseur::optMajPert()
+{
+    return _majPert;
+}
+
 /**
  * \fn bool Lemmatiseur::optMorpho()
  * \brief Accesseur de l'option morpho,
@@ -659,7 +673,11 @@ bool Lemmatiseur::optNonRec()
  */
 // modificateurs d'options
 
-void Lemmatiseur::setAlpha(bool a) { _alpha = a; }
+void Lemmatiseur::setAlpha(bool a)
+{
+    _alpha = a;
+}
+
 /**
  * \fn void Lemmatiseur::setCible(QString c)
  * \brief Permet de changer la langue cible.
@@ -669,27 +687,47 @@ void Lemmatiseur::setCible(QString c)
     _cible = c;
     _lemCore->setCible(c);
 }
+
 /**
  * \fn void Lemmatiseur::setHtml (bool h)
  * \brief Modificateur de l'option html.
  */
-void Lemmatiseur::setHtml(bool h) { _html = h; }
+void Lemmatiseur::setHtml(bool h)
+{
+    _html = h;
+}
+
 /**
  * \fn void Lemmatiseur::setFormeT (bool f)
  * \brief Modificateur de l'option formeT.
  */
-void Lemmatiseur::setFormeT(bool f) { _formeT = f; }
+void Lemmatiseur::setFormeT(bool f)
+{
+    _formeT = f;
+}
+
 /**
  * \fn void Lemmatiseur::setMajPert (bool mp)
  * \brief Modificateur de l'option majpert.
  */
-void Lemmatiseur::setMajPert(bool mp) { _majPert = mp; }
+void Lemmatiseur::setMajPert(bool mp)
+{
+    _majPert = mp;
+}
+
 /**
  * \fn void Lemmatiseur::setMorpho (bool m)
  * \brief Modificateur de l'option morpho.
  */
-void Lemmatiseur::setMorpho(bool m) { _morpho = m; }
-void Lemmatiseur::setNonRec(bool n) { _nonRec = n; }
+void Lemmatiseur::setMorpho(bool m)
+{
+    _morpho = m;
+}
+
+void Lemmatiseur::setNonRec(bool n)
+{
+    _nonRec = n;
+}
 
 /**
  * \fn QString Lemmatiseur::cible()
