@@ -19,7 +19,11 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
+#include <quazip/quazip.h>
+#include <quazip/quazipfile.h>
+
 #include "mainwindow.h"
+#include "modules.h"
 
 /**
  * \fn EditLatin::EditLatin (QWidget *parent): QTextEdit (parent)
@@ -81,7 +85,7 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
     if (!cursor.hasSelection()) cursor.select(QTextCursor::WordUnderCursor);
     QString st = cursor.selectedText();
     bool unSeulMot = !st.contains(' ');
-    MapLem ml = mainwindow->_lemCore->lemmatiseM(st);
+    MapLem ml = mainwindow->lemcore->lemmatiseM(st);
     // 1. dock de lemmatisation
     if (!mainwindow->dockLem->visibleRegion().isEmpty())
     {
@@ -123,7 +127,7 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
             }
         }
         // 4. dock dictionnaires
-        QStringList lemmes = mainwindow->_lemCore->lemmes(ml);
+        QStringList lemmes = mainwindow->lemcore->lemmes(ml);
         if (!mainwindow->dockDic->visibleRegion().isEmpty())
             mainwindow->afficheLemsDic(lemmes);
         if (mainwindow->wDic->isVisible() && mainwindow->syncAct->isChecked())
@@ -153,12 +157,31 @@ MainWindow::MainWindow()
     editLatin = new EditLatin(this);
     setCentralWidget(editLatin);
 
-    _lemCore = new LemCore(this);
-    _lemmatiseur = new Lemmatiseur(this,_lemCore);
-    flechisseur = new Flexion(_lemCore);
-    lasla = new Lasla(this,_lemCore,"");
-    tagueur = new Tagueur(this,_lemCore);
-    scandeur = new Scandeur(this,_lemCore);
+
+
+    // définir d'abord les répertoires de l'appli
+    // et le répertoire personnel, où sont les modules lexicaux
+    resDir = Ch::chemin("collatinus/"+module,'d');
+    if (!resDir.endsWith('/')) resDir.append('/');
+    // TODO : création, et QSettings pour module
+    modDir = Ch::chemin("collatinus/", 'p');
+    if (!modDir.endsWith('/')) modDir.append('/');
+    if (!module.isEmpty())
+    {
+        ajDir = modDir + module;
+        if (!ajDir.endsWith('/')) ajDir.append('/');
+    }
+    else
+    {
+        ajDir.clear();
+    }
+    lemcore = new LemCore(this, resDir, ajDir);
+
+    _lemmatiseur = new Lemmatiseur(this,lemcore);
+    flechisseur = new Flexion(lemcore);
+    lasla = new Lasla(this,lemcore,"");
+    tagueur = new Tagueur(this,lemcore);
+    scandeur = new Scandeur(this,lemcore);
 
     setLangue();
 
@@ -173,19 +196,11 @@ MainWindow::MainWindow()
     createDicos(false);
     createCibles();
 
-    setWindowTitle(tr("Collatinus 11"));
+    setWindowTitle(tr("Collatinus 12"));
     setWindowIcon(QIcon(":/res/collatinus.svg"));
-
     setUnifiedTitleAndToolBarOnMac(true);
 
-    // setTabPosition(Qt::BottomDockWidgetArea, QTabWidget::North );
-
     readSettings();
-}
-
-void MainWindow::actModule()
-{
-    qDebug()<<"actModule";
 }
 
 /**
@@ -210,8 +225,8 @@ void MainWindow::afficheLemsDic(bool litt, bool prim)
     QStringList requete;
     if (!litt)
     {
-        MapLem lm = _lemCore->lemmatiseM(lineEdit->text(), true);
-        requete = _lemCore->lemmes(lm);
+        MapLem lm = lemcore->lemmatiseM(lineEdit->text(), true);
+        requete = lemcore->lemmes(lm);
     }
     else
     {
@@ -791,7 +806,7 @@ void MainWindow::createActions()
 
     // actions pour les modules et vargraph
     modInstAct = new QAction(tr("Installer un module"), this);
-    modActAct = new QAction(tr("Activer/désactiver un module"), this);
+    modulesAct = new QAction(tr("activer, désactiver, gérer les modules"), this);
     vargraphAct = new QAction(tr("Variantes graphiques"), this);
 
     // actions pour le serveur
@@ -834,10 +849,10 @@ void MainWindow::createActions()
 void MainWindow::createCibles()
 {
     grCibles = new QActionGroup(lexMenu);
-    foreach (QString cle, _lemCore->cibles().keys())
+    foreach (QString cle, lemcore->cibles().keys())
     {
         QAction *action = new QAction(grCibles);
-        action->setText(_lemCore->cibles()[cle]);
+        action->setText(lemcore->cibles()[cle]);
         action->setCheckable(true);
         lexMenu->addAction(action);
         connect(action, SIGNAL(triggered()), this, SLOT(setCible()));
@@ -883,12 +898,12 @@ void MainWindow::createConnections()
             SLOT(setMorpho(bool)));
     connect(nonRecAct, SIGNAL(toggled(bool)), _lemmatiseur,
             SLOT(setNonRec(bool)));
-    connect(extensionWAct, SIGNAL(toggled(bool)), _lemCore, SLOT(setExtension(bool)));
+    connect(extensionWAct, SIGNAL(toggled(bool)), lemcore, SLOT(setExtension(bool)));
 
-    // action modules
-    connect(modInstAct, SIGNAL(triggered()), this, SLOT(instModule()));
-    connect(modActAct, SIGNAL(triggered()), this, SLOT(actModule()));
+    // action modules et vargraph
+    connect(modulesAct, SIGNAL(triggered()), this, SLOT(dialogueModules()));
     connect(vargraphAct, SIGNAL(triggered()), this, SLOT(editVargraph()));
+    connect(modInstAct, SIGNAL(triggered()), this, SLOT(instModule()));
 
     // actions et options de l'accentuation
     connect(accentAct, SIGNAL(toggled(bool)), this, SLOT(setAccent(bool)));
@@ -1035,7 +1050,7 @@ void MainWindow::createMenus()
     modulMenu = lexMenu->addMenu(tr("Modules lexicaux"));
     modulMenu->addAction(extensionWAct);
     modulMenu->addAction(modInstAct);
-    modulMenu->addAction(modActAct);
+    modulMenu->addAction(modulesAct);
     modulMenu->addAction(vargraphAct);
 
     optMenu = menuBar()->addMenu(tr("&Options"));
@@ -1418,6 +1433,12 @@ void MainWindow::dialogueCopie()
     dCopie.exec();
 }
 
+void MainWindow::dialogueModules()
+{
+    DialogM* dm = new DialogM(modDir, lemcore);
+    dm->show();
+}
+
 /**
  * \fn bool MainWindow::dockVisible (QDockWidget *d)
  * \brief renvoie true si le dock d est visible.
@@ -1643,7 +1664,36 @@ void MainWindow::imprimer()
 
 void MainWindow::instModule()
 {
-    qDebug()<<"instModule";
+    QString ch = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
+    QString chp = QFileDialog::getOpenFileName(this,
+                                               "paquet du module à installer",
+                                               ch, "paquets Collatinus (*.col)");
+    if (chp.isEmpty()) return;
+    QFileInfo info(chp);
+    QString nmod= info.baseName();
+    QDir dir(modDir);
+    dir.mkdir(nmod);
+    QuaZip zip(chp);
+    zip.open(QuaZip::mdUnzip);
+    zip.goToFirstFile();
+    do
+    {
+        QuaZipFile zipFile(&zip);
+        if (!zipFile.open(QIODevice::ReadOnly)) continue;
+        QFile out(zipFile.getActualFileName());
+        if (!out.open(QIODevice::WriteOnly)) continue;;
+        char c;
+        while (zipFile.getChar(&c)) out.putChar(c);
+        out.flush();
+        out.close();
+        zipFile.close();
+    }
+    while (zip.goToNextFile());
+    // ajouter le paquet à la liste et le sélectionner
+    module = nmod;
+    // mettre à jour le dialogue des modules
+    // charger le paquet
+    // actModule();
 }
 
 /**
@@ -1676,7 +1726,7 @@ void MainWindow::langueInterface()
  */
 void MainWindow::flechisLigne()
 {
-    MapLem ml = _lemCore->lemmatiseM(lineEditFlex->text());
+    MapLem ml = lemcore->lemmatiseM(lineEditFlex->text());
     if (!ml.empty())
     {
         textBrowserFlex->clear();
@@ -1916,14 +1966,14 @@ void MainWindow::readSettings()
     if (l.size() < 2) l = "fr";
     _lemmatiseur->setCible(l);
     foreach (QAction *action, grCibles->actions())
-        if (action->text() == _lemCore->cibles()[l.mid(0,2)])
+        if (action->text() == lemcore->cibles()[l.mid(0,2)])
             action->setChecked(true);
     settings.endGroup();
     // options appliquées au lemmatiseur
     _lemmatiseur->setAlpha(alphaOptAct->isChecked());
     _lemmatiseur->setFormeT(formeTAct->isChecked());
-    _lemCore->setExtension(extensionWAct->isChecked());
-    if (!ficHyphen.isEmpty()) _lemCore->lireHyphen(ficHyphen);
+    lemcore->setExtension(extensionWAct->isChecked());
+    if (!ficHyphen.isEmpty()) lemcore->lireHyphen(ficHyphen);
     // Le fichier hyphen.la doit être lu après l'extension.
     _lemmatiseur->setHtml(htmlAct->isChecked());
     _lemmatiseur->setMajPert(majPertAct->isChecked());
@@ -2084,9 +2134,9 @@ void MainWindow::scandeTxt()
 void MainWindow::setCible()
 {
     QAction *action = grCibles->checkedAction();
-    foreach (QString cle, _lemCore->cibles().keys())
+    foreach (QString cle, lemcore->cibles().keys())
     {
-        if (_lemCore->cibles()[cle] == action->text())
+        if (lemcore->cibles()[cle] == action->text())
         {
             if (cle == "fr")
                 _lemmatiseur->setCible(cle + ".en.de");
@@ -2205,7 +2255,7 @@ void MainWindow::lireFichierHyphen()
 {
     ficHyphen = QFileDialog::getOpenFileName(this, "Capsam legere", repHyphen+"/hyphen.la");
     if (!ficHyphen.isEmpty()) repHyphen = QFileInfo (ficHyphen).absolutePath ();
-    _lemCore->lireHyphen(ficHyphen);
+    lemcore->lireHyphen(ficHyphen);
     // Si le nom de fichier est vide, ça efface les données précédentes.
 }
 
@@ -2334,9 +2384,9 @@ void MainWindow::exec ()
                 }
             }
             else options = options.mid(2); // Je coupe le "-l".
-            if ((options.size() == 2) && _lemCore->cibles().keys().contains(options))
+            if ((options.size() == 2) && lemcore->cibles().keys().contains(options))
                 _lemmatiseur->setCible(options);
-            else if (((options.size() == 5) || (options.size() == 8)) && _lemCore->cibles().keys().contains(options.mid(0,2)))
+            else if (((options.size() == 5) || (options.size() == 8)) && lemcore->cibles().keys().contains(options.mid(0,2)))
                 _lemmatiseur->setCible(options);
             if (optAcc > 15) rep = _lemmatiseur->frequences(texte).join("");
             else rep = _lemmatiseur->lemmatiseT(texte,optAcc&1,optAcc&2,optAcc&4,optAcc&8);
@@ -2359,9 +2409,9 @@ void MainWindow::exec ()
         case 'e':
             // Pour sortir la lemmatisation sous un format CSV
             options = options.mid(2); // Je coupe le "-e".
-            if ((options.size() == 2) && _lemCore->cibles().keys().contains(options))
+            if ((options.size() == 2) && lemcore->cibles().keys().contains(options))
                 _lemmatiseur->setCible(options);
-            else if (((options.size() == 5) || (options.size() == 8)) && _lemCore->cibles().keys().contains(options.mid(0,2)))
+            else if (((options.size() == 5) || (options.size() == 8)) && lemcore->cibles().keys().contains(options.mid(0,2)))
                 _lemmatiseur->setCible(options);
             rep = lem2csv(_lemmatiseur->lemmatiseT(texte,false,true,false,false));
 //            if (options.startsWith("dc")) rep.replace(":","\"\t\"");
@@ -2369,7 +2419,7 @@ void MainWindow::exec ()
             break;
         case 'X':
         case 'x':
-//            rep = _lemCore->txt2XML(requete);
+//            rep = lemcore->txt2XML(requete);
             rep = "Pas encore disponible";
             break;
         case 'K':
@@ -2383,13 +2433,13 @@ void MainWindow::exec ()
         case 't':
             options = options.mid(2); // Je coupe le "-t".
             if (((options.size() == 2) || (options.size() == 5) || (options.size() == 8)) &&
-                    _lemCore->cibles().keys().contains(options.mid(0,2)))
+                    lemcore->cibles().keys().contains(options.mid(0,2)))
             {
                 _lemmatiseur->setCible(options);
             }
             else
             {
-                QStringList clefs = _lemCore->cibles().keys();
+                QStringList clefs = lemcore->cibles().keys();
                 rep = "Les langues connues sont : " + clefs.join(" ") + "\n";
             }
             break;

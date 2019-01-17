@@ -78,7 +78,7 @@ class MainWindow : public QMainWindow
     // et second dictionnaire
     QWidget *wDic;
     // cœur
-    LemCore *_lemCore;
+    LemCore* lemcore;
     Flexion *flechisseur;
     // modules divers
     Lasla *lasla;
@@ -123,7 +123,6 @@ class MainWindow : public QMainWindow
 
 
    private slots:
-    void actModule();
     void afficheLemsDic(bool litt = false,
                         bool prim = true);  // ligne de saisie
     void afficheLemsDicLitt();              // relais pour le précédent
@@ -144,6 +143,7 @@ class MainWindow : public QMainWindow
     void closeEvent(QCloseEvent *event);
     void copie();
     void dialogueCopie();
+    void dialogueModules();
     void editVargraph();
     void effaceRes();
     void exportPdf();
@@ -199,6 +199,7 @@ class MainWindow : public QMainWindow
     void createStatusBar();
     void createDockWindows();
     void createDicWindow();  // second dictionnaire
+    void enrVar();           // enregistrement des variantes graphiques
     void setLangue();
 
     QMenu *fileMenu;
@@ -232,6 +233,12 @@ class MainWindow : public QMainWindow
     QAction *lireHyphenAct;
     QAction *actionVerba_cognita;
     QAction *verba_cognita_out;
+
+    // chemins
+    QString           resDir;
+    QString           ajDir;
+    QString           module;
+    QString           modDir;
     // Nom du répertoire du fichier hyphen.la
     QString repHyphen;
     QString ficHyphen;
@@ -281,9 +288,9 @@ class MainWindow : public QMainWindow
     QAction *extensionWAct;
     QAction *zoomAct;
     // Modules : installer, activer, désactiver, variantes graphiques
-    QAction *modInstAct;
-    QAction *modActAct;
-    QAction *vargraphAct;
+    QAction* modInstAct;
+    QAction* modulesAct;
+    QAction* vargraphAct;
 
     // widgets, variables et fonctions du dock dictionnaires
     QComboBox *comboGlossaria;
