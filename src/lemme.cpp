@@ -29,7 +29,7 @@
  * \brief Créateur de la classe Radical. g est la forme
  *        canonique avec ses quantités, n est le numéro du radical
  */
-Radical::Radical(QString g, int n, QObject *parent)
+Radical::Radical(QString g, int n, QObject *parent) 
 {
     _lemme = qobject_cast<Lemme *>(parent);
     _grq = Ch::communes(g);
@@ -72,24 +72,30 @@ Modele *Radical::modele() { return _lemme->modele(); }
  * \fn int Radical::numRad ()
  * \brief Le numéro du radical.
  */
-int Radical::numRad() { return _numero; }
+int Radical::numRad()
+{
+    return _numero;
+}
 ///////////
 // LEMME //
 ///////////
 
 /**
  * \fn Lemme::Lemme (QString linea, QObject *parent)
- * \brief Constructeur de la classe Lemme à partire de la
+ * \brief Constructeur de la classe Lemme à partir de la
  *        ligne linea. *parent est le lemmatiseur (classe Lemmat).
  */
-Lemme::Lemme(const QString linea, const int origin, QObject *parent)
+Lemme::Lemme(const QString linea, const int origin, QObject *parent, QString k)
 {
     // cădo|lego|cĕcĭd|cās|is, ere, cecidi, casum|687
     //   0 | 1  | 2   | 3 |     4                | 5
     _lemmatiseur = qobject_cast<LemCore *>(parent);
     QStringList eclats = linea.split('|');
-    QStringList lg = eclats.at(0).split('=');
-    _cle = Ch::atone(Ch::deramise(lg.at(0)));
+    _champ0 = eclats.at(0);
+    QStringList lg = _champ0.split('=');
+    if (k.isEmpty())
+        _cle = Ch::atone(Ch::deramise(lg.at(0)));
+    else _cle = k;
     _grd = oteNh(lg.at(0), _nh);
     if (lg.count() == 1)
         _grq = _grd;
@@ -102,20 +108,16 @@ Lemme::Lemme(const QString linea, const int origin, QObject *parent)
     _hyphen = "";
     _origin = origin;
     _nbOcc = 1; // Tous les lemmes doivent avoir été rencontrés une fois
-    // contrôle de format. la liste doit avoir 6 items
-    if (eclats.count() < 6)
-    {
-        qDebug() << "Ligne mal formée : "<<_gr<<"dernier champ"<<eclats.last()<< linea;
-        //return;
-    }
     // lecture des radicaux, champs 2 et 3
     for (int i = 2; i < 4; ++i)
+    {
         if (!eclats.at(i).isEmpty())
         {
             QStringList lrad = eclats.at(i).split(',');
             foreach (QString rad, lrad)
                 _radicaux[i-1].append(new Radical(rad, i-1, this));
         }
+    }
     _lemmatiseur->ajRadicaux(this);
 
     _indMorph = eclats.at(4);
@@ -225,7 +227,6 @@ void Lemme::ajRadical(int i, Radical *r)
 void Lemme::ajTrad(QString t, QString l)
 {
 //    if (_traduction.contains(l) && _traduction[l] != "")
-//        qDebug() << _grq << t << l << _traduction[l];
     _traduction[l] = t;
 }
 
@@ -251,6 +252,11 @@ QString Lemme::ambrogio()
     }
     ss << "</table>";
     return retour;
+}
+
+QString Lemme::champ0()
+{
+    return _champ0;
 }
 
 /**
@@ -437,6 +443,11 @@ void Lemme::clearOcc()
     _nbOcc = 1;
 }
 
+int Lemme::nbRadicaux()
+{
+    return _radicaux.count();
+}
+
 /**
  * \fn int Lemme::nh()
  * \brief Renvoie le numéro d'homonymie du lemme.
@@ -458,7 +469,7 @@ int Lemme::origin()
 /**
  * \fn QString Lemme::oteNh (QString g, int &nh)
  * \brief Supprime le dernier caractère de g si c'est
- *        un nombre et revoie le résultat après avoir
+ *        un nombre et renvoie le résultat après avoir
  *        donné la valeur de ce nombre à nh.
  */
 QString Lemme::oteNh(QString g, int &nh)
@@ -494,9 +505,21 @@ QString Lemme::pos()
  * \fn QList<Radical*> Lemme::radical (int r)
  * \brief Renvoie le radical numéro r du lemme.
  */
-QList<Radical *> Lemme::radical(int r)
+QList<Radical*> Lemme::radical(int r)
 {
-    return _radicaux.value(r);
+    QList<Radical*> ret;
+    return _radicaux.value(r, ret);
+}
+
+QList<Radical*> Lemme::radicaux()
+{
+    QList<Radical*> ret;
+    for (int i=0;i<_radicaux.count();++i)
+    {
+        //QList<Radical*> lr = _radicaux.values().at(i);
+        ret.append(_radicaux.values().at(i));
+    }
+    return ret;
 }
 
 /**
@@ -505,7 +528,18 @@ QList<Radical *> Lemme::radical(int r)
  *        alternative renvoyant à une autre entrée
  *        du lexique.
  */
-bool Lemme::renvoi() { return _indMorph.contains("cf. "); }
+bool Lemme::renvoi()
+{
+    return _indMorph.contains("cf. ");
+}
+
+/*
+void Lemme::setCle(QString c)
+{
+    _cle = c;
+}
+*/
+
 /**
  * \fn QString Lemme::traduction(QString l)
  * \brief Renvoie la traduction du lemme dans la langue
@@ -543,7 +577,6 @@ QString Lemme::traduction(QString l)
  */
 bool Lemme::operator<(const Lemme &l) const
 {
-    //qDebug()<<"operator<"<<_gr;
     return _nbOcc < l.nbOcc();
     //return _gr < l.gr();
 }
