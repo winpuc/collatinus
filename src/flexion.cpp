@@ -40,26 +40,6 @@ const QString Flexion::linb = "</td><td>";
 const QString Flexion::linc = "</td></tr>";
 const QString Flexion::queue = "</table>";
 
-/*const QStringList Flexion::cas = QStringList() << "nominatif"
-                                               << "vocatif"
-                                               << "accusatif"
-                                               << "génitif"
-                                               << "datif"
-                                               << "ablatif";
-
-const QStringList Flexion::genres = QStringList() << "masculin"
-                                                  << "féminin"
-                                                  << "neutre";
-const QStringList Flexion::nombres = QStringList() << "singulier"
-                                                   << "pluriel";
-
-const QStringList Flexion::temps = QStringList() << "présent"
-                                                 << "imparfait"
-                                                 << "futur"
-                                                 << "parfait"
-                                                 << "plus-que-parfait"
-                                                 << "futur antérieur";
-*/
 QString Flexion::entreParenth(QString e)
 {
     return QString("(%1)").arg(e);
