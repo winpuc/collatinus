@@ -11,6 +11,8 @@ QT += widgets
 QT += network
 QT += svg
 
+LIBS += -lquazip5
+
 #QMAKE_CXXFLAGS += -Wall -Wextra -pedantic -fstack-protector-strong
 #QMAKE_CPPFLAGS += -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2
 
@@ -24,6 +26,7 @@ OBJECTS_DIR= obj/
 MOC_DIR = moc/
 QMAKE_DISTCLEAN += $${DESTDIR}/collatinus
 
+
 # Input
 HEADERS += src/ch.h \
            src/dicos.h \
@@ -36,7 +39,9 @@ HEADERS += src/ch.h \
            src/mainwindow.h \
 		   src/maj.h \
 		   src/modele.h \
+           src/modules.h \
            src/mot.h \
+           src/reglevg.h \
            src/scandeur.h \
            src/tagueur.h
 
@@ -52,7 +57,9 @@ SOURCES += src/ch.cpp \
            src/mainwindow.cpp \
 		   src/maj.cpp \
            src/modele.cpp \
+           src/modules.cpp \
            src/mot.cpp \
+           src/reglevg.cpp \
            src/scandeur.cpp \
            src/tagueur.cpp
 
