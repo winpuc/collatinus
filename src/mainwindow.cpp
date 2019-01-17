@@ -157,8 +157,22 @@ MainWindow::MainWindow()
     editLatin = new EditLatin(this);
     setCentralWidget(editLatin);
 
+    createStatusBar();
+    createActions();
+    createDockWindows();
+    createDicWindow();
+    createMenus();
+    createToolBars();
+    createDicos();
+    createDicos(false);
+    setWindowTitle(tr("Collatinus 12"));
+    setWindowIcon(QIcon(":/res/collatinus.svg"));
+    setUnifiedTitleAndToolBarOnMac(true);
 
-
+    QSettings settings("Collatinus", "collatinus11");
+    settings.beginGroup("fichiers");
+    _module = settings.value("module").toString();
+    settings.endGroup();
     // définir d'abord les répertoires de l'appli
     // et le répertoire personnel, où sont les modules lexicaux
     resDir = Ch::chemin("collatinus/data", 'd');
@@ -176,31 +190,16 @@ MainWindow::MainWindow()
         ajDir.clear();
     }
     lemcore = new LemCore(this, resDir, ajDir);
-
+    createCibles();
     _lemmatiseur = new Lemmatiseur(this,lemcore);
+    readSettings();
+    createConnections();
     flechisseur = new Flexion(lemcore);
     lasla = new Lasla(this,lemcore,"");
     tagueur = new Tagueur(this,lemcore);
     scandeur = new Scandeur(this,lemcore);
 
     setLangue();
-
-    createStatusBar();
-    createActions();
-    createDockWindows();
-    createDicWindow();
-    createMenus();
-    createToolBars();
-    createConnections();
-    createDicos();
-    createDicos(false);
-    createCibles();
-
-    setWindowTitle(tr("Collatinus 12"));
-    setWindowIcon(QIcon(":/res/collatinus.svg"));
-    setUnifiedTitleAndToolBarOnMac(true);
-
-    readSettings();
 }
 
 /**
@@ -851,8 +850,10 @@ void MainWindow::createCibles()
 {
     //grCibles = new QActionGroup(lexMenu);
     grCibles = new QActionGroup(ciblesMenu);
-    foreach (QString cle, lemcore->cibles().keys())
+    //foreach (QString cle, lemcore->cibles().keys())
+    for (int i=0;i<lemcore->cibles().count();++i)
     {
+        QString cle = lemcore->cibles().keys().at(i);
         QAction *action = new QAction(grCibles);
         action->setText(lemcore->cibles()[cle]);
         action->setCheckable(true);
@@ -1170,7 +1171,6 @@ void MainWindow::createDockWindows()
     vLayoutLem->addLayout(hLayoutLem);
     vLayoutLem->addWidget(textEditLem);
     dockLem->setWidget(dockWidgetLem);
-//    qDebug() << dockLem->testAttribute(Qt::WA_DeleteOnClose) << dockWidgetLem->testAttribute(Qt::WA_DeleteOnClose);
 
     dockDic = new QDockWidget(tr("Dictionnaires"), this);
     dockDic->setObjectName("dockdic");
@@ -1695,11 +1695,7 @@ void MainWindow::instModule()
         zipFile.close();
     }
     while (zip.goToNextFile());
-    // ajouter le paquet à la liste et le sélectionner
-    _module = nmod;
-    // mettre à jour le dialogue des modules
-    // le sélectionner
-    // l'activer
+    // TODO : message, marche à suivre pour activer le module
 }
 
 /**
@@ -1788,18 +1784,17 @@ void MainWindow::lemmatiseLigne()
  */
 void MainWindow::lemmatiseTxt()
 {
-    // si la tâche dure trop longtemps :
-    // setUpdatesEnabled(false);
+    qApp->setOverrideCursor(QCursor(Qt::WaitCursor));
     QString txt = editLatin->toPlainText();
     QString res = _lemmatiseur->lemmatiseT(txt);
     if (html())
         textEditLem->setHtml(res);
     else
         textEditLem->setPlainText(res);
-    // setUpdatesEnabled(true);
     if (txt.contains("<span"))
         editLatin->setHtml(txt);
     // Le texte a été modifié, donc colorisé.
+    qApp->restoreOverrideCursor();
 }
 
 /**
@@ -1933,7 +1928,7 @@ void MainWindow::readSettings()
         nfAd = nfAb;
         nfAd.prepend("coll-");
     }
-    _module = settings.value("module").toString();
+    //_module = settings.value("module").toString();
     settings.endGroup();
     settings.beginGroup("options");
     // police
@@ -2625,6 +2620,32 @@ void MainWindow::setHtml(bool h)
         _lemmatiseur->setHtml(h);
     }
     else htmlAct->setChecked(true);
+}
+
+void MainWindow::setModule(QString m)
+{
+    if (_module != m)
+    {
+        qApp->setOverrideCursor(QCursor(Qt::WaitCursor));
+        delete lemcore;
+        delete _lemmatiseur;
+        qDebug()<<"setModule";
+        //delete flechisseur;
+        qDebug()<<"   fléchisseur non détruit";
+        delete lasla;
+        delete tagueur;
+        delete scandeur;
+        _module = m;
+        ajDir = modDir + _module;
+        if (!ajDir.endsWith('/')) ajDir.append('/');
+        lemcore = new LemCore(this, resDir, ajDir);
+        _lemmatiseur = new Lemmatiseur(this,lemcore);
+        //flechisseur = new Flexion(lemcore);
+        lasla = new Lasla(this,lemcore,"");
+        tagueur = new Tagueur(this,lemcore);
+        scandeur = new Scandeur(this,lemcore);
+        qApp->restoreOverrideCursor();
+    }
 }
 
 bool MainWindow::alerte()

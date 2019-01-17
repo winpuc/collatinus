@@ -121,7 +121,9 @@ class MainWindow : public QMainWindow
     QString lem2csv(QString texte);
     // module
     QString module();
-    void tagger(QString t, int p); // Je voudrais créer dans MainWindow l'interface du tagger.
+    void    setModule(QString m);
+    // tagger
+    void    tagger(QString t, int p); // Je voudrais créer dans MainWindow l'interface du tagger.
 
 
    private slots:
