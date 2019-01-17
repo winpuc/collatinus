@@ -161,14 +161,14 @@ MainWindow::MainWindow()
 
     // définir d'abord les répertoires de l'appli
     // et le répertoire personnel, où sont les modules lexicaux
-    resDir = Ch::chemin("collatinus/"+module,'d');
+    resDir = Ch::chemin("collatinus/data", 'd');
     if (!resDir.endsWith('/')) resDir.append('/');
     // TODO : création, et QSettings pour module
     modDir = Ch::chemin("collatinus/", 'p');
     if (!modDir.endsWith('/')) modDir.append('/');
-    if (!module.isEmpty())
+    if (!_module.isEmpty())
     {
-        ajDir = modDir + module;
+        ajDir = modDir + _module;
         if (!ajDir.endsWith('/')) ajDir.append('/');
     }
     else
@@ -638,6 +638,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     settings.endGroup();
     settings.beginGroup("fichiers");
     if (!nfAb.isEmpty()) settings.setValue("nfAb", nfAb);
+    if (!_module.isEmpty()) settings.setValue("module", _module);
     settings.endGroup();
     settings.beginGroup("options");
     // settings.setValue("police", font.family());
@@ -848,13 +849,14 @@ void MainWindow::createActions()
  */
 void MainWindow::createCibles()
 {
-    grCibles = new QActionGroup(lexMenu);
+    //grCibles = new QActionGroup(lexMenu);
+    grCibles = new QActionGroup(ciblesMenu);
     foreach (QString cle, lemcore->cibles().keys())
     {
         QAction *action = new QAction(grCibles);
         action->setText(lemcore->cibles()[cle]);
         action->setCheckable(true);
-        lexMenu->addAction(action);
+        ciblesMenu->addAction(action);
         connect(action, SIGNAL(triggered()), this, SLOT(setCible()));
     }
 }
@@ -1052,6 +1054,8 @@ void MainWindow::createMenus()
     modulMenu->addAction(modInstAct);
     modulMenu->addAction(modulesAct);
     modulMenu->addAction(vargraphAct);
+
+    ciblesMenu = lexMenu->addMenu(tr("Langues cible"));
 
     optMenu = menuBar()->addMenu(tr("&Options"));
     optMenu->addAction(alphaOptAct);
@@ -1435,8 +1439,9 @@ void MainWindow::dialogueCopie()
 
 void MainWindow::dialogueModules()
 {
-    DialogM* dm = new DialogM(modDir, lemcore);
-    dm->show();
+    DialogM dm(modDir, this);
+    dm.setModal(true);
+    dm.exec();
 }
 
 /**
@@ -1510,7 +1515,6 @@ void MainWindow::exportCsv()
             {
                 // L'inverse (html --> non-html) mettrait les nouveaux résultats en items du dernier lemme.
                 blabla = textEditLem->toHtml();
-                //        qDebug() << blabla;
                 int pCourante = 0;
                 int pPrecendente = 0;
                 int niveau = 0;
@@ -1561,8 +1565,6 @@ void MainWindow::exportCsv()
             }
             else blabla = textEditLem->toPlainText();
             if (!blabla.endsWith("\n")) blabla.append("\n");
-            //        qDebug() << blabla;
-            //        qDebug() << lem2csv(blabla);
             // écrire le fichier en csv.
             QFile f(nf);
             f.open(QFile::WriteOnly);
@@ -1602,7 +1604,6 @@ QString MainWindow::lem2csv(QString texte)
         pos = texte.indexOf("\n");
         ligne = texte.mid(0,pos).simplified();
         texte = texte.mid(pos + 1);
-//        qDebug() << ligne << texte;
         if (ligne.startsWith("*"))
         {
             forme = ligne.mid(2);
@@ -1636,6 +1637,11 @@ QString MainWindow::lem2csv(QString texte)
         }
     }
     return res;
+}
+
+QString MainWindow::module()
+{
+    return _module;
 }
 
 /**
@@ -1690,10 +1696,10 @@ void MainWindow::instModule()
     }
     while (zip.goToNextFile());
     // ajouter le paquet à la liste et le sélectionner
-    module = nmod;
+    _module = nmod;
     // mettre à jour le dialogue des modules
-    // charger le paquet
-    // actModule();
+    // le sélectionner
+    // l'activer
 }
 
 /**
@@ -1927,11 +1933,11 @@ void MainWindow::readSettings()
         nfAd = nfAb;
         nfAd.prepend("coll-");
     }
+    _module = settings.value("module").toString();
     settings.endGroup();
     settings.beginGroup("options");
     // police
     font.setPointSize(settings.value("zoom").toInt());
-    // font.setFamily(settings.value("police").toString());
     editLatin->setFont(font);
     textEditLem->setFont(font);
     textBrowserDic->setFont(font);
@@ -2561,7 +2567,6 @@ void MainWindow::setHtml(bool h)
     {
         // L'inverse (html --> non-html) mettrait les nouveaux résultats en items du dernier lemme.
         QString blabla = textEditLem->toHtml();
-//        qDebug() << blabla;
         textEditLem->clear();
         int pCourante = 0;
         int pPrecendente = 0;
@@ -2593,7 +2598,7 @@ void MainWindow::setHtml(bool h)
                 // Je suppose qu'il n'y a pas de séquence "<ul ...> ... </ul>"
                 // sans <li ...> entre les deux.
             }
-//            if ((niveau < 1) || (niveau > 3))
+  //            if ((niveau < 1) || (niveau > 3))
   //              qDebug() << niveau << blabla.mid(0,pPrecendente) << morceau;
             switch (niveau)
             {

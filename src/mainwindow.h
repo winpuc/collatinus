@@ -119,6 +119,8 @@ class MainWindow : public QMainWindow
     QString startServer ();
     QString stopServer ();
     QString lem2csv(QString texte);
+    // module
+    QString module();
     void tagger(QString t, int p); // Je voudrais créer dans MainWindow l'interface du tagger.
 
 
@@ -208,6 +210,7 @@ class MainWindow : public QMainWindow
     QMenu *lFrEngMenu;
     QMenu *lexMenu;
     QMenu *modulMenu;
+    QMenu *ciblesMenu;
     QMenu *extraMenu;
     QMenu *optMenu;
     QMenu *helpMenu;
@@ -237,7 +240,7 @@ class MainWindow : public QMainWindow
     // chemins
     QString           resDir;
     QString           ajDir;
-    QString           module;
+    QString           _module;
     QString           modDir;
     // Nom du répertoire du fichier hyphen.la
     QString repHyphen;
