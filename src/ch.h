@@ -9,15 +9,6 @@
 
 namespace Ch
 {
-/* Je passe à une liste d'abréviations contenue dans un fichier.
-QStringList const abrev  = QStringList()
-    <<"Agr"<<"Ap"<<"A"<<"K"<<"D"<<"F"<<"C"
-    <<"Cn"<<"Kal"<<"L"<<"Mam"<<"M\""<<"M"<<"N"<<"Oct"
-    <<"Opet"<<"Post"<<"Pro"<<"P"<<"Q"<<"Sert"
-    <<"Ser"<<"Sex"<<"S"<<"St"<<"Ti"<<"T"<<"V"
-    <<"Vol"<<"Vop"<<"Pl";
-// Liste des abréviations prise dans Praelector le 11/11/2016
-*/
 QString         accentue(QString l);
 QStringList     ajoute(QString mot, QStringList liste);
 QString         ajoutSuff(QString fq, QString suffixe, QString l_etym, int accent);
@@ -27,6 +18,7 @@ QString         chemin(QString f, char t);
 QString         communes(QString g);
 QString         deAccent(QString c);
 void            deQuant(QString *c);
+QChar           der(QString s);
 QString const   consonnes = "bcdfgjklmnpqrstvxz";
 QString         deramise(QString r);
 void            elide(QString *mp);

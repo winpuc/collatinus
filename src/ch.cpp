@@ -32,7 +32,10 @@
 
 #include "ch.h"
 
+#include <QApplication>
 #include <QDebug>
+#include <QFileInfo>
+#include <QStandardPaths>
 
 /**
  * \fn Ch::ajoute (QString mot, QStringList liste)
@@ -130,25 +133,24 @@ QString Ch::atone(QString a, bool bdc)
  */
 QString Ch::chemin(QString f, char t)
 {
-    qDebug()<<"chemin"<<f<<t;
-    QStringList dirs = QStandardPaths::standardLocations(QStandardPaths::DataLocation);
-    qDebug()<<"   dirs="<<dirs;
-    if (f.isEmpty()) f = "/";
-    if (!f.startsWith('/')) f.prepend('/');
-    switch(t)
+    if (t == 'd')
     {
-        case 'd':
-            {
-                if (QFile::exists(dirs.last()))
-                    return dirs.last()+f;
-                return qApp->applicationDirPath()+f;
-            }
-        case 'p':
-            return dirs.first()+f;
-        default:
-            return qApp->applicationDirPath()+f;
+        // si un data/ existe à côté de l'exécutable, le retourner
+        QString adpd = qApp->applicationDirPath()+"/data/";
+        if (QFile::exists(adpd)) return adpd;
+        QString dir = QStandardPaths::locate(QStandardPaths::GenericDataLocation,
+                                             f, QStandardPaths::LocateDirectory);
+        return dir;
     }
-    return "chemin introuvable";
+    QString ret;
+    if (t == 'p')
+    {
+        ret = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
+        if (!ret.endsWith('/')) ret.append('/');
+        ret.append(f);
+        return ret;
+    }
+    return qApp->applicationDirPath()+"/ext/";
 }
 
 /**
@@ -204,6 +206,12 @@ QString Ch::deAccent(QString c)
     c.remove("\u0306");
     c.remove("\u0304");
     return c;
+}
+
+QChar Ch::der(QString s)
+{
+    if (s.isEmpty()) return '\0';
+    return s.at(s.count()-1);
 }
 
 /**
