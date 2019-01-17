@@ -46,7 +46,6 @@ LemCore::LemCore(QObject *parent, QString resDir, QString ajDir) : QObject(paren
     if (resDir.isEmpty())
     {
         _resDir = Ch::chemin("collatinus/data",'d');
-        qDebug()<<"LemCore, _resDir"<<_resDir;
         if (!_resDir.endsWith('/')) _resDir.append('/');
     }
     else _resDir = resDir;
@@ -506,7 +505,6 @@ QString LemCore::assimq(QString a)
  */
 QString LemCore::cible()
 {
-    qDebug()<<"::cible";
     return _cible;
 }
 /**
