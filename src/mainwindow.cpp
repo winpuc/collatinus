@@ -19,6 +19,13 @@
  * © Yves Ouvrard, 2009 - 2016
  */
 
+/*
+   FIXME
+   - Le dictionnaire texte n'apparaît pas directement. Il faut passer à un autre,
+     et revenir.
+   TODO
+ */
+
 #include <quazip/quazip.h>
 #include <quazip/quazipfile.h>
 
@@ -716,6 +723,7 @@ void MainWindow::createActions()
                            tr("&Effacer les résultats"), this);
     copieAct = new QAction(QIcon(":res/copie.svg"),
                            tr("&Copier dans un traitement de textes"), this);
+    saveAct = new QAction(QIcon(":res/save.svg"), tr("enregistrer la lemmatisation"), this);
     deZoomAct = new QAction(QIcon(":res/dezoom.svg"), tr("Plus petit"), this);
     findAct = new QAction(QIcon(":res/edit-find.svg"), tr("&Chercher"), this);
     fontAct = new QAction(tr("Police de caractères"), this);
@@ -956,6 +964,7 @@ void MainWindow::createConnections()
     connect(auxAct, SIGNAL(triggered()), this, SLOT(auxilium()));
     connect(balaiAct, SIGNAL(triggered()), this, SLOT(effaceRes()));
     connect(copieAct, SIGNAL(triggered()), this, SLOT(dialogueCopie()));
+    connect(saveAct, SIGNAL(triggered()), this, SLOT(save()));
     connect(exportAct, SIGNAL(triggered()), this, SLOT(exportPdf()));
     connect(exportCsvAct, SIGNAL(triggered()), this, SLOT(exportCsv()));
     connect(findAct, SIGNAL(triggered()), this, SLOT(recherche()));
@@ -1009,6 +1018,7 @@ void MainWindow::createMenus()
     fileMenu->addAction(ouvrirAct);
     fileMenu->addSeparator();
     fileMenu->addAction(copieAct);
+    fileMenu->addAction(saveAct);
     fileMenu->addAction(exportAct);
     fileMenu->addAction(exportCsvAct);
     fileMenu->addAction(printAct);
@@ -1102,6 +1112,7 @@ void MainWindow::createToolBars()
     toolBar->addAction(nouvAct);
     toolBar->addAction(ouvrirAct);
     toolBar->addAction(copieAct);
+    toolBar->addAction(saveAct);
     toolBar->addAction(zoomAct);
     toolBar->addAction(deZoomAct);
     toolBar->addAction(findAct);
@@ -2060,6 +2071,24 @@ void MainWindow::rechercheBis()
     }
 }
 
+void MainWindow::save()
+{
+    QString nf =
+        QFileDialog::getSaveFileName(this, "enregitrer la lemmatisation", QString(), "*.txt");
+    if (!nf.isEmpty())
+    {
+        if (QFileInfo(nf).suffix().isEmpty()) nf.append(".csv");
+        if (dockVisible(dockLem))
+        {
+            QFile f(nf);
+            f.open(QFile::WriteOnly);
+            QTextStream fl(&f);
+            fl << textEditLem->toPlainText();
+            f.close();
+        }
+    }
+}
+
 /**
  * @brief MainWindow::editeurRes
  * @return QTextEdit* qui est dans le dock actif
@@ -2629,9 +2658,6 @@ void MainWindow::setModule(QString m)
         qApp->setOverrideCursor(QCursor(Qt::WaitCursor));
         delete lemcore;
         delete _lemmatiseur;
-        qDebug()<<"setModule";
-        //delete flechisseur;
-        qDebug()<<"   fléchisseur non détruit";
         delete lasla;
         delete tagueur;
         delete scandeur;
@@ -2640,7 +2666,6 @@ void MainWindow::setModule(QString m)
         if (!ajDir.endsWith('/')) ajDir.append('/');
         lemcore = new LemCore(this, resDir, ajDir);
         _lemmatiseur = new Lemmatiseur(this,lemcore);
-        //flechisseur = new Flexion(lemcore);
         lasla = new Lasla(this,lemcore,"");
         tagueur = new Tagueur(this,lemcore);
         scandeur = new Scandeur(this,lemcore);

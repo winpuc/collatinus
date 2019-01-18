@@ -168,6 +168,7 @@ class MainWindow : public QMainWindow
     void readSettings();
     void recherche();
     void rechercheBis();
+    void save();
     void scandeLigne();
     void scandeTxt();
     void setCible();
@@ -286,6 +287,7 @@ class MainWindow : public QMainWindow
     QAction *printAct;
     QAction *quitAct;
     QAction *reFindAct;
+    QAction *saveAct;
     QAction *statAct;
     QAction *syncDWAct;
     QAction *syncWDAct;

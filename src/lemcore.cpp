@@ -400,6 +400,7 @@ QString LemCore::ajDir()
 
 bool LemCore::estRomain(QString f)
 {
+    f = f.toUpper();
     return !(f.contains(QRegExp ("[^IUXLCDM]"))
              || f.contains("IL")
              || f.contains("IUI"));
@@ -686,7 +687,7 @@ MapLem LemCore::lemmatise(QString f)
     // romains
     if (estRomain(f) && !_lemmes.contains(f))
     {
-        QString f1 = f;
+        QString f1 = f.toUpper();
         f.replace('U','V');
         QString lin = QString("%1|inv|||adj. num.|1").arg(f);
         Lemme *romain = new Lemme(lin, 0, this);
@@ -768,7 +769,7 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
     MapLem mm;
     //bool var = f != fVar;
     if (f.isEmpty()) return mm;
-    if ((etape > 3) || (etape <0)) // Condition terminale
+    if ((etape > 4) || (etape <0)) // Condition terminale
     {
         mm = lemmatise(f);
         if (debPhr && f.at(0).isUpper())
@@ -796,7 +797,21 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
     QString fd; // On ne peut pas créer une variable QString à l'intérieur d'un switch.
     switch (etape)
     {
-        // ensuite diverses manipulations sur la forme
+        case 4:
+            // variantes graphiques affectant radical ET désinence
+            fd = ti(f);
+            if (fd != f)
+            {
+                MapLem nmm = lemmatiseM(fd, debPhr, 5);
+                foreach (Lemme *nl, nmm.keys())
+                {
+                    for (int i = 0; i < nmm[nl].count(); ++i)
+                        nmm[nl][i].grq = assimq(nmm[nl][i].grq);
+                    mm.insert(nl, nmm.value(nl));
+                }
+                return mm;
+            }
+            break;
         case 3:
             // contractions
             fd = f;
@@ -1135,9 +1150,10 @@ void LemCore::lisVarGraph(QString nf)
     for (int i=0;i<lignes.count();++i)
     {
         QString l = lignes.at(i);
-        if (l.contains('>'))
-             _reglesCi.append(new RegleVG(l));
-        else _reglesVG.append(new RegleVG(l));
+        RegleVG* r = new RegleVG(l);
+        if (r->ci())
+             _reglesCi.append(r);
+        else _reglesVG.append(r);
     }
 }
 
