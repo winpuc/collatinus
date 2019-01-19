@@ -57,7 +57,8 @@ LemCore::LemCore(QObject *parent, QString resDir, QString ajDir) : QObject(paren
     _extension = false;
     _extLoaded = false;
     _nbrLoaded = false;
-    _cible = "fr en es";
+    //_cible = "fr en es";
+    _cible << "fr" << "en" << "es";
     // Par défaut, la langue cible est le français. L'anglais est le second choix
     // (si une traduction n'existe pas en français, on la cherche en anglais).
     // suffixes
@@ -208,7 +209,6 @@ int LemCore::trigram(QString seq)
 {
     if (_trigram.isEmpty()) lisTags(true);
     // Si je n'ai pas encore chargé les trigrammes, je dois le faire maintenant.
-
     return _trigram[seq];
 }
 
@@ -506,15 +506,18 @@ QString LemCore::assimq(QString a)
  */
 QString LemCore::cible()
 {
-    return _cible;
+    return _cible.join(" ");
 }
+
 /**
  * \fn void LemCore::setCible(QString c)
  * \brief Permet de changer la langue cible.
  */
 void LemCore::setCible(QString c)
 {
-    _cible = c;
+    //_cible = c;
+    _cible.clear();
+    _cible << c;
 }
 
 /**
@@ -1174,9 +1177,8 @@ Modele *LemCore::modele(QString m)
 QString LemCore::morpho(int m)
 {
     QString l = "fr"; // La langue sélectionnée
-    if (_morphos.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
-    else if ((_cible.size() > 4) && (_morphos.keys().contains(_cible.mid(3,2))))
-        l = _cible.mid(3,2);
+    for (int i=0;i<_cible.count();++i)
+        if (_morphos.keys().contains(_cible.at(i))) l = _cible.at(i);
     if (m < 0 || m > _morphos[l].count())
         return "morpho, "+QString::number(m)+" : erreur d'indice";
     if (m == _morphos[l].count()) return "-";
@@ -1215,63 +1217,57 @@ void LemCore::remplaceLemme(Lemme* l, Lemme* nl)
 QString LemCore::cas(int m)
 {
     QString l = "fr"; // La langue sélectionnée
-    if (_cas.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
-    else if ((_cible.size() > 4) && (_cas.keys().contains(_cible.mid(3,2))))
-        l = _cible.mid(3,2);
+    for (int i=0;i<_cible.count();++i)
+        if (_cas.keys().contains(_cible.at(i))) l = _cible.at(i);
     return _cas[l].at(m);
 }
 
 QString LemCore::genre(int m)
 {
     QString l = "fr"; // La langue sélectionnée
-    if (_genres.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
-    else if ((_cible.size() > 4) && (_genres.keys().contains(_cible.mid(3,2))))
-        l = _cible.mid(3,2);
+    for (int i=0;i<_cible.count();++i)
+        if (_genres.keys().contains(_cible.at(i))) l = _cible.at(i);
     return _genres[l].at(m);
 }
 
 QString LemCore::nombre(int m)
 {
     QString l = "fr"; // La langue sélectionnée
-    if (_nombres.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
-    else if ((_cible.size() > 4) && (_nombres.keys().contains(_cible.mid(3,2))))
-        l = _cible.mid(3,2);
+    for (int i=0;i<_cible.count();++i)
+        if (_nombres.keys().contains(_cible.at(i))) l = _cible.at(i);
     return _nombres[l].at(m);
 }
 
 QString LemCore::temps(int m)
 {
     QString l = "fr"; // La langue sélectionnée
-    if (_temps.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
-    else if ((_cible.size() > 4) && (_temps.keys().contains(_cible.mid(3,2))))
-        l = _cible.mid(3,2);
+    for (int i=0;i<_cible.count();++i)
+        if (_temps.keys().contains(_cible.at(i))) l = _cible.at(i);
     return _temps[l].at(m);
 }
 
 QString LemCore::modes(int m)
 {
     QString l = "fr"; // La langue sélectionnée
-    if (_modes.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
-    else if ((_cible.size() > 4) && (_modes.keys().contains(_cible.mid(3,2))))
-        l = _cible.mid(3,2);
+    for (int i=0;i<_cible.count();++i)
+        if (_modes.keys().contains(_cible.at(i))) l = _cible.at(i);
     return _modes[l].at(m);
 }
 
 QString LemCore::voix(int m)
 {
     QString l = "fr"; // La langue sélectionnée
-    if (_voix.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
-    else if ((_cible.size() > 4) && (_voix.keys().contains(_cible.mid(3,2))))
-        l = _cible.mid(3,2);
+    for (int i=0;i<_cible.count();++i)
+        if (_voix.keys().contains(_cible.at(i))) l = _cible.at(i);
+    return _voix[l].at(m);
     return _voix[l].at(m);
 }
 
 QString LemCore::motsClefs(int m)
 {
     QString l = "fr"; // La langue sélectionnée
-    if (_motsClefs.keys().contains(_cible.mid(0,2))) l = _cible.mid(0,2);
-    else if ((_cible.size() > 4) && (_motsClefs.keys().contains(_cible.mid(3,2))))
-        l = _cible.mid(3,2);
+    for (int i=0;i<_cible.count();++i)
+        if (_motsClefs.keys().contains(_cible.at(i))) l = _cible.at(i);
     if (m < _motsClefs[l].count()) return _motsClefs[l].at(m);
     return "introuvable";
 }

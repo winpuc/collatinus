@@ -99,7 +99,8 @@ class LemCore : public QObject
     QMap<QString, QString> _variables;
 
     bool _extension; // = false;
-    QString _cible;  // langue courante, 2 caractères ou plus
+    //QString _cible;  // langue courante, 2 caractères ou plus
+    QStringList _cible;
 
     QMap<QString, int> _tagOcc; // Nombre d'occurrences du tag.
     QMap<QString, int> _tagTot; // Nombre total en fonction du premier caractère du tag.
