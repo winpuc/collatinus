@@ -52,7 +52,7 @@ typedef struct
 
 typedef QMap<Lemme*, QList<SLem> > MapLem;
 
-typedef QPair<QRegExp, QString> Reglep;
+//typedef QPair<QRegExp, QString> Reglep;
 
 class LemCore : public QObject
 {

@@ -1456,8 +1456,12 @@ QString LemCore::ti(QString f)
 
 QString LemCore::vg(QString c)
 {
+    if (c.isEmpty()) return c;
+    bool maj = c.at(0).isUpper();
+    c = c.toLower();
     for (int i=0;i<_reglesVG.count();++i)
         c = _reglesVG.at(i)->transf(c);
+    if (maj) c[0] = c.at(0).toUpper();
     return c;
 }
 
