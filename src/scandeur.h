@@ -38,7 +38,7 @@ public:
 private:
     LemCore * _lemCore;
     QString _resDir;
-    QList<Reglep> _reglesp;
+    QList<RegleVG*> _reglesp;
     void lisParPos();
     QStringList cherchePieds(int nbr, QString ligne, int i, bool pentam);
     QStringList formeq(QString forme, bool *nonTrouve, bool debPhr,

@@ -120,8 +120,9 @@ void Scandeur::lisParPos()
     QStringList rr;
     foreach (QString ligne, lignes)
     {
-        rr = ligne.split(";");
-        _reglesp.append(Reglep(QRegExp(rr.at(0)), rr.at(1)));
+        //rr = ligne.split(";");
+        //_reglesp.append(Reglep(QRegExp(rr.at(0)), rr.at(1)));
+        _reglesp.append(new RegleVG(ligne));
     }
 }
 
@@ -164,8 +165,8 @@ QString Scandeur::parPos(QString f)
 {
     bool maj = f.at(0).isUpper();
     f = f.toLower();
-    foreach (Reglep r, _reglesp)
-        f.replace(r.first, r.second);
+    foreach (RegleVG* r, _reglesp)
+        f = r->transf(f);
     if (maj) f[0] = f[0].toUpper();
     return f;
 }
