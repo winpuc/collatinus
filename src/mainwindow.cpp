@@ -1092,6 +1092,7 @@ void MainWindow::createMenus()
     extraMenu->addAction(serverAct);
     extraMenu->addAction(majDicAct);
     extraMenu->addAction(majLexAct);
+    extraMenu->addAction(modInstAct);
 
     helpMenu = menuBar()->addMenu(tr("&Aide"));
     helpMenu->addAction(auxAct);
