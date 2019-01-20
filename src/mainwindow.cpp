@@ -24,6 +24,7 @@
    - Le dictionnaire texte n'apparaît pas directement. Il faut passer à un autre,
      et revenir.
    TODO
+   - Édition des variantes graphiques, leur enregistrement.
  */
 
 #include <quazip/quazip.h>
@@ -307,7 +308,7 @@ void MainWindow::afficheLemsDic(QStringList ll, int no)
 {
     if (textBrowserDic == 0) return;
     lemsDic = ll;
-    if (ll.empty() || no < 0 || listeD.courant() == NULL) return;
+    if (ll.isEmpty() || no < 0 || listeD.courant() == NULL) return;
     textBrowserDic->clear();
     textBrowserDic->setHtml(listeD.courant()->page(ll, no));
     lineEditDic->setText(ll.at(no));
@@ -1993,6 +1994,7 @@ void MainWindow::readSettings()
     _lemmatiseur->setMorpho(morphoAct->isChecked());
     settings.beginGroup("dictionnaires");
     comboGlossaria->setCurrentIndex(settings.value("courant").toInt());
+    changeGlossarium(comboGlossaria->currentText());
     wDic->move(settings.value("posw").toPoint());
     wDic->resize(settings.value("sizew").toSize());
     wDic->setVisible(settings.value("wdic").toBool());
