@@ -111,6 +111,17 @@ Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
     xml = QFileInfo(chData).suffix() == "cz" ||
           QFileInfo(chData).suffix() == "xml";
     djvu = !xml;
+    flien = "<li class=\"%2\">\n<a href=\"#\" data-value=\"-d";
+    if (n.contains("1934")) flien.append("fg");
+    else flien.append(n.left(2).toLower());
+    // Le Gaffiot en image est spécial !
+    flien.append(" @%1\">%1</a>\n</li>\n");
+    if (djvu)
+    {
+        imagePng = "<img src=\"" + cheminImages;
+        imagePng.append(n.section("_",0,0));
+        imagePng.append("/%1.png\">");
+    }
 }
 
 /**
@@ -349,6 +360,76 @@ QString Dictionnaire::pageDjvu(QStringList req, int no)
     return pageDjvu(pdj);
 }
 
+QString Dictionnaire::pagePng(QStringList req)
+{
+    if (idxDjvu.isEmpty())
+    {
+        lis_index_djvu();
+    }
+    // À partir du moment où on a toutes les pages sauvées en png,
+    // on peut afficher toutes les pages nécessaires (?)
+    QList <int> lp;
+    int pMin = 10000;
+    int pMax = 0;
+    if ((req.size() == 1) && req[0].at(0).isDigit())
+    {
+        lp.append(req[0].toInt());
+        pMin = lp[0] - 1;
+        pMax = lp[0] + 1;
+    }
+    else for (int j=0 ; j<req.size() ; j++)
+    {
+        QString leLem = req[j];
+        int i = 0;
+        if (!alphabet.isEmpty())
+        {
+            // J'ai un ordre alphabétique exotique à respecter.
+            // J'utilise donc la fonction compChaines que j'ai introduite.
+            while ((i < idxDjvu.size()) && (compChaines(leLem,idxDjvu[i])<=0)) i++;
+        }
+        else
+            while ((i < idxDjvu.size()) && (leLem.localeAwareCompare(idxDjvu[i]) >= 0)) i++;
+        pdj = debut + i;
+        if (!lp.contains(pdj))
+        {
+            lp.append(pdj);
+            if (pdj < pMin) pMin = pdj;
+            if (pdj > pMax) pMax = pdj;
+        }
+    }
+    // J'ai transformé la liste de lemmes en liste de numéros de page.
+    QString pg = auteur + " <a href=\"" + url + "\">" + url + "</a>\n";
+    for (int j=0 ; j<lp.size() ; j++)
+    {
+        // La page lp[j].
+        int p = lp[j];
+        // feuilletage haut
+        pg.append("<ul class=\"pager\">\n");
+        pg.append(flien.arg (p-1).arg("previous"));
+        pg.append("<li class=\"lead\">");
+        pg.append(QString::number(p));
+        pg.append("</li>\n");
+        pg.append(flien.arg (p+1).arg("next"));
+        pg.append("</ul>");
+        pg.append(imagePng.arg(p));
+        // feuilletage bas
+        pg.append("<ul class=\"pager\">\n");
+        pg.append(flien.arg (p-1).arg("previous"));
+        pg.append("<li class=\"lead\">");
+        pg.append(QString::number(p));
+        pg.append("</li>\n");
+        pg.append(flien.arg (p+1).arg("next"));
+        pg.append("</ul>");
+    }
+    // feuilletage final
+    pg.append("<ul class=\"pager\">\n");
+    pg.append(flien.arg (pMin-1).arg("previous"));
+    pg.append(flien.arg (pMax+1).arg("next"));
+    pg.append("</ul>");
+
+    return pg;
+}
+
 /**
  * \fn QString Dictionnaire::pageXml (QStringList req)
  * \brief Renvoie les entrées du dictionnaire xml actif
@@ -476,24 +557,31 @@ QString Dictionnaire::pageXml(QStringList lReq)
             listeE.removeAt(i);
         else
         {
-            ligneLiens.append("<a href=\"#" + listeE[i].article + "\">" +
-                              listeE[i].article + "</a> ");
+            ligneLiens.append("<li><a href=\"#" + listeE[i].article + "\">" +
+                              listeE[i].article + "</a> </li>");
             ++i;
         }
     }
     for (int i = 0; i < listeE.size(); i++)
     {
-        pg.append("\n<div id=\"" + listeE[i].article + "\">");
-        pg.append("</div><div>" + ligneLiens + "</div><div>");
+        pg.append("\n<div id=\"" + listeE[i].article + "\" class=\"entree-dico\">");
+        pg.append("<ul class=\"liste-liens\">\n" + ligneLiens + "</ul>\n");
+        // feuilletage haut
+        pg.append ("<ul class=\"pager\">\n");
+        pg.append (flien.arg (avant[i]).arg("previous"));
+        pg.append (flien.arg (apres[i]).arg("next"));
+        pg.append ("</ul>");
+        // entrées
         QString np = entree_pos(listeE[i].pos, listeE[i].taille);
         pg.append(np);
         pg.append("</div>");
     }
+    /* NB : styles adequats inclu dans css locale
     if (QFile::exists(repertoire + n + ".css"))
     {
         pg.prepend("<link rel=\"stylesheet\" href=\"" + repertoire + n +
                    ".css\" type=\"text/css\" />\n");
-    }
+    } */
     pg.prepend(auteur + " <a href=\"http://" + url + "\">" + url + "</a> ");
 
     //qDebug() << ici << avant << apres;
@@ -520,6 +608,11 @@ QString Dictionnaire::pageXml(QStringList lReq)
     if (apres.size() > 1) for (int i=1; i<apres.size();i++)
         if (QString::compare(suiv, apres[i], Qt::CaseInsensitive) > 0) suiv = apres[i];
     //qDebug() << prec << suiv;
+    // feuilletage bas
+    pg.append ("<ul class=\"pager\">\n");
+    pg.append (flien.arg (prec).arg("previous"));
+    pg.append (flien.arg (suiv).arg("next"));
+    pg.append ("</ul>");
 
     return pg;
 }
@@ -588,6 +681,15 @@ Dictionnaire *ListeDic::dictionnaire_par_nom(QString nom)
     QMap<QString, Dictionnaire *>::iterator retour = liste.find(nom);
     if (retour == liste.end()) return NULL;
     return retour.value();
+}
+
+Dictionnaire *ListeDic::dico_par_abr(QString abr)
+{
+    QStringList noms = liste.uniqueKeys();
+    int i = 0;
+    while ((i<noms.size()) && (abr != noms[i].mid(0,2).toLower())) i++;
+    if (i == noms.size()) return NULL;
+    return liste.value(noms[i]);
 }
 
 /**

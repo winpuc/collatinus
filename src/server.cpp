@@ -244,9 +244,19 @@ void Server::exec ()
             // Si je veux changer le comportement par défaut, il faut ajouter une ligne :
             // optAcc = 1;
             if ((options.size() > 2) && (options[2].isDigit()))
+            {
                 optAcc = options[2].digitValue();
+                options = options.mid(3);
+            }
+            else options = options.mid(2); // Je coupe le "-l".
+            if ((options.size() == 2) && _lemCore->cibles().keys().contains(options))
+                _lemmatiseur->setCible(options);
+            else if (((options.size() == 5) || (options.size() == 8)) &&
+                     _lemCore->cibles().keys().contains(options.mid(0,2)))
+                _lemmatiseur->setCible(options);
             rep = tagueur->tagTexte(texte, -1, (optAcc & 1), requete[1].isUpper(), !(optAcc & 2));
             // Par défaut, je tague tout le texte.
+            _lemmatiseur->setCible(lang); // Je rétablis les langue et option HTML.
             nonHTML = false;
             // Le résultat est en html : je veux conserver les <br/>.
             break;
@@ -349,17 +359,15 @@ QString Server::flechis(QString texte)
 QString Server::consult(QString req, QString texte)
 {
     std::cout << req.toStdString() << " " << texte.toStdString() << "\n";
-    if (texte.contains(" ")) texte = texte.section(" ",0,0);
-    // Un seul mot !
-    MapLem ml = _lemCore->lemmatiseM(texte);
-//    if (ml.isEmpty()) return "";
+    // D'abord le dico.
     Dictionnaire * dico_courant;
-    QString p = req.mid(1);
-    if (p == "dge")
+    QString p = req.mid(2);
+    if (p == "fg")
     {
-        dico_courant = listeD.dictionnaire_par_nom("Georges 1913");
+        dico_courant = listeD.dictionnaire_par_nom("Gaffiot 1934");
     }
-    else if (p == "dle")
+    else dico_courant = listeD.dico_par_abr(p);
+        /*if (p == "dle")
     {
         dico_courant = listeD.dictionnaire_par_nom("Lewis and Short 1879");
     }
@@ -376,8 +384,24 @@ QString Server::consult(QString req, QString texte)
         dico_courant = listeD.dictionnaire_par_nom("Jeanneau 2017");
     }
     else return "Dico inconnu";
+    */
+    if (dico_courant == NULL) return "Dico inconnu";
+    // puis le mot.
     QStringList lemmes;
-    if (ml.isEmpty()) lemmes << texte;
-    else lemmes = _lemCore->lemmes(ml);
-    return dico_courant->pageXml(lemmes);
+    if (texte.contains(" ")) texte = texte.section(" ",0,0);
+    // Un seul mot !
+    if (texte.startsWith("@"))
+    {
+        lemmes << texte.mid(1);
+    }
+    else
+    {
+        MapLem ml = _lemCore->lemmatiseM(texte);
+        if (ml.isEmpty()) lemmes << texte;
+        else lemmes = _lemCore->lemmes(ml);
+    }
+    if (dico_courant->estXml())
+        return dico_courant->pageXml(lemmes);
+    // S'il n'est pas en XML, c'est une page png
+    return dico_courant->pagePng(lemmes);
 }

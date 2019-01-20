@@ -38,6 +38,12 @@ class Dictionnaire : public QObject
     Q_OBJECT
 
    private:
+    QString cheminImages = "/collatinus-web-ui/resources/collatinus-web/";
+//    QString cheminImages = "/resources/collatinus-web/png/";
+// Chemin complet du répertoire où sont rangés les répertoires d'images png.
+    // À modifier selon la configuration du serveur...
+    QString imagePng;
+
     QString auteur;
     QString chData;  // chemin complet du fichier djvu ou xml
     QString chopNum(const QString c);
@@ -67,6 +73,7 @@ class Dictionnaire : public QObject
     QString ligneLiens;
     QString linPrec(QTextStream *s, qint64 pos);
     QString n;  // nom
+    QString flien; // liens pour feuilleter
     int pdj;
     QString prec;  // pages précédente et suivante
                    // QString     readLineBack (QFile *f, int fois=1);
@@ -92,6 +99,7 @@ class Dictionnaire : public QObject
     QString pageDjvu(int p);
     QString pageDjvu(QStringList req,
                      int no = 0);  // surcharge avec calcul des no de page
+    QString pagePng(QStringList req);
     QString pageXml(QStringList lReq);
     QString pgPrec();
     QString pgSuiv();
@@ -111,6 +119,7 @@ class ListeDic : public QObject
 
    public:
     Dictionnaire *dictionnaire_par_nom(QString nom);
+    Dictionnaire *dico_par_abr(QString abr);
     void ajoute(Dictionnaire *d);
     void change_courant(QString nom);
     Dictionnaire *courant();
