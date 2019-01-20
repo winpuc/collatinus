@@ -57,26 +57,45 @@ Irreg::Irreg(QString l, QObject* parent)
  *        si la forme régulière calculée par le modèle
  *        est inusitée, et remplace par la forme irrégulière.
  */
-bool Irreg::exclusif() { return _exclusif; }
+bool Irreg::exclusif()
+{
+    return _exclusif;
+}
+
 /**
  * \fn QString Irreg::gr ()
  * \brief Graphie ramiste sans diacritique.
  */
-QString Irreg::gr() { return _gr; }
+QString Irreg::gr()
+{
+    return _gr;
+}
+
 /**
  * \fn QString Irreg::grq ()
  * \brief Graphie ramiset avec diacritiques.
  */
-QString Irreg::grq() { return _grq; }
+QString Irreg::grq()
+{
+    return _grq;
+}
+
 /**
  * \fn Lemme* Irreg::lemme ()
  * \brief Le lemme de l'irrégulier.
  */
-Lemme* Irreg::lemme() { return _lemme; }
+Lemme* Irreg::lemme()
+{
+    return _lemme;
+}
+
 /**
  * \fn QList<int> Irreg::morphos ()
  * \brief liste des numéros de morphos
  *        que peut prendre l'irrégulier, en
  *        tenant compte des quantités.
  */
-QList<int> Irreg::morphos() { return _morphos; }
+QList<int> Irreg::morphos()
+{
+    return _morphos;
+}

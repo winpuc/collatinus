@@ -91,7 +91,8 @@ LemCore::LemCore(QObject *parent, QString resDir, QString ajDir) : QObject(paren
     if (!ajDir.isEmpty()) lisIrreguliers(_ajDir+"irregs.la");
     lisIrreguliers(_resDir+"irregs.la");
 #ifdef VERIF_TRAD
-    foreach (Lemme *l, _lemmes.values()) {
+    foreach (Lemme *l, _lemmes.values())
+    {
         QString t = l->traduction("fr");
         if (t == "") qDebug() << l->cle() << "non traduit.";
     }
@@ -1100,18 +1101,25 @@ void LemCore::lisTraductions(bool base, bool extension)
 //    QString nrep = _resDir;
     QDir rep;
     if (!base && !extension) return;
-    if (base && extension) {
+    if (base && extension)
+    {
         rep = QDir(_resDir, "lem*.*");
-    } else if (base) {
+    }
+    else if (base)
+    {
         rep = QDir(_resDir, "lemmes.*");
-    } else {
+    }
+    else
+    {
         rep = QDir(_resDir, "lem_ext.*");
     }
     QStringList ltr = rep.entryList();
-    if (base) {
+    if (base)
+    {
         ltr.removeOne("lemmes.la");  // n'est pas un fichier de traductions
     }
-    if (extension) {
+    if (extension)
+    {
         ltr.removeOne("lem_ext.la");  // n'est pas un fichier de traductions
     }
     foreach (QString nfl, ltr)
@@ -1314,7 +1322,8 @@ QString LemCore::variable(QString v)
 void LemCore::setExtension(bool e)
 {
     _extension = e;
-    if (!_extLoaded && e) {
+    if (!_extLoaded && e)
+    {
         lisExtension();
         lisTraductions(false,true);
         _extLoaded = true;

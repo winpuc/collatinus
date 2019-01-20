@@ -62,12 +62,20 @@ QString Radical::grq() const
  * \fn Lemme* Radical::lemme ()
  * \brief Le lemme auquel appartient le radical.
  */
-Lemme *Radical::lemme() { return _lemme; }
+Lemme *Radical::lemme()
+{
+    return _lemme;
+}
+
 /**
  * \fn Modele* Radical::modele ()
  * \brief Le modèle de flexion du radical
  */
-Modele *Radical::modele() { return _lemme->modele(); }
+Modele *Radical::modele()
+{
+    return _lemme->modele();
+}
+
 /**
  * \fn int Radical::numRad ()
  * \brief Le numéro du radical.
@@ -161,22 +169,6 @@ Lemme::Lemme(const QString linea, const int origin, QObject *parent, QString k)
     }
     // nombre d'occurrences
     _nbOcc = eclats.at(5).toInt();
-
-
-/* Avec l'internationalisation des morphos, le genre dépend de la langue choisie.
- * Il faut donc le définir à la demande.
-    _genre.clear();
-    if (_indMorph.contains(" m."))
-        _genre.append(" " + _lemmatiseur->genre(0));
-//        _genre.append(" masculin"); // Peut-être mieux d'utiliser Flexion::genres[0] ?
-    if (_indMorph.contains(" f."))
-        _genre.append(" " + _lemmatiseur->genre(1));
-//        _genre.append(" féminin");
-    if (_indMorph.contains(" n."))
-        _genre.append(" " + _lemmatiseur->genre(2));
-//        _genre.append(" neutre");
-    _genre = _genre.trimmed();
-*/
 }
 
 /**

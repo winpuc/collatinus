@@ -60,20 +60,28 @@ Desinence::Desinence(QString d, int morph, int nr, Modele *parent)
  * \fn QString Desinence::gr ()
  * \brief Graphie de la désinence, ramiste et sans quantités.
  */
-QString Desinence::gr() { return _gr; }
+QString Desinence::gr()
+{
+    return _gr;
+}
 
 /**
  * \fn QString Desinence::grq ()
  * \brief Graphie ramiste avec quantités.
  */
-QString Desinence::grq() { return _grq; }
-
+QString Desinence::grq()
+{
+    return _grq;
+}
 
 /**
  * \fn Modele* Desinence::modele ()
  * \brief Modèle de la désinence.
  */
-Modele *Desinence::modele() { return _modele; }
+Modele *Desinence::modele()
+{
+    return _modele;
+}
 
 /**
  * \fn int Desinence::morphoNum ()
@@ -235,7 +243,7 @@ Modele::Modele(QStringList ll, LemCore *parent)
                 break;
             }
             default:
-                std::cerr << qPrintable("Modèle, erreur "+ l);
+                std::cerr << qPrintable("Modèle, erreur:"+l);
         }
     }      // fin de l'interprétation des lignes
 
@@ -304,20 +312,29 @@ Modele::Modele(QStringList ll, LemCore *parent)
  *        modèles, par exemple, n'ont pas de singulier,
  *        certains verbes n'ont pas de passif.
  */
-bool Modele::absent(int a) { return _absents.contains(a); }
+bool Modele::absent(int a)
+{
+    return _absents.contains(a);
+}
 
 /**
  * \fn QList<int> Modele::absents ()
  * \brief Retourne la liste des numéros des morphos absentes.
  */
-QList<int> Modele::absents() { return _absents; }
+QList<int> Modele::absents()
+{
+    return _absents;
+}
 
 /**
  * \fn QList<int> Modele::clesR ()
  * \brief Liste des numéros de radicaux utilisés, et
  *        rangés dans la map _genRadicaux.
  */
-QList<int> Modele::clesR() { return _genRadicaux.keys(); }
+QList<int> Modele::clesR()
+{
+    return _genRadicaux.keys();
+}
 
 /**
  * \fn Desinence* Modele::clone (Desinence *d)
@@ -334,19 +351,28 @@ Desinence *Modele::clone(Desinence *d)
  *        Permet de savoir s'il faut aller chercher la désinence
  *        de morpho m chez le modèle père.
  */
-bool Modele::deja(int m) { return _desinences.contains(m); }
+bool Modele::deja(int m)
+{
+    return _desinences.contains(m);
+}
 
 /**
  * \fn QList<Desinence*> Modele::desinences (int d)
  * \brief Renvoie la liste des désinence de morpho d du modèle.
  */
-QList<Desinence *> Modele::desinences(int d) { return _desinences.values(d); }
+QList<Desinence *> Modele::desinences(int d)
+{
+    return _desinences.values(d);
+}
 
 /**
  * \fn QList<Desinence*> Modele::desinences ()
  * \brief Renvoie toutes les désinences du modèle.
  */
-QList<Desinence *> Modele::desinences() { return _desinences.values(); }
+QList<Desinence *> Modele::desinences()
+{
+    return _desinences.values();
+}
 
 /**
  * \fn bool Modele::estUn (QString m)
@@ -364,7 +390,10 @@ bool Modele::estUn(QString m)
  * \fn QString Modele::gr ()
  * \brief Nom du modèle.
  */
-QString Modele::gr() { return _gr; }
+QString Modele::gr()
+{
+    return _gr;
+}
 
 QStringList const Modele::cles = QStringList() << "modele"  // 0
                                                << "pere"    // 1
@@ -424,7 +453,10 @@ QList<int> Modele::listeI(QString l)
  * \fn QList<int> Modele::morphos ()
  * \brief Liste des numéros des désinences définies par le modèle.
  */
-QList<int> Modele::morphos() { return _desinences.keys(); }
+QList<int> Modele::morphos()
+{
+    return _desinences.keys();
+}
 
 /**
  * \fn QChar Modele::pos()
