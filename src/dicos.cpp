@@ -111,10 +111,14 @@ Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
     xml = QFileInfo(chData).suffix() == "cz" ||
           QFileInfo(chData).suffix() == "xml";
     djvu = !xml;
+
     flien = "<li class=\"%2\">\n<a href=\"#\" data-value=\"-d";
-    if (n.contains("1934")) flien.append("fg");
+    if (n.contains("1934"))
+    {
+        flien.append("fg");
+        // Le Gaffiot en image est spécial !
+    }
     else flien.append(n.left(2).toLower());
-    // Le Gaffiot en image est spécial !
     flien.append(" @%1\">%1</a>\n</li>\n");
     if (djvu)
     {
@@ -372,11 +376,7 @@ QString Dictionnaire::pagePng(QStringList req)
     int pMin = 10000;
     int pMax = 0;
     if ((req.size() == 1) && req[0].at(0).isDigit())
-    {
         lp.append(req[0].toInt());
-        pMin = lp[0] - 1;
-        pMax = lp[0] + 1;
-    }
     else for (int j=0 ; j<req.size() ; j++)
     {
         QString leLem = req[j];
@@ -421,11 +421,14 @@ QString Dictionnaire::pagePng(QStringList req)
         pg.append(flien.arg (p+1).arg("next"));
         pg.append("</ul>");
     }
-    // feuilletage final
-    pg.append("<ul class=\"pager\">\n");
-    pg.append(flien.arg (pMin-1).arg("previous"));
-    pg.append(flien.arg (pMax+1).arg("next"));
-    pg.append("</ul>");
+    // feuilletage final s'il y a plusieurs pages.
+    if (lp.size() > 1)
+    {
+        pg.append("<ul class=\"pager\">\n");
+        pg.append(flien.arg (pMin-1).arg("previous"));
+        pg.append(flien.arg (pMax+1).arg("next"));
+        pg.append("</ul>");
+    }
 
     return pg;
 }
@@ -687,7 +690,8 @@ Dictionnaire *ListeDic::dico_par_abr(QString abr)
 {
     QStringList noms = liste.uniqueKeys();
     int i = 0;
-    while ((i<noms.size()) && (abr != noms[i].mid(0,2).toLower())) i++;
+    while (((i<noms.size()) && (abr != noms[i].mid(0,2).toLower())) ||
+           noms[i].contains("1934")) i++;
     if (i == noms.size()) return NULL;
     return liste.value(noms[i]);
 }

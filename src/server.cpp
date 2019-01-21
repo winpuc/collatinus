@@ -235,6 +235,8 @@ void Server::exec ()
                 _lemmatiseur->setCible(options);
             if (optAcc > 15) rep = _lemmatiseur->frequences(texte).join("");
             else rep = _lemmatiseur->lemmatiseT(texte,optAcc&1,optAcc&2,optAcc&4,optAcc&8);
+            rep.replace("</h4>","</big></strong>");
+            rep.replace("<h4>","<strong><big>");
             _lemmatiseur->setCible(lang); // Je rétablis les langue et option HTML.
             break;
         case 'P':
