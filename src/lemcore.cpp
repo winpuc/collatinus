@@ -771,7 +771,6 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
     // appliquer les règles de variante graphique
     f = Ch::deramise(vg(f));
     MapLem mm;
-    //bool var = f != fVar;
     if (f.isEmpty()) return mm;
     if ((etape > 4) || (etape <0)) // Condition terminale
     {
@@ -1466,6 +1465,7 @@ QString LemCore::vg(QString c)
     c = c.toLower();
     for (int i=0;i<_reglesVG.count();++i)
         c = _reglesVG.at(i)->transf(c);
+    if (c.isEmpty()) return c;
     if (maj) c[0] = c.at(0).toUpper();
     return c;
 }
