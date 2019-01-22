@@ -768,11 +768,18 @@ bool LemCore::inv(Lemme *l, const MapLem ml)
  */
 MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
 {
-    // appliquer les règles de variante graphique
-    f = Ch::deramise(vg(f));
     MapLem mm;
     if (f.isEmpty()) return mm;
-    if ((etape > 4) || (etape <0)) // Condition terminale
+    // appliquer les règles aval
+    QString fti = ti(f);
+    if (fti != f)
+    {
+        mm = lemmatise(fti);
+        if (!mm.isEmpty()) return mm;
+    }
+    // appliquer les règles de variantes graphiques
+    f = Ch::deramise(vg(f));
+    if ((etape > 3) || (etape <0)) // Condition terminale
     {
         mm = lemmatise(f);
         if (debPhr && f.at(0).isUpper())
@@ -800,21 +807,6 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
     QString fd; // On ne peut pas créer une variable QString à l'intérieur d'un switch.
     switch (etape)
     {
-        case 4:
-            // variantes graphiques affectant radical ET désinence
-            fd = ti(f);
-            if (fd != f)
-            {
-                MapLem nmm = lemmatiseM(fd, debPhr, 5);
-                foreach (Lemme *nl, nmm.keys())
-                {
-                    for (int i = 0; i < nmm[nl].count(); ++i)
-                        nmm[nl][i].grq = assimq(nmm[nl][i].grq);
-                    mm.insert(nl, nmm.value(nl));
-                }
-                return mm;
-            }
-            break;
         case 3:
             // contractions
             fd = f;
