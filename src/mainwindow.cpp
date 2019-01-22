@@ -21,8 +21,6 @@
 
 /*
    FIXME
-   - Le dictionnaire texte n'apparaît pas directement. Il faut passer à un autre,
-     et revenir.
    TODO
    - Édition des variantes graphiques, leur enregistrement.
  */
@@ -1960,6 +1958,7 @@ void MainWindow::readSettings()
     majPertAct->setChecked(settings.value("majpert").toBool());
     morphoAct->setChecked(settings.value("morpho").toBool());
     nonRecAct->setChecked(settings.value("nonrec").toBool());
+    _lemmatiseur->setNonRec(nonRecAct->isChecked());
     // options d'accentuation
     accentAct->setChecked(settings.value("accentuation").toBool());
     optionsAccent->setEnabled(settings.value("accentuation").toBool());
