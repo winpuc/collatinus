@@ -228,8 +228,8 @@ QString Ch::deramise(QString r)
     r.replace('v', 'u');
     r.replace("æ", "ae");
     r.replace("Æ", "Ae");
-    r.replace("œ", "oe");
-    r.replace("Œ", "Oe");
+    //r.replace("œ", "oe");  // le latin médiéval a souvent œ pour æ
+    //r.replace("Œ", "Oe");  // utiliser vargraph pour ces ligatures
     r.replace(0x1ee5, 'u');  // ụ le u muet de suavis, suadeo, etc...
     r.replace ('V', 'U');
     return r;
