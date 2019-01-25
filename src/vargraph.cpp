@@ -2,8 +2,9 @@
 
 #include "vargraph.h"
 
-DialogVG::DialogVG(MainWindow* parent)
+DialogVG::DialogVG(QStringList l, MainWindow* parent)
 {
+    mainwin = parent;
     tabVarGraph = new QWidget();
     verticalLayout = new QVBoxLayout(this);
     verticalLayout->setSpacing(6);
@@ -19,8 +20,6 @@ DialogVG::DialogVG(MainWindow* parent)
     verticalLayoutConf->addWidget(label_3);
     horizontalLayoutBtnPre = new QHBoxLayout();
     horizontalLayoutBtnPre->setSpacing(6);
-    btnPre = new QPushButton(layoutWidget);
-    horizontalLayoutBtnPre->addWidget(btnPre);
     horizontalSpacerPre = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
     horizontalLayoutBtnPre->addItem(horizontalSpacerPre);
     verticalLayoutConf->addLayout(horizontalLayoutBtnPre);
@@ -67,12 +66,12 @@ DialogVG::DialogVG(MainWindow* parent)
     // étiquettes
     etiquettes();
     connecte();
+    initCoches(l);
 }
 
 void DialogVG::etiquettes()
 {
     label_3->setText("doc");
-    btnPre->setText(QApplication::translate("MainWindow", "Pr\303\251analyse", Q_NULLPTR));
     labelVariante->setText(QApplication::translate("MainWindow", "variante", Q_NULLPTR));
     checkBoxAe->setText(QApplication::translate("MainWindow", "ae > e", Q_NULLPTR));
     checkBox_H->setText(QApplication::translate("MainWindow", "h > -", Q_NULLPTR));
@@ -84,9 +83,66 @@ void DialogVG::etiquettes()
     checkBox_PH->setText(QApplication::translate("MainWindow", "ph > f", Q_NULLPTR));
 }
 
+QStringList DialogVG::lignes()
+{
+    return tv;
+}
+
+void DialogVG::coche()
+{
+    tv = plainTextEditVariantes->toPlainText().split("\n");
+    //plainTextEditVariantes->clear();
+    if (checkBoxAe->isChecked())
+        tv.append(lvg.at(0));
+    else tv.removeAll(lvg.at(0));
+    if (checkBox_H->isChecked())
+        tv.append(lvg.at(1));
+    else tv.removeAll(lvg.at(1));
+    if (checkBox_Mihi->isChecked())
+        tv.append(lvg.at(2));
+    else tv.removeAll(lvg.at(2));
+    if (checkBox_IJ->isChecked())
+        tv.append(lvg.at(3));
+    else tv.removeAll(lvg.at(3));
+    if (checkBox_UV->isChecked())
+        tv.append(lvg.at(4));
+    else tv.removeAll(lvg.at(4));
+    if (checkBox_TICI->isChecked())
+        tv.append(lvg.at(5));
+    else tv.removeAll(lvg.at(5));
+    if (checkBox_MPN->isChecked())
+        tv.append(lvg.at(6));
+    else tv.removeAll(lvg.at(6));
+    if (checkBox_PH->isChecked())
+        tv.append(lvg.at(7));
+    else tv.removeAll(lvg.at(7));
+    tv.removeDuplicates();
+    plainTextEditVariantes->setPlainText(tv.join("\n"));
+}
+
+
 void DialogVG::connecte()
 {
+    connect(checkBoxAe, SIGNAL(stateChanged(int)), this, SLOT(coche()));
+    connect(checkBox_H, SIGNAL(stateChanged(int)), this, SLOT(coche()));
+    connect(checkBox_Mihi, SIGNAL(stateChanged(int)), this, SLOT(coche()));
+    connect(checkBox_IJ, SIGNAL(stateChanged(int)), this, SLOT(coche()));
+    connect(checkBox_UV, SIGNAL(stateChanged(int)), this, SLOT(coche()));
+    connect(checkBox_TICI, SIGNAL(stateChanged(int)), this, SLOT(coche()));
+    connect(checkBox_MPN, SIGNAL(stateChanged(int)), this, SLOT(coche()));
+    connect(checkBox_PH, SIGNAL(stateChanged(int)), this, SLOT(coche()));
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(close()));
 }
 
+void DialogVG::initCoches(QStringList ll)
+{
+    checkBoxAe->setChecked(ll.contains(lvg.at(0)));
+    checkBox_H->setChecked(ll.contains(lvg.at(1)));
+    checkBox_Mihi->setChecked(ll.contains(lvg.at(2)));
+    checkBox_IJ->setChecked(ll.contains(lvg.at(3)));
+    checkBox_UV->setChecked(ll.contains(lvg.at(4)));
+    checkBox_TICI->setChecked(ll.contains(lvg.at(5)));
+    checkBox_MPN->setChecked(ll.contains(lvg.at(6)));
+    checkBox_PH->setChecked(ll.contains(lvg.at(7)));
+}

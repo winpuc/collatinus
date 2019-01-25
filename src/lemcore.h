@@ -83,6 +83,7 @@ class LemCore : public QObject
     QMultiMap<QString, Irreg *> _irregs;
     QMap<QString, QString> _cibles;
     QMap<QString, Lemme *> _lemmes;
+    QStringList            _lignesVG;
     QMap<QString, Modele *> _modeles;
     QMap<QString,QStringList> _morphos;
     QMap<QString,QStringList> _cas;
@@ -109,12 +110,6 @@ class LemCore : public QObject
 
     QString _resDir;          // Le chemin du répertoire de ressources
     QString _ajDir;           // chemin du répertoire des ajouts personnels
-    /*
-    QString          _dirLa;  // chemins des fichiers ajouts personnels
-    QString          _dirFr;  //            "
-    QString          _dirIrr; //            "
-    QString          _dirVg;  //            "
-    */
     bool _extLoaded; // = true après chargement de l'extension
     // Lorsque j'ai chargé l'extension, je dois pouvoir ignorer les analyses qui en viennent.
     bool _nbrLoaded; // Si les nombres ont été chargés, je dois les effacer avant de les charger à nouveau.
@@ -150,9 +145,11 @@ class LemCore : public QObject
     QStringList            lemmes(MapLem ml);
     // Lit les lignes d'un fichier. Est devenu public.
     QStringList            lignesFichier(QString nf);
+    QStringList            lignesVG();
     void                   lisModeles();
     void                   lisModule();
     void                   lisVarGraph(QString nf);
+    void                   lisVarGraph(QStringList lignes);
     // Lire un fichier de césures étymologiques (non-phonétiques)
     void                   lireHyphen (QString fichierHyphen);
     QStringList            listeLemmesLa();

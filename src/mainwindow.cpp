@@ -1468,9 +1468,19 @@ bool MainWindow::dockVisible(QDockWidget *d)
 
 void MainWindow::editVargraph()
 {
-    DialogVG dv(this);
+    DialogVG dv(lemcore->lignesVG(), this);
     dv.setModal(true);
-    dv.exec();
+    int res = dv.exec();
+    switch(res)
+    {
+        case QDialog::Accepted:
+            lemcore->lisVarGraph(dv.lignes());
+            lemcore->lisModeles();
+            lemcore->reinitRads();
+            break;
+        default: break;
+    }
+    
 }
 
 /**

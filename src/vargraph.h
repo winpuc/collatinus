@@ -23,9 +23,11 @@ class DialogVG : public QDialog
     Q_OBJECT
 
     public:
-        DialogVG(MainWindow* parent=0);
+        DialogVG(QStringList l, MainWindow* parent=0);
+        QStringList          lignes();
 
     private:
+        MainWindow* mainwin;
         QWidget *tabVarGraph;
         QVBoxLayout *verticalLayout;
         QVBoxLayout *verticalLayout_4;
@@ -34,7 +36,6 @@ class DialogVG : public QDialog
         QVBoxLayout *verticalLayoutConf;
         QLabel *label_3;
         QHBoxLayout *horizontalLayoutBtnPre;
-        QPushButton *btnPre;
         QSpacerItem *horizontalSpacerPre;
         QFormLayout *formLayoutCochesVar;
         QLabel *labelVariante;
@@ -50,8 +51,24 @@ class DialogVG : public QDialog
         QPlainTextEdit *plainTextEditVariantes;
         QWidget *layoutWidget1;
         QDialogButtonBox* buttonBox;
+
+        QStringList lvg = QStringList()
+            << "ae;e"
+            << "h;"
+            << "mihi;michi"
+            << "I;J"
+            << "U;V"
+            << "([aeiourln])ci([aeiourl])>\\1ti\\2"
+            << "mn;mpn"
+            << "ph;f";
+        QStringList tv;
+
         void etiquettes();
         void connecte();
+        void initCoches(QStringList ll);
+
+        private slots:
+            void coche();
 };
 
 # endif
