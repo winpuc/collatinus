@@ -30,6 +30,7 @@
 
 #include "mainwindow.h"
 #include "modules.h"
+#include "vargraph.h"
 
 /**
  * \fn EditLatin::EditLatin (QWidget *parent): QTextEdit (parent)
@@ -1467,7 +1468,9 @@ bool MainWindow::dockVisible(QDockWidget *d)
 
 void MainWindow::editVargraph()
 {
-    qDebug()<<"editVarGraph";
+    DialogVG dv(this);
+    dv.setModal(true);
+    dv.exec();
 }
 
 /**

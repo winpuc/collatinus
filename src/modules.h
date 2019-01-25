@@ -46,6 +46,8 @@ class DialogM : public QDialog
         QPushButton *pushButton_4;  // fermer
         QSpacerItem *verticalSpacer;
 
+QT_BEGIN_NAMESPACE
+
         //void setupUi(QDialog *Dialog)
         void setupUi()
         {
@@ -77,6 +79,7 @@ class DialogM : public QDialog
             pushButton_3->setText(QApplication::translate("Modules", "Supprimer", Q_NULLPTR));
             pushButton_4->setText(QApplication::translate("Modules", "Fermer", Q_NULLPTR));
         } // retranslateUi
+QT_END_NAMESPACE
 
 };
 

@@ -11,7 +11,7 @@ DialogM::DialogM(QString d, MainWindow* parent)
     retranslateUi();
 
     connect(pushButton,   SIGNAL(clicked()), this, SLOT(activer()));
-    connect(pushButton_4, SIGNAL(clicked()), this, SLOT(close()));  
+    connect(pushButton_4, SIGNAL(clicked()), this, SLOT(close()));
 
     QDir dir(_dir);
     QStringList lm = dir.entryList(QStringList() << "*",
