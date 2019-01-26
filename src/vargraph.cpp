@@ -5,6 +5,7 @@
 DialogVG::DialogVG(QStringList l, MainWindow* parent)
 {
     mainwin = parent;
+    resize(mainwin->width()/2, mainwin->height()/2);
     tabVarGraph = new QWidget();
     verticalLayout = new QVBoxLayout(this);
     verticalLayout->setSpacing(6);
@@ -65,13 +66,16 @@ DialogVG::DialogVG(QStringList l, MainWindow* parent)
     verticalLayout->addWidget(buttonBox);
     // étiquettes
     etiquettes();
-    connecte();
     initCoches(l);
+    connecte();
 }
 
 void DialogVG::etiquettes()
 {
-    label_3->setText("doc");
+    label_3->setText("Ces changements ne sont valables<br/>\n"
+                     "que pour la session courante. On peut éditer<br/>\n"
+                     "le module en installant l'application Ecce.<br/>\n"
+                     "Cf. la documentation");
     labelVariante->setText(QApplication::translate("MainWindow", "variante", Q_NULLPTR));
     checkBoxAe->setText(QApplication::translate("MainWindow", "ae > e", Q_NULLPTR));
     checkBox_H->setText(QApplication::translate("MainWindow", "h > -", Q_NULLPTR));
@@ -137,6 +141,7 @@ void DialogVG::connecte()
 
 void DialogVG::initCoches(QStringList ll)
 {
+    plainTextEditVariantes->setPlainText(ll.join('\n'));
     checkBoxAe->setChecked(ll.contains(lvg.at(0)));
     checkBox_H->setChecked(ll.contains(lvg.at(1)));
     checkBox_Mihi->setChecked(ll.contains(lvg.at(2)));

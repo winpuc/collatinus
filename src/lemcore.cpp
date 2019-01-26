@@ -1154,17 +1154,6 @@ void LemCore::lisVarGraph(QString nf)
 {
     _lignesVG = lignesFichier(nf);
     lisVarGraph(_lignesVG);
-    /*
-    _reglesVG.clear();
-    for (int i=0;i<lignes.count();++i)
-    {
-        QString l = lignes.at(i);
-        RegleVG* r = new RegleVG(l);
-        if (r->ci())
-             _reglesCi.append(r);
-        else _reglesVG.append(r);
-    }
-    */
 }
 
 void LemCore::lisVarGraph(QStringList lignes)
