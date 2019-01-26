@@ -62,8 +62,12 @@ DialogVG::DialogVG(QStringList l, MainWindow* parent)
 
     buttonBox = new QDialogButtonBox(this);
     buttonBox->setOrientation(Qt::Horizontal);
-    buttonBox->setStandardButtons(QDialogButtonBox::Close|QDialogButtonBox::Save);
+    buttonBox->setStandardButtons(QDialogButtonBox::Close|QDialogButtonBox::Apply);
     verticalLayout->addWidget(buttonBox);
+
+    buttonBox->button(QDialogButtonBox::Close)->setText(tr("Fermer"));
+    buttonBox->button(QDialogButtonBox::Apply)->setText(tr("Appliquer"));
+
     // étiquettes
     etiquettes();
     initCoches(l);
