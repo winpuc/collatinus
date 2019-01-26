@@ -130,7 +130,7 @@ bool Maj::installe(QString nfcol)
     if (!lignes[1].contains(":"))
     {
         QMessageBox::critical(
-                    this, tr("Collatinus 11"),
+                    this, tr("Collatinus 12"),
                     tr("Impossible de comprendre le fichier ") + nfcol.toUtf8() +
                        tr(". Le format semble être inadéquat."));
         return false;
@@ -160,7 +160,7 @@ bool Maj::installe(QString nfcol)
         if (!fcz.open(QFile::WriteOnly))
         {
             QMessageBox::critical(
-                        this, tr("Collatinus 11"),
+                        this, tr("Collatinus 12"),
                         tr("Impossible de créer le fichier ") + nfcz.toUtf8() +
                            tr(". Vérifiez vos drois d'accès, et éventuellent "
                            "connectez-vous en administrateur avant de lancer Collatinus."));
@@ -243,7 +243,7 @@ void Maj::selectionne()
             else OK = false;
         }
     // info
-    if (OK) QMessageBox::information(this, tr("Collatinus 11"),
+    if (OK) QMessageBox::information(this, tr("Collatinus 12"),
                              tr("L'installation s'est bien passée. "
                                 "Au prochain lancement, les nouveaux lexiques "
                                 "et dictionnaires seront disponibles."));
@@ -264,7 +264,7 @@ void Maj::selectionne()
         else OK = false;
     }
     // info
-    if (OK) QMessageBox::information(this, tr("Collatinus 11"),
+    if (OK) QMessageBox::information(this, tr("Collatinus 12"),
                              tr("La copie s'est bien passée. "));
 */
 }
