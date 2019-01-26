@@ -17,6 +17,7 @@
  *
  * © Yves Ouvrard, 2018 - 2019
  */
+
 # include <QDir>
 # include "modules.h"
 
@@ -27,7 +28,7 @@ DialogM::DialogM(QString d, MainWindow* parent)
     setupUi();
     retranslateUi();
 
-    connect(pushButton_4, SIGNAL(clicked()), this, SLOT(close()));  
+    connect(pushButton,   SIGNAL(clicked()), this, SLOT(activer()));
     connect(pushButton_4, SIGNAL(clicked()), this, SLOT(close()));
 
     QDir dir(_dir);

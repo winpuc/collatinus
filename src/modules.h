@@ -49,8 +49,8 @@ class DialogM : public QDialog
     public:
         QString module();
 
-        public slots:
-            void    activer();
+    public slots:
+        void    activer();
 
     public:
         DialogM(QString d, MainWindow* parent=0);
