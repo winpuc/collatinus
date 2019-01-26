@@ -1,4 +1,4 @@
-VERSION = "11.2"
+VERSION = "12.0"
 DEFINES += VERSION=\\\"$$VERSION\\\"
 
 TEMPLATE = app
@@ -43,7 +43,8 @@ HEADERS += src/ch.h \
            src/mot.h \
            src/reglevg.h \
            src/scandeur.h \
-           src/tagueur.h
+           src/tagueur.h \
+           src/vargraph.h
 
 SOURCES += src/ch.cpp \
            src/dicos.cpp \
@@ -61,7 +62,8 @@ SOURCES += src/ch.cpp \
            src/mot.cpp \
            src/reglevg.cpp \
            src/scandeur.cpp \
-           src/tagueur.cpp
+           src/tagueur.cpp \
+           src/vargraph.cpp
 
 RESOURCES += collatinus.qrc
 RC_ICONS = res/collatinus.ico

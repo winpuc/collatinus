@@ -247,6 +247,11 @@ QStringList LemCore::lignesFichier(QString nf)
     return retour;
 }
 
+QStringList LemCore::lignesVG()
+{
+    return _lignesVG;
+}
+
 /**
  * @brief LemCore::lisMorphos
  * @param lang : langue pour les morphologies.
@@ -1147,7 +1152,12 @@ void LemCore::lisTraductions(QString nf)
 
 void LemCore::lisVarGraph(QString nf)
 {
-    QStringList lignes = lignesFichier(nf);
+    _lignesVG = lignesFichier(nf);
+    lisVarGraph(_lignesVG);
+}
+
+void LemCore::lisVarGraph(QStringList lignes)
+{
     _reglesVG.clear();
     for (int i=0;i<lignes.count();++i)
     {

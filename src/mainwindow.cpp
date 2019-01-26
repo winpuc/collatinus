@@ -16,13 +16,12 @@
  *  along with COLLATINUS; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * © Yves Ouvrard, 2009 - 2016
+ * © Yves Ouvrard, 2009 - 2019
  */
 
 /*
    FIXME
    TODO
-   - Édition des variantes graphiques, leur enregistrement.
  */
 
 #include <quazip/quazip.h>
@@ -30,6 +29,7 @@
 
 #include "mainwindow.h"
 #include "modules.h"
+#include "vargraph.h"
 
 /**
  * \fn EditLatin::EditLatin (QWidget *parent): QTextEdit (parent)
@@ -405,15 +405,15 @@ void MainWindow::alpha()
 /**
  * \fn void MainWindow::apropos ()
  * \brief Affiche les informations essentielles au
- *        sujet de Collatinus 11.
+ *        sujet de Collatinus 12.
  */
 void MainWindow::apropos()
 {
     QMessageBox::about(
-        this, tr("Collatinus 11"),
+        this, tr("Collatinus 12"),
         tr("<b>COLLATINVS</b><br/>\n"
            "<i>Linguae latinae lemmatizatio </i><br/>\n"
-           "Licentia GPL, © Yves Ouvrard, 2009 - 2016 <br/>\n"
+           "Licentia GPL, © Yves Ouvrard, 2009 - 2019 <br/>\n"
            "Nonnullas partes operis scripsit Philippe Verkerk<br/>\n"
            "Versio " VERSION "<br/><br/>\n"
            "Gratias illis habeo :<br/><ul>\n"
@@ -1467,7 +1467,19 @@ bool MainWindow::dockVisible(QDockWidget *d)
 
 void MainWindow::editVargraph()
 {
-    qDebug()<<"editVarGraph";
+    DialogVG dv(lemcore->lignesVG(), this);
+    dv.setModal(true);
+    int res = dv.exec();
+    switch(res)
+    {
+        case QDialog::Accepted:
+            lemcore->lisVarGraph(dv.lignes());
+            lemcore->lisModeles();
+            lemcore->reinitRads();
+            break;
+        default: break;
+    }
+    
 }
 
 /**
@@ -1726,7 +1738,7 @@ void MainWindow::langueInterface()
     }
     else
         langueI = "fr";
-    QMessageBox::about(this, tr("Collatinus 11"),
+    QMessageBox::about(this, tr("Collatinus 12"),
                        tr("Le changement de langue prendra effet "
                           "au prochain lancement de Collatinus."));
 }
