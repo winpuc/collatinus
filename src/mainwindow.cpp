@@ -16,13 +16,12 @@
  *  along with COLLATINUS; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * © Yves Ouvrard, 2009 - 2016
+ * © Yves Ouvrard, 2009 - 2019
  */
 
 /*
    FIXME
    TODO
-   - Édition des variantes graphiques, leur enregistrement.
  */
 
 #include <quazip/quazip.h>
@@ -414,7 +413,7 @@ void MainWindow::apropos()
         this, tr("Collatinus 12"),
         tr("<b>COLLATINVS</b><br/>\n"
            "<i>Linguae latinae lemmatizatio </i><br/>\n"
-           "Licentia GPL, © Yves Ouvrard, 2009 - 2016 <br/>\n"
+           "Licentia GPL, © Yves Ouvrard, 2009 - 2019 <br/>\n"
            "Nonnullas partes operis scripsit Philippe Verkerk<br/>\n"
            "Versio " VERSION "<br/><br/>\n"
            "Gratias illis habeo :<br/><ul>\n"
