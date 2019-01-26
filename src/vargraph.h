@@ -16,6 +16,7 @@
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * © Yves Ouvrard, 2009 - 2019
+ */
 
 #ifndef VARGRAPH_H
 #define VARGRAPH_H
