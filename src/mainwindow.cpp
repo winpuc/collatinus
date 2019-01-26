@@ -406,12 +406,12 @@ void MainWindow::alpha()
 /**
  * \fn void MainWindow::apropos ()
  * \brief Affiche les informations essentielles au
- *        sujet de Collatinus 11.
+ *        sujet de Collatinus 12.
  */
 void MainWindow::apropos()
 {
     QMessageBox::about(
-        this, tr("Collatinus 11"),
+        this, tr("Collatinus 12"),
         tr("<b>COLLATINVS</b><br/>\n"
            "<i>Linguae latinae lemmatizatio </i><br/>\n"
            "Licentia GPL, © Yves Ouvrard, 2009 - 2016 <br/>\n"
@@ -1739,7 +1739,7 @@ void MainWindow::langueInterface()
     }
     else
         langueI = "fr";
-    QMessageBox::about(this, tr("Collatinus 11"),
+    QMessageBox::about(this, tr("Collatinus 12"),
                        tr("Le changement de langue prendra effet "
                           "au prochain lancement de Collatinus."));
 }
