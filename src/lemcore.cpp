@@ -1188,6 +1188,11 @@ QString LemCore::morpho(int m)
     return _morphos[l].at(m - 1);
 }
 
+/**
+ * \fn void LemCore::reinitRads()
+ * \brief réinitialise les radicaux après un
+ *        changement de variantes graphiques.
+ */
 void LemCore::reinitRads()
 {
     QMultiMap<QString, Radical*> mmap;
