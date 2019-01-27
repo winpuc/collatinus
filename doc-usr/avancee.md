@@ -5,11 +5,21 @@
 Utilisation avancée
 ===================
 
-	Pour faire son travail, Collatinus s'appuie sur une
-    collection de fichiers qui contiennent toutes les
-    connaissances nécessaires. À l'initialisation du
-    programme, ils sont tous lus, et les données mises
-    en listes et placées en mémoire vive.
+Ce chapitre peut paraître obsolète. Depuis la version 
+12 de Collatinus, en effet, Collatinus dispose d'un
+éditeur de données Qu'on peut utiliser pour ajouter ou
+modifier des lemmes, gérer les formes irrégulières,
+et adapter le lemmatiseur aux variantes graphiques
+qu'a subies la langue après l'âge classique. Cet éditeur, nommé Ecce
+(Ecce Collatinistarum Communitatis Editor) est disponible ici, et 
+il est accompagné d'une documentation qu'il est important de lire 
+avant de l'utiliser.
+
+Pour faire son travail, Collatinus s'appuie sur une
+collection de fichiers qui contiennent toutes les
+connaissances nécessaires. À l'initialisation du
+programme, ils sont tous lus, et les données mises
+en listes et placées en mémoire vive.
 
 Si on remarque une erreur ou une lacune dans les
 résultats, et qu'on a des connaissances suffisantes en
@@ -19,7 +29,7 @@ notamment **en prenant soin de faire une copie de
 sauvegarde avant toute intervention** : on crée un
 répertoire dont on note bien le chemin, et on y copie
 les fichiers qu'on a l'intention de modifier. On peut
-ainsi, en cas d'échecs, les rétablir dans leur état
+ainsi, en cas d'échec, les rétablir dans leur état
 initial.
 
 Les fichiers les plus importants sont détaillés ci-dessous.
