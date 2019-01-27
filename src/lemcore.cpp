@@ -618,9 +618,6 @@ MapLem LemCore::lemmatise(QString f)
     QString f_lower = f.toLower();
     int cnt_v = f_lower.count("v");
     bool V_maj = f[0] == 'V';
-    int cnt_ae = f_lower.count("æ");
-    //int cnt_oe = f_lower.count("œ");
-    if (f_lower.endsWith("æ")) cnt_ae -= 1;
     f = Ch::deramise(f);
     // formes irrégulières
     QList<Irreg *> lirr = _irregs.values(f);
@@ -665,9 +662,6 @@ MapLem LemCore::lemmatise(QString f)
                                  +des->grq().count("v")));
                     if (!c) c = (V_maj && (rad->gr()[0] == 'U')
                             && (cnt_v - 1 == rad->grq().toLower().count("v")));
-                    //c = c && ((cnt_oe==0)||(cnt_oe == rad->grq().toLower().count("ōe")));
-                    c = c && ((cnt_ae==0)||
-                              (cnt_ae == (rad->grq().toLower().count("āe") + rad->grq().toLower().count("prăe"))));
                     if (c)
                     {
                         QString fq = rad->grq() + des->grq();
