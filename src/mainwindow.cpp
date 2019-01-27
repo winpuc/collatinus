@@ -19,11 +19,6 @@
  * © Yves Ouvrard, 2009 - 2019
  */
 
-/*
-   FIXME
-   TODO
- */
-
 #include <quazip/quazip.h>
 #include <quazip/quazipfile.h>
 
