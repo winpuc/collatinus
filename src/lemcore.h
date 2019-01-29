@@ -81,10 +81,10 @@ class LemCore : public QObject
     QMultiMap<QString, Desinence *> _desinences;
     QString decontracte(QString d);
     QMultiMap<QString, Irreg *> _irregs;
-    QMap<QString, QString> _cibles;
-    QMap<QString, Lemme *> _lemmes;
-    QStringList            _lignesVG;
-    QMap<QString, Modele *> _modeles;
+    QMap<QString, QString>    _cibles;
+    QMap<QString, Lemme *>    _lemmes;
+    QStringList               _lignesVG; 
+    QMap<QString, Modele *>   _modeles;
     QMap<QString,QStringList> _morphos;
     QMap<QString,QStringList> _cas;
     QMap<QString,QStringList> _genres;
@@ -148,7 +148,8 @@ class LemCore : public QObject
     QStringList            lignesVG();
     void                   lisModeles();
     void                   lisModule();
-    void                   lisVarGraph(QString nf);
+    //void                   lisVarGraph(QString nf);
+    void                   lisVarGraph();
     void                   lisVarGraph(QStringList lignes);
     // Lire un fichier de césures étymologiques (non-phonétiques)
     void                   lireHyphen (QString fichierHyphen);
@@ -180,7 +181,7 @@ class LemCore : public QObject
     int                    fraction(QString listTags);
     QString                tag(Lemme *l, int m);
     int                    tagOcc(QString t);
-    QString                ti(QString f);
+    QStringList            ti(QString f);
     int                    trigram(QString seq);
     QString                vg(QString c);
 

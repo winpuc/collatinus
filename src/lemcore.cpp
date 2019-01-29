@@ -82,7 +82,7 @@ LemCore::LemCore(QObject *parent, QString resDir, QString ajDir) : QObject(paren
         QString nfl = ltr.at(i);
         lisMorphos(QFileInfo(nfl).suffix());
     }
-    lisVarGraph(_ajDir+"vargraph.la");
+    lisVarGraph();
     lisModeles();
     lisModule();
     lisLexique(1);
@@ -769,22 +769,17 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
 {
     MapLem mm;
     if (f.isEmpty()) return mm;
-    // appliquer les règles aval
-    QString fti = ti(f);
-    if (fti != f)
-    {
-        mm = lemmatise(fti);
-        if (!mm.isEmpty()) return mm;
-    }
     // appliquer les règles de variantes graphiques
     f = Ch::deramise(vg(f));
     if ((etape > 3) || (etape <0)) // Condition terminale
     {
-        mm = lemmatise(f);
+        MapLem nml = lemmatise(f);
+        foreach (Lemme *nl, nml.keys())
+            mm.insert(nl, nml.value(nl));
         if (debPhr && f.at(0).isUpper())
         {
             QString nf = f.toLower();
-            MapLem nmm = lemmatiseM(nf);
+            MapLem nmm = lemmatiseM(nf, debPhr);
             foreach (Lemme *nl, nmm.keys())
             {
                 mm.insert(nl, nmm.value(nl));
@@ -1144,9 +1139,9 @@ void LemCore::lisTraductions(QString nf)
     }
 }
 
-void LemCore::lisVarGraph(QString nf)
+void LemCore::lisVarGraph()
 {
-    _lignesVG = lignesFichier(nf);
+    _lignesVG = lignesFichier(_ajDir+"vargraph.la");
     lisVarGraph(_lignesVG);
 }
 
@@ -1169,6 +1164,7 @@ void LemCore::lisVarGraph(QStringList lignes)
  */
 Modele *LemCore::modele(QString m)
 {
+    if (!_modeles.contains(m)) return 0;
     return _modeles[m];
 }
 
@@ -1449,14 +1445,16 @@ int LemCore::tagOcc(QString t)
 }
 
 // calcul d'une variante graphique en amont de lemmatiseM()
-QString LemCore::ti(QString f)
+QStringList LemCore::ti(QString f)
 {
+    QStringList ret;
     for (int i=0;i<_reglesCi.count();++i)
     {
         RegleVG* r = _reglesCi.at(i);
-        f = r->transf(f);
+        ret.append(r->transf(f));
     }
-    return f;
+    ret.removeDuplicates();
+    return ret;
 }
 
 QString LemCore::vg(QString c)
