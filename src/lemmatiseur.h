@@ -41,6 +41,7 @@ public:
     QString lemmatiseFichier(QString f, bool alpha = false,
                              bool cumVocibus = false, bool cumMorpho = false,
                              bool nreconnu = true);
+    MapLem lemmatiseM(QString f, bool deb);
     // lemmatiseT lemmatise un texte
     QString lemmatiseT(QString &t);
     QString lemmatiseT(QString &t, bool alpha, bool cumVocibus = false,

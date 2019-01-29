@@ -54,11 +54,29 @@ Lemmatiseur::Lemmatiseur(QObject *parent, LemCore *l, QString cible, QString res
 QStringList Lemmatiseur::lemmatiseF(QString f, bool deb)
 {
     QStringList res;
-    MapLem ml = _lemCore->lemmatiseM(f, deb);
+    //MapLem ml = _lemCore->lemmatiseM(f, deb);
+    MapLem ml = lemmatiseM(f, deb);
     foreach (Lemme *l, ml.keys())
         res.append(l->humain(_html,_cible));
-    // if (res.empty()) res.append(f);
     return res;
+}
+
+MapLem Lemmatiseur::lemmatiseM(QString f, bool deb)
+{
+    MapLem ml = _lemCore->lemmatiseM(f, deb);
+    // appliquer les règles aval
+    QStringList lfti = _lemCore->ti(f);
+    for (int i=0;i<lfti.count();++i)
+    {
+        QString fti = lfti.at(i);
+        MapLem nml = _lemCore->lemmatise(fti);
+        for(int j=0;j<nml.count();++j)
+        {
+            Lemme* nl = nml.keys().at(j);
+            ml.insert(nl, nml.value(nl));
+        }
+    }
+    return ml;
 }
 
 /**
@@ -282,7 +300,8 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
         QString sep = lm.at(i - 1);
         bool debPhr = ((i == 1 && lm.count() !=3) || sep.contains(Ch::rePonct));
         // lemmatisation de la forme
-        MapLem map = _lemCore->lemmatiseM(f, !_majPert || debPhr);
+        //MapLem map = _lemCore->lemmatiseM(f, !_majPert || debPhr);
+        MapLem map = lemmatiseM(f, !_majPert || debPhr);
         // échecs
         if (map.empty())
         {
@@ -586,7 +605,8 @@ void Lemmatiseur::verbaCognita(QString fichier,bool vb)
             {
                 if (!ligne.startsWith("!") && !ligne.isEmpty()) // hLem.insert(ligne,1);
                 {
-                    item = _lemCore->lemmatiseM (ligne, false, false);
+                    //item = _lemCore->lemmatiseM (ligne, false, false);
+                    item = lemmatiseM (ligne, false);
                     foreach (Lemme *lem, item.keys())
                         _hLem.insert(lem->cle(),0);
                 }
