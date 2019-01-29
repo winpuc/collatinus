@@ -26,7 +26,6 @@ OBJECTS_DIR= obj/
 MOC_DIR = moc/
 QMAKE_DISTCLEAN += $${DESTDIR}/collatinus
 
-
 # Input
 HEADERS += src/ch.h \
            src/dicos.h \
