@@ -765,12 +765,12 @@ bool LemCore::inv(Lemme *l, const MapLem ml)
  * Cela évite une lemmatisation hasardeuse et improbable de
  * "mentione" en "mentio"+"ne".
  */
-MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
+MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape, bool vgr)
 {
     MapLem mm;
     if (f.isEmpty()) return mm;
     // appliquer les règles de variantes graphiques
-    f = Ch::deramise(vg(f));
+    if (vgr) f = Ch::deramise(vg(f));
     if ((etape > 3) || (etape <0)) // Condition terminale
     {
         MapLem nml = lemmatise(f);
@@ -796,7 +796,7 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
         return mm;
     }
     // Si j'arrive ici, c'est que j'ai encore des choses à essayer.
-    mm = lemmatiseM(f, debPhr, etape + 1);
+    mm = lemmatiseM(f, debPhr, etape + 1, vgr);
     // J'essaie d'abord l'étape suivante
     QString fd; // On ne peut pas créer une variable QString à l'intérieur d'un switch.
     switch (etape)
@@ -1148,6 +1148,7 @@ void LemCore::lisVarGraph()
 void LemCore::lisVarGraph(QStringList lignes)
 {
     _reglesVG.clear();
+    _reglesCi.clear();
     for (int i=0;i<lignes.count();++i)
     {
         QString l = lignes.at(i);
