@@ -69,7 +69,7 @@ MapLem Lemmatiseur::lemmatiseM(QString f, bool deb)
     for (int i=0;i<lfti.count();++i)
     {
         QString fti = lfti.at(i);
-        MapLem nml = _lemCore->lemmatise(fti);
+        MapLem nml = _lemCore->lemmatiseM(fti,true,0,false);
         for(int j=0;j<nml.count();++j)
         {
             Lemme* nl = nml.keys().at(j);
