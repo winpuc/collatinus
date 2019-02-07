@@ -123,8 +123,7 @@ Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
     if (djvu)
     {
         imagePng = "<img src=\"" + cheminImages;
-        imagePng.append(n.section("_",0,0));
-        imagePng.append("/%1.png\">");
+        imagePng.append(n.section("_",0,0).toLower());
     }
 }
 
