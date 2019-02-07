@@ -34,11 +34,11 @@ Flexion::Flexion(QObject *parent) : QObject(parent)
 }
 
 const QString Flexion::entete =
-    "<table border=1 cellspacing=\"0\" cellpadding=\"5\">";
+    "<div class=\"table-responsive\">\n<table class=\"table table-bordered\">";
 const QString Flexion::lina = "<tr><td>";
 const QString Flexion::linb = "</td><td>";
 const QString Flexion::linc = "</td></tr>";
-const QString Flexion::queue = "</table>";
+const QString Flexion::queue = "</table>\n</div>";
 
 /*const QStringList Flexion::cas = QStringList() << "nominatif"
                                                << "vocatif"

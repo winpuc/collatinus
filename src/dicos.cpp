@@ -112,7 +112,7 @@ Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
           QFileInfo(chData).suffix() == "xml";
     djvu = !xml;
 
-    flien = "<li class=\"%2\">\n<a href=\"#\" data-value=\"-d";
+    flien = "<li class=\"%2\" rel=\"%3\">\n<a href=\"#\" data-value=\"-d";
     if (n.contains("1934"))
     {
         flien.append("fg");
@@ -124,6 +124,7 @@ Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
     {
         imagePng = "<img src=\"" + cheminImages;
         imagePng.append(n.section("_",0,0).toLower());
+        imagePng.append("/%1.png\" alt=\"Page %1\">");
     }
 }
 
@@ -397,36 +398,44 @@ QString Dictionnaire::pagePng(QStringList req)
         }
     }
     // J'ai transformé la liste de lemmes en liste de numéros de page.
-    QString pg = auteur + " <a href=\"" + url + "\">" + url + "</a>\n";
+    QString pg = "<p class=\"attribution\">" + auteur + " <a href=\"" + url + "\">" + url + "</a></p>\n";
     for (int j=0 ; j<lp.size() ; j++)
     {
         // La page lp[j].
         int p = lp[j];
         // feuilletage haut
+        pg.append("<nav role=\"navigation\" aria-label=\"Navigation dans le dictionnaire\">\n");
         pg.append("<ul class=\"pager\">\n");
-        pg.append(flien.arg (p-1).arg("previous"));
-        pg.append("<li class=\"lead\">");
+        pg.append(flien.arg (p-1).arg("previous").arg("prev"));
+        pg.append("<li class=\"lead\" aria-current=\"true\">");
         pg.append(QString::number(p));
         pg.append("</li>\n");
-        pg.append(flien.arg (p+1).arg("next"));
+        pg.append(flien.arg (p+1).arg("next").arg("next"));
         pg.append("</ul>");
+        pg.append("</nav>");
+
         pg.append(imagePng.arg(p));
+
         // feuilletage bas
+        pg.append("<nav role=\"navigation\">\n");
         pg.append("<ul class=\"pager\">\n");
-        pg.append(flien.arg (p-1).arg("previous"));
-        pg.append("<li class=\"lead\">");
+        pg.append(flien.arg (p-1).arg("previous").arg("prev"));
+        pg.append("<li class=\"lead\" aria-current=\"true\">");
         pg.append(QString::number(p));
         pg.append("</li>\n");
-        pg.append(flien.arg (p+1).arg("next"));
+        pg.append(flien.arg (p+1).arg("next").arg("next"));
         pg.append("</ul>");
+        pg.append("</nav>");
     }
     // feuilletage final s'il y a plusieurs pages.
     if (lp.size() > 1)
     {
+        pg.append("<nav role=\"navigation\" aria-label=\"Navigation dans le dictionnaire\">\n");
         pg.append("<ul class=\"pager\">\n");
-        pg.append(flien.arg (pMin-1).arg("previous"));
-        pg.append(flien.arg (pMax+1).arg("next"));
+        pg.append(flien.arg (pMin-1).arg("previous").arg("prev"));
+        pg.append(flien.arg (pMax+1).arg("next").arg("next"));
         pg.append("</ul>");
+        pg.append("</nav>");
     }
 
     return pg;
@@ -569,10 +578,12 @@ QString Dictionnaire::pageXml(QStringList lReq)
         pg.append("\n<div id=\"" + listeE[i].article + "\" class=\"entree-dico\">");
         pg.append("<ul class=\"liste-liens\">\n" + ligneLiens + "</ul>\n");
         // feuilletage haut
+        pg.append("<nav role=\"navigation\" aria-label=\"Navigation dans le dictionnaire\">\n");
         pg.append ("<ul class=\"pager\">\n");
-        pg.append (flien.arg (avant[i]).arg("previous"));
-        pg.append (flien.arg (apres[i]).arg("next"));
+        pg.append (flien.arg (avant[i]).arg("previous").arg("prev"));
+        pg.append (flien.arg (apres[i]).arg("next").arg("next"));
         pg.append ("</ul>");
+        pg.append ("</nav>");
         // entrées
         QString np = entree_pos(listeE[i].pos, listeE[i].taille);
         pg.append(np);
@@ -584,7 +595,7 @@ QString Dictionnaire::pageXml(QStringList lReq)
         pg.prepend("<link rel=\"stylesheet\" href=\"" + repertoire + n +
                    ".css\" type=\"text/css\" />\n");
     } */
-    pg.prepend(auteur + " <a href=\"http://" + url + "\">" + url + "</a> ");
+    pg.prepend("<p class=\"attribution\">" + auteur + " <a href=\"http://" + url + "\">" + url + "</a></p>");
 
     //qDebug() << ici << avant << apres;
     for (int j = 0; j < ici.size(); j++)
@@ -611,10 +622,12 @@ QString Dictionnaire::pageXml(QStringList lReq)
         if (QString::compare(suiv, apres[i], Qt::CaseInsensitive) > 0) suiv = apres[i];
     //qDebug() << prec << suiv;
     // feuilletage bas
+    pg.append("<nav role=\"navigation\">\n");
     pg.append ("<ul class=\"pager\">\n");
-    pg.append (flien.arg (prec).arg("previous"));
-    pg.append (flien.arg (suiv).arg("next"));
+    pg.append (flien.arg (prec).arg("previous").arg("prev"));
+    pg.append (flien.arg (suiv).arg("next").arg("next"));
     pg.append ("</ul>");
+    pg.append ("</nav>");
 
     return pg;
 }
