@@ -38,10 +38,10 @@ class Dictionnaire : public QObject
     Q_OBJECT
 
    private:
-    QString cheminImages = "/collatinus-web-ui/resources/collatinus-web/";
-//    QString cheminImages = "/resources/collatinus-web/png/";
-// Chemin complet du répertoire où sont rangés les répertoires d'images png.
+    // Chemin complet du répertoire où sont rangés les répertoires d'images png.
+    //QString cheminImages = "/collatinus-web-ui/resources/collatinus-web/";
     // À modifier selon la configuration du serveur...
+    QString cheminImages = "/resources/collatinus-web/png/";
     QString imagePng;
 
     QString auteur;
