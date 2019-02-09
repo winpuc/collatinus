@@ -334,8 +334,11 @@ void Server::exec ()
         if ((a != 'C') && (a != 'c'))
             _lemmatiseur->setMajPert(MP);
     }
-    else if (texte != "") rep= scandeur->scandeTxt(texte);
-    else rep= scandeur->scandeTxt(requete);
+    // sinon scande le texte
+    //else if (texte != "") rep= scandeur->scandeTxt(texte);
+    //else rep= scandeur->scandeTxt(requete);
+    // fallback remplacé par un message d'alerte, invitant l'utilisateur à recharger la page
+    else rep= "<div class=\"alert alert-danger\" role=\"alert\"><strong>Collatinus-web a été mis à jour !</strong> Veuillez recharger cette page pour bénéficier des dernières améliorations <button type=\"button\" role=\"button\" class=\"btn btn-primary\" onclick=\"location.reload(true)\"><span class=\"glyphicon glyphicon-refresh\"></span>&nbsp; Recharger la page</button></div>";
     }
 /*    if (nonHTML)
     {
