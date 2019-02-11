@@ -353,6 +353,13 @@ void LemCore::ajContractions()
     }
 }
 
+void LemCore::ajIrreg(Irreg* irr)
+{
+    QString gr = Ch::deramise(irr->gr());
+    gr = vg(gr);
+    _irregs.insert(gr, irr);
+}
+
 void LemCore::ajLemme(Lemme* l)
 {
     _lemmes.insert(l->cle(), l);
@@ -1209,14 +1216,14 @@ void LemCore::reinitRads()
     _radicaux.swap(mmap);
 }
 
-void LemCore::remplaceLemme(Lemme* l, Lemme* nl)
+void LemCore::remplaceLemme(Lemme* nl)
 {
-    if (l == 0 || nl == 0)
+    if (nl == 0)
     {
         std::cerr << qPrintable("remplaceLemme, objet nul");
         return;
     }
-    _lemmes[l->cle()] = nl;
+    _lemmes[nl->cle()] = nl;
 }
 
 QString LemCore::cas(int m)
@@ -1359,11 +1366,6 @@ void LemCore::lireHyphen(QString fichierHyphen)
 QStringList LemCore::lModeles()
 {
     return _modeles.keys();
-}
-
-void LemCore::remplaceLemme(Lemme* l)
-{
-    _lemmes[l->cle()] = l;
 }
 
 /**

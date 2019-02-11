@@ -122,6 +122,7 @@ class LemCore : public QObject
     QString                dirFr();
     QString                dirIrr();
     QString                dirVg();
+    void                   ajIrreg(Irreg* irr);
     void                   ajLemme(Lemme* l);
     void                   ajModele(Modele *m);
     void                   ajRadicaux(Lemme *l);
@@ -158,7 +159,7 @@ class LemCore : public QObject
     Modele*                modele(QString m);
     QString                morpho(int i);
     void                   reinitRads();
-    void                   remplaceLemme(Lemme* l, Lemme* nl);
+    void                   remplaceLemme(Lemme* nl);
     QString                resDir();
     QMap<QString, QString> suffixes;
     //QString                trDisque(QString c);
@@ -170,7 +171,6 @@ class LemCore : public QObject
     QString                motsClefs(int i);
     QString                modes(int i);
     QString                nombre(int i);
-    void                   remplaceLemme(Lemme* l);
     QString                temps(int i);
     QString                voix(int i);
 
