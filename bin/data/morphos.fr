@@ -459,18 +459,21 @@ présent
 imparfait
 futur
 parfait
-plus-que-parfait
+PQP
 futur antérieur
 ! --- Modes
-Indicatif
-Subjonctif
-Impératif
-Infinitif
-Participe
-Adjectif verbal
+indicatif
+subjonctif
+impératif
+infinitif
+participe
+gérondif
+adjectif verbal
+supin en -um
+supin en -u
 ! --- Voix
-ACTIF
-PASSIF
+actif
+passif
 ! --- Mots clefs
 cas
 personne
