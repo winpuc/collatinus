@@ -441,6 +441,9 @@ void LemCore::ajRadicaux(Lemme *l)
             if (r == 0) continue;
             QString gr = vg(r->gr());
             _radicaux.insert(Ch::deramise(gr), r);
+            // si le radical est en -h
+            if (r->gr().endsWith('h'))
+                _radicaux.insert(Ch::deramise(r->gr()), r);
         }
     }
     // pour chaque radical du modèle
@@ -472,6 +475,11 @@ void LemCore::ajRadicaux(Lemme *l)
             QString gr = Ch::deramise(r->gr());
             gr = vg(gr);
             _radicaux.insert(gr, r);
+            // si le radical est en -h
+            if (r->gr().endsWith('h'))
+            {
+                _radicaux.insert(Ch::deramise(r->gr()), r);
+            }
         }
     }
 }
@@ -786,7 +794,7 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape, bool vgr)
         if (debPhr && f.at(0).isUpper())
         {
             QString nf = f.toLower();
-            MapLem nmm = lemmatiseM(nf, debPhr);
+            MapLem nmm = lemmatiseM(nf, debPhr, vgr);
             foreach (Lemme *nl, nmm.keys())
             {
                 mm.insert(nl, nmm.value(nl));
@@ -819,7 +827,7 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape, bool vgr)
                         fd.append(_contractions.value(cle));
                     else
                         fd.append(Ch::deramise(_contractions.value(cle)));
-                    MapLem nmm = lemmatiseM(fd, debPhr, 4);
+                    MapLem nmm = lemmatiseM(fd, debPhr, 4, vgr);
                     foreach (Lemme *nl, nmm.keys())
                     {
                         int diff = _contractions.value(cle).size() - cle.size();
@@ -845,7 +853,7 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape, bool vgr)
             fd = assim(f);
             if (fd != f)
             {
-                MapLem nmm = lemmatiseM(fd, debPhr, 3);
+                MapLem nmm = lemmatiseM(fd, debPhr, 3, vgr);
                 // désassimiler les résultats
                 foreach (Lemme *nl, nmm.keys())
                 {
@@ -858,7 +866,7 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape, bool vgr)
             fd = desassim(f);
             if (fd != f)
             {
-                MapLem nmm = lemmatiseM(fd, debPhr, 3);
+                MapLem nmm = lemmatiseM(fd, debPhr, 3, vgr);
                 foreach (Lemme *nl, nmm.keys())
                 {
                     for (int i = 0; i < nmm[nl].count(); ++i)
@@ -881,15 +889,16 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape, bool vgr)
                         sf.chop(suf.length());
                         // TODO : aequeque est la seule occurrence
                         // de -queque dans le corpus classique
-                        mm = lemmatiseM(sf, debPhr, 1);
+                        mm = lemmatiseM(sf, debPhr, 1, vgr);
                         // L'appel est récursif car je peux avoir (rarement) plusieurs suffixes.
                         // L'exemple que j'ai trouvé au LASLA est "modoquest".
                         bool sst = false;
                         if (mm.isEmpty() && (suf == "st"))
-                        { // Ce test mm.isEmpty() empêche la lemmatisation d'amatust
+                        {
+                            // Ce test mm.isEmpty() empêche la lemmatisation d'amatust
                             // comme "amatus"+"st".
                             sf += "s";
-                            mm = lemmatiseM(sf, debPhr, 1);
+                            mm = lemmatiseM(sf, debPhr, 1, vgr);
                             sst = true;
                         }
                         foreach (Lemme *l, mm.keys())
@@ -909,7 +918,7 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape, bool vgr)
             if (mm.empty() && f[0].isLower())
             { // À faire seulement si je n'ai pas de solution.
                 f[0] = f.at(0).toUpper();
-                return lemmatiseM(f, false, 1);
+                return lemmatiseM(f, false, 1, vgr);
                 // Il n'est pas utile d'enlever la majuscule que je viens de mettre
             }
             break;
@@ -1447,7 +1456,7 @@ int LemCore::tagOcc(QString t)
     return _tagOcc[t];
 }
 
-// calcul d'une variante graphique en amont de lemmatiseM()
+// calcul d'une variante graphique en aval de lemmatiseM()
 QStringList LemCore::ti(QString f)
 {
     QStringList ret;
