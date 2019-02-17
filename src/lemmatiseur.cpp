@@ -76,6 +76,12 @@ MapLem Lemmatiseur::lemmatiseM(QString f, bool deb)
             ml.insert(nl, nml.value(nl));
         }
     }
+    /*
+    // dernier essai, sans les vargraph, pour les variantes
+    // à cheval sur assim/radical/désinence/suffixe
+    if (ml.isEmpty())
+        ml = _lemCore->lemmatiseM(f, true, 0, false);
+    */
     return ml;
 }
 
