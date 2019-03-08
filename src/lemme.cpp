@@ -472,8 +472,6 @@ QString Lemme::oteNh(QString g, int &nh)
         nh = c;
         g.chop(1);
     }
-    else
-        c = 1;
     return g;
 }
 
