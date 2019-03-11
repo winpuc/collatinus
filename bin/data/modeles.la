@@ -463,7 +463,7 @@ modele:infans
 pere:fortis
 des:37-39:1:ns
 des+:18,30,42:1:ē
-des+:22,34,46:1:ŭm3
+des+:22,34,46:1:ŭm
 
 modele:acer
 pere:fortis
@@ -484,6 +484,7 @@ des:22,34,46:1:ŭm;ŭm;ŭm
 ! plus: pas de degrés de signification
 modele:plus
 pere:fortis
+des:43-45:0:ă
 abs:49-120
 
 modele:uetus
@@ -851,7 +852,10 @@ des:291-296:0:ĕrĕr;ĕrērĭs,ĕrērĕ;ĕrētŭr;ĕrēmŭr;ĕrēmĭnī;ĕrēnt�
 des:297,298:0:ĕrĕ;ĭmĭnī
 des:299-301:0:ĭtŏr;ĭtŏr;ūntŏr
 des:302:0:ī
-! adjectif verbal hérité
+! adjectif verbal
+des+:339-350:0:ūnd$lupus
+des+:351-362:0:ūnd$uita
+des+:363-374:0:ūnd$templum
 
 modele:fero
 pere:lego
@@ -861,7 +865,7 @@ R:5:3,ēr
 des:122,123,125:5:s;t;tĭs
 ! impératif
 des:181:4:-
-des:182:5:tĕ
+des:182-185:5:tĕ;tō;tōtĕ
 ! infinitif
 des:187:3:ĕ
 des:302:3:ī
@@ -1038,7 +1042,7 @@ des:121-126:0:ŏr;ārĭs;ātŭr;āmŭr;āmĭnī;āntŭr
 des:127-132:0:ābăr;ābārĭs,ābārĕ;ābātŭr;ābāmŭr;ābāmĭnī;ābāntŭr
 des:133-138:0:ābŏr;ābĕrĭs,ābĕrĕ;ābĭtŭr;ābĭmŭr;ābĭmĭnī;ābūntŭr
 ! subjonctif
-des:157-162:0:ĕr;ērĭs;ētŭr;ēmŭr;ēmĭnī;ēntŭr
+des:157-162:0:ĕr;ērĭs,ērĕ;ētŭr;ēmŭr;ēmĭnī;ēntŭr
 des:163-168:0:ārĕr;ārērĭs;ārētŭr;ārēmŭr;ārēmĭnī;ārēntŭr
 ! impératif
 des:181-186:0:ārĕ;āmĭnī
