@@ -414,9 +414,9 @@ QString LemCore::ajDir()
 bool LemCore::estRomain(QString f)
 {
     //f = f.toUpper();
-    return !(f.contains(QRegExp ("[^IUXLCDM]"))
+    return !(f.contains(QRegExp ("[^IVXLCDM]"))
              || f.contains("IL")
-             || f.contains("IUI"));
+             || f.contains("IVI"));
 }
 
 /**
@@ -632,6 +632,7 @@ MapLem LemCore::lemmatise(QString f)
     QString f_lower = f.toLower();
     int cnt_v = f_lower.count("v");
     bool V_maj = f[0] == 'V';
+    QString fBrut = f;
     f = Ch::deramise(f);
     // formes irrégulières
     QList<Irreg *> lirr = _irregs.values(f);
@@ -702,14 +703,13 @@ MapLem LemCore::lemmatise(QString f)
         if (!res.isEmpty()) result = res;
     }
     // romains
-    if (estRomain(f) && !_lemmes.contains(f))
+    if (estRomain(fBrut) && !_lemmes.contains(fBrut))
     {
-        f.replace('U','V');
-        QString lin = QString("%1|inv|||adj. num.|1").arg(f);
+        QString lin = QString("%1|inv|||adj. num.|1").arg(fBrut);
         Lemme *romain = new Lemme(lin, 0, this);
-        int nr = aRomano(f);
+        int nr = aRomano(fBrut);
         romain->ajTrad(QString("%1").arg(nr), "fr");
-        _lemmes.insert(f, romain);
+        _lemmes.insert(fBrut, romain);
         SLem sl = {f,416,""};
         QList<SLem> lsl;
         lsl.append(sl);
