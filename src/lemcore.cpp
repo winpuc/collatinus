@@ -413,7 +413,7 @@ QString LemCore::ajDir()
 
 bool LemCore::estRomain(QString f)
 {
-    f = f.toUpper();
+    //f = f.toUpper();
     return !(f.contains(QRegExp ("[^IUXLCDM]"))
              || f.contains("IL")
              || f.contains("IUI"));
@@ -439,11 +439,10 @@ void LemCore::ajRadicaux(Lemme *l)
         foreach (Radical *r, lr)
         {
             if (r == 0) continue;
+            // conserver le 'h' en fin de radical (trah.o)
             QString gr = vg(r->gr());
+            if (!gr.endsWith("trah")) gr = vg(r->gr());
             _radicaux.insert(Ch::deramise(gr), r);
-            // si le radical est en -h
-            if (r->gr().endsWith('h'))
-                _radicaux.insert(Ch::deramise(r->gr()), r);
         }
     }
     // pour chaque radical du modèle
@@ -705,6 +704,17 @@ MapLem LemCore::lemmatise(QString f)
     // romains
     if (estRomain(f) && !_lemmes.contains(f))
     {
+        f.replace('U','V');
+        QString lin = QString("%1|inv|||adj. num.|1").arg(f);
+        Lemme *romain = new Lemme(lin, 0, this);
+        int nr = aRomano(f);
+        romain->ajTrad(QString("%1").arg(nr), "fr");
+        _lemmes.insert(f, romain);
+        SLem sl = {f,416,""};
+        QList<SLem> lsl;
+        lsl.append(sl);
+        result.insert(romain, lsl);
+        /*
         QString f1 = f.toUpper();
         f.replace('U','V');
         QString lin = QString("%1|inv|||adj. num.|1").arg(f);
@@ -716,6 +726,7 @@ MapLem LemCore::lemmatise(QString f)
         QList<SLem> lsl;
         lsl.append(sl);
         result.insert(romain, lsl);
+        */
     }
     return result;
 }
