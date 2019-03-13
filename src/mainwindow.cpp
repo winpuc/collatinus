@@ -57,6 +57,11 @@ bool EditLatin::event(QEvent *event)
             QString mot = tc.selectedText();
             if (mot.isEmpty ())
                 return QWidget::event (event);
+            /*
+            int fin = tc.selectionEnd();
+            if (document()->characterAt(fin) == '\'' && fin < document()->characterCount()-2)
+                mot.append(document()->characterAt(fin+1));
+            */
             QString txtBulle = mainwindow->_lemmatiseur->lemmatiseT(
                 mot, true, true, true, false);
             if (txtBulle.isEmpty()) return true;
@@ -85,8 +90,10 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
     QTextCursor cursor = textCursor();
     if (!cursor.hasSelection()) cursor.select(QTextCursor::WordUnderCursor);
     QString st = cursor.selectedText();
+    MapLem ml;
     bool unSeulMot = !st.contains(' ');
-    MapLem ml = mainwindow->lemcore->lemmatiseM(st);
+    if (unSeulMot) ml = mainwindow->lemcore->lemmatiseM(st);
+    
     // 1. dock de lemmatisation
     if (!mainwindow->dockLem->visibleRegion().isEmpty())
     {
@@ -98,7 +105,8 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
             if (mainwindow->html())
             {
                 QString texteHtml = mainwindow->textEditLem->toHtml();
-                texteHtml.insert(texteHtml.indexOf("</body>"),mainwindow->_lemmatiseur->lemmatiseT(st));
+                texteHtml.insert(texteHtml.indexOf("</body>"),
+                                 mainwindow->_lemmatiseur->lemmatiseT(st));
                 mainwindow->textEditLem->setText(texteHtml);
                 mainwindow->textEditLem->moveCursor(QTextCursor::End);
             }
@@ -518,6 +526,8 @@ void MainWindow::charger(QString f)
     QApplication::setOverrideCursor(Qt::WaitCursor);
     QString contenu = in.readAll();
     file.close();
+    // exemple: modif du contenu
+    //contenu.replace(QRegExp("([uo])'s\\b"),"\\1s es");
     editLatin->setPlainText(contenu);
     QApplication::restoreOverrideCursor();
 }
