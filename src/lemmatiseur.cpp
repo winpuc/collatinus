@@ -271,12 +271,7 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
     // pour mesurer :
     // QElapsedTimer timer;
     // timer.start();
-/*
-    alpha = alpha || _alpha;
-    cumVocibus = cumVocibus || _formeT;
-    cumMorpho = cumMorpho || _morpho;
-    nreconnu = nreconnu || _nonRec;
-*/
+
     // Pour coloriser le texte
     bool cumColoribus = !_couleurs.isEmpty();
     bool listeVide = _hLem.isEmpty();
@@ -284,9 +279,11 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
     int formesConnues = 0;
     // éliminer les chiffres et les espaces surnuméraires
     t.remove(QRegExp("\\d"));
-//    t = t.simplified();
+
     // découpage en mots
     QStringList lm = t.split(QRegExp("\\b"));
+    //QStringList lm = tokenise(t);
+
     // conteneur pour les résultats
     QStringList lsv;
     // conteneur pour les échecs
@@ -294,7 +291,6 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
     // lemmatisation pour chaque mot
     if (lm.size() < 2)
     {
-//        qDebug() << t << lm.size() << lm;
         return "";
         // Ça peut arriver que le texte ne contienne qu"une ponctuation
     }
@@ -330,7 +326,6 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                     lem.replace("v","u");
                     lem.replace("J","I");
                     lem.replace("V","U");
-                    // qDebug() << lem;
                     if (_hLem.contains(lem))
                     {
                         _hLem[lem]++;
