@@ -368,6 +368,7 @@ void LemCore::ajLemme(Lemme* l)
 int LemCore::aRomano(QString f)
 {
     if (f.size () == 0) return 0;
+    f = f.toUpper();
     // création de la table de conversion : pourrait être créée ailleurs.
     QMap<QChar,int> conversion;
     conversion['I']=1;
@@ -413,7 +414,7 @@ QString LemCore::ajDir()
 
 bool LemCore::estRomain(QString f)
 {
-    //f = f.toUpper();
+    f = f.toUpper();
     return !(f.contains(QRegExp ("[^IVXLCDM]"))
              || f.contains("IL")
              || f.contains("IVI"));
@@ -666,8 +667,10 @@ MapLem LemCore::lemmatise(QString f)
         {
             Radical* rad = lrad.at(ir);
             Lemme *l = rad->lemme();
-            foreach (Desinence *des, ldes)
+            //foreach (Desinence *des, ldes)
+            for (int id=0;id<ldes.count();++id)
             {
+                Desinence *des = ldes.at(id);
                 if (des->modele() == l->modele() &&
                     des->numRad() == rad->numRad() &&
                     !l->estIrregExcl(des->morphoNum()))
@@ -888,13 +891,12 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape, bool vgr)
             }
             break;
         case 1:
-            // suffixes
-            if (mm.isEmpty())
-                // Je ne cherche une solution suffixée que si la forme entière
-                // n'a pas été lemmatisée.
-                foreach (QString suf, suffixes.keys())
-                {
-                    if (mm.empty() && f.endsWith(suf))
+            {
+                // suffixes
+                if (mm.isEmpty())
+                    // Je ne cherche une solution suffixée que si la forme entière
+                    // n'a pas été lemmatisée.
+                    foreach (QString suf, suffixes.keys())
                     {
                         QString sf = f;
                         sf.chop(suf.length());
@@ -922,9 +924,10 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape, bool vgr)
                             // Attention, elle peut être dans sufq, s'il n'est pas vide, ou dans grq.
                         }
                     }
-                }
-            break;
+            }
+        break;
         case 0:
+        {
             // Pour les sauvages qui auraient ôté la majuscule initiale des noms propres.
             if (mm.empty() && f[0].isLower())
             { // À faire seulement si je n'ai pas de solution.
@@ -932,7 +935,8 @@ MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape, bool vgr)
                 return lemmatiseM(f, false, 1, vgr);
                 // Il n'est pas utile d'enlever la majuscule que je viens de mettre
             }
-            break;
+        }
+        break;
         default:
             break;
     }
