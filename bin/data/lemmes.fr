@@ -14705,6 +14705,7 @@ nummulus:petit écu
 nummus:argent, monnaie, sesterce
 numquam:(ne...) jamais
 numquid:est-ce que
+numquis:est-ce que quelqu'un (à, de quelqu'un)
 numquidnam:est-ce que vraiment ?
 nunciam:à l'instant
 nunc:maintenant
