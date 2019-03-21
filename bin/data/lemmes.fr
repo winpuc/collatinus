@@ -14346,8 +14346,7 @@ neglectus:négligé, abandonné
 neglegens:distrait, peu attentif, négligent
 neglegenter:avec négligence, sans soin
 neglegentia:négligence
-neglego:négliger
-negligo:ne pas se soucier de, négliger, dédaigner, omettre
+neglego:ne pas se soucier de, négliger, dédaigner, omettre
 nego:nier
 negotiatio:négoce, commerce, entreprise [commerciale], trafic
 negotiator:négociant, marchand, trafiquant
