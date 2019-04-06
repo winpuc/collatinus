@@ -366,6 +366,7 @@ QString Dictionnaire::pageDjvu(QStringList req, int no)
 
 QString Dictionnaire::pagePng(QStringList req)
 {
+    if (req.isEmpty()) return "Erreur !";
     if (idxDjvu.isEmpty())
     {
         lis_index_djvu();
@@ -448,6 +449,7 @@ QString Dictionnaire::pagePng(QStringList req)
  */
 QString Dictionnaire::pageXml(QStringList lReq)
 {
+    if (lReq.isEmpty()) return "Erreur !";
     QString pg;  // contenu de la page de retour
     QList<llew> listeE;
     QFile fi(idxJv);

@@ -354,6 +354,7 @@ void Server::exec ()
 
 QString Server::flechis(QString texte)
 {
+    if (texte.isEmpty()) return "Erreur !";
     if (texte.contains(" ")) texte = texte.section(" ",0,0);
     // Un seul mot !
     MapLem ml = _lemCore->lemmatiseM(texte);
@@ -363,6 +364,7 @@ QString Server::flechis(QString texte)
 
 QString Server::consult(QString req, QString texte)
 {
+    if (texte.isEmpty()) return "Erreur !";
     std::cout << req.toStdString() << " " << texte.toStdString() << "\n";
     // D'abord le dico.
     Dictionnaire * dico_courant;
