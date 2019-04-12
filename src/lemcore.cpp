@@ -667,7 +667,6 @@ MapLem LemCore::lemmatise(QString f)
         {
             Radical* rad = lrad.at(ir);
             Lemme *l = rad->lemme();
-            //foreach (Desinence *des, ldes)
             for (int id=0;id<ldes.count();++id)
             {
                 Desinence *des = ldes.at(id);
