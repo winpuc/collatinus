@@ -14346,8 +14346,8 @@ neglectus:négligé, abandonné
 neglegens:distrait, peu attentif, négligent
 neglegenter:avec négligence, sans soin
 neglegentia:négligence
-neglego:négliger
-negligo:ne pas se soucier de, négliger, dédaigner, omettre
+neglego:négliger, ne pas se soucier de, dédaigner, omettre
+!negligo:ne pas se soucier de, négliger, dédaigner, omettre
 nego:nier
 negotiatio:négoce, commerce, entreprise [commerciale], trafic
 negotiator:négociant, marchand, trafiquant
@@ -23424,7 +23424,7 @@ veru:broche
 Verulamium:Verulamium (municipe de Bretagne)
 Verulana:Verulana (nom de femme)
 Verulanus2:Verulanus (nom d'homme)
-verumtamen:séparé de
+verumtamen:mais pourtant, mais cependant
 verum:vraiment, en vérité, mais
 Verus2:Verus2 (nom d'h.)
 verus:vrai
