@@ -515,6 +515,8 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                         if (blabla.contains("<ul>"))
                         {
                             // Il n'y a pas de choix ou tout est affiché.
+                            entete.chop(4);
+//                            entete.append("\t");
                             blabla = blabla.mid(blabla.indexOf("<ul>"));
                             blabla = blabla.mid(0,blabla.indexOf("</ul>"));
                             while (blabla.contains("</li>") && !blabla.isEmpty())
@@ -531,11 +533,13 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                                     ligne.replace(")</small> : ","\t");
                                 }
                                 else ligne.replace("</em> : ","\t\t");
+                                QString tag = ligne.mid(ligne.indexOf("(")+1, 3);
+                                tag.append("\t");
                                 ligne.replace(" — ","\t");
 //                                ligne.replace(":","\t");
 //                                ligne.replace(" (","\t");
 //                                ligne.remove(")");
-                                lsv.append(entete + lem + ligne);
+                                lsv.append(entete + tag + lem + ligne);
                             }
                         }
 //                        lsv.append(entete + blabla);
