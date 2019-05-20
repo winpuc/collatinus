@@ -446,10 +446,12 @@ QString Flexion::tabV()
     fl << menu;
     fl << "<p>"<< _lemmatiseur->modes(1) <<"</p>";
     fl << entete;
-    fl << lina << _lemmatiseur->temps(0) << linb << _lemmatiseur->temps(1) << linb << _lemmatiseur->temps(3) << linc;
+//    fl << lina << _lemmatiseur->temps(0) << linb << _lemmatiseur->temps(1) << linb << _lemmatiseur->temps(3) << linc;
+    fl << lina << _lemmatiseur->temps(0) << linb << _lemmatiseur->temps(1) << linc;
     for (int i = 285; i < 291; ++i)
-        fl << lina << forme(i) << linb << forme(i + 6) << linb << forme(i + 12)
-           << linc;
+        fl << lina << forme(i) << linb << forme(i + 6) << linc;
+//        fl << lina << forme(i) << linb << forme(i + 6) << linb << forme(i + 12)
+//           << linc;
     fl << queue;
 
     // impératif passif
