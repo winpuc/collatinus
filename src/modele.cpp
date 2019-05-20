@@ -434,6 +434,7 @@ QList<int> Modele::morphos() { return _desinences.keys(); }
  */
 QChar Modele::pos()
 {
+    if (_pos == '\0') return 'd';
     return _pos;
     /*
     if (estUn("uita") || estUn("lupus") || estUn("miles") || estUn("manus") ||
