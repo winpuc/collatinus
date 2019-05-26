@@ -2031,16 +2031,20 @@ void MainWindow::readSettings()
  */
 void MainWindow::recherche()
 {
-    // détecter l'éditeur actif
-    QTextEdit * editeur;
-    if (editLatin->hasFocus ()) editeur = editLatin;
-    else editeur = editeurRes ();
     bool ok;
-    rech = QInputDialog::getText(this, tr("Recherche"), tr("Chercher :"),
+    rech = QInputDialog::getText(this, tr("Recherche"),
+                                 tr("Chercher (préfixer / pour"
+                                    "une recherche dans les résultats) :"),
                                  QLineEdit::Normal, rech, &ok);
     if (ok && !rech.isEmpty())
     {
-        if (!editeur->find(rech))
+        if (!rech.startsWith("/")) editeurRech = editLatin;
+        else
+        {
+            editeurRech = textEditLem;
+            rech.remove(0,1);
+        }
+        if (!editeurRech->find(rech))
         {
             rech = QInputDialog::getText(this, tr("Chercher"),
                                          tr("Retour au début ?"),
@@ -2048,9 +2052,9 @@ void MainWindow::recherche()
             if (ok && !rech.isEmpty())
             {
                 // Retourner au debut
-                editeur->moveCursor(QTextCursor::Start);
+                editeurRech->moveCursor(QTextCursor::Start);
                 // Chercher à nouveau
-                editeur->find(rech);
+                editeurRech->find(rech);
             }
         }
     }
@@ -2071,10 +2075,7 @@ void MainWindow::rechercheBis()
 {
     if (rech.isEmpty()) return;
     // détecter l'éditeur actif
-    QTextEdit * editeur;
-    if (editLatin->hasFocus ()) editeur = editLatin;
-    else editeur = editeurRes ();
-    bool ok = editeur->find(rech);
+    bool ok = editeurRech->find(rech);
     if (!ok)
     {
         rech = QInputDialog::getText(this, tr("Chercher"),
@@ -2082,10 +2083,10 @@ void MainWindow::rechercheBis()
                                      QLineEdit::Normal, rech, &ok);
         if (ok && !rech.isEmpty())
         {
-            QTextCursor tc = editeur->textCursor();
-            editeur->moveCursor(QTextCursor::Start);
-            ok = editeur->find(rech);
-            if (!ok) editeur->setTextCursor(tc);
+            QTextCursor tc = editeurRech->textCursor();
+            editeurRech->moveCursor(QTextCursor::Start);
+            ok = editeurRech->find(rech);
+            if (!ok) editeurRech->setTextCursor(tc);
         }
     }
 }
