@@ -2038,12 +2038,13 @@ void MainWindow::recherche()
                                  QLineEdit::Normal, rech, &ok);
     if (ok && !rech.isEmpty())
     {
-        if (!rech.startsWith("/")) editeurRech = editLatin;
-        else
+        if (rech.startsWith("/"))
         {
             editeurRech = textEditLem;
             rech.remove(0,1);
         }
+        else editeurRech = editLatin;
+
         if (!editeurRech->find(rech))
         {
             rech = QInputDialog::getText(this, tr("Chercher"),
