@@ -2022,11 +2022,12 @@ void MainWindow::readSettings()
 
 /**
  * \fn void MainWindow::recherche()
- * \brief Recherche dans l'éditeur actif.
+ * \brief Recherche
  *
- * Je regarde quelle fenêtre est active
- * et je recherche à partir du curseur.
- *
+ * recherche à partir du curseur dans le texte latin.
+ * Mais si la chaîne de recherche rech commence
+ * par '/', recherche dans l'éditeur du
+ * dock visible.
  *
  */
 void MainWindow::recherche()
@@ -2040,8 +2041,9 @@ void MainWindow::recherche()
     {
         if (rech.startsWith("/"))
         {
-            editeurRech = textEditLem;
+            editeurRech = editeurRes();
             rech.remove(0,1);
+            qDebug()<<"editeurRes"<< (editeurRech == textBrowserDic);
         }
         else editeurRech = editLatin;
 
@@ -2052,7 +2054,7 @@ void MainWindow::recherche()
                                          QLineEdit::Normal, rech, &ok);
             if (ok && !rech.isEmpty())
             {
-                // Retourner au debut
+                // Retourner au début
                 editeurRech->moveCursor(QTextCursor::Start);
                 // Chercher à nouveau
                 editeurRech->find(rech);
@@ -2113,43 +2115,17 @@ void MainWindow::save()
 /**
  * @brief MainWindow::editeurRes
  * @return QTextEdit* qui est dans le dock actif
- *
- * Pour pouvoir mener une recherche dans n'importe quelle fenêtre,
- * je cherche laquelle est la première visible.
- * Je retourne alors le pointeur vers le QTextEdit qu'elle contient.
+ * Pour activer cette recherche, Ctrl-F, et 
+ * la chaîne de recherche doit débuter par '/'.
  */
 QTextEdit * MainWindow::editeurRes()
 {
-    // Pour retourner le pointeur vers le QTextEdit qui est dans le dock actif.
-    // Si le dock qui "a le focus" n'est pas visible,
-    // je fais la recherche dans le texte latin
-    // qui est supposé être toujours visible.
-    if (textEditLem->hasFocus() || lineEditLem->hasFocus())
-    {
-        if (dockVisible(dockLem)) return textEditLem;
-        return editLatin;
-    }
-    if (textBrowserDic->hasFocus() || lineEditDic->hasFocus())
-    {
-        if (dockVisible(dockDic)) return textBrowserDic;
-        return editLatin;
-    }
-    if (textBrowserW->hasFocus() || lineEditDicW->hasFocus())
-    {
-        if (wDic->isVisible()) return textBrowserW;
-        return editLatin;
-    }
-    if (textEditScand->hasFocus() || lineEditScand->hasFocus())
-    {
-        if (dockVisible(dockScand)) return textEditScand;
-        return editLatin;
-    }
-    if (textBrowserFlex->hasFocus() || lineEditFlex->hasFocus())
-    {
-        if (dockVisible(dockFlex)) return textBrowserFlex;
-        return editLatin;
-    }
-    if (textBrowserTag->hasFocus() && dockVisible(dockTag)) return textBrowserTag;
+    if (dockVisible(dockLem)) return textEditLem;
+    if (dockVisible(dockDic)) return textBrowserDic;
+    if (wDic->isVisible()) return textBrowserW;
+    if (dockVisible(dockScand)) return textEditScand;
+    if (dockVisible(dockFlex)) return textBrowserFlex;
+    if (dockVisible(dockTag)) return textBrowserTag;
     return editLatin;
 }
 
