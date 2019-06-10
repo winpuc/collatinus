@@ -690,7 +690,6 @@ MapLem LemCore::lemmatise(QString f)
     if (f_lower.endsWith("æ")) cnt_ae -= 1;
     f = Ch::deramise(f);
     if (_medieval) f = transfMed(f);
-    qDebug() << f;
     // formes irrégulières
     QList<Irreg *> lirr = _irregs.values(f);
     if (_medieval && _irrMed.contains(f)) lirr.append(_irregs.values(_irrMed[f]));
@@ -1368,14 +1367,24 @@ void LemCore::setMedieval(bool e)
         foreach (QString clef, liste)
         {
             cleMed = transfMed(clef);
-            if (clef != cleMed) _desMed[cleMed] = clef;
+            if (clef != cleMed)
+            {
+                if (_desMed.contains(cleMed) && (clef != _desMed[cleMed]))
+                    qDebug() << "Alerte ! " << cleMed << clef << _desMed[cleMed];
+                _desMed[cleMed] = clef;
+            }
         }
         liste = _irregs.keys();
         liste.removeDuplicates();
         foreach (QString clef, liste)
         {
             cleMed = transfMed(clef);
-            if (clef != cleMed) _irrMed[cleMed] = clef;
+            if (clef != cleMed)
+            {
+                if (_irrMed.contains(cleMed) && (clef != _irrMed[cleMed]))
+                    qDebug() << "Alerte ! " << cleMed << clef << _irrMed[cleMed];
+                _irrMed[cleMed] = clef;
+            }
         }
         liste = _radicaux.keys();
         liste.removeDuplicates();
