@@ -100,7 +100,7 @@ class LemCore : public QObject
     bool _medieval; // Au cas où j'arrive avec le même code à traiter les deux cas.
     QMap<QString, QString> _desMed;
     QMap<QString, QString> _irrMed;
-    QMap<QString, QString> _radMed;
+    QMultiMap<QString, QString> _radMed;
 
     bool _extension; // = false;
     QString _cible;  // langue courante, 2 caractères ou plus

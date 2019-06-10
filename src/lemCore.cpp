@@ -64,9 +64,6 @@ LemCore::LemCore(QObject *parent, QString resDir) : QObject(parent)
     ajAbrev();
     // contractions
     ajContractions();
-    QString version = QString(VERSION);
-    _medieval = version.contains("med");
-//    if (_medieval) lisTransfMed();
     // lecture des morphos
     QDir rep;
     rep = QDir(_resDir, "morphos.*");
@@ -489,9 +486,7 @@ int LemCore::aRomano(QString f)
  */
 void LemCore::ajDesinence(Desinence *d)
 {
-    if (_medieval)
-        _desinences.insert(transfMed(Ch::deramise(d->gr())), d);
-    else _desinences.insert(Ch::deramise(d->gr()), d);
+    _desinences.insert(Ch::deramise(d->gr()), d);
 }
 
 bool LemCore::estRomain(QString f)
@@ -519,9 +514,7 @@ void LemCore::ajRadicaux(Lemme *l)
     {
         QList<Radical *> lr = l->radical(i);
         foreach (Radical *r, lr)
-            if (_medieval)
-                _radicaux.insert(transfMed(Ch::deramise(r->gr()), true), r);
-            else _radicaux.insert(Ch::deramise(r->gr()), r);
+            _radicaux.insert(Ch::deramise(r->gr()), r);
     }
     // pour chaque radical du modèle
     foreach (int i, m->clesR())
@@ -549,9 +542,7 @@ void LemCore::ajRadicaux(Lemme *l)
                 }
             }
             l->ajRadical(i, r);
-            if (_medieval)
-                _radicaux.insert(transfMed(Ch::deramise(r->gr()),true), r);
-            else _radicaux.insert(Ch::deramise(r->gr()), r);
+            _radicaux.insert(Ch::deramise(r->gr()), r);
         }
     }
 }
@@ -699,6 +690,7 @@ MapLem LemCore::lemmatise(QString f)
     if (f_lower.endsWith("æ")) cnt_ae -= 1;
     f = Ch::deramise(f);
     if (_medieval) f = transfMed(f);
+    qDebug() << f;
     // formes irrégulières
     QList<Irreg *> lirr = _irregs.values(f);
     if (_medieval && _irrMed.contains(f)) lirr.append(_irregs.values(_irrMed[f]));
@@ -723,7 +715,9 @@ MapLem LemCore::lemmatise(QString f)
         // car il y a moins de désinences que de radicaux.
         // Je fais la recherche sur les radicaux seulement si la désinence existe.
         QList<Radical *> lrad = _radicaux.values(r);
-        if (_medieval && _radMed.contains(r)) lrad.append(_radicaux.values(_radMed[r]));
+        if (_medieval && _radMed.contains(r))
+            foreach (QString rm, _radMed.values(r))
+                lrad.append(_radicaux.values(rm));
         // ii noté ī
         // 1. Patauium, gén. Pataui : Patau.i -> Patau+i.i
         // 2. conubium, ablP conubis : conubi.s -> conubi.i+s
@@ -745,7 +739,9 @@ MapLem LemCore::lemmatise(QString f)
             if (r != rbis)
             {
                 lrad << _radicaux.values(rbis);
-                if (_radMed.contains(rbis)) lrad << _radicaux.values(_radMed[rbis]);
+                if (_radMed.contains(rbis))
+                    foreach (QString rm, _radMed.values(rbis))
+                        lrad << _radicaux.values(rm);
             }
         }
         if (lrad.empty()) continue;
@@ -1036,11 +1032,7 @@ void LemCore::lisIrreguliers()
     {
         Irreg *irr = new Irreg(lin, this);
         if (irr != 0 && irr->lemme() != 0)
-        {
-            if (_medieval)
-                _irregs.insert(transfMed(Ch::deramise(irr->gr())), irr);
-            else _irregs.insert(Ch::deramise(irr->gr()), irr);
-        }
+            _irregs.insert(Ch::deramise(irr->gr()), irr);
 #ifdef DEBOG
         else
             std::cerr << "Irréguliers, erreur dans la ligne" << qPrintable(lin);
@@ -1390,7 +1382,9 @@ void LemCore::setMedieval(bool e)
         foreach (QString clef, liste)
         {
             cleMed = transfMed(clef, true);
-            if (clef != cleMed) _radMed[cleMed] = clef;
+//            if (clef != cleMed) _radMed[cleMed] = clef;
+            if (clef != cleMed) _radMed.insert(cleMed, clef);
+            // Plusieurs clefs peuvent avoir la même cleMed !
         }
     }
 }
