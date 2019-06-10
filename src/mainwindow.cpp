@@ -106,6 +106,7 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
     if (!mainwindow->dockScand->visibleRegion().isEmpty())
     {
         int accent = mainwindow->lireOptionsAccent();
+        st.replace(QChar::ParagraphSeparator,"\n");
         mainwindow->textEditScand->append(
             mainwindow->scandeur->scandeTxt(st, accent, false, ! mainwindow->majPertAct->isChecked()));
     }
