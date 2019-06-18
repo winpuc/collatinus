@@ -252,7 +252,7 @@ abs:1-6
 
 modele:turris
 pere:ciuis
-des:3:1:ĭm
+des:3,6:1:ĭm;ī
 
 modele:uis
 pere:ciuis
@@ -453,8 +453,15 @@ des:37-48:1:ĕ;ĕ;ĕ;ĭs;ī;ī;ĭă;ĭă;ĭă;ĭŭm;ĭbŭs
 des:49-84:1:ĭ$compar;ĭ$compar;ĭŭs;ĭŭs;ĭŭs;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōră;ĭōră;ĭōră;ĭōrŭm;ĭōrĭbŭs
 des:85-120:1:īssĭm$lupus;īssĭm$uita;īssĭm$templum
 
+modele:facilis
+pere:fortis
+R:6:4,īllĭm
+des:85-120:6:$lupus;$uita;$templum
+
 modele:infans
 pere:fortis
+des:37-39:1:ns
+des+:18,30,42:1:ē
 des+:22,34,46:1:ŭm3
 
 modele:acer
@@ -528,7 +535,7 @@ abs:14,20,26,32,38,44
 modele:ille
 pere:ipse
 des:13,37,39:0:ĕ;ŭd
-des+:15,18,21,25,27,42:1:ūnc3;ōc3;ōscĭnĕ1;āec3;ānc3;ōc1
+des+:15,18,21,25,27,42,43,45:0:ūnc3;ōc3;ōscĭnĕ1;āec3;ānc3;ōc1;āec;āec
 
 modele:qui
 R:1:3,0
@@ -563,6 +570,7 @@ pere:qui
 R:1:6,0
 sufd:dăm
 des:37,39:1:quīddăm
+des+:25:1:quāndăm
 
 modele:quilibet
 pere:qui
@@ -976,7 +984,7 @@ R:2:3,0
 R:4:3,0
 !R:5:3,ĕr
 R:6:2,0
-R:7:3,ēss
+!R:7:3,ēss
 !R:8:3,fŭt
 abs:189-374
 ! indicatif
@@ -986,13 +994,13 @@ des:127-132:2:ĕrăm;ĕrās;ĕrăt;ĕrāmŭs;ĕrātĭs;ĕrānt
 des:133-138:2:ĕrō̆;ĕrĭs;ĕrĭt;ĕrĭmŭs;ĕrĭtĭs;ĕrūnt
 ! subjonctif
 des:157-162:6:$im
-des:163-168:7:$em
+des:163-168:2:ēss$em
 !des:163-165,168:4:fŏrĕm;fŏrēs;fŏrĕt;fŏrēnt
 ! impératif
 des:181-185:2:ĕs;ēstĕ;ēstō;ēstō;ēstōtĕ
 des:186:0:ūntō
 ! infinitif
-des:187:7:ĕ
+des:187:2:ēssĕ
 des:416:4:fŏrĕ
 ! participe futur
 des:225-260:1:tūr$lupus;tūr$uita;tūr$templum

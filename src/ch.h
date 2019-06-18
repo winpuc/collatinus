@@ -9,6 +9,7 @@
 
 namespace Ch
 {
+/* Je passe à une liste d'abréviations contenue dans un fichier.
 QStringList const abrev  = QStringList()
     <<"Agr"<<"Ap"<<"A"<<"K"<<"D"<<"F"<<"C"
     <<"Cn"<<"Kal"<<"L"<<"Mam"<<"M\'"<<"M"<<"N"<<"Oct"
@@ -16,6 +17,7 @@ QStringList const abrev  = QStringList()
     <<"Ser"<<"Sex"<<"S"<<"St"<<"Ti"<<"T"<<"V"
     <<"Vol"<<"Vop"<<"Pl";
 // Liste des abréviations prise dans Praelector le 11/11/2016
+*/
 QStringList ajoute(QString mot, QStringList liste);
 void allonge(QString *f);
 QString atone(const QString a, bool bdc = false);

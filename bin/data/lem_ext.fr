@@ -18700,7 +18700,7 @@ antanapaestus:opposé de l'anapeste [2 longues et une brève]
 antapocha:reçu
 antapodosis:antapodose
 antarius:câbles qui soutiennent une machine en avant // qui est devant [la ville]
-ante2:séparé de
+! ante2:séparé de
 anteaedificialis:bâti devant
 antebasis:pièce de bois qui est au-devant de la base (dans une catapulte).
 antebello:faire la guerre avant
@@ -18719,7 +18719,7 @@ antecessus2:usité dans l'expression in antecessum, par avance, par anticipation
 antecolumnium:emplacement devant des colonnes
 antecurro:tr., précéder dans sa course
 antefatus:susdit
-antefixa:] : antefixa fictilia deorum Romanorum ridentes
+antefixa:antéfixes [ornements fixés en avant, au bas du toit, sous la gouttière]
 antegenitalis:avant la naissance
 antegerio:adv., beaucoup, tout à fait
 antegestum:fait antérieur, précédent
@@ -31720,7 +31720,7 @@ faceto:tr., orner, embellir
 facialia:linges pour essuyer le visage
 faciliter:c. facile
 facilius:`
-facillimus:superl. de facilis.
+!facillimus:superl. de facilis.
 facillo:
 facinorose:d'une manière criminelle
 facitergium:serviette de toilette
@@ -56991,7 +56991,7 @@ ueruella:petite brebis
 ueruina:sorte de javeline longue
 uerum2:veru
 uerum3:le vrai, la vérité, le réel / le juste
-ueruntamen:séparé de
+ueruntamen:mais pourtant, mais cependant
 uesaniens:mauv. orth
 uescitor:
 uesco:être mangé

@@ -61,6 +61,7 @@ LemCore::LemCore(QObject *parent, QString resDir) : QObject(parent)
     suffixes.insert("st", "st");
     // assimilations
     ajAssims();
+    ajAbrev();
     // contractions
     ajContractions();
     // lecture des morphos
@@ -165,6 +166,8 @@ QString LemCore::tag(Lemme *l, int m)
 {
     // Il faut encore traiter le cas des pos multiples
     QString lp = l->pos();
+    if ((lp.size() > 0) && !lp[0].isLetter()) lp = "";
+//    qDebug() << lp << lp.size();
     QString lTags = "";
     QString morph = morpho(m);
     while (lp.size() > 0)
@@ -175,7 +178,7 @@ QString LemCore::tag(Lemme *l, int m)
             lTags.append("n71,");
         else if ((p == "v") && (morph.contains(" -u"))) // C'est un supin
             lTags.append("v3 ,");
-        else
+        else if (!p.isEmpty())
         {
             p.append("%1%2,");
             if (p.startsWith("v"))
@@ -419,6 +422,18 @@ void LemCore::ajAssims()
     }
 }
 
+void LemCore::ajAbrev()
+{
+    // peupler la QStringList abr
+    abr = lignesFichier(_resDir + "abreviations.la");
+}
+
+bool LemCore::estAbr(QString m)
+{
+    return abr.contains(m);
+}
+
+
 /**
  * \fn void LemCore::ajContractions ()
  * \brief Établit une liste qui donne, pour chaque
@@ -476,9 +491,9 @@ void LemCore::ajDesinence(Desinence *d)
 
 bool LemCore::estRomain(QString f)
 {
-    return !(f.contains(QRegExp ("[^IVXLCDM]"))
+    return !(f.contains(QRegExp ("[^IUXLCDM]"))
              || f.contains("IL")
-             || f.contains("IVI"));
+             || f.contains("IUI"));
 }
 
 /**
@@ -674,8 +689,10 @@ MapLem LemCore::lemmatise(QString f)
     int cnt_oe = f_lower.count("œ");
     if (f_lower.endsWith("æ")) cnt_ae -= 1;
     f = Ch::deramise(f);
+    if (_medieval) f = transfMed(f);
     // formes irrégulières
     QList<Irreg *> lirr = _irregs.values(f);
+    if (_medieval && _irrMed.contains(f)) lirr.append(_irregs.values(_irrMed[f]));
     foreach (Irreg *irr, lirr)
     {
         foreach (int m, irr->morphos())
@@ -691,16 +708,41 @@ MapLem LemCore::lemmatise(QString f)
         QString r = f.left(i);
         QString d = f.mid(i);
         QList<Desinence *> ldes = _desinences.values(d);
+        if (_medieval && _desMed.contains(d)) ldes.append(_desinences.values(_desMed[d]));
         if (ldes.empty()) continue;
         // Je regarde d'abord si d est une désinence possible,
         // car il y a moins de désinences que de radicaux.
         // Je fais la recherche sur les radicaux seulement si la désinence existe.
         QList<Radical *> lrad = _radicaux.values(r);
+        if (_medieval && _radMed.contains(r))
+            foreach (QString rm, _radMed.values(r))
+                lrad.append(_radicaux.values(rm));
         // ii noté ī
         // 1. Patauium, gén. Pataui : Patau.i -> Patau+i.i
         // 2. conubium, ablP conubis : conubi.s -> conubi.i+s
         if (d.startsWith('i') && !d.startsWith("ii") && !r.endsWith('i'))
             lrad << _radicaux.values(r + "i");
+        if (_medieval && ((d=="") || d.startsWith("i")))
+        {
+            // Deux exceptions notables de la conversion ti+voyelle --> ci+voyelle
+            // - les invariables se terminant par "ti" : la forme reste en "ti" alors que le radical est devenu en "ci"
+            // - le comparatif de fortis ajoute ior+ : si le radical se termine par "t", la forme est devenue "cior"
+            QString rbis = r;
+            if ((d=="") && r.endsWith("ti")) rbis[rbis.size()-2] = 'c';
+            if (d.startsWith("i") && (d.size()>1) && r.endsWith("c"))
+            {
+                QString voy = "aeiouy";
+                // Plus général que le comparatif : d commence par i+voyelle.
+                if (voy.contains(d[1])) rbis[rbis.size()-1] = 't';
+            }
+            if (r != rbis)
+            {
+                lrad << _radicaux.values(rbis);
+                if (_radMed.contains(rbis))
+                    foreach (QString rm, _radMed.values(rbis))
+                        lrad << _radicaux.values(rm);
+            }
+        }
         if (lrad.empty()) continue;
         // Il n'y a rien à faire si le radical n'existe pas.
         foreach (Radical *rad, lrad)
@@ -720,7 +762,7 @@ MapLem LemCore::lemmatise(QString f)
                     c = c && ((cnt_oe==0)||(cnt_oe == rad->grq().toLower().count("ōe")));
                     c = c && ((cnt_ae==0)||
                               (cnt_ae == (rad->grq().toLower().count("āe") + rad->grq().toLower().count("prăe"))));
-                    if (c)
+                    if (c || _medieval)
                     {
                         QString fq = rad->grq() + des->grq();
                         if (!r.endsWith("i") && rad->gr().endsWith("i"))
@@ -748,6 +790,17 @@ MapLem LemCore::lemmatise(QString f)
     // romains
     if (estRomain(f) && !_lemmes.contains(f))
     {
+/* Morceau issu de Medieval qui n'était pas dans TagPlus
+ * À vérifier !
+        QString f1 = f;
+        f.replace('U','V');
+        QString lin = QString("%1|inv|||adj. num.|1").arg(f);
+        Lemme *romain = new Lemme(lin, 0, this);
+        int nr = aRomano(f);
+        romain->ajTrad(QString("%1").arg(nr), "fr");
+        _lemmes.insert(f1, romain);
+        SLem sl = {f1,416,""};
+>>>>>>> Medieval */
         QList<SLem> lsl;
         Lemme * romain;
         if (_lemmes.contains(f)) romain = _lemmes.value(f);
@@ -777,120 +830,185 @@ bool LemCore::inv(Lemme *l, const MapLem ml)
 }
 
 /**
- * \fn MapLem LemCore::lemmatiseM (QString f, bool debPhr)
- * \brief Renvoie dans une MapLem les lemmatisations de la
- *        forme f. le paramètre debPhr à true indique qu'il
- *        s'agit d'un début de phrase, et la fonction
- *        peut tenir compte des majuscules pour savoir
- *        s'il s'agit d'un nom propre.
+ * @brief LemCore::lemmatiseM renvoie dans une MapLem les lemmatisations de la
+ *        forme f. Le paramètre debPhr à true indique qu'il
+ *        s'agit d'un début de phrase.
+ * @param f : la forme qui s'agit de lemmatiser.
+ * @param debPhr : booléen qui indique que l'on est en début de phrase
+ * @param etape : initialement 0, permet de suivre un protocole d'étapes
+ * @return une MapLem avec toutes les lemmatisations de la forme f.
+ *
+ * Cette routine est récursive et son but est de lemmatiser la forme f
+ * en tenant compte des modifications possibles.
+ * Les transformations de la forme peuvent être :
+ *     - la contraction amavisse ——> amasse
+ *     - l'assimilation du préfixe ads- ——> ass-
+ *     - la majuscule initiale en début de phrase ou de vers
+ *     - l'ajout d'un (ou plusieurs) suffixe(s) ou enclitique
+ *     - la disparition erronée d'une majuscule à un nom propre.
+ *
+ * Bien que certaines combinaisons ne soient pas attestées,
+ * nous n'avons pas voulu les exclure.
+ * La structure récursive avec un appel direct à l'étape suivante
+ * et un autre appel éventuel après transformation de la forme
+ * permet d'explorer toutes les possibilités.
+ * Essayées une fois et une seule.
+ *
+ * Cette routine est a priori sensible à la casse.
+ * Ainsi, à l'intérieur d'une phrase (i.e. lorsque debPhr est false),
+ * elle distinguera Aeneas (Énée) et aeneas (de bronze).
+ * En début de phrase (i.e. lorsque debPhr est true),
+ * la majuscule perd cette caractéristique distinctive
+ * et Aeneas sera lemmatisé avec ses deux solutions, Énée et d'airain.
+ *
+ * Dans la constitution du lexique, nous n'avons pas adopté un parti pris
+ * pour l'assimilation des préfixes.
+ * D'ailleurs, les différents dictionnaires ont des conventions différentes.
+ * Ainsi, le Gaffiot fait le renvoi aff ——> adf (p. 83 de l'edition de 1934) :
+ * le préfixe n'étant pas assimilé, il faudra chercher adfaber.
+ * En revanche, le Lewis & Short pratique l'assimilation et donnera affaber.
+ * Cette ambiguité de la forme canonique nous a conduit à essayer
+ * l'assimilation (adf ——> aff) et la "déassimilation" (aff ——> adf)
+ * de façon systématique sur toutes les formes.
+ * Cela mène à quelques fausses lemmatisations. Par exemple, la forme
+ * assum peut être un rôti ou la forme assimilée du verbe adsum.
+ * En revanche, adsum ne semble pas pouvoir être un rôti.
+ *
+ * La recherche d'un suffixe (ou enclitique) n'a lieu que si la forme
+ * complète n'a pas pu être lemmatisée.
+ * Cela évite une lemmatisation hasardeuse et improbable de
+ * "mentione" en "mentio"+"ne".
  */
-MapLem LemCore::lemmatiseM(QString f, bool debPhr, bool desas)
+MapLem LemCore::lemmatiseM(QString f, bool debPhr, int etape)
 {
-    QString res;
-    QTextStream fl(&res);
-    MapLem mm = lemmatise(f);
+    MapLem mm;
     if (f.isEmpty()) return mm;
-    // suffixes
-    foreach (QString suf, suffixes.keys())
+    if ((etape > 3) || (etape <0)) // Condition terminale
     {
-        if (mm.empty() && f.endsWith(suf))
+        mm = lemmatise(f);
+//        qDebug() << f << etape;
+        if (debPhr && f.at(0).isUpper())
         {
-            QString sf = f;
-            sf.chop(suf.length());
-            // TODO : aequeque est la seule occurrence
-            // de -queque dans le corpus classique
-            mm = lemmatiseM(sf, debPhr, desas);
-            // Ne pas assimiler une 2e fois.
-            bool sst = false;
-            if (mm.isEmpty() && (suf == "st"))
-            {
-                sf += "s";
-                mm = lemmatiseM(sf, debPhr, desas);
-                sst = true;
-            }
-            foreach (Lemme *l, mm.keys())
-            {
-                QList<SLem> ls = mm.value(l);
-                for (int i = 0; i < ls.count(); ++i)
-                    if (sst) mm[l][i].sufq = "t";
-                    else mm[l][i].sufq += suffixes.value(suf); // Pour modoquest
-            }
+            QString nf = f.toLower();
+            MapLem nmm = lemmatiseM(nf);
+            foreach (Lemme *nl, nmm.keys())
+                mm.insert(nl, nmm.value(nl));
         }
+        return mm;
     }
-    if (debPhr && f.at(0).isUpper())
-    {
-        QString nf = f.toLower();
-        MapLem nmm = lemmatiseM(nf);
-        foreach (Lemme *nl, nmm.keys())
-            mm.insert(nl, nmm.value(nl));
-    }
-    // assimilations
-    if (!desas)
-    {
-    QString fa = assim(f);
-    if (fa != f)
-    {
-        MapLem nmm = lemmatiseM(fa, debPhr, true);
-        // désassimiler les résultats
-        foreach (Lemme *nl, nmm.keys())
+    // Si j'arrive ici, c'est que j'ai encore des choses à essayer.
+    mm = lemmatiseM(f, debPhr, etape + 1);
+    // J'essaie d'abord l'étape suivante
+    QString fd; // On ne peut pas créer une variable QString à l'intérieur d'un switch.
+    switch (etape)
+    { // ensuite diverses manipulations sur la forme
+    case 3:
+        // contractions
+        fd = f;
+        foreach (QString cle, _contractions.keys())
+            if (fd.endsWith(cle))
+            {
+                fd.chop(cle.length());
+                if ((fd.contains("v") || fd.contains("V")))
+                    fd.append(_contractions.value(cle));
+                else
+                    fd.append(Ch::deramise(_contractions.value(cle)));
+                MapLem nmm = lemmatiseM(fd, debPhr, 4);
+                foreach (Lemme *nl, nmm.keys())
+                {
+                    int diff = _contractions.value(cle).size() - cle.size();
+                    // nombre de lettres que je dois supprimer
+                    for (int i = 0; i < nmm[nl].count(); ++i)
+                    {
+                        int position = f.size() - cle.size() + 1;
+                        // position de la 1ère lettre à supprimer
+                        if (fd.size() != nmm[nl][i].grq.size())
+                        {
+                            // il y a une (ou des) voyelle(s) commune(s)
+                            QString debut = nmm[nl][i].grq.left(position + 2);
+                            position += debut.count("\u0306"); // Faut-il vérifier que je suis sur le "v".
+                        }
+                        nmm[nl][i].grq = nmm[nl][i].grq.remove(position, diff);
+                    }
+                    mm.insert(nl, nmm.value(nl));
+                }
+            }
+        break;
+    case 2:
+        // Assimilation du préfixe
+        fd = assim(f);
+        if (fd != f)
         {
-            for (int i = 0; i < nmm[nl].count(); ++i)
-                nmm[nl][i].grq = desassimq(nmm[nl][i].grq);
-            mm.insert(nl, nmm.value(nl));
+            MapLem nmm = lemmatiseM(fd, debPhr, 3);
+            // désassimiler les résultats
+            foreach (Lemme *nl, nmm.keys())
+            {
+                for (int i = 0; i < nmm[nl].count(); ++i)
+                    nmm[nl][i].grq = desassimq(nmm[nl][i].grq);
+                mm.insert(nl, nmm.value(nl));
+            }
+            return mm;
         }
-    }
-    else
-    {
-        QString fa = desassim(f);
-        if (fa != f)
+        fd = desassim(f);
+        if (fd != f)
         {
-            MapLem nmm = lemmatiseM(fa, debPhr, true);
+            MapLem nmm = lemmatiseM(fd, debPhr, 3);
             foreach (Lemme *nl, nmm.keys())
             {
                 for (int i = 0; i < nmm[nl].count(); ++i)
                     nmm[nl][i].grq = assimq(nmm[nl][i].grq);
                 mm.insert(nl, nmm.value(nl));
             }
+            return mm;
         }
-    }
-    }
-    // contractions
-    QString fd = f;
-    foreach (QString cle, _contractions.keys())
-        if (fd.endsWith(cle))
+        break;
+    case 1:
+        // suffixes
+        if (mm.isEmpty())
+            // Je ne cherche une solution sufixée que si la forme entière
+            // n'a pas été lemmatisée.
+        foreach (QString suf, suffixes.keys())
         {
-            fd.chop(cle.length());
-            if ((fd.contains("v") || fd.contains("V")))
-                fd.append(_contractions.value(cle));
-            else
-                fd.append(Ch::deramise(_contractions.value(cle)));
-            MapLem nmm = lemmatise(fd);
-            foreach (Lemme *nl, nmm.keys())
+            if (mm.empty() && f.endsWith(suf))
             {
-                int diff = _contractions.value(cle).size() - cle.size();
-                // nombre de lettres que je dois supprimer
-                for (int i = 0; i < nmm[nl].count(); ++i)
-                {
-                    int position = f.size() - cle.size() + 1;
-                    // position de la 1ère lettre à supprimer
-                    if (fd.size() != nmm[nl][i].grq.size())
-                    {
-                        // il y a une (ou des) voyelle(s) commune(s)
-                        QString debut = nmm[nl][i].grq.left(position + 2);
-                        position += debut.count("\u0306"); // Faut-il vérifier que je suis sur le "v".
-                    }
-                    nmm[nl][i].grq = nmm[nl][i].grq.remove(position, diff);
+                QString sf = f;
+                sf.chop(suf.length());
+                // TODO : aequeque est la seule occurrence
+                // de -queque dans le corpus classique
+                mm = lemmatiseM(sf, debPhr, 1);
+                // L'appel est récursif car je peux avoir (rarement) plusieurs suffixes.
+                // L'exemple que j'ai trouvé au LASLA est "modoquest".
+                bool sst = false;
+                if (mm.isEmpty() && (suf == "st"))
+                { // Ce test mm.isEmpty() empêche la lemmatisation d'amatust
+                    // comme "amatus"+"st".
+                    sf += "s";
+                    mm = lemmatiseM(sf, debPhr, 1);
+                    sst = true;
                 }
-                mm.insert(nl, nmm.value(nl));
+                foreach (Lemme *l, mm.keys())
+                {
+                    QList<SLem> ls = mm.value(l);
+                    for (int i = 0; i < ls.count(); ++i)
+                        if (sst) mm[l][i].sufq = "t";
+                        else mm[l][i].sufq += suffixes.value(suf); // Pour modoquest
+                    // TODO : corriger la longueur de la dernière voyelle si le suffixe est st.
+                    // Attention, elle peut être dans sufq, s'il n'est pas vide, ou dans grq.
+                }
             }
         }
-    // majuscule initiale
-    if (mm.empty())
-    {
-        f[0] = f.at(0).toUpper();
-        MapLem nmm = lemmatise(f);
-        foreach (Lemme *nl, nmm.keys())
-            mm.insert(nl, nmm.value(nl));
+        break;
+    case 0:
+        // Pour les sauvages qui auraient ôté la majuscule initiale des noms propres.
+        if (mm.empty() && f[0].isLower())
+        { // À faire seulement si je n'ai pas de solution.
+            f[0] = f.at(0).toUpper();
+            return lemmatiseM(f, false, 1);
+            // Il n'est pas utile d'enlever la majuscule que je viens de mettre
+        }
+        break;
+    default:
+        break;
     }
     return mm;
 }
@@ -1009,6 +1127,55 @@ void LemCore::lisModeles()
     }
 }
 
+/**
+ * \fn void LemCore::lisTransfMed()
+ * \brief Lecture des règles de transformation
+ * entre les graphies classique et médiévale
+ * enregistrées dans le fichier data/medieval.txt.
+ */
+void LemCore::lisTransfMed()
+{
+    QStringList lignes = lignesFichier(_resDir + "medieval.txt");
+    QStringList rr;
+    foreach (QString ligne, lignes)
+    {
+        rr = ligne.split(";");
+        _reglesMed.append(Reglep(QRegExp(rr.at(0)), rr.at(1)));
+    }
+}
+
+/**
+ * @brief LemCore::transfMed
+ * @param f : QString donnant la forme
+ * @param rad : bool pour le cas particulier des radicaux
+ * @return Une QString avec la forme médiévalisée.
+ *
+ * Comme pour l'accentuation par position,
+ * j'ai des règles de substitutions pour "médiévaliser" une forme.
+ * Par exemple, je ne sais pas si un auteur (ou copiste ou éditeur)
+ * a écrit "tertius" ou "tercius". La stratégie que j'ai adoptée
+ * consiste à "normaliser" au plus simple les graphies.
+ * Je peux alors comparer la forme du texte avec
+ * les décompositions radical+désinence où les deux
+ * composants ont subi la même "normalisation".
+ */
+QString LemCore::transfMed(QString f, bool rad)
+{
+    if (f.isEmpty()) return "";
+    if (estRomain(f)) return f;
+    bool maj = f.at(0).isUpper();
+    f = f.toLower();
+    foreach (Reglep r, _reglesMed)
+        if (!r.second.endsWith("*")) f.replace(r.first, r.second);
+        else if (rad)
+        {
+            QString rs = r.second;
+            rs.chop(1);
+            f.replace(r.first, rs);
+        }
+    if (maj) f[0] = f[0].toUpper();
+    return f;
+}
 /**
  * \fn void LemCore::lisTraductions()
  * \brief Lecture des fichiers de traductions
@@ -1176,9 +1343,6 @@ QString LemCore::variable(QString v) { return _variables[v]; }
  *
  * Lors de la lecture des préférences (à l'initialisation),
  * cette routine est appelée.
- * Si on ne charge pas l'extension du lexique,
- * je charge quand même les nombres d'occurrences.
- * Ces nombres seront ré-initialisés si on charge l'extension par la suite.
  *
  */
 void LemCore::setExtension(bool e)
@@ -1189,7 +1353,63 @@ void LemCore::setExtension(bool e)
         lisTraductions(false,true);
         _extLoaded = true;
     }
-//    else if (!_nbrLoaded) lisNombres();
+}
+
+/**
+ * @brief LemCore::setMedieval
+ * @param e : bool
+ *
+ * Cette routine gère la lecture de graphies médiévales.
+ * Si le paramètre e est true, la graphie médiévale est active.
+ * Si le fichier de transformation n'a pas encore été chargé, il l'est.
+ *
+ * Lors de la lecture des préférences (à l'initialisation),
+ * cette routine est appelée.
+ *
+ */
+void LemCore::setMedieval(bool e)
+{
+    _medieval = e;
+    if (_reglesMed.isEmpty() && e)
+    {
+        lisTransfMed();
+        // Si les règles de transformations est vide,
+        // c'est que rien n'a été défini.
+        QStringList liste = _desinences.keys();
+        liste.removeDuplicates();
+        QString cleMed;
+        foreach (QString clef, liste)
+        {
+            cleMed = transfMed(clef);
+            if (clef != cleMed)
+            {
+                if (_desMed.contains(cleMed) && (clef != _desMed[cleMed]))
+                    qDebug() << "Alerte ! " << cleMed << clef << _desMed[cleMed];
+                _desMed[cleMed] = clef;
+            }
+        }
+        liste = _irregs.keys();
+        liste.removeDuplicates();
+        foreach (QString clef, liste)
+        {
+            cleMed = transfMed(clef);
+            if (clef != cleMed)
+            {
+                if (_irrMed.contains(cleMed) && (clef != _irrMed[cleMed]))
+                    qDebug() << "Alerte ! " << cleMed << clef << _irrMed[cleMed];
+                _irrMed[cleMed] = clef;
+            }
+        }
+        liste = _radicaux.keys();
+        liste.removeDuplicates();
+        foreach (QString clef, liste)
+        {
+            cleMed = transfMed(clef, true);
+//            if (clef != cleMed) _radMed[cleMed] = clef;
+            if (clef != cleMed) _radMed.insert(cleMed, clef);
+            // Plusieurs clefs peuvent avoir la même cleMed !
+        }
+    }
 }
 
 /**

@@ -1,8 +1,87 @@
 # Collatinus-11, notes
 
-Dimanche 2 octobre 2016
+## vendredi 21 septembre 2018
 
-## BRANCHE SERVEUR
+# Format des données optionnelles chargeables et déchargeables.
+
+- Elles sont livrées sous forme de paquet qui se décompresse dans l'espace
+  personnel de l'utilisateur ;
+- Dans un paquet :
+  * lexique
+  * traductions
+  * particularités graphiques (assimilations, contractions, équivalences graphiques)
+  * éventuellment, modèles
+- Ces paquets doivent pouvoir être chargés et déchargés sans quitter
+  l'application.
+- Question : peut-on charger plusieurs paquets à la fois ? A priori, non.
+- Les paquets peuvent, au lieu de modifier le tronc commun, modifier un
+  autre paquet.
+- **Deux possibilités de chargement**
+    1. On charge d'abord le tronc commun (ou le paquet père), puis le paquet
+      qui modifie le tronc commun.
+    2. Le paquet et le tronc commun ont été compilés, et il n'y a plus qu'un jeu
+       de données : modèles, lemmes, irreguliers, alternances.
+- **Interface** -- à l'initialisation, le répertoire des paquets optionnels est scané,
+  et un dialogue propose leur chargement.
+- Un paquet doit, en plus des données, fournir une description de sa cible :
+  époque / genre / auteur / lieu.
+- **Action des données optionnelles sur les données permanentes**    
+  Les données permanentes ne sont pas déchargées au chargement des données
+  optionnelles, mais elle peuvent être modifiées par elles. Liste des 
+  actions des données optionnelles :
+  * ajouter un lemme et ses traductions ;
+  * supprimer un lemme et ses traductions, apparemment inutilisés, parce
+    qu'un auteur est toujours susceptible d'employer un archaïsme. On
+    supprimera un lemme :    
+    seulement si son apparition est ultérieure au corpus cible,   
+    seulement si le lemme à supprimer peut créer des ambiguïtés.
+  * modifier seulement la graphie et le modèle d'un lemme ;
+  * modifier les traductions d'un lemme, quelquefois en changeant l'ordre
+    d'apparition de ces traductions ;
+  * supprimer des traductions (sens apparu ultérieurement au corpus visé) ;
+  * ajouter des traductions sans supprimer celles des données permanentes ;
+  * même principe pour les autres données : modèles, assimilations,
+    contractions, équivalences.
+- **Syntaxe**
+  * en-tête : Dans l'interface de C12, les analyses et traductions issues
+    d'un paquet optionnel doivent être identifiables.
+  * Il faudra trouver le moyen d'indiquer, dans les données, ce qu'il faut
+    ajouter et supprimer, (supprimer et ajouter au même endroit = remplacer)
+  * un fichier de paquet optionnel est partagé en plusieurs sections :
+    - lignes à ajouter
+    - lignes à compléter
+    - lignes à supprimer
+  * Exemple : lemmes.fr donne    
+   miles:soldat    
+   le paquet med (= médiéval) aura, dans la partie "lignes à compléter" :    
+   miles:chevalier    
+   L'interpréteur de paquets ajoutera donc "class." devant la partie tronc commun,
+   et "med.", càd le nom du paquet, devant l'ajout, ce qui donnera dans l'interface :
+   miles, itis, m. : class. soldat med. chevalier
+- **Problème du classement des traductions** -- Les dictionnaires papier
+  suivent plutôt un ordre chronologique. Par exemple, /lego/ a comme
+  premier sens « cueillir ». Faudrait-il adopter un ordre fréquenciel ? On
+  peut aussi, garder l'ordre chronologique, et trouver le moyen d'indiquer
+  les fréquences.
+
+## vendredi 14 septembre 2018*
+
+La branche master est aujourd'hui la source de la version 11.1 de
+Collatinus. Elle est issue de la branche saucisson. Le merge 
+de saucisson dans master étant devenu très difficile, master a été
+mise à jour par copie des sources de saucisson dans le répertoire src/,
+et l'état antérieur de master est archivé dans la branche vmaster.
+La branche saucisson est conservée parce qu'elle conserve la trace de son
+développement depuis sa création à partir de master.
+
+Deux autres branches sont conservées :
+- Medieval : Cette branche essaie de traiter simplement la variabilité des graphies médiévales.
+- tagPlus : Tentative de construire sur le tagueur un générateur d'arbres syntaxiques (non-aboutie en septembre 2018).
+
+
+
+## Dimanche 2 octobre 2016 BRANCHE SERVEUR
+
 J'ai repris le serveur TCP que j'avais implémenté dans C10.3 et je l'ai installé dans C11.
 Pour l'interroger, on utilise un client qui envoie une requête au serveur
 et affiche la réponse.

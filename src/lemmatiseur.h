@@ -33,6 +33,7 @@
 class Lemmatiseur : public QObject
 {
     Q_OBJECT
+
 public:
     Lemmatiseur(QObject *parent = 0, LemCore *l=0, QString cible="", QString resDir="");
     // Créateur de la classe

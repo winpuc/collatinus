@@ -41,6 +41,7 @@ Lemmatiseur::Lemmatiseur(QObject *parent, LemCore *l, QString cible, QString res
     _html = false;
     _majPert = false;
     _morpho = false;
+
     if (cible != "") setCible(cible);
     else setCible("fr en es");
 }
@@ -274,6 +275,81 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
         return "";
         // Ça peut arriver que le texte ne contienne qu"une ponctuation
     }
+    int i = 1;
+    QMap<QString,int> occCode;
+    while (i < lm.length())
+    {
+        if ((lm[i-1].endsWith("&") || lm[i-1].endsWith("&#")) && lm[i+1].startsWith(";"))
+        {
+            // Il y a un caractère en code html.
+            if (lm[i].endsWith("gr") || lm[i].endsWith("aquo") ||
+                    lm[i].endsWith("long") || lm[i-1].endsWith("&#"))
+            {
+                // C'est un caractère grec : je ne le traite pas.
+                lm[i-1].append(lm[i]);
+                lm.removeAt(i);
+                lm[i-1].append(lm[i]);
+                lm.removeAt(i);
+                // Le pseudo-mot et le séparateur suivant sont groupés
+                // dans le séparateur précédent sans être modifiés.
+            }
+            else
+            {
+                if (lm[i].endsWith("acute") || lm[i].endsWith("grave") ||
+                        lm[i].endsWith("circ") || lm[i].endsWith("uml"))
+                {
+                    // C'est un acute, grave, circ ou uml :
+                    // seul le premier caractère m'intéresse.
+                    lm[i] = lm[i].mid(0,1);
+                    if (lm[i+1] == ";")
+                    {
+                        // Cette voyelle se colle au mot suivant.
+                        lm.removeAt(i+1);
+                        lm[i].append(lm[i+1]);
+                        lm.removeAt(i+1);
+                        if (lm[i-1] == "&")
+                        {
+                            // Cette voyelle se colle au mot précédent.
+                            lm[i-2].append(lm[i]);
+                            lm.removeAt(i);
+                            lm.removeAt(i-1);
+                        }
+                        else
+                        {
+                            lm[i-1].chop(1);
+                            i += 2;
+                        }
+                    }
+                    else
+                    {
+                        lm[i+1] = lm[i+1].mid(1);
+                        if (lm[i-1] == "&")
+                        {
+                            // Cette voyelle se colle au mot précédent.
+                            lm[i-2].append(lm[i]);
+                            lm.removeAt(i);
+                            lm.removeAt(i-1);
+                        }
+                        else
+                        {
+                            lm[i-1].chop(1);
+                            i += 2;
+                        }
+                    }
+                }
+                else
+                {
+                    if (occCode.contains(lm[i])) occCode[lm[i]]++;
+                    else occCode[lm[i]] = 1;
+                    i += 2;
+                }
+            }
+        }
+        else i += 2;
+    }
+    foreach (QString code, occCode.keys())
+        qDebug() << code << occCode[code];
+    // Pour l'instant, juste la liste des codes rencontrés
     for (int i = 1; i < lm.length(); i += 2)
     {
         QString f = lm.at(i);
@@ -320,6 +396,11 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                         lm[i].prepend("</span><span style=\"color:"+_couleurs[2]+"\">");
                         colPrec = 2;
                     }
+                }
+                else if (colPrec != 2)
+                {
+                    lm[i].prepend("</span><span style=\"color:"+_couleurs[2]+"\">");
+                    colPrec = 2;
                 }
             }
         }
@@ -510,7 +591,7 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
         int tot = (lm.count() - 1) / 2;
         QTextStream(&titreNR) << "--- " << nonReconnus.count() << "/"
                               << tot << " ("
-                              << ((nonReconnus.count() * 100) / tot)
+                              << (((nonReconnus.count() * 200 + tot) / tot) / 2)
                               << " %) FORMES NON RECONNUES ---" << nl << "\n";
         lRet.append(titreNR + nl);
         foreach (QString nr, nonReconnus)
@@ -560,12 +641,18 @@ void Lemmatiseur::verbaCognita(QString fichier,bool vb)
 {
     _hLem.clear();
     _couleurs.clear();
-    if (vb && !fichier.isEmpty())
+    if (vb)
     {
         // Couleurs par défaut
         _couleurs << "#00A000"; // vert
         _couleurs << "#000000"; // noir
         _couleurs << "#A00000"; // rouge
+    }
+    // Je peux activer le textiColor sans avoir de liste.
+    // Auquel cas, j'aurai les mots connus par Collatinus en noir
+    // et les non-reconnus en rouge.
+    if (vb && !fichier.isEmpty())
+    {
         QFile file(fichier);
         if (file.open(QFile::ReadOnly | QFile::Text))
         {
@@ -652,7 +739,24 @@ bool Lemmatiseur::optNonRec()
 {
     return _nonRec;
 }
-
+/*
+QString Lemmat::transfMed(QString f, bool rad)
+{
+    if (f.isEmpty()) return "";
+    bool maj = f.at(0).isUpper();
+    f = f.toLower();
+    foreach (Reglep r, _reglesMed)
+        if (!r.second.endsWith("*")) f.replace(r.first, r.second);
+        else if (rad)
+        {
+            QString rs = r.second;
+            rs.chop(1);
+            f.replace(r.first, rs);
+        }
+    if (maj) f[0] = f[0].toUpper();
+    return f;
+}
+*/
 /**
  * \fn void Lemmatiseur::setAlpha (bool a)
  * \brief Modificateur de l'option alpha.

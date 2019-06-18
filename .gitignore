@@ -1,8 +1,11 @@
 bin/collatinus
+bin/collatinusd
 C*.app
 .*
+bin/dicos
 
 bin/data/*.bak
+moc
 
 # C++ objects and libs
 

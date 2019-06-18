@@ -106,6 +106,7 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
     if (!mainwindow->dockScand->visibleRegion().isEmpty())
     {
         int accent = mainwindow->lireOptionsAccent();
+        st.replace(QChar::ParagraphSeparator,"\n");
         mainwindow->textEditScand->append(
             mainwindow->scandeur->scandeTxt(st, accent, false, ! mainwindow->majPertAct->isChecked()));
     }
@@ -627,6 +628,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     settings.setValue("html", htmlAct->isChecked());
     settings.setValue("formetxt", formeTAct->isChecked());
     settings.setValue("extensionlexique", extensionWAct->isChecked());
+    settings.setValue("graphieMedievale", medievalAct->isChecked());
     settings.setValue("majpert", majPertAct->isChecked());
     settings.setValue("morpho", morphoAct->isChecked());
     settings.setValue("nonrec", nonRecAct->isChecked());
@@ -707,6 +709,7 @@ void MainWindow::createActions()
     ouvrirAct =
         new QAction(QIcon(":/res/document-open.svg"), tr("&Ouvrir"), this);
     exportAct = new QAction(QIcon(":res/pdf.svg"), tr("Exporter en pdf"), this);
+    exportCsvAct = new QAction(QIcon(":res/csv.svg"), tr("Exporter en csv"), this);
     printAct = new QAction(QIcon(":res/print.svg"), tr("Im&primer"), this);
     quitAct = new QAction(QIcon(":/res/power.svg"), tr("&Quitter"), this);
     quitAct->setStatusTip(tr("Quitter l'application"));
@@ -813,6 +816,8 @@ void MainWindow::createActions()
     visibleWAct->setCheckable(true);
     extensionWAct = new QAction(tr("Extension du lexique"), this);
     extensionWAct->setCheckable(true);
+    medievalAct = new QAction(tr("Graphies médiévales"), this);
+    medievalAct->setCheckable(true);
 }
 
 /**
@@ -873,6 +878,7 @@ void MainWindow::createConnections()
     connect(nonRecAct, SIGNAL(toggled(bool)), _lemmatiseur,
             SLOT(setNonRec(bool)));
     connect(extensionWAct, SIGNAL(toggled(bool)), _lemCore, SLOT(setExtension(bool)));
+    connect(medievalAct, SIGNAL(toggled(bool)), _lemCore, SLOT(setMedieval(bool)));
 
     // actions et options de l'accentuation
     connect(accentAct, SIGNAL(toggled(bool)), this, SLOT(setAccent(bool)));
@@ -923,6 +929,7 @@ void MainWindow::createConnections()
     connect(balaiAct, SIGNAL(triggered()), this, SLOT(effaceRes()));
     connect(copieAct, SIGNAL(triggered()), this, SLOT(dialogueCopie()));
     connect(exportAct, SIGNAL(triggered()), this, SLOT(exportPdf()));
+    connect(exportCsvAct, SIGNAL(triggered()), this, SLOT(exportCsv()));
     connect(findAct, SIGNAL(triggered()), this, SLOT(recherche()));
     connect(fontAct, SIGNAL(triggered()), this, SLOT(police()));
     connect(lancAct, SIGNAL(triggered()), this, SLOT(lancer()));
@@ -975,6 +982,7 @@ void MainWindow::createMenus()
     fileMenu->addSeparator();
     fileMenu->addAction(copieAct);
     fileMenu->addAction(exportAct);
+    fileMenu->addAction(exportCsvAct);
     fileMenu->addAction(printAct);
     fileMenu->addSeparator();
     fileMenu->addAction(oteAAct);
@@ -1014,6 +1022,7 @@ void MainWindow::createMenus()
     lexMenu->addAction(statAct);
     lexMenu->addSeparator();
     lexMenu->addAction(extensionWAct);
+    lexMenu->addAction(medievalAct);
     lexMenu->addSeparator();
 
     optMenu = menuBar()->addMenu(tr("&Options"));
@@ -1268,10 +1277,13 @@ void MainWindow::createDockWindows()
     tbMajPertTag->setDefaultAction(majPertAct);
     QToolButton *tbAffTout = new QToolButton(this);
     tbAffTout->setDefaultAction(affToutAct);
+//    QToolButton *tbHTML = new QToolButton(this);
+//    tbHTML->setDefaultAction(htmlAct);
     hLayoutTag->addWidget(lasla);
     hLayoutTag->addStretch();
     hLayoutTag->addWidget(tbMajPertTag);
     hLayoutTag->addWidget(tbAffTout);
+//    hLayoutTag->addWidget(tbHTML);
     vLayoutTag->addLayout(hLayoutTag);
     vLayoutTag->addWidget(textBrowserTag);
     dockTag->setWidget(dockWidgetTag);
@@ -1351,13 +1363,13 @@ void MainWindow::dialogueCopie()
     QLabel *text = new QLabel;
     text->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     text->setWordWrap(true);
-    text->setText(
+    text->setText(tr(
         "<p>Pour récupérer et modifier votre travail, la meilleure manière est "
         "d'ouvrir le traitement de textes de votre choix, puis de sélectionner "
         "ci-dessous ce que vous voulez utiliser. Cliquez ensuite sur le bouton "
-        "«Appliquer». Pour terminer, revenez dans votre traitement de texte, "
-        "et copiez votre sélection avec un raccourci clavier, ou l'option de "
-        "menu <b>Édition/Coller</b>.");
+        "«Appliquer». Pour terminer, revenez dans votre traitement de texte "
+        "et collez y votre sélection avec un raccourci clavier, ou l'option de "
+        "menu <b>Édition/Coller</b>."));
 
     cbTexteLatin = new QCheckBox(tr("Texte latin"));
     cbLemmatisation = new QCheckBox(tr("Lemmatisation"));
@@ -1441,6 +1453,153 @@ void MainWindow::exportPdf()
 }
 
 /**
+ * \fn
+ * \brief
+ *
+ */
+void MainWindow::exportCsv()
+{
+    QString nf =
+        QFileDialog::getSaveFileName(this, "Export CSV", QString(), "*.csv");
+    if (!nf.isEmpty())
+    {
+        if (QFileInfo(nf).suffix().isEmpty()) nf.append(".csv");
+        if (dockVisible(dockLem))
+        {
+            QString blabla;
+            if (htmlAct->isChecked())
+            {
+                // L'inverse (html --> non-html) mettrait les nouveaux résultats en items du dernier lemme.
+                blabla = textEditLem->toHtml();
+                //        qDebug() << blabla;
+                int pCourante = 0;
+                int pPrecendente = 0;
+                int niveau = 0;
+                QList<int> niveaux;
+                niveaux.append(niveau);
+                while (blabla.indexOf("<li ", pCourante) != -1)
+                {
+                    pPrecendente = pCourante; // C'est la fin de la balise <li ...> précédente.
+                    pCourante = blabla.indexOf("<li ", pCourante) + 4;
+                    pCourante = blabla.indexOf(">",pCourante) + 1;
+                    // Il faudrait trouver le "-qt-list-indent: " de la balise <ul active.
+                    QString morceau = blabla.mid(0,pCourante);
+                    morceau = morceau.mid(pPrecendente);
+                    // C'est le morceau entre les balises <li ...> précédente et courante.
+                    if (morceau.contains("</ul"))
+                    {
+                        niveaux.removeLast();
+                        niveau = niveaux.last();
+                        // Par défaut, quand j'ai un </ul>, je reprends le niveau précédent.
+                    }
+                    if (morceau.contains("<ul"))
+                    {
+                        // Quand j'ai un <ul...>, je prends le niveau indiqué...
+                        int toto = morceau.lastIndexOf("-qt-list-indent: ");
+                        niveau = morceau.mid(toto + 17,1).toInt();
+                        niveaux.append(niveau);
+                        // ... que je pousse aussi sur ma liste des niveaux.
+                    }
+                    switch (niveau)
+                    {
+                    case 1:
+                        blabla.insert(pCourante,"* ");
+                        break;
+                    case 2:
+                        blabla.insert(pCourante," - ");
+                        break;
+                    case 3:
+                        blabla.insert(pCourante,"   . ");
+                        break;
+                    default:
+                        break;
+                    }
+                }
+                QTextEdit *tmpTE = new QTextEdit();
+                tmpTE->setHtml(blabla);
+                blabla = tmpTE->toPlainText();
+                delete tmpTE;
+            }
+            else blabla = textEditLem->toPlainText();
+            if (!blabla.endsWith("\n")) blabla.append("\n");
+            //        qDebug() << blabla;
+            //        qDebug() << lem2csv(blabla);
+            // écrire le fichier en csv.
+            QFile f(nf);
+            f.open(QFile::WriteOnly);
+            QTextStream flux(&f);
+            flux.setCodec("UTF-8"); // Pour windôze !
+            flux << lem2csv(blabla);
+            f.close();
+        }
+        else if (dockVisible(dockTag))
+        {
+            QFile f(nf);
+            f.open(QFile::WriteOnly);
+            QTextStream flux(&f);
+            flux.setCodec("UTF-8"); // Pour windôze !
+            flux << tagueur->tagTexte(editLatin->toPlainText(),
+                        -1, affToutAct->isChecked(), majPertAct->isChecked(), false);
+            f.close();
+        }
+    }
+}
+
+QString MainWindow::lem2csv(QString texte)
+{
+    QString res;
+    QString forme;
+    QString ligne;
+    QString trad;
+    QString fc;
+    int level;
+    int nbOcc;
+    int nn = 0;
+    int pos;
+    QString f1 = "%1\t%2\t"; // Début de ligne avec deux champs numériques
+    QString f2 = "\"%1\"\t\"%2\"\t\"%3\"\t%4\n"; // Fin de ligne avec quatre champs
+    while (texte.contains("\n"))
+    {
+        pos = texte.indexOf("\n");
+        ligne = texte.mid(0,pos).simplified();
+        texte = texte.mid(pos + 1);
+//        qDebug() << ligne << texte;
+        if (ligne.startsWith("*"))
+        {
+            forme = ligne.mid(2);
+            nn += 1;
+        }
+        else if (ligne.startsWith("-"))
+        {
+            ligne = ligne.mid(2);
+            fc = ligne.section(":",0,0).trimmed();
+            trad =ligne.section(":",1).trimmed();
+            if (fc.contains("("))
+            {
+                fc.chop(1);
+                nbOcc = fc.section("(",1).toInt();
+                fc = fc.section("(",0,0).trimmed();
+            }
+            else nbOcc = 0;
+            if (nbOcc < 500) level = 3;
+            else if (nbOcc < 5000) level = 2;
+            else level = 1;
+            res.append(f1.arg(nn).arg(level));
+            res.append(f2.arg(forme).arg(fc).arg(trad).arg(nbOcc));
+        }
+        else if (ligne.startsWith(">"))
+        {
+            nn += 1;
+            ligne = ligne.mid(2);
+            forme = ligne.section(" ",0,0);
+            res.append(f1.arg(nn).arg(3));
+            res.append(f2.arg(forme).arg("unknown").arg("").arg(""));
+        }
+    }
+    return res;
+}
+
+/**
  * \fn void MainWindow::imprimer()
  * \brief Lance le dialogue d'impression pour la lemmatisation.
  */
@@ -1482,7 +1641,7 @@ void MainWindow::langueInterface()
     else
         langueI = "fr";
     QMessageBox::about(this, tr("Collatinus 11"),
-                       tr("Le changement de langue prendra effet"
+                       tr("Le changement de langue prendra effet "
                           "au prochain lancement de Collatinus."));
 }
 
@@ -1710,6 +1869,7 @@ void MainWindow::readSettings()
     alphaOptAct->setChecked(settings.value("alpha").toBool());
     formeTAct->setChecked(settings.value("formetxt").toBool());
     extensionWAct->setChecked(settings.value("extensionlexique").toBool());
+    medievalAct->setChecked(settings.value("graphieMedievale").toBool());
     htmlAct->setChecked(settings.value("html").toBool());
     majPertAct->setChecked(settings.value("majpert").toBool());
     morphoAct->setChecked(settings.value("morpho").toBool());
@@ -1741,6 +1901,7 @@ void MainWindow::readSettings()
     _lemmatiseur->setAlpha(alphaOptAct->isChecked());
     _lemmatiseur->setFormeT(formeTAct->isChecked());
     _lemCore->setExtension(extensionWAct->isChecked());
+    _lemCore->setMedieval(medievalAct->isChecked());
     if (!ficHyphen.isEmpty()) _lemCore->lireHyphen(ficHyphen);
     // Le fichier hyphen.la doit être lu après l'extension.
     _lemmatiseur->setHtml(htmlAct->isChecked());
@@ -1759,16 +1920,25 @@ void MainWindow::readSettings()
 
 /**
  * \fn void MainWindow::recherche()
- * \brief Recherche dans l'éditeur de texte latin.
+ * \brief Recherche dans l'éditeur actif.
+ *
+ * Je regarde quelle fenêtre est active
+ * et je recherche à partir du curseur.
+ *
+ *
  */
 void MainWindow::recherche()
 {
+    // détecter l'éditeur actif
+    QTextEdit * editeur;
+    if (editLatin->hasFocus ()) editeur = editLatin;
+    else editeur = editeurRes ();
     bool ok;
     rech = QInputDialog::getText(this, tr("Recherche"), tr("Chercher :"),
                                  QLineEdit::Normal, rech, &ok);
     if (ok && !rech.isEmpty())
     {
-        if (!editLatin->find(rech))
+        if (!editeur->find(rech))
         {
             rech = QInputDialog::getText(this, tr("Chercher"),
                                          tr("Retour au début ?"),
@@ -1776,9 +1946,9 @@ void MainWindow::recherche()
             if (ok && !rech.isEmpty())
             {
                 // Retourner au debut
-                editLatin->moveCursor(QTextCursor::Start);
+                editeur->moveCursor(QTextCursor::Start);
                 // Chercher à nouveau
-                editLatin->find(rech);
+                editeur->find(rech);
             }
         }
     }
@@ -1788,18 +1958,77 @@ void MainWindow::recherche()
  * \fn void MainWindow::rechercheBis()
  * \brief Suite de la recherche.
  *
+ * Continue la recherche dans la fenêtre active.
+ * Sur le même principe de "recherche",
+ * je regarde quelle fenêtre est active
+ * et je recherche à partir du curseur.
+ * Fonctionne aussi si on a changé de fenêtre
+ * entre la première recherche et cette suite.
  */
 void MainWindow::rechercheBis()
 {
     if (rech.isEmpty()) return;
-    bool ok = editLatin->find(rech);
+    // détecter l'éditeur actif
+    QTextEdit * editeur;
+    if (editLatin->hasFocus ()) editeur = editLatin;
+    else editeur = editeurRes ();
+    bool ok = editeur->find(rech);
     if (!ok)
     {
-        QTextCursor tc = editLatin->textCursor();
-        editLatin->moveCursor(QTextCursor::Start);
-        ok = editLatin->find(rech);
-        if (!ok) editLatin->setTextCursor(tc);
+        rech = QInputDialog::getText(this, tr("Chercher"),
+                                     tr("Retour au début ?"),
+                                     QLineEdit::Normal, rech, &ok);
+        if (ok && !rech.isEmpty())
+        {
+            QTextCursor tc = editeur->textCursor();
+            editeur->moveCursor(QTextCursor::Start);
+            ok = editeur->find(rech);
+            if (!ok) editeur->setTextCursor(tc);
+        }
     }
+}
+
+/**
+ * @brief MainWindow::editeurRes
+ * @return QTextEdit* qui est dans le dock actif
+ *
+ * Pour pouvoir mener une recherche dans n'importe quelle fenêtre,
+ * je cherche laquelle est la première visible.
+ * Je retourne alors le pointeur vers le QTextEdit qu'elle contient.
+ */
+QTextEdit * MainWindow::editeurRes()
+{
+    // Pour retourner le pointeur vers le QTextEdit qui est dans le dock actif.
+    // Si le dock qui "a le focus" n'est pas visible,
+    // je fais la recherche dans le texte latin
+    // qui est supposé être toujours visible.
+    if (textEditLem->hasFocus() || lineEditLem->hasFocus())
+    {
+        if (dockVisible(dockLem)) return textEditLem;
+        return editLatin;
+    }
+    if (textBrowserDic->hasFocus() || lineEditDic->hasFocus())
+    {
+        if (dockVisible(dockDic)) return textBrowserDic;
+        return editLatin;
+    }
+    if (textBrowserW->hasFocus() || lineEditDicW->hasFocus())
+    {
+        if (wDic->isVisible()) return textBrowserW;
+        return editLatin;
+    }
+    if (textEditScand->hasFocus() || lineEditScand->hasFocus())
+    {
+        if (dockVisible(dockScand)) return textEditScand;
+        return editLatin;
+    }
+    if (textBrowserFlex->hasFocus() || lineEditFlex->hasFocus())
+    {
+        if (dockVisible(dockFlex)) return textBrowserFlex;
+        return editLatin;
+    }
+    if (textBrowserTag->hasFocus() && dockVisible(dockTag)) return textBrowserTag;
+    return editLatin;
 }
 
 /**
@@ -2096,15 +2325,27 @@ void MainWindow::exec ()
         case 'P':
         case 'p':
             // Appel au tagueur probabiliste.
-            // Ici, optAcc vaut 0.
+            // Ici, optAcc vaut 0 : n'affiche que la meilleure solution.
             // Si je veux changer le comportement par défaut, il faut ajouter une ligne :
             // optAcc = 1;
             if ((options.size() > 2) && (options[2].isDigit()))
                 optAcc = options[2].digitValue();
-            rep = tagueur->tagTexte(texte, -1, (optAcc & 1), requete[1].isUpper());
+            rep = tagueur->tagTexte(texte, -1, (optAcc & 1), requete[1].isUpper(), !(optAcc & 2));
             // Par défaut, je tague tout le texte.
             nonHTML = false;
             // Le résultat est en html : je veux conserver les <br/>.
+            break;
+        case 'E':
+        case 'e':
+            // Pour sortir la lemmatisation sous un format CSV
+            options = options.mid(2); // Je coupe le "-e".
+            if ((options.size() == 2) && _lemCore->cibles().keys().contains(options))
+                _lemmatiseur->setCible(options);
+            else if (((options.size() == 5) || (options.size() == 8)) && _lemCore->cibles().keys().contains(options.mid(0,2)))
+                _lemmatiseur->setCible(options);
+            rep = lem2csv(_lemmatiseur->lemmatiseT(texte,false,true,false,false));
+//            if (options.startsWith("dc")) rep.replace(":","\"\t\"");
+            _lemmatiseur->setCible(lang); // Je rétablis les langue et option HTML.
             break;
         case 'X':
         case 'x':
@@ -2142,7 +2383,8 @@ void MainWindow::exec ()
             rep += "\t-a : Accentuation du texte (avec options -a1..-a15).\n";
             rep += "\t-l : Lemmatisation du texte (avec options -l0..-l15, -l16 pour les fréquences).\n";
             rep += "\t-h : Lemmatisation du texte en HTML (mêmes options que -l).\n";
-            rep += "\t-S, -A, -L, -H : Les mêmes avec Majuscules pertinentes.\n";
+            rep += "\t-e : Lemmatisation du texte en CSV, sans option sauf la langue cible.\n";
+            rep += "\t-S, -A, -L, -H, -E : Les mêmes avec Majuscules pertinentes.\n";
             rep += "\t-t : Langue cible pour les traductions (par exemple -tfr, -ten).\n";
             rep += "\t-C : Majuscules pertinentes.\n";
             rep += "\t-c : Majuscules non-pertinentes.\n";
@@ -2189,20 +2431,26 @@ QString MainWindow::startServer()
     connect (serveur, SIGNAL(newConnection()), this, SLOT (connexion ()));
     if (!serveur->listen (QHostAddress::LocalHost, 5555))
     {
-        return "Ne peux écouter.";
+        return tr("Ne peux écouter.<br/>\n"
+                  "Le port TCP/IP 5555 est peut-être déjà utilisé.");
     }
-    return "Le serveur est lancé.";
+    return tr("Le serveur est lancé.<br/>\n"
+              "Collatinus répondra sur le port TCP/IP 5555.<br/>\n"
+              "Vous pouvez également utiliser le Client_C11 en console.");
 }
 
 QString MainWindow::stopServer()
 {
     serveur->close();
     delete serveur;
-    return "Le serveur est éteint.";
+    return tr("Le serveur est éteint.");
 }
 
 void MainWindow::dockRestore()
 {
+    toolBar->setFloatable(false);
+    toolBar->show();
+    // Pour récupérer la barre d'outils qu'un utilisateur avait perdue.
     dockLem->setFloating(false);
     dockLem->show();
     dockScand->setFloating(false);
@@ -2222,7 +2470,8 @@ void MainWindow::tagger(QString t, int p)
         // Sans texte, je ne fais rien.
         int tl = t.length() - 1;
         if (p > tl) p = tl;
-        textBrowserTag->setHtml(tagueur->tagTexte(t, p, affToutAct->isChecked(), majPertAct->isChecked()));
+        textBrowserTag->setHtml(tagueur->tagTexte(
+                                    t, p, affToutAct->isChecked(), majPertAct->isChecked()));
     }
 }
 
@@ -2245,13 +2494,37 @@ void MainWindow::setHtml(bool h)
 //        qDebug() << blabla;
         textEditLem->clear();
         int pCourante = 0;
+        int pPrecendente = 0;
+        int niveau = 0;
+        QList<int> niveaux;
+        niveaux.append(niveau);
         while (blabla.indexOf("<li ", pCourante) != -1)
         {
+            pPrecendente = pCourante; // C'est la fin de la balise <li ...> précédente.
             pCourante = blabla.indexOf("<li ", pCourante) + 4;
             pCourante = blabla.indexOf(">",pCourante) + 1;
-            int toto = blabla.mid(0,pCourante).lastIndexOf("-qt-list-indent: ");
-            int niveau = blabla.mid(toto + 17,1).toInt();
-//            int niveau = blabla.mid(0,pCourante).count("<ul ") - blabla.mid(0,pCourante).count("</ul>");
+            // Il faudrait trouver le "-qt-list-indent: " de la balise <ul active.
+            QString morceau = blabla.mid(0,pCourante);
+            morceau = morceau.mid(pPrecendente);
+            // C'est le morceau entre les balises <li ...> précédente et courante.
+            if (morceau.contains("</ul"))
+            {
+                niveaux.removeLast();
+                niveau = niveaux.last();
+                // Par défaut, quand j'ai un </ul>, je reprends le niveau précédent.
+            }
+            if (morceau.contains("<ul"))
+            {
+                // Quand j'ai un <ul...>, je prends le niveau indiqué...
+                int toto = morceau.lastIndexOf("-qt-list-indent: ");
+                niveau = morceau.mid(toto + 17,1).toInt();
+                niveaux.append(niveau);
+                // ... que je pousse aussi sur ma liste des niveaux.
+                // Je suppose qu'il n'y a pas de séquence "<ul ...> ... </ul>"
+                // sans <li ...> entre les deux.
+            }
+//            if ((niveau < 1) || (niveau > 3))
+  //              qDebug() << niveau << blabla.mid(0,pPrecendente) << morceau;
             switch (niveau)
             {
             case 1:

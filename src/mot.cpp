@@ -75,6 +75,8 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
             // Les ablatifs ont un numéro de morpho qui est 6, 12, 18 etc...
             foreach (SLem m, _mapLem.value(l)) if (m.morpho % 6 == 0)
             {
+/*<<<<<<< HEAD
+ * Pas sûr de comprendre ce conflit.
                 m.sufq = _enclitique;
                 if (f == "qui") m.grq = "quī";
                 // Je rétablis la graphie "qui".
@@ -86,6 +88,12 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
                 if (_morphos.last().contains(" plur")) tt = "p62";
                 // secum peut être singulier ou pluriel.
                 long fr = nb * _lemCore->fraction(tt);
+=======*/
+                QString lt = _lemCore->tag(l, m.morpho); // Maintenant, c'est une liste de tags.
+//                qDebug() << lem << lt;
+                // Pour les analyses, je garde la liste de tags.
+                long fr = nb * _lemCore->fraction(lt);
+//>>>>>>> Medieval
                 _lemmes.append(lem);
                 _tags.append(tt);
                 _nbOcc.append(fr);
@@ -165,6 +173,23 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
                 }
             }
         }
+//<<<<<<< HEAD
+//=======
+//        if (Ch::abrev.contains(forme))
+        if (_lemCore->estAbr(forme))
+        {
+            // C'est un nom à n'importe quel cas !
+            _probas.clear();
+//            _tags.clear();
+            QString pseudo = "n%1";
+            for (int i = 1; i < 7; i++)
+            {
+                QString t = pseudo.arg(i)+"1";
+//                _tags.append(t);
+                _probas[t] = _lemCore->tagOcc(t);
+            }
+        }
+//>>>>>>> Medieval
         // J'ai construit les listes de lemmes, morphos, tags et nombres d'occurrences.
         // J'ai aussi une QMap qui associe les tags aux probas, que je dois normaliser.
         long total = 0;
@@ -231,11 +256,12 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
             }
         } */
     }
-//    qDebug() << forme;
+//    qDebug() << forme << _tags.size() << _tags;
 }
 
 QString Mot::choisir(QString t, int np, bool tout)
 {
+//    qDebug() << _forme << t << np << tout << _tags.isEmpty() << _tags.size();
     QString choix = "";
     int valeur = -1;
     long v1 = -1;
@@ -287,15 +313,25 @@ QString Mot::choisir(QString t, int np, bool tout)
             QString lg = "<li>" + _lemmes[i] + " — " + _formes[i] + " " + _morphos[i] + " (";
             QString lt = _tags[i];
 //            qDebug() << lg << lt;
-            while (lt.size() > 2)
+            if (lt.size() > 2)
             {
+/*<<<<<<< HEAD
                 QString t = lt.mid(0,3);
                 lt = lt.mid(4);
                 lg.append(format.arg(t).arg(_bestOf[t]/total).arg(1.0*_probas[t]/1024.0));
                 // Je donne les probas en contexte (_bestOf) et hors-contexte (_probas).
+=======*/
+                while (lt.size() > 2)
+                {
+                    QString t = lt.mid(0,3);
+                    lt = lt.mid(4);
+                    lg.append(format.arg(t).arg(_bestOf[t]));
+                }
+                lg.chop(3);
+                lg.append(")</li>\n");
+//>>>>>>> Medieval
             }
-            lg.chop(3);
-            lg.append(")</li>\n");
+            else lg.append(" ? )</li>\n");
             choix.append(lg);
         }
         choix.append("</ul></span>\n");
@@ -359,7 +395,7 @@ void Mot::setBestOf(QString t, double pr)
     {
         if (pr > _bestOf[t]) _bestOf[t] = pr;
     }
-    else qDebug() << "Erreur d'attribution :" << t << pr;
+    else qDebug() << "tag non trouvé pour" << _forme << t << pr;
         // _bestOf[t] = pr;
 }
 

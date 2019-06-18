@@ -61,6 +61,9 @@ class LemCore : public QObject
    private:
     // fonction d'initialisation
     void ajAssims();
+    void ajAbrev();
+    QStringList abr;
+    // Pour avoir une liste d'abréviation éditable...
     void ajContractions();
     int  aRomano(QString f);
     void lisIrreguliers();
@@ -92,6 +95,14 @@ class LemCore : public QObject
     QMultiMap<QString, Radical *> _radicaux;
     QMap<QString, QString> _variables;
 
+    QList<Reglep> _reglesMed; // Règles de transformation entre graphies classique et médiévale
+    void lisTransfMed();
+    QString transfMed(QString f, bool rad=false); // Exactement comme parPos, mais pour les transformations médiévales
+    bool _medieval; // Au cas où j'arrive avec le même code à traiter les deux cas.
+    QMap<QString, QString> _desMed;
+    QMap<QString, QString> _irrMed;
+    QMultiMap<QString, QString> _radMed;
+
     bool _extension; // = false;
     QString _cible;  // langue courante, 2 caractères ou plus
 
@@ -107,6 +118,8 @@ class LemCore : public QObject
 
    public:
     LemCore(QObject *parent = 0, QString resDir="");
+    bool estAbr(QString m);
+    // Pour remplacer Ch::abrev.contains(m) avec la liste des abréviations chargées.
     void ajDesinence(Desinence *d);
     void ajModele(Modele *m);
     void ajRadicaux(Lemme *l);
@@ -121,7 +134,7 @@ class LemCore : public QObject
     MapLem lemmatise(QString f);  // lemmatise une forme
     // lemmatiseM lemmatise une forme en contexte
     //MapLem lemmatiseM(QString f, bool debPhr = true);
-    MapLem lemmatiseM(QString f, bool debPhr = true, bool desas  =false);
+    MapLem lemmatiseM(QString f, bool debPhr = true, int etape  =0);
     Lemme *lemme(QString l);
     // lemmes(ml) renvoie la liste des graphies des lemmes
     QStringList lemmes(MapLem ml);
@@ -157,6 +170,7 @@ class LemCore : public QObject
 
    public slots:
     void setExtension(bool e);
+    void setMedieval(bool e);
 };
 
 #endif // LEMCORE_H

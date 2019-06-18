@@ -169,7 +169,7 @@ Tagueur::Tagueur(QObject *parent, LemCore *l, QString cible, QString resDir) : Q
  * tirées des textes lemmatisés du LASLA.
  *
  * La phrase traitée est celle autour de la position p dans le texte t.
- * Si p<0, tout le texte sera traité en séparant chaque phrase.
+ * Si p&lt;0, tout le texte sera traité en séparant chaque phrase.
  * Pour p≥0, le programme va, en partant de la position p, remonter et descendre
  * dans le texte jusqu'à trouver une ponctuation forte (. ! ? : ;).
  *
@@ -177,30 +177,30 @@ Tagueur::Tagueur(QObject *parent, LemCore *l, QString cible, QString resDir) : Q
  * J'ai ajouté quelques ancres pour faciliter la navigation,
  * mais je n'ai pas mis de liens pour y aller :
  * elles servent de repères.
- * Chaque phrase est entre des balises <div id='Sentence_x'> et </div>
+ * Chaque phrase est entre des balises &lt;div id='Sentence_x'> et &lt;/div>
  * où x est le numéro de la phrase. La numérotation commence à 0.
  * Ça n'a de sens que si l'ensemble du texte est tagué.
  * Si on ne tague qu'une seule phrase, ce numéro vaut toujours 0.
  *
- * Ces <div> commencent par donner la phrase, puis la meilleure séquence de tags
+ * Ces &lt;div> commencent par donner la phrase, puis la meilleure séquence de tags
  * et la probabilité associées. Vient ensuite le second choix qui ne sera pas explicité.
  * La meilleure séquence de tags est explicitée sous la forme d'une
- * <ul id='sent_x'> où chaque mot est un <li id='S_x_W_y'>
+ * &lt;ul id='sent_x'> où chaque mot est un &lt;li id='S_x_W_y'>
  * avec x le numéro de la phrase et y le numéro du mot dans celle-ci.
- * Chaque <li> commence avec la forme du texte suivie du tag qui
+ * Chaque &lt;li> commence avec la forme du texte suivie du tag qui
  * lui est attribué par la meilleure séquence.
  * Le tag le plus probable hors contexte est donné entre parenthèses
  * lorsqu'il diffère de celui choisi par le tagueur.
  *
  * Si l'option affTout est valisée (affTout = true), toutes les analyses possibles
- * sont ajoutées, dans le <li> précédent, sous la forme d'une <ul> sans ancre.
- * À la fin de chaque <li> de cette seconde liste,
+ * sont ajoutées, dans le &lt;li> précédent, sous la forme d'une &lt;ul> sans ancre.
+ * À la fin de chaque &lt;li> de cette seconde liste,
  * sont donnés le tag et la probabilité associée.
  * S'il y a des homonymes qui ont des analyses avec le même tag,
  * ces probabilités sont les mêmes (elles sont associées au tag).
  * Le choix se fait alors en fonction du nombre d'occurrences
  * relevé pour le lemme. Ce nombre est donné aussi (lorsqu'il n'est pas nul).
- * Il est entre des balises <small> et </small> et entre parenthèses.
+ * Il est entre des balises &lt;small> et &lt;/small> et entre parenthèses.
  * \else
  * This function looks for the best analysis of the words in the sentence
  * taking into account the context with tags and a Hidden Markov Model (HMM).
@@ -208,42 +208,43 @@ Tagueur::Tagueur(QObject *parent, LemCore *l, QString cible, QString resDir) : Q
  * lemmatized by the LASLA.
  *
  * The treated sentence in around the position p in the text.
- * If p<0, all the text is treated, sentence by sentence.
+ * If p&lt;0, all the text is treated, sentence by sentence.
  * For p≥0, the program looks forward and backward for the next
  * strong punctuation mark (. ! ? : ;).
  *
  * The output format is mainly intended for the display.
  * I have added a few anchors to facilitate the browsing,
  * but I do not add any link to them.
- * Each sentence is enclosed in tags <div id='Sentence_x'> and </div>
+ * Each sentence is enclosed in tags &lt;div id='Sentence_x'> and &lt;/div>
  * where x is the rank of the sentence, starting from 0.
  * It makes sense only if all the text is treated.
  * If a single sentence is treated, this numbre is always 0.
  *
- * These <div> start with the sentence, and then give
+ * These &lt;div> start with the sentence, and then give
  * the best sequence of tags together with its probability.
  * Then comes the second choice and the associated probability.
- * The best choice is made explicit as a <ul id='sent_x'> where
- * each word is an item <li id='S_x_W_y'>, x and y being
+ * The best choice is made explicit as a &lt;ul id='sent_x'> where
+ * each word is an item &lt;li id='S_x_W_y'>, x and y being
  * the rank of respectively the sentence and the word.
  * Each item begins with the form of the text and the associated tag.
  * The most probable tag without taking into account the context
  * is given between parenthesis if different.
  *
  * With affTout=true, all the possible analyses of the form are given
- * in the previous item as a <ul> without any anchor.
+ * in the previous item as a &lt;ul> without any anchor.
  * At the end of each item of this second list, the tag and
  * the associated probability are given.
  * \endif
  */
-QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert)
+QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool affHTML)
 {
     // éliminer les chiffres et les espaces surnuméraires
     t.remove(QRegExp("\\d"));
 //    t = t.simplified(); // Rmq : perd les retours de ligne !
     int tl = t.length() - 1;
     const QString pp = ".;!?";
-    int numPhr = 0; // Un numéro pour les phrases (utile seulement pous le texte complet)
+    int numMot = 0; // Un numéro pour les mots (utile pour le CSV).
+    int numPhr = 0; // Un numéro pour les phrases (utile seulement pour le texte complet)
     int dph = p;
     bool tout = false;
     if (p < 0)
@@ -279,7 +280,8 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert)
         if (lm.size() > 1)
         {
             // Il y a au moins un mot...
-            while (Ch::abrev.contains(lm[lm.size()-2]))
+//            while (Ch::abrev.contains(lm[lm.size()-2]))
+            while (_lemCore->estAbr(lm[lm.size()-2]))
             {
                 // Ma phrase se terminait par une abréviation : je continue.
                 fph++;
@@ -322,8 +324,9 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert)
                 // TODO : Vérifier si on a des vers avec majuscule...
                 _mots.append(mot);
             }  // fin de boucle de lemmatisation pour chaque mot
-            Mot * mot = new Mot("",_mots.size(),true, _lemCore); // Fin de phrase
-            _mots.append(mot); // J'ajoute un mot virtuel en fin de phrase avec le tag "snt".
+            Mot * mot = new Mot("",mots.size(),true, _lemCore); // Fin de phrase
+            mots.append(mot); // J'ajoute un mot virtuel en fin de phrase avec le tag "snt".
+//            qDebug() << mots.size();
 
             QStringList sequences;
             QList<double> probabilites;
@@ -333,7 +336,8 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert)
             // Je suis en début de phrase : je n'ai que le tag "snt" et une proba de 1.
             for (int i = 0; i < _mots.size(); i++)
             {
-                Mot *mot = _mots[i];
+//                qDebug() << "Traitement du mot : " <<  i;
+                Mot *mot = mots[i];
                 QStringList lTags = mot->tags(); // La liste des tags possibles pour le mot
                 QStringList nvlSeq; // Nouvelle liste des séquences possibles
                 QList<double> nvlProba; // Nouvelle liste des probas.
@@ -518,6 +522,8 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert)
                     }
                 }
 
+            if (affHTML)
+            {
             QString prob = "<div id='Sentence_%1'>";
             lsv.append(prob.arg(numPhr) + phr + "<br/><br/>\n");
             prob = "<br/>\n avec la proba : %1 pour %2 branches.<br/>";
@@ -541,15 +547,103 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert)
                 else lsv.append("<li id='unknown'>" + _mots[i]->forme() + " : non trouvé</li>");
 
             lsv.append("</ul></div>");
+            }
+            else
+            {
+                // Pour avoir une sortie au format CSV.
+//                qDebug() << "je suis sorti du tagage." << mots.size();
+                QString debut = "%1\t%2\t%3\t";
+                seq = seq.mid(4); // Je supprime le premier tag qui est "snt".
+                for (int i = 0; i < mots.size()-1; i++)
+                    if (!mots[i]->inconnu()) // Les mots inconnus ne figurent pas dans la séquence (cf. plus haut)
+                    {
+//                        qDebug() << "mot" << i << mots[i]->forme();
+                        numMot += 1;
+                        QString blabla = mots[i]->choisir(seq.left(3), numPhr, affTout);
+//                        qDebug() << "fin du choix";
+                        // C'est une ligne en HTML : je dois remplacer les délimiteurs par des tabulations...
+                        QString entete = blabla.mid(0,blabla.indexOf("<br"));
+                        if (entete.contains("<ul>")) entete = entete.mid(0,entete.indexOf("<span"));
+                        entete = entete.mid(entete.indexOf("ng>")+3);
+                        entete.replace("</strong> ","\t");
+                        entete.prepend(debut.arg(numMot).arg(numPhr+1).arg(i+1));
+                        entete.append("\t");
+                        // Dans l'entête, j'ai les numéros, la forme et le tag.
+                        if (blabla.contains("—&gt;"))
+                        {
+                            // C'est le premier choix.
+                            blabla = blabla.mid(blabla.indexOf("—&gt;"));
+                            QString ligne = blabla.mid(blabla.indexOf("ng>")+3);
+                            ligne = ligne.mid(0,ligne.indexOf("</span"));
+                            QString lem = Ch::atone( ligne.mid(0,ligne.indexOf("</str"))) + "\t";
+                            ligne.replace("</strong>, <em>",", ");
+                            if (ligne.contains("<small>("))
+                            {
+                                ligne.replace("</em> <small>(","\t");
+                                ligne.replace(")</small> : ","\t");
+                            }
+                            else ligne.replace("</em> : ","\t\t");
+                            ligne.replace(" — ","\t");
+//                            ligne.replace(":","\t");
+                            lsv.append(entete + lem + ligne);
+                        }
+                        if (blabla.contains("<ul>"))
+                        {
+                            // Il n'y a pas de choix ou tout est affiché.
+                            entete.chop(4);
+//                            entete.append("\t");
+                            blabla = blabla.mid(blabla.indexOf("<ul>"));
+                            blabla = blabla.mid(0,blabla.indexOf("</ul>"));
+                            while (blabla.contains("</li>") && !blabla.isEmpty())
+                            {
+                                QString ligne = blabla.mid(0,blabla.indexOf("</li>"));
+                                blabla = blabla.mid(blabla.indexOf("</li>")+5);
+                                ligne = ligne.mid(ligne.indexOf("ng>")+3);
+                                ligne = ligne.mid(0,ligne.indexOf("</span"));
+                                QString lem = Ch::atone( ligne.mid(0,ligne.indexOf("</str"))) + "\t";
+                                ligne.replace("</strong>, <em>",", ");
+                                if (ligne.contains("<small>("))
+                                {
+                                    ligne.replace("</em> <small>(","\t");
+                                    ligne.replace(")</small> : ","\t");
+                                }
+                                else ligne.replace("</em> : ","\t\t");
+                                QString tag = ligne.mid(ligne.indexOf("(")+1, 3);
+                                tag.append("\t");
+                                ligne.replace(" — ","\t");
+//                                ligne.replace(":","\t");
+//                                ligne.replace(" (","\t");
+//                                ligne.remove(")");
+                                lsv.append(entete + tag + lem + ligne);
+                            }
+                        }
+//                        lsv.append(entete + blabla);
+                         // Si enclitique mid(8)
+                        if (mots[i]->tagEncl().isEmpty()) seq = seq.mid(4);
+                        else seq = seq.mid(5 + mots[i]->tagEncl().size());
+//                        qDebug() << "fin du mot" << i << lsv;
+                    }
+                    else
+                    {
+                        // Mot inconnu !
+//                        qDebug() << "mot inconnu" << i << mots[i]->forme();
+                        numMot += 1;
+                        QString entete = mots[i]->forme();
+                        entete.prepend(debut.arg(numMot).arg(numPhr+1).arg(i+1));
+                        entete.append("\t\tunknown");
+                        lsv.append(entete);
+                    }
+            }
             if (tout)
             {
-                lsv << "<br/>";
+                if (affHTML) lsv << "<br/>";
                 numPhr++;
             }
             else
             {
-                analyse(); // Placé ici pour les essais.
-
+//                analyse(); // Placé ici pour les essais.
+// Vérifier et comprendre ce que fait cette ligne.
+                // elle était dans TagPlus...
                 return lsv.join("\n");
                 // Je retourne le résultat de la phrase si tout est false.
             }
@@ -558,7 +652,7 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert)
         fph++;
     } // while (fph < tl)
     // Si tout est true, je vais jusqu'au bout de texte.
-    return lsv.join("\n");
+    return lsv.join("\n") + "\n";
 }
 
 void Tagueur::defMask()

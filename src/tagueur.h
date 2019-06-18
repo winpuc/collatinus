@@ -25,6 +25,7 @@
 #include "lemCore.h"
 #include "mot.h"
 #include "reglesynt.h"
+#include "ch.h"
 
 typedef QList<quint64> Arbre;
 // Un lien étant repéré par un entier 64 bits,
@@ -35,10 +36,11 @@ class Tagueur : public QObject
 public:
     Tagueur(QObject *parent = 0, LemCore *l=0, QString cible = "", QString resDir="");
     // Pour le tagger
-    QString tagTexte(QString t, int p, bool affTout = true, bool majPert = true);
+
     void analyse();
     int nbArbres();
     QString sauvArbre(int i, bool ordre = true);
+    QString tagTexte(QString t, int p, bool affTout = true, bool majPert = true, bool affHTML = true);
 
 private:
     LemCore * _lemCore;
