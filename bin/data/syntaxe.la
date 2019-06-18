@@ -1,0 +1,513 @@
+!           syntaxe.la
+!   Base de règles syntaxiques pour Collatinus 11
+!
+! Format :
+! id:nom_de_la_règle           // champ obligatoire, placé en tête
+! pere:id_de_la_règle_parente  // héritage, champ facultatif
+!                                 Attention ! nul, doc, sub et super ne sont pas hérités
+! super:lemme1,lemme2,...,lemmeN:pos1 pos2 posn:trait_morpho trait morpho trait morpho
+! sub:lemme1,lemme2,...,lemmeN:trait_morpho trait morpho trait morpho
+!     dans le 2ème champ, on peut exclure des lemmes en
+!     les faisant précéder du signe moins (-).
+!  Les POS :
+!     a adjectif
+!     c conjonction
+!     d adverbe
+!     i interjection
+!     m numéral
+!     n nom
+!     p pronom
+!     r préposition
+!     v verbe
+! accord:cgnpk                 // une ou plusieurs des caractères c(as) g(enre) n(ombre) p(ersonne), k(atégorie = pos)
+! nul:[liste d'ids de règles]  // liste des règles qui ne sont plus valables si cette règle est possible
+! rangTr:[entier]              // rang du mot dans le groupe de la traduction fr. du super. 1 à 100
+! sens:> ou <                  // la flèche est orientée du super au sub. '>' = père avant le fils
+! synt:[chaine]                // une suite de caractères voir les codes synt
+! supsup:id le super doit être aussi super d'un autre mot par la règle d'id id
+! supsub:id le super doit être aussi sub d'un autre mot par la règle d'id id
+! subsup:id le sub doit être aussi super d'un autre mot par la règle d'id id
+! subsub:id le sub doit être aussi sub d'un autre mot par la règle d'id id (option inusitée sauf pour le relatif)
+!
+! debloc:<id de lien> Tout lien L utilisant cette règle provoque un
+!        blocage. Un lien L' ayant son super à gauche de L ne peut trouver de sub à droite de L
+!        tant qu'un lien L'' n'est pas établi entre le sub de L et un mot à sa droite.
+!
+! trSup:tr le super doit être traduit par le lemme français tr
+! trSub:tr le sub doit être traduit par le lemme français tr
+! tr:trad_avant P(:<tr>) trad_entre B(:<tr>) trad_après 
+!    Dans le champ tr, <super> et <sub> sont à remplacer par la trad. française fléchie du mot.
+!
+! Codes pos pour super et sub : v verbe a adverbe n nom
+! Les traits morphos sont les débuts des traits morphos français, qu'on 
+! peut réduire à leur minimum reconnaissable. impa=imparfait impé=impératif
+!
+! Codes synt : b = bloquant : on ne sort pas du groupe tant que sub n'est pas trouvé à droite. 
+!              c = contigu : si <super> et <sub> se suivent immédiatement, ponctuation interdite
+!              u = unique : le super n'a qu'un sub utilisant cette règle
+!
+! À faire : 
+!      - mettre en place un système de variables. ex. $vbPerception $vbAttrib
+!      - Le rendre récursif. : $vbSuperPropInf = $vbPerception,$vbOrdre,$vbSentiment, etc.
+!      -  /cupidi nomen/ épithète, faux positif.
+!      - ajouter : 
+!             . in perpetuum
+!
+
+! J'ai placé les règles de coordination en tête de fichier
+! pour qu'elles portent les n° 0 et 1.
+! Si j'ai trouvé une conjCoord, je dois trouver la coord qui va avec.
+! Et réciproquement.
+! Comme les liens contiennent le fils en poids faible et la règle en
+! poids fort, j'ai un moyen simple pour repérer les liens de coordination.
+! Le lien doit donc être < 2 * _irMult.
+! Si j'ai trouvé un "et" comme père, je dois aller chercher une conjCoord
+! qui a ce "et" comme fils.
+id:coord
+doc:Le second membre de la coordination est placé après la conjonction 'et'. Il faut définir sans tarder ce second terme, qui doit être interchangeable avec le premier
+f:<sub> second membre de la coordination annoncée par la conjonction <super>
+super:et:c:
+sub::a,d,n,p,v:
+sens:>
+accord:k
+rangTr:1
+tr:<super> <sub>
+
+! Si j'ai trouvé une conjCoord, je dois trouver la coord qui va avec.
+! Le "et" doit être le père du lien suivant.
+id:conjCoord
+doc:La conjonction et se place après un mot ou un groupe, et annonce une coordination avec un autre mot ou groupe qui pourrait occuper la même fonction
+f:<sub> conjonction annonçant une coordination dont le premier terme est <super>
+super::a,d,n,p,v:
+sub:et:c:
+sens:>
+rangTr:100
+tr:<super> <sub>
+
+id:abl
+doc:Un nom ou un pronom à l'ablatif, construit directement (sans préposition), exprime le moyen, la manière, le lieu ou le temps
+f:<sub> compl. circ. de <super>
+super::v:
+sub::n,p:abl
+tr:<super> par/sur/dans/en/de <sub>
+
+id:ablAbs
+doc:L'ablatif absolu est le groupe formé par un participe à l'ablatif accordé avec un nom ou un pronom, et les groupes subordonnés à ces deux éléments
+f:<sub> participe formant un ablatif absolu avec <super>
+super::n,p:abl
+sub::v:abl
+accord:cgn
+nul:partepithete
+tr:<super> <sub>
+
+id:ablAbsSub
+doc:l'ablatif absolu dépend du verbe de sa proposition
+f:<sub> noyau d'un ablatif absolu dépendant du verbe <super>
+super::v:abl
+sub::n,p:abl
+subsup:ablAbs
+tr:<sub>, <super>
+
+id:adv
+doc:Un adverbe dépend le plus souvent d'un verbe
+f:<sub> adv. compl. circ. de <super>
+super::v:
+sub::d:
+rangTr:0
+tr:<super> <sub>
+
+id:antecedent
+doc:le pronom relatif dépend d'un antécédent qui le précède, mais il occupe aussi une fonction dans la subordonnée qu'il introduit
+f:<super> antécédent du relatif <sub>
+super::n,p:
+sub:qui::
+sens: >
+debloc:sujetRel,cod,datif,abl
+synt:b
+accord:gn
+rangTr:100
+tr:<super> <sub>
+
+id:antCuius
+pere:antecedent
+doc:le pronom relatif cuius dépend d'un antécédent qui le précède, mais il est complément d'un nom de la relative, souvent éloigné de lui
+super::n,p:
+sub:qui::gén
+trSub:dont
+rangTr:100
+tr:<super> <sub>
+
+id:attrSum
+doc:L'attribut du sujet se met au même cas que le sujet, le plus souvent le nominatif
+f:<sub> attribut du sujet non exprimé du verbe <super>
+super:sum:v:1ère
+sub::n,a:nomin
+accord:n
+tr:<super> <sub>
+
+id:attrObj
+doc:L'attribut de l'objet est à l'accusatif. L'objet peut ne pas être exprimé
+f:<sub> attribut de l'objet par l'intermédiaire du verbe <super>
+super:-sum:v:
+sub::a,n,v:acc
+synt:u
+tr:<super> <sub>
+
+id:attrEs
+pere:attrSum
+super:sum:v:2ème
+sub::n,a:nomin
+
+id:attrSujet
+pere:attrSum
+doc:De nombreux verbes admettent un attribut du sujet : abeo, venio, vivo, etc
+super:abeo,sum,venio,video,vivo:v:
+sub::n,a,v:nomin
+accord:
+synt:u
+
+id:attrSujetPassif
+pere:attrSum
+doc:Au passif, de nombreux verbes admettent un attribut du sujet : dico, video, etc
+super:dico:v:passif
+sub::n,a,v:nomin
+
+id:datif
+doc:Un subordonné au datif exprime pour qui/quoi est accomplie l'état ou l'action exprimée par le verbe
+f:<sub> datif subordonné au verbe <super>
+super::v:
+sub::n,p:datif
+synt:u
+tr:<super> à,pour <sub>
+
+id:datifPron
+doc:Les pronoms mihi, tibi, sibi, au datif, se traduisent par me, te, se, placés devant le verbe
+pere:datif
+super::v:
+sub:ego,tu,se:p:datif
+nul:datif
+tr:<sub> <super>
+
+id:datifRel
+pere:datif
+super::v:
+sub:qui::datif
+sens:<
+tr:à,pour <sub> <super>
+
+id:etAdv
+pere:adv
+f:<sub> adv. subordonné à <super>
+doc:La conjonction <em>et</em> peut être utilisée comme adverbe devant un nom ou un pronom
+super::n,p:
+sub:et:d:
+sens:<
+synt:c
+
+id:advrel
+doc:ubi, quando, unde, adv. relatif introduit une prop. relative et dépendent d'un groupe indiquant le lieu ou le temps
+f:<sub> averbe relatif dépendant de <super>
+super:ad,apud,in,sub,super::
+sub:ubi,quando,unde::
+tr:<super> <sub>
+
+id:ccomp
+doc:Le complément du comparatif est à l'ablatif. Voir aussi la construction avec 'quam'
+f:<sub> complément du comparatif <super>
+super::a,d:comparatif
+sub::n,p:ablatif
+tr:<super> que <sub>
+
+id:cdn
+doc:Un nom ou un pronom au génitif est complément d'un autre nom ou d'un pronom
+f:<sub> complément du (pro)nom <super>
+super::n,p:
+sub::n,p:gén
+synt:u
+tr:<super> de <sub>
+
+id:cuius
+pere:cdn
+f:<sub> relatif complément du nom <super>
+super::n:
+sub:qui:p:gén
+tr:<sub> <super>
+
+id:cod
+doc:Le complément d'objet direct est à l'accusatif
+f:<sub> COD de <super>
+super:-sum,-accido,-fio:v:act
+sub::n,p:acc
+synt:u
+tr:<super> <sub>
+
+id:codPron
+doc:Un pronom COD (me, te, le, se, nous, les, vous) est placé, en français, immédiatement à gauche du verbe
+pere:cod
+super:-sum,-accido,-fio:v:act
+sub:ego,tu,is,se,nos,vos,nihil:p:acc
+tr:<sub> <super>
+
+id:codRel
+pere:cod
+f:<sub> pronom relatif COD de <super>
+super:-sum:v:act
+sub:qui::acc
+rangTr:1
+tr:<sub> <super>
+
+id:codInf
+pere:cod
+doc:un infinitif peut être complément d'objet. S'il a un sujet, il est à l'accusatif
+super::v:act
+sub::v:infin
+
+id:conjSub
+doc:une conjonction de subordination dépend d'un verbe et introduit une subordonnée conjonctive
+f:<sub> conj. de subordinantion dépendant du verbe <super>
+super::v:
+sub:cum,quando,quod,quomodo,num,si,ut:c:
+debloc:vbSubInd,vbSubSubj
+rangTr:100
+synt:b
+tr:<super> <sub>
+
+! Règle pour la coordination de deux mots conjoints, le second étant en -que
+!id:coordQue
+!pere:coord
+!doc:Le suffixe -que est l'équivalent de la conjonction <em>et</em> précédant ce mot. Cette règle n'accepte que si les deux mots coordonnés sont conjoints
+!super::a,d,n,p,v:
+!sub::a,d,n,p,v:
+!nul:conjCoord
+!sens:>
+!accord:k
+!synt:u
+!rangTr:1
+!tr:<super> et <sub>
+
+! c est une règle virtuelle utilisée pour la coordination par -que
+!   et pour la relative
+! Ne me plait pas. Ph.
+!id:c
+!super:::
+!sub:::
+!sens:>
+!tr:<super> <sub>
+
+id:epithete
+doc:l'adjectif épithète s'accorde en genre, nombre et cas avec le nom
+f:<sub> épithète de <super>
+super::n:
+sub::a:
+accord:cgn
+nul:attrObj
+tr:<super> <sub>
+
+id:interrInd
+!pere:conjSub
+doc:Les pronoms et adverbes interrogatifs introduisent une subordonnée interrogative et dépendent d'un verbe
+f:<sub> mot interrogatif dépendant du verbe <super>
+sub:qui,quis:p:
+super:dico,doceo,dubito,experior,intellego,interrogo,miror,nescio,quaero,rogo,scio,sciscitor:v:
+tr:<super> <sub>
+
+id:partPf
+doc:Le parfait passif se conjugue en deux mots : un participe parfait et l'auxiliaire sum (être). Mais l'auxiliaire latin au préѕent doit être traduit par un passé en français : lat. captus est, fr. il fut pris
+f:<sub> participe parfait, auxiliaire : <super>
+super:sum:v:
+sub::v:nomin parfait
+accord:n
+tr:<super> <sub>
+
+id:partepithete
+doc:le participe épithète s'accorde comme un adjectif avec un nom ou un pronom
+f:<sub> participe épithète de <super>
+super::n,p:
+sub::v:part
+accord:cgn
+tr:<super> <sub>
+
+id:determinant
+pere:epithete
+doc:En latin, le déterminant fonctionne comme l'épithète. En français, il est antéposé au nom
+f:<sub> déterminant de <super>
+super::n:
+sub:a,m:alius,ceteri,hic,ille,is,iste,meus,noster,omnis,paucus,suus,tuus:a:
+tr:<sub> <super>
+
+id:nApp
+doc:un nom apposé suit directement un autre nom, est complètement accordé avec lui, et représente la même personne ou chose
+f:<sub> apposé à <super>
+super::n,p:
+sub::n:
+accord:cgn
+sens:>
+tr:<super> <sub>
+
+id:negation
+pere:adv
+doc:La négation modifie un verbe en le faisant passer à la forme négative
+f:<sub> négation modifiant le verbe <super>
+super::v:
+sub:non,nec,neque,nunquam::
+sens:<
+tr:ne <super> <sub>
+
+id:num
+doc:Les nombres s'expriment en chiffres romains
+f:<sub> adj. numéral déterminant de <super>
+super::n:
+sub::m:
+nul:epithete
+tr:<sub> <super>
+
+id:prep
+doc:Une préposition dépend le plus souvent d'un verbe
+f:<sub> prép. dépendant du verbe <super>
+super::v:
+sub::r:
+debloc:regimeAbl,regimeAcc
+synt:b
+tr:<super> <sub>
+
+id:regimeAbl
+doc:de nombreuses prépositions sont suivies de l'ablatif
+f:<sub> régime à l'ablatif de la préposition <super>
+sens:>
+super:a,ab,cum,de,ex,in,prae,sine:r::
+sub::n,p:abl
+synt:bu
+nul:regimeAcc,abl
+tr:<super> <sub>
+
+id:regimeAcc
+doc:de nombreuses prépositions sont suivies de l'accusatif
+f:<sub> régime à l'accusatif de la préposition <super>
+sens:>
+super:ad,adversus,apud,contra,in,intra,ob,per,post,praeter,propter,super,usque:::
+sub::n,p:acc
+synt:bu
+nul:regimeAbl
+tr:<super> <sub>
+
+id:sujet
+doc:un nom ou un pronom au nominatif peut être sujet d'un verbe à l'indicatif
+f:<sub> ѕujet du verbe <super>
+super::v:3
+sub:-ego,-tu,-nos,-vos,-qui,-quis:n,p:nomin
+synt:u
+tr:<sub> <super>
+accord:n
+
+! sujet au singulier + coordonné, v au pluriel
+!id:sujetS
+!doc:S'il y a plusieurs sujets, le verbe se met tantôt au pluriel, tantôt au nombre du dernier sujet
+!f:<sub> premier ѕujet du verbe <super>
+!super::v:3
+!sub:-ego,-tu,-nos,-vos:n,p:nomin sing
+!subsup:conjCoord
+!tr:<sub> <super>
+
+id:sujetPrEgo
+pere:sujet
+super::v:indic 1 sing
+sub:ego:p:nomin
+
+id:sujetPrNos
+pere:sujet
+super::v:indic 1 plur
+sub:nos:p:nomin
+
+id:sujetPrTu
+pere:sujet
+super::v:indic 2
+sub:tu:p:nomin
+
+id:sujetPropInf
+pere:sujet
+doc:Le sujet de la prop. infinitive est à l'accusatif
+f:<sub> sujet de la prop. infinitive, verbe <super>
+super::v:infin
+sub::n,p:accus
+synt:bu
+tr:<sub> <super>
+
+!id:sujetInfNarr
+!doc:un nom ou un pronom au nominatif peut être sujet d'un verbe à l'infinitif de narration
+!f:<sub> ѕujet de l'inf. de narration <super>
+!super::v:infin
+!sub::n,p:nomin
+!synt:u
+!tr:<sub> de <super>
+
+id:sujetRel
+f:<sub> relatif sujet du verbe <super>
+pere:sujet
+super::v:indic
+sub:qui::nomin
+sens:<
+sub:qui:p:nomin
+
+id:vbPropInf
+doc:les verbes de déclaration, connaissance, opinion, perception, sentiment, volonté ont souvent comme subordonné une proposition infinitive
+f:<sub> infinitif noyau d'une proposition infinitive dépendant de <super>
+super:audio,dico,jubeo,puto,scio,video:v:
+sub::v:infin
+tr:<super> que <sub>
+
+id:vbSubInd
+doc:Le verbe d'une subordonnée est souvent introduit par une conjonction de subordination
+f:<sub> verbe d'une subordonnée introduite par <super>
+super:cum,quando,quia,quod,si,ubi:c:
+sub::v:indic
+sens:>
+tr:<super> <sub>
+
+id:vbSubSubj
+pere:vbSubInd
+doc:Après ut, si, cum, le verbe de la subordonnée est au subjonctif
+super:ut,si,cum:c:
+sub::v:subj
+
+! expressions
+id:inciditMentio
+pere:sujet
+doc:incidit mentio = la conversation vient ... de+abl : au sujet de
+super:incido:v:indic 3 sing actif
+sub:mentio:n:nomin
+trSup:venir
+trSub:la conversation
+tr:<sub> <super>
+
+id:opusEst
+doc:opus est + ablatif : il faut qqch, qqch est nécessaire
+pere:sujet
+super:sum:v:
+sub:opus:n:nomin sing
+trSub:besoin
+nul:cod,sujet,sujetInfNarr,sujetPropInf
+tr:<super> <sub>
+
+id:ablOpus
+doc:opus est + ablatif : il faut qqch, qqch est nécessaire
+f:<sub> ablatif dépendant de opus est
+super:sum:v:
+supsup:opusEst
+sub::n:abl
+tr:<super> de <sub>
+
+id:dicitur
+! dicitur, auditur, existimatur, ostenditur ?
+pere:codInf
+doc:dicitur (on dit que) bien qu'au passif, peut avoir un infinitif COD. 
+super:dico:v:3 passif
+sub::v:inf
+
+id:nihil
+doc:nihil peut être suivi d'un nom ou d'un adjectif au génitif : nihil noui, boni, aduersi
+f:<sub> complément du pronom <super>
+super:nihil::
+sub::n,a:gén
+sens:>
+tr:<super> de <sub>
+
