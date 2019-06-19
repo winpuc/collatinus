@@ -103,8 +103,9 @@ QStringList ElS::pos()
 }
 
 
-RegleSynt::RegleSynt(QStringList lignes, QObject *parent) : QObject(parent)
+RegleSynt::RegleSynt(QStringList lignes, LemCore *parent) : QObject(parent)
 {
+    _lemCore = parent;
     foreach (QString lin, lignes)
     {
         QStringList ecl = lin.split(':');
@@ -228,7 +229,7 @@ bool RegleSynt::estSub(Lemme *l, QString morpho, bool ante)
     if (!_sub->okPos(l->pos())) return false;
     // morpho
     // prénoms
-    if (l->pos().contains('n') && Ch::abrev.contains(l->gr()))
+    if (l->pos().contains('n') && _lemCore->estAbr(l->gr()))
         return true;
     // autres cas
     if (!_sub->okMorpho(morpho)) return false;
@@ -244,7 +245,7 @@ bool RegleSynt::estSuper(Lemme *l, QString morpho, bool ante)
     // pos
     if (!_super->okPos(l->pos())) return false;
     // morpho
-    if (l->pos().contains('n') && Ch::abrev.contains(l->gr()))
+    if (l->pos().contains('n') && _lemCore->estAbr(l->gr()))
         return true;
     // prénoms
     if (!_super->okMorpho(morpho)) return false;
@@ -339,7 +340,7 @@ bool RegleSynt::accepteFils(SLem sl, QString morpho)
     if (!_sub->okPos(l->pos())) return false;
     // morpho
     // prénoms
-    if (l->pos().contains('n') && Ch::abrev.contains(l->gr()))
+    if (l->pos().contains('n') && _lemCore->estAbr(l->gr()))
         return true;
     // autres cas
     if (!_sub->okMorpho(morpho)) return false;
@@ -355,7 +356,7 @@ bool RegleSynt::acceptePere(SLem sl, QString morpho)
     if (!_super->okPos(l->pos())) return false;
     // morpho
     // prénoms
-    if (l->pos().contains('n') && Ch::abrev.contains(l->gr()))
+    if (l->pos().contains('n') && _lemCore->estAbr(l->gr()))
         return true;
     // autres cas
     if (!_super->okMorpho(morpho)) return false;

@@ -1,6 +1,9 @@
 # Collatinus-11, notes sur le Tagger.
 
-Samedi 19 novembre 2016
+Le [présent](#futur) est le futur du passé.
+
+Mercredi 19 juin 2019
+~~Samedi 19 novembre 2016~~
 
 ## Introduction
 Le problème de la désambiguïsation est un problème récurrent.
@@ -300,7 +303,7 @@ apparaît encore explicitement dans l'expression de P'(h, i, j, k).
 Pour chaque valeur de i, je retiens la probabilité p(i) qui est
 la plus grande parmi toutes les valeurs P'(h, i, j, k).
 
-## Le futur
+## Le futur {#futur}
 
 Il serait maintenant intéressant de coupler le tagger à
 l'analyse syntaxique de la phrase. J'avais renoncé à une
@@ -359,3 +362,42 @@ Elle doit tenir compte de la nature du lien (une "fréquence"
 associée à la règle utilisée), de sa longueur (mesurable seulement
 en nombre de tokens entre le père et le fils) ainsi que des probas
 des analyses du père et du fils...
+
+### Juin 2019
+
+Dans Silva (et jusqu'à présent), j'étais resté sur l'ordre des mots
+dans la phrase. En fait, c'est naturel pour l'humain qui lit de
+gauche à droite. Mais l'ordinateur ne lit pas, il gère des mots.
+D'autre part, à chaque fois que l'on établit un lien,
+on peut en éliminer d'autres (éventuellement beaucoup).
+ Par exemple, dès que je choisis
+un lien entre deux mots, j'impose une analyse pour chacun d'eux :
+tous les liens faisant intervenir une autre analyse que celle retenue
+deviennent caduques. De même, un verbe n'a qu'un seul sujet :
+si je choisis un nom au nominatif comme sujet d'un verbe, 
+aucun autre nom ou pronom au nominatif ne pourra prétendre à
+être sujet de ce même verbe. 
+Quand on **choisit** un _lien_, on **restreint** le _champ des possibles_.
+
+Du coup, si je commence par un mot sur lequel
+arrivent très peu de liens (i.e. le moins de liens encore permis),
+je n'aurai que peu d'essais à faire avant de le déclarer comme
+orphelin. Et si je choisis un lien, il m'en reste moins pour
+équiper les autres mots. Parmi les mots qui n'ont pas encore de père,
+je vais à nouveau me focaliser sur celui qui n'a que peu de prétendants.
+
+Un autre point sur lequel je suis plus modeste concerne la part
+de l'opérateur. Dans Silva, le programme ordonnait les arbres selon
+ses propres critères et l'utilisateur pouvait ensuite choisir celui
+qu'il considérait comme correct. Je pense maintenant qu'il faut être
+plus directif vis à vis du programme. Quitte à tendre vers le
+traitement manuel, je voudrais ré-écrire la phrase et si on clique
+sur un mot, on doit pouvoir valider un lien arrivant sur ce mot
+ou en interdire un ou plusieurs. Le programme devrait être capable
+de détecter les conflits et de proposer des solutions (annuler la
+dernière validation, éliminer les autres liens en conflit ou
+créer un nœud vide pour dupliquer le verbe dans la première phrase
+de César-BG). Il y a peut-être d'autres solutions possibles à proposer.
+Après avoir validé ou interdit quelques liens, on doit pouvoir
+relancer l'évaluation et espérer arriver à la bonne solution.
+

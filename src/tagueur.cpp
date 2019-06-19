@@ -303,7 +303,7 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
             for (int i = 1; i < lm.length(); i += 2)
             {
                 bool debVers = !majPert || lm[i-1].contains("\n");
-                if (Ch::abrev.contains(lm[i]))
+                if (_lemCore->estAbr(lm[i]))
                 {
                     // J'ai bêtement découpé les mots : si j'avais une abréviation,
                     // je dois déplacer le point.
@@ -324,8 +324,8 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                 // TODO : Vérifier si on a des vers avec majuscule...
                 _mots.append(mot);
             }  // fin de boucle de lemmatisation pour chaque mot
-            Mot * mot = new Mot("",mots.size(),true, _lemCore); // Fin de phrase
-            mots.append(mot); // J'ajoute un mot virtuel en fin de phrase avec le tag "snt".
+            Mot * mot = new Mot("",_mots.size(),true, _lemCore); // Fin de phrase
+            _mots.append(mot); // J'ajoute un mot virtuel en fin de phrase avec le tag "snt".
 //            qDebug() << mots.size();
 
             QStringList sequences;
@@ -337,7 +337,7 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
             for (int i = 0; i < _mots.size(); i++)
             {
 //                qDebug() << "Traitement du mot : " <<  i;
-                Mot *mot = mots[i];
+                Mot *mot = _mots[i];
                 QStringList lTags = mot->tags(); // La liste des tags possibles pour le mot
                 QStringList nvlSeq; // Nouvelle liste des séquences possibles
                 QList<double> nvlProba; // Nouvelle liste des probas.
@@ -554,12 +554,12 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
 //                qDebug() << "je suis sorti du tagage." << mots.size();
                 QString debut = "%1\t%2\t%3\t";
                 seq = seq.mid(4); // Je supprime le premier tag qui est "snt".
-                for (int i = 0; i < mots.size()-1; i++)
-                    if (!mots[i]->inconnu()) // Les mots inconnus ne figurent pas dans la séquence (cf. plus haut)
+                for (int i = 0; i < _mots.size()-1; i++)
+                    if (!_mots[i]->inconnu()) // Les mots inconnus ne figurent pas dans la séquence (cf. plus haut)
                     {
 //                        qDebug() << "mot" << i << mots[i]->forme();
                         numMot += 1;
-                        QString blabla = mots[i]->choisir(seq.left(3), numPhr, affTout);
+                        QString blabla = _mots[i]->choisir(seq.left(3), numPhr, affTout);
 //                        qDebug() << "fin du choix";
                         // C'est une ligne en HTML : je dois remplacer les délimiteurs par des tabulations...
                         QString entete = blabla.mid(0,blabla.indexOf("<br"));
@@ -619,8 +619,8 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                         }
 //                        lsv.append(entete + blabla);
                          // Si enclitique mid(8)
-                        if (mots[i]->tagEncl().isEmpty()) seq = seq.mid(4);
-                        else seq = seq.mid(5 + mots[i]->tagEncl().size());
+                        if (_mots[i]->tagEncl().isEmpty()) seq = seq.mid(4);
+                        else seq = seq.mid(5 + _mots[i]->tagEncl().size());
 //                        qDebug() << "fin du mot" << i << lsv;
                     }
                     else
@@ -628,7 +628,7 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
                         // Mot inconnu !
 //                        qDebug() << "mot inconnu" << i << mots[i]->forme();
                         numMot += 1;
-                        QString entete = mots[i]->forme();
+                        QString entete = _mots[i]->forme();
                         entete.prepend(debut.arg(numMot).arg(numPhr+1).arg(i+1));
                         entete.append("\t\tunknown");
                         lsv.append(entete);
@@ -641,7 +641,7 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
             }
             else
             {
-//                analyse(); // Placé ici pour les essais.
+                analyse(); // Placé ici pour les essais.
 // Vérifier et comprendre ce que fait cette ligne.
                 // elle était dans TagPlus...
                 return lsv.join("\n");
@@ -740,7 +740,7 @@ void Tagueur::lireRegles()
         QString l = lignes.at(i);
         if ((l.startsWith("id:")||i==lignes.count()-1) && !slr.empty())
         {
-            RegleSynt *nrs = new RegleSynt(slr, this);
+            RegleSynt *nrs = new RegleSynt(slr, _lemCore);
             _idRegle.insert(nrs->id(),_regles.size());
             _regles.append(nrs);
             slr.clear();

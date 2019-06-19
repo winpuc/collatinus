@@ -37,7 +37,7 @@ class RegleSynt : public QObject
 {
     Q_OBJECT
 public:
-    explicit RegleSynt(QStringList lignes, QObject *parent = 0);
+    explicit RegleSynt(QStringList lignes, LemCore *parent = 0);
     QString      accord();
 //    bool         annule(RegleS *r);
     bool         bloquant();
@@ -109,6 +109,7 @@ private:
     QString     _trSub; // traduction imposée du sub
     QString     _trSup; // traduction imposée du super
 
+    LemCore     *_lemCore;
 
 signals:
 
