@@ -641,7 +641,7 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
             }
             else
             {
-                analyse(); // Placé ici pour les essais.
+ //               analyse(); // Placé ici pour les essais.
 // Vérifier et comprendre ce que fait cette ligne.
                 // elle était dans TagPlus...
                 return lsv.join("\n");
@@ -667,35 +667,40 @@ void Tagueur::defMask()
     iapMask = itfMask * iapMult;
 }
 
-quint64 Tagueur::genLien(int iRegle, int iTokPere, int iAnPere, int iTokFils, int iAnFils)
+qint64 Tagueur::genLien(int iRegle, int iTokPere, int iAnPere, int iTokFils, int iAnFils)
 {
     // Dois-je faire des tests ?
     return ((((iRegle * iafMult + iAnPere) * iafMult + iTokPere) * iafMult + iAnFils) *iafMult + iTokFils);
 }
 
-int Tagueur::iTokFils(quint64 lien)
+int Tagueur::iTokFils(qint64 lien)
 {
-    return (lien & itfMask);
+//    return (lien & itfMask);
+    return (lien & 255);
 }
 
-int Tagueur::iTokPere(quint64 lien)
+int Tagueur::iTokPere(qint64 lien)
 {
-    return ((lien & itpMask)/itpMult);
+//    return ((lien & itpMask)/itpMult);
+    return ((lien >> 16) & 255);
 }
 
-int Tagueur::iAnFils(quint64 lien)
+int Tagueur::iAnFils(qint64 lien)
 {
-    return ((lien & iafMask)/iafMult);
+//    return ((lien & iafMask)/iafMult);
+    return ((lien >> 8) & 255);
 }
 
-int Tagueur::iAnPere(quint64 lien)
+int Tagueur::iAnPere(qint64 lien)
 {
-    return ((lien & iapMask)/iapMult);
+//    return ((lien & iapMask)/iapMult);
+    return ((lien >> 24) & 255);
 }
 
-int Tagueur::iRegle(quint64 lien)
+int Tagueur::iRegle(qint64 lien)
 {
-    return (lien/irMult);
+//    return (lien/irMult);
+    return (lien >> 32);
 }
 
 void Tagueur::effacer()
@@ -725,6 +730,7 @@ void Tagueur::effacer()
     // avant d'avoir effacer ce pointeur.
     _listLiens.clear();
     _foret.clear();
+    _foret2.clear();
     _interrogative = false;
     _mots.clear();
     _tokens.clear();
@@ -747,7 +753,7 @@ void Tagueur::lireRegles()
         }
         slr.append(l);
     }
-    qDebug() << _regles.size() << _idRegle.keys().size();
+//    qDebug() << _regles.size() << _idRegle.keys().size();
 }
 
 void Tagueur::ajToken(int i)
@@ -949,57 +955,74 @@ void Tagueur::analyse()
         // Attention aux enclitiques.
         trierLiens();
         _listLiens.append(_liensLocaux);
+        qDebug() << _tokens[itf]->forme() << "a" << _liensLocaux.size() << "pères possibles";
+        // À une époque lointaine, je mettais cette liste dans le token.
+        // Faut-il le faire à nouveau ?
     }
-    qDebug() << "Nombre de liens possibles :" << _listLiens.size() << "pour" << _tokens.size() << "mots.";
-    /*
+    qDebug() << "Nombre de liens possibles :" << _listLiens.size() << "pour" << _tokens.size() << "tokens ("
+             << _mots.size() - 1 << "mots)."; // Le dernier mot est un "snt"
+/*
     for (int i=0; i < _listLiens.size(); i++)
     {
-        quint64 l = _listLiens[i];
+        qint64 l = _listLiens[i];
         int itp = iTokPere(l);
         int itf = iTokFils(l);
         int ir = iRegle(l);
         int iap = iAnPere(l);
         int iaf = iAnFils(l);
-        qDebug() << _tokens[itp]->lemme(iap) << _tokens[itp]->morpho(iap)
-                 << _regles[ir]->id() << _tokens[itf]->lemme(iaf) << _tokens[itf]->morpho(iaf);
+        qDebug() << _tokens[itp]->forme() << _tokens[itp]->morpho(iap)
+                 << _regles[ir]->id() << _tokens[itf]->forme() << _tokens[itf]->morpho(iaf);
     }
-    */
+*/
     QList<int> li;
     for (int i=0; i < _tokens.size(); i++) li << i;
     Arbre arbre;
+    // Dans un futur proche, je dois pouvoir commencer avec des liens validés.
     _maxOrph = 2;
     int t = _temps.restart();
     faireCroitre(_listLiens,arbre,li,0);
-    qDebug() << _foret.size() << _temps.elapsed();
+    qDebug() << "Nombre d'arbres trouvés :" << _foret.size() << "et"
+             << _foret2.size() << "en" << _temps.elapsed() << "ms";
     // Les arbres de la forêt sont dans l'ordre où ils ont été trouvés.
     // Il faudrait les ranger selon des critères esthétiques.
-    qDebug() << sauvArbre(0);
+    if (_foret.isEmpty()) _foret.append(_foret2);
+    qDebug() << sauvArbre(0, false);
+    qDebug() << _foret.size() - 1;
+    qDebug() << sauvArbre(_foret.size() - 1, false);
 }
 
-void Tagueur::faireCroitre(QList<quint64> lLiens, Arbre pousse, QList<int> indices, int nbRel)
+void Tagueur::faireCroitre(QList<qint64> lLiens, Arbre pousse, QList<int> indices, int nbRel)
 {
 //    qDebug() << "Appelé avec" << lLiens.size() << pousse.size() << indices << nbRel;
     Arbre nvlPouss = pousse;
     // C'est une routine récursive.
     // Je commence par les conditions d'arrêt.
-    if (_temps.elapsed() > 60000) return; // Si ça dure trop longtemps (1min), je l'arrête.
+    if (_temps.elapsed() > 960000) return; // Si ça dure trop longtemps (1min), je l'arrête.
     if (indices.isEmpty())
     {
         // J'ai traité tous les tokens
         _foret.append(nvlPouss);
+        qDebug() << "Je remonte avec un arbre";
         return;
     }
     if (lLiens.isEmpty())
     {
         // J'ai épuisé les liens possibles
-        if ((indices.size() <= _maxOrph + nbRel) && !_foret.contains(nvlPouss))
+        if ((indices.size() <= _maxOrph + nbRel) && !_foret.contains(nvlPouss)
+                 && !_foret2.contains(nvlPouss))
         {
-            _foret.append(nvlPouss);
+            if (indices.size() - nbRel == 1)
+                _foret.append(nvlPouss);
+            else _foret2.append(nvlPouss);
+//            qDebug() << "Je remonte avec un arbre, mais avec" << indices.size() << "orphelins";
+            return;
 //            qDebug() << pousse.size() << lLiens.size() << indices.size();
 //            _maxOrph = indices.size() + 1 - nbRel;
         }
+//        qDebug() << "Je remonte sans arbre";
         return;
     }
+
     // Je dois choisir quel mot je veux traiter :
     // celui sur lequel arrive au moins un lien et
     // qui en reçoit le moins possible.
@@ -1007,6 +1030,7 @@ void Tagueur::faireCroitre(QList<quint64> lLiens, Arbre pousse, QList<int> indic
     // Associe le nombre de liens qui arrivent sur un token donné.
     // L'indice du token est la clef.
     for (int i = 0; i < lLiens.size(); i++) nbLiens[iTokFils(lLiens[i])] += 1;
+
     QList<int> listFils = nbLiens.keys();
     if (listFils.isEmpty()) return; // Normalement, ça ne se produit pas.
     if (indices.size() - listFils.size() - nbRel > _maxOrph) return;
@@ -1025,13 +1049,16 @@ void Tagueur::faireCroitre(QList<quint64> lLiens, Arbre pousse, QList<int> indic
     // il y a au moins un lien qui y arrive.
     // Si j'arrive ici, c'est qu'il y a au moins un lien à essayer.
     int iTok = indices[minPos];
+//    qDebug() << "Le token n°" << iTok << _tokens[iTok]->forme() << "a" << valMin << "pères possibles.";
+
     QList<int> nvxInd = indices;
     nvxInd.removeAt(minPos);
-//    qDebug() << iTok << valMin << indices.size() << nvxInd.size() << lLiens.size();
     // Si j'établis un lien qui arrive sur ce mot,
     // je le supprime de la liste.
-    QList<quint64> liensIci;
-    QList<quint64> ailleurs;
+//    qDebug() << iTok << valMin << indices.size() << nvxInd.size() << lLiens.size();
+
+    QList<qint64> liensIci;
+    QList<qint64> ailleurs;
     int indFinFils = 0;
     for (int i = 0; i < lLiens.size(); i++)
         if (iTokFils(lLiens[i]) == iTok)
@@ -1050,91 +1077,102 @@ void Tagueur::faireCroitre(QList<quint64> lLiens, Arbre pousse, QList<int> indic
 //    qDebug() << indAvant << indFinFils << liensIci.size() << ailleurs.size();
     for (int i = 0; i < liensIci.size(); i++)
     {
-        quint64 lienChoisi = liensIci[i];
-        // Il faudrait vérifier ICI que le lienChoisi n'est pas incompatible
-        // avec ceux déjà présents dans l'arbre.
-        // En particulier, un verbe ne peut avoir qu'un seul sujet...
-        QList<quint64> compat = liensComp(ailleurs, nvlPouss, lienChoisi);
-        // C'est la liste des liens d'ailleurs qui sont compatibles avec lienChoisi.
-        // Si le token est un pronom relatif, il peut vouloir deux liens.
-        nvlPouss.append(lienChoisi);
-        if (lienChoisi < 2 * irMult)
+        qint64 lienChoisi = liensIci[i];
+        if (pasBoucle(pousse,lienChoisi))
         {
-            // C'est une règle de coordination que j'ai placée en tête de syntaxe.la.
-            QList<quint64> liensPossibles;
-            if (lienChoisi < irMult)
+            // Il faudrait vérifier ICI que le lienChoisi n'est pas incompatible
+            // avec ceux déjà présents dans l'arbre.
+            // En particulier, un verbe ne peut avoir qu'un seul sujet...
+            QList<qint64> compat = liensComp(ailleurs, nvlPouss, lienChoisi);
+            // C'est la liste des liens d'ailleurs qui sont compatibles avec lienChoisi.
+            // Si le token est un pronom relatif, il peut vouloir deux liens.
+            nvlPouss.append(lienChoisi);
+            if (lienChoisi < 2 * irMult)
             {
-                // C'est une coord, c'est à dire la 2e partie de l'ensemble coordonné.
-                // Je dois trouver une conjCoord qui arrive sur le père de lienChoisi.
-                int itp = iTokPere(lienChoisi);
-                for (int j = 0; j < indAvant + 1; j++)
-                    if ((iTokFils(ailleurs[j]) == itp) && (ailleurs[j] < 2 * irMult))
+                // C'est une règle de coordination que j'ai placée en tête de syntaxe.la.
+                QList<qint64> liensPossibles;
+                if (lienChoisi < irMult)
+                {
+                    // C'est une coord, c'est à dire la 2e partie de l'ensemble coordonné.
+                    // Je dois trouver une conjCoord qui arrive sur le père de lienChoisi.
+                    int itp = iTokPere(lienChoisi);
+                    for (int j = 0; j < indAvant + 1; j++)
+                        if ((iTokFils(ailleurs[j]) == itp) && (ailleurs[j] < 2 * irMult))
+                        {
+                            // Je dois tester l'accord entre les deux coordonnés.
+                            qint64 lienCh2 = ailleurs[j];
+                            // C'est à dire entre le fils de lienChoisi et le père de lienCh2.
+                            if (compat.contains(lienCh2) && accCoord(lienCh2,lienChoisi))
+                                liensPossibles.append(lienCh2);
+                        }
+//                    qDebug() << "Coordonné" << iTokFils(lienChoisi) << "CC" << iTokPere(lienChoisi) << liensPossibles.size();
+                }
+                else
+                {
+                    //                qDebug() << "J'ai une conjCoord";
+                    // Je dois trouver une coord qui a pour père le fils du lien choisi.
+                    for (int j = indAvant + 1; j < ailleurs.size(); j++)
+                        if ((ailleurs[j] < irMult) && (iTokPere(ailleurs[j]) == iTok))
+                        {
+                            // Je dois tester l'accord entre les deux coordonnés.
+                            qint64 lienCh2 = ailleurs[j];
+                            // C'est à dire entre le père de lienChoisi et le fils de lienCh2.
+                            if (compat.contains(lienCh2) && accCoord(lienChoisi,lienCh2))
+                                liensPossibles.append(lienCh2);
+                        }
+//                    qDebug() << "CC" << iTokFils(lienChoisi) << "Coordonnant" << iTokPere(lienChoisi) << liensPossibles.size();
+                    //                qDebug() << "Avec" << liensPossibles.size() << "liens possibles";
+                }
+                if (!liensPossibles.isEmpty())
+                    for (int j = 0; j < liensPossibles.size(); j++)
                     {
-                        // Je dois tester l'accord entre les deux coordonnés.
-                        quint64 lienCh2 = ailleurs[j];
-                        // C'est à dire entre le fils de lienChoisi et le père de lienCh2.
-                        if (accCoord(lienCh2,lienChoisi))
-                            liensPossibles.append(lienCh2);
+                        qint64 lienCh2 = liensPossibles[j];
+                        QList<int> nvxxI = nvxInd;
+                        nvxxI.removeOne(iTokFils(lienCh2));
+                        QList<qint64> compat2 = liensComp(compat, nvlPouss, lienCh2, true);
+                        // Quand j'ajoute le 2e lien d'un groupe coordonné,
+                        // je dois aussi éliminer les liens qui ont le même fils.
+                        nvlPouss.append(lienCh2);
+                        faireCroitre(compat2,nvlPouss,nvxxI,nbRel);
+                        // Tentative de construction en ayant ajouté deux liens
+                        // de part et d'autre de la conjonction de coordination.
+                        nvlPouss.removeLast();
+                    }
+                // J'essaie tous les liens possibles.
+            }
+            else if (estAntecedent(lienChoisi))
+            {
+                // Je dois choisir un deuxième lien parmi ceux qui suivent
+                // (avant, il n'y a que des antécédents).
+                for (int j = i+1; j < liensIci.size(); j++)
+                    if (!estAntecedent(liensIci[j]))
+                    {
+                        qint64 lienCh2 = liensIci[j];
+                        // Est-il compatible ?
+                        if (iAnFils(lienCh2) == iAnFils(lienChoisi))
+                        {
+                            QList<qint64> compat2 = liensComp(compat, nvlPouss, lienCh2);
+                            nvlPouss.append(lienCh2);
+                            faireCroitre(compat2,nvlPouss,nvxInd,nbRel + 1);
+                            // Tentative de construction en ajoutant deux liens pour le relatif.
+                            nvlPouss.removeLast();
+                        }
                     }
             }
             else
             {
-//                qDebug() << "J'ai une conjCoord";
-                // Je dois trouver une coord qui a pour père le fils du lien choisi.
-                for (int j = indAvant + 1; j < ailleurs.size(); j++)
-                    if ((ailleurs[j] < irMult) && (iTokPere(ailleurs[j]) == iTok))
-                    {
-                        // Je dois tester l'accord entre les deux coordonnés.
-                        quint64 lienCh2 = ailleurs[j];
-                        // C'est à dire entre le père de lienChoisi et le fils de lienCh2.
-                        if (accCoord(lienChoisi,lienCh2))
-                            liensPossibles.append(lienCh2);
-                    }
-//                qDebug() << "Avec" << liensPossibles.size() << "liens possibles";
+                faireCroitre(compat,nvlPouss,nvxInd,nbRel);
+                // Tentative normale de construction.
             }
-            if (!liensPossibles.isEmpty())
-            for (int j = 0; j < liensPossibles.size(); j++)
-            {
-                quint64 lienCh2 = liensPossibles[j];
-                QList<int> nvxxI = nvxInd;
-                nvxxI.removeOne(iTokFils(lienCh2));
-                QList<quint64> compat2 = liensComp(compat, nvlPouss, lienCh2);
-                nvlPouss.append(lienCh2);
-                faireCroitre(compat2,nvlPouss,nvxxI,nbRel);
-                // Tentative de construction en ayant ajouté deux liens
-                // de part et d'autre de la conjonction de coordination.
-                nvlPouss.removeLast();
-            }
-            // J'essaie tous les liens possibles.
-        }
-        else if (estAntecedent(lienChoisi))
-        {
-            // Je dois choisir un deuxième lien parmi ceux qui suivent
-            // (avant, il n'y a que des antécédents).
-            for (int j = i+1; j < liensIci.size(); j++)
-                if (!estAntecedent(liensIci[j]))
-                {
-                    quint64 lienCh2 = liensIci[j];
-                    // Est-il compatible ?
-                    if (iAnFils(lienCh2) == iAnFils(lienChoisi))
-                    {
-                        QList<quint64> compat2 = liensComp(compat, nvlPouss, lienCh2);
-                        nvlPouss.append(lienCh2);
-                        faireCroitre(compat2,nvlPouss,nvxInd,nbRel + 1);
-                        // Tentative de construction en ajoutant deux liens pour le relatif.
-                        nvlPouss.removeLast();
-                    }
-                }
+            nvlPouss.removeLast();
         }
         else
         {
-            faireCroitre(compat,nvlPouss,nvxInd,nbRel);
-            // Tentative normale de construction.
+            qDebug() << "J'ai essayé" << lienChoisi << "qui créait une boucle dans" << pousse;
         }
-        nvlPouss.removeLast();
     } // Fin des possibilités des liens qui arrivent sur le mot choisi.
     // Il me reste la possibilité de laisser ce mot orphelin.
-//    qDebug() << iTok << "orphelin !";
+    //    qDebug() << iTok << "orphelin !";
     faireCroitre(ailleurs,pousse,indices,nbRel);
     // Tentative de construction en laissant le mot choisi orphelin.
 }
@@ -1160,7 +1198,7 @@ bool Tagueur::liensEncl(int it, int ir)
 
 void Tagueur::trierLiens()
 {
-    QMultiMap<int,quint64> ord;
+    QMultiMap<int,qint64> ord;
     for (int i = 0; i < _liensLocaux.size(); i++)
     {
 //        qDebug() << eval(_liensLocaux[i]) << _liensLocaux[i];
@@ -1169,7 +1207,7 @@ void Tagueur::trierLiens()
     _liensLocaux = ord.values();
 }
 
-int Tagueur::eval(quint64 lien)
+int Tagueur::eval(qint64 lien)
 {
     int itf = iTokFils(lien);
     int itp = iTokPere(lien);
@@ -1180,6 +1218,7 @@ int Tagueur::eval(quint64 lien)
     if (_tokens[itp]->maxEC() == iAnPere(lien)) longueur -= 1;
     if (_tokens[itf]->maxHC() == iAnFils(lien)) longueur -= 1;
     if (_tokens[itp]->maxHC() == iAnPere(lien)) longueur -= 1;
+    if (iRegle(lien) < 2) longueur -= 1;
     // Si l'indice de l'analyse choisie est le meilleur (selon les 3 critères possibles),
     // je raccourcis la longueur d'une unité. Le bonus peut atteindre 6.
     if (estAntecedent(lien)) longueur -= 100;
@@ -1187,21 +1226,22 @@ int Tagueur::eval(quint64 lien)
     return longueur;
 }
 
-bool Tagueur::estAntecedent(quint64 lien)
+bool Tagueur::estAntecedent(qint64 lien)
 {
     return (_regles[iRegle(lien)]->id().startsWith("ant"));
 }
 
-QList<quint64> Tagueur::liensComp(QList<quint64> ailleurs, Arbre nvlPouss, quint64 lienChoisi)
+QList<qint64> Tagueur::liensComp(QList<qint64> ailleurs, Arbre nvlPouss, qint64 lienChoisi, bool coord)
 {
     // Le but est de sélectionner les liens de la liste ailleurs
     // qui sont compatibles avec l'arbre et le nouveau lien choisi.
-    QList<quint64> liste;
+    QList<qint64> liste;
     int itp = iTokPere(lienChoisi);
     int itf = iTokFils(lienChoisi);
     int ir = iRegle(lienChoisi);
     int iap = iAnPere(lienChoisi);
     int iaf = iAnFils(lienChoisi);
+    bool pasContigus = abs(itp - itf) > 1;
     nvlPouss.append(lienChoisi);
     bool unic = _regles[ir]->synt().contains("u");
     QString idF = _regles[ir]->idFam();
@@ -1211,20 +1251,34 @@ QList<quint64> Tagueur::liensComp(QList<quint64> ailleurs, Arbre nvlPouss, quint
     // Si j'ai bien travaillé, le lien que je choisis ne peut pas fermer une boucle.
     for (int i = 0; i < ailleurs.size(); i++)
     {
-        quint64 lien = ailleurs[i];
-        bool OK = !unic || itp != iTokPere(lien) || idF != _regles[iRegle(lien)]->idFam();
+        qint64 lien = ailleurs[i];
+        int itp1 = iTokPere(lien);
+        int itf1 = iTokFils(lien);
+        bool OK = !unic || itp != itp1 || idF != _regles[iRegle(lien)]->idFam();
         // C'est la négation de (unic && itp==iTokPere(lien) && ir==iRegle(lien)).
         // Je tiens compte de l'héritage en comparant les idFam.
-        if (OK) OK = (itf != iTokPere(lien)) || (iaf == iAnPere(lien));
+        if (OK) OK = (itf != itp1) || (iaf == iAnPere(lien));
         // Si les mots sont différents tout va bien.
         // Si les mots sont les mêmes, l'analyse doit être la même.
-        if (OK) OK = (itp != iTokPere(lien)) || (iap == iAnPere(lien));
-        if (OK) OK = (itp != iTokFils(lien)) || (iap == iAnFils(lien));
-        if (OK) OK = (itf != iTokFils(lien));
+        if (OK) OK = (itp != itp1) || (iap == iAnPere(lien));
+        if (OK) OK = (itp != itf1) || (iap == iAnFils(lien));
+        if (OK && coord) OK = (itf != itf1);
         // Quand j'ajoute le 2e lien d'un groupe coordonné,
         // je dois aussi éliminer les liens qui ont le même fils.
         // Je vérifie ici que je ne créerais pas de boucle.
         if (OK) OK = pasBoucle(nvlPouss,lien);
+        if (OK && pasContigus) // Projectivité
+        {
+            // Il y a de la place entre les père et fils du lien choisi
+            // Il ne faut pas que le lien en test ait une extrémité
+            // dans l'intervalle et pas l'autre.
+            OK = ((itp1 - itp) * (itp1 - itf) * (itf1 - itp) * (itf1 - itf)) >= 0;
+            // Le produit (itp1 - itp) * (itp1 - itf) est négatif si itp1 est entre itp et itf
+            // ou nul s'il y a une égalité.
+            // De même pour le même produit où itf1 remplace itp1.
+            // Le produit de ces produits est négatif si l'une des extrémités est
+            // dans l'intervalle et l'autre pas.
+        }
         if (OK) liste.append(lien);
         // Si une des quantités calculées est fausse,
         // je n'en calcule pas d'autre et j'ignore le lien.
@@ -1232,7 +1286,7 @@ QList<quint64> Tagueur::liensComp(QList<quint64> ailleurs, Arbre nvlPouss, quint
     return liste;
 }
 
-bool Tagueur::pasBoucle(Arbre a, quint64 l1)
+bool Tagueur::pasBoucle(Arbre a, qint64 l1)
 {
     // Je dois vérifier que l'ajout du lien l1 ne crée pas une boucle.
     // Pour ça, j'établis la liste des ancêtres du père de l1
@@ -1250,7 +1304,7 @@ QList<int> Tagueur::ancetres(int itf, Arbre a)
 }
 
 bool
- Tagueur::accCoord(quint64 lienCC, quint64 lienC)
+ Tagueur::accCoord(qint64 lienCC, qint64 lienC)
 {
     // lienC est le lien avec la règle coord.
     // lienCC est le lien avec la règle conjCoord.
@@ -1296,7 +1350,7 @@ QString Tagueur::sauvArbre(int i, bool ordre)
     QMap<int,int> am;
     for (int j = 0; j < arbre.size(); j++)
     {
-        quint64 lien = arbre.at(j);
+        qint64 lien = arbre.at(j);
         am[iTokPere(lien)] = iAnPere(lien);
         am[iTokFils(lien)] = iAnFils(lien);
     }
@@ -1362,7 +1416,7 @@ QString Tagueur::sauvArbre(int i, bool ordre)
     QString lg = "N%1->N%2 [label=\"%3\",URL=\"#L%4\"];";
     for (int j = 0; j < arbre.size(); j++)
     {
-        quint64 l = arbre[j];
+        qint64 l = arbre[j];
         arbr << lg.arg(_tokens[iTokPere(l)]->rang()).
                 arg(_tokens[iTokFils(l)]->rang()).
                 arg(_regles[iRegle(l)]->id()).arg(j);

@@ -795,6 +795,7 @@ void MainWindow::createActions()
     affToutAct = new QAction(tr("tout afficher"),this);
     affToutAct->setCheckable(true);
     affToutAct->setChecked(true);
+    syntaxeAct = new QAction(QIcon(":res/syntaxe.svg"), tr("Syntaxe"), this);
 
     // Restauration des docks
     dockRestoreAct = new QAction(tr("Restaurer les docks"),this);
@@ -941,6 +942,7 @@ void MainWindow::createConnections()
     connect(statAct, SIGNAL(triggered()), this, SLOT(stat()));
     connect(actionVerba_cognita, SIGNAL(toggled(bool)), this, SLOT(verbaCognita(bool)));
     connect(verba_cognita_out, SIGNAL(triggered()), this, SLOT(verbaOut()));
+    connect(syntaxeAct, SIGNAL(triggered()), this, SLOT(AnalyseSyntaxe()));
 }
 
 /**
@@ -1277,9 +1279,13 @@ void MainWindow::createDockWindows()
     tbMajPertTag->setDefaultAction(majPertAct);
     QToolButton *tbAffTout = new QToolButton(this);
     tbAffTout->setDefaultAction(affToutAct);
+    QToolButton *tbSyntaxe = new QToolButton(this);
+    tbSyntaxe->setDefaultAction(syntaxeAct);
 //    QToolButton *tbHTML = new QToolButton(this);
 //    tbHTML->setDefaultAction(htmlAct);
     hLayoutTag->addWidget(lasla);
+    hLayoutTag->addStretch();
+    hLayoutTag->addWidget(tbSyntaxe);
     hLayoutTag->addStretch();
     hLayoutTag->addWidget(tbMajPertTag);
     hLayoutTag->addWidget(tbAffTout);
@@ -2582,4 +2588,9 @@ void MainWindow::verbaOut()
         repVerba = QFileInfo (fichier).absolutePath ();
         _lemmatiseur->verbaOut(fichier);
     }
+}
+
+void MainWindow::AnalyseSyntaxe()
+{
+    tagueur->analyse();
 }

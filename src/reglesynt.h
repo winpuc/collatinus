@@ -46,6 +46,7 @@ public:
     QString      doc();
     bool         estSub(Lemme *l, QString morpho, bool ante);
     bool         estSuper(Lemme *l, QString morpho, bool ante);
+    bool        extra();
 //    bool         estUn(RegleS *r);
 //    QString      idSub();
     QString      f();
@@ -85,12 +86,14 @@ private:
                                      << "trSub"   // 15
                                      << "trSup"   // 16
                                      << "rangTr"  // 17
-                                     << "debloc"; // 18
+                                     << "debloc"//; // 18
+                                     << "extra";  // 19
 
     QString     _accord;
     QStringList _annule;
     QString     _debloc;
     QString     _doc;
+    bool        _extra;
     QString     _f;
     QString     _id;
     QString     _idPere;

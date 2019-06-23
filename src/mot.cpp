@@ -325,7 +325,8 @@ QString Mot::choisir(QString t, int np, bool tout)
                 {
                     QString t = lt.mid(0,3);
                     lt = lt.mid(4);
-                    lg.append(format.arg(t).arg(_bestOf[t]));
+                    lg.append(format.arg(t).arg(_bestOf[t]/total).arg(1.0*_probas[t]/1024.0));
+//                    lg.append(format.arg(t).arg(_bestOf[t]));
                 }
                 lg.chop(3);
                 lg.append(")</li>\n");

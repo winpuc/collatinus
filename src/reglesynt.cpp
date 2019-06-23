@@ -106,6 +106,7 @@ QStringList ElS::pos()
 RegleSynt::RegleSynt(QStringList lignes, LemCore *parent) : QObject(parent)
 {
     _lemCore = parent;
+    _extra = false; // A priori, une règle ne permet pas l'extraposition.
     foreach (QString lin, lignes)
     {
         QStringList ecl = lin.split(':');
@@ -153,6 +154,8 @@ RegleSynt::RegleSynt(QStringList lignes, LemCore *parent) : QObject(parent)
                 _rangTr = ecl.at(1).toInt(); break;
             case 18:
                 _debloc = ecl.at(1); break;
+        case 19:
+            _extra = true; break;
             default:
                 break;
         }
@@ -361,4 +364,9 @@ bool RegleSynt::acceptePere(SLem sl, QString morpho)
     // autres cas
     if (!_super->okMorpho(morpho)) return false;
     return true;
+}
+
+bool RegleSynt::extra()
+{
+    return _extra;
 }

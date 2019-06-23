@@ -182,6 +182,7 @@ class MainWindow : public QMainWindow
     void dockRestore ();
     void verbaCognita(bool vb=false);
     void verbaOut();
+    void AnalyseSyntaxe();
 
    public slots:
     void afficheLemsDic(QStringList ll, int no = 0);
@@ -241,6 +242,7 @@ class MainWindow : public QMainWindow
 
     // bascules du tagger
     QAction *affToutAct;
+    QAction *syntaxeAct;
 
     // Pour le serveur
     QTcpServer * serveur;
