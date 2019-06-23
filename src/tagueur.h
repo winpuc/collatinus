@@ -27,9 +27,18 @@
 #include "reglesynt.h"
 #include "ch.h"
 
-typedef QList<qint64> Arbre;
+typedef struct
+{
+    int iReg;
+    int iTokF;
+    int iTokP;
+    int iAnF;
+    int iAnP;
+} Lien;
+
+typedef QList<Lien> Arbre;
 // Un lien étant repéré par un entier 64 bits,
-// un arbre est une liste de liens, donc de qint64.
+// un arbre est une liste de liens, donc de Lien.
 // Jusqu'à présent, j'utilisais des quint64 (non signés)
 // mais je voudrais avoir des liens négatifs,
 // pour repérer facilement ceux qui ne respectent pas la projectivité.
@@ -44,6 +53,7 @@ public:
     int nbArbres();
     QString sauvArbre(int i, bool ordre = true);
     QString tagTexte(QString t, int p, bool affTout = true, bool majPert = true, bool affHTML = true);
+    bool contenu(QList<Lien> ll, Lien l);
 
 private:
     LemCore * _lemCore;
@@ -56,8 +66,8 @@ private:
     QMap<QString,int> _idRegle; // Pour les retrouver avec l'id.
     void lireRegles();
     void effacer();
-    QList<qint64> _liensLocaux; // L'ensemble des liens aboutissant sur un mot
-    QList<qint64> _listLiens; // L'ensemble des liens possibles
+    QList<Lien> _liensLocaux; // L'ensemble des liens aboutissant sur un mot
+    QList<Lien> _listLiens; // L'ensemble des liens possibles
     QList<Arbre> _foret; // L'ensemble des arbres trouvés.
     QList<Arbre> _foret2; // L'ensemble des arbres avec plus d'un orphelin.
     void defMask();
@@ -74,23 +84,25 @@ private:
     void trouvePere(int ir, int itf, int iaf, int itp);
     bool liensEncl(int it, int ir);  // Pour choisir les liens pour l'enclitique.
     void trierLiens(); // Pour ajouter les liens locaux en les rangeant.
-    int eval(qint64 lien); // Pour évaluer un lien.
+    int eval(Lien lien); // Pour évaluer un lien.
     int _maxOrph;
-    bool estAntecedent(qint64 lien);
+    bool estAntecedent(Lien lien);
     QTime _temps;
-    qint64 genLien(int iRegle, int iTokPere, int iAnPere, int iTokFils, int iAnFils);
+    /*
+    Lien genLien(int iRegle, int iTokPere, int iAnPere, int iTokFils, int iAnFils);
     // Pour combiner dans un entier 64bits, les cinq indices qui definissent un lien.
     int iRegle(qint64 lien);
     int iTokPere(qint64 lien);
     int iAnPere(qint64 lien);
     int iTokFils(qint64 lien);
     int iAnFils(qint64 lien);
+    */
     bool accordOK(QString ma, QString mb, QString cgn);
-    void faireCroitre(QList<qint64> lLiens, Arbre pousse, QList<int> indices, int nbRel);
-    QList<qint64> liensComp(QList<qint64> ailleurs, Arbre nvlPouss, qint64 lienChoisi, bool coord = false);
-    bool pasBoucle(Arbre a, qint64 l1);
+    void faireCroitre(QList<Lien> lLiens, Arbre pousse, QList<int> indices, int nbRel);
+    QList<Lien> liensComp(QList<Lien> ailleurs, Arbre nvlPouss, Lien lienChoisi, bool coord = false);
+    bool pasBoucle(Arbre a, Lien l1);
     QList<int> ancetres(int itf, Arbre a);
-    bool accCoord(qint64 lienCC, qint64 lienC);
+    bool accCoord(Lien lienCC, Lien lienC);
 
 };
 
