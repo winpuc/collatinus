@@ -52,6 +52,8 @@ public:
     void analyse();
     int nbArbres();
     QString sauvArbre(int i, bool ordre = true);
+    QString decritMot(int n);
+    QString decritLien(int n);
     QString tagTexte(QString t, int p, bool affTout = true, bool majPert = true, bool affHTML = true);
     bool contenu(QList<Lien> ll, Lien l);
 
@@ -85,6 +87,7 @@ private:
     bool liensEncl(int it, int ir);  // Pour choisir les liens pour l'enclitique.
     void trierLiens(); // Pour ajouter les liens locaux en les rangeant.
     int eval(Lien lien); // Pour évaluer un lien.
+    int bonus(Lien lien);
     int _maxOrph;
     bool estAntecedent(Lien lien);
     QTime _temps;
@@ -103,6 +106,8 @@ private:
     bool pasBoucle(Arbre a, Lien l1);
     QList<int> ancetres(int itf, Arbre a);
     bool accCoord(Lien lienCC, Lien lienC);
+    QMap<int,int> am; // Pour garder la trace des analyses choisies pour chaque token.
+    int arbreCourant;
 
 };
 

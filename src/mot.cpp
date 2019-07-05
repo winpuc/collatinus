@@ -135,40 +135,28 @@ Mot::Mot(QString forme, int rang, bool debVers, QObject *parent)
                 foreach (SLem m, _mapLem.value(l))
                 {
                     QString lt = _lemCore->tag(l, m.morpho); // Maintenant, c'est une liste de tags.
-                    // Pour les analyses, je garde la liste de tags.
-                    long fr = nb * _lemCore->fraction(lt);
-                    _lemmes.append(lem);
-                    _tags.append(lt);
-                    _nbOcc.append(fr);
-                    _sLems.append(m);
-//                    qDebug() << forme << lem << nb << lt << fr;
-                    /*                if (m.sufq.isEmpty())
-                {
-                    if (m.morpho == 416) _morphos.append(m.grq);
-                    else _morphos.append(m.grq + " " + _lemCore->morpho(m.morpho));
-                }
-                else
-                {
-                    if (m.morpho == 416) _morphos.append(m.grq + " + " + m.sufq);
-                    else _morphos.append(m.grq + " + " + m.sufq + " " + _lemCore->morpho(m.morpho));
-                    enclitique = m.sufq;
-                }
-                */
-                    if (m.sufq.isEmpty()) _formes.append(m.grq);
-                    else
-                    {
-                        _formes.append(m.grq + " + " + m.sufq);
-                        _enclitique = m.sufq;
-                    }
-                    if (m.morpho == 416) _morphos.append("");
-                    else _morphos.append(_lemCore->morpho(m.morpho));
-
+                    // Je la découpe en tags.
+                    // long fr = nb * _lemCore->fraction(lt);
                     while (lt.size() > 2)
                     {
                         QString t = lt.mid(0,3);
                         lt = lt.mid(4);
-                        fr = nb * _lemCore->fraction(t);
+                        long fr = nb * _lemCore->fraction(t);
                         _probas[t] += fr;
+                        // Commence la liste des 6 listes synchrones
+                        _lemmes.append(lem);
+                        _tags.append(t);
+                        _nbOcc.append(fr); // _nbOcc tient compte de la fraction liée au tag
+                        _sLems.append(m);
+                        if (m.sufq.isEmpty()) _formes.append(m.grq);
+                        else
+                        {
+                            _formes.append(m.grq + " + " + m.sufq);
+                            _enclitique = m.sufq;
+                        }
+                        if (m.morpho == 416) _morphos.append("");
+                        else _morphos.append(_lemCore->morpho(m.morpho));
+
                     }
                 }
             }
@@ -264,8 +252,8 @@ QString Mot::choisir(QString t, int np, bool tout)
 //    qDebug() << _forme << t << np << tout << _tags.isEmpty() << _tags.size();
     QString choix = "";
     int valeur = -1;
-    long v1 = -1;
-    double v2 = -1;
+    int v1 = -1;
+    int v2 = -1;
     for (int i=0; i < _tags.size(); i++)
     {
         if ((_tags[i].contains(t)) && (valeur < _nbOcc[i]))
@@ -275,20 +263,21 @@ QString Mot::choisir(QString t, int np, bool tout)
             valeur = _nbOcc[i];
             _choix = i;
         }
-        if (v1 < (_nbOcc[i] * _probas[_tags[i]]))
+        if (v1 < _nbOcc[i])
         {
-            v1 = (_nbOcc[i] * _probas[_tags[i]]);
+            v1 = _nbOcc[i];
             _maxHC = i;
         }
-        if (v2 < (_nbOcc[i] * _bestOf[_tags[i]]))
+        if (v2 < (_sLems[i].lem->nbOcc() * _bestOf[_tags[i]]))
         {
-            v2 = (_nbOcc[i] * _bestOf[_tags[i]]);
+            v2 = (_sLems[i].lem->nbOcc() * _bestOf[_tags[i]]);
             _maxEC = i;
         }
         // Je profite de l'occasion pour déterminer les 3 meilleurs indices.
     }
     if (!choix.isEmpty())
     {
+        qDebug() << choix << _maxEC << _maxHC << _lemmes[_maxHC];
         choix.prepend("<br/>\n—&gt;&nbsp;<span style='color:black'>");
         choix.append("</span>\n");
     }

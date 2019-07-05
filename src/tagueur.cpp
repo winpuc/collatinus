@@ -982,15 +982,24 @@ void Tagueur::analyse()
     // Dans un futur proche, je dois pouvoir commencer avec des liens validés.
     _maxOrph = 2;
     int t = _temps.restart();
-    faireCroitre(_listLiens,arbre,li,0);
+    QList<Lien> liensPlus;
+    for (int i=0 ; i < _listLiens.size() ; i++)
+        if (bonus(_listLiens[i]) > 3)
+            liensPlus.append(_listLiens[i]);
+    qDebug() << "Dont" << liensPlus.size() << "prioritaires";
+    faireCroitre(liensPlus,arbre,li,0);
+//    faireCroitre(_listLiens,arbre,li,0);
     qDebug() << "Nombre d'arbres trouvés :" << _foret.size() << "et"
              << _foret2.size() << "en" << _temps.elapsed() << "ms";
     // Les arbres de la forêt sont dans l'ordre où ils ont été trouvés.
     // Il faudrait les ranger selon des critères esthétiques.
     if (_foret.isEmpty()) _foret.append(_foret2);
-    qDebug() << sauvArbre(0, false);
-    qDebug() << _foret.size() - 1;
-    qDebug() << sauvArbre(_foret.size() - 1, false);
+    if (!_foret.isEmpty())
+    {
+        qDebug() << sauvArbre(0, false);
+        qDebug() << _foret.size() - 1;
+        qDebug() << sauvArbre(_foret.size() - 1, false);
+    }
 }
 
 void Tagueur::faireCroitre(QList<Lien> lLiens, Arbre pousse, QList<int> indices, int nbRel)
@@ -1014,7 +1023,12 @@ void Tagueur::faireCroitre(QList<Lien> lLiens, Arbre pousse, QList<int> indices,
                //  && !_foret2.contains(nvlPouss))
         {
             if (indices.size() - nbRel == 1)
+            {
                 _foret.append(nvlPouss);
+                _maxOrph = 1;
+                // Si j'ai trouvé un arbre avec un seul orphelin,
+                // plus la peine d'en garder qui en ont deux.
+            }
             else _foret2.append(nvlPouss);
 //            qDebug() << "Je remonte avec un arbre, mais avec" << indices.size() << "orphelins";
             return;
@@ -1225,7 +1239,24 @@ int Tagueur::eval(Lien lien)
     // je raccourcis la longueur d'une unité. Le bonus peut atteindre 6.
     if (estAntecedent(lien)) longueur -= 100;
     // Pour les relatifs, je veux que les antécédents soient traités en premier.
+//    if (itf == 14)
+  //      qDebug() << itf << itp << _mots[itf]->lemme(lien.iAnF) << longueur;
     return longueur;
+}
+
+int Tagueur::bonus(Lien lien)
+{
+    int itf = lien.iTokF;
+    int itp = lien.iTokP;
+    int b = 0;
+    if (_tokens[itf]->choix() == lien.iAnF) b += 1;
+    if (_tokens[itp]->choix() == lien.iAnP) b += 1;
+    if (_tokens[itf]->maxEC() == lien.iAnF) b += 1;
+    if (_tokens[itp]->maxEC() == lien.iAnP) b += 1;
+    if (_tokens[itf]->maxHC() == lien.iAnF) b += 1;
+    if (_tokens[itp]->maxHC() == lien.iAnP) b += 1;
+    if (lien.iReg < 2) b += 1;
+    return b;
 }
 
 bool Tagueur::estAntecedent(Lien lien)
@@ -1344,12 +1375,34 @@ int Tagueur::nbArbres()
     return _foret.size();
 }
 
+QString Tagueur::decritLien(int n)
+{
+    Arbre arbre = _foret[arbreCourant];
+    Lien lien = arbre.at(n);
+    QString res = "Règle : " + _regles[lien.iReg]->id();
+    res.append("\n Père : " + _tokens[lien.iTokP]->formeq(lien.iAnP));
+    res.append("\n Morpho père : " + _tokens[lien.iTokP]->morpho(lien.iAnP));
+    res.append("\n Fils : " + _tokens[lien.iTokF]->formeq(lien.iAnF));
+    res.append("\n Morpho fils : " + _tokens[lien.iTokF]->morpho(lien.iAnF));
+    return res;
+}
+
+QString Tagueur::decritMot(int n)
+{
+    QString res = "Forme : " + _mots[n]->forme();
+    res.append("\nLemme : " + _mots[n]->sLem(am[n]).lem->grq());
+    res.append("\nMorpho : " + _mots[n]->morpho(am[n]));
+    return res;
+}
+
 QString Tagueur::sauvArbre(int i, bool ordre)
 {
     if (i >= _foret.size()) return "";
     Arbre arbre = _foret[i];
     if (arbre.isEmpty()) return "";
-    QMap<int,int> am;
+//    QMap<int,int> am;
+    am.clear(); // Je change d'arbre
+    arbreCourant = i;
     for (int j = 0; j < arbre.size(); j++)
     {
         Lien lien = arbre.at(j);
@@ -1380,7 +1433,7 @@ QString Tagueur::sauvArbre(int i, bool ordre)
     if (ordre) message.append("rankdir=LR;\n");
     arbr << message;
     /* pour Graphviz, définition de tous les noeuds */
-    QString label = "N%1 [label=\"%2\",URL=\"#N%1\n%3\n%4\"];";
+    QString label = "N%1 [label=\"%2\",URL=\"#N%1\"];";
     QString lem;
     QString pt;
     for (int j = 0; j < _tokens.size(); j++)
@@ -1397,8 +1450,7 @@ QString Tagueur::sauvArbre(int i, bool ordre)
                 pt = "?";
             }
             // J'évite les tokens virtuels qui sont issus d'enclitique.
-            arbr << label.arg(_tokens[j]->rang()).arg(_tokens[j]->forme())
-                    .arg(lem).arg(pt);
+            arbr << label.arg(_tokens[j]->rang()).arg(_tokens[j]->forme());
         }
     // Les noeuds sont définis
 

@@ -173,6 +173,7 @@ MainWindow::MainWindow()
     createDicos();
     createDicos(false);
     createCibles();
+    createSilvicole();
 
     setWindowTitle(tr("Collatinus 11"));
     setWindowIcon(QIcon(":/res/collatinus.svg"));
@@ -655,6 +656,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     settings.setValue("secondDic",visibleWAct->isChecked());
     settings.endGroup();
     delete wDic;
+    delete silvicole;
     QMainWindow::closeEvent(event);
 }
 
@@ -853,6 +855,7 @@ void MainWindow::createConnections()
     connect(zoomAct, SIGNAL(triggered()), textBrowserFlex, SLOT(zoomIn()));
     connect(zoomAct, SIGNAL(triggered()), textEditLem, SLOT(zoomIn()));
     connect(zoomAct, SIGNAL(triggered()), textEditScand, SLOT(zoomIn()));
+    connect(zoomAct, SIGNAL(triggered()), textBrowserTag, SLOT(zoomIn()));
 
     connect(deZoomAct, SIGNAL(triggered()), editLatin, SLOT(zoomOut()));
     connect(deZoomAct, SIGNAL(triggered()), textBrowserDic, SLOT(zoomOut()));
@@ -860,6 +863,7 @@ void MainWindow::createConnections()
     connect(deZoomAct, SIGNAL(triggered()), textBrowserFlex, SLOT(zoomOut()));
     connect(deZoomAct, SIGNAL(triggered()), textEditLem, SLOT(zoomOut()));
     connect(deZoomAct, SIGNAL(triggered()), textEditScand, SLOT(zoomOut()));
+    connect(deZoomAct, SIGNAL(triggered()), textBrowserTag, SLOT(zoomOut()));
 
     // connexions des lignes de saisie
     connect(lineEditLem, SIGNAL(returnPressed()), this, SLOT(lemmatiseLigne()));
@@ -1871,6 +1875,7 @@ void MainWindow::readSettings()
     textBrowserW->setFont(font);
     textEditScand->setFont(font);
     textBrowserFlex->setFont(font);
+    textBrowserTag->setFont(font);
     // options de lemmatisation
     alphaOptAct->setChecked(settings.value("alpha").toBool());
     formeTAct->setChecked(settings.value("formetxt").toBool());
@@ -2590,7 +2595,284 @@ void MainWindow::verbaOut()
     }
 }
 
+void MainWindow::createSilvicole()
+{
+    silvicole = new QWidget();
+    silvicole->setObjectName("Silvicole");
+    QVBoxLayout *vLayout = new QVBoxLayout(silvicole);
+    QHBoxLayout *hLayout = new QHBoxLayout();
+    ligneArbre = new QLineEdit(silvicole);
+    ligneArbre->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Fixed);
+    ligneArbre->setMinimumWidth(40);
+    // Analyse
+    QToolButton *tbSyntaxe = new QToolButton(this);
+    tbSyntaxe->setDefaultAction(syntaxeAct);
+    bPrec = new QPushButton(tr("Prec."));
+    bSuiv = new QPushButton(tr("Suiv."));
+    QObject::connect(bPrec,        SIGNAL(clicked()),            this, SLOT(arbrePrec()));
+    QObject::connect(bSuiv,        SIGNAL(clicked()),            this, SLOT(arbreSuiv()));
+//    QObject::connect(ui->bOuvreFen,    SIGNAL(clicked()),            this, SLOT(ouvrFen()));
+    QObject::connect(ligneArbre,   SIGNAL(returnPressed()), this, SLOT(affArbre2()));
+
+    hLayout->addWidget(tbSyntaxe);
+    hLayout->addStretch();
+    hLayout->addWidget(bPrec);
+    hLayout->addWidget(ligneArbre);
+    hLayout->addWidget(bSuiv);
+    editTree = new EditTree(this);
+//    editTree->setOpenExternalLinks(true);
+    vLayout->addLayout(hLayout);
+    vLayout->addWidget(editTree);
+}
+
 void MainWindow::AnalyseSyntaxe()
 {
     tagueur->analyse();
+    arbreCourant = 0;
+    if (tagueur->nbArbres() > 0) affArbre(0);
+    silvicole->show();
+}
+
+ElementP *MainWindow::polygone(int i)
+{
+    return polygones[i];
+}
+
+ElementR *MainWindow::rectangle(int i)
+{
+    return rectangles[i];
+}
+
+int MainWindow::rectCnt()
+{
+    return rectangles.size();
+}
+
+int MainWindow::polyCnt()
+{
+    return polygones.size();
+}
+
+qreal MainWindow::wArbre()
+{
+    return widthArbre;
+}
+
+qreal MainWindow::hArbre()
+{
+    return heightArbre;
+}
+
+void MainWindow::affArbre2()
+{
+    int nn = ligneArbre->text().section("/",0,0).toInt();
+    if (nn >= tagueur->nbArbres())
+    {
+        nn = tagueur->nbArbres() - 1;
+    }
+    if (nn < 0)
+    {
+        nn = 0;
+    }
+    affArbre(nn);
+}
+
+void MainWindow::affArbre(int nn)
+{
+    arbreCourant = nn;
+    QString numero = "%1/%2";
+    ligneArbre->setText(numero.arg(nn).arg(tagueur->nbArbres()));
+    QFile fgv ("arbre.gv");
+    fgv.open (QFile::WriteOnly|QIODevice::Text);
+    QTextStream fl (&fgv);
+    fl << tagueur->sauvArbre(nn,false);
+    fgv.close ();
+#ifdef Q_OS_MAC
+    QString dot = "/usr/local/bin/dot -T%1 -oarbre.%1 arbre.gv";
+#else
+    QString dot = "/usr/bin/dot -T%1 -oarbre.%1 arbre.gv";
+#endif
+    system (qPrintable(dot.arg("svg")));
+    system (qPrintable(dot.arg("imap")));
+    QString nom = "arbre.svg";
+    editTree->load(nom);
+    QFile fp (nom);
+    fp.open (QIODevice::ReadOnly|QIODevice::Text);
+    QTextStream fluxD (&fp);
+    QString linea;
+    while (!fluxD.atEnd () && !linea.contains("width="))
+    {
+        linea = fluxD.readLine ();
+    }
+    fp.close();
+    QStringList eclats = linea.split("\"");
+    QString tmp = eclats[1];
+    tmp.chop(2);
+    widthArbre = tmp.toFloat() * 4. / 3.;
+    tmp = eclats[3];
+    tmp.chop(2);
+    heightArbre = tmp.toFloat() * 4. / 3.;
+    // J'ai récupéré la taille de l'arbre en pt en espérant qu'elle corresponde aux coordonnées
+    // des imap : facteur 4/3 conversion pt -> pixels.
+//    qDebug() << linea << widthArbre << heightArbre;
+
+    rectangles.clear();
+    polygones.clear();
+    QFile file("arbre.imap");
+    file.open (QIODevice::ReadOnly|QIODevice::Text);
+    QTextStream flux (&file);
+    while (!flux.atEnd ())
+    {
+        linea = flux.readLine ();
+        if (linea.startsWith("rect"))
+        {
+            // Un rectangle associé à un lien
+            ElementR *r = new ElementR (linea);
+            rectangles.append(r);
+        }
+        else if (linea.startsWith("poly"))
+        {
+            // Un polygône associé à un lien.
+            ElementP *p = new ElementP (linea);
+            polygones.append(p);
+        }
+    }
+    file.close();
+}
+
+void MainWindow::arbrePrec()
+{
+    if (arbreCourant > 0) arbreCourant -= 1;
+
+    affArbre(arbreCourant);
+}
+
+void MainWindow::arbreSuiv()
+{
+    if (arbreCourant < tagueur->nbArbres()-1) arbreCourant += 1;
+    affArbre(arbreCourant);
+}
+
+QString MainWindow::blablaR(int i)
+{
+        QString num = rectangles[i]->label();
+        i = num.mid(2).toInt();
+        if (num[1] == 'N')
+            return tagueur->decritMot(i);
+        return tagueur->decritLien(i);
+}
+
+QString MainWindow::blablaP(int i)
+{
+    QString num = polygones[i]->label();
+    i = num.mid(2).toInt();
+    return tagueur->decritLien(i);
+}
+
+/****
+ * Classe ElementR
+ ****/
+ElementR::ElementR(QString ligne)
+{
+    QStringList eclats = ligne.split(" ");
+    p_label = eclats[1];
+    QStringList ec = eclats[2].split(",");
+    qreal x = ec[0].toFloat();
+    qreal y = ec[1].toFloat();
+    ec = eclats[3].split(",");
+    qreal w = ec[0].toFloat() - x;
+    qreal h = ec[1].toFloat() - y;
+    p_rectangle = new QRectF(x,y,w,h);
+}
+
+QRectF *ElementR::rectangle()
+{
+    return p_rectangle;
+}
+
+QString ElementR::label()
+{
+    return p_label;
+}
+/****
+ * Classe ElementP
+ ****/
+ElementP::ElementP(QString ligne)
+{
+    QStringList eclats = ligne.split(" ");
+    p_label = eclats[1];
+    QVector<QPointF> points;
+    QStringList ec;
+    for (int i=2;i<eclats.size();++i)
+    {
+        ec = eclats[i].split(",");
+        qreal x = ec[0].toFloat();
+        qreal y = ec[1].toFloat();
+        points.append(QPointF(x,y));
+    }
+    ec = eclats[2].split(",");
+    qreal x = ec[0].toFloat();
+    qreal y = ec[1].toFloat();
+    points.append(QPointF(x,y));
+    // Je ferme le polygone (dernier point = premier)
+    p_polygone = new QPolygonF(points);
+}
+
+QPolygonF *ElementP::polygone()
+{
+    return p_polygone;
+}
+
+QString ElementP::label()
+{
+    return p_label;
+}
+
+/**
+ * Classe EditTree
+ **/
+
+EditTree::EditTree(MainWindow *parent) : QSvgWidget(parent)
+{
+    mainwindow = parent;
+}
+
+bool EditTree::event (QEvent *event)
+{
+    if (event->type () == QEvent::ToolTip)
+    {
+        QHelpEvent *helpEvent = static_cast<QHelpEvent *>(event);
+        QPoint P = mapFromGlobal(helpEvent->globalPos());
+        if (P.x() >= 0 && P.x () < width()
+            && P.y () >= 0 && P.y () < height())
+        {
+            QString bulla;
+//            QString bulla = "coucou %1 %2 %3 %4";
+            qreal Px = P.x() * mainwindow->wArbre() / width();
+            qreal Py = P.y() * mainwindow->hArbre() / height();
+            QPointF PP = QPointF (Px, Py);
+//            bulla = bulla.arg(P.x()).arg(P.y()).arg(Px).arg(Py);
+            for (int i=0;i<mainwindow->rectCnt();++i)
+            {
+                if (mainwindow->rectangle(i)->rectangle()->contains(Px,Py))
+                {
+//                    bulla.append(mainwindow->rectangle(i)->label());
+                    bulla.append(mainwindow->blablaR(i));
+                    //qDebug() << "mot" << mainwindow->rectangle(i)->label();
+                }
+            }
+            for (int i=0;i<mainwindow->polyCnt();++i)
+            {
+                if (mainwindow->polygone(i)->polygone()->containsPoint(PP,Qt::OddEvenFill))
+                {
+                    bulla.append(mainwindow->blablaP(i));
+                //  bulla.append(mainwindow->polygone(i)->label());
+                    //qDebug() << "lien" << mainwindow->polygone(i)->label();
+                }
+            }
+            QRect rect(P.x()-20,P.y()-10,40,40);
+            QToolTip::showText (helpEvent->globalPos(), bulla.trimmed (), this, rect);
+        }
+    }
+    return QWidget::event (event);
 }

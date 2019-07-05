@@ -28,6 +28,7 @@
 #include <QDebug>
 #include <QPrintDialog>
 #include <QPrinter>
+#include <QSvgWidget>
 
 #include "flexion.h"
 #include "lemCore.h"
@@ -48,6 +49,30 @@ QT_END_NAMESPACE
 
 class MainWindow;
 
+class ElementR
+{
+public:
+    ElementR(QString ligne); // Reçoit une ligne du fichier imap commençant par rect
+    QRectF *rectangle();
+    QString label();
+
+private:
+    QRectF *p_rectangle;
+    QString p_label;
+};
+
+class ElementP
+{
+public:
+    ElementP(QString ligne); // Reçoit une ligne du fichier imap commençant par poly
+    QPolygonF *polygone();
+    QString label();
+
+private:
+    QPolygonF *p_polygone;
+    QString p_label;
+};
+
 class EditLatin : public QTextEdit
 {
     Q_OBJECT
@@ -60,6 +85,22 @@ class EditLatin : public QTextEdit
 
    public:
     EditLatin(QWidget *parent);
+    bool event(QEvent *event);
+};
+
+class EditTree : public QSvgWidget
+{
+    Q_OBJECT
+
+   private:
+    MainWindow *mainwindow;
+
+
+   protected:
+//    void mouseReleaseEvent(QMouseEvent *e);
+
+   public:
+    EditTree(MainWindow *parent);
     bool event(QEvent *event);
 };
 
@@ -77,6 +118,21 @@ class MainWindow : public QMainWindow
     QDockWidget *dockTag;
     // et second dictionnaire
     QWidget *wDic;
+    // Un widget pour éditer les arbres.
+    QWidget *silvicole;
+    EditTree *editTree;
+    QPushButton *bPrec;
+    QLineEdit *ligneArbre;
+    QPushButton *bSuiv;
+    ElementR *rectangle(int i);
+    ElementP *polygone(int i);
+    int rectCnt();
+    int polyCnt();
+    qreal wArbre();
+    qreal hArbre();
+    QString blablaR(int i);
+    QString blablaP(int i);
+
     // cœur
     LemCore *_lemCore;
     Flexion *flechisseur;
@@ -184,6 +240,11 @@ class MainWindow : public QMainWindow
     void verbaOut();
     void AnalyseSyntaxe();
 
+    void affArbre2 ();
+    void affArbre (int nn);
+    void arbreSuiv ();
+    void arbrePrec ();
+
    public slots:
     void afficheLemsDic(QStringList ll, int no = 0);
     void afficheLemsDicW(QStringList ll, int no = 0);
@@ -200,6 +261,7 @@ class MainWindow : public QMainWindow
     void createDockWindows();
     void createDicWindow();  // second dictionnaire
     void setLangue();
+    void createSilvicole();
 
     QMenu *fileMenu;
     QMenu *editMenu;
@@ -313,6 +375,13 @@ class MainWindow : public QMainWindow
     QString langueI;
     QTranslator *translator;
     bool alerte();
+    // Pour gérer les arbres
+    qreal widthArbre;
+    qreal heightArbre;
+    QList<ElementR*> rectangles;
+    QList<ElementP*> polygones;
+    int arbreCourant;
+
 };
 
 #endif

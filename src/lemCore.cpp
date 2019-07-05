@@ -146,12 +146,15 @@ void LemCore::lisTags(bool tout)
  * @brief LemCore::tag
  * @param l : le pointeur vers le lemme
  * @param morph : l'analyse morphologique
- * @return : le tag pour Collatinus
+ * @return : la liste de tags pour Collatinus
  *
- * Cette routine calcule le tag correspondant
+ * Cette routine calcule les tags correspondant
  * à l'analyse morphologique donnée, morph,
  * pour le lemme, l.
- * Ce tag est toujours sur trois caractères.
+ * Le tag est toujours sur trois caractères.
+ * Si le lemme a des PoS multiples,
+ * les tags sont séparés par des virgules.
+ * Il y a aussi une virgule à la fin.
  *
  * Ce tag est obtenu avec le POS du lemme,
  * suivi des cas (1-6 ou 7) et nombre (1, 2) pour les formes déclinées.
@@ -185,6 +188,7 @@ QString LemCore::tag(Lemme *l, int m)
             {
                 for (int i=0; i<4; i++) if (morph.contains(modes(i).toLower()))
                 {
+                    // Traitement des verbes conjugués.
                     if (morph.contains(temps(0))) p = p.arg(i+1).arg(1); // présent
                     else  p = p.arg(i+1).arg(" ");
                     lTags.append(p);
