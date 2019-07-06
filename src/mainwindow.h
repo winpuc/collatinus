@@ -119,7 +119,7 @@ class MainWindow : public QMainWindow
     // et second dictionnaire
     QWidget *wDic;
     // Un widget pour éditer les arbres.
-    QWidget *silvicole;
+    QWidget *sylvicole;
     EditTree *editTree;
     QPushButton *bPrec;
     QLineEdit *ligneArbre;
@@ -261,7 +261,7 @@ class MainWindow : public QMainWindow
     void createDockWindows();
     void createDicWindow();  // second dictionnaire
     void setLangue();
-    void createSilvicole();
+    void createSylvicole();
 
     QMenu *fileMenu;
     QMenu *editMenu;

@@ -36,7 +36,7 @@ typedef struct
     int iAnP;
 } Lien;
 
-typedef QList<Lien> Arbre;
+typedef QList<Lien*> Arbre;
 // Un lien étant repéré par un entier 64 bits,
 // un arbre est une liste de liens, donc de Lien.
 // Jusqu'à présent, j'utilisais des quint64 (non signés)
@@ -55,7 +55,7 @@ public:
     QString decritMot(int n);
     QString decritLien(int n);
     QString tagTexte(QString t, int p, bool affTout = true, bool majPert = true, bool affHTML = true);
-    bool contenu(QList<Lien> ll, Lien l);
+    bool contenu(QList<Lien*> ll, Lien *l);
 
 private:
     LemCore * _lemCore;
@@ -68,8 +68,8 @@ private:
     QMap<QString,int> _idRegle; // Pour les retrouver avec l'id.
     void lireRegles();
     void effacer();
-    QList<Lien> _liensLocaux; // L'ensemble des liens aboutissant sur un mot
-    QList<Lien> _listLiens; // L'ensemble des liens possibles
+    QList<Lien*> _liensLocaux; // L'ensemble des liens aboutissant sur un mot
+    QList<Lien*> _listLiens; // L'ensemble des liens possibles
     QList<Arbre> _foret; // L'ensemble des arbres trouvés.
     QList<Arbre> _foret2; // L'ensemble des arbres avec plus d'un orphelin.
     void defMask();
@@ -86,10 +86,10 @@ private:
     void trouvePere(int ir, int itf, int iaf, int itp);
     bool liensEncl(int it, int ir);  // Pour choisir les liens pour l'enclitique.
     void trierLiens(); // Pour ajouter les liens locaux en les rangeant.
-    int eval(Lien lien); // Pour évaluer un lien.
-    int bonus(Lien lien);
+    int eval(Lien *lien); // Pour évaluer un lien.
+    int bonus(Lien *lien);
     int _maxOrph;
-    bool estAntecedent(Lien lien);
+    bool estAntecedent(Lien *lien);
     QTime _temps;
     /*
     Lien genLien(int iRegle, int iTokPere, int iAnPere, int iTokFils, int iAnFils);
@@ -101,11 +101,11 @@ private:
     int iAnFils(qint64 lien);
     */
     bool accordOK(QString ma, QString mb, QString cgn);
-    void faireCroitre(QList<Lien> lLiens, Arbre pousse, QList<int> indices, int nbRel);
-    QList<Lien> liensComp(QList<Lien> ailleurs, Arbre nvlPouss, Lien lienChoisi, bool coord = false);
-    bool pasBoucle(Arbre a, Lien l1);
+    void faireCroitre(QList<Lien *> lLiens, Arbre pousse, QList<int> indices, int nbRel);
+    QList<Lien *> liensComp(QList<Lien *> ailleurs, Arbre nvlPouss, Lien *lienChoisi, bool coord = false);
+    bool pasBoucle(Arbre a, Lien *l1);
     QList<int> ancetres(int itf, Arbre a);
-    bool accCoord(Lien lienCC, Lien lienC);
+    bool accCoord(Lien *lienCC, Lien *lienC);
     QMap<int,int> am; // Pour garder la trace des analyses choisies pour chaque token.
     int arbreCourant;
 

@@ -173,7 +173,7 @@ MainWindow::MainWindow()
     createDicos();
     createDicos(false);
     createCibles();
-    createSilvicole();
+    createSylvicole();
 
     setWindowTitle(tr("Collatinus 11"));
     setWindowIcon(QIcon(":/res/collatinus.svg"));
@@ -656,7 +656,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     settings.setValue("secondDic",visibleWAct->isChecked());
     settings.endGroup();
     delete wDic;
-    delete silvicole;
+    delete sylvicole;
     QMainWindow::closeEvent(event);
 }
 
@@ -2595,13 +2595,13 @@ void MainWindow::verbaOut()
     }
 }
 
-void MainWindow::createSilvicole()
+void MainWindow::createSylvicole()
 {
-    silvicole = new QWidget();
-    silvicole->setObjectName("Silvicole");
-    QVBoxLayout *vLayout = new QVBoxLayout(silvicole);
+    sylvicole = new QWidget();
+    sylvicole->setObjectName("Sylvicole");
+    QVBoxLayout *vLayout = new QVBoxLayout(sylvicole);
     QHBoxLayout *hLayout = new QHBoxLayout();
-    ligneArbre = new QLineEdit(silvicole);
+    ligneArbre = new QLineEdit(sylvicole);
     ligneArbre->setSizePolicy(QSizePolicy::MinimumExpanding,QSizePolicy::Fixed);
     ligneArbre->setMinimumWidth(40);
     // Analyse
@@ -2630,7 +2630,7 @@ void MainWindow::AnalyseSyntaxe()
     tagueur->analyse();
     arbreCourant = 0;
     if (tagueur->nbArbres() > 0) affArbre(0);
-    silvicole->show();
+    sylvicole->show();
 }
 
 ElementP *MainWindow::polygone(int i)
