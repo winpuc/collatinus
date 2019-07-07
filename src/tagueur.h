@@ -22,6 +22,7 @@
 #ifndef TAGUEUR_H
 #define TAGUEUR_H
 
+#include <QMessageBox>
 #include "lemCore.h"
 #include "mot.h"
 #include "reglesynt.h"
@@ -56,6 +57,8 @@ public:
     QString decritLien(int n);
     QString tagTexte(QString t, int p, bool affTout = true, bool majPert = true, bool affHTML = true);
     bool contenu(QList<Lien*> ll, Lien *l);
+    void valide(QString lbl);
+    void interdit (QString lbl);
 
 private:
     LemCore * _lemCore;
@@ -70,17 +73,10 @@ private:
     void effacer();
     QList<Lien*> _liensLocaux; // L'ensemble des liens aboutissant sur un mot
     QList<Lien*> _listLiens; // L'ensemble des liens possibles
+    QList<Lien*> _liensValides; // Les liens validés
+    QList<Lien*> _liensInterdits; // Les liens interdits
     QList<Arbre> _foret; // L'ensemble des arbres trouvés.
     QList<Arbre> _foret2; // L'ensemble des arbres avec plus d'un orphelin.
-    void defMask();
-    qint64 iafMult; // Le multiplicateur, une puissance de 2
-    qint64 itfMask; // Le masque = mult - 1
-    qint64 iafMask;
-    qint64 itpMask;
-    qint64 iapMask;
-    qint64 itpMult;
-    qint64 iapMult;
-    qint64 irMult;
     void ajToken(int i); // Le mot i a un enclitique...
     void cherchePere(int ir, int itf, int iaf);
     void trouvePere(int ir, int itf, int iaf, int itp);
@@ -91,6 +87,7 @@ private:
     int _maxOrph;
     bool estAntecedent(Lien *lien);
     QTime _temps;
+    bool _kill;
     /*
     Lien genLien(int iRegle, int iTokPere, int iAnPere, int iTokFils, int iAnFils);
     // Pour combiner dans un entier 64bits, les cinq indices qui definissent un lien.

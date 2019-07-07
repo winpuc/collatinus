@@ -94,10 +94,11 @@ class EditTree : public QSvgWidget
 
    private:
     MainWindow *mainwindow;
+    QString ouSuisJe(int x, int y);
 
 
    protected:
-//    void mouseReleaseEvent(QMouseEvent *e);
+    void mouseReleaseEvent(QMouseEvent *e);
 
    public:
     EditTree(MainWindow *parent);
@@ -132,6 +133,7 @@ class MainWindow : public QMainWindow
     qreal hArbre();
     QString blablaR(int i);
     QString blablaP(int i);
+    QString blabla(QString lbl);
 
     // cœur
     LemCore *_lemCore;
@@ -244,6 +246,7 @@ class MainWindow : public QMainWindow
     void affArbre (int nn);
     void arbreSuiv ();
     void arbrePrec ();
+    void fermerArbres();
 
    public slots:
     void afficheLemsDic(QStringList ll, int no = 0);

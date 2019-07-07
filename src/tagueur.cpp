@@ -118,7 +118,6 @@ Tagueur::Tagueur(QObject *parent, LemCore *l, QString cible, QString resDir) : Q
     else if (resDir.endsWith("/")) _resDir = resDir;
     else _resDir = resDir + "/";
     if (cible != "") _lemCore->setCible(cible);
-    defMask();
 }
 
 /**
@@ -655,54 +654,6 @@ QString Tagueur::tagTexte(QString t, int p, bool affTout, bool majPert, bool aff
     return lsv.join("\n") + "\n";
 }
 
-void Tagueur::defMask()
-{
-    iafMult = 256; // Je réserve 8 bits pour chaque indice.
-    itpMult = iafMult * iafMult;
-    iapMult = itpMult * iafMult;
-    irMult = iapMult * iafMult;
-    itfMask = iafMult - 1;
-    iafMask = itfMask * iafMult;
-    itpMask = itfMask * itpMult;
-    iapMask = itfMask * iapMult;
-}
-/*
-Lien Tagueur::genLien(int iRegle, int iTokPere, int iAnPere, int iTokFils, int iAnFils)
-{
-    // Dois-je faire des tests ?
-    return ((((iRegle * iafMult + iAnPere) * iafMult + iTokPere) * iafMult + iAnFils) *iafMult + iTokFils);
-}
-
-int Tagueur::iTokFils(qint64 lien)
-{
-//    return (lien & itfMask);
-    return (lien & 255);
-}
-
-int Tagueur::iTokPere(qint64 lien)
-{
-//    return ((lien & itpMask)/itpMult);
-    return ((lien >> 16) & 255);
-}
-
-int Tagueur::iAnFils(qint64 lien)
-{
-//    return ((lien & iafMask)/iafMult);
-    return ((lien >> 8) & 255);
-}
-
-int Tagueur::iAnPere(qint64 lien)
-{
-//    return ((lien & iapMask)/iapMult);
-    return ((lien >> 24) & 255);
-}
-
-int Tagueur::iRegle(qint64 lien)
-{
-//    return (lien/irMult);
-    return (lien >> 32);
-}
-*/
 void Tagueur::effacer()
 {
     if (!_mots.isEmpty())
@@ -727,10 +678,19 @@ void Tagueur::effacer()
     // chaque mot a été repris comme un token,
     // mais les enclitiques ont été ajoutés.
     // Je libère tous les Mot repérés par un pointeur,
-    // avant d'avoir effacer ce pointeur.
-    _listLiens.clear();
+    // avant d'avoir effacé ce pointeur.
     _foret.clear();
     _foret2.clear();
+    _liensInterdits.clear();
+    _liensValides.clear();
+    // Les arbres et les forêts contiennent des pointeurs de type Lien
+    // qui sont aussi stockés dans la _listLiens.
+    while (!_listLiens.isEmpty())
+    {
+        delete _listLiens.last();
+        _listLiens.removeLast();
+    }
+    _listLiens.clear(); // déjà vide ?
     _interrogative = false;
     _mots.clear();
     _tokens.clear();
@@ -890,9 +850,14 @@ void Tagueur::trouvePere(int ir, int itf, int iaf, int itp)
             if (l->pos().contains("n")) mf.append(" "+l->genre());
             if (accordOK(mp,mf,rs->accord()))
             {
-                Lien l = {ir,itf,itp,iaf,iap};
+//                Lien l = {ir,itf,itp,iaf,iap};
                 Lien *p = new Lien;
-                *p = l;
+//                *p = l;
+                p->iReg = ir;
+                p->iTokF = itf;
+                p->iTokP = itp;
+                p->iAnF = iaf;
+                p->iAnP = iap;
                 _liensLocaux << p;
 //                _liensLocaux << genLien(ir,itp,iap,itf,iaf);
             }
@@ -934,34 +899,37 @@ void Tagueur::analyse()
     // Si un mot porte un enclitique, je crée un token virtuel.
     // Pour -que, je mets un "et" avant le mot.
     // L'indice du token pourra différer du rang (du mot).
-    for (int i = 0; i < _mots.size() - 1; i++) // Le dernier mot est un "snt"
-        if (_mots[i]->tagEncl() == "") _tokens.append(_mots[i]);
-        else ajToken(i); // S'il y a un enclitique, ça dépend...
-//    qDebug() << _mots.size() << _tokens.size();
-
-    // Détermination des liens possibles.
-    for (int itf = 0; itf<_tokens.size(); itf++)
+    if (_listLiens.isEmpty())
     {
-        _liensLocaux.clear();
-        for (int iaf = 0; iaf < _tokens[itf]->nbAnalyses(); iaf++)
-            for (int ir = 0; ir < _regles.size(); ir++)
-                if (_regles[ir]->accepteFils(_tokens[itf]->sLem(iaf), _tokens[itf]->morpho(iaf)))
-                {
-                    if (_tokens[itf] != _mots[_tokens[itf]->rang()])
+        for (int i = 0; i < _mots.size() - 1; i++) // Le dernier mot est un "snt"
+            if (_mots[i]->tagEncl() == "") _tokens.append(_mots[i]);
+            else ajToken(i); // S'il y a un enclitique, ça dépend...
+        //    qDebug() << _mots.size() << _tokens.size();
+
+        // Détermination des liens possibles.
+        for (int itf = 0; itf<_tokens.size(); itf++)
+        {
+            _liensLocaux.clear();
+            for (int iaf = 0; iaf < _tokens[itf]->nbAnalyses(); iaf++)
+                for (int ir = 0; ir < _regles.size(); ir++)
+                    if (_regles[ir]->accepteFils(_tokens[itf]->sLem(iaf), _tokens[itf]->morpho(iaf)))
                     {
-                        if (liensEncl(itf,ir))
-                            cherchePere(ir,itf,iaf);
+                        if (_tokens[itf] != _mots[_tokens[itf]->rang()])
+                        {
+                            if (liensEncl(itf,ir))
+                                cherchePere(ir,itf,iaf);
+                        }
+                        else cherchePere(ir,itf,iaf);
                     }
-                    else cherchePere(ir,itf,iaf);
-                }
-                // Si la règle accepte l'analyse iaf du token itf comme fils,
-                // je cherche un pere qui va avec.
-        // Attention aux enclitiques.
-        trierLiens();
-        _listLiens.append(_liensLocaux);
-        qDebug() << _tokens[itf]->forme() << "a" << _liensLocaux.size() << "pères possibles";
-        // À une époque lointaine, je mettais cette liste dans le token.
-        // Faut-il le faire à nouveau ?
+            // Si la règle accepte l'analyse iaf du token itf comme fils,
+            // je cherche un pere qui va avec.
+            // Attention aux enclitiques.
+            trierLiens();
+            _listLiens.append(_liensLocaux);
+            qDebug() << _tokens[itf]->forme() << "a" << _liensLocaux.size() << "pères possibles";
+            // À une époque lointaine, je mettais cette liste dans le token.
+            // Faut-il le faire à nouveau ?
+        }
     }
     qDebug() << "Nombre de liens possibles :" << _listLiens.size() << "pour" << _tokens.size() << "tokens ("
              << _mots.size() - 1 << "mots)."; // Le dernier mot est un "snt"
@@ -981,14 +949,42 @@ void Tagueur::analyse()
     QList<int> li;
     for (int i=0; i < _tokens.size(); i++) li << i;
     Arbre arbre;
-    // Dans un futur proche, je dois pouvoir commencer avec des liens validés.
-    _maxOrph = 2;
-    int t = _temps.restart();
     QList<Lien*> liensPlus;
-    for (int i=0 ; i < _listLiens.size() ; i++)
-        if (bonus(_listLiens[i]) > 3)
-            liensPlus.append(_listLiens[i]);
-    qDebug() << "Dont" << liensPlus.size() << "prioritaires";
+    // Dans un futur proche, je dois pouvoir commencer avec des liens validés.
+    if (_liensInterdits.isEmpty() && _liensValides.isEmpty())
+    {
+        // Il serait bon d'éliminer les liens absurdes.
+        // Le plus simple étant de les verser dans _liensInterdits.
+        _maxOrph = 2;
+        for (int i=0 ; i < _listLiens.size() ; i++)
+            if ((bonus(_listLiens[i]) > 3) && !_liensInterdits.contains(_listLiens[i]))
+                liensPlus.append(_listLiens[i]);
+    }
+    else
+    {
+        // les listes ne sont pas vides...
+        QList<int> listeFils;
+        for (int i=0 ; i < _liensValides.size() ; i++)
+            listeFils.append(_liensValides[i]->iTokF);
+        for (int i=0 ; i < _listLiens.size() ; i++)
+            if (!_liensInterdits.contains(_listLiens[i]) &&
+                    !listeFils.contains(_listLiens[i]->iTokF))
+                liensPlus.append(_listLiens[i]);
+        for (int i=0 ; i < _liensValides.size() ; i++)
+        {
+            Lien *lien = _liensValides[i];
+            liensPlus = liensComp(liensPlus,arbre,lien);
+            li.removeOne(lien->iTokF);
+            arbre.append(lien);
+        }
+    }
+    qDebug() << _liensInterdits.size() << "liens interdits.";
+    qDebug() << _liensValides.size() << "liens validés.";
+    qDebug() << "Dont" << liensPlus.size() << "prioritaires.";
+    _foret.clear();
+    _foret2.clear();
+    _temps.start();
+    _kill = false;
     faireCroitre(liensPlus,arbre,li,0);
 //    faireCroitre(_listLiens,arbre,li,0);
     qDebug() << "Nombre d'arbres trouvés :" << _foret.size() << "et"
@@ -1010,7 +1006,28 @@ void Tagueur::faireCroitre(QList<Lien*> lLiens, Arbre pousse, QList<int> indices
     Arbre nvlPouss = pousse;
     // C'est une routine récursive.
     // Je commence par les conditions d'arrêt.
-    if (_temps.elapsed() > 60000) return; // Si ça dure trop longtemps (1min), je l'arrête.
+    if (_temps.elapsed() > 3000)
+    {
+        // Si ça dure trop longtemps (3 secondes), je l'arrête.
+        if (_kill) return;
+        QString blabla = "J'ai trouvé %1 arbre";
+        int na = _foret.size();
+        QMessageBox msgBox;
+        msgBox.setIcon(QMessageBox::Question);
+        if (na == 0) msgBox.setText("Je n'ai encore trouvé aucun arbre.");
+        else if (na == 1) msgBox.setText(blabla.arg(na) + ".");
+        else msgBox.setText(blabla.arg(na) + "s.");
+        msgBox.setInformativeText("Voulez-vous continuer ?");
+        msgBox.setStandardButtons(QMessageBox::Abort | QMessageBox::Retry);
+        msgBox.setDefaultButton(QMessageBox::Abort);
+        int ret = msgBox.exec();
+        if (ret == QMessageBox::Abort)
+        {
+            _kill = true;
+            return;
+        }
+        _temps.start(); // Si j'ai choisi "Retry", je redémarre pour 3s.
+    }
     if (indices.isEmpty())
     {
         // J'ai traité tous les tokens
@@ -1381,10 +1398,11 @@ QString Tagueur::decritLien(int n)
     Arbre arbre = _foret[arbreCourant];
     Lien *lien = arbre.at(n);
     QString res = "Règle : " + _regles[lien->iReg]->id();
-    res.append("\n Père : " + _tokens[lien->iTokP]->formeq(lien->iAnP));
-    res.append("\n Morpho père : " + _tokens[lien->iTokP]->morpho(lien->iAnP));
-    res.append("\n Fils : " + _tokens[lien->iTokF]->formeq(lien->iAnF));
-    res.append("\n Morpho fils : " + _tokens[lien->iTokF]->morpho(lien->iAnF));
+    res.append("\n" + _regles[lien->iReg]->doc());
+    res.append("\nPère : " + _tokens[lien->iTokP]->formeq(lien->iAnP));
+    res.append("\nMorpho père : " + _tokens[lien->iTokP]->morpho(lien->iAnP));
+    res.append("\nFils : " + _tokens[lien->iTokF]->formeq(lien->iAnF));
+    res.append("\nMorpho fils : " + _tokens[lien->iTokF]->morpho(lien->iAnF));
     return res;
 }
 
@@ -1394,6 +1412,30 @@ QString Tagueur::decritMot(int n)
     res.append("\nLemme : " + _mots[n]->sLem(am[n]).lem->grq());
     res.append("\nMorpho : " + _mots[n]->morpho(am[n]));
     return res;
+}
+
+void Tagueur::valide(QString lbl)
+{
+    int i = lbl.mid(2).toInt();
+    Lien *lien = _foret[arbreCourant].at(i);
+    if (!_liensValides.contains(lien))
+        _liensValides.append(lien);
+    // Je pourrais avoir envie de retirer un lien de cette liste.
+    if (_liensInterdits.contains(lien))
+        _liensInterdits.removeOne(lien);
+    // Un même lien ne peut pas être validé et interdit.
+}
+
+void Tagueur::interdit(QString lbl)
+{
+    int i = lbl.mid(2).toInt();
+    Lien *lien = _foret[arbreCourant].at(i);
+    if (!_liensInterdits.contains(lien))
+        _liensInterdits.append(lien);
+    // Je pourrais avoir envie de retirer un lien de cette liste.
+    if (_liensValides.contains(lien))
+        _liensValides.removeOne(lien);
+    // Un même lien ne peut pas être validé et interdit.
 }
 
 QString Tagueur::sauvArbre(int i, bool ordre)

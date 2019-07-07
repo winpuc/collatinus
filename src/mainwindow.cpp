@@ -2607,8 +2607,10 @@ void MainWindow::createSylvicole()
     // Analyse
     QToolButton *tbSyntaxe = new QToolButton(this);
     tbSyntaxe->setDefaultAction(syntaxeAct);
+    QPushButton *fermer = new QPushButton("Fermer");
     bPrec = new QPushButton(tr("Prec."));
     bSuiv = new QPushButton(tr("Suiv."));
+    QObject::connect(fermer,        SIGNAL(clicked()),            this, SLOT(fermerArbres()));
     QObject::connect(bPrec,        SIGNAL(clicked()),            this, SLOT(arbrePrec()));
     QObject::connect(bSuiv,        SIGNAL(clicked()),            this, SLOT(arbreSuiv()));
 //    QObject::connect(ui->bOuvreFen,    SIGNAL(clicked()),            this, SLOT(ouvrFen()));
@@ -2619,6 +2621,8 @@ void MainWindow::createSylvicole()
     hLayout->addWidget(bPrec);
     hLayout->addWidget(ligneArbre);
     hLayout->addWidget(bSuiv);
+    hLayout->addStretch();
+    hLayout->addWidget(fermer);
     editTree = new EditTree(this);
 //    editTree->setOpenExternalLinks(true);
     vLayout->addLayout(hLayout);
@@ -2631,6 +2635,11 @@ void MainWindow::AnalyseSyntaxe()
     arbreCourant = 0;
     if (tagueur->nbArbres() > 0) affArbre(0);
     sylvicole->show();
+}
+
+void MainWindow::fermerArbres()
+{
+    sylvicole->hide();
 }
 
 ElementP *MainWindow::polygone(int i)
@@ -2753,13 +2762,21 @@ void MainWindow::arbreSuiv()
     affArbre(arbreCourant);
 }
 
+QString MainWindow::blabla(QString lbl)
+{
+    int i = lbl.mid(2).toInt();
+    if (lbl[1] == 'N')
+        return tagueur->decritMot(i);
+    return tagueur->decritLien(i);
+}
+
 QString MainWindow::blablaR(int i)
 {
-        QString num = rectangles[i]->label();
-        i = num.mid(2).toInt();
-        if (num[1] == 'N')
-            return tagueur->decritMot(i);
-        return tagueur->decritLien(i);
+    QString num = rectangles[i]->label();
+    i = num.mid(2).toInt();
+    if (num[1] == 'N')
+        return tagueur->decritMot(i);
+    return tagueur->decritLien(i);
 }
 
 QString MainWindow::blablaP(int i)
@@ -2837,6 +2854,64 @@ EditTree::EditTree(MainWindow *parent) : QSvgWidget(parent)
     mainwindow = parent;
 }
 
+QString EditTree::ouSuisJe(int x, int y)
+{
+    qreal Px = x * mainwindow->wArbre() / width();
+    qreal Py = y * mainwindow->hArbre() / height();
+    QPointF PP = QPointF (Px, Py);
+    for (int i=0;i<mainwindow->rectCnt();++i)
+    {
+        if (mainwindow->rectangle(i)->rectangle()->contains(Px,Py))
+            return mainwindow->rectangle(i)->label();
+    }
+    for (int i=0;i<mainwindow->polyCnt();++i)
+    {
+        if (mainwindow->polygone(i)->polygone()->containsPoint(PP,Qt::OddEvenFill))
+            return mainwindow->polygone(i)->label();
+    }
+    return "";
+}
+
+void EditTree::mouseReleaseEvent(QMouseEvent *e)
+{
+    QPoint P = mapFromGlobal(e->globalPos());
+    if (P.x() >= 0 && P.x () < width()
+        && P.y () >= 0 && P.y () < height())
+    {
+        QString lbl = ouSuisJe(P.x(),P.y());
+        if (!lbl.isEmpty())
+        {
+            if (lbl[1] == 'L')
+            {
+                // J'ai un lien que je veux valider ou interdire.
+                QMessageBox msgBox;
+                msgBox.setIcon(QMessageBox::Question);
+                msgBox.setText(mainwindow->blabla(lbl));
+                msgBox.setInformativeText("Voulez-vous le valider ou l'interdire ?");
+                msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+                msgBox.setDefaultButton(QMessageBox::Save);
+                int ret = msgBox.exec();
+                switch (ret) {
+                case QMessageBox::Save:
+                    // Je le valide
+                    mainwindow->tagueur->valide(lbl);
+                    break;
+                case QMessageBox::Discard:
+                    // Je l'interdis
+                    mainwindow->tagueur->interdit(lbl);
+                    break;
+                default:
+                    break;
+                }
+            }
+            else
+            {
+                // J'ai cliqué sur un mot
+            }
+        }
+    }
+}
+
 bool EditTree::event (QEvent *event)
 {
     if (event->type () == QEvent::ToolTip)
@@ -2846,7 +2921,7 @@ bool EditTree::event (QEvent *event)
         if (P.x() >= 0 && P.x () < width()
             && P.y () >= 0 && P.y () < height())
         {
-            QString bulla;
+/*            QString bulla;
 //            QString bulla = "coucou %1 %2 %3 %4";
             qreal Px = P.x() * mainwindow->wArbre() / width();
             qreal Py = P.y() * mainwindow->hArbre() / height();
@@ -2872,6 +2947,13 @@ bool EditTree::event (QEvent *event)
             }
             QRect rect(P.x()-20,P.y()-10,40,40);
             QToolTip::showText (helpEvent->globalPos(), bulla.trimmed (), this, rect);
+            */
+            QString lbl = ouSuisJe(P.x(),P.y());
+            if (!lbl.isEmpty())
+            {
+                QRect rect(P.x()-20,P.y()-10,40,40);
+                QToolTip::showText (helpEvent->globalPos(), mainwindow->blabla(lbl), this, rect);
+            }
         }
     }
     return QWidget::event (event);
