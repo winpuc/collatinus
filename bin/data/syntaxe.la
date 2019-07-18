@@ -340,7 +340,8 @@ doc:un nom apposé suit directement un autre nom, est complètement accordé ave
 f:<sub> apposé à <super>
 super::n,p:
 sub::n:
-accord:cgn
+accord:cn
+!accord:cgn
 sens:>
 tr:<super> <sub>
 

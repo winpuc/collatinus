@@ -1285,6 +1285,7 @@ void MainWindow::createDockWindows()
     tbAffTout->setDefaultAction(affToutAct);
     QToolButton *tbSyntaxe = new QToolButton(this);
     tbSyntaxe->setDefaultAction(syntaxeAct);
+    tbSyntaxe->setToolTip(tr("Lancer la construction."));
 //    QToolButton *tbHTML = new QToolButton(this);
 //    tbHTML->setDefaultAction(htmlAct);
     hLayoutTag->addWidget(lasla);
@@ -2607,6 +2608,7 @@ void MainWindow::createSylvicole()
     // Analyse
     QToolButton *tbSyntaxe = new QToolButton(this);
     tbSyntaxe->setDefaultAction(syntaxeAct);
+    tbSyntaxe->setToolTip(tr("Relancer la construction."));
     QPushButton *fermer = new QPushButton("Fermer");
     bPrec = new QPushButton(tr("Prec."));
     bSuiv = new QPushButton(tr("Suiv."));
@@ -2888,7 +2890,17 @@ void EditTree::mouseReleaseEvent(QMouseEvent *e)
                 msgBox.setIcon(QMessageBox::Question);
                 msgBox.setText(mainwindow->blabla(lbl));
                 msgBox.setInformativeText("Voulez-vous le valider ou l'interdire ?");
-                msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
+                QPushButton *bValide = msgBox.addButton(tr("Valider"),QMessageBox::AcceptRole);
+                QPushButton *bInterdit = msgBox.addButton(tr("Interdire"),QMessageBox::AcceptRole);
+                QPushButton *bAnnule = msgBox.addButton(tr("Annuler"),QMessageBox::AcceptRole);
+                msgBox.setDefaultButton(bValide);
+                msgBox.exec();
+                if (msgBox.clickedButton() == bValide)
+                    mainwindow->tagueur->valide(lbl.mid(2).toInt());
+                else if (msgBox.clickedButton() == bInterdit)
+                    mainwindow->tagueur->interdit(lbl.mid(2).toInt());
+//                else if (msgBox.clickedButton() == bAnnule);
+/*                msgBox.setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
                 msgBox.setDefaultButton(QMessageBox::Save);
                 int ret = msgBox.exec();
                 switch (ret) {
@@ -2903,10 +2915,89 @@ void EditTree::mouseReleaseEvent(QMouseEvent *e)
                 default:
                     break;
                 }
+                */
             }
             else
             {
                 // J'ai cliqué sur un mot
+                /***
+                 * Je dois demander la liste des liens arrivants sur le mot cliqué.
+                 * Cette liste doit rester comme liste de Lien dans le tagueur
+                 * et expliciter comme liste de QString pour apparaître ici.
+                 * Je dois mettre en regard des QString des cases à cocher
+                 * de validation et d'interdiction. À la sortie de la boîte de dialogue,
+                 * je dois repérer quelles cases sont cochées et transmettre au tagueur
+                 * les instructions correspondantes.
+                 ***/
+                qDebug() << "J'ai cliqué sur le mot n°" << lbl;
+                QDialog *dial = new QDialog;
+                dial->setModal(true);
+                QGridLayout *gl = new QGridLayout();
+                QVBoxLayout *vl = new QVBoxLayout(dial);
+                QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
+                                                       | QDialogButtonBox::Cancel);
+
+                connect(buttonBox, SIGNAL(accepted()), dial, SLOT(accept()));
+                connect(buttonBox, SIGNAL(rejected()), dial, SLOT(reject()));
+                vl->addLayout(gl);
+                vl->addWidget(buttonBox);
+
+                QLabel *l0 = new QLabel("Liens");
+                QLabel *l1 = new QLabel("Validé");
+                QLabel *l2 = new QLabel("Interdit");
+                gl->addWidget(l0,0,0);
+                gl->addWidget(l1,0,1);
+                gl->addWidget(l2,0,2);
+                QStringList listeLiens = mainwindow->tagueur->liensSurMot(lbl.mid(2).toInt());
+//                listeLiens << "+lien n°1" << "-lien n°2, qui est particulièrement long" << " lien n°3";
+                QList<QLabel*> labLiens;
+                QList<QCheckBox*> cbValid;
+                QList<QCheckBox*> cbInterdit;
+                for (int i=0; i < listeLiens.size(); i++)
+                {
+                    QLabel * label = new QLabel(listeLiens[i].mid(1));
+                    QCheckBox * cb1 = new QCheckBox("",this);
+                    QCheckBox * cb2 = new QCheckBox("",this);
+                    if (listeLiens[i][0] == '+') cb1->setChecked(true);
+                    else if (listeLiens[i][0] == '-') cb2->setChecked(true);
+                    labLiens.append(label);
+                    cbValid.append(cb1);
+                    cbInterdit.append(cb2);
+                    gl->addWidget(label, i+1, 0);
+                    gl->addWidget(cb1, i+1, 1);
+                    gl->addWidget(cb2, i+1, 2);
+                }
+                dial->exec();
+                if (dial->result() == QDialog::Accepted)
+                {
+                    qDebug() << "Accepté";
+                    for (int i=0; i < listeLiens.size(); i++)
+                    {
+                        int numLien = listeLiens[i].section("|",1,1).toInt();
+                        // C'est le numéro du lien dans la liste des possibles.
+                        QChar c0 = listeLiens[i][0];
+                        // Ce caractère me dit si le lien était déjà validé ou interdit.
+                        if (cbValid[i]->isChecked())
+                        {
+                            qDebug() << "Lien n°" << i << "validé";
+                            if (c0 != '+') mainwindow->tagueur->valide(numLien, false);
+                            // Le lien n'était pas validé et l'est maintenant.
+                        }
+                        else if (c0 == '+') mainwindow->tagueur->valide(numLien, false);
+                        // Le lien était validé, mais ne l'est plus.
+                        // Valider un lien validé le dévalide.
+                        if (cbInterdit[i]->isChecked())
+                        {
+                            qDebug() << "Lien n°" << i << "interdit";
+                            if (c0 != '-') mainwindow->tagueur->interdit(numLien, false);
+                            // Le lien n'était pas interdit et l'est maintenant.
+                        }
+                        else if (c0 == '-') mainwindow->tagueur->interdit(numLien, false);
+                        // Le lien était interdit, mais ne l'est plus.
+                        // Interdire un lien interdit le dés-interdit.
+                    }
+                }
+                else qDebug() << "Annulé";
             }
         }
     }

@@ -57,8 +57,9 @@ public:
     QString decritLien(int n);
     QString tagTexte(QString t, int p, bool affTout = true, bool majPert = true, bool affHTML = true);
     bool contenu(QList<Lien*> ll, Lien *l);
-    void valide(QString lbl);
-    void interdit (QString lbl);
+    void valide(int i, bool arbreC=true);
+    void interdit (int i, bool arbreC=true);
+    QStringList liensSurMot(int nMot);
 
 private:
     LemCore * _lemCore;

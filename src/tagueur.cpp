@@ -1414,28 +1414,43 @@ QString Tagueur::decritMot(int n)
     return res;
 }
 
-void Tagueur::valide(QString lbl)
+void Tagueur::valide(int i, bool arbreC)
 {
-    int i = lbl.mid(2).toInt();
-    Lien *lien = _foret[arbreCourant].at(i);
-    if (!_liensValides.contains(lien))
-        _liensValides.append(lien);
-    // Je pourrais avoir envie de retirer un lien de cette liste.
-    if (_liensInterdits.contains(lien))
-        _liensInterdits.removeOne(lien);
-    // Un même lien ne peut pas être validé et interdit.
-}
-
-void Tagueur::interdit(QString lbl)
-{
-    int i = lbl.mid(2).toInt();
-    Lien *lien = _foret[arbreCourant].at(i);
-    if (!_liensInterdits.contains(lien))
-        _liensInterdits.append(lien);
-    // Je pourrais avoir envie de retirer un lien de cette liste.
+//    int i = i.mid(2).toInt();
+    // i est le numéro du lien concerné,
+    // mais il peut être dans l'arbre courant (clic sur un lien)
+    // ou dans la liste générale des liens possibles (clic sur un mot).
+    Lien *lien;
+    if (arbreC) lien = _foret[arbreCourant].at(i);
+    else lien = _listLiens[i];
     if (_liensValides.contains(lien))
         _liensValides.removeOne(lien);
+    // Si ce lien est dans la liste, je l'en retire.
+    else
+    {
+        _liensValides.append(lien);
+        if (_liensInterdits.contains(lien))
+            _liensInterdits.removeOne(lien);
     // Un même lien ne peut pas être validé et interdit.
+    }
+}
+
+void Tagueur::interdit(int i, bool arbreC)
+{
+//    int i = lbl.mid(2).toInt();
+    Lien *lien;
+    if (arbreC) lien = _foret[arbreCourant].at(i);
+    else lien = _listLiens[i];
+    if (_liensInterdits.contains(lien))
+        _liensInterdits.removeOne(lien);
+    // Si ce lien est dans la liste, je l'en retire.
+    else
+    {
+        _liensInterdits.append(lien);
+        if (_liensValides.contains(lien))
+            _liensValides.removeOne(lien);
+        // Un même lien ne peut pas être validé et interdit.
+    }
 }
 
 QString Tagueur::sauvArbre(int i, bool ordre)
@@ -1530,4 +1545,26 @@ bool Tagueur::contenu(QList<Lien *> ll, Lien *l)
         if ((ll[i]->iAnF == l->iAnF) && (ll[i]->iTokF == l->iTokF) && (ll[i]->iTokP == l->iTokP) &&
                 (ll[i]->iAnP == l->iAnP) && (ll[i]->iReg == l->iReg)) return true;
     return false;
+}
+
+QStringList Tagueur::liensSurMot(int nMot)
+{
+    _liensLocaux.clear();
+    QStringList res;
+    // Je garde la liste des liens trouvés
+    for (int i = 0 ; i < _listLiens.size() ; i++)
+        if (_tokens[_listLiens[i]->iTokF]->rang() == nMot)
+        {
+            Lien *lien = _listLiens[i];
+            _liensLocaux.append(lien);
+            QString blabla = _tokens[lien->iTokP]->formeq(lien->iAnP) + " --";
+            blabla.append(_regles[lien->iReg]->id() + "-> ");
+            blabla.append(_tokens[lien->iTokF]->formeq(lien->iAnF));
+            blabla.append("|" + QString::number(i));
+            if (_liensValides.contains(lien)) blabla.prepend("+");
+            else if (_liensInterdits.contains(lien)) blabla.prepend("-");
+            else blabla.prepend(" ");
+            res.append(blabla);
+        }
+    return res;
 }
