@@ -43,6 +43,7 @@ public:
     QString formeq(int i);
     QString lemme(int i);
     QString morpho(int i);
+    QString tag(int i);
     QString tagEncl();
     QString enclitique();
     SLem sLem(int i);

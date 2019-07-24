@@ -410,6 +410,11 @@ QString Mot::morpho(int i)
     return _morphos[i];
 }
 
+QString Mot::tag(int i)
+{
+    return _tags[i];
+}
+
 SLem Mot::sLem(int i)
 {
     return _sLems[i];

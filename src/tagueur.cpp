@@ -839,7 +839,7 @@ void Tagueur::trouvePere(int ir, int itf, int iaf, int itp)
         return; // Le token est un enclitique incompatible avec la règle.
     RegleSynt *rs = _regles[ir];
     for (int iap = 0; iap < _tokens[itp]->nbAnalyses(); iap++)
-        if (rs->acceptePere(_tokens[itp]->sLem(iap), _tokens[itp]->morpho(iap)))
+        if (rs->acceptePere(_tokens[itp]->sLem(iap), _tokens[itp]->morpho(iap), _tokens[itp]->tag(iap)))
         {
             // Je dois encore vérifier les règles d'accord...
             QString mp = _tokens[itp]->morpho(iap);
@@ -859,6 +859,7 @@ void Tagueur::trouvePere(int ir, int itf, int iaf, int itp)
                 p->iAnF = iaf;
                 p->iAnP = iap;
                 _liensLocaux << p;
+//                if (itf == 14) qDebug() << ir << itf << iaf << itp << iap;
 //                _liensLocaux << genLien(ir,itp,iap,itf,iaf);
             }
         }
@@ -912,7 +913,8 @@ void Tagueur::analyse()
             _liensLocaux.clear();
             for (int iaf = 0; iaf < _tokens[itf]->nbAnalyses(); iaf++)
                 for (int ir = 0; ir < _regles.size(); ir++)
-                    if (_regles[ir]->accepteFils(_tokens[itf]->sLem(iaf), _tokens[itf]->morpho(iaf)))
+                    if (_regles[ir]->accepteFils(_tokens[itf]->sLem(iaf), _tokens[itf]->morpho(iaf),
+                                                 _tokens[itf]->tag(iaf)))
                     {
                         if (_tokens[itf] != _mots[_tokens[itf]->rang()])
                         {
@@ -951,14 +953,109 @@ void Tagueur::analyse()
     Arbre arbre;
     QList<Lien*> liensPlus;
     // Dans un futur proche, je dois pouvoir commencer avec des liens validés.
+    // Fait !
     if (_liensInterdits.isEmpty() && _liensValides.isEmpty())
     {
         // Il serait bon d'éliminer les liens absurdes.
         // Le plus simple étant de les verser dans _liensInterdits.
         _maxOrph = 2;
         for (int i=0 ; i < _listLiens.size() ; i++)
-            if ((bonus(_listLiens[i]) > 3) && !_liensInterdits.contains(_listLiens[i]))
-                liensPlus.append(_listLiens[i]);
+        {
+            Lien *lien = _listLiens[i];
+            RegleSynt *regle = _regles[lien->iReg];
+            // Plutôt que de chercher à chaque conjCoord s'il y a
+            // le coord qui va avec, je pourrais le faire ici.
+            if (regle->id() == "conjCoord")
+            {
+                // La conjonction de coordination vient d'abord.
+                // Quand je trouve une paire conjCoord et coord compatible,
+                // je les mets dans les dbLiens de chacun.
+                // Je dois trouver une coord qui a pour père le fils du lien choisi.
+                int iTok = lien->iTokF;
+                for (int j = i + 1; j < _listLiens.size(); j++)
+                    if ((_listLiens[j]->iReg < 1) && (_listLiens[j]->iTokP == iTok))
+                    {
+                        // Je dois tester l'accord entre les deux coordonnés.
+                        Lien *lien2 = _listLiens[j];
+                        // C'est à dire entre le père de lien et le fils de lien2.
+                        if (accCoord(lien, lien2))
+                        {
+                            lien->dbLien.append(j);
+                            lien2->dbLien.append(i);
+                        }
+                    }
+                if (lien->dbLien.isEmpty()) _liensInterdits.append(lien);
+            }
+            else if ((regle->id() == "coord") && lien->dbLien.isEmpty())
+                _liensInterdits.append(lien);
+            // Si ce lien coord n'a pas trouvé de conjCoord compatible,
+            // il faut l'interdire.
+            if (!regle->supEstSup().isEmpty())
+            {
+                // La règle utilisée par ce lien impose l'existence d'un autre lien.
+                QStringList aussi = regle->supEstSup().split(",");
+                bool existe = false;
+                for (int j=0 ; j < _listLiens.size() ; j++)
+                    if (aussi.contains(_regles[_listLiens[j]->iReg]->id()) &&
+                            (_listLiens[j]->iTokP == lien->iTokP) &&
+                            (_listLiens[j]->iAnP == lien->iAnP))
+                    {
+                        existe = true;
+                        lien->dbLien.append(j);
+                        // J'ajoute l'indice dans _listLiens du lien qui complète
+                        // la paire de liens nécessaire.
+                    }
+                if (!existe) _liensInterdits.append(lien);
+            }
+            if (!regle->subEstSup().isEmpty())
+            {
+                // La règle utilisée par ce lien impose l'existence d'un autre lien.
+                QStringList aussi = regle->subEstSup().split(",");
+                bool existe = false;
+                for (int j=0 ; j < _listLiens.size() ; j++)
+                    if (aussi.contains(_regles[_listLiens[j]->iReg]->id()) &&
+                            (_listLiens[j]->iTokP == lien->iTokF) &&
+                            (_listLiens[j]->iAnP == lien->iAnF))
+                    {
+                        existe = true;
+                        lien->dbLien.append(j);
+                        // J'ajoute l'indice dans _listLiens du lien qui complète
+                        // la paire de liens nécessaire.
+                    }
+                if (!existe) _liensInterdits.append(lien);
+            }
+            if (!regle->supEstSub().isEmpty())
+            {
+                // La règle utilisée par ce lien impose l'existence d'un autre lien.
+                QStringList aussi = regle->supEstSub().split(",");
+                bool existe = false;
+                for (int j=0 ; j < _listLiens.size() ; j++)
+                    if (aussi.contains(_regles[_listLiens[j]->iReg]->id()) &&
+                            (_listLiens[j]->iTokF == lien->iTokP) &&
+                            (_listLiens[j]->iAnF == lien->iAnP))
+                    {
+                        existe = true;
+                        lien->dbLien.append(j);
+                        // J'ajoute l'indice dans _listLiens du lien qui complète
+                        // la paire de liens nécessaire.
+                    }
+                if (!existe) _liensInterdits.append(lien);
+            }
+            if (!regle->annule().isEmpty())
+            {
+                // Si je choisis ce lien, je dois en exclure d'autres qui ont le même père.
+                QStringList excl = regle->annule();
+                for (int j=0 ; j < _listLiens.size() ; j++)
+                    if (excl.contains(_regles[_listLiens[j]->iReg]->id()) &&
+                            lien->iTokP == _listLiens[j]->iTokP)
+                    {
+                        lien->liensExclus.append(j);
+                        // J'ajoute l'indice dans _listLiens du lien qui est exclu.
+                    }
+            }
+            if ((bonus(lien) > 3) && !_liensInterdits.contains(lien))
+                liensPlus.append(lien);
+        }
     }
     else
     {
@@ -1122,7 +1219,7 @@ void Tagueur::faireCroitre(QList<Lien*> lLiens, Arbre pousse, QList<int> indices
             // C'est la liste des liens d'ailleurs qui sont compatibles avec lienChoisi.
             // Si le token est un pronom relatif, il peut vouloir deux liens.
             nvlPouss.append(lienChoisi);
-            if (lienChoisi->iReg < 2)
+/*            if (lienChoisi->iReg < 2)
             {
                 // C'est une règle de coordination que j'ai placée en tête de syntaxe.la.
                 QList<Lien*> liensPossibles;
@@ -1137,7 +1234,8 @@ void Tagueur::faireCroitre(QList<Lien*> lLiens, Arbre pousse, QList<int> indices
                             // Je dois tester l'accord entre les deux coordonnés.
                             Lien *lienCh2 = ailleurs[j];
                             // C'est à dire entre le fils de lienChoisi et le père de lienCh2.
-                            if (contenu(compat, lienCh2) && accCoord(lienCh2,lienChoisi))
+//                            if (contenu(compat, lienCh2) && accCoord(lienCh2,lienChoisi))
+                            if (compat.contains(lienCh2) && accCoord(lienCh2,lienChoisi))
                                 liensPossibles.append(lienCh2);
                         }
 //                    qDebug() << "Coordonné" << iTokFils(lienChoisi) << "CC" << iTokPere(lienChoisi) << liensPossibles.size();
@@ -1152,7 +1250,8 @@ void Tagueur::faireCroitre(QList<Lien*> lLiens, Arbre pousse, QList<int> indices
                             // Je dois tester l'accord entre les deux coordonnés.
                             Lien *lienCh2 = ailleurs[j];
                             // C'est à dire entre le père de lienChoisi et le fils de lienCh2.
-                            if (contenu(compat, lienCh2) && accCoord(lienChoisi,lienCh2))
+//                            if (contenu(compat, lienCh2) && accCoord(lienChoisi,lienCh2))
+                            if (compat.contains(lienCh2) && accCoord(lienChoisi, lienCh2))
                                 liensPossibles.append(lienCh2);
                         }
 //                    qDebug() << "CC" << iTokFils(lienChoisi) << "Coordonnant" << iTokPere(lienChoisi) << liensPossibles.size();
@@ -1175,7 +1274,7 @@ void Tagueur::faireCroitre(QList<Lien*> lLiens, Arbre pousse, QList<int> indices
                     }
                 // J'essaie tous les liens possibles.
             }
-            else if (estAntecedent(lienChoisi))
+            else*/ if (estAntecedent(lienChoisi))
             {
                 // Je dois choisir un deuxième lien parmi ceux qui suivent
                 // (avant, il n'y a que des antécédents).
@@ -1193,6 +1292,28 @@ void Tagueur::faireCroitre(QList<Lien*> lLiens, Arbre pousse, QList<int> indices
                             nvlPouss.removeLast();
                         }
                     }
+            }
+            else if (!lienChoisi->dbLien.isEmpty())
+            {
+                // Ce lien en requiert un autre dans la liste dbLien.
+                for (int j = 0; j < lienChoisi->dbLien.size(); j++)
+                {
+                    Lien *lienCh2 = _listLiens[lienChoisi->dbLien[j]];
+                    if (compat.contains(lienCh2))
+                    {
+                        compat.removeOne(lienCh2);
+                    QList<int> nvxxI = nvxInd;
+                    nvxxI.removeOne(lienCh2->iTokF);
+                    QList<Lien*> compat2 = liensComp(compat, nvlPouss, lienCh2, true);
+                    // Le 1er lien en nécessitait un 2e.
+                    // Je dois aussi éliminer les liens qui ont le même fils.
+                    nvlPouss.append(lienCh2);
+                    faireCroitre(compat2,nvlPouss,nvxxI,nbRel);
+                    // Tentative de construction en ayant ajouté deux liens.
+                    nvlPouss.removeLast();
+                    }
+                }
+            // J'essaie tous les liens possibles.
             }
             else
             {
@@ -1330,7 +1451,14 @@ QList<Lien*> Tagueur::liensComp(QList<Lien*> ailleurs, Arbre nvlPouss, Lien *lie
             // De même pour le même produit où itf1 remplace itp1.
             // Le produit de ces produits est négatif si l'une des extrémités est
             // dans l'intervalle et l'autre pas.
+            // Je devrais exclure de ce test les liens qui acceptent l'extrapolation.
         }
+        if (OK && !lienChoisi->liensExclus.isEmpty())
+            for (int j = 0 ; j < lienChoisi->liensExclus.size() ; j++)
+                OK = OK && (lien != _listLiens[lienChoisi->liensExclus[j]]);
+        // Si le lien en cours d'examen fait partie des liens exclus
+        // par le choix de lienChoisi, je dois le sortir de la liste.
+
         if (OK) liste.append(lien);
         // Si une des quantités calculées est fausse,
         // je n'en calcule pas d'autre et j'ignore le lien.

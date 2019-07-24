@@ -140,6 +140,7 @@ RegleSynt::RegleSynt(QStringList lignes, LemCore *parent) : QObject(parent)
                 _annule = ecl.at(1).split(','); break;
             case 11: // le super doit être super par un lien d'id ecl[1]
                 _supsup = ecl.at(1); break;
+                // C'est une liste séparée par des virgules
             case 12: // le super doit être sub ...
                 _supsub = ecl.at(1); break;
             case 13: // etc.
@@ -154,7 +155,7 @@ RegleSynt::RegleSynt(QStringList lignes, LemCore *parent) : QObject(parent)
                 _rangTr = ecl.at(1).toInt(); break;
             case 18:
                 _debloc = ecl.at(1); break;
-        case 19:
+        case 19: // extra
             _extra = true; break;
             default:
                 break;
@@ -334,13 +335,15 @@ QString RegleSynt::synt()
     return _synt;
 }
 
-bool RegleSynt::accepteFils(SLem sl, QString morpho)
+bool RegleSynt::accepteFils(SLem sl, QString morpho, QString tag)
 {
     Lemme *l = sl.lem;
     // lemme
     if (!_sub->okLem(l->gr())) return false;
     // pos
-    if (!_sub->okPos(l->pos())) return false;
+//    if (!_sub->okPos(l->pos())) return false;
+    if (tag[0] == 'w') tag[0]='v';
+    if (!_sub->okPos(tag.mid(0,1))) return false;
     // morpho
     // prénoms
     if (l->pos().contains('n') && _lemCore->estAbr(l->gr()))
@@ -350,13 +353,15 @@ bool RegleSynt::accepteFils(SLem sl, QString morpho)
     return true;
 }
 
-bool RegleSynt::acceptePere(SLem sl, QString morpho)
+bool RegleSynt::acceptePere(SLem sl, QString morpho, QString tag)
 {
     Lemme *l = sl.lem;
     // lemme
     if (!_super->okLem(l->gr())) return false;
     // pos
-    if (!_super->okPos(l->pos())) return false;
+//    if (!_super->okPos(l->pos())) return false;
+    if (tag[0] == 'w') tag[0]='v';
+    if (!_super->okPos(tag.mid(0,1))) return false;
     // morpho
     // prénoms
     if (l->pos().contains('n') && _lemCore->estAbr(l->gr()))
@@ -369,4 +374,26 @@ bool RegleSynt::acceptePere(SLem sl, QString morpho)
 bool RegleSynt::extra()
 {
     return _extra;
+}
+
+QStringList RegleSynt::annule()
+{
+    return _annule;
+}
+
+QString RegleSynt::supEstSup()
+{
+    return _supsup;
+}
+QString RegleSynt::supEstSub()
+{
+    return _supsub;
+}
+QString RegleSynt::subEstSup()
+{
+    return _subsup;
+}
+QString RegleSynt::subEstSub()
+{
+    return _subsub;
 }

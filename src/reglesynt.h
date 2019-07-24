@@ -64,8 +64,13 @@ public:
     void    herite(RegleSynt *rp);
     // Pour ne pas devoir inclure le parent de cette classe,
     // l'héritage se fait après.
-    bool accepteFils(SLem sl, QString morpho);
-    bool acceptePere(SLem sl, QString morpho);
+    bool accepteFils(SLem sl, QString morpho, QString tag);
+    bool acceptePere(SLem sl, QString morpho, QString tag);
+    QString supEstSup();
+    QString subEstSup();
+    QString supEstSub();
+    QString subEstSub();
+    QStringList annule();
 
 private:
     QStringList const cles = QStringList() << "id"      // 0

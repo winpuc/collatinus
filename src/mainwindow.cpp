@@ -2932,6 +2932,7 @@ void EditTree::mouseReleaseEvent(QMouseEvent *e)
                 qDebug() << "J'ai cliqué sur le mot n°" << lbl;
                 QDialog *dial = new QDialog;
                 dial->setModal(true);
+                dial->setSizeGripEnabled(true);
                 QGridLayout *gl = new QGridLayout();
                 QVBoxLayout *vl = new QVBoxLayout(dial);
                 QDialogButtonBox *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok

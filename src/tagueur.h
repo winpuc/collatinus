@@ -35,15 +35,13 @@ typedef struct
     int iTokP;
     int iAnF;
     int iAnP;
+    QList<int> dbLien;
+    QList<int> liensExclus;
 } Lien;
 
 typedef QList<Lien*> Arbre;
-// Un lien étant repéré par un entier 64 bits,
-// un arbre est une liste de liens, donc de Lien.
-// Jusqu'à présent, j'utilisais des quint64 (non signés)
-// mais je voudrais avoir des liens négatifs,
-// pour repérer facilement ceux qui ne respectent pas la projectivité.
 // Je définis un type, car j'aurai besoin de liste d'arbres.
+
 class Tagueur : public QObject
 {
 public:
