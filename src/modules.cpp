@@ -29,6 +29,7 @@ DialogM::DialogM(QString d, MainWindow* parent)
     retranslateUi();
 
     connect(pushButton,   SIGNAL(clicked()), this, SLOT(activer()));
+    connect(pushButton_2, SIGNAL(clicked()), this, SLOT(desactiver()));
     connect(pushButton_4, SIGNAL(clicked()), this, SLOT(close()));
 
     QDir dir(_dir);
@@ -48,6 +49,13 @@ void DialogM::activer()
 {
     QListWidgetItem* item = listWidget->currentItem();
     if (item != 0) mainwindow->setModule(item->text());
+}
+
+void DialogM::desactiver()
+{
+	listWidget->setCurrentItem(0);
+    QListWidgetItem* item = 0;
+    if (item == 0) mainwindow->setModule("");
 }
 
 QString DialogM::module()

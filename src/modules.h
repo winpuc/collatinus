@@ -51,6 +51,7 @@ class DialogM : public QDialog
 
     public slots:
         void    activer();
+		void	desactiver();
 
     public:
         DialogM(QString d, MainWindow* parent=0);

@@ -19,8 +19,8 @@
  * © Yves Ouvrard, 2009 - 2019
  */
 
-#include <quazip/quazip.h>
-#include <quazip/quazipfile.h>
+#include <quazip5/quazip.h>
+#include <quazip5/quazipfile.h>
 
 #include "mainwindow.h"
 #include "modules.h"
@@ -2395,9 +2395,10 @@ void MainWindow::exec ()
             rep = scandeur->scandeTxt(texte,optAcc,false, requete[1].isLower());
             break;
         case 'H':
-        case 'h':
-            _lemmatiseur->setHtml(true);
-            nonHTML = false;
+		case 'h':
+			_lemmatiseur->setHtml(true);
+			nonHTML = false;
+			break;
         case 'L':
         case 'l':
             if ((options.size() > 2) && (options[2].isDigit()))
