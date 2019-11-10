@@ -153,14 +153,14 @@ Modele::Modele(QStringList ll, LemCore *parent)
         int p = cles.indexOf(eclats.first());
         switch (p)
         {
-            case 0:  // modèle
+			case 0:  // modele:<nom_de_modèle>
                 _gr = eclats.at(1);
                 break;
-            case 1:  // père
+			case 1:  // pere:<nom_de_modèle>
                 _pere = parent->modele(eclats.at(1));
                 break;
-            case 2:  // des+: désinences s'ajoutant à celles du père
-            case 3:  // des: désinences écrasant celles du père
+            case 2:  // des: désinences s'ajoutant à celles du père
+            case 3:  // des+: désinences écrasant celles du père
             {
                 QList<int> li = listeI(eclats.at(1));
                 int r = eclats.at(2).toInt();

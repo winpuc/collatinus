@@ -67,7 +67,6 @@ class Modele : public QObject
     QMultiMap<int, Desinence *> _desinences;
     QMap<int, QString> _genRadicaux;
     QString _gr;
-    QString _grq;
     LemCore *_lemmatiseur;
     Modele *_pere;
     QChar   _pos;
@@ -85,7 +84,6 @@ class Modele : public QObject
     bool               estUn(QString m);
     QString            genRadical(int r);
     QString            gr();
-    QString            grq();
     static QList<int>  listeI(QString l);
     QList<int>         morphos();
     QChar              pos();
