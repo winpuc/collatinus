@@ -19,6 +19,16 @@
  * © Yves Ouvrard, 2009 - 2019
  */
 
+/*
+ * TODO
+ *
+ * - dans ::setModule, vérifier que le nouveau module diffère du module
+ *   courant.
+ * - algo de lemmatisation : une fois le rad trouvé, pour chaque lemme
+ *   du rad, ne chercher que dans les désinences du modèle du lemme.
+ *   (un peu long pour les rads vides, mais quand même).
+ */
+
 #include <quazip5/quazip.h>
 #include <quazip5/quazipfile.h>
 
@@ -178,7 +188,7 @@ MainWindow::MainWindow()
     setWindowIcon(QIcon(":/res/collatinus.svg"));
     setUnifiedTitleAndToolBarOnMac(true);
 
-    QSettings settings("Collatinus", "collatinus11");
+    QSettings settings("Collatinus", "collatinus12");
     settings.beginGroup("fichiers");
     _module = settings.value("module").toString();
     settings.endGroup();
@@ -638,7 +648,7 @@ void MainWindow::clicPostW()
  */
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    QSettings settings("Collatinus", "collatinus11");
+    QSettings settings("Collatinus", "collatinus12");
     settings.beginGroup("interface");
     settings.setValue("langue", langueI);
     settings.endGroup();
@@ -1489,7 +1499,7 @@ void MainWindow::editVargraph()
 
 /**
  * \fn void MainWindow::effaceRes()
- * \brief Efface le contenu des docs visibles.
+ * \brief Efface le contenu des docks visibles.
  */
 void MainWindow::effaceRes()
 {
@@ -1941,7 +1951,7 @@ bool MainWindow::precaution()
  */
 void MainWindow::readSettings()
 {
-    QSettings settings("Collatinus", "collatinus11");
+    QSettings settings("Collatinus", "collatinus12");
     // état de la fenêtre
     settings.beginGroup("fenetre");
     restoreGeometry(settings.value("geometry").toByteArray());
@@ -2197,7 +2207,7 @@ void MainWindow::setCible()
  */
 void MainWindow::setLangue()
 {
-    QSettings settings("Collatinus", "collatinus11");
+    QSettings settings("Collatinus", "collatinus12");
     settings.beginGroup("interface");
     langueI = settings.value("langue").toString();
     settings.endGroup();
