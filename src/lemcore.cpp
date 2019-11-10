@@ -26,16 +26,15 @@
 
 #include "lemcore.h"
 
-#include <QDebug>
-
 // #include <QElapsedTimer>
 // #define DEBOG
 // #define VERIF_TRAD
 
 /**
- * \fn LemCore::LemCore (QObject *parent)
+ * \fn LemCore::LemCore (QObject *parent, QString resDir, QString ajDir)
  * \brief Constructeur de la classe Lemmat.
- *
+ * resDir : répertoire des données (défini comme vide, devient ./data/ par défaut)
+ * ajDir : répertoire du module (vide par défaut)
  * Il définit quelques constantes, initialise
  * les options à false, et appelle les fonctions
  * de lecture des données : modèles, lexique,
@@ -85,7 +84,7 @@ LemCore::LemCore(QObject *parent, QString resDir, QString ajDir) : QObject(paren
     lisVarGraph();
     lisModeles();
     lisModule();
-    lisLexique(1);
+    lisLexique(1);  // lecture du lexique classique
     lisTags(false);
     lisTraductions(true, false);
     if (!ajDir.isEmpty()) lisIrreguliers(_ajDir+"irregs.la");
@@ -94,7 +93,7 @@ LemCore::LemCore(QObject *parent, QString resDir, QString ajDir) : QObject(paren
     foreach (Lemme *l, _lemmes.values())
     {
         QString t = l->traduction("fr");
-        if (t == "") qDebug() << l->cle() << "non traduit.";
+        if (t == "") std::cerr << qPrintable(l->cle() + " non traduit.";
     }
 #endif
 }
