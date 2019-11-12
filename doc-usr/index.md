@@ -41,6 +41,9 @@ qui la présente avec des images annotées.
    texte. On peut aussi obtenir l'*analyse
    morphologique* des formes, c'est à dire leurs cas,
    genre, nombre, degré, personne, etc.
+1. **[Modules](modules.html)** On peut augmenter et modifier
+	lexique, flexions, graphies et irréguliers à l'aide
+	d'un des modules proposés en téléchargement.
 1. **[Dictionnaires](dictionnaires.html)** On peut
     ouvrir jusqu'à deux dictionnaires, consultables
     en cliquant sur un mot du texte, ou en saisissant

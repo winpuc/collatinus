@@ -1,6 +1,6 @@
 *Collatinus 11 -- guide*
 
-[index](index.html) précédent : [Pour débuter](debuter.html) suivant : [Dictionnaires](dictionnaires.html) 
+[index](index.html) précédent : [Pour débuter](debuter.html) suivant : [Modules](modules.html) 
 
 Lemmatiser et analyser
 ======================
