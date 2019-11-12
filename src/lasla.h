@@ -16,13 +16,13 @@
  *  along with COLLATINUS; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * © Yves Ouvrard, 2009 - 2016
+ * © Philippe Verkerk, 2009 - 2019
  */
 
 #ifndef LASLA_H
 #define LASLA_H
 
-#include "lemCore.h"
+#include "lemcore.h"
 #include "lemme.h"
 #include "ch.h"
 

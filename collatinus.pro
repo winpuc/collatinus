@@ -1,4 +1,4 @@
-VERSION = "11.2"
+VERSION = "12.0"
 DEFINES += VERSION=\\\"$$VERSION\\\"
 
 TEMPLATE = app
@@ -10,6 +10,8 @@ qtHaveModule(printsupport): QT += printsupport
 QT += widgets
 QT += network
 QT += svg
+
+LIBS += -lquazip5
 
 #QMAKE_CXXFLAGS += -Wall -Wextra -pedantic -fstack-protector-strong
 #QMAKE_CPPFLAGS += -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2
@@ -26,41 +28,58 @@ QMAKE_DISTCLEAN += $${DESTDIR}/collatinus
 
 # Input
 HEADERS += src/ch.h \
+           src/dicos.h \
            src/flexion.h \
            src/irregs.h \
+           src/lasla.h \
+           src/lemcore.h \
+           src/lemmatiseur.h \
            src/lemme.h \
-           src/dicos.h \
-		   src/modele.h \
-#           src/flexfr.h \
            src/mainwindow.h \
 		   src/maj.h \
-    src/mot.h \
-    src/lasla.h \
-    src/tagueur.h \
-    src/scandeur.h \
-    src/lemCore.h \
-    src/lemmatiseur.h
+		   src/modele.h \
+           src/modules.h \
+           src/mot.h \
+           src/reglevg.h \
+           src/scandeur.h \
+           src/tagueur.h \
+           src/vargraph.h
 
 SOURCES += src/ch.cpp \
-           src/flexion.cpp \
-#		       src/frequences.cpp \
-           src/irregs.cpp \
-           src/lemme.cpp \
            src/dicos.cpp \
-#           src/flexfr.cpp \
+           src/flexion.cpp \
+           src/irregs.cpp \
+           src/lasla.cpp \
+           src/lemcore.cpp \
+           src/lemmatiseur.cpp \
+           src/lemme.cpp \
            src/main.cpp \
-		   src/maj.cpp \
            src/mainwindow.cpp \
+		   src/maj.cpp \
            src/modele.cpp \
+           src/modules.cpp \
+           src/mot.cpp \
+           src/reglevg.cpp \
            src/scandeur.cpp \
-    src/mot.cpp \
-    src/lasla.cpp \
-    src/tagueur.cpp \
-    src/lemCore.cpp \
-    src/lemmatiseur.cpp
+           src/tagueur.cpp \
+           src/vargraph.cpp
 
 RESOURCES += collatinus.qrc
 RC_ICONS = res/collatinus.ico
+
+# install
+unix:{
+    target.path = /usr/bin
+    ui.path = /usr/share/collatinus
+    ui.files = bin/collatinus_en.qm
+    data.files = bin/data/*.*
+    data.path = /usr/share/collatinus/data 
+    doc.path = /usr/share/doc/collatinus
+    doc.files = bin/doc/*
+    INSTALLS += target
+    INSTALLS += data
+    INSTALLS += ui
+}
 
 macx:{
     TARGET = Collatinus_$${VERSION}

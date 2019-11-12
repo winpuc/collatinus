@@ -16,7 +16,7 @@
  *  along with COLLATINUS; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * © Yves Ouvrard, 2009 - 2016
+ * © Yves Ouvrard, 2009 - 2019
  */
 
 #ifndef MODELE_H
@@ -31,7 +31,7 @@
 #include <QDebug>
 
 #include "ch.h"
-#include "lemCore.h"
+#include "lemcore.h"
 
 class LemCore;
 class Modele;
@@ -67,7 +67,6 @@ class Modele : public QObject
     QMultiMap<int, Desinence *> _desinences;
     QMap<int, QString> _genRadicaux;
     QString _gr;
-    QString _grq;
     LemCore *_lemmatiseur;
     Modele *_pere;
     QChar   _pos;
@@ -85,7 +84,7 @@ class Modele : public QObject
     bool               estUn(QString m);
     QString            genRadical(int r);
     QString            gr();
-    QString            grq();
+    void               interprete(QStringList ll);
     static QList<int>  listeI(QString l);
     QList<int>         morphos();
     QChar              pos();

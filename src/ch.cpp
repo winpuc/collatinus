@@ -16,7 +16,7 @@
  *  along with COLLATINUS; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * © Yves Ouvrard, 2009 - 2016
+ * © Yves Ouvrard, 2009 - 2019
  */
 
 /**
@@ -26,9 +26,16 @@
  *
  */
 
+#include <QApplication>
+#include <QFileInfo>
+#include <QStandardPaths>
+
 #include "ch.h"
 
+#include <QApplication>
 #include <QDebug>
+#include <QFileInfo>
+#include <QStandardPaths>
 
 /**
  * \fn Ch::ajoute (QString mot, QStringList liste)
@@ -118,6 +125,35 @@ QString Ch::atone(QString a, bool bdc)
 }
 
 /**
+ * \fn Ch:chemin(QString f, char t)
+ * \brief chemin complet du fichier f, de type t
+ * 'e' = exécutable
+ * 'd' = données
+ * 'p' = données perso
+ */
+QString Ch::chemin(QString f, char t)
+{
+    if (t == 'd')
+    {
+        // si un data/ existe à côté de l'exécutable, le retourner
+        QString adpd = qApp->applicationDirPath()+"/data/";
+        if (QFile::exists(adpd)) return adpd;
+        QString dir = QStandardPaths::locate(QStandardPaths::GenericDataLocation,
+                                             f, QStandardPaths::LocateDirectory);
+        return dir;
+    }
+    QString ret;
+    if (t == 'p')
+    {
+        ret = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
+        if (!ret.endsWith('/')) ret.append('/');
+        ret.append(f);
+        return ret;
+    }
+    return qApp->applicationDirPath()+"/ext/";
+}
+
+/**
  * \fn Ch:communes(QString g)
  * \brief note comme communes toutes les voyelles qui ne portent pas de quantité.
  */
@@ -172,6 +208,12 @@ QString Ch::deAccent(QString c)
     return c;
 }
 
+QChar Ch::der(QString s)
+{
+    if (s.isEmpty()) return '\0';
+    return s.at(s.count()-1);
+}
+
 /**
  * \fn QString Ch::deramise(QString r)
  * \brief retourne une graphie non-ramiste
@@ -186,8 +228,8 @@ QString Ch::deramise(QString r)
     r.replace('v', 'u');
     r.replace("æ", "ae");
     r.replace("Æ", "Ae");
-    r.replace("œ", "oe");
-    r.replace("Œ", "Oe");
+    //r.replace("œ", "oe");  // le latin médiéval a souvent œ pour æ
+    //r.replace("Œ", "Oe");  // utiliser vargraph pour ces ligatures
     r.replace(0x1ee5, 'u');  // ụ le u muet de suavis, suadeo, etc...
     r.replace ('V', 'U');
     return r;
@@ -199,27 +241,21 @@ QString Ch::deramise(QString r)
  */
 void Ch::elide(QString *mp)
 {
-    //"Tāntāene"
-    //bool debog = (*mp == "Tāntāene");
-    //if (debog) qDebug() << "tantaene" << *mp;
     int taille = mp->size();
     if ((taille > 1) && ((mp->endsWith('m') || mp->endsWith("\u0101e")) ||
                          mp->endsWith("\u0306")) &&
         voyelles.contains(mp->at(taille - 2)))
     {
-        //if (debog) qDebug() << "cond1";
         deQuant(mp);
         mp->insert(taille - 2, '[');
         mp->append(']');
     }
     else if (voyelles.contains(mp->at(taille - 1)) && *mp != "\u014d")
     {
-        //if (debog) qDebug() << "cond2";
         deQuant(mp);
         mp->insert(taille - 1, '[');
         mp->append(']');
     }
-    //if (debog) qDebug() << *mp;
 }
 
 void Ch::genStrNum(const QString s, QString *ch, int *n)

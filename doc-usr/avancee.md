@@ -1,15 +1,25 @@
 *Collatinus 11 -- guide*
 
-[index](index.html) précédent : [Serveur](server.html) suivant : [Pour les programmeurs](programmeurs.html) 
+[index](index.html) précédent : [Serveur](server.html) suivant : [Pour les programmeurs](programmeurs.html)
 
 Utilisation avancée
 ===================
 
-	Pour faire son travail, Collatinus s'appuie sur une
-    collection de fichiers qui contiennent toutes les
-    connaissances nécessaires. À l'initialisation du
-    programme, ils sont tous lus, et les données mises
-    en listes et placées en mémoire vive.
+Ce chapitre peut paraître obsolète. Depuis la version
+12 de Collatinus, en effet, Collatinus dispose d'un
+éditeur de données Qu'on peut utiliser pour ajouter ou
+modifier des lemmes, gérer les formes irrégulières,
+et adapter le lemmatiseur aux variantes graphiques
+qu'a subies la langue après l'âge classique. Cet éditeur, nommé Ecce
+(Ecce Collatinistarum Communitatis Editor) est disponible ici, et
+il est accompagné d'une documentation qu'il est important de lire
+avant de l'utiliser.
+
+Pour faire son travail, Collatinus s'appuie sur une
+collection de fichiers qui contiennent toutes les
+connaissances nécessaires. À l'initialisation du
+programme, ils sont tous lus, et les données mises
+en listes et placées en mémoire vive.
 
 Si on remarque une erreur ou une lacune dans les
 résultats, et qu'on a des connaissances suffisantes en
@@ -19,7 +29,7 @@ notamment **en prenant soin de faire une copie de
 sauvegarde avant toute intervention** : on crée un
 répertoire dont on note bien le chemin, et on y copie
 les fichiers qu'on a l'intention de modifier. On peut
-ainsi, en cas d'échecs, les rétablir dans leur état
+ainsi, en cas d'échec, les rétablir dans leur état
 initial.
 
 Les fichiers les plus importants sont détaillés ci-dessous.
@@ -29,18 +39,18 @@ C'est un simple fichier dans lequel sont toutes les
 morphologies possibles que peuvent prendre les formes
 latines. Ainsi pour désigner une morphologie, on donne
 le numéro de la ligne où elle se trouve. Par exemple,
-la morphologie 
+la morphologie
 _vocatif masculin singulier participe présent actif_ est
 désignée par le nombre _190_.
 
 ## le fichier modeles.la
 C'est de loin le plus important. Y sont placés tous les
-modèles de flexion. 
+modèles de flexion.
 
 Un modèle est un ensemble de lignes. Chaque modèle est séparé
 du précédent par une ligne vide.
 
-Une ligne commençant par un point d'exclamation est un 
+Une ligne commençant par un point d'exclamation est un
 commentaire. Lors de sa lecture, Collatinus n'en tient
 pas compte.
 
@@ -55,10 +65,10 @@ la même disposition.
 ### Les clés
 
 * modèle:nom-du-modèle Exemple : **modele:uita**
-* Liste des radicaux :   
+* Liste des radicaux :
     R:\<n1\>:\<n2\>,\<ch\>
     * n1 : numéro du radical
-    * n2 : nombre de caractères à ôter de la forme canonique 
+    * n2 : nombre de caractères à ôter de la forme canonique
     * ch : chaîne à ajouter à la chaîne obtenue pour avoir le radical. S'il n'y a aucune chaîne à ajouter, la valeur est 0.  exemple pour uita : **R:1:1:0**, ce qui signifie que pour le radical 1, on enlève un caractère à *uita*, ce qui donne *uit*, et on n'ajoute rien.
 * désinences :
 	des:\<intervalle\>:\<num\>:\<listeDes\>
@@ -70,7 +80,7 @@ la même disposition.
 	* listeDes : liste des désiences. On peut ne donner qu'une fois une désinence qui se répète en fin de liste.
 
 ### Les variables
-Comme les mêmes séries de désinences sont souvent utilisées de nombreuses fois par 
+Comme les mêmes séries de désinences sont souvent utilisées de nombreuses fois par
 des modèles et des radicaux différents, on peut mettre ces séries en variables. Ainsi,
 pour le modèle uita. Au lieu d'écrire :
 
@@ -98,7 +108,7 @@ La variable $uita peut être utilisée pour le participe parfait :
 	(radicaux, autres désinences)
 	des:315-326:2:$uita
 
-## Le fichier lemmes.la 
+## Le fichier lemmes.la
 C'est un gros fichier qui donne tous les mots latins, leur modèle,
 leurs radicaux, et les indications morphologiques qui
 apparaîtront dans l'analyse.
@@ -150,7 +160,7 @@ Exemples :
 Les fichiers de traductions sont tous nommées
 lemmes.??, les deux points d'interrogation étant deux
 caractères qui servent à désigner la langue cible.
-(fr=français, it=italien, etc.) 
+(fr=français, it=italien, etc.)
 
 Leur format est extrêmement simple :
    <lemme>:<traduction>
@@ -158,10 +168,10 @@ Leur format est extrêmement simple :
 2. **traduction** : la traduction dans la langue cible.
 
 
-## les fichiers de contraction et d'assimilation 
+## les fichiers de contraction et d'assimilation
 
-bin/data/assimilations.la et bin/data/contractions.la sont deux 
-fichiers qui permettent de déclarer 
+bin/data/assimilations.la et bin/data/contractions.la sont deux
+fichiers qui permettent de déclarer
 
 * Les assimilations : la forme _affert_ n'est pas reconnue, mais
   une règle d'assimilation permet de remplacer _-aff-_
@@ -171,4 +181,4 @@ fichiers qui permettent de déclarer
   règle de contraction permet de remplacer _-assem_ par
   _-auissem_, ce qui donne _amauissem_, qui est reconnu.
 
-[index](index.html) précédent : [Serveur](server.html) suivant : [Pour les programmeurs](programmeurs.html) 
+[index](index.html) précédent : [Serveur](server.html) suivant : [Pour les programmeurs](programmeurs.html)

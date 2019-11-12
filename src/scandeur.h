@@ -16,7 +16,7 @@
  *  along with COLLATINUS; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * © Yves Ouvrard, 2009 - 2016
+ * © Philippe Verkerk 2009 - 2019
  */
 
 #ifndef SCANDEUR
@@ -25,7 +25,7 @@
 #include <QDebug>
 
 #include "ch.h"
-#include "lemCore.h"
+#include "lemcore.h"
 
 class Scandeur : public QObject
 {
@@ -38,7 +38,7 @@ public:
 private:
     LemCore * _lemCore;
     QString _resDir;
-    QList<Reglep> _reglesp;
+    QList<RegleVG*> _reglesp;
     void lisParPos();
     QStringList cherchePieds(int nbr, QString ligne, int i, bool pentam);
     QStringList formeq(QString forme, bool *nonTrouve, bool debPhr,

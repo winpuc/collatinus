@@ -454,6 +454,10 @@ des:37-48:1:ĕ;ĕ;ĕ;ĭs;ī;ī;ĭă;ĭă;ĭă;ĭŭm;ĭbŭs
 des:49-84:1:ĭ$compar;ĭ$compar;ĭŭs;ĭŭs;ĭŭs;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōră;ĭōră;ĭōră;ĭōrŭm;ĭōrĭbŭs
 des:85-120:1:īssĭm$lupus;īssĭm$uita;īssĭm$templum
 
+modele:felix
+pere:fortis
+des:37-39:4:-;-;-
+
 modele:facilis
 pere:fortis
 R:6:4,īllĭm
@@ -463,7 +467,7 @@ modele:infans
 pere:fortis
 des:37-39:1:ns
 des+:18,30,42:1:ē
-des+:22,34,46:1:ŭm3
+des+:22,34,46:1:ŭm
 
 modele:acer
 pere:fortis
@@ -484,13 +488,13 @@ des:22,34,46:1:ŭm;ŭm;ŭm
 ! plus: pas de degrés de signification
 modele:plus
 pere:fortis
+des:43-45:0:ă
 abs:49-120
 
 modele:uetus
 pere:diues
 R:3:2,ērrĭm
 des:85-120:3:$lupus;$uita;$templum
-!des:85-120:1:rĭmŭs;rĭmĕ;rĭmŭm;rĭmī;rĭmō;rĭmō;rĭmī;rĭmī;rĭmōs;rĭmōrŭm;rĭmīs;rĭmīs;rĭmă;rĭmă;rĭmăm;rĭmāe;rĭmāe;rĭmā;rĭmāe;rĭmāe;rĭmās;rĭmārŭm;rĭmīs;rĭmīs;rĭmŭm;rĭmŭm;rĭmŭm;rĭmī;rĭmō;rĭmō;rĭmă;rĭmă;rĭmă;rĭmōrŭm;rĭmīs
 
 ! provisoire
 ! modele:pronom
@@ -577,6 +581,7 @@ modele:quilibet
 pere:qui
 R:1:8,0
 sufd:lĭbĕt
+sufd:lŭbĕt
 
 modele:quinam
 pere:qui
@@ -627,19 +632,6 @@ abs:14-17,19-36,38,40,41,42-48
 des:13,18:1:īsquĭs,īcquĭs;ōquō
 des:37,39,42:1:īdquĭd,īcquĭd;īdquĭd,īcquĭd;ōquō
 pos:p
-
-modele:qualiscumque
-pere:plus
-R:1:8,0
-R:4:6,0
-sufd:cūnquĕ
-sufd:cūmquĕ
-
-modele:quantuscumque
-pere:nonus
-R:0:8,0
-sufd:cūnquĕ
-sufd:cūmquĕ
 
 modele:ego
 R:0:K
@@ -705,7 +697,7 @@ pos:p
 
 modele:plerique
 pere:doctus
-R:0:4
+R:0:4,0
 abs:13-18,25-30,37-42,49-120
 sufd:quĕ
 pos:p
@@ -825,7 +817,7 @@ des:363-374:0:ēndŭm;ēndŭm;ēndŭm;ēndī;ēndō;ēndō;ēndă;ēndă;ēndă;
 
 modele:licet
 pere:moneo
-abs:121,122,124-128,130-134,136-140,142-146,148-152,154-158,160-164,166-170,172-176,178-183,185-326,328,330-410
+abs:121,122,124-128,130-134,136-140,142-146,148-152,154-158,160-164,166-170,172-176,178-183,185,186,188-326,328,330-410
 
 modele:lego
 pere:moneo
@@ -851,7 +843,10 @@ des:291-296:0:ĕrĕr;ĕrērĭs,ĕrērĕ;ĕrētŭr;ĕrēmŭr;ĕrēmĭnī;ĕrēnt�
 des:297,298:0:ĕrĕ;ĭmĭnī
 des:299-301:0:ĭtŏr;ĭtŏr;ūntŏr
 des:302:0:ī
-! adjectif verbal hérité
+! adjectif verbal
+des+:339-350:0:ūnd$lupus
+des+:351-362:0:ūnd$uita
+des+:363-374:0:ūnd$templum
 
 modele:fero
 pere:lego
@@ -861,7 +856,7 @@ R:5:3,ēr
 des:122,123,125:5:s;t;tĭs
 ! impératif
 des:181:4:-
-des:182:5:tĕ
+des:182-185:5:tĕ;tō;tōtĕ
 ! infinitif
 des:187:3:ĕ
 des:302:3:ī
@@ -916,8 +911,9 @@ abs:181-186,189-374
 modele:edo
 pere:lego
 R:3:3,0
-des+:122,123:3:ēs;ēst
+des+:122,123,124:3:ēs;ēst;ēstĭs
 des+:163-168:3:ēss$em
+des:187:3:ēssĕ
 
 modele:capio
 pere:lego
@@ -962,11 +958,12 @@ des:268-271:3:īrĭs,īrĕ;ītŭr;īmŭr;īmĭnī
 des:291-296:3:īrĕr;ĭrērĭs,ĭrērĕ;īrētŭr;īrēmŭr;īrēmĭnī;īrēntŭr
 ! impératif et infinitif
 des:297,298:3:īrĕ;īmĭnī
-des:299,300:3:ītŏr;ītŏr;ĭūntŏr
+des:299-301:3:ītŏr;ītŏr;ĭūntŏr
 des:302:3:īrī
 
 modele:scio
 pere:audio
+des+:127-132:3:ībăm;ībās;ībăt;ībāmŭs;ībātĭs;ībānt
 des+:133-138:3:ībō̆;ībĭs;ībĭt;ībĭmŭs;ībĭtĭs;ībūnt
 
 modele:fio
@@ -1038,7 +1035,7 @@ des:121-126:0:ŏr;ārĭs;ātŭr;āmŭr;āmĭnī;āntŭr
 des:127-132:0:ābăr;ābārĭs,ābārĕ;ābātŭr;ābāmŭr;ābāmĭnī;ābāntŭr
 des:133-138:0:ābŏr;ābĕrĭs,ābĕrĕ;ābĭtŭr;ābĭmŭr;ābĭmĭnī;ābūntŭr
 ! subjonctif
-des:157-162:0:ĕr;ērĭs;ētŭr;ēmŭr;ēmĭnī;ēntŭr
+des:157-162:0:ĕr;ērĭs,ērĕ;ētŭr;ēmŭr;ēmĭnī;ēntŭr
 des:163-168:0:ārĕr;ārērĭs;ārētŭr;ārēmŭr;ārēmĭnī;ārēntŭr
 ! impératif
 des:181-186:0:ārĕ;āmĭnī
@@ -1060,6 +1057,10 @@ des:265,266:2:ŭm;ū
 des:375-386:2:ŭs;ĕ;ŭm;ī;ō;ō;ī;ī;ōs;ōrŭm;īs;īs
 des:387-398:2:ă;ă;ăm;āe;āe;ā;āe;āe;ās;ārŭm;īs;īs
 des:399-410:2:ŭm;ŭm;ŭm;ī;ō;ō;ă;ă;ă;ōrŭm;īs;īs
+! adj. verbal
+des+:339-350:0:ānd$lupus
+des+:351-362:0:ānd$uita
+des+:363-374:0:ānd$templum
 pos:v
 
 modele:uereor
@@ -1082,6 +1083,10 @@ des:201-212:0:$ens
 des:213-224:0:ēns;ēns;ēns;ēntĭs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
 ! gérondif et supin
 des:261-264:0:ēndŭm;ēndī;ēndō;ēndō
+! adj.verbal
+des+:339-350:0:ēnd$lupus
+des+:351-362:0:ēnd$uita
+des+:363-374:0:ēnd$templum
 
 modele:sequor
 pere:uereor

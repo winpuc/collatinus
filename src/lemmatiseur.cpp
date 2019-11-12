@@ -16,7 +16,7 @@
  *  along with COLLATINUS; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * © Yves Ouvrard, 2009 - 2016
+ * © Yves Ouvrard, Philippe Verkerk, 2009 - 2019
  */
 
 #include "lemmatiseur.h"
@@ -54,11 +54,35 @@ Lemmatiseur::Lemmatiseur(QObject *parent, LemCore *l, QString cible, QString res
 QStringList Lemmatiseur::lemmatiseF(QString f, bool deb)
 {
     QStringList res;
-    MapLem ml = _lemCore->lemmatiseM(f, deb);
+    //MapLem ml = _lemCore->lemmatiseM(f, deb);
+    MapLem ml = lemmatiseM(f, deb);
     foreach (Lemme *l, ml.keys())
         res.append(l->humain(_html,_cible));
-    // if (res.empty()) res.append(f);
     return res;
+}
+
+MapLem Lemmatiseur::lemmatiseM(QString f, bool deb)
+{
+    MapLem ml = _lemCore->lemmatiseM(f, deb);
+    // appliquer les règles aval
+    QStringList lfti = _lemCore->ti(f);
+    for (int i=0;i<lfti.count();++i)
+    {
+        QString fti = lfti.at(i);
+        MapLem nml = _lemCore->lemmatiseM(fti,true,0,false);
+        for(int j=0;j<nml.count();++j)
+        {
+            Lemme* nl = nml.keys().at(j);
+            ml.insert(nl, nml.value(nl));
+        }
+    }
+    /*
+    // dernier essai, sans les vargraph, pour les variantes
+    // à cheval sur assim/radical/désinence/suffixe
+    if (ml.isEmpty())
+        ml = _lemCore->lemmatiseM(f, true, 0, false);
+    */
+    return ml;
 }
 
 /**
@@ -247,12 +271,7 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
     // pour mesurer :
     // QElapsedTimer timer;
     // timer.start();
-/*
-    alpha = alpha || _alpha;
-    cumVocibus = cumVocibus || _formeT;
-    cumMorpho = cumMorpho || _morpho;
-    nreconnu = nreconnu || _nonRec;
-*/
+
     // Pour coloriser le texte
     bool cumColoribus = !_couleurs.isEmpty();
     bool listeVide = _hLem.isEmpty();
@@ -260,9 +279,11 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
     int formesConnues = 0;
     // éliminer les chiffres et les espaces surnuméraires
     t.remove(QRegExp("\\d"));
-//    t = t.simplified();
+
     // découpage en mots
     QStringList lm = t.split(QRegExp("\\b"));
+    //QStringList lm = tokenise(t);
+
     // conteneur pour les résultats
     QStringList lsv;
     // conteneur pour les échecs
@@ -270,7 +291,6 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
     // lemmatisation pour chaque mot
     if (lm.size() < 2)
     {
-//        qDebug() << t << lm.size() << lm;
         return "";
         // Ça peut arriver que le texte ne contienne qu"une ponctuation
     }
@@ -282,7 +302,8 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
         QString sep = lm.at(i - 1);
         bool debPhr = ((i == 1 && lm.count() !=3) || sep.contains(Ch::rePonct));
         // lemmatisation de la forme
-        MapLem map = _lemCore->lemmatiseM(f, !_majPert || debPhr);
+        //MapLem map = _lemCore->lemmatiseM(f, !_majPert || debPhr);
+        MapLem map = lemmatiseM(f, !_majPert || debPhr);
         // échecs
         if (map.empty())
         {
@@ -305,7 +326,6 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                     lem.replace("v","u");
                     lem.replace("J","I");
                     lem.replace("V","U");
-                    // qDebug() << lem;
                     if (_hLem.contains(lem))
                     {
                         _hLem[lem]++;
@@ -597,7 +617,8 @@ void Lemmatiseur::verbaCognita(QString fichier,bool vb)
             {
                 if (!ligne.startsWith("!") && !ligne.isEmpty()) // hLem.insert(ligne,1);
                 {
-                    item = _lemCore->lemmatiseM (ligne, false, false);
+                    //item = _lemCore->lemmatiseM (ligne, false, false);
+                    item = lemmatiseM (ligne, false);
                     foreach (Lemme *lem, item.keys())
                         _hLem.insert(lem->cle(),0);
                 }
@@ -625,13 +646,20 @@ void Lemmatiseur::verbaOut(QString fichier)
  *        permet de fournir par défaut des résultats dans
  *        l'ordre alphabétique.
  */
-bool Lemmatiseur::optAlpha() { return _alpha; }
+bool Lemmatiseur::optAlpha()
+{
+    return _alpha;
+}
+
 /**
  * \fn bool Lemmatiseur::optHtml()
  * \brief Accesseur de l'option html, qui
  *        permet de renvoyer les résultats au format html.
  */
-bool Lemmatiseur::optHtml() { return _html; }
+bool Lemmatiseur::optHtml()
+{
+    return _html;
+}
 
 /**
  * \fn bool Lemmatiseur::optFormeT()
@@ -639,7 +667,10 @@ bool Lemmatiseur::optHtml() { return _html; }
  *        qui donne en tête de lemmatisation
  *        la forme qui a été analysée.
  */
-bool Lemmatiseur::optFormeT() { return _formeT; }
+bool Lemmatiseur::optFormeT()
+{
+    return _formeT;
+}
 
 /**
  * \fn bool Lemmatiseur::optMajPert()
@@ -647,7 +678,11 @@ bool Lemmatiseur::optFormeT() { return _formeT; }
  *        qui permet de tenir compte des majuscules
  *        dans la lemmatisation.
  */
-bool Lemmatiseur::optMajPert() { return _majPert; }
+bool Lemmatiseur::optMajPert()
+{
+    return _majPert;
+}
+
 /**
  * \fn bool Lemmatiseur::optMorpho()
  * \brief Accesseur de l'option morpho,
@@ -670,7 +705,11 @@ bool Lemmatiseur::optNonRec()
  */
 // modificateurs d'options
 
-void Lemmatiseur::setAlpha(bool a) { _alpha = a; }
+void Lemmatiseur::setAlpha(bool a)
+{
+    _alpha = a;
+}
+
 /**
  * \fn void Lemmatiseur::setCible(QString c)
  * \brief Permet de changer la langue cible.
@@ -680,27 +719,47 @@ void Lemmatiseur::setCible(QString c)
     _cible = c;
     _lemCore->setCible(c);
 }
+
 /**
  * \fn void Lemmatiseur::setHtml (bool h)
  * \brief Modificateur de l'option html.
  */
-void Lemmatiseur::setHtml(bool h) { _html = h; }
+void Lemmatiseur::setHtml(bool h)
+{
+    _html = h;
+}
+
 /**
  * \fn void Lemmatiseur::setFormeT (bool f)
  * \brief Modificateur de l'option formeT.
  */
-void Lemmatiseur::setFormeT(bool f) { _formeT = f; }
+void Lemmatiseur::setFormeT(bool f)
+{
+    _formeT = f;
+}
+
 /**
  * \fn void Lemmatiseur::setMajPert (bool mp)
  * \brief Modificateur de l'option majpert.
  */
-void Lemmatiseur::setMajPert(bool mp) { _majPert = mp; }
+void Lemmatiseur::setMajPert(bool mp)
+{
+    _majPert = mp;
+}
+
 /**
  * \fn void Lemmatiseur::setMorpho (bool m)
  * \brief Modificateur de l'option morpho.
  */
-void Lemmatiseur::setMorpho(bool m) { _morpho = m; }
-void Lemmatiseur::setNonRec(bool n) { _nonRec = n; }
+void Lemmatiseur::setMorpho(bool m)
+{
+    _morpho = m;
+}
+
+void Lemmatiseur::setNonRec(bool n)
+{
+    _nonRec = n;
+}
 
 /**
  * \fn QString Lemmatiseur::cible()

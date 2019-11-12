@@ -16,7 +16,7 @@
  *  along with COLLATINUS; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * © Yves Ouvrard, 2009 - 2016
+ * © Yves Ouvrard, 2009 - 2019
  */
 
 #include "dicos.h"
@@ -202,7 +202,11 @@ QString Dictionnaire::entree_pos(qint64 pos, qint64 taille)
  * \brief * Efface l'index du dictionnaire djvu.
  *          Cf. lis_index_djvu ()
  */
-void Dictionnaire::vide_index() { idxDjvu.clear(); }
+void Dictionnaire::vide_index()
+{
+    idxDjvu.clear();
+}
+
 /**
  * \fn Dictionnaire::vide_ligneLiens
  *
@@ -211,7 +215,10 @@ void Dictionnaire::vide_index() { idxDjvu.clear(); }
  *
  * Jamais utilisée.
  */
-void Dictionnaire::vide_ligneLiens() { ligneLiens.clear(); }
+void Dictionnaire::vide_ligneLiens()
+{
+    ligneLiens.clear();
+}
 /**
  * \fn Dictionnaire::lis_index_djvu
  *
@@ -545,35 +552,60 @@ QString Dictionnaire::page(QStringList req, int no)
  * \brief Renvoie vrai si le dictionnaire actif est au
  *        format xml, faux dans le cas contraire.
  */
-bool Dictionnaire::estXml() { return xml; }
+bool Dictionnaire::estXml()
+{
+    return xml;
+}
+
 /**
  * \fn QString Dictionnaire::pgPrec ()
  * \brief Fonction de navigation, page précédente.
  */
-QString Dictionnaire::pgPrec() { return prec; }
+QString Dictionnaire::pgPrec()
+{
+    return prec;
+}
+
 /**
  * \fn QString Dictionnaire::pgSuiv ()
  * \brief Fonction de navigation, page suivante.
  */
-QString Dictionnaire::pgSuiv() { return suiv; }
+
+QString Dictionnaire::pgSuiv()
+{
+    return suiv;
+}
+
 /**
  * \fn int Dictionnaire::noPageDjvu ()
  * \brief Renvoie le numéro de la dernière page de
  *        dictionnaire djvu consultée.
  */
-int Dictionnaire::noPageDjvu() { return pdj; }
+int Dictionnaire::noPageDjvu()
+{
+    return pdj;
+}
+
 /**
  * \fn QString Dictionnaire::indexJv ()
  * \brief Renvoie le nom du fichier du dictionnaire
  *        djvu courant.
  */
-QString Dictionnaire::indexJv() { return idxJv; }
+QString Dictionnaire::indexJv()
+{
+    return idxJv;
+}
+
 /**
  * \fn QStringList Dictionnaire::liens ()
  * \brief Renvoie le code html des liens de la page de
  *        dictionnaire affichée.
  */
-QStringList Dictionnaire::liens() { return _liens; }
+QStringList Dictionnaire::liens()
+{
+    return _liens;
+}
+
 /****************
 *    ListeDic   *
 *****************/
@@ -595,7 +627,11 @@ Dictionnaire *ListeDic::dictionnaire_par_nom(QString nom)
  * \brief Ajoute le dictionnaire d à la liste des
  *        dictionnaires.
  */
-void ListeDic::ajoute(Dictionnaire *d) { liste.insert(d->nom(), d); }
+void ListeDic::ajoute(Dictionnaire *d)
+{
+    liste.insert(d->nom(), d);
+}
+
 /**
  * \fn void ListeDic::change_courant (QString nom)
  * \brief Déclare le dictionnaire de nom nom comme
@@ -611,7 +647,11 @@ void ListeDic::change_courant(QString nom)
  * \brief Renvoie l'ojet dictionnaire courant.
  *
  */
-Dictionnaire *ListeDic::courant() { return currens; }
+Dictionnaire *ListeDic::courant()
+{
+    return currens;
+}
+
 /**
  * \fn void ListeDic::change_courant2 (QString nom)
  * \brief Comme change_courant, mais pour le
@@ -627,7 +667,11 @@ void ListeDic::change_courant2(QString nom)
  * \brief Comme courant(), mais pour le dictionnaire
  *        supplémentaire
  */
-Dictionnaire *ListeDic::courant2() { return currens2; }
+Dictionnaire *ListeDic::courant2()
+{
+    return currens2;
+}
+
 /**
  * \fn QString Dictionnaire::ramise (QString f)
  * \brief Essaie de convertir la chaîne f pour qu'elle

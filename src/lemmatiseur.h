@@ -16,7 +16,7 @@
  *  along with COLLATINUS; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * © Yves Ouvrard, 2009 - 2016
+ * © Yves Ouvrard, 2009 - 2019
  */
 
 #ifndef LEMMATISEUR_H
@@ -28,7 +28,7 @@
 #include <QDebug>
 
 #include "ch.h"
-#include "lemCore.h"
+#include "lemcore.h"
 
 class Lemmatiseur : public QObject
 {
@@ -41,6 +41,7 @@ public:
     QString lemmatiseFichier(QString f, bool alpha = false,
                              bool cumVocibus = false, bool cumMorpho = false,
                              bool nreconnu = true);
+    MapLem lemmatiseM(QString f, bool deb);
     // lemmatiseT lemmatise un texte
     QString lemmatiseT(QString &t);
     QString lemmatiseT(QString &t, bool alpha, bool cumVocibus = false,

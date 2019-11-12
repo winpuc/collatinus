@@ -1,11 +1,30 @@
-COLLATINUS 11
+COLLATINUS 12
 =============
 
-La version 11 de Collatinus fait tout ce que faisait la
-version 10, mais l'interface du programme a été
-retravaillée, et son code source a été révisé. Chacun
-des chapitres du menu suivant décrit en détail les
-différentes utilisations de Collatinus.
+L'interface utilisateur de la version 12 de Collatinus est 
+la même que celle de Collatinus 11. Quelques options de 
+menu ont été ajoutées, afin de pouvoir adapter le lemmatiseur
+aux difféntes évolutions qu'a connues la latinité.
+
+À mesure que l'Empire s'étendait en Europe, en Asie et en Afrique,
+à mesure que le temps passait, le lexique s'est enrichi, et les mots
+ont changé de sens. La phonétique se transformant, la notation écrite
+a fini par se conformer à ces transformations. parmi les modifications
+évidentes, on peut citer la diphtongue _ae_, qui est devenue _e_ ; un _p_
+épenthétique s'est glissé entre _m_ et _n_ ; _mihi_ est souvent devenu
+_michi_. Conscients de ces glissements, les auteurs et les copistes ont
+quelquefois tenté de revenir à une graphie classique, pas toujours avec
+bonheur.
+
+Comme nous voulions que Collatinus puisse s'occuper de l'immense corpus
+médiéval, et pour s'adapter à la diversité de ce corpus, il a fallu
+rendre modulaires les données de Collatinus. Le programme est donc
+installé avec ses données classiques, mais on peut télécharger des
+modules, les installer, et décider quel module on veut utiliser pour
+travailler. La génération des modules lexicaux n'est pas une tâche
+très facile. À cette seule fin, J'ai écrit ECCE (Ecce Collatinistarum
+Communitatis Editor), mais son usage nécessite de bien se documenter
+auparavant. 
 
 L'interface de Collatinus est intuitive, mais il est
 conseillé de commencer par le [chapitre suivant](anatomie.html),

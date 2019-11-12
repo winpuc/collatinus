@@ -16,10 +16,25 @@
  *  along with COLLATINUS; if not, write to the Free Software
  *  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
- * © Yves Ouvrard, 2009 - 2016
+ * © Yves Ouvrard, 2009 - 2019
  */
 
+/*
+ * TODO
+ *
+ * - dans ::setModule, vérifier que le nouveau module diffère du module
+ *   courant.
+ * - algo de lemmatisation : une fois le rad trouvé, pour chaque lemme
+ *   du rad, ne chercher que dans les désinences du modèle du lemme.
+ *   (un peu long pour les rads vides, mais quand même).
+ */
+
+#include <quazip5/quazip.h>
+#include <quazip5/quazipfile.h>
+
 #include "mainwindow.h"
+#include "modules.h"
+#include "vargraph.h"
 
 /**
  * \fn EditLatin::EditLatin (QWidget *parent): QTextEdit (parent)
@@ -52,6 +67,11 @@ bool EditLatin::event(QEvent *event)
             QString mot = tc.selectedText();
             if (mot.isEmpty ())
                 return QWidget::event (event);
+            /*
+            int fin = tc.selectionEnd();
+            if (document()->characterAt(fin) == '\'' && fin < document()->characterCount()-2)
+                mot.append(document()->characterAt(fin+1));
+            */
             QString txtBulle = mainwindow->_lemmatiseur->lemmatiseT(
                 mot, true, true, true, false);
             if (txtBulle.isEmpty()) return true;
@@ -80,8 +100,10 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
     QTextCursor cursor = textCursor();
     if (!cursor.hasSelection()) cursor.select(QTextCursor::WordUnderCursor);
     QString st = cursor.selectedText();
+    MapLem ml;
     bool unSeulMot = !st.contains(' ');
-    MapLem ml = mainwindow->_lemCore->lemmatiseM(st);
+    if (unSeulMot) ml = mainwindow->lemcore->lemmatiseM(st);
+    
     // 1. dock de lemmatisation
     if (!mainwindow->dockLem->visibleRegion().isEmpty())
     {
@@ -93,7 +115,8 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
             if (mainwindow->html())
             {
                 QString texteHtml = mainwindow->textEditLem->toHtml();
-                texteHtml.insert(texteHtml.indexOf("</body>"),mainwindow->_lemmatiseur->lemmatiseT(st));
+                texteHtml.insert(texteHtml.indexOf("</body>"),
+                                 mainwindow->_lemmatiseur->lemmatiseT(st));
                 mainwindow->textEditLem->setText(texteHtml);
                 mainwindow->textEditLem->moveCursor(QTextCursor::End);
             }
@@ -123,7 +146,7 @@ void EditLatin::mouseReleaseEvent(QMouseEvent *e)
             }
         }
         // 4. dock dictionnaires
-        QStringList lemmes = mainwindow->_lemCore->lemmes(ml);
+        QStringList lemmes = mainwindow->lemcore->lemmes(ml);
         if (!mainwindow->dockDic->visibleRegion().isEmpty())
             mainwindow->afficheLemsDic(lemmes);
         if (mainwindow->wDic->isVisible() && mainwindow->syncAct->isChecked())
@@ -153,34 +176,49 @@ MainWindow::MainWindow()
     editLatin = new EditLatin(this);
     setCentralWidget(editLatin);
 
-    _lemCore = new LemCore(this);
-    _lemmatiseur = new Lemmatiseur(this,_lemCore);
-    flechisseur = new Flexion(_lemCore);
-    lasla = new Lasla(this,_lemCore,"");
-    tagueur = new Tagueur(this,_lemCore);
-    scandeur = new Scandeur(this,_lemCore);
-
-    setLangue();
-
     createStatusBar();
     createActions();
     createDockWindows();
     createDicWindow();
     createMenus();
     createToolBars();
-    createConnections();
     createDicos();
     createDicos(false);
-    createCibles();
-
-    setWindowTitle(tr("Collatinus 11"));
+    setWindowTitle(tr("Collatinus 12"));
     setWindowIcon(QIcon(":/res/collatinus.svg"));
-
     setUnifiedTitleAndToolBarOnMac(true);
 
-    // setTabPosition(Qt::BottomDockWidgetArea, QTabWidget::North );
-
+    QSettings settings("Collatinus", "collatinus12");
+    settings.beginGroup("fichiers");
+    _module = settings.value("module").toString();
+    settings.endGroup();
+    // définir d'abord les répertoires de l'appli
+    // et le répertoire personnel, où sont les modules lexicaux
+    resDir = Ch::chemin("collatinus/data", 'd');
+    if (!resDir.endsWith('/')) resDir.append('/');
+    // TODO : création, et QSettings pour module
+    modDir = Ch::chemin("collatinus/", 'p');
+    if (!modDir.endsWith('/')) modDir.append('/');
+    if (!_module.isEmpty())
+    {
+        ajDir = modDir + _module;
+        if (!ajDir.endsWith('/')) ajDir.append('/');
+    }
+    else
+    {
+        ajDir.clear();
+    }
+    lemcore = new LemCore(this, resDir, ajDir);
+    createCibles();
+    _lemmatiseur = new Lemmatiseur(this,lemcore);
     readSettings();
+    createConnections();
+    flechisseur = new Flexion(lemcore);
+    lasla = new Lasla(this,lemcore,"");
+    tagueur = new Tagueur(this,lemcore);
+    scandeur = new Scandeur(this,lemcore);
+
+    setLangue();
 }
 
 /**
@@ -205,8 +243,8 @@ void MainWindow::afficheLemsDic(bool litt, bool prim)
     QStringList requete;
     if (!litt)
     {
-        MapLem lm = _lemCore->lemmatiseM(lineEdit->text(), true);
-        requete = _lemCore->lemmes(lm);
+        MapLem lm = lemcore->lemmatiseM(lineEdit->text(), true);
+        requete = lemcore->lemmes(lm);
     }
     else
     {
@@ -281,7 +319,7 @@ void MainWindow::afficheLemsDic(QStringList ll, int no)
 {
     if (textBrowserDic == 0) return;
     lemsDic = ll;
-    if (ll.empty() || no < 0 || listeD.courant() == NULL) return;
+    if (ll.isEmpty() || no < 0 || listeD.courant() == NULL) return;
     textBrowserDic->clear();
     textBrowserDic->setHtml(listeD.courant()->page(ll, no));
     lineEditDic->setText(ll.at(no));
@@ -380,15 +418,15 @@ void MainWindow::alpha()
 /**
  * \fn void MainWindow::apropos ()
  * \brief Affiche les informations essentielles au
- *        sujet de Collatinus 11.
+ *        sujet de Collatinus 12.
  */
 void MainWindow::apropos()
 {
     QMessageBox::about(
-        this, tr("Collatinus 11"),
+        this, tr("Collatinus 12"),
         tr("<b>COLLATINVS</b><br/>\n"
            "<i>Linguae latinae lemmatizatio </i><br/>\n"
-           "Licentia GPL, © Yves Ouvrard, 2009 - 2016 <br/>\n"
+           "Licentia GPL, © Yves Ouvrard, 2009 - 2019 <br/>\n"
            "Nonnullas partes operis scripsit Philippe Verkerk<br/>\n"
            "Versio " VERSION "<br/><br/>\n"
            "Gratias illis habeo :<br/><ul>\n"
@@ -498,6 +536,8 @@ void MainWindow::charger(QString f)
     QApplication::setOverrideCursor(Qt::WaitCursor);
     QString contenu = in.readAll();
     file.close();
+    // exemple: modif du contenu
+    //contenu.replace(QRegExp("([uo])'s\\b"),"\\1s es");
     editLatin->setPlainText(contenu);
     QApplication::restoreOverrideCursor();
 }
@@ -608,7 +648,7 @@ void MainWindow::clicPostW()
  */
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    QSettings settings("Collatinus", "collatinus11");
+    QSettings settings("Collatinus", "collatinus12");
     settings.beginGroup("interface");
     settings.setValue("langue", langueI);
     settings.endGroup();
@@ -618,6 +658,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     settings.endGroup();
     settings.beginGroup("fichiers");
     if (!nfAb.isEmpty()) settings.setValue("nfAb", nfAb);
+    if (!_module.isEmpty()) settings.setValue("module", _module);
     settings.endGroup();
     settings.beginGroup("options");
     // settings.setValue("police", font.family());
@@ -696,6 +737,7 @@ void MainWindow::createActions()
                            tr("&Effacer les résultats"), this);
     copieAct = new QAction(QIcon(":res/copie.svg"),
                            tr("&Copier dans un traitement de textes"), this);
+    saveAct = new QAction(QIcon(":res/save.svg"), tr("enregistrer la lemmatisation"), this);
     deZoomAct = new QAction(QIcon(":res/dezoom.svg"), tr("Plus petit"), this);
     findAct = new QAction(QIcon(":res/edit-find.svg"), tr("&Chercher"), this);
     fontAct = new QAction(tr("Police de caractères"), this);
@@ -784,6 +826,11 @@ void MainWindow::createActions()
     actionVerba_cognita->setChecked(false);
     verba_cognita_out = new QAction(tr("Écrire l'emploi des mots connus"),this);
 
+    // actions pour les modules et vargraph
+    modInstAct = new QAction(tr("Installer un module"), this);
+    modulesAct = new QAction(tr("activer, désactiver, gérer les modules"), this);
+    vargraphAct = new QAction(tr("Variantes graphiques"), this);
+
     // actions pour le serveur
     serverAct = new QAction(tr("Serveur"), this);
     serverAct->setCheckable(true);
@@ -823,13 +870,16 @@ void MainWindow::createActions()
  */
 void MainWindow::createCibles()
 {
-    grCibles = new QActionGroup(lexMenu);
-    foreach (QString cle, _lemCore->cibles().keys())
+    //grCibles = new QActionGroup(lexMenu);
+    grCibles = new QActionGroup(ciblesMenu);
+    //foreach (QString cle, lemcore->cibles().keys())
+    for (int i=0;i<lemcore->cibles().count();++i)
     {
+        QString cle = lemcore->cibles().keys().at(i);
         QAction *action = new QAction(grCibles);
-        action->setText(_lemCore->cibles()[cle]);
+        action->setText(lemcore->cibles()[cle]);
         action->setCheckable(true);
-        lexMenu->addAction(action);
+        ciblesMenu->addAction(action);
         connect(action, SIGNAL(triggered()), this, SLOT(setCible()));
     }
 }
@@ -873,7 +923,12 @@ void MainWindow::createConnections()
             SLOT(setMorpho(bool)));
     connect(nonRecAct, SIGNAL(toggled(bool)), _lemmatiseur,
             SLOT(setNonRec(bool)));
-    connect(extensionWAct, SIGNAL(toggled(bool)), _lemCore, SLOT(setExtension(bool)));
+    connect(extensionWAct, SIGNAL(toggled(bool)), lemcore, SLOT(setExtension(bool)));
+
+    // action modules et vargraph
+    connect(modulesAct, SIGNAL(triggered()), this, SLOT(dialogueModules()));
+    connect(vargraphAct, SIGNAL(triggered()), this, SLOT(editVargraph()));
+    connect(modInstAct, SIGNAL(triggered()), this, SLOT(instModule()));
 
     // actions et options de l'accentuation
     connect(accentAct, SIGNAL(toggled(bool)), this, SLOT(setAccent(bool)));
@@ -923,6 +978,7 @@ void MainWindow::createConnections()
     connect(auxAct, SIGNAL(triggered()), this, SLOT(auxilium()));
     connect(balaiAct, SIGNAL(triggered()), this, SLOT(effaceRes()));
     connect(copieAct, SIGNAL(triggered()), this, SLOT(dialogueCopie()));
+    connect(saveAct, SIGNAL(triggered()), this, SLOT(save()));
     connect(exportAct, SIGNAL(triggered()), this, SLOT(exportPdf()));
     connect(exportCsvAct, SIGNAL(triggered()), this, SLOT(exportCsv()));
     connect(findAct, SIGNAL(triggered()), this, SLOT(recherche()));
@@ -976,6 +1032,7 @@ void MainWindow::createMenus()
     fileMenu->addAction(ouvrirAct);
     fileMenu->addSeparator();
     fileMenu->addAction(copieAct);
+    fileMenu->addAction(saveAct);
     fileMenu->addAction(exportAct);
     fileMenu->addAction(exportCsvAct);
     fileMenu->addAction(printAct);
@@ -1016,8 +1073,14 @@ void MainWindow::createMenus()
     lexMenu->addAction(alphaAct);
     lexMenu->addAction(statAct);
     lexMenu->addSeparator();
-    lexMenu->addAction(extensionWAct);
-    lexMenu->addSeparator();
+
+    modulMenu = lexMenu->addMenu(tr("Modules lexicaux"));
+    modulMenu->addAction(extensionWAct);
+    modulMenu->addAction(modInstAct);
+    modulMenu->addAction(modulesAct);
+    modulMenu->addAction(vargraphAct);
+
+    ciblesMenu = lexMenu->addMenu(tr("Langues cible"));
 
     optMenu = menuBar()->addMenu(tr("&Options"));
     optMenu->addAction(alphaOptAct);
@@ -1043,6 +1106,7 @@ void MainWindow::createMenus()
     extraMenu->addAction(serverAct);
     extraMenu->addAction(majDicAct);
     extraMenu->addAction(majLexAct);
+    extraMenu->addAction(modInstAct);
 
     helpMenu = menuBar()->addMenu(tr("&Aide"));
     helpMenu->addAction(auxAct);
@@ -1063,6 +1127,7 @@ void MainWindow::createToolBars()
     toolBar->addAction(nouvAct);
     toolBar->addAction(ouvrirAct);
     toolBar->addAction(copieAct);
+    toolBar->addAction(saveAct);
     toolBar->addAction(zoomAct);
     toolBar->addAction(deZoomAct);
     toolBar->addAction(findAct);
@@ -1132,7 +1197,6 @@ void MainWindow::createDockWindows()
     vLayoutLem->addLayout(hLayoutLem);
     vLayoutLem->addWidget(textEditLem);
     dockLem->setWidget(dockWidgetLem);
-//    qDebug() << dockLem->testAttribute(Qt::WA_DeleteOnClose) << dockWidgetLem->testAttribute(Qt::WA_DeleteOnClose);
 
     dockDic = new QDockWidget(tr("Dictionnaires"), this);
     dockDic->setObjectName("dockdic");
@@ -1399,6 +1463,13 @@ void MainWindow::dialogueCopie()
     dCopie.exec();
 }
 
+void MainWindow::dialogueModules()
+{
+    DialogM dm(modDir, this);
+    dm.setModal(true);
+    dm.exec();
+}
+
 /**
  * \fn bool MainWindow::dockVisible (QDockWidget *d)
  * \brief renvoie true si le dock d est visible.
@@ -1409,9 +1480,27 @@ bool MainWindow::dockVisible(QDockWidget *d)
     return !d->visibleRegion().isEmpty();
 }
 
+void MainWindow::editVargraph()
+{
+    DialogVG dv(lemcore->lignesVG(), this);
+    dv.setModal(true);
+    int res = dv.exec();
+    switch(res)
+    {
+        case QDialog::Accepted:
+            lemcore->lisVarGraph(dv.lignes());
+            lemcore->lisModeles(resDir+"modeles.la");
+            lemcore->lisModeles(ajDir+"modeles.la");
+            lemcore->reinitRads();
+            break;
+        default: break;
+    }
+    
+}
+
 /**
  * \fn void MainWindow::effaceRes()
- * \brief Efface le contenu des docs visibles.
+ * \brief Efface le contenu des docks visibles.
  */
 void MainWindow::effaceRes()
 {
@@ -1465,7 +1554,6 @@ void MainWindow::exportCsv()
             {
                 // L'inverse (html --> non-html) mettrait les nouveaux résultats en items du dernier lemme.
                 blabla = textEditLem->toHtml();
-                //        qDebug() << blabla;
                 int pCourante = 0;
                 int pPrecendente = 0;
                 int niveau = 0;
@@ -1516,8 +1604,6 @@ void MainWindow::exportCsv()
             }
             else blabla = textEditLem->toPlainText();
             if (!blabla.endsWith("\n")) blabla.append("\n");
-            //        qDebug() << blabla;
-            //        qDebug() << lem2csv(blabla);
             // écrire le fichier en csv.
             QFile f(nf);
             f.open(QFile::WriteOnly);
@@ -1557,7 +1643,6 @@ QString MainWindow::lem2csv(QString texte)
         pos = texte.indexOf("\n");
         ligne = texte.mid(0,pos).simplified();
         texte = texte.mid(pos + 1);
-//        qDebug() << ligne << texte;
         if (ligne.startsWith("*"))
         {
             forme = ligne.mid(2);
@@ -1593,6 +1678,11 @@ QString MainWindow::lem2csv(QString texte)
     return res;
 }
 
+QString MainWindow::module()
+{
+    return _module;
+}
+
 /**
  * \fn void MainWindow::imprimer()
  * \brief Lance le dialogue d'impression pour la lemmatisation.
@@ -1617,6 +1707,36 @@ void MainWindow::imprimer()
 #endif
 }
 
+void MainWindow::instModule()
+{
+    QString ch = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation);
+    QString chp = QFileDialog::getOpenFileName(this,
+                                               "paquet du module à installer",
+                                               ch, "paquets Collatinus (*.col)");
+    if (chp.isEmpty()) return;
+    QFileInfo info(chp);
+    QString nmod= info.baseName();
+    QDir dir(modDir);
+    dir.mkdir(nmod);
+    QuaZip zip(chp);
+    zip.open(QuaZip::mdUnzip);
+    zip.goToFirstFile();
+    do
+    {
+        QuaZipFile zipFile(&zip);
+        if (!zipFile.open(QIODevice::ReadOnly)) continue;
+        QFile out(zipFile.getActualFileName());
+        if (!out.open(QIODevice::WriteOnly)) continue;;
+        char c;
+        while (zipFile.getChar(&c)) out.putChar(c);
+        out.flush();
+        out.close();
+        zipFile.close();
+    }
+    while (zip.goToNextFile());
+    // TODO : message, marche à suivre pour activer le module
+}
+
 /**
  * \fn void MainWindow::langueInterface()
  * \brief Sonde les actions frAct et enAct, et
@@ -1634,7 +1754,7 @@ void MainWindow::langueInterface()
     }
     else
         langueI = "fr";
-    QMessageBox::about(this, tr("Collatinus 11"),
+    QMessageBox::about(this, tr("Collatinus 12"),
                        tr("Le changement de langue prendra effet "
                           "au prochain lancement de Collatinus."));
 }
@@ -1647,7 +1767,7 @@ void MainWindow::langueInterface()
  */
 void MainWindow::flechisLigne()
 {
-    MapLem ml = _lemCore->lemmatiseM(lineEditFlex->text());
+    MapLem ml = lemcore->lemmatiseM(lineEditFlex->text());
     if (!ml.empty())
     {
         textBrowserFlex->clear();
@@ -1703,18 +1823,17 @@ void MainWindow::lemmatiseLigne()
  */
 void MainWindow::lemmatiseTxt()
 {
-    // si la tâche dure trop longtemps :
-    // setUpdatesEnabled(false);
+    qApp->setOverrideCursor(QCursor(Qt::WaitCursor));
     QString txt = editLatin->toPlainText();
     QString res = _lemmatiseur->lemmatiseT(txt);
     if (html())
         textEditLem->setHtml(res);
     else
         textEditLem->setPlainText(res);
-    // setUpdatesEnabled(true);
     if (txt.contains("<span"))
         editLatin->setHtml(txt);
     // Le texte a été modifié, donc colorisé.
+    qApp->restoreOverrideCursor();
 }
 
 /**
@@ -1833,7 +1952,7 @@ bool MainWindow::precaution()
  */
 void MainWindow::readSettings()
 {
-    QSettings settings("Collatinus", "collatinus11");
+    QSettings settings("Collatinus", "collatinus12");
     // état de la fenêtre
     settings.beginGroup("fenetre");
     restoreGeometry(settings.value("geometry").toByteArray());
@@ -1848,11 +1967,11 @@ void MainWindow::readSettings()
         nfAd = nfAb;
         nfAd.prepend("coll-");
     }
+    //_module = settings.value("module").toString();
     settings.endGroup();
     settings.beginGroup("options");
     // police
     font.setPointSize(settings.value("zoom").toInt());
-    // font.setFamily(settings.value("police").toString());
     editLatin->setFont(font);
     textEditLem->setFont(font);
     textBrowserDic->setFont(font);
@@ -1867,6 +1986,7 @@ void MainWindow::readSettings()
     majPertAct->setChecked(settings.value("majpert").toBool());
     morphoAct->setChecked(settings.value("morpho").toBool());
     nonRecAct->setChecked(settings.value("nonrec").toBool());
+    _lemmatiseur->setNonRec(nonRecAct->isChecked());
     // options d'accentuation
     accentAct->setChecked(settings.value("accentuation").toBool());
     optionsAccent->setEnabled(settings.value("accentuation").toBool());
@@ -1887,20 +2007,21 @@ void MainWindow::readSettings()
     if (l.size() < 2) l = "fr";
     _lemmatiseur->setCible(l);
     foreach (QAction *action, grCibles->actions())
-        if (action->text() == _lemCore->cibles()[l.mid(0,2)])
+        if (action->text() == lemcore->cibles()[l.mid(0,2)])
             action->setChecked(true);
     settings.endGroup();
     // options appliquées au lemmatiseur
     _lemmatiseur->setAlpha(alphaOptAct->isChecked());
     _lemmatiseur->setFormeT(formeTAct->isChecked());
-    _lemCore->setExtension(extensionWAct->isChecked());
-    if (!ficHyphen.isEmpty()) _lemCore->lireHyphen(ficHyphen);
+    lemcore->setExtension(extensionWAct->isChecked());
+    if (!ficHyphen.isEmpty()) lemcore->lireHyphen(ficHyphen);
     // Le fichier hyphen.la doit être lu après l'extension.
     _lemmatiseur->setHtml(htmlAct->isChecked());
     _lemmatiseur->setMajPert(majPertAct->isChecked());
     _lemmatiseur->setMorpho(morphoAct->isChecked());
     settings.beginGroup("dictionnaires");
     comboGlossaria->setCurrentIndex(settings.value("courant").toInt());
+    changeGlossarium(comboGlossaria->currentText());
     wDic->move(settings.value("posw").toPoint());
     wDic->resize(settings.value("sizew").toSize());
     wDic->setVisible(settings.value("wdic").toBool());
@@ -1912,35 +2033,42 @@ void MainWindow::readSettings()
 
 /**
  * \fn void MainWindow::recherche()
- * \brief Recherche dans l'éditeur actif.
+ * \brief Recherche
  *
- * Je regarde quelle fenêtre est active
- * et je recherche à partir du curseur.
- *
+ * recherche à partir du curseur dans le texte latin.
+ * Mais si la chaîne de recherche rech commence
+ * par '/', recherche dans l'éditeur du
+ * dock visible.
  *
  */
 void MainWindow::recherche()
 {
-    // détecter l'éditeur actif
-    QTextEdit * editeur;
-    if (editLatin->hasFocus ()) editeur = editLatin;
-    else editeur = editeurRes ();
     bool ok;
-    rech = QInputDialog::getText(this, tr("Recherche"), tr("Chercher :"),
+    rech = QInputDialog::getText(this, tr("Recherche"),
+                                 tr("Chercher (préfixer / pour"
+                                    "une recherche dans les résultats) :"),
                                  QLineEdit::Normal, rech, &ok);
     if (ok && !rech.isEmpty())
     {
-        if (!editeur->find(rech))
+        if (rech.startsWith("/"))
+        {
+            editeurRech = editeurRes();
+            rech.remove(0,1);
+            qDebug()<<"editeurRes"<< (editeurRech == textBrowserDic);
+        }
+        else editeurRech = editLatin;
+
+        if (!editeurRech->find(rech))
         {
             rech = QInputDialog::getText(this, tr("Chercher"),
                                          tr("Retour au début ?"),
                                          QLineEdit::Normal, rech, &ok);
             if (ok && !rech.isEmpty())
             {
-                // Retourner au debut
-                editeur->moveCursor(QTextCursor::Start);
+                // Retourner au début
+                editeurRech->moveCursor(QTextCursor::Start);
                 // Chercher à nouveau
-                editeur->find(rech);
+                editeurRech->find(rech);
             }
         }
     }
@@ -1961,10 +2089,7 @@ void MainWindow::rechercheBis()
 {
     if (rech.isEmpty()) return;
     // détecter l'éditeur actif
-    QTextEdit * editeur;
-    if (editLatin->hasFocus ()) editeur = editLatin;
-    else editeur = editeurRes ();
-    bool ok = editeur->find(rech);
+    bool ok = editeurRech->find(rech);
     if (!ok)
     {
         rech = QInputDialog::getText(this, tr("Chercher"),
@@ -1972,10 +2097,28 @@ void MainWindow::rechercheBis()
                                      QLineEdit::Normal, rech, &ok);
         if (ok && !rech.isEmpty())
         {
-            QTextCursor tc = editeur->textCursor();
-            editeur->moveCursor(QTextCursor::Start);
-            ok = editeur->find(rech);
-            if (!ok) editeur->setTextCursor(tc);
+            QTextCursor tc = editeurRech->textCursor();
+            editeurRech->moveCursor(QTextCursor::Start);
+            ok = editeurRech->find(rech);
+            if (!ok) editeurRech->setTextCursor(tc);
+        }
+    }
+}
+
+void MainWindow::save()
+{
+    QString nf =
+        QFileDialog::getSaveFileName(this, "enregitrer la lemmatisation", QString(), "*.txt");
+    if (!nf.isEmpty())
+    {
+        if (QFileInfo(nf).suffix().isEmpty()) nf.append(".csv");
+        if (dockVisible(dockLem))
+        {
+            QFile f(nf);
+            f.open(QFile::WriteOnly);
+            QTextStream fl(&f);
+            fl << textEditLem->toPlainText();
+            f.close();
         }
     }
 }
@@ -1983,43 +2126,17 @@ void MainWindow::rechercheBis()
 /**
  * @brief MainWindow::editeurRes
  * @return QTextEdit* qui est dans le dock actif
- *
- * Pour pouvoir mener une recherche dans n'importe quelle fenêtre,
- * je cherche laquelle est la première visible.
- * Je retourne alors le pointeur vers le QTextEdit qu'elle contient.
+ * Pour activer cette recherche, Ctrl-F, et 
+ * la chaîne de recherche doit débuter par '/'.
  */
 QTextEdit * MainWindow::editeurRes()
 {
-    // Pour retourner le pointeur vers le QTextEdit qui est dans le dock actif.
-    // Si le dock qui "a le focus" n'est pas visible,
-    // je fais la recherche dans le texte latin
-    // qui est supposé être toujours visible.
-    if (textEditLem->hasFocus() || lineEditLem->hasFocus())
-    {
-        if (dockVisible(dockLem)) return textEditLem;
-        return editLatin;
-    }
-    if (textBrowserDic->hasFocus() || lineEditDic->hasFocus())
-    {
-        if (dockVisible(dockDic)) return textBrowserDic;
-        return editLatin;
-    }
-    if (textBrowserW->hasFocus() || lineEditDicW->hasFocus())
-    {
-        if (wDic->isVisible()) return textBrowserW;
-        return editLatin;
-    }
-    if (textEditScand->hasFocus() || lineEditScand->hasFocus())
-    {
-        if (dockVisible(dockScand)) return textEditScand;
-        return editLatin;
-    }
-    if (textBrowserFlex->hasFocus() || lineEditFlex->hasFocus())
-    {
-        if (dockVisible(dockFlex)) return textBrowserFlex;
-        return editLatin;
-    }
-    if (textBrowserTag->hasFocus() && dockVisible(dockTag)) return textBrowserTag;
+    if (dockVisible(dockLem)) return textEditLem;
+    if (dockVisible(dockDic)) return textBrowserDic;
+    if (wDic->isVisible()) return textBrowserW;
+    if (dockVisible(dockScand)) return textEditScand;
+    if (dockVisible(dockFlex)) return textBrowserFlex;
+    if (dockVisible(dockTag)) return textBrowserTag;
     return editLatin;
 }
 
@@ -2055,9 +2172,9 @@ void MainWindow::scandeTxt()
 void MainWindow::setCible()
 {
     QAction *action = grCibles->checkedAction();
-    foreach (QString cle, _lemCore->cibles().keys())
+    foreach (QString cle, lemcore->cibles().keys())
     {
-        if (_lemCore->cibles()[cle] == action->text())
+        if (lemcore->cibles()[cle] == action->text())
         {
             if (cle == "fr")
                 _lemmatiseur->setCible(cle + ".en.de");
@@ -2091,7 +2208,7 @@ void MainWindow::setCible()
  */
 void MainWindow::setLangue()
 {
-    QSettings settings("Collatinus", "collatinus11");
+    QSettings settings("Collatinus", "collatinus12");
     settings.beginGroup("interface");
     langueI = settings.value("langue").toString();
     settings.endGroup();
@@ -2176,7 +2293,7 @@ void MainWindow::lireFichierHyphen()
 {
     ficHyphen = QFileDialog::getOpenFileName(this, "Capsam legere", repHyphen+"/hyphen.la");
     if (!ficHyphen.isEmpty()) repHyphen = QFileInfo (ficHyphen).absolutePath ();
-    _lemCore->lireHyphen(ficHyphen);
+    lemcore->lireHyphen(ficHyphen);
     // Si le nom de fichier est vide, ça efface les données précédentes.
 }
 
@@ -2289,9 +2406,10 @@ void MainWindow::exec ()
             rep = scandeur->scandeTxt(texte,optAcc,false, requete[1].isLower());
             break;
         case 'H':
-        case 'h':
-            _lemmatiseur->setHtml(true);
-            nonHTML = false;
+		case 'h':
+			_lemmatiseur->setHtml(true);
+			nonHTML = false;
+			break;
         case 'L':
         case 'l':
             if ((options.size() > 2) && (options[2].isDigit()))
@@ -2305,9 +2423,9 @@ void MainWindow::exec ()
                 }
             }
             else options = options.mid(2); // Je coupe le "-l".
-            if ((options.size() == 2) && _lemCore->cibles().keys().contains(options))
+            if ((options.size() == 2) && lemcore->cibles().keys().contains(options))
                 _lemmatiseur->setCible(options);
-            else if (((options.size() == 5) || (options.size() == 8)) && _lemCore->cibles().keys().contains(options.mid(0,2)))
+            else if (((options.size() == 5) || (options.size() == 8)) && lemcore->cibles().keys().contains(options.mid(0,2)))
                 _lemmatiseur->setCible(options);
             if (optAcc > 15) rep = _lemmatiseur->frequences(texte).join("");
             else rep = _lemmatiseur->lemmatiseT(texte,optAcc&1,optAcc&2,optAcc&4,optAcc&8);
@@ -2330,9 +2448,9 @@ void MainWindow::exec ()
         case 'e':
             // Pour sortir la lemmatisation sous un format CSV
             options = options.mid(2); // Je coupe le "-e".
-            if ((options.size() == 2) && _lemCore->cibles().keys().contains(options))
+            if ((options.size() == 2) && lemcore->cibles().keys().contains(options))
                 _lemmatiseur->setCible(options);
-            else if (((options.size() == 5) || (options.size() == 8)) && _lemCore->cibles().keys().contains(options.mid(0,2)))
+            else if (((options.size() == 5) || (options.size() == 8)) && lemcore->cibles().keys().contains(options.mid(0,2)))
                 _lemmatiseur->setCible(options);
             rep = lem2csv(_lemmatiseur->lemmatiseT(texte,false,true,false,false));
 //            if (options.startsWith("dc")) rep.replace(":","\"\t\"");
@@ -2340,7 +2458,7 @@ void MainWindow::exec ()
             break;
         case 'X':
         case 'x':
-//            rep = _lemCore->txt2XML(requete);
+//            rep = lemcore->txt2XML(requete);
             rep = "Pas encore disponible";
             break;
         case 'K':
@@ -2354,13 +2472,13 @@ void MainWindow::exec ()
         case 't':
             options = options.mid(2); // Je coupe le "-t".
             if (((options.size() == 2) || (options.size() == 5) || (options.size() == 8)) &&
-                    _lemCore->cibles().keys().contains(options.mid(0,2)))
+                    lemcore->cibles().keys().contains(options.mid(0,2)))
             {
                 _lemmatiseur->setCible(options);
             }
             else
             {
-                QStringList clefs = _lemCore->cibles().keys();
+                QStringList clefs = lemcore->cibles().keys();
                 rep = "Les langues connues sont : " + clefs.join(" ") + "\n";
             }
             break;
@@ -2482,7 +2600,6 @@ void MainWindow::setHtml(bool h)
     {
         // L'inverse (html --> non-html) mettrait les nouveaux résultats en items du dernier lemme.
         QString blabla = textEditLem->toHtml();
-//        qDebug() << blabla;
         textEditLem->clear();
         int pCourante = 0;
         int pPrecendente = 0;
@@ -2514,7 +2631,7 @@ void MainWindow::setHtml(bool h)
                 // Je suppose qu'il n'y a pas de séquence "<ul ...> ... </ul>"
                 // sans <li ...> entre les deux.
             }
-//            if ((niveau < 1) || (niveau > 3))
+  //            if ((niveau < 1) || (niveau > 3))
   //              qDebug() << niveau << blabla.mid(0,pPrecendente) << morceau;
             switch (niveau)
             {
@@ -2541,6 +2658,28 @@ void MainWindow::setHtml(bool h)
         _lemmatiseur->setHtml(h);
     }
     else htmlAct->setChecked(true);
+}
+
+void MainWindow::setModule(QString m)
+{
+    if (_module != m)
+    {
+        qApp->setOverrideCursor(QCursor(Qt::WaitCursor));
+        delete lemcore;
+        delete _lemmatiseur;
+        delete lasla;
+        delete tagueur;
+        delete scandeur;
+        _module = m;
+        ajDir = modDir + _module;
+        if (!ajDir.endsWith('/')) ajDir.append('/');
+        lemcore = new LemCore(this, resDir, ajDir);
+        _lemmatiseur = new Lemmatiseur(this,lemcore);
+        lasla = new Lasla(this,lemcore,"");
+        tagueur = new Tagueur(this,lemcore);
+        scandeur = new Scandeur(this,lemcore);
+        qApp->restoreOverrideCursor();
+    }
 }
 
 bool MainWindow::alerte()
