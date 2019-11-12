@@ -1489,7 +1489,8 @@ void MainWindow::editVargraph()
     {
         case QDialog::Accepted:
             lemcore->lisVarGraph(dv.lignes());
-            lemcore->lisModeles();
+            lemcore->lisModeles(resDir+"modeles.la");
+            lemcore->lisModeles(ajDir+"modeles.la");
             lemcore->reinitRads();
             break;
         default: break;

@@ -134,6 +134,9 @@ Modele::Modele(QStringList ll, LemCore *parent)
     _lemmatiseur = qobject_cast<LemCore *>(parent);
     _pere = 0;
     _pos = '\0';
+	interprete(ll);
+}
+	/*
     QMultiMap<QString, int> msuff;
     QRegExp re("[:;]([\\w]*)\\+{0,1}(\\$\\w+)");
     foreach (QString l, ll)
@@ -304,6 +307,7 @@ Modele::Modele(QStringList ll, LemCore *parent)
         _lemmatiseur->ajDesinence(dsuf);
     }
 }
+*/
 
 /**
  * \fn bool Modele::absent (int a)
@@ -415,6 +419,189 @@ QStringList const Modele::cles = QStringList() << "modele"  // 0
 QString Modele::genRadical(int r)
 {
     return _genRadicaux[r];
+}
+
+void Modele::interprete(QStringList ll)
+{
+    QRegExp re("[:;]([\\w]*)\\+{0,1}(\\$\\w+)");
+    QMultiMap<QString, int> msuff;
+	for(int i=0;i<ll.count();++i)
+    {
+		QString l = ll.at(i);
+        // remplacement des variables par leur valeur
+        while (re.indexIn(l) > -1)
+        {
+            QString v = re.cap(2);
+            QString var = _lemmatiseur->variable(v);
+            QString pre = re.cap(1);
+            if (!pre.isEmpty()) var.replace(";", ";" + pre);
+            l.replace(v, var);
+        }
+        QStringList eclats = l.simplified().split(":");
+        // modele pere des desْ+ R   abs
+        //  0      1    2   3   4   5
+        int p = cles.indexOf(eclats.first());
+        switch (p)
+        {
+            case 0:  // modèle
+                _gr = eclats.at(1);
+                break;
+            case 1:  // père
+                //_pere = parent->modele(eclats.at(1));
+                _pere = _lemmatiseur->modele(eclats.at(1));
+                break;
+            case 2: // des: désinences écrasant celles du père
+            case 3: // des+: désinences s'ajoutant à celles du père
+                {
+					//  des:15-18:1:mē;mĕī;mĭhĭ,mī;mē
+					//   0    1   2      3   
+					//   li est la liste des n° de morpho des désinences en
+                    QList<int> li = listeI(eclats.at(1));
+					// r est le n° de radical
+                    int r = eclats.at(2).toInt();
+					// ld est la liste des désinences
+                    QStringList ld = eclats.at(3).split(';');
+                    for (int i = 0; i < li.count(); ++i)
+                    {
+                        QStringList ldd;
+                        if (i < ld.count())
+                            ldd = ld.at(i).split(',');
+                        else
+                            ldd = ld.last().split(',');
+						for (int j=0;j<ldd.count();++j)
+                        {
+							QString g = ldd.at(j);
+                            Desinence *nd = new Desinence(g, li.at(i), r, this);
+                            _desinences.insert(nd->morphoNum(), nd);
+                            _desinences.insert(nd->morphoNum(), nd);
+                            _lemmatiseur->ajDesinence(nd);
+                        }
+                    }
+                    // si des+, aller chercher les autres désinences chez le père :
+                    if (p == 3 && _pere != 0)
+                    {
+                        //foreach (int i, li)
+						for(int j=0;j<li.count();++j)
+                        {
+							int nd = li.at(j);
+                            QList<Desinence *> ldp = _pere->desinences(nd);
+                            foreach (Desinence *dp, ldp)
+                            {
+                                // cloner la désinece
+                                Desinence *dh = clone(dp);
+                                _desinences.insert(nd, dh);
+                                _lemmatiseur->ajDesinence(dh);
+                            }
+                        }
+					}
+					break;
+				}
+            case 4:  // R:n: radical n
+                {
+                    int nr = eclats.at(1).toInt();
+                    _genRadicaux[nr] = eclats.at(2);
+                    break;
+                }
+            case 8: // abs+
+                _absents.append(listeI(eclats.at(1)));
+                break;
+            case 5: // abs
+                _absents = listeI(eclats.at(1));
+                break;
+            case 6:  // suffixes suf:<intervalle>:valeur
+                {
+                    QList<int> lsuf = listeI(eclats.at(1));
+                    QString gr = eclats.at(2);  // TODO verif : bien formée ?
+                    foreach (int m, lsuf)
+                        msuff.insert(gr, m);
+                    break;
+                }
+            case 7:  // sufd: les désinences du père, mais suffixées
+                {
+                    if (_pere != 0)
+                    {
+                        _suf = eclats.at(1);
+                        QList<Desinence *> ld = _pere->desinences();
+                        foreach (Desinence *d, ld)
+                        {
+                            if (_absents.contains(d->morphoNum()))
+                                // morpho absente chez le descendant
+                                continue;
+                            QString nd = d->grq();
+                            Ch::allonge (&nd);
+                            Desinence *dsuf = new Desinence
+                                (nd+_suf, d->morphoNum(), d->numRad(), this);
+                            _desinences.insert(dsuf->morphoNum(), dsuf);
+                            _lemmatiseur->ajDesinence(dsuf);
+                        }
+                    }
+                    break;
+                }
+            case 9: // POS
+                {
+                    _pos = eclats.at(1).at(0);
+                    break;
+                }
+            default:
+                std::cerr << qPrintable("Modèle, erreur:"+l);
+        }
+    }      // fin de l'interprétation des lignes
+    // père
+    if (_pere != 0)
+    {
+        // héritage du pos
+        if (_pos == '\0') _pos = _pere->pos();
+        // héritage des désinences
+        foreach (int m, _pere->morphos())
+        {
+            if (deja(m)) continue;
+            QList<Desinence *> ld = _pere->desinences(m);
+            foreach (Desinence *d, ld)
+            {
+                if (_absents.contains(
+                        d->morphoNum()))  // morpho absente chez le descendant
+                    continue;
+                Desinence *dh = clone(d);
+                _desinences.insert(dh->morphoNum(), dh);
+                _lemmatiseur->ajDesinence(dh);
+            }
+        }
+        // héritage des radicaux
+        foreach (Desinence *d, _desinences)
+        {
+            if (!_genRadicaux.contains(d->numRad()))
+            {
+                QString nr = _pere->genRadical(d->numRad());
+                _genRadicaux.insert(d->numRad(), nr);
+            }
+        }
+        // héritage des absents
+        _absents = _pere->absents();
+    }
+    // génération des désinences suffixées
+    QList<Desinence *> ldsuf;
+    QStringList clefsSuff = msuff.keys();
+    clefsSuff.removeDuplicates();
+    foreach (QString suff, clefsSuff)
+    {
+        foreach (Desinence *d, _desinences)
+        {
+            if (msuff.values(suff).contains(d->morphoNum()))
+            {
+                QString gq = d->grq();
+                if (gq == "-") gq.clear();
+                gq.append(suff);
+                Desinence *dsuf =
+                    new Desinence(gq, d->morphoNum(), d->numRad(), this);
+                ldsuf.insert(dsuf->morphoNum(), dsuf);
+            }
+        }
+    }
+    foreach (Desinence *dsuf, ldsuf)
+    {
+        _desinences.insert(dsuf->morphoNum(), dsuf);
+        _lemmatiseur->ajDesinence(dsuf);
+    }
 }
 
 /**

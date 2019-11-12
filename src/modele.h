@@ -84,6 +84,7 @@ class Modele : public QObject
     bool               estUn(QString m);
     QString            genRadical(int r);
     QString            gr();
+    void               interprete(QStringList ll);
     static QList<int>  listeI(QString l);
     QList<int>         morphos();
     QChar              pos();
