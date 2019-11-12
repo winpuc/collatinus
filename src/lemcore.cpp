@@ -82,7 +82,7 @@ LemCore::LemCore(QObject *parent, QString resDir, QString ajDir) : QObject(paren
         lisMorphos(QFileInfo(nfl).suffix());
     }
     lisVarGraph();
-    lisModeles();
+    lisModeles(_resDir+"modeles.la");
     lisModule();
     lisLexique(1);  // lecture du lexique classique
     lisTags(false);
@@ -1071,10 +1071,48 @@ void LemCore::lisExtension()
  * \brief Lecture des modèles, synthèse et enregistrement
  *        de leurs désinences
  */
-void LemCore::lisModeles()
+void LemCore::lisModeles(QString nf)
 {
-    _modeles.clear();
-    QStringList lignes = lignesFichier(_resDir + "modeles.la");
+    QStringList lignes = lignesFichier(nf);
+    int max = lignes.count()-1;
+    QStringList sl;
+    for (int i=0;i<=max;++i)
+    {
+        QString l = lignes.at(i);
+        if (l.startsWith('$'))
+        {
+            _variables[l.section('=', 0, 0)] = l.section('=', 1, 1);
+            continue;
+        }
+        QStringList eclats = l.split(":");
+        if ((eclats.at(0) == "modele" || i == max) && !sl.empty())
+        {
+            // fin de la liste : ajouter la dernière ligne à sl
+            if (i==max) sl.append(l);
+            // extraction du nom du modèle
+            QString nom = sl.at(0).section(":",1,1);
+            Modele* m = _modeles.value(nom);
+            if (m == 0)
+            {
+                // si le modèle n'existe pas
+                m = new Modele(sl, this);
+                _modeles.insert(m->gr(), m);
+            }
+            else
+            {
+                // sinon, c'est une modification
+                m->interprete(sl);
+            }
+			sl.clear();
+        }
+        sl.append(l);
+    }
+}
+
+/*
+void LemCore::lisModeles(QString nf)
+{
+    QStringList lignes = lignesFichier(nf);
     int max = lignes.count()-1;
     QStringList sl;
     for (int i=0;i<=max;++i)
@@ -1095,6 +1133,7 @@ void LemCore::lisModeles()
         sl.append(l);
     }
 }
+*/
 
 QStringList LemCore::listeLemmesLa()
 {
@@ -1356,6 +1395,7 @@ void LemCore::setExtension(bool e)
 
 void LemCore::lisModule()
 {
+	lisModeles(_ajDir+"modeles.la");
     lisFichierLexique(_ajDir+"lemmes.la", 0);
     lisTraductions(_ajDir+"lemmes.fr");
 }

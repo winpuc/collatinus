@@ -147,7 +147,7 @@ class LemCore : public QObject
     // Lit les lignes d'un fichier. Est devenu public.
     QStringList            lignesFichier(QString nf);
     QStringList            lignesVG();
-    void                   lisModeles();
+    void                   lisModeles(QString nf);
     void                   lisModule();
     //void                   lisVarGraph(QString nf);
     void                   lisVarGraph();
