@@ -1,4 +1,4 @@
-*Collatinus 11 -- guide*
+*Collatinus 12 -- guide*
 
 [index](index.html) précédent : [Serveur](server.html) suivant : [Pour les programmeurs](programmeurs.html)
 

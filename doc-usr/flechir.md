@@ -1,4 +1,4 @@
-*Collatinus 11 -- guide*
+*Collatinus 12 -- guide*
 
 [index](index.html) précédent : [Scander](scander.html) suivant : [Tagger](tagger.html) 
 

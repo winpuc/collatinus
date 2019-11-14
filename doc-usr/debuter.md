@@ -1,4 +1,4 @@
-*Collatinus 11 -- guide*
+*Collatinus 12 -- guide*
 
 [index](index.html) précédent : [Fenêtres, éditeurs et boutons](anatomie.html) suivant : [lemmatiser et analyser](lemmatiser.html) 
 
