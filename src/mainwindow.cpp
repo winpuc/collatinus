@@ -1725,8 +1725,16 @@ void MainWindow::instModule()
     {
         QuaZipFile zipFile(&zip);
         if (!zipFile.open(QIODevice::ReadOnly)) continue;
-        QFile out(zipFile.getActualFileName());
-        if (!out.open(QIODevice::WriteOnly)) continue;;
+        //QFile out(zipFile.getActualFileName());
+		QString chemin = modDir + zipFile.getActualFileName();
+		QFile out(chemin);
+		// avertir de l'échec
+        if (!out.open(QIODevice::WriteOnly))
+		{
+    		QMessageBox::critical(this, tr("Collatinus 12"),
+								  "impossible de créer le fichier " + chemin);
+			return;
+		}
         char c;
         while (zipFile.getChar(&c)) out.putChar(c);
         out.flush();
@@ -1734,8 +1742,26 @@ void MainWindow::instModule()
         zipFile.close();
     }
     while (zip.goToNextFile());
-    // TODO : message, marche à suivre pour activer le module
+    // message, marche à suivre pour activer le module
+    QMessageBox::information(this, tr("Collatinus 12"),
+						  "Le module est installé. Pour l'activer, menu "
+						  "Lexique/modules lexicaux/activer, désactiver, gérer les modules");
 }
+
+/*
+static bool copyData(QIODevice &inFile, QIODevice &outFile)
+{
+	while (!inFile.atEnd()) {
+	char buf[4096];
+	qint64 readLen = inFile.read(buf, 4096);
+	if (readLen <= 0)
+		return false;
+	if (outFile.write(buf, readLen) != readLen)
+			return false;
+}
+return true;
+}
+*/
 
 /**
  * \fn void MainWindow::langueInterface()
@@ -2054,7 +2080,7 @@ void MainWindow::recherche()
         {
             editeurRech = editeurRes();
             rech.remove(0,1);
-            qDebug()<<"editeurRes"<< (editeurRech == textBrowserDic);
+            //qDebug()<<"editeurRes"<< (editeurRech == textBrowserDic);
         }
         else editeurRech = editLatin;
 
