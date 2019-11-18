@@ -16,7 +16,7 @@ LIBS += -lquazip5
 #QMAKE_CXXFLAGS += -Wall -Wextra -pedantic -fstack-protector-strong
 #QMAKE_CPPFLAGS += -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2
 
-CONFIG += release_binary debug
+CONFIG += release_binary
 
 TRANSLATIONS    = collatinus_fr.ts
 TRANSLATIONS    += collatinus_en.ts
