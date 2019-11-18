@@ -1,8 +1,59 @@
 <meta charset="utf-8"><link rel="stylesheet" href="doc.css"/>
-<p><em>Collatinus 11 &mdash; guide</em></p>
+<p><em>Collatinus 12 &mdash; guide</em></p>
 
 <p><a href="index.html">index</a> précédent : <a href="lemmatiser.html">Lemmatiser</a> suivant : <a href="dictionnaires.html">Dictionnaires</a></p>
 
 <h1>Modules</h1>
 
-<p>bla.</p>
+<p>Les données lexicales et morphologiques de Collatinus sont enregistrées
+dans des fichiers au format texte. Pour le lexique :</p>
+
+<ul>
+<li>lemmes.la pour les mots latins ;</li>
+<li>et lemmes.fr, lemmes.it, lemmes.es, etc., pour les langues cibles.</li>
+</ul>
+
+
+<p>pour la morphologie :</p>
+
+<ul>
+<li>modeles.la, qui donne les radicaux et désinences de chaque modèle ;</li>
+<li>morphos.fr, it, es, etc, qui donnent toutes les morphologies dans
+les langues cibles.</li>
+</ul>
+
+
+<p>Il faut ajouter le fichier vargraph.la, qui donne toutes les variantes
+graphiques de la langue latine. Pour le lexique classique, ce fichier
+est vide.</p>
+
+<p>Ce jeu de fichiers permet de lemmatiser le corpus classique avec un bon taux
+de réussite, mais il est moins efficace lorsqu'on aborde le corpus
+médiéval, et même le latin de Plaute ou de Térence.</p>
+
+<p>Un module est en fait un ensemble du même jeu de fichiers qui connaît les
+mots utilisés par le corpus, leur traduction, ainsi que ses particularités
+graphiques et morphologiques. Lorsqu'un module est installé et qu'on veut
+l'utiliser, Il est chargé en premier lors de l'initialisation de
+Collatinus. Les données classiques sont ensuite chargées, mais en cas de
+doublon entre les données du module et les données classiques, priorité est
+donnée au module.</p>
+
+<p>Deux premiers modules ont été créés, et sont téléchargeables à partir du site
+<a href="https://outils.biblissima.fr/fr/collatinus/">biblissima.fr</a>, sous la forme de
+paquets. Un paquet est en fait une archive qui compresse en un seul
+fichiers tout les fichiers du module. Les deux premiers paquets ѕont
+&ndash; hagio.col, qui permet de lemmatiser le <a href="http://www.cbma-project.eu/%C3%A9ditions/textes-hagiographiques.html">corpus des hagiographies
+  bourguignones du Moyen-Âge</a> ;
+&ndash; plaute.col, qui permet de lemmatiser l'ensemble des comédies de Plaute.</p>
+
+<p>Une fois le paquet téléchargé, le menu <em>Lexique/Modules lexicaux/Installer
+un module</em> lance automatiquement la décompression et l'installation des
+fichiers du module. Il faudra ensuite se rendre dans <em>Lexique/modules
+lexicaux/activer, désactiver, gérer les modules</em>, sélectionner le module
+qu'on vient d'installer, et cliquer sur le bouton <em>activer</em>.</p>
+
+<p>Si le module adapté au corpus qu'on veut lemmatiser n'existe pas, il est
+possible d'utiliser un éditeur spécialisé, <strong>Ecce</strong>, qui permet de se
+servir des modules existants et de l'extension pour créer un nouveau
+module.</p>
