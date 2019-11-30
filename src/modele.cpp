@@ -326,7 +326,9 @@ void Modele::interprete(QStringList ll)
                             ldd = ld.last().split(',');
 						for (int j=0;j<ldd.count();++j)
                         {
+							// la chaîne vide est notée '-' dans modeles.la
 							QString g = ldd.at(j);
+							if (g == "-") g = "";
                             Desinence *nd = new Desinence(g, li.at(i), r, this);
 							_desinences.insert(g, nd);
                         }
