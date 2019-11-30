@@ -393,19 +393,6 @@ int LemCore::aRomano(QString f)
     return res;
 }
 
-
-/**
- * \fn void LemCore::ajDesinence (Desinence *d)
- * \brief ajoute la désinence d dans la map des
- * désinences.
- */
-void LemCore::ajDesinence(Desinence *d)
-{
-    QString gr = Ch::deramise(d->gr());
-    gr = vg(gr);
-    _desinences.insert(gr, d);
-}
-
 QString LemCore::ajDir()
 {
     return _ajDir;
@@ -649,11 +636,6 @@ MapLem LemCore::lemmatise(QString f)
     {
         QString r = f.left(i);
         QString d = f.mid(i);
-        // Je regarde d'abord si d est une désinence possible,
-        // car il y a moins de désinences que de radicaux.
-        // Je fais la recherche sur les radicaux seulement si la désinence existe.
-        QList<Desinence *> ldes = _desinences.values(d);
-        if (ldes.empty()) continue;
 		// recherche des radicaux
         QList<Radical *> lrad = _radicaux.values(r);
         // ii noté ī
@@ -667,13 +649,12 @@ MapLem LemCore::lemmatise(QString f)
         {
             Radical* rad = lrad.at(ir);
             Lemme *l = rad->lemme();
+			QList<Desinence*> ldes = l->modele()->desinences(d, rad->numRad());
             for (int id=0;id<ldes.count();++id)
             {
-                Desinence *des = ldes.at(id);
-                if (des->modele() == l->modele() &&
-                    des->numRad() == rad->numRad() &&
-                    !l->estIrregExcl(des->morphoNum()))
-                {
+				Desinence *des = ldes.at(id);
+				if (!l->estIrregExcl(des->morphoNum()))
+				{
                     bool c = ((cnt_v==0)
                               ||(cnt_v == rad->grq().toLower().count("v")
                                  +des->grq().count("v")));
