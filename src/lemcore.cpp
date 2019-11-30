@@ -649,19 +649,20 @@ MapLem LemCore::lemmatise(QString f)
     {
         QString r = f.left(i);
         QString d = f.mid(i);
-        QList<Desinence *> ldes = _desinences.values(d);
-        if (ldes.empty()) continue;
         // Je regarde d'abord si d est une désinence possible,
         // car il y a moins de désinences que de radicaux.
         // Je fais la recherche sur les radicaux seulement si la désinence existe.
+        QList<Desinence *> ldes = _desinences.values(d);
+        if (ldes.empty()) continue;
+		// recherche des radicaux
         QList<Radical *> lrad = _radicaux.values(r);
         // ii noté ī
         // 1. Patauium, gén. Pataui : Patau.i -> Patau+i.i
         // 2. conubium, ablP conubis : conubi.s -> conubi.i+s
         if (d.startsWith('i') && !d.startsWith("ii") && !r.endsWith('i'))
             lrad << _radicaux.values(r + "i");
-        if (lrad.empty()) continue;
         // Il n'y a rien à faire si le radical n'existe pas.
+        if (lrad.empty()) continue;
         for (int ir=0;ir<lrad.count();++ir)
         {
             Radical* rad = lrad.at(ir);
