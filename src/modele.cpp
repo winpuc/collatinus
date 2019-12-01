@@ -330,7 +330,7 @@ void Modele::interprete(QStringList ll)
 							QString g = ldd.at(j);
 							if (g == "-") g = "";
                             Desinence *nd = new Desinence(g, li.at(i), r, this);
-							_desinences.insert(g, nd);
+							_desinences.insert(nd->gr(), nd);
                         }
                     }
                     // si des+, aller chercher les autres désinences chez le père :
