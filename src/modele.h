@@ -64,14 +64,14 @@ class Modele : public QObject
    private:
     QList<int> _absents;
     QStringList static const cles;
-    //QMultiMap<int, Desinence *> _desinences;
-    QMultiMap<QString, Desinence *> _desinences;
+    QMultiMap<QPair<QString, int>, Desinence *> _desinences;
     QMap<int, QString> _genRadicaux;
     QString _gr;
     LemCore *_lemmatiseur;
     Modele *_pere;
     QChar   _pos;
     QString _suf;
+	void    insereDes(Desinence* d);
 
    public:
     Modele(QStringList ll, LemCore *parent = 0);
@@ -80,9 +80,9 @@ class Modele : public QObject
     QList<int>         clesR();
     Desinence         *clone(Desinence *d);
     bool               deja(int m);
-    QList<Desinence *> desinences();
-    QList<Desinence *> desinences(int d);
-    QList<Desinence *> desinences(QString g, int );
+    QList<Desinence*>  desinences();
+    QList<Desinence*>  desinences(int d);
+	QList<Desinence*>  desinences(QString g, int n);
     bool               estUn(QString m);
     QString            genRadical(int r);
     QString            gr();

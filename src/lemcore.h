@@ -78,7 +78,6 @@ class LemCore : public QObject
     QMap<QString, QString> assims;
     QMap<QString, QString> assimsq;
     QMap<QString, QString> _contractions;
-    //QMultiMap<QString, Desinence *> _desinences;
     QString decontracte(QString d);
     QMultiMap<QString, Irreg *> _irregs;
     QMap<QString, QString>    _cibles;

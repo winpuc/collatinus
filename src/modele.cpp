@@ -185,13 +185,9 @@ Desinence *Modele::clone(Desinence *d)
  */
 bool Modele::deja(int m)
 {
-	QMapIterator<QString, Desinence*> i(_desinences);
-	while (i.hasNext())
-	{
-		i.next();
-		if (i.value()->morphoNum() == m)
-			return true;
-	}
+	QList<Desinence*> valeurs = _desinences.values();
+	for (int i=0;i<valeurs.count();++i)
+		if (valeurs.at(i)->numRad() == m) return true;
 	return false;
 }
 
@@ -210,33 +206,20 @@ QList<Desinence *> Modele::desinences()
  */
 QList<Desinence*> Modele::desinences(int d)
 {
+	QList<Desinence*> valeurs = _desinences.values();
 	QList<Desinence*> ret;
-	QMapIterator<QString, Desinence*> i(_desinences);
-	while (i.hasNext())
+	for (int i=0;i<valeurs.count();++i)
 	{
-		i.next();
-		if (i.value()->morphoNum() == d)
-			ret.append(i.value());
+		Desinence* des = valeurs.at(i);
+		if (des->morphoNum() == d)
+			ret.append(des);
 	}
 	return ret;
 }
 
-/**
- * \fn QList<Desinence*> Modele::desinences(QString g, int numrad)
- * \brief Renvoie la liste des désinence de graphie g
- *        et de n° de radical numrad du modèle.
- */
-QList<Desinence*> Modele::desinences(QString g, int numrad)
+QList<Desinence*> Modele::desinences(QString g, int n)
 {
-	QList<Desinence*> ld = _desinences.values(g);
-	QList<Desinence*> ret;
-	for (int i=0;i<ld.count();++i)
-	{
-		Desinence* des = ld.at(i);
-		if (des->numRad() == numrad)
-			ret.append(des);
-	}
-	return ret;
+	return _desinences.values(qMakePair(g, n));
 }
 
 /**
@@ -280,6 +263,11 @@ QStringList const Modele::cles = QStringList() << "modele"  // 0
 QString Modele::genRadical(int r)
 {
     return _genRadicaux[r];
+}
+
+void Modele::insereDes(Desinence* d)
+{
+	_desinences.insert(qMakePair(d->gr(), d->numRad()), d);
 }
 
 void Modele::interprete(QStringList ll)
@@ -331,11 +319,9 @@ void Modele::interprete(QStringList ll)
                             ldd = ld.last().split(',');
 						for (int j=0;j<ldd.count();++j)
                         {
-							// la chaîne vide est notée '-' dans modeles.la
 							QString g = ldd.at(j);
-							if (g == "-") g = "";
                             Desinence *nd = new Desinence(g, li.at(i), r, this);
-							_desinences.insert(nd->gr(), nd);
+							insereDes(nd);
                         }
                     }
                     // si des+, aller chercher les autres désinences chez le père :
@@ -349,7 +335,7 @@ void Modele::interprete(QStringList ll)
                             {
                                 // cloner la désinece
                                 Desinence *dh = clone(dp);
-                                _desinences.insert(dh->gr(), dh);
+								insereDes(dh);
                             }
                         }
 					}
@@ -390,7 +376,7 @@ void Modele::interprete(QStringList ll)
                             Ch::allonge (&nd);
                             Desinence *dsuf = new Desinence
                                 (nd+_suf, d->morphoNum(), d->numRad(), this);
-                            _desinences.insert(dsuf->gr(), dsuf);
+							insereDes(dsuf);
                         }
                     }
                     break;
@@ -420,7 +406,7 @@ void Modele::interprete(QStringList ll)
                         d->morphoNum()))  // morpho absente chez le descendant
                     continue;
                 Desinence *dh = clone(d);
-                _desinences.insert(dh->gr(), dh);
+				insereDes(dh);
             }
         }
         // héritage des radicaux
@@ -456,7 +442,7 @@ void Modele::interprete(QStringList ll)
     }
     foreach (Desinence *dsuf, ldsuf)
     {
-        _desinences.insert(dsuf->gr(), dsuf);
+		insereDes(dsuf);
     }
 }
 
@@ -499,13 +485,10 @@ QList<int> Modele::listeI(QString l)
 QList<int> Modele::morphos()
 {
 	QSet<int> set;
-	QMapIterator<QString, Desinence*> i(_desinences);
-	while (i.hasNext())
-	{
-		i.next();
-		set.insert(i.value()->morphoNum());
-	}
-    return set.toList();
+	QList<Desinence*> valeurs = _desinences.values();
+	for (int i=0;i<valeurs.count();++i)
+		set.insert(valeurs.at(i)->morphoNum());
+	return set.toList();
 }
 
 /**

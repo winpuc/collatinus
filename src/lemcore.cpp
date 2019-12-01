@@ -393,6 +393,19 @@ int LemCore::aRomano(QString f)
     return res;
 }
 
+
+/**
+ * \fn void LemCore::ajDesinence (Desinence *d)
+ * \brief ajoute la désinence d dans la map des
+ * désinences.
+void LemCore::ajDesinence(Desinence *d)
+{
+    QString gr = Ch::deramise(d->gr());
+    gr = vg(gr);
+    _desinences.insert(gr, d);
+}
+ */
+
 QString LemCore::ajDir()
 {
     return _ajDir;
@@ -636,15 +649,19 @@ MapLem LemCore::lemmatise(QString f)
     {
         QString r = f.left(i);
         QString d = f.mid(i);
-		// recherche des radicaux
+        //QList<Desinence *> ldes = _desinences.values(d);
+        //if (ldes.empty()) continue;
+        // Je regarde d'abord si d est une désinence possible,
+        // car il y a moins de désinences que de radicaux.
+        // Je fais la recherche sur les radicaux seulement si la désinence existe.
         QList<Radical *> lrad = _radicaux.values(r);
         // ii noté ī
         // 1. Patauium, gén. Pataui : Patau.i -> Patau+i.i
         // 2. conubium, ablP conubis : conubi.s -> conubi.i+s
         if (d.startsWith('i') && !d.startsWith("ii") && !r.endsWith('i'))
             lrad << _radicaux.values(r + "i");
-        // Il n'y a rien à faire si le radical n'existe pas.
         if (lrad.empty()) continue;
+        // Il n'y a rien à faire si le radical n'existe pas.
         for (int ir=0;ir<lrad.count();++ir)
         {
             Radical* rad = lrad.at(ir);
@@ -652,9 +669,14 @@ MapLem LemCore::lemmatise(QString f)
 			QList<Desinence*> ldes = l->modele()->desinences(d, rad->numRad());
             for (int id=0;id<ldes.count();++id)
             {
-				Desinence *des = ldes.at(id);
+                Desinence *des = ldes.at(id);
+				/*
+                if (des->modele() == l->modele() &&
+                    des->numRad() == rad->numRad() &&
+                    !l->estIrregExcl(des->morphoNum()))
+				*/
 				if (!l->estIrregExcl(des->morphoNum()))
-				{
+                {
                     bool c = ((cnt_v==0)
                               ||(cnt_v == rad->grq().toLower().count("v")
                                  +des->grq().count("v")));
