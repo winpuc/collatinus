@@ -221,6 +221,11 @@ QList<Desinence*> Modele::desinences(int d)
 	return ret;
 }
 
+/**
+ * \fn QList<Desinence*> Modele::desinences(QString g, int numrad)
+ * \brief Renvoie la liste des désinence de graphie g
+ *        et de n° de radical numrad du modèle.
+ */
 QList<Desinence*> Modele::desinences(QString g, int numrad)
 {
 	QList<Desinence*> ld = _desinences.values(g);
