@@ -24,9 +24,6 @@
  *
  * - dans ::setModule, vérifier que le nouveau module diffère du module
  *   courant.
- * - algo de lemmatisation : une fois le rad trouvé, pour chaque lemme
- *   du rad, ne chercher que dans les désinences du modèle du lemme.
- *   (un peu long pour les rads vides, mais quand même).
  */
 
 #include <quazip5/quazip.h>
