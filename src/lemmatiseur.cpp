@@ -269,8 +269,8 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
                            bool cumMorpho, bool nreconnu)
 {
     // pour mesurer :
-    QElapsedTimer timer;
-    timer.start();
+    //QElapsedTimer timer;
+    //timer.start();
 
     // Pour coloriser le texte
     bool cumColoribus = !_couleurs.isEmpty();
@@ -554,7 +554,7 @@ QString Lemmatiseur::lemmatiseT(QString &t, bool alpha, bool cumVocibus,
         }
     }
     // fin de la mesure :
-    qDebug()<<"cic-fam C12"<<timer.elapsed()<<"ms";
+    //qDebug()<<"cic-fam C12"<<timer.elapsed()<<"ms";
     return lRet.join("");
 }
 
