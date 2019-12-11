@@ -50,7 +50,7 @@ Desinence::Desinence(QString d, int morph, int nr, Modele *parent)
     // '-' est la désinence zéro
     if (d == "-") d = "";
     _grq = d;
-    _gr = parent->vg(Ch::atone(_grq));
+    _gr = Ch::deramise(parent->vg(Ch::atone(_grq)));
     _morpho = morph;
     _numR = nr;
     _modele = qobject_cast<Modele *>(parent);
