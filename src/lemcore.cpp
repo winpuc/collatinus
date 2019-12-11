@@ -670,11 +670,6 @@ MapLem LemCore::lemmatise(QString f)
             for (int id=0;id<ldes.count();++id)
             {
                 Desinence *des = ldes.at(id);
-				/*
-                if (des->modele() == l->modele() &&
-                    des->numRad() == rad->numRad() &&
-                    !l->estIrregExcl(des->morphoNum()))
-				*/
 				if (!l->estIrregExcl(des->morphoNum()))
                 {
                     bool c = ((cnt_v==0)
