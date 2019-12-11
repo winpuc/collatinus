@@ -32,16 +32,30 @@ RegleVG::RegleVG(QString l)
     _ci = sep == '>';
 }
 
+/*
+ * \fn QRegExp RegleVG::a()
+ * \brief expression régulière permettant de détecter
+ *        les chaînes à transformer dans le radical ou
+ *        la désinence.
+ */
 QRegExp RegleVG::a()
 {
     return _a;
 }
 
+/*
+ * \fn QString RegleVG::b()
+ * \brief renvoie la chaîne transformée par _a
+ */
 QString RegleVG::b()
 {
     return _b;
 }
 
+/*
+	\fn bool RegleVG::ci()
+	\brief renvoie true si la règle est une règle aval (séparateur '>') 
+ */
 bool RegleVG::ci()
 {
     return _ci;
@@ -54,6 +68,10 @@ QString RegleVG::doc()
         .arg (_b);
 }
 
+/*
+ * \fn QString RegleVG::transf(QString s)
+ * \brief transformation de s selon la règle graphique
+ */
 QString RegleVG::transf(QString s)
 {
     return s.replace(_a, _b);
