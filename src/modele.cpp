@@ -50,7 +50,7 @@ Desinence::Desinence(QString d, int morph, int nr, Modele *parent)
     // '-' est la désinence zéro
     if (d == "-") d = "";
     _grq = d;
-    _gr = Ch::atone(_grq);
+    _gr = parent->vg(Ch::atone(_grq));
     _morpho = morph;
     _numR = nr;
     _modele = qobject_cast<Modele *>(parent);
@@ -131,7 +131,7 @@ void Desinence::setModele(Modele *m)
  */
 Modele::Modele(QStringList ll, LemCore *parent)
 {
-    _lemmatiseur = qobject_cast<LemCore *>(parent);
+    _lemcore = qobject_cast<LemCore *>(parent);
     _pere = 0;
     _pos = '\0';
 	interprete(ll);
@@ -281,7 +281,7 @@ void Modele::interprete(QStringList ll)
         while (re.indexIn(l) > -1)
         {
             QString v = re.cap(2);
-            QString var = _lemmatiseur->variable(v);
+            QString var = _lemcore->variable(v);
             QString pre = re.cap(1);
             if (!pre.isEmpty()) var.replace(";", ";" + pre);
             l.replace(v, var);
@@ -297,7 +297,7 @@ void Modele::interprete(QStringList ll)
                 break;
             case 1:  // père
                 //_pere = parent->modele(eclats.at(1));
-                _pere = _lemmatiseur->modele(eclats.at(1));
+                _pere = _lemcore->modele(eclats.at(1));
                 break;
             case 2: // des: désinences écrasant celles du père
             case 3: // des+: désinences s'ajoutant à celles du père
@@ -374,8 +374,8 @@ void Modele::interprete(QStringList ll)
                                 continue;
                             QString nd = d->grq();
                             Ch::allonge (&nd);
-                            Desinence *dsuf = new Desinence
-                                (nd+_suf, d->morphoNum(), d->numRad(), this);
+                            Desinence *dsuf = new Desinence(nd+_suf,
+															d->morphoNum(), d->numRad(), this);
 							insereDes(dsuf);
                         }
                     }
@@ -507,4 +507,9 @@ QChar Modele::pos()
     if (estUn("amo") || estUn("imitor")) return 'v';
     return 'd';
     */
+}
+
+QString Modele::vg(QString c)
+{
+	return _lemcore->vg(c);
 }

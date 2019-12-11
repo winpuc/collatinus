@@ -67,7 +67,7 @@ class Modele : public QObject
     QMultiMap<QPair<QString, int>, Desinence *> _desinences;
     QMap<int, QString> _genRadicaux;
     QString _gr;
-    LemCore *_lemmatiseur;
+    LemCore *_lemcore;
     Modele *_pere;
     QChar   _pos;
     QString _suf;
@@ -90,6 +90,7 @@ class Modele : public QObject
     static QList<int>  listeI(QString l);
     QList<int>         morphos();
     QChar              pos();
+    QString            vg(QString c);
 };
 
 #endif
