@@ -36,8 +36,6 @@
 
 # include "mainwindow.h"
 
-QT_BEGIN_NAMESPACE
-
 class DialogM : public QDialog
 {
     Q_OBJECT
@@ -97,7 +95,6 @@ class DialogM : public QDialog
             pushButton_3->setText(QApplication::translate("Modules", "Supprimer", Q_NULLPTR));
             pushButton_4->setText(QApplication::translate("Modules", "Fermer", Q_NULLPTR));
         } // retranslateUi
-        QT_END_NAMESPACE
 };
 
 #endif // MODULES_H
