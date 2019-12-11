@@ -187,7 +187,7 @@ bool Modele::deja(int m)
 {
 	QList<Desinence*> valeurs = _desinences.values();
 	for (int i=0;i<valeurs.count();++i)
-		if (valeurs.at(i)->numRad() == m) return true;
+		if (valeurs.at(i)->morphoNum() == m) return true;
 	return false;
 }
 
