@@ -2688,6 +2688,17 @@ void MainWindow::setModule(QString m)
     if (_module != m)
     {
         qApp->setOverrideCursor(QCursor(Qt::WaitCursor));
+        _module = m;
+        ajDir = modDir + _module;
+        if (!ajDir.endsWith('/')) ajDir.append('/');
+        lemcore = new LemCore(this, resDir, ajDir);
+		_lemmatiseur->changeCore(lemcore);
+		lasla->changeCore(lemcore);
+		tagueur->changeCore(lemcore);
+		scandeur->changeCore(lemcore);
+        qApp->restoreOverrideCursor();
+	/*
+        qApp->setOverrideCursor(QCursor(Qt::WaitCursor));
         delete lemcore;
         delete _lemmatiseur;
         delete lasla;
@@ -2702,6 +2713,7 @@ void MainWindow::setModule(QString m)
         tagueur = new Tagueur(this,lemcore);
         scandeur = new Scandeur(this,lemcore);
         qApp->restoreOverrideCursor();
+	*/
     }
 }
 

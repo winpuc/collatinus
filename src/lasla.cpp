@@ -66,6 +66,11 @@ Lasla::Lasla(QObject *parent, LemCore *l, QString resDir) : QObject(parent)
     lisCat();
 }
 
+void Lasla::changeCore(LemCore* l)
+{
+	_lemCore = l;
+}
+
 // Lecture des correspondances entre les modèles de Collatinus
 // et les catégories et sous-catégories du LASLA.
 void Lasla::lisCat()

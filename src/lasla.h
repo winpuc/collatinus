@@ -34,6 +34,7 @@ class Lasla : public QObject
 public:
     Lasla(QObject *parent = 0, LemCore *l=0, QString resDir="");
     // Créateur de la classe
+	void changeCore(LemCore* l);
     QString k9(QString m);
     // Code en 9 pour le LASLA
 

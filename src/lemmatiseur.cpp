@@ -61,6 +61,11 @@ QStringList Lemmatiseur::lemmatiseF(QString f, bool deb)
     return res;
 }
 
+void Lemmatiseur::changeCore(LemCore *l)
+{
+	_lemCore = l;
+}
+
 MapLem Lemmatiseur::lemmatiseM(QString f, bool deb)
 {
     MapLem ml = _lemCore->lemmatiseM(f, deb);

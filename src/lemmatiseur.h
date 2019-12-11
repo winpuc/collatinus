@@ -36,6 +36,7 @@ class Lemmatiseur : public QObject
 public:
     Lemmatiseur(QObject *parent = 0, LemCore *l=0, QString cible="", QString resDir="");
     // Créateur de la classe
+	void 		changeCore(LemCore *l);
     QStringList frequences(QString txt);
     QStringList lemmatiseF(QString f, bool deb);
     QString lemmatiseFichier(QString f, bool alpha = false,

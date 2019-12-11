@@ -120,6 +120,11 @@ Tagueur::Tagueur(QObject *parent, LemCore *l, QString cible, QString resDir) : Q
     if (cible != "") _lemCore->setCible(cible);
 }
 
+void Tagueur::changeCore(LemCore* l)
+{
+	_lemCore = l;
+}
+
 /**
  * @brief Tagueur::tagTexte
  * \if French

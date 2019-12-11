@@ -90,6 +90,11 @@ Scandeur::Scandeur(QObject *parent, LemCore *l, QString resDir) : QObject(parent
 
 }
 
+void Scandeur::changeCore(LemCore* l)
+{
+	_lemCore = l;
+}
+
 
 /**
  * \brief
