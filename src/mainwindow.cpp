@@ -193,7 +193,6 @@ MainWindow::MainWindow()
     // et le répertoire personnel, où sont les modules lexicaux
     resDir = Ch::chemin("collatinus/data", 'd');
     if (!resDir.endsWith('/')) resDir.append('/');
-    // TODO : création, et QSettings pour module
     modDir = Ch::chemin("collatinus/", 'p');
     if (!modDir.endsWith('/')) modDir.append('/');
     if (!_module.isEmpty())
@@ -205,6 +204,7 @@ MainWindow::MainWindow()
     {
         ajDir.clear();
     }
+	modulMenu->setTitle("modules lexicaux. Actuel : "+_module);
     lemcore = new LemCore(this, resDir, ajDir);
     createCibles();
     _lemmatiseur = new Lemmatiseur(this,lemcore);
@@ -1990,7 +1990,10 @@ void MainWindow::readSettings()
         nfAd = nfAb;
         nfAd.prepend("coll-");
     }
-    //_module = settings.value("module").toString();
+	/*
+	 // _module a déjà été lu
+    _module = settings.value("module").toString();
+	*/
     settings.endGroup();
     settings.beginGroup("options");
     // police
@@ -2696,24 +2699,12 @@ void MainWindow::setModule(QString m)
 		lasla->changeCore(lemcore);
 		tagueur->changeCore(lemcore);
 		scandeur->changeCore(lemcore);
+    	QSettings settings("Collatinus", "collatinus12");
+    	settings.beginGroup("fichiers");
+    	settings.setValue("module", _module);
+    	settings.endGroup();
+		modulMenu->setTitle("modules lexicaux. Acuel : "+_module);
         qApp->restoreOverrideCursor();
-	/*
-        qApp->setOverrideCursor(QCursor(Qt::WaitCursor));
-        delete lemcore;
-        delete _lemmatiseur;
-        delete lasla;
-        delete tagueur;
-        delete scandeur;
-        _module = m;
-        ajDir = modDir + _module;
-        if (!ajDir.endsWith('/')) ajDir.append('/');
-        lemcore = new LemCore(this, resDir, ajDir);
-        _lemmatiseur = new Lemmatiseur(this,lemcore);
-        lasla = new Lasla(this,lemcore,"");
-        tagueur = new Tagueur(this,lemcore);
-        scandeur = new Scandeur(this,lemcore);
-        qApp->restoreOverrideCursor();
-	*/
     }
 }
 
