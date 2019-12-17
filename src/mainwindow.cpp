@@ -1714,7 +1714,7 @@ void MainWindow::instModule()
     QFileInfo info(chp);
     QString nmod= info.baseName();
     QDir dir(modDir);
-    dir.mkdir(nmod);
+    dir.mkpath(nmod);
     QuaZip zip(chp);
     zip.open(QuaZip::mdUnzip);
     zip.goToFirstFile();
