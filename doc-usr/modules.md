@@ -36,7 +36,7 @@ donnée au module.
 Deux premiers modules ont été créés, et sont téléchargeables à partir du site
 [biblissima.fr](https://outils.biblissima.fr/fr/collatinus/), sous la forme de
 paquets. Un paquet est en fait une archive qui compresse en un seul
-fichiers tout les fichiers du module. Les deux premiers paquets ѕont
+fichier tous les fichiers du module. Les deux premiers paquets ѕont
 - hagio.col, qui permet de lemmatiser le [corpus des hagiographies
   bourguignones du Moyen-Âge](http://www.cbma-project.eu/%C3%A9ditions/textes-hagiographiques.html) ;
 - plaute.col, qui permet de lemmatiser l'ensemble des comédies de Plaute.
