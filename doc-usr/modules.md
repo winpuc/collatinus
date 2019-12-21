@@ -26,7 +26,7 @@ de réussite, mais il est moins efficace lorsqu'on aborde le corpus
 médiéval, et même le latin de Plaute ou de Térence.
 
 Un module est en fait un ensemble du même jeu de fichiers qui connaît les
-mots utilisés par le corpus, leur traduction, ainsi que ses particularités
+mots utilisés par le corpus, leur traduction, ainsi que leurs particularités
 graphiques et morphologiques. Lorsqu'un module est installé et qu'on veut
 l'utiliser, Il est chargé en premier lors de l'initialisation de
 Collatinus. Les données classiques sont ensuite chargées, mais en cas de
