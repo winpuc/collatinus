@@ -47,6 +47,7 @@
 !    n1 : numéro du radical
 !    n2 : nombre de caractères à ôter de la forme canonique
 !    ch : chaîne à ajouter à la chaîne obtenue pour avoir le radical
+!         une chaîne vide s'écrit '0'
 !
 ! Deuxième possibilité :
 ! Le radical est identique à la forme canonique
@@ -60,6 +61,8 @@
 !
 ! des:<intervalle>:<numMorph>:<listeDes>
 !  <num> est le n° de radical
+!  <listeDes> est la liste des désinences correspondant à chaque n° de
+!             morpho de l'intervalle. '-' représente une désinence vide.
 !
 ! Si une désinence de même morpho s'ajoute à celle du modèle parent au lieu
 ! de l'écraser, on écrit
@@ -74,6 +77,16 @@
 ! Utilisation : ce qui précède une constante est répété devant chaque ';' de
 !   la constante
 !
+! SUFFIXES
+! suf:<intervalle>:<suffixe>
+! <intervalle> : liste des n° de morphologie des formes qui sont parfois
+!               suivies du suffixe <suffixe>
+!
+! sufd:<suffixe> : toutes les formes sont toujours suivies du suffixe <suffixe>
+!
+!
+!
+!
 $compar=ŏr;ŏr;ōrĕm;ōrĭs;ōrī;ōrĕ;ōrēs;ōrēs;ōrēs;ōrŭm;ōrĭbŭs;ōrĭbŭs
 $em=ĕm;ēs;ĕt;ēmŭs;ētĭs;ēnt
 $ens=ēns;ēns;ēntĕm;ēntĭs;ēntī;ēntĕ;ēntēs;ēntēs;ēntēs;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
@@ -83,6 +96,7 @@ $templum=ŭm;ŭm;ŭm;ī;ō;ō;ă;ă;ă;ōrŭm;īs;īs
 $se=sē,sēsē;sŭī;sĭbī;sē,sēsē
 $tu=ū;ē;ŭī;ĭbĭ;ē
 $uita=ă;ă;ăm;āe;āe;ā;āe;āe;ās;ārŭm;īs;īs
+$vbem=ĕm;ēs;ĕt;ēmŭs;ētĭs;ēnt
 
 modele:inv
 R:0:0,0
@@ -165,10 +179,9 @@ pere:lupus
 des+:1,3:1:ŏs;ŏn
 
 modele:templum
-pere:lupus
 R:1:2,0
-des:1-3:1:ŭm;ŭm;ŭm
-des:7-9:1:ă;ă;ă
+des:1-12:1:$templum
+pos:n
 
 modele:arpinum
 pere:templum
@@ -209,8 +222,8 @@ pos:n
 
 modele:honor
 pere:miles
-R:4:2,ō
-des+:1:4:s
+R:3:2,ō
+des+:1:3:s
 
 modele:aer
 pere:miles
@@ -271,7 +284,8 @@ des+:10:1:ŭm
 
 modele:mare
 pere:ciuis
-des:1-3:1:ĕ
+!des:1-3:1:ĕ
+des:1-3:2:-;-;-
 des:6-9:1:ī;ĭă;ĭă;ĭă
 
 modele:moenia
@@ -453,6 +467,7 @@ des:27-36:1:ĕm;ĭs;ī;ī;ēs;ēs;ēs,īs;ĭŭm;ĭbŭs
 des:37-48:1:ĕ;ĕ;ĕ;ĭs;ī;ī;ĭă;ĭă;ĭă;ĭŭm;ĭbŭs
 des:49-84:1:ĭ$compar;ĭ$compar;ĭŭs;ĭŭs;ĭŭs;ĭōrĭs;ĭōrī;ĭōrĕ;ĭōră;ĭōră;ĭōră;ĭōrŭm;ĭōrĭbŭs
 des:85-120:1:īssĭm$lupus;īssĭm$uita;īssĭm$templum
+pos:a
 
 modele:felix
 pere:fortis
@@ -465,6 +480,7 @@ des:85-120:6:$lupus;$uita;$templum
 
 modele:infans
 pere:fortis
+R:2:1,t
 des:37-39:1:ns
 des+:18,30,42:1:ē
 des+:22,34,46:1:ŭm
@@ -536,6 +552,7 @@ pere:unus
 R:0:1,0
 des:13,37,39:0:ĕ;ŭm
 abs:14,20,26,32,38,44
+pos:p
 
 modele:ille
 pere:ipse
@@ -714,9 +731,11 @@ des:145-150:1:ĕrăm;ĕrās;ĕrăt;ĕrāmŭs;ĕrātĭs;ĕrānt
 des:151-156:1:ĕrō̆;ĕrī̆s;ĕrĭt;ĕrī̆mŭs;ĕrī̆tĭs;ĕrīnt
 ! subjonctif
 des:157-162:0:$em
-des:163-168:0:ārĕm;ārēs;ārĕt;ārēmŭs;ārētĭs;ārēnt
+!des:163-168:0:ārĕm;ārēs;ārĕt;ārēmŭs;ārētĭs;ārēnt
+des:163-168:0:ār$vbem
 des:169-174:1:ĕrĭm;ĕrī̆s;ĕrĭt;ĕrī̆mŭs;ĕrī̆tĭs;ĕrīnt
-des:175-180:1:īssĕm;īssēs;īssĕt;īssēmŭs;īssētĭs;īssēnt
+!des:175-180:1:īssĕm;īssēs;īssĕt;īssēmŭs;īssētĭs;īssēnt
+des:175-180:1:īss$vbem
 ! impératif
 des:181-186:0:ā;ātĕ;ātō;ātō;ātōtĕ;āntō
 ! infinitif
@@ -781,10 +800,10 @@ des:302:0:ărī
 modele:moneo
 pere:amo
 R:0:2,0
-R:2:-
 des:121-126:0:ĕō̆;ēs;ĕt;ēmŭs;ētĭs;ēnt
 des:127-132:0:ēbăm;ēbās;ēbăt;ēbāmŭs;ēbātĭs;ēbānt
 des:133-138:0:ēbō̆;ēbĭs;ēbĭt;ēbĭmŭs;ēbĭtĭs;ēbūnt
+! indicatif perfectum hérité
 ! subjonctif
 des:157-162:0:ĕăm;ĕās;ĕăt;ĕāmŭs;ĕātĭs;ĕānt
 des:163-168:0:ērĕm;ērēs;ērĕt;ērēmŭs;ērētĭs;ērēnt
@@ -797,7 +816,7 @@ des:188:1:īssĕ
 des:189-200:0:$ens
 des:201-212:0:$ens
 des:213-224:0:ēns;ēns;ēns;ēntĭs;ēntī;ēntĕ;ēntĭă;ēntĭă;ēntĭă;ēntĭŭm,ēntŭm;ēntĭbŭs;ēntĭbŭs
-! gérondif, supin hérité de amo
+! gérondif, supin hérités de amo
 des:261-264:0:ēndŭm;ēndī;ēndō;ēndō
 ! indicatif passif
 des:267-272:0:ĕŏr;ērĭs,ērĕ;ētŭr;ēmŭr;ēmĭnī;ēntŭr
@@ -814,6 +833,7 @@ des:302:0:ērī
 des:339-350:0:ēndŭs;ēndĕ;ēndŭm;ēndī;ēndō;ēndō;ēndī;ēndī;ēndōs;ēndōrŭm;ēndīs;ēndīs
 des:351-362:0:ēndă;ēndă;ēndăm;ēndāe;ēndāe;ēndā;ēndāe;ēndāe;ēndās;ēndārŭm;ēndīs;ēndīs
 des:363-374:0:ēndŭm;ēndŭm;ēndŭm;ēndī;ēndō;ēndō;ēndă;ēndă;ēndă;ēndōrŭm;ēndīs;ēndīs
+pos:v
 
 modele:licet
 pere:moneo
@@ -831,7 +851,8 @@ des:163-168:0:ĕrĕm;ĕrēs;ĕrĕt;ĕrēmŭs;ĕrētĭs;ĕrēnt
 des:181-186:0:ĕ;ĭtĕ;ĭtō;ĭtō;ĭtōtĕ;ūntō
 ! infinitif
 des:187:0:ĕrĕ
-! participe présent hérité
+! 188 infinitif parfait hérité
+! 189-224 participe présent hérité
 ! gérondif et supin hérités
 ! indicatif passif
 des:267-272:0:ŏr;ĕrĭs,ĕrĕ;ĭtŭr;ĭmŭr;ĭmĭnī;ūntŭr
