@@ -31,6 +31,7 @@ DialogM::DialogM(QString d, MainWindow* parent)
     connect(pushButton,   SIGNAL(clicked()), this, SLOT(activer()));
     connect(pushButton_2, SIGNAL(clicked()), this, SLOT(desactiver()));
     connect(pushButton_4, SIGNAL(clicked()), this, SLOT(close()));
+	connect(pushButton_3, SIGNAL(clicked()), this, SLOT(supprimer()));  
 
     QDir dir(_dir);
     QStringList lm = dir.entryList(QStringList() << "*",
@@ -40,9 +41,11 @@ DialogM::DialogM(QString d, MainWindow* parent)
     for (int i=0;i<lm.count();++i)
     {
         QListWidgetItem* ni = new QListWidgetItem(lm.at(i), listWidget);
-        if (lm.at(i) == mainwindow->module()) item = ni;
+        if (lm.at(i) == mainwindow->module()){
+			item = ni;
+    		listWidget->setCurrentItem(item);
+		}
     }
-    if (item != 0) listWidget->setCurrentItem(item);
 }
 
 void DialogM::activer()
@@ -62,5 +65,20 @@ QString DialogM::module()
 {
     QListWidgetItem* item = listWidget->currentItem();
     if (item != 0) return item->text();
-    return 0;
+    return "";
+}
+
+void DialogM::supprimer()
+{
+	QString m = module();
+	if (m > "")
+	{
+		// désactiver
+		mainwindow->setModule("");
+		// supprimer le répertoire du module
+		QDir dir(mainwindow->dirMod()+m);
+		dir.removeRecursively();
+		// supprimer l'item de la liste
+		qDeleteAll(listWidget->selectedItems());
+	}
 }

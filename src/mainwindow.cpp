@@ -1467,6 +1467,11 @@ void MainWindow::dialogueModules()
     dm.exec();
 }
 
+// accesseur du répertoire des modules
+QString MainWindow::dirMod() {
+	return modDir;
+}
+
 /**
  * \fn bool MainWindow::dockVisible (QDockWidget *d)
  * \brief renvoie true si le dock d est visible.

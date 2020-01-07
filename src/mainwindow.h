@@ -121,6 +121,7 @@ class MainWindow : public QMainWindow
     QString stopServer ();
     QString lem2csv(QString texte);
     // module
+	QString dirMod();
     QString module();
     void    setModule(QString m);
     // tagger
