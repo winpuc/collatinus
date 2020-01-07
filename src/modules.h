@@ -41,6 +41,7 @@ class DialogM : public QDialog
     Q_OBJECT
 
     private:
+		QString     courant();
         QString     _dir;
         MainWindow* mainwindow;
 
@@ -50,11 +51,11 @@ class DialogM : public QDialog
     public slots:
         void    activer();
 		void	desactiver();
+		void	supprimer();
 
     public:
         DialogM(QString d, MainWindow* parent=0);
 
-        QVBoxLayout *verticalLayout_2;
         QHBoxLayout *horizontalLayout;
         QListWidget *listWidget;
         QVBoxLayout *verticalLayout;
@@ -64,10 +65,8 @@ class DialogM : public QDialog
         QPushButton *pushButton_4;  // fermer
         QSpacerItem *verticalSpacer;
 
-        //void setupUi(QDialog *Dialog)
         void setupUi()
         {
-            verticalLayout_2 = new QVBoxLayout(this);
             horizontalLayout = new QHBoxLayout(this);
             listWidget = new QListWidget(this);
             horizontalLayout->addWidget(listWidget);
@@ -83,7 +82,6 @@ class DialogM : public QDialog
             verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
             verticalLayout->addItem(verticalSpacer);
             horizontalLayout->addLayout(verticalLayout);
-            verticalLayout_2->addLayout(horizontalLayout);
             retranslateUi();
         } // setupUi
 
