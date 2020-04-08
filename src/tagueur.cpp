@@ -1219,7 +1219,15 @@ void Tagueur::faireCroitre(QList<Lien*> lLiens, Arbre pousse, QList<int> indices
             // C'est la liste des liens d'ailleurs qui sont compatibles avec lienChoisi.
             // Si le token est un pronom relatif, il peut vouloir deux liens.
             nvlPouss.append(lienChoisi);
-/*            if (lienChoisi->iReg < 2)
+/*
+ * J'ai déplacé le traitement des conjonctions de coordinations
+ * dans la phase préliminaire de l'analyse syntaxique.
+ * Elles sont maintenant traitées comme des doubles liens,
+ * tout comme les liens qui ont des contraintes du genre
+ * supEstSub ou subEstSup (qui s'appellent supsub et subsup).
+ * J'ajoute alors deux liens en un seul coup.
+ *
+ *            if (lienChoisi->iReg < 2)
             {
                 // C'est une règle de coordination que j'ai placée en tête de syntaxe.la.
                 QList<Lien*> liensPossibles;
@@ -1274,7 +1282,9 @@ void Tagueur::faireCroitre(QList<Lien*> lLiens, Arbre pousse, QList<int> indices
                     }
                 // J'essaie tous les liens possibles.
             }
-            else*/ if (estAntecedent(lienChoisi))
+            else
+*/
+            if (estAntecedent(lienChoisi))
             {
                 // Je dois choisir un deuxième lien parmi ceux qui suivent
                 // (avant, il n'y a que des antécédents).
@@ -1536,9 +1546,17 @@ QString Tagueur::decritLien(int n)
 
 QString Tagueur::decritMot(int n)
 {
+    // n est bien le numéro du mot.
+    // mais la QMap am (analyseMorphologique) prend pour indice
+    // le numéro du token !
+    int nTok = n; // S'il n'y a pas d'enclitique avant le mot recherché.
+    while ((nTok < _tokens.size()) && (n != _tokens[nTok]->rang())) nTok++;
+    // Je suis sur le premier token qui correspond au mot.
+    // L'enclitique -que ou -cum est placé avant.
+    if ((nTok + 1 < _tokens.size()) && (n == _tokens[nTok+1]->rang())) nTok++;
     QString res = "Forme : " + _mots[n]->forme();
-    res.append("\nLemme : " + _mots[n]->sLem(am[n]).lem->grq());
-    res.append("\nMorpho : " + _mots[n]->morpho(am[n]));
+    res.append("\nLemme : " + _mots[n]->sLem(am[nTok]).lem->grq());
+    res.append("\nMorpho : " + _mots[n]->morpho(am[nTok]));
     return res;
 }
 

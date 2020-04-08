@@ -137,13 +137,13 @@ tr:<super> <sub>
 !rangTr:100
 !tr:<super> <sub>
 
-id:attrSum
-doc:L'attribut du sujet se met au même cas que le sujet, le plus souvent le nominatif
-f:<sub> attribut du sujet non exprimé du verbe <super>
-super:sum:v:1ère
-sub::n,a:nomin
-accord:n
-tr:<super> <sub>
+!id:attrSum
+!doc:L'attribut du sujet se met au même cas que le sujet, le plus souvent le nominatif
+!f:<sub> attribut du sujet non exprimé du verbe <super>
+!super:sum:v:1ère
+!sub::n,a:nomin
+!accord:n
+!tr:<super> <sub>
 
 id:attrObj
 doc:L'attribut de l'objet est à l'accusatif. L'objet peut ne pas être exprimé
@@ -153,21 +153,23 @@ sub::a,n,v:acc
 synt:u
 tr:<super> <sub>
 
-id:attrEs
-pere:attrSum
-super:sum:v:2ème
-sub::n,a:nomin
+!id:attrEs
+!pere:attrSum
+!super:sum:v:2ème
+!sub::n,a:nomin
 
 id:attrSujet
-pere:attrSum
+!pere:attrSum
 doc:De nombreux verbes admettent un attribut du sujet : abeo, venio, vivo, etc
+f:<sub> attribut du sujet, exprimé ou non, du verbe <super>
 super:abeo,sum,venio,video,vivo:v:
 sub::n,a,v:nomin
-accord:
+accord:n
 synt:u
+tr:<super> <sub>
 
 id:attrSujetPassif
-pere:attrSum
+pere:attrSujet
 doc:Au passif, de nombreux verbes admettent un attribut du sujet : dico, video, etc
 super:dico:v:passif
 sub::n,a,v:nomin
@@ -180,20 +182,20 @@ sub::n,p:datif
 synt:u
 tr:<super> à,pour <sub>
 
-id:datifPron
-doc:Les pronoms mihi, tibi, sibi, au datif, se traduisent par me, te, se, placés devant le verbe
-pere:datif
-super::v:
-sub:ego,tu,se:p:datif
-nul:datif
-tr:<sub> <super>
+!id:datifPron
+!doc:Les pronoms mihi, tibi, sibi, au datif, se traduisent par me, te, se, placés devant le verbe
+!pere:datif
+!super::v:
+!sub:ego,tu,se:p:datif
+!nul:datif
+!tr:<sub> <super>
 
-id:datifRel
-pere:datif
-super::v:
-sub:qui::datif
-sens:<
-tr:à,pour <sub> <super>
+!id:datifRel
+!pere:datif
+!super::v:
+!sub:qui::datif
+!sens:<
+!tr:à,pour <sub> <super>
 
 id:etAdv
 pere:adv
@@ -226,12 +228,12 @@ sub::n,p:gén
 synt:u
 tr:<super> de <sub>
 
-id:cuius
-pere:cdn
-f:<sub> relatif complément du nom <super>
-super::n:
-sub:qui:p:gén
-tr:<sub> <super>
+!id:cuius
+!pere:cdn
+!f:<sub> relatif complément du nom <super>
+!super::n:
+!sub:qui:p:gén
+!tr:<sub> <super>
 
 id:cod
 doc:Le complément d'objet direct est à l'accusatif
@@ -241,20 +243,20 @@ sub::n,p:acc
 synt:u
 tr:<super> <sub>
 
-id:codPron
-doc:Un pronom COD (me, te, le, se, nous, les, vous) est placé, en français, immédiatement à gauche du verbe
-pere:cod
-super:-sum,-accido,-fio:v:act
-sub:ego,tu,is,se,nos,vos,nihil:p:acc
-tr:<sub> <super>
+!id:codPron
+!doc:Un pronom COD (me, te, le, se, nous, les, vous) est placé, en français, immédiatement à gauche du verbe
+!pere:cod
+!super:-sum,-accido,-fio:v:act
+!sub:ego,tu,is,se,nos,vos,nihil:p:acc
+!tr:<sub> <super>
 
-id:codRel
-pere:cod
-f:<sub> pronom relatif COD de <super>
-super:-sum:v:act
-sub:qui::acc
-rangTr:1
-tr:<sub> <super>
+!id:codRel
+!pere:cod
+!f:<sub> pronom relatif COD de <super>
+!super:-sum:v:act
+!sub:qui::acc
+!rangTr:1
+!tr:<sub> <super>
 
 id:codInf
 pere:cod
@@ -268,9 +270,28 @@ f:<sub> conj. de subordinantion dépendant du verbe <super>
 super::v:
 sub:cum,quando,quod,quomodo,num,si,ut:c:
 debloc:vbSubInd,vbSubSubj
+subsup:vbSubInd,vbSubSubj
 rangTr:100
 synt:b
 tr:<super> <sub>
+
+id:vbSubInd
+doc:Le verbe d'une subordonnée est souvent introduit par une conjonction de subordination
+f:<sub> verbe d'une subordonnée introduite par <super>
+super:cum,quando,quia,quod,si,ubi:c:
+sub::v:indic
+sens:>
+supsub:conjSub
+nul:vbSubSubj
+tr:<super> <sub>
+
+id:vbSubSubj
+pere:vbSubInd
+doc:Après ut, si, cum, le verbe de la subordonnée est au subjonctif
+super:ut,si,cum:c:
+sub::v:subj
+nul:vbSubInd
+supsub:conjSub
 
 ! Règle pour la coordination de deux mots conjoints, le second étant en -que
 !id:coordQue
@@ -447,7 +468,7 @@ tr:<sub> <super>
 id:sujetRel
 f:<sub> relatif sujet du verbe <super>
 pere:sujet
-super::v:indic
+super::v:3
 sub:qui::nomin
 sens:<
 sub:qui:p:nomin
