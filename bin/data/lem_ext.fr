@@ -57326,7 +57326,7 @@ uiscatorium:glu
 uiscatura:
 uiscellatus:farci de viande
 uiscellum:farce de viande
-uiscera:les parties internes du corps, viscères, intestins, entrailles / [en part.] sein de la mère / testicules / chair [qui se trouve sous la peau de l'h. et des anim.] / [fig.] la chair d'une femme = le fruit de ses entrailles, progéniture, enfant / [fig.] entrailles, coeur, sein / le plus pur sang, la substance
+!uiscera:les parties internes du corps, viscères, intestins, entrailles / [en part.] sein de la mère / testicules / chair [qui se trouve sous la peau de l'h. et des anim.] / [fig.] la chair d'une femme = le fruit de ses entrailles, progéniture, enfant / [fig.] entrailles, coeur, sein / le plus pur sang, la substance
 uisceralis:
 uisceratim:adv., par morceaux, par lambeaux
 uiscereus:d'entrailles, qui est dans les entrailles
