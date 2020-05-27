@@ -5044,7 +5044,7 @@ consedo:apaiser entièrement
 consenesco:vieillir, languir
 consensio:accord
 consensus:accord, assentiment
-consentaneus:d'accord aver, conforme à, conséquent avec
+consentaneus:d'accord avec, conforme à, conséquent avec
 consentiens:d'accord, unanime
 consentio:être d'accord
 consequens:[gram.] bien construit, connexe, logique, raisonnable
