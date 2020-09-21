@@ -371,7 +371,7 @@ QString Server::consult(QString req, QString texte)
     QString p = req.mid(2);
     if (p == "fg")
     {
-        dico_courant = listeD.dictionnaire_par_nom("Gaffiot 1934");
+        dico_courant = listeD.dictionnaire_par_nom("Gaffiot1934");
     }
     else dico_courant = listeD.dico_par_abr(p);
         /*if (p == "dle")

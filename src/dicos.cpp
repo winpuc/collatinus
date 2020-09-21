@@ -177,7 +177,7 @@ int Dictionnaire::compChaines(QString s1, QString s2)
 QString Dictionnaire::nom()
 {
     QString nomCourt = n.section("-",0,0);
-    nomCourt.replace("_"," ");
+    nomCourt.replace("_","");
     return nomCourt;
 }
 /**
@@ -704,10 +704,13 @@ Dictionnaire *ListeDic::dico_par_abr(QString abr)
 {
     QStringList noms = liste.uniqueKeys();
     int i = 0;
-    while (((i<noms.size()) && (abr != noms[i].mid(0,2).toLower())) ||
-           noms[i].contains("1934")) i++;
-    if (i == noms.size()) return NULL;
-    return liste.value(noms[i]);
+    while (i<noms.size()) {
+        if (abr == noms[i].mid(0,3).toLower() && !noms[i].contains("1934")) {
+            return liste.value(noms[i]);
+        }
+        i++;
+    }
+    return NULL;
 }
 
 /**
