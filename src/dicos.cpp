@@ -118,7 +118,7 @@ Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
         flien.append("fg");
         // Le Gaffiot en image est spécial !
     }
-    else flien.append(n.left(2).toLower());
+    else flien.append(n.left(3).toLower());
     flien.append(" @%1\">%1</a>\n</li>\n");
     if (djvu)
     {
