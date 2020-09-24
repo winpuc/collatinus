@@ -40,6 +40,7 @@ Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
     repertoire = qApp->applicationDirPath() + "/dicos/";
     // éviter de redéfinir partout le répertoire de travail.
     n = fi.baseName();
+    QString nomCourt = fi.baseName().replace("_","");
     // lire le fichier de ressource cfg
     QSettings settings(repertoire + cfg, QSettings::IniFormat);
     settings.setIniCodec("utf-8");
@@ -113,12 +114,12 @@ Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
     djvu = !xml;
 
     flien = "<li class=\"%2\" rel=\"%3\">\n<a href=\"#\" data-value=\"-d";
-    if (n.contains("1934"))
+    if (nomCourt.contains("1934"))
     {
         flien.append("fg");
         // Le Gaffiot en image est spécial !
     }
-    else flien.append(n.left(3).toLower());
+    else flien.append(nomCourt.left(3).toLower());
     flien.append(" @%1\">%1</a>\n</li>\n");
     if (djvu)
     {
