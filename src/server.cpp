@@ -401,11 +401,18 @@ QString Server::consult(QString req, QString texte)
     {
         lemmes << texte.mid(1);
     }
-    else
+    else if (dico_courant->estXml())
     {
         MapLem ml = _lemCore->lemmatiseM(texte);
-        if (ml.isEmpty()) lemmes << texte;
-        else lemmes = _lemCore->lemmes(ml);
+        if (ml.isEmpty()) {
+            lemmes << texte;
+        }
+        else {
+            lemmes = _lemCore->lemmes(ml);
+        }
+    }
+    else { 
+        lemmes << texte;
     }
     if (dico_courant->estXml())
         return dico_courant->pageXml(lemmes);
