@@ -392,7 +392,8 @@ QString Server::consult(QString req, QString texte)
     }
     else return "Dico inconnu";
     */
-    if (dico_courant == NULL) return "Dico inconnu";
+    QString errorMsgDico = "<p class='text-danger'><strong>Dictionnaire inconnu</strong>. Veuillez recharger la page pour relancer Collatinus-web.</p> <button type='button' class='btn btn-default' onclick='javascript:window.location.reload()'><span class='glyphicon glyphicon-refresh'></span> Recharger la page</button>";
+    if (dico_courant == NULL) return errorMsgDico;
     // puis le mot.
     QStringList lemmes;
     if (texte.contains(" ")) texte = texte.section(" ",0,0);
