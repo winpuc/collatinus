@@ -344,22 +344,22 @@ QString Flexion::tabV()
     QTextStream fl(&ret);
     fl << "<a name=\"actif\"></a>";
     fl << "<div>" << _lemme->humain(false,_lemmatiseur->cible()) << "</div>";
-    fl << "<a name=\"indactif\"></a>" << menu << "<h4>"<< _lemmatiseur->voix(0) <<"</h4><br/>"
-       << _lemmatiseur->modes(0) << " infectum<br/>";
+    fl << "<a name=\"indactif\"></a>" << menu << "<h4>"<< _lemmatiseur->voix(0) <<"</h4><p>"
+       << _lemmatiseur->modes(0) << " infectum</p>";
     fl << entete;
     fl << lina << _lemmatiseur->temps(0) << linb << _lemmatiseur->temps(1) << linb << _lemmatiseur->temps(2) << linc;
     for (int i = 121; i < 127; ++i)
         fl << lina << forme(i) << linb << forme(i + 6) << linb << forme(i + 12)
            << linc;
-    fl << queue << "</p>";
+    fl << queue << "<p>";
 
-    fl << _lemmatiseur->modes(0) << " perfectum<br/>";
+    fl << _lemmatiseur->modes(0) << " perfectum</p>";
     fl << entete;
     fl << lina << _lemmatiseur->temps(3) << linb << _lemmatiseur->temps(4) << linb << _lemmatiseur->temps(5) << linc;
     for (int i = 139; i < 145; ++i)
         fl << lina << forme(i) << linb << forme(i + 6) << linb << forme(i + 12)
            << linc;
-    fl << queue << "</p>";
+    fl << queue;
 
     fl << "<a name=\"subactif\"></a>";
     fl << menu;
@@ -370,7 +370,7 @@ QString Flexion::tabV()
     for (int i = 157; i < 163; ++i)
         fl << lina << forme(i) << linb << forme(i + 6) << linb << forme(i + 12)
            << linb << forme(i + 18) << linc;
-    fl << queue << "</p>";
+    fl << queue;
 
     fl << QString(
         "<a name=\"impactif\"></a>"
@@ -393,7 +393,7 @@ QString Flexion::tabV()
           " : "
        << forme(188) << "</p>";
 
-    fl << "<a name=\"partpres\"/>";
+    fl << "<a name=\"partpres\"></a>";
     fl << menu;
     fl << "<p>"<< _lemmatiseur->modes(4) <<" "<< _lemmatiseur->temps(0) <<"</p>";
     fl << entete;
@@ -423,7 +423,7 @@ QString Flexion::tabV()
     for (int i = 231; i < 237; ++i)
         fl << lina << _lemmatiseur->cas((i - 225) % 6) << linb << forme(i) << linb
            << forme(i + 12) << linb << forme(i + 24) << linc;
-    fl << queue;
+    fl << queue << "<br/>";
 
     fl << entete << lina << _lemmatiseur->morpho(261) << linb << forme(261)
        << linc << lina << _lemmatiseur->morpho(262) << linb
@@ -432,15 +432,29 @@ QString Flexion::tabV()
        << forme(264) << linc << lina << _lemmatiseur->morpho(265) << linb << forme(265)
        << linc << lina << _lemmatiseur->morpho(266) << linb << forme(266) << linc << queue;
 
-    fl << "<a name=\"indpass\"></a><h4>"<< _lemmatiseur->voix(1) <<"</h4><br/>";
     fl << menu;
-    fl << ""<< _lemmatiseur->modes(0) <<"<br/>";
+    fl << "<a name=\"indpass\"></a><h4>"<< _lemmatiseur->voix(1) <<"</h4>";
+    fl << "<p>"<< _lemmatiseur->modes(0) <<"</p>";
     fl << entete;
     fl << lina << _lemmatiseur->temps(0) << linb << _lemmatiseur->temps(1) << linb << _lemmatiseur->temps(2) << linc;
     for (int i = 267; i < 273; ++i)
         fl << lina << forme(i) << linb << forme(i + 6) << linb << forme(i + 12)
            << linc;
-    fl << queue << "</p>";
+    fl << queue;
+
+    // Formes composées
+    QString ppp = forme(303) + "/ă&nbsp;";
+    QString fc = "<a href=\"https://cerclelatin.org/wiki/Petitmangin/Grammaire/47-86#a65\">Formes compos\u00E9es</a>";
+    QString susp = "&nbsp;\u22EE ";
+    fl << fc;
+    fl << entete;
+    fl << lina << _lemmatiseur->temps(3) << linb << _lemmatiseur->temps(4) << linb
+       << _lemmatiseur->temps(5) << linc;
+    fl << lina << ppp << "<i>sum</i>" << linb << ppp << "<i>eram</i>" << linb << ppp << "<i>ero</i>"
+           << linc;
+    fl << lina << ppp << susp << linb << ppp << susp << linb << ppp << susp
+           << linc;
+    fl << queue;
 
     fl << "<a name=\"subpass\"></a>";
     fl << menu;
@@ -449,6 +463,14 @@ QString Flexion::tabV()
     fl << lina << _lemmatiseur->temps(0) << linb << _lemmatiseur->temps(1) << linc;
     for (int i = 285; i < 291; ++i)
         fl << lina << forme(i) << linb << forme(i + 6) << linc;
+    fl << queue;
+
+    // Formes composées
+    fl << fc;
+    fl << entete;
+    fl << lina << _lemmatiseur->temps(3) << linb << _lemmatiseur->temps(4) << linc;
+    fl << lina << ppp << "<i>sim</i>" << linb << ppp << "<i>essem</i>" << linc;
+    fl << lina << ppp << susp << linb << ppp << susp << linc;
     fl << queue;
 
     // impératif passif
@@ -464,7 +486,7 @@ QString Flexion::tabV()
     fl << lina << _lemmatiseur->motsClefs(4) << linb << forme(300) << linb << forme(301) << linc;
     fl << queue;
 
-    fl << _lemmatiseur->morpho(302) << " : " << forme(302) << "</p>";
+    fl << "<p>" << _lemmatiseur->morpho(302) << " : " << forme(302) << "</p><br/>";
 
     fl << "<a name=\"ppp\"></a>";
     fl << menu;
