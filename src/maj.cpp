@@ -247,96 +247,9 @@ void Maj::selectionne()
                              tr("L'installation s'est bien passée. "
                                 "Au prochain lancement, les nouveaux lexiques "
                                 "et dictionnaires seront disponibles."));
-/*
-    // Provisoirement, j'utilise la mise à jour pour créer les .col à partir des djvu.
-    QStringList nfichiers = QFileDialog::getOpenFileNames(
-        this, "Sélectionner un ou plusieurs paquets", qApp->applicationDirPath() + "/data/dicos/",
-//        "dictionnaires djvu (*.djvu)");
-                "lexiques (*.*)");
-    listeF = nfichiers;
-    if (listeF.empty()) return;
-    bool OK = true;
-    foreach (QString nfcol, listeF)
-    {
-//        bool OK1 = djvu2col(nfcol);
-        bool OK1 = lem2col(nfcol);
-        if (OK1) qDebug() << "installé" << nfcol;
-        else OK = false;
-    }
-    // info
-    if (OK) QMessageBox::information(this, tr("Collatinus 12"),
-                             tr("La copie s'est bien passée. "));
-*/
 }
 
 void Maj::setFont(QFont font) { label->setFont(font); }
-
-/**
- * @brief Maj::djvu2col
- * @param nfdjvu
- * @return
- *
- * Fonction provisoire pour créer un fichier .col à partir
- * des fichiers djvu, idx et cfg présents dans /data/dicos.
- * C'est une fonction que je suis seul à utiliser, une seule fois.
- * Les utilisateurs utiliseront la fonction "installe" qui fait le contraire,
- * i.e. installer les fichiers djvu, idx et cfg dans /data/dicos
- * à partir d'un .col placé ailleurs.
- *
- */
-bool Maj::djvu2col(QString nfdjvu)
-{
-    // nom du paquet
-    QString nom = QFileInfo(nfdjvu).baseName();
-    // fichiers destination
-    QString nf(qApp->applicationDirPath() + "/data/dicos/" + nom);
-    QString nfcol("/Users/Philippe/Documents/dicos_C11/" + nom + ".col");
-    QString nfidx = nf + ".idx";
-    QString nfcfg = nf + ".cfg";
-    //qDebug() << nfdjvu << nfcol << nf;
-
-    if (QFile::exists(nfcol))
-        QFile::remove(nfcol);
-    // On ne peut pas copier si le fichier existe déjà
-    QFile::copy(nfdjvu,nfcol);
-    // Je copie le fichier dans /Users/Philippe/Documents/dicos_C11/.
-    QFile fcol(nfcol);
-    if (!fcol.open(QFile::ReadWrite)) return false;
-    fcol.seek(fcol.size());
-
-    QFile fzi(nfidx);
-    fzi.open(QFile::ReadOnly|QFile::Text);
-    QString lin = fzi.readAll();
-    fzi.close();
-
-    qint64 p = fcol.pos();
-    //qDebug() << p;
-    QString nn = "%1:%2\n";
-    QByteArray ba = qCompress(lin.toUtf8(),9);
-    fcol.write(ba);
-    QString piedDeFichier = "\n";
-    piedDeFichier += nn.arg("djvu").arg(p);
-    piedDeFichier += nn.arg("idx").arg(ba.size());
-
-    fzi.setFileName(nfcfg);
-    fzi.open (QFile::ReadOnly|QFile::Text);
-    QByteArray baIn = fzi.readAll();
-    fzi.close();
-
-    ba = qCompress(baIn,9);
-    p = fcol.pos();
-    fcol.write(ba);
-    piedDeFichier += nn.arg("cfg").arg(ba.size());
-
-    int n = 100 - piedDeFichier.size();
-    //        if (n<1) n += 64;
-    //qDebug() << n;
-    piedDeFichier.prepend(QString(n,' '));
-    fcol.write(piedDeFichier.toUtf8());
-
-    fcol.close();
-    return true;
-}
 
 /**
  * @brief Maj::lem2col
