@@ -21,8 +21,6 @@
 
 #include "dicos.h"
 
-#include <QDebug>
-
 /****************
  * Dictionnaire *
  ****************/
@@ -59,9 +57,6 @@ Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
     ji = settings.value("ji").toInt();
     JI = settings.value("JI").toInt();
     alphabet = settings.value("alphabet").toString();
-//    qDebug() << alphabet.size();
-//    if (langue == "cs")
-//        alphabet = "a,b,c,č,d,ď,e,f,g,h,ch,i,j,k,l,m,n,o,p,q,r,ř,s,š,t,ť,u,v,w,x,y,z";
     if (!alphabet.isEmpty())
     {
         QStringList car = alphabet.split(".");
@@ -102,7 +97,6 @@ Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
                 indices.prepend(i);
             }
         }
-//        qDebug() << caracteres << indices << nbCar;
     }
     settings.endGroup();
     settings.beginGroup("style");
@@ -122,18 +116,15 @@ Dictionnaire::Dictionnaire(QString cfg, QObject *parent) : QObject(parent)
  */
 int Dictionnaire::compChaines(QString s1, QString s2)
 {
-//    qDebug() << s1 << s2;
     if (s1 == s2) return 0;
     if (s1.isEmpty()) return 1;
     if (s2.isEmpty()) return -1;
     int i1 = 0;
     while ((i1 < nbCar) && !s1.startsWith(caracteres[i1])) i1++;
-//    qDebug() << i1 << nbCar;
     if (i1 == nbCar)
     {
         // Je dois nettoyer la voyelle accentuée.
         QString pr1 = s1.left(1).normalized(QString::NormalizationForm_D).left(1);
-//        qDebug() << s1 << pr1;
         // Décomposition canonique et la voyelle est en tête.
         i1 = 0;
         while ((i1 < nbCar) && (pr1 != caracteres[i1])) i1++;
@@ -503,7 +494,6 @@ QString Dictionnaire::pageXml(QStringList lReq)
     }
     pg.prepend(auteur + " <a href=\"http://" + url + "\">" + url + "</a> ");
 
-    //qDebug() << ici << avant << apres;
     for (int j = 0; j < ici.size(); j++)
     {
         for (int i = avant.size() - 1; i > -1; i--)
@@ -514,7 +504,6 @@ QString Dictionnaire::pageXml(QStringList lReq)
                 apres.removeAt(i);
         // J'élimine les mots qui ne sont pas avant ou après les mots affichés.
     }
-    //qDebug() << avant << apres;
     if (avant.size() > 0) prec = avant[0];
     else if (ici.size() > 0) prec = ici[0];
     else prec = "error";
@@ -526,7 +515,6 @@ QString Dictionnaire::pageXml(QStringList lReq)
     else suiv = "error"; // Je n'ai ni ici, ni après : improbable.
     if (apres.size() > 1) for (int i=1; i<apres.size();i++)
         if (QString::compare(suiv, apres[i], Qt::CaseInsensitive) > 0) suiv = apres[i];
-    //qDebug() << prec << suiv;
 
     return pg;
 }
