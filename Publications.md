@@ -21,47 +21,46 @@ _Classics@,_ Center for Hellenic Studies/Harvard University, In press.
 
 ## Interventions orales
 
-Collatinus : Lemmatizer and morphological analyzer for Latin texts.
-Yves Ouvrard et Philippe Verkerk
+[Collatinus : Lemmatizer and morphological analyzer for Latin texts.](https://projet.biblissima.fr/fr/collatinus-lemmatizer-and-morphological-analyzer-latin-texts)
+Yves Ouvrard et Philippe Verkerk ;
 Digital Classics III: Re-thinking Text Analysis (Heidelberg 2017)
-https://projet.biblissima.fr/fr/collatinus-lemmatizer-and-morphological-analyzer-latin-texts
 
-Collatinus : Lemmatiser et analyser des textes latins
-Yves Ouvrard et Philippe Verkerk
+
+[Collatinus : Lemmatiser et analyser des textes latins](https://projet.biblissima.fr/fr/collatinus-lemmatiser-analyser-textes-latins)
+Yves Ouvrard et Philippe Verkerk ;
 Atelier "Lemmes" du consortium Cosme2 (Paris 2017)
-https://projet.biblissima.fr/fr/collatinus-lemmatiser-analyser-textes-latins
 
-Les Langues anciennes et L’ordinateur
-Yves Ouvrard
+
+Les Langues anciennes et L’ordinateur.
+Yves Ouvrard ;
 Autun, capitale des Langues Anciennes (Autun 2018)
 https://www.academia.edu/38497819/MERKENBREACK_V_GORSKY_MIEZE_P_LAMBERT_HUYGHE_U_dir_Autun_capitale_des_langues_anciennes_Actes_du_1er_rendez_vous_des_langues_anciennes_des_10_et_11_mars_2018_Autun_2019
 p. 91 (89 du pdf).
 
-Collatinus and the LASLA-tagger
-Philippe Verkerk et Yves Ouvrard
+Collatinus and the LASLA-tagger.
+Philippe Verkerk et Yves Ouvrard ;
 Text encoding : Latinists looking for new synergies (Liège 2018)
 
-les développements de Collatinus pour l’analyse syntaxique, le latin médiéval et les fonctionnalités particulières du tagueur-LASLA
-Yves Ouvrard et Philippe Verkerk
+les développements de Collatinus pour l’analyse syntaxique, le latin médiéval et les fonctionnalités particulières du tagueur-LASLA.
+Yves Ouvrard et Philippe Verkerk ;
 Atelier 3 du groupe Lemmes de Cosme2 (IRHT Paris 2018)
 
 Collatinus et Eulexis : Lemmatiser des textes Latins et Grecs.
-Table ronde “Les langues anciennes et les outils du numérique” 
-Philippe Verkerk
+Table ronde “Les langues anciennes et les outils du numérique”, 
+Philippe Verkerk ;
 Autun, capitale des Langues Anciennes (Autun 2019)
 
-Collatinus: A New Tool for Latinists
-Philippe Verkerk et Yves Ouvrard
-First LiLa Workshop: Linguistic Resources & NLP Tools for Latin (Milan 2019)
-https://lila-erc.eu/1st-lila-ws
+Collatinus: A New Tool for Latinists.
+Philippe Verkerk et Yves Ouvrard ;
+[First LiLa Workshop: Linguistic Resources & NLP Tools for Latin (Milan 2019)](https://lila-erc.eu/1st-lila-ws)
 
 Installation, prise en main et utilisation de Collatinus. Lemmatiseur et 
-analyseur morphologique de textes latins 
-Yves Ouvrard et Philippe Verkerk
+analyseur morphologique de textes latins.
+Yves Ouvrard et Philippe Verkerk ;
 Journée d’initiation à la lemmatisation des textes médiévaux (groupe Lemmes de Cosme2 IRHT Paris 2019)
 
-Présentation de Collatinus
-Philippe Verkerk
+Présentation de Collatinus.
+Philippe Verkerk ;
 Synergy Collatinus_LASLA - SyntIA - Hyperbase (Liège 2021)
 
 
