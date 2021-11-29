@@ -66,7 +66,11 @@ la même disposition.</p>
 <ul>
 <li>n1 : numéro du radical</li>
 <li>n2 : nombre de caractères à ôter de la forme canonique</li>
-<li>ch : chaîne à ajouter à la chaîne obtenue pour avoir le radical. S'il n'y a aucune chaîne à ajouter, la valeur est 0.  exemple pour uita : <strong>R:1:1:0</strong>, ce qui signifie que pour le radical 1, on enlève un caractère à <em>uita</em>, ce qui donne <em>uit</em>, et on n'ajoute rien.</li>
+<li>ch : chaîne à ajouter à la chaîne obtenue pour avoir le radical. 
+    S'il n'y a aucune chaîne à ajouter, la valeur est 0.  
+    exemple pour uita : <strong>R:1:1:0</strong>, 
+    ce qui signifie que pour le radical 1, on enlève un caractère 
+    à <em>uita</em>, ce qui donne <em>uit</em>, et on n'ajoute rien.</li>
 </ul>
 </li>
 <li>désinences :
@@ -125,7 +129,7 @@ des:315-326:2:$uita
 leurs radicaux, et les indications morphologiques qui
 apparaîtront dans l'analyse.</p>
 
-<p>Chaque lemme occupe une seule ligne. Cinq champs sont séparés par
+<p>Chaque lemme occupe une seule ligne. Six champs sont séparés par
 le caractère <strong>|</strong> :
 <ol><li>la forme canonique du lemme ; si le dictionnaire
     n'en donne pas toutes les quantités, on la réécrit
@@ -136,12 +140,13 @@ le caractère <strong>|</strong> :
     <li>s'il n'est pas défini par modeles.la, son radical de
     perfectum ;</li>
     <li>ses indications morphologiques</li>
+    <li>le nombre d'occurrences du lemme dans les textes du LASLA</li>
 </ol>
 </p>
 
 <p>Exemple :</p>
 
-<pre><code>ablŭo=ā̆blŭo|lego|ā̆blŭ|ā̆blūt|is, ere, lui, lutum
+<pre><code>ablŭo=ā̆blŭo|lego|ā̆blŭ|ā̆blūt|is, ere, lui, lutum|25
 </code></pre>
 
 <h2>les irréguliers</h2>
