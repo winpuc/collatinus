@@ -34,6 +34,14 @@ Starting from a lemma and its associated flexional endings, Collatinus is also c
 
 Finally, when syllable quantities are known for a given lemma, Collatinus can scan the word and even the entire text. When scanning a text, Collatinus applies the usual rules of elision and hiatus.
 
+## Documentation
+The help pages of Collatinus are also available on the
+[web site of Biblissima](https://outils.biblissima.fr/fr/collatinus/aide/).
+
+The technical documentation collected with [Doxygen](https://www.doxygen.nl/index.html)
+can be found on the [web site of Biblissima](https://outils.biblissima.fr/fr/collatinus/doc/).
+Of course, any developer can collect it also from the sources.
+
 ## Licence
 
 Collatinus is developed and maintained by Yves Ouvrard and Philippe Verkerk. It is made available under the [GNU GPL v3](http://www.gnu.org/licenses/gpl.html) licence.
